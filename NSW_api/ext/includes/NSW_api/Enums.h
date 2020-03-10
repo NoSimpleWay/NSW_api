@@ -12,5 +12,7 @@ public:
 	};
 
 	enum PositionMode { LEFT, MID, RIGHT, UP, DOWN };
+
+	enum PositionMaster { WINDOW, SCREEN };
 	//font_gabarite 08.12.2019 06:55:10
 };

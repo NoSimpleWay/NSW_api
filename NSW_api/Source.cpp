@@ -82,6 +82,7 @@ int main()
 	glfwSetMouseButtonCallback(EWindow::main_window, mouse_button_callback);
 	glfwSetCursorPosCallback(EWindow::main_window, mouse_position_callback);
 	glfwSetCharCallback(EWindow::main_window, char_input_callback);
+
 	//glfwSetMousePos(0, 0);
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
@@ -133,6 +134,7 @@ int main()
 	EWindowTest* wg = new EWindowTest();
 	//EWindow::window_game = wg;
 	EWindow::window_list.push_back(wg);
+	wg->id = 0;
 	//wg->init();
 
 
@@ -145,13 +147,21 @@ int main()
 	
 	EGraphicCore::gabarite_white_pixel = ETextureAtlas::put_texture_to_atlas("data/white_pixel.png", EWindow::default_texture_atlas);
 
-
 	EGraphicCore::gabarite_white_pixel->x += 1 / 4096.0f;
 	EGraphicCore::gabarite_white_pixel->y += 1 / 4096.0f;
 
 	EGraphicCore::gabarite_white_pixel->x2 -= 1 / 4096.0f;
 	EGraphicCore::gabarite_white_pixel->y2 -= 1 / 4096.0f;
 
+
+
+
+	EGraphicCore::gabarite_wood_button_bg = ETextureAtlas::put_texture_to_atlas("data/white_pixel.png", EWindow::default_texture_atlas);
+	EGraphicCore::gabarite_wood_button_bg->x += 1 / 4096.0f;
+	EGraphicCore::gabarite_wood_button_bg->y += 1 / 4096.0f;
+
+	EGraphicCore::gabarite_wood_button_bg->x2 -= 1 / 4096.0f;
+	EGraphicCore::gabarite_wood_button_bg->y2 -= 1 / 4096.0f;
 	
 	EFont* new_font = NULL;
 	EGabarite* font_gabarite = ETextureAtlas::put_texture_to_atlas("data/font/franklin_0.png", EWindow::default_texture_atlas);
@@ -167,6 +177,8 @@ int main()
 		saved_time_for_delta = time;
 
 		delta_time /= 1.0f;//
+
+		//update windows
 		for (EWindow* w : EWindow::window_list)
 		{
 			w->default_update(delta_time);
@@ -183,6 +195,38 @@ int main()
 		EGraphicCore::batch->reset();
 
 
+
+		EButton::top_window_id = -1;
+
+		if (!EWindow::button_backspace_released)
+		{
+			EWindow::delete_button_hold_time += delta_time;
+		}
+
+		if
+		(
+			(glfwGetKey(EWindow::main_window, GLFW_KEY_BACKSPACE) == GLFW_RELEASE)
+			&&
+			(glfwGetKey(EWindow::main_window, GLFW_KEY_DELETE) == GLFW_RELEASE)
+		)
+		{
+			EWindow::button_backspace_released = true;
+
+			EWindow::delete_button_hold_time = 0;
+
+		}
+
+		for (int i = 0; i < EWindow::window_list.size(); i++)
+		{
+			if (
+				(EWindow::is_overlap(EWindow::window_list.at(i)))
+				&&
+				(EWindow::window_list.at(i)->is_active)
+				)
+			{
+				EButton::top_window_id = i;
+			}
+		}
 
 		for (EWindow* w : EWindow::window_list)
 		{
@@ -263,7 +307,7 @@ void mouse_position_callback(GLFWwindow* window, double _x, double _y)
 
 void char_input_callback(GLFWwindow* window, unsigned int _char)
 {
-
+	EWindow::last_inputed_char = _char;
 }
 
 void processInput(GLFWwindow* window)

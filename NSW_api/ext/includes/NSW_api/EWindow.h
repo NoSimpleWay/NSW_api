@@ -1,5 +1,7 @@
 #pragma once
 
+
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 //glm::mat4 matrix_transform;
@@ -14,8 +16,9 @@
 #include <chrono>
 
 #include "NSW_api/ETextureAtlas.h"
+#include "NSW_api/EButton.h"
 
-class EWindowGame;
+class EButton;
 class EWindow
 {
 public:
@@ -32,6 +35,12 @@ public:
 	static GLFWwindow* main_window;
 
 	static unsigned int transformLoc;
+
+	float pos_x = 0;
+	float pos_y = 0;
+	
+	float window_size_x = 100.0f;
+	float window_size_y = 100.0f;
 
 	static int mouse_x;
 	static int mouse_y;
@@ -52,10 +61,23 @@ public:
 	~EWindow();
 
 	static Batcher* batch;
-	static EWindowGame* window_game;
 	static std::vector<EWindow*> window_list;
+	static float delete_button_hold_time;
 
 	static ETextureAtlas* default_texture_atlas;
+
+	static bool button_pressed;
+	static bool button_right_pressed;
+	static bool button_backspace_released;
+	static bool is_active;
+	int id = 0;
+
+	static bool is_overlap(EWindow* _w);
+
+	static char last_inputed_char;
+
+	std::vector <EButton*> button_list;
+	std::vector <EButton*> default_button_list;
 
 
 };

@@ -41,6 +41,7 @@ public:
 
 	static EGabarite* gabarite_white_pixel;
 	static EGabarite* gabarite_tileset;
+	static EGabarite* gabarite_wood_button_bg;
 
 	EGraphicCore();
 	~EGraphicCore();

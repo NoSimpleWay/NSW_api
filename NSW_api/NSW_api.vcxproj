@@ -21,8 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{33C4E93A-AFD2-4425-A130-BB192EADEF8F}</ProjectGuid>
-    <RootNamespace>TerraFirmaTool</RootNamespace>
+    <RootNamespace>NSW_api</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>NSW_api</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -129,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="ext\includes\glad\glad.c" />
     <ClCompile Include="ext\includes\NSW_api\Batcher.cpp" />
+    <ClCompile Include="ext\includes\NSW_api\EButton.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EColor.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EColorCollection.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EFont.cpp" />
@@ -136,6 +138,7 @@
     <ClCompile Include="ext\includes\NSW_api\EGraphicCore.cpp" />
     <ClCompile Include="ext\includes\NSW_api\ESprite.cpp" />
     <ClCompile Include="ext\includes\NSW_api\ETextureAtlas.cpp" />
+    <ClCompile Include="ext\includes\NSW_api\EUtils.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EWindow.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EWindowTest.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -143,6 +146,7 @@
   <ItemGroup>
     <ClInclude Include="ext\includes\glad\glad.h" />
     <ClInclude Include="ext\includes\NSW_api\Batcher.h" />
+    <ClInclude Include="ext\includes\NSW_api\EButton.h" />
     <ClInclude Include="ext\includes\NSW_api\EColor.h" />
     <ClInclude Include="ext\includes\NSW_api\EColorCollection.h" />
     <ClInclude Include="ext\includes\NSW_api\EFont.h" />
@@ -151,6 +155,7 @@
     <ClInclude Include="ext\includes\NSW_api\Enums.h" />
     <ClInclude Include="ext\includes\NSW_api\ESprite.h" />
     <ClInclude Include="ext\includes\NSW_api\ETextureAtlas.h" />
+    <ClInclude Include="ext\includes\NSW_api\EUtils.h" />
     <ClInclude Include="ext\includes\NSW_api\EWindow.h" />
     <ClInclude Include="ext\includes\NSW_api\EWindowTest.h" />
   </ItemGroup>

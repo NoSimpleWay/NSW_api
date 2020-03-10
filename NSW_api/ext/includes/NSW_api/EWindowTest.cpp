@@ -1,22 +1,22 @@
 #include "EWindowTest.h"
 
-int native_copper = 3;
-int poor_copper = 3;
-int normal_copper = 3;
-int rich_copper = 3;
-int ingot_copper = 3;
+int native_copper = 1;
+int poor_copper = 1;
+int normal_copper = 1;
+int rich_copper = 1;
+int ingot_copper = 1;
 
-int native_sphalerite = 3;
-int poor_sphalerite = 3;
-int normal_sphalerite = 3;
-int rich_sphalerite = 3;
-int ingot_sphalerite = 3;
+int native_sphalerite = 1;
+int poor_sphalerite = 1;
+int normal_sphalerite = 1;
+int rich_sphalerite = 1;
+int ingot_sphalerite = 1;
 
-int native_vismut = 3;
-int poor_vismut = 3;
-int normal_vismut = 3;
-int rich_vismut = 3;
-int ingot_vismut = 3;
+int native_vismut = 1;
+int poor_vismut = 1;
+int normal_vismut = 1;
+int rich_vismut = 1;
+int ingot_vismut = 1;
 
 
 float summary_alloy = 0;
@@ -108,6 +108,13 @@ EWindowTest::EWindowTest()
 			
 		}
 	}
+
+	EButton* but = new EButton(0.0f, 0.0f, 100.0f, 20.0f);
+	but->master_window = this;
+	but->have_input_mode = true;
+	but->master_position = Enums::PositionMaster::WINDOW;
+
+	button_list.push_back(but);
 }
 
 EWindowTest::~EWindowTest()
@@ -137,7 +144,7 @@ void EWindowTest::draw(float _d)
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 
 	EGraphicCore::batch->setcolor(EColor::COLOR_BLACK);
-	EGraphicCore::batch->draw_gabarite(100.0f, 200.0f, 512.0f, 64.0f, EGraphicCore::gabarite_white_pixel);
+	EGraphicCore::batch->draw_gabarite(100.0f + rand() % 10, 200.0f, 512.0f, 64.0f, EGraphicCore::gabarite_white_pixel);
 }
 
 void EWindowTest::draw_interface(float _d)

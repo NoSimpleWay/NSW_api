@@ -6,7 +6,7 @@
 #include <ctime>
 
 #include "NSW_api/EWindow.h"
-#include "NSW_api/EWindowTest.h"
+#include "EWindowTest.h"
 
 #include "NSW_api/EGraphicCore.h"
 //#include "ETextureAtlas.h"
@@ -31,7 +31,7 @@
 
 
 
-
+static unsigned int transformLoc;
 
 float delta_time;
 float saved_time_for_delta;
@@ -131,6 +131,7 @@ int main()
 	EGraphicCore::ourShader->setInt("texture1", EGraphicCore::texture[0]);
 
 	
+
 	EWindowTest* wg = new EWindowTest();
 	//EWindow::window_game = wg;
 	EWindow::window_list.push_back(wg);
@@ -185,13 +186,21 @@ int main()
 			w->update(delta_time);
 		}
 
+
+		//очищаем графический буфер и подготавливаем трансформацию
 		//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 		glClearColor(0.4f, 0.5f, 0.6f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
 
+		EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(-1, -1, 0.0f));
+		EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x, EGraphicCore::correction_y, 1));
 
+		transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
+		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 
+		//сброс батчера
 		EGraphicCore::batch->reset();
 
 
@@ -216,6 +225,7 @@ int main()
 
 		}
 
+		EButton::top_window_id = -1;
 		for (int i = 0; i < EWindow::window_list.size(); i++)
 		{
 			if (

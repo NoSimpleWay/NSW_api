@@ -28,6 +28,9 @@ public:
 	void default_draw(float _d);
 	virtual void draw(float _d);
 
+	void default_resize_event(int _x, int _y);
+
+
 	virtual void draw_interface(float _d);
 
 	void add_time_process(std::string _name);
@@ -78,6 +81,8 @@ public:
 
 	std::vector <EButton*> button_list;
 	std::vector <EButton*> default_button_list;
+
+	bool always_fullscreen;
 
 
 };

@@ -128,6 +128,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EWindowTest.cpp" />
     <ClCompile Include="ext\includes\glad\glad.c" />
     <ClCompile Include="ext\includes\NSW_api\Batcher.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EButton.cpp" />
@@ -140,10 +142,12 @@
     <ClCompile Include="ext\includes\NSW_api\ETextureAtlas.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EUtils.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EWindow.cpp" />
-    <ClCompile Include="ext\includes\NSW_api\EWindowTest.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="EPath.h" />
+    <ClInclude Include="EWindowTest.h" />
     <ClInclude Include="ext\includes\glad\glad.h" />
     <ClInclude Include="ext\includes\NSW_api\Batcher.h" />
     <ClInclude Include="ext\includes\NSW_api\EButton.h" />
@@ -157,7 +161,6 @@
     <ClInclude Include="ext\includes\NSW_api\ETextureAtlas.h" />
     <ClInclude Include="ext\includes\NSW_api\EUtils.h" />
     <ClInclude Include="ext\includes\NSW_api\EWindow.h" />
-    <ClInclude Include="ext\includes\NSW_api\EWindowTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

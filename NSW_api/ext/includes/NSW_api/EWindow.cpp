@@ -95,6 +95,10 @@ void EWindow::draw(float _d)
 {
 }
 
+void EWindow::default_resize_event(int _x, int _y)
+{
+}
+
 void EWindow::draw_interface(float _d)
 {
 }

@@ -16,6 +16,9 @@
     <Filter Include="NSW_api">
       <UniqueIdentifier>{bd1bf3bb-a253-4ec7-b4d8-a50c9694f639}</UniqueIdentifier>
     </Filter>
+    <Filter Include="External">
+      <UniqueIdentifier>{6ba070e7-22b6-47bf-998c-c57812985134}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -51,14 +54,17 @@
     <ClCompile Include="ext\includes\glad\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ext\includes\NSW_api\EWindowTest.cpp">
-      <Filter>NSW_api</Filter>
-    </ClCompile>
     <ClCompile Include="ext\includes\NSW_api\EButton.cpp">
       <Filter>NSW_api</Filter>
     </ClCompile>
     <ClCompile Include="ext\includes\NSW_api\EUtils.cpp">
       <Filter>NSW_api</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include="EWindowTest.cpp">
+      <Filter>External</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,14 +101,20 @@
     <ClInclude Include="ext\includes\glad\glad.h">
       <Filter>NSW_api</Filter>
     </ClInclude>
-    <ClInclude Include="ext\includes\NSW_api\EWindowTest.h">
-      <Filter>NSW_api</Filter>
-    </ClInclude>
     <ClInclude Include="ext\includes\NSW_api\EUtils.h">
       <Filter>NSW_api</Filter>
     </ClInclude>
     <ClInclude Include="ext\includes\NSW_api\EButton.h">
       <Filter>NSW_api</Filter>
+    </ClInclude>
+    <ClInclude Include="EPath.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="EWindowTest.h">
+      <Filter>External</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

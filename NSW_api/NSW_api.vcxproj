@@ -128,7 +128,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="ECamera.cpp" />
+    <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="EPath.cpp" />
     <ClCompile Include="EWindowTest.cpp" />
     <ClCompile Include="ext\includes\glad\glad.c" />
     <ClCompile Include="ext\includes\NSW_api\Batcher.cpp" />
@@ -145,7 +147,8 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Entity.h" />
+    <ClInclude Include="ECamera.h" />
+    <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EPath.h" />
     <ClInclude Include="EWindowTest.h" />
     <ClInclude Include="ext\includes\glad\glad.h" />

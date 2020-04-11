@@ -11,7 +11,8 @@ public:
 	PHASE_HEATING
 	};
 
-	enum PositionMode { LEFT, MID, RIGHT, UP, DOWN };
+
+	enum PositionMode { LEFT, MID, RIGHT, UP, DOWN, FREE };
 
 	enum PositionMaster { WINDOW, SCREEN };
 	//font_gabarite 08.12.2019 06:55:10

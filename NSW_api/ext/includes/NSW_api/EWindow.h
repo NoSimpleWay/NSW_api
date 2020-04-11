@@ -18,6 +18,8 @@
 #include "NSW_api/ETextureAtlas.h"
 #include "NSW_api/EButton.h"
 
+#include "NSW_api/EUtils.h"
+
 class EButton;
 class EWindow
 {
@@ -28,7 +30,7 @@ public:
 	void default_draw(float _d);
 	virtual void draw(float _d);
 
-	void default_resize_event(int _x, int _y);
+	void default_resize_event();
 
 
 	virtual void draw_interface(float _d);
@@ -39,8 +41,11 @@ public:
 
 	static unsigned int transformLoc;
 
-	float pos_x = 0;
-	float pos_y = 0;
+	float offset_x = 0;
+	float offset_y = 0;
+
+	float position_x = 0;
+	float position_y = 0;
 	
 	float window_size_x = 100.0f;
 	float window_size_y = 100.0f;
@@ -83,6 +88,10 @@ public:
 	std::vector <EButton*> default_button_list;
 
 	bool always_fullscreen;
+	bool have_bg = false;
+
+	int align_x;
+	int align_y;
 
 
 };

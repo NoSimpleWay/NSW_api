@@ -209,13 +209,13 @@ void EButton::update(float _d)
 
 	if (master_position == Enums::PositionMaster::WINDOW)
 	{
-		if (position_mode_x == Enums::PositionMode::LEFT) { master_position_x = master_window->pos_x + button_x; }
-		if (position_mode_x == Enums::PositionMode::MID) { master_position_x = master_window->pos_x + (master_window->window_size_x - button_size_x) / 2.0f + button_x; }
-		if (position_mode_x == Enums::PositionMode::RIGHT) { master_position_x = master_window->pos_x + master_window->window_size_x + button_x - button_size_x; }
+		if (position_mode_x == Enums::PositionMode::LEFT) { master_position_x = master_window->offset_x + button_x; }
+		if (position_mode_x == Enums::PositionMode::MID) { master_position_x = master_window->offset_x + (master_window->window_size_x - button_size_x) / 2.0f + button_x; }
+		if (position_mode_x == Enums::PositionMode::RIGHT) { master_position_x = master_window->offset_x + master_window->window_size_x + button_x - button_size_x; }
 
-		if (position_mode_y == Enums::PositionMode::DOWN) { master_position_y = master_window->pos_y + button_y; }
-		if (position_mode_y == Enums::PositionMode::MID) { master_position_y = master_window->pos_y + (master_window->window_size_y - button_size_y) / 2.0f + button_y; }
-		if (position_mode_y == Enums::PositionMode::UP) { master_position_y = master_window->pos_y + master_window->window_size_y + button_y - button_size_y; }
+		if (position_mode_y == Enums::PositionMode::DOWN) { master_position_y = master_window->offset_y + button_y; }
+		if (position_mode_y == Enums::PositionMode::MID) { master_position_y = master_window->offset_y + (master_window->window_size_y - button_size_y) / 2.0f + button_y; }
+		if (position_mode_y == Enums::PositionMode::UP) { master_position_y = master_window->offset_y + master_window->window_size_y + button_y - button_size_y; }
 	}
 
 	if (master_position == Enums::PositionMaster::SCREEN)

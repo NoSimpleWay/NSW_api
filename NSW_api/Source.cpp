@@ -93,7 +93,7 @@ int main()
 	EGraphicCore::ourShader = new Shader("data/5.1.transform.vs", "data/5.1.transform.fs");
 
 	EGraphicCore::ourShader->use();
-	glfwSwapInterval(1);
+	glfwSwapInterval(0);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -140,6 +140,11 @@ int main()
 
 
 	//loading font
+
+	for (EWindow* w : EWindow::window_list)
+	{
+		w->default_resize_event();
+	}
 
 	std::cout << "game window created" << std::endl;
 
@@ -277,6 +282,11 @@ void recalculate_correction()
 		EGraphicCore::correction_y = 1.0 / EGraphicCore::SCR_HEIGHT * 2.0;
 
 		//std::cout << "helper correction_x: " << correction_x << " correction_y: " << correction_y << std::endl;
+	}
+
+	for (EWindow* w : EWindow::window_list)
+	{
+		w->default_resize_event();
 	}
 }
 

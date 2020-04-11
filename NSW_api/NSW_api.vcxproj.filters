@@ -60,10 +60,16 @@
     <ClCompile Include="ext\includes\NSW_api\EUtils.cpp">
       <Filter>NSW_api</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
+    <ClCompile Include="EWindowTest.cpp">
       <Filter>External</Filter>
     </ClCompile>
-    <ClCompile Include="EWindowTest.cpp">
+    <ClCompile Include="EntityManager.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include="ECamera.cpp">
+      <Filter>NSW_api</Filter>
+    </ClCompile>
+    <ClCompile Include="EPath.cpp">
       <Filter>External</Filter>
     </ClCompile>
   </ItemGroup>
@@ -110,11 +116,14 @@
     <ClInclude Include="EPath.h">
       <Filter>External</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>External</Filter>
-    </ClInclude>
     <ClInclude Include="EWindowTest.h">
       <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="ECamera.h">
+      <Filter>NSW_api</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

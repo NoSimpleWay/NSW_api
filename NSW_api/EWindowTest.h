@@ -1,4 +1,6 @@
 #include "NSW_api/EWindow.h"
+#include "ECamera.h"
+
 class EWindowTest : public EWindow
 {
 public:
@@ -12,4 +14,7 @@ public:
 	virtual void draw(float _d);
 
 	virtual void draw_interface(float _d);
+
+	ECamera* game_camera = new ECamera();
+
 };

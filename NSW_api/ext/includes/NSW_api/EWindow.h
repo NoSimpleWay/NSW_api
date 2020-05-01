@@ -20,7 +20,11 @@
 
 #include "NSW_api/EUtils.h"
 
+//#include "NSW_api/EWindowTest.h"
+
 class EButton;
+class EWindowTest;
+
 class EWindow
 {
 public:
@@ -35,7 +39,7 @@ public:
 
 	virtual void draw_interface(float _d);
 
-	void add_time_process(std::string _name);
+	void static add_time_process(std::string _name);
 
 	static GLFWwindow* main_window;
 
@@ -71,6 +75,8 @@ public:
 	static Batcher* batch;
 	static std::vector<EWindow*> window_list;
 	static float delete_button_hold_time;
+
+	static EWindowTest* window_test;
 
 	static ETextureAtlas* default_texture_atlas;
 

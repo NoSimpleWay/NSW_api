@@ -4,6 +4,10 @@ EColorCollection* EColor::COLOR_RED					= new EColorCollection(1.0f,	0.0f,	0.0f,
 EColorCollection* EColor::COLOR_GREEN				= new EColorCollection(0.0f,	1.0f,	0.0f,	1.0f);
 EColorCollection* EColor::COLOR_BLUE				= new EColorCollection(0.0f,	0.0f,	1.0f,	1.0f);
 
+EColorCollection* EColor::COLOR_YELLOW				= new EColorCollection(1.0f,	1.0f,	0.0f,	1.0f);
+EColorCollection* EColor::COLOR_ORANGE				= new EColorCollection(1.0f,	0.5f,	0.0f,	1.0f);
+EColorCollection* EColor::COLOR_PINK				= new EColorCollection(1.0f,	0.33f,	1.0f,	1.0f);
+
 EColorCollection* EColor::COLOR_WHITE				= new EColorCollection(1.0f,	1.0f,	1.0f,	1.0f);
 EColorCollection* EColor::COLOR_BLACK				= new EColorCollection(0.0f,	0.0f,	0.0f,	1.0f);
 

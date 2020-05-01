@@ -123,7 +123,7 @@ int main()
 	//cout << (int)01.35f << endl;
 	glViewport(0, 0, EGraphicCore::SCR_WIDTH, EGraphicCore::SCR_HEIGHT);
 
-
+	EWindow::default_texture_atlas = new ETextureAtlas();
 
 	EGraphicCore::load_texture("data/white_pixel.png", 0);
 	glActiveTexture(GL_TEXTURE0);
@@ -135,6 +135,7 @@ int main()
 	EWindowTest* wg = new EWindowTest();
 	//EWindow::window_game = wg;
 	EWindow::window_list.push_back(wg);
+	EWindow::window_test = wg;
 	wg->id = 0;
 	//wg->init();
 
@@ -148,7 +149,7 @@ int main()
 
 	std::cout << "game window created" << std::endl;
 
-	EWindow::default_texture_atlas = new ETextureAtlas();
+
 
 	
 	EGraphicCore::gabarite_white_pixel = ETextureAtlas::put_texture_to_atlas("data/white_pixel.png", EWindow::default_texture_atlas);
@@ -178,11 +179,21 @@ int main()
 
 	while (!glfwWindowShouldClose(EWindow::main_window))
 	{
+		EWindow::time_process_name.clear();
+		EWindow::time_process_value.clear();
+
+		EWindow::stop = std::chrono::high_resolution_clock::now();
+		EWindow::start = std::chrono::high_resolution_clock::now();
+		
+		EWindow::add_time_process("Begin");
+
 		clock_t time = clock();
 		delta_time = (time - saved_time_for_delta) / 1000.0;
 		saved_time_for_delta = time;
 
 		delta_time /= 1.0f;//
+
+		if (delta_time > 0.2f) { delta_time = 0.2f; }
 
 		//update windows
 		for (EWindow* w : EWindow::window_list)

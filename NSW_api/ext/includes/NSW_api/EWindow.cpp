@@ -37,6 +37,7 @@ bool EWindow::system_button_release = true;
 
 std::chrono::time_point<std::chrono::high_resolution_clock> EWindow::start, EWindow::stop;
 
+EWindowTest* EWindow::window_test;
 //std::pair<float, std::string> EWindow::time_process;
 
 void EWindow::default_update(float _d)

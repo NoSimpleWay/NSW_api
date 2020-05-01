@@ -165,4 +165,6 @@ public:
 	//FilterBlockSeparator* master_separator;
 
 	bool can_receive_paste = false;
+
+
 };

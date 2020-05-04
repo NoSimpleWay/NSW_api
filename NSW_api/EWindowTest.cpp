@@ -32,26 +32,31 @@ EWindowTest::EWindowTest()
 	*link_to_player->position_x = +ECluster::CLUSTER_SIZE * ECluster::CLUSTER_DIM / 2.0f;
 	*link_to_player->position_y = +ECluster::CLUSTER_SIZE * ECluster::CLUSTER_DIM / 2.0f;
 	*link_to_player->mass = 100.0f;
+	
 
-	link_to_player->body.clear();
-	link_to_player->body.push_back(ETextureAtlas::put_texture_to_atlas("data/mech_1.png", EWindow::default_texture_atlas));
-	link_to_player->body.push_back(ETextureAtlas::put_texture_to_atlas("data/mech_2.png", EWindow::default_texture_atlas));
-	link_to_player->body.push_back(ETextureAtlas::put_texture_to_atlas("data/mech_3.png", EWindow::default_texture_atlas));
-	link_to_player->body.push_back(ETextureAtlas::put_texture_to_atlas("data/mech_4.png", EWindow::default_texture_atlas));
 
-	link_to_player->body_rotate_by_move = true;
+	link_to_player->sprite_list.clear();
+	ESprite* sp = new ESprite();
+	link_to_player->sprite_list.push_back(sp);
 
-	link_to_player->body_offset_x.clear();
-	link_to_player->body_offset_x.push_back(-27.0f);
-	link_to_player->body_offset_x.push_back(-14.0f);
-	link_to_player->body_offset_x.push_back(-27.0f);
-	link_to_player->body_offset_x.push_back(-14.0f);
+	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/mech_1.png", EWindow::default_texture_atlas));
+	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/mech_2.png", EWindow::default_texture_atlas));
+	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/mech_3.png", EWindow::default_texture_atlas));
+	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/mech_4.png", EWindow::default_texture_atlas));
 
-	link_to_player->body_offset_y.clear();
-	link_to_player->body_offset_y.push_back(0.0f);
-	link_to_player->body_offset_y.push_back(-5.0f);
-	link_to_player->body_offset_y.push_back(0.0f);
-	link_to_player->body_offset_y.push_back(-5.0f);
+	*sp->rotate_by_move = true;
+
+	sp->offset_x.push_back(-27.0f);
+	sp->offset_x.push_back(-14.0f);
+	sp->offset_x.push_back(-27.0f);
+	sp->offset_x.push_back(-14.0f);
+
+	sp->offset_y.push_back(0.0f);
+	sp->offset_y.push_back(-5.0f);
+	sp->offset_y.push_back(0.0f);
+	sp->offset_y.push_back(-5.0f);
+
+
 
 	ECluster::put_entity(link_to_player, *link_to_player->position_x, *link_to_player->position_y);
 
@@ -96,7 +101,7 @@ void EWindowTest::update(float _d)
 
 	if (glfwGetKey(EWindow::main_window, GLFW_KEY_SPACE) == GLFW_PRESS)
 	{
-		_d *= 0.00f;
+		_d *= 0.10f;
 	}
 
 	if (LMB)
@@ -252,8 +257,11 @@ void EWindowTest::update(float _d)
 		EPath::entity_block[(int)(*e->position_x / EPath::PATH_SIZE)][(int)(*e->position_y / EPath::PATH_SIZE)] = false;
 	}
 
-	for (int i = draw_border_up;	i >= draw_border_down;	i--)
-	for (int j = draw_border_left;	j <= draw_border_right;	j++)
+
+
+
+	for (int i = draw_border_up; i >= draw_border_down; i--)
+	for (int j = draw_border_left; j <= draw_border_right; j++)
 	for (Entity* e : ECluster::clusters[j][i]->entity_list)
 	if (!*e->already_updated)
 	{
@@ -641,6 +649,7 @@ void EWindowTest::update(float _d)
 
 	add_time_process("entities_update");
 
+	
 	for (int i = draw_border_up;	i >= draw_border_down;	i--)
 	for (int j = draw_border_left;	j <= draw_border_right;	j++)
 	{
@@ -661,6 +670,8 @@ void EWindowTest::update(float _d)
 			}
 		}
 	}
+
+	add_time_process("cluster_change");
 
 }
 
@@ -696,7 +707,8 @@ void EWindowTest::draw(float _d)
 
 
 	//----------------DRAW PATH MATRIX----------------
-	if (true)
+	//if (true)
+	if (glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS)
 	for (int i = up_path_draw; i >= down_path_draw; i--)
 	for (int j = left_path_draw; j <= right_path_draw; j++)
 	{
@@ -721,7 +733,7 @@ void EWindowTest::draw(float _d)
 		EGraphicCore::batch->setcolor(EColor::COLOR_ORANGE);
 		EFont::active_font->draw(EGraphicCore::batch, std::to_string(EPath::path[j][i][EPath::active_buffer]), j * EPath::PATH_SIZE + 20.0f, i * EPath::PATH_SIZE + 10.0f);
 	}
-
+	add_time_process("y-sort begin");
 	//----------------DRAW ENTITIES----------------
 	int draw_border_left =	(int)((game_camera->position_x - EGraphicCore::SCR_WIDTH / 2.0f) / ECluster::CLUSTER_SIZE) - 1; if (draw_border_left < 0) { draw_border_left = 0; }
 	int draw_border_right = (int)((game_camera->position_x + EGraphicCore::SCR_WIDTH / 2.0f) / ECluster::CLUSTER_SIZE) + 1; if (draw_border_right >= ECluster::CLUSTER_DIM) { draw_border_right = ECluster::CLUSTER_DIM - 1;; }
@@ -729,40 +741,75 @@ void EWindowTest::draw(float _d)
 	int draw_border_down =	(int)((game_camera->position_y - EGraphicCore::SCR_HEIGHT / 2.0f) / ECluster::CLUSTER_SIZE) - 1; if (draw_border_down < 0) { draw_border_down = 0; }
 	int draw_border_up =	(int)((game_camera->position_y + EGraphicCore::SCR_HEIGHT / 2.0f) / ECluster::CLUSTER_SIZE) + 1; if (draw_border_up > ECluster::CLUSTER_DIM) { draw_border_up = ECluster::CLUSTER_DIM - 1; }
 
-	
-	for (int i = draw_border_up;	i >= draw_border_down;	i--)
-	for (int j = draw_border_left;	j <= draw_border_right;	j++)
-	{
-		EGraphicCore::batch->setcolor(EColor::COLOR_BLACK);
-		EGraphicCore::batch->draw_rama(j * ECluster::CLUSTER_SIZE, i * ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, 2, EGraphicCore::gabarite_white_pixel);
-
-		
-		for (Entity* e : ECluster::clusters[j][i]->entity_list)
+	for (int i = draw_border_up; i >= draw_border_down; i--)
+		for (int j = draw_border_left; j <= draw_border_right; j++)
 		{
-			EGraphicCore::batch->setcolor(EColor::COLOR_BLUE);
-			EGraphicCore::batch->draw_rama(*e->position_x - *e->collision_left, *e->position_y - *e->collision_down, *e->collision_left+*e->collision_right, *e->collision_down + *e->collision_up, 1.0f, EGraphicCore::gabarite_white_pixel);
+			EGraphicCore::batch->setcolor(EColor::COLOR_BLACK);
+			EGraphicCore::batch->draw_rama(j * ECluster::CLUSTER_SIZE, i * ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, 2, EGraphicCore::gabarite_white_pixel);
+
+
+			for (Entity* e : ECluster::clusters[j][i]->entity_list)
+			{
+
+				EGraphicCore::batch->setcolor(EColor::COLOR_BLUE);
+				EGraphicCore::batch->draw_rama(*e->position_x - *e->collision_left, *e->position_y - *e->collision_down, *e->collision_left + *e->collision_right, *e->collision_down + *e->collision_up, 1.0f, EGraphicCore::gabarite_white_pixel);
+				//EGraphicCore::batch->draw_gabarite(*e->position_x + e->body_offset_x.at(sprite_id), *e->position_y + e->body_offset_y.at(sprite_id), e->body.at(sprite_id)->size_x, e->body.at(sprite_id)->size_y, e->body.at(sprite_id));
+
+
+			}
+		}
+
+	std::vector<Entity*> draw_sort_buffer;
+	//y-sort
+	for (int i = draw_border_up; i >= draw_border_down; i--)
+	{
+		draw_sort_buffer.clear();
+
+		for (int j = draw_border_left; j <= draw_border_right; j++)
+		{
+			for (Entity* e : ECluster::clusters[j][i]->entity_list)
+			{
+				draw_sort_buffer.push_back(e);
+			}
+		}
+
+		bool any_swap = true;
+
+		while (any_swap)
+		{
+			any_swap = false;
+
+			for (int k = draw_sort_buffer.size() - 2; k >= 0; k--)
+			{
+				Entity* e_a = draw_sort_buffer.at(k);
+				Entity* e_b = draw_sort_buffer.at(k + 1);
+
+				if (*e_a->position_y < *e_b->position_y)
+				{
+					draw_sort_buffer.at(k) = e_b;
+					draw_sort_buffer.at(k + 1) = e_a;
+
+					any_swap = true;
+				}
+			}
+		}
+
+		for (Entity* dsb : draw_sort_buffer)
+		{
+			
 
 			int sprite_id = 0;
 			EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
 
-			
-			if (e->body_rotate_by_move)
-			{
-				if (*e->speed_x * *e->speed_x > *e->speed_y * *e->speed_y)
-				{
-					if (*e->speed_x > 0) { sprite_id = 1; } else {sprite_id = 3;}
-				}
-				else
-				{
-					if (*e->speed_y > 0) { sprite_id = 0; } else {sprite_id = 2;}
-				}
-			}
-			
-			EGraphicCore::batch->draw_gabarite(*e->position_x + e->body_offset_x.at(sprite_id), *e->position_y + e->body_offset_y.at(sprite_id), e->body.at(sprite_id)->size_x, e->body.at(sprite_id)->size_y, e->body.at(sprite_id));
 
-
+			dsb->draw_sprite(EGraphicCore::batch, _d);
 		}
 	}
+
+	
+	add_time_process("y-sort");
+	
+
 
 	
 	/*EGraphicCore::batch->setcolor(EColor::COLOR_BLACK);

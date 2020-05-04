@@ -1,7 +1,9 @@
 #pragma once
 #include <vector>
 #include "NSW_api/EGabarite.h"
+#include "NSW_api/Batcher.h"
 class ECluster;
+class ESprite;
 
 class Entity
 {
@@ -17,10 +19,10 @@ public:
 
 	float* mass = new float(10.0f);
 
-	float* collision_up = new float(15.0f);
-	float* collision_down = new float(15.0f);
-	float* collision_left = new float(20.0f);
-	float* collision_right = new float(20.0f);
+	float* collision_up = new float(12.0f);
+	float* collision_down = new float(12.0f);
+	float* collision_left = new float(25.0f);
+	float* collision_right = new float(25.0f);
 
 	bool* already_updated = new bool(false);
 
@@ -40,6 +42,10 @@ public:
 
 	bool controlled_by_ai = true;
 	bool controlled_by_player = false;
+
+	std::vector<ESprite*> sprite_list;
+
+	void draw_sprite(Batcher* _b, float _d);
 
 };
 
@@ -65,4 +71,16 @@ public:
 	bool static collision_right(Entity* _a, Entity* _b);
 	bool static collision_down(Entity* _a, Entity* _b);
 	bool static collision_up(Entity* _a, Entity* _b);
+};
+
+class ESprite
+{
+public:
+	std::vector<EGabarite*> gabarite;
+
+	std::vector<float> offset_x;
+	std::vector<float> offset_y;
+
+	bool* rotate_by_move = new bool(false);
+	bool* rotate_by_target = new bool(false);
 };

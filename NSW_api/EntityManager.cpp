@@ -12,14 +12,51 @@ ECluster* ECluster::clusters[CLUSTER_DIM][CLUSTER_DIM];
 Entity::Entity()
 {
 	//already_updated = false;
-	body.push_back(ETextureAtlas::put_texture_to_atlas("data/sphere.png", EWindow::default_texture_atlas));
+	ESprite* sp = new ESprite();
 
-	body_offset_x.push_back(-25.0f);
-	body_offset_y.push_back(0.0f);
+	sprite_list.push_back(sp);
+	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/sphere.png", EWindow::default_texture_atlas));
+
+	sp->offset_x.push_back(-25.0f);
+	sp->offset_y.push_back(0.0f);
 }
 
 Entity::~Entity()
 {
+}
+
+void Entity::draw_sprite(Batcher* _b, float _d)
+{
+	int sprite_id = 0;
+	EGabarite* link;
+
+	for (ESprite* spr : sprite_list)
+	{
+		if (*spr->rotate_by_move)
+		if (*speed_x * *speed_x > *speed_y * *speed_y)
+		{
+			if (*speed_x > 0) { sprite_id = 1; }
+			else { sprite_id = 3; }
+		}
+		else
+		{
+			if (*speed_y > 0) { sprite_id = 0; }
+			else { sprite_id = 2; }
+		}
+
+		//link = spr->gabarite.at(sprite_id);
+
+		_b->draw_gabarite
+		(
+			*position_x + spr->offset_x.at(sprite_id),
+			*position_y + spr->offset_y.at(sprite_id),
+
+			spr->gabarite.at(sprite_id)->size_x,
+			spr->gabarite.at(sprite_id)->size_y,
+
+			spr->gabarite.at(sprite_id)
+		);
+	}
 }
 
 bool ECluster::collision_left(Entity* _a, Entity* _b)

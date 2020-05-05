@@ -34,3 +34,11 @@ void EColor::set_color(float _r, float _g, float _b, float _a)
 	blue = _b;
 	alpha = _a;
 }
+
+void EColor::set_color(EColorCollection* _c)
+{
+	red = _c->color_red;
+	green = _c->color_green;
+	blue = _c->color_blue;
+	alpha = _c->color_alpha;
+}

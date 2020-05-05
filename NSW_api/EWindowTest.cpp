@@ -1,14 +1,17 @@
 #pragma once
 #include "EWindowTest.h"
 #include "EPath.h"
+#include "EWindowEditor.h"
 
 
 std::string s;
 
 int maximum_alloy = 0;
 
-EWindowTest::EWindowTest()
+EWindowTest::EWindowTest():EWindow()
 {
+
+
 	for (int i=0; i<ECluster::CLUSTER_DIM; i++)
 	for (int j=0; j<ECluster::CLUSTER_DIM; j++)
 	{
@@ -16,7 +19,7 @@ EWindowTest::EWindowTest()
 	}
 
 	//std::cout << "Ceil(0.001) = " << ceil(0.001f) << std::endl;
-	for (int i = 0; i < 30; i++)
+	for (int i = 0; i < 00; i++)
 	{
 		Entity* en = new Entity();
 
@@ -39,10 +42,10 @@ EWindowTest::EWindowTest()
 	ESprite* sp = new ESprite();
 	link_to_player->sprite_list.push_back(sp);
 
-	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/mech_1.png", EWindow::default_texture_atlas));
-	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/mech_2.png", EWindow::default_texture_atlas));
-	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/mech_3.png", EWindow::default_texture_atlas));
-	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/mech_4.png", EWindow::default_texture_atlas));
+	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/textures/mech_1.png", EWindow::default_texture_atlas));
+	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/textures/mech_2.png", EWindow::default_texture_atlas));
+	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/textures/mech_3.png", EWindow::default_texture_atlas));
+	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/textures/mech_4.png", EWindow::default_texture_atlas));
 
 	*sp->rotate_by_move = true;
 
@@ -55,6 +58,16 @@ EWindowTest::EWindowTest()
 	sp->offset_y.push_back(-5.0f);
 	sp->offset_y.push_back(0.0f);
 	sp->offset_y.push_back(-5.0f);
+
+	sp = new ESprite();
+	link_to_player->sprite_list.push_back(sp);
+
+	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/textures/block.png", EWindow::default_texture_atlas));
+
+	sp->offset_x.push_back(-25.0f);
+	sp->offset_y.push_back(0.0f);
+
+
 
 
 
@@ -93,6 +106,9 @@ void EWindowTest::default_update(float _d)
 
 void EWindowTest::update(float _d)
 {
+	EWindow::window_editor->selected_entity = link_to_player;
+	EWindow::window_editor->update_sprite_buttons();
+
 	add_time_process("game_window_update");
 
 	game_camera->position_x = *link_to_player->position_x;
@@ -818,20 +834,7 @@ void EWindowTest::draw(float _d)
 
 void EWindowTest::draw_interface(float _d)
 {
-	EGraphicCore::batch->reinit();
-	EGraphicCore::batch->draw_call();
-
-
-	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-
-	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(-1, -1, 0.0f));
-	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x, EGraphicCore::correction_y, 1));
-
-	transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
-	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
-
-	//סבנמס באעקונא
-	EGraphicCore::batch->reset();
+	
 
 
 	EGraphicCore::batch->setcolor(EColor::COLOR_DARK_GRAY);

@@ -7,6 +7,8 @@
 
 #include "NSW_api/EWindow.h"
 #include "EWindowTest.h"
+#include "EWindowEditor.h"
+#include "EWindowSearchBrick.h"
 
 #include "NSW_api/EGraphicCore.h"
 //#include "ETextureAtlas.h"
@@ -53,6 +55,8 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
 int main()
 {
+
+
 	srand(time(NULL));
 
 	glfwInit();
@@ -125,7 +129,7 @@ int main()
 
 	EWindow::default_texture_atlas = new ETextureAtlas();
 
-	EGraphicCore::load_texture("data/white_pixel.png", 0);
+	EGraphicCore::load_texture("data/textures/white_pixel.png", 0);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, EGraphicCore::texture[0]);
 	EGraphicCore::ourShader->setInt("texture1", EGraphicCore::texture[0]);
@@ -137,6 +141,19 @@ int main()
 	EWindow::window_list.push_back(wg);
 	EWindow::window_test = wg;
 	wg->id = 0;
+
+	EWindow::window_editor = new EWindowEditor();
+	//EWindow::window_game = wg;
+	EWindow::window_list.push_back(EWindow::window_editor);
+	EWindow::window_editor->id = 1;
+	EWindow::window_editor->always_fullscreen = true;
+	EWindow::window_editor->have_bg = false;
+
+	EWindow::window_search_brick = new EWindowSearchBrick();
+	//EWindow::window_game = wg;
+	EWindow::window_list.push_back(EWindow::window_search_brick);
+	EWindow::window_search_brick->id = 2;
+	
 	//wg->init();
 
 
@@ -152,7 +169,7 @@ int main()
 
 
 	
-	EGraphicCore::gabarite_white_pixel = ETextureAtlas::put_texture_to_atlas("data/white_pixel.png", EWindow::default_texture_atlas);
+	EGraphicCore::gabarite_white_pixel = ETextureAtlas::put_texture_to_atlas("data/textures/white_pixel.png", EWindow::default_texture_atlas);
 
 	EGraphicCore::gabarite_white_pixel->x += 1 / 4096.0f;
 	EGraphicCore::gabarite_white_pixel->y += 1 / 4096.0f;
@@ -163,7 +180,7 @@ int main()
 
 
 
-	EGraphicCore::gabarite_wood_button_bg = ETextureAtlas::put_texture_to_atlas("data/white_pixel.png", EWindow::default_texture_atlas);
+	EGraphicCore::gabarite_wood_button_bg = ETextureAtlas::put_texture_to_atlas("data/textures/white_pixel.png", EWindow::default_texture_atlas);
 	EGraphicCore::gabarite_wood_button_bg->x += 1 / 4096.0f;
 	EGraphicCore::gabarite_wood_button_bg->y += 1 / 4096.0f;
 
@@ -197,9 +214,17 @@ int main()
 
 		//update windows
 		for (EWindow* w : EWindow::window_list)
+			if (w->is_active)
 		{
 			w->default_update(delta_time);
 			w->update(delta_time);
+
+			for (EButton* b : w->button_list)
+			if (b->is_active)
+			{
+				b->update(delta_time);
+				b->update_additional(delta_time);
+			}
 		}
 
 
@@ -222,6 +247,9 @@ int main()
 
 
 		EButton::top_window_id = -1;
+
+		if (!EWindow::LMB) { EWindow::button_pressed = false; }
+		if (!EWindow::RMB) { EWindow::button_right_pressed = false; }
 
 		if (!EWindow::button_backspace_released)
 		{
@@ -255,9 +283,12 @@ int main()
 		}
 
 		for (EWindow* w : EWindow::window_list)
+		if (w->is_active)
 		{
 			w->default_draw(delta_time);
 			w->draw(delta_time);
+
+			w->default_draw_interface(delta_time);
 			w->draw_interface(delta_time);
 		}
 

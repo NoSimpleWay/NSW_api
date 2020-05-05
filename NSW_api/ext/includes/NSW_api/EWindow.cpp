@@ -1,4 +1,5 @@
 #include "EWindow.h"
+#include "../../../EBA.h"
 
 GLFWwindow* EWindow::main_window = NULL;
 
@@ -24,7 +25,7 @@ bool EWindow::RMB = false;
 bool EWindow::button_pressed = false;
 bool EWindow::button_right_pressed = false;
 bool EWindow::button_backspace_released = true;
-bool EWindow::is_active = true;
+//bool EWindow::is_active = true;
 
 float EWindow::delete_button_hold_time = 0.0f;
 
@@ -38,6 +39,8 @@ bool EWindow::system_button_release = true;
 std::chrono::time_point<std::chrono::high_resolution_clock> EWindow::start, EWindow::stop;
 
 EWindowTest* EWindow::window_test;
+EWindowEditor* EWindow::window_editor;
+EWindowSearchBrick* EWindow::window_search_brick;
 //std::pair<float, std::string> EWindow::time_process;
 
 void EWindow::default_update(float _d)
@@ -79,21 +82,7 @@ void EWindow::default_draw(float _d)
 		EGraphicCore::batch->draw_gabarite(offset_x, offset_y, window_size_x, window_size_y, EGraphicCore::gabarite_white_pixel);
 	}
 
-	for (EButton* b : button_list)
-	{
-		if (b->is_active)
-		{
-			b->default_draw(EGraphicCore::batch);
-		}
-	}
 
-	for (EButton* b : default_button_list)
-	{
-		if (b->is_active)
-		{
-			b->default_draw(EGraphicCore::batch);
-		}
-	}
 }
 
 void EWindow::draw(float _d)
@@ -116,14 +105,54 @@ void EWindow::default_resize_event()
 		if (align_x == Enums::PositionMode::MID) { offset_x = (EGraphicCore::SCR_WIDTH - window_size_x) / 2.0f + position_x; }
 		if (align_x == Enums::PositionMode::RIGHT) { offset_x = (EGraphicCore::SCR_WIDTH - window_size_x) + position_x; }		
 		
-		if (align_x == Enums::PositionMode::DOWN) { offset_y = position_y; }
-		if (align_x == Enums::PositionMode::MID) { offset_y = (EGraphicCore::SCR_HEIGHT - window_size_y) / 2.0f + position_y; }
-		if (align_x == Enums::PositionMode::RIGHT) { offset_y = (EGraphicCore::SCR_HEIGHT - window_size_y) + position_y; }
+		if (align_y == Enums::PositionMode::DOWN) { offset_y = position_y; }
+		if (align_y == Enums::PositionMode::MID) { offset_y = (EGraphicCore::SCR_HEIGHT - window_size_y) / 2.0f + position_y; }
+		if (align_y == Enums::PositionMode::UP) { offset_y = (EGraphicCore::SCR_HEIGHT - window_size_y) + position_y; }
+	}
+}
+
+void EWindow::default_draw_interface(float _d)
+{
+
+	EGraphicCore::batch->reinit();
+	EGraphicCore::batch->draw_call();
+
+
+	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+
+	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(-1, -1, 0.0f));
+	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x, EGraphicCore::correction_y, 1));
+
+	transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
+
+	//סבנמס באעקונא
+	EGraphicCore::batch->reset();
+
+	for (EButton* b : button_list)
+	{
+		if (b->is_active)
+		{
+			b->default_draw(EGraphicCore::batch, _d);
+			b->additional_draw(EGraphicCore::batch, _d);
+			b->text_pass(EGraphicCore::batch);
+		}
+	}
+
+	for (EButton* b : default_button_list)
+	{
+		if (b->is_active)
+		{
+			b->default_draw(EGraphicCore::batch, _d);
+			b->additional_draw(EGraphicCore::batch, _d);
+			b->text_pass(EGraphicCore::batch);
+		}
 	}
 }
 
 void EWindow::draw_interface(float _d)
 {
+
 }
 
 void EWindow::add_time_process(std::string _name)
@@ -139,6 +168,15 @@ void EWindow::add_time_process(std::string _name)
 EWindow::EWindow()
 {
 	default_resize_event();
+
+	EButton* but = new EButton(0.0f, 0.0f, 20.0f, 20.0f);
+	but->master_window = this;
+	but->position_mode_x = Enums::PositionMode::RIGHT;
+	but->position_mode_y = Enums::PositionMode::UP;
+	but->text = "X";
+	but->action_on_left_click = &EBA::action_close_window;
+	
+	default_button_list.push_back(but);
 }
 
 EWindow::~EWindow()

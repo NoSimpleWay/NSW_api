@@ -9,12 +9,24 @@
 #include "NSW_api/Enums.h"
 
 #include "NSW_api/EWindow.h"
+#include "NSW_api/EButtonAction.h"
 
+//void (EButton::* pt2ConstMember)() const = NULL;
 
+class EButtonAction;
 class EWindow;
 class EButton
 {
 public:
+	typedef void (*AOLC)(EButton* _b, float _d);
+	AOLC action_on_left_click;
+	AOLC action_on_right_click;
+	
+	static void static_click();
+	static void static_click2();
+
+	static void set_left_click_action(void(*function)(EButton*, float));
+
 	float button_x = 10;
 	float button_y = 200;
 
@@ -24,7 +36,7 @@ public:
 	float button_min_size_x = 100;
 	float button_min_size_y = 25;
 
-	std::string text = "!";
+	std::string text = "";
 
 	bool have_input_mode = false;
 	bool is_input_mode_active = false;
@@ -40,7 +52,7 @@ public:
 	bool is_expanded = false;
 	bool is_drop_list = false;
 
-	int master_position = 0;
+	int master_position = Enums::PositionMaster::WINDOW;
 
 	int drop_elements = 0;
 	std::vector<string> drop_text;
@@ -97,8 +109,8 @@ public:
 	bool is_slider = false;
 	float slider_value;
 
-	virtual void additional_draw(Batcher* _batch);
-	void default_draw(Batcher* _batch);
+	virtual void additional_draw(Batcher* _batch, float _d);
+	void default_draw(Batcher* _batch, float _d);
 
 
 	void text_pass(Batcher* _batch);
@@ -166,5 +178,14 @@ public:
 
 	bool can_receive_paste = false;
 
+	EButtonAction* button_action_press;
+	EButtonAction* button_action_right_press;
+	EButtonAction* button_action_input_finish;
+	EButtonAction* button_action_outclick;
+
+
+
+
 
 };
+

@@ -128,39 +128,51 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EBA.cpp" />
+    <ClCompile Include="EButtonActionAddNewSprite.cpp" />
+    <ClCompile Include="EButtonActionSetActiveSprite.cpp" />
+    <ClCompile Include="EButtonActionSetSpriteTexture.cpp" />
     <ClCompile Include="ECamera.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="EPath.cpp" />
+    <ClCompile Include="EWindowEditor.cpp" />
+    <ClCompile Include="EWindowSearchBrick.cpp" />
     <ClCompile Include="EWindowTest.cpp" />
     <ClCompile Include="ext\includes\glad\glad.c" />
     <ClCompile Include="ext\includes\NSW_api\Batcher.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EButton.cpp" />
+    <ClCompile Include="ext\includes\NSW_api\EButtonAction.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EColor.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EColorCollection.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EFont.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EGabarite.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EGraphicCore.cpp" />
-    <ClCompile Include="ext\includes\NSW_api\ESprite.cpp" />
     <ClCompile Include="ext\includes\NSW_api\ETextureAtlas.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EUtils.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EWindow.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EBA.h" />
+    <ClInclude Include="EButtonActionAddNewSprite.h" />
+    <ClInclude Include="EButtonActionSetActiveSprite.h" />
+    <ClInclude Include="EButtonActionSetSpriteTexture.h" />
     <ClInclude Include="ECamera.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EPath.h" />
+    <ClInclude Include="EWindowEditor.h" />
+    <ClInclude Include="EWindowSearchBrick.h" />
     <ClInclude Include="EWindowTest.h" />
     <ClInclude Include="ext\includes\glad\glad.h" />
     <ClInclude Include="ext\includes\NSW_api\Batcher.h" />
     <ClInclude Include="ext\includes\NSW_api\EButton.h" />
+    <ClInclude Include="ext\includes\NSW_api\EButtonAction.h" />
     <ClInclude Include="ext\includes\NSW_api\EColor.h" />
     <ClInclude Include="ext\includes\NSW_api\EColorCollection.h" />
     <ClInclude Include="ext\includes\NSW_api\EFont.h" />
     <ClInclude Include="ext\includes\NSW_api\EGabarite.h" />
     <ClInclude Include="ext\includes\NSW_api\EGraphicCore.h" />
     <ClInclude Include="ext\includes\NSW_api\Enums.h" />
-    <ClInclude Include="ext\includes\NSW_api\ESprite.h" />
     <ClInclude Include="ext\includes\NSW_api\ETextureAtlas.h" />
     <ClInclude Include="ext\includes\NSW_api\EUtils.h" />
     <ClInclude Include="ext\includes\NSW_api\EWindow.h" />

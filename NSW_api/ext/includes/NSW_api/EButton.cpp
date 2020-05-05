@@ -11,16 +11,56 @@
 #include "NSW_api/EUtils.h"
 
 #include <windows.h>
+#include "../../../EBA.h"
 
 int EButton::top_window_id = -1;
+//void (*zzz)();
+
+//void (*action_on_left_click)(EButton* _b, float _d);
+
+
+
 
 EButton::EButton()
 {
 	update_localisation();
+
+
+
+}
+
+void EButton::static_click()
+{
+	std::cout << "STATIC CLICK!!!" << std::endl;
+}
+
+void EButton::static_click2()
+{
+	std::cout << "STATIC CLICK2!!!" << std::endl;
+}
+
+
+
+
+void EButton::set_left_click_action(void(*function)(EButton*, float))
+{
+	//action_on_left_click = function;
 }
 
 EButton::EButton(float _x, float _y, float _sx, float _sy)
 {
+	//EBA::foo = &EButton::static_click;
+	//EBA::foo = NULL;
+
+	/*if (rand() % 100 < 50)
+	{
+		EBA::set_method(&static_click);
+	}
+	else
+	{
+		EBA::set_method(&static_click2);
+	}*/
+
 	button_x = _x;
 	button_y = _y;
 
@@ -31,6 +71,10 @@ EButton::EButton(float _x, float _y, float _sx, float _sy)
 	button_min_size_y = _sy;
 
 	update_localisation();
+
+		//action_on_left_click = &EBA::action_add_new_sprite;
+
+	
 }
 
 
@@ -108,7 +152,7 @@ bool EButton::is_outclick()
 
 bool EButton::is_right_click()
 {
-	if ((EWindow::RMB) && (!EWindow::RMB) && (is_overlap())) { EWindow::button_right_pressed = true; return true; }
+	if ((EWindow::RMB) && (!EWindow::button_right_pressed) && (is_overlap())) { EWindow::button_right_pressed = true; return true; }
 
 	return false;
 }
@@ -228,6 +272,7 @@ void EButton::update(float _d)
 	{
 		right_click_event();
 
+
 		if (can_be_removed)
 		{
 			std::cout << "TRY REMOVE" << std::endl;
@@ -239,7 +284,7 @@ void EButton::update(float _d)
 
 	if (is_click())
 	{
-
+		//(*action_on_left_click)();
 		//if (master_block != NULL) { StaticData::window_filter_block->unsave_change = true; }
 
 		if (!is_holdable) { EWindow::button_pressed = true; }
@@ -263,8 +308,10 @@ void EButton::update(float _d)
 
 		}
 
+		std::cout << "try active input mode" << std::endl;
 		if ((have_input_mode) && (!is_input_mode_active))
 		{
+		
 			if (input_auto_clear_text) { text = ""; }
 			is_input_mode_active = true;
 		}
@@ -275,6 +322,10 @@ void EButton::update(float _d)
 
 
 		click_event();
+		if (action_on_left_click != NULL)
+		{
+			action_on_left_click(this, _d);
+		}
 	}
 
 	if (!EWindow::LMB)
@@ -406,7 +457,7 @@ void EButton::update_additional(float _d)
 {
 }
 
-void EButton::default_draw(Batcher* _batch)
+void EButton::default_draw(Batcher* _batch, float _d)
 {
 	//std::cout << "!" << std::endl;
 	EFont::active_font->scale = 1.0f;
@@ -549,7 +600,7 @@ void EButton::default_draw(Batcher* _batch)
 
 	}
 
-	additional_draw(_batch);
+	additional_draw(_batch, _d);
 
 	if (is_overlap())
 	{
@@ -559,7 +610,7 @@ void EButton::default_draw(Batcher* _batch)
 
 }
 
-void EButton::additional_draw(Batcher* _batch)
+void EButton::additional_draw(Batcher* _batch, float _d)
 {
 	//std::cout << "Default" << std::endl;
 }
@@ -681,8 +732,14 @@ void EButton::slide_drag_event()
 
 void EButton::update_localisation()
 {
+
+	/* the ampersand is actually optional */
+
 	//std::cout << "DEFAULT LOCAL" << std::endl;
 }
+
+
+
 
 
 

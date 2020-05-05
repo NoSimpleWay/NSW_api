@@ -15,10 +15,12 @@ Entity::Entity()
 	ESprite* sp = new ESprite();
 
 	sprite_list.push_back(sp);
-	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/sphere.png", EWindow::default_texture_atlas));
+	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/textures/sphere.png", EWindow::default_texture_atlas));
 
 	sp->offset_x.push_back(-25.0f);
 	sp->offset_y.push_back(0.0f);
+
+
 }
 
 Entity::~Entity()
@@ -27,21 +29,25 @@ Entity::~Entity()
 
 void Entity::draw_sprite(Batcher* _b, float _d)
 {
-	int sprite_id = 0;
+	
 	EGabarite* link;
 
 	for (ESprite* spr : sprite_list)
 	{
+		int sprite_id = 0;
+
 		if (*spr->rotate_by_move)
-		if (*speed_x * *speed_x > *speed_y * *speed_y)
 		{
-			if (*speed_x > 0) { sprite_id = 1; }
-			else { sprite_id = 3; }
-		}
-		else
-		{
-			if (*speed_y > 0) { sprite_id = 0; }
-			else { sprite_id = 2; }
+			if (*speed_x * *speed_x > * speed_y** speed_y)
+			{
+				if (*speed_x > 0) { sprite_id = 1; }
+				else { sprite_id = 3; }
+			}
+			else
+			{
+				if (*speed_y > 0) { sprite_id = 0; }
+				else { sprite_id = 2; }
+			}
 		}
 
 		//link = spr->gabarite.at(sprite_id);
@@ -168,3 +174,10 @@ void ECluster::put_entity(Entity* _e, float _x, float _y)
 	//EPath::block[path_x][path_y] += EPath::ENTITY_BLOCK_VALUE;
 }
 
+ESprite::ESprite()
+{
+}
+
+ESprite::~ESprite()
+{
+}

@@ -83,4 +83,7 @@ public:
 
 	bool* rotate_by_move = new bool(false);
 	bool* rotate_by_target = new bool(false);
+
+	ESprite();
+	~ESprite();
 };

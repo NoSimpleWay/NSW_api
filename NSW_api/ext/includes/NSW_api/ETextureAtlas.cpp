@@ -20,6 +20,12 @@ EGabarite* ETextureAtlas::put_texture_to_atlas(std::string _name, ETextureAtlas*
 {
 
 
+	for (int i = 0; i < _name.length(); i++)
+	{
+		if (_name[i] == '\\') { _name[i] = '/'; }
+	}
+
+
 
 	glViewport(0, 0, 4096, 4096);
 	glBindFramebuffer(GL_FRAMEBUFFER, _ta->framebuffer);

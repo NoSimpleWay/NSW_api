@@ -24,6 +24,8 @@
 
 class EButton;
 class EWindowTest;
+class EWindowEditor;
+class EWindowSearchBrick;
 
 class EWindow
 {
@@ -38,6 +40,7 @@ public:
 
 
 	virtual void draw_interface(float _d);
+	void default_draw_interface(float _d);
 
 	void static add_time_process(std::string _name);
 
@@ -77,13 +80,15 @@ public:
 	static float delete_button_hold_time;
 
 	static EWindowTest* window_test;
+	static EWindowEditor* window_editor;
+	static EWindowSearchBrick* window_search_brick;
 
 	static ETextureAtlas* default_texture_atlas;
 
 	static bool button_pressed;
 	static bool button_right_pressed;
 	static bool button_backspace_released;
-	static bool is_active;
+	bool is_active = true;
 	int id = 0;
 
 	static bool is_overlap(EWindow* _w);

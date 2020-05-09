@@ -1,0 +1,20 @@
+ADD_NEW_ENTITY	3750.000000	3750.000000
+*entity_controlled_by_player
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-27.000000
+texture_offset_y	0.000000
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-14.000000
+texture_offset_y	-5.000000
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-27.000000
+texture_offset_y	0.000000
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-14.000000
+texture_offset_y	-5.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/block.png
+texture_offset_x	-25.000000
+texture_offset_y	0.000000

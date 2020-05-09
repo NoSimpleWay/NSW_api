@@ -181,10 +181,11 @@ public:
 
 	bool can_receive_paste = false;
 
+	/*
 	EButtonAction* button_action_press;
 	EButtonAction* button_action_right_press;
 	EButtonAction* button_action_input_finish;
-	EButtonAction* button_action_outclick;
+	EButtonAction* button_action_outclick;*/
 
 
 

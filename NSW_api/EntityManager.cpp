@@ -12,13 +12,14 @@ ECluster* ECluster::clusters[CLUSTER_DIM][CLUSTER_DIM];
 Entity::Entity()
 {
 	//already_updated = false;
+	/*
 	ESprite* sp = new ESprite();
 
 	sprite_list.push_back(sp);
 	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/textures/sphere.png", EWindow::default_texture_atlas));
 
 	sp->offset_x.push_back(-25.0f);
-	sp->offset_y.push_back(0.0f);
+	sp->offset_y.push_back(0.0f);*/
 
 
 }

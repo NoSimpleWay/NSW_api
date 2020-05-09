@@ -97,7 +97,7 @@ int main()
 	EGraphicCore::ourShader = new Shader("data/5.1.transform.vs", "data/5.1.transform.fs");
 
 	EGraphicCore::ourShader->use();
-	glfwSwapInterval(0);
+	glfwSwapInterval(1);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

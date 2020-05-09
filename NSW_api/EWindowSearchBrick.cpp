@@ -25,6 +25,8 @@ EWindowSearchBrick::EWindowSearchBrick()
 	but->is_input_mode_active = true;
 	but->outclick_protection = true;
 
+	but->action_on_input = &EBA::action_input_search_brick;
+
 	but->position_mode_x = Enums::MID;
 	but->position_mode_y = Enums::UP;
 
@@ -48,7 +50,9 @@ EWindowSearchBrick::EWindowSearchBrick()
 		but->have_description = true;
 		but->have_rama = true;
 
-		but->gabarite = ETextureAtlas::put_texture_to_atlas(p.path().u8string(), EWindow::default_texture_atlas);;
+		but->gabarite = ETextureAtlas::put_texture_to_atlas(p.path().u8string(), EWindow::default_texture_atlas);
+		but->data_string = p.path().filename().u8string();//texture path
+		but->description_text = p.path().filename().u8string();
 
 		//but->button_action_press = new EButtonActionSetSpriteTexture();
 		but->action_on_left_click = &EBA::action_set_sprite_texture;
@@ -61,10 +65,10 @@ EWindowSearchBrick::EWindowSearchBrick()
 		{
 			xx = 0;
 			yy -= 50.0f;
-
-			but->button_x = 15.0f + xx;
-			but->button_y = -50.0f + yy;
 		}
+
+		but->button_x = 15.0f + xx;
+		but->button_y = -50.0f + yy;
 	}
 
 
@@ -93,6 +97,38 @@ void EWindowSearchBrick::draw_interface(float _d)
 {
 }
 
-void EWindowSearchBrick::update_search(std::string _text)
+void EWindowSearchBrick::update_search(EButton* _b)
 {
+	float xx = 0.0f;
+	float yy = 0.0f;
+
+	if (search_mode == SearchMode::SEARCH_TEXTURE)
+	{
+		for (int i = 0; i < brick_button.size(); i++)
+		{
+			//std::cout << "gabarite [" << i << "] name is " << EGraphicCore::gabarite_list.at(i)->name << std::endl;
+
+			if (EString::is_contain(brick_button.at(i)->data_string, _b->text))
+			{
+				brick_button.at(i)->is_active = true;
+
+				xx += 55.0f;
+				if (xx + brick_button.at(i)->button_size_x > window_size_x)
+				{
+					xx = 0;
+					yy -= 50.0f;
+				}
+
+				brick_button.at(i)->button_x = 15.0f + xx;
+				brick_button.at(i)->button_y = -50.0f + yy;
+			}
+			else
+			{
+				brick_button.at(i)->is_active = false;
+			}
+		}
+	}
 }
+
+
+

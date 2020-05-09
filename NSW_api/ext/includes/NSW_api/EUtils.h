@@ -11,7 +11,16 @@ public:
 
 class EFile
 {
-	static int *data_array[];
+public:
+	static std::string *data_array;
+	static int array_size;
 
 	static void data_parser(std::string _s);
+	static int find_data_array_id(std::string _s);
+};
+
+class EString
+{
+public:
+	static bool is_contain(std::string _text_source, std::string _text_value);
 };

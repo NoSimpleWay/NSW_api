@@ -30,6 +30,7 @@ EWindowTest::EWindowTest():EWindow()
 		ECluster::put_entity(en, *en->position_x, *en->position_y);
 	}
 
+	/*
 	link_to_player = new Entity();
 
 	*link_to_player->position_x = +ECluster::CLUSTER_SIZE * ECluster::CLUSTER_DIM / 2.0f;
@@ -76,6 +77,7 @@ EWindowTest::EWindowTest():EWindow()
 	link_to_player->controlled_by_ai = false;
 	link_to_player->controlled_by_player = true;
 
+	*/
 	always_fullscreen = true;
 	short default_path = 250;
 
@@ -111,8 +113,11 @@ void EWindowTest::update(float _d)
 
 	add_time_process("game_window_update");
 
-	game_camera->position_x = *link_to_player->position_x;
-	game_camera->position_y = *link_to_player->position_y;
+	if (link_to_player != NULL)
+	{
+		game_camera->position_x = *link_to_player->position_x;
+		game_camera->position_y = *link_to_player->position_y;
+	}
 
 
 	if (glfwGetKey(EWindow::main_window, GLFW_KEY_SPACE) == GLFW_PRESS)

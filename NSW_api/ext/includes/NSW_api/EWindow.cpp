@@ -135,6 +135,13 @@ void EWindow::default_draw_interface(float _d)
 		{
 			b->default_draw(EGraphicCore::batch, _d);
 			b->additional_draw(EGraphicCore::batch, _d);
+		}
+	}
+	
+	for (EButton* b : button_list)
+	{
+		if (b->is_active)
+		{
 			b->text_pass(EGraphicCore::batch);
 		}
 	}
@@ -145,6 +152,13 @@ void EWindow::default_draw_interface(float _d)
 		{
 			b->default_draw(EGraphicCore::batch, _d);
 			b->additional_draw(EGraphicCore::batch, _d);
+		}
+	}
+
+	for (EButton* b : default_button_list)
+	{
+		if (b->is_active)
+		{
 			b->text_pass(EGraphicCore::batch);
 		}
 	}

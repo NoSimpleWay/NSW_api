@@ -16,7 +16,7 @@ public:
 
 	int search_mode;
 
-	void update_search(std::string _text);
+	void update_search(EButton* _b);
 
 	enum SearchMode{ SEARCH_TEXTURE, SEARCH_ENTITY };
 

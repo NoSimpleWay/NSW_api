@@ -1,0 +1,6 @@
+ADD_NEW_ENTITY
+pos_x	500	pos_y	500
+ADD_NEW_SPRITE
+add_sprite_texture	impulsa tower
+offset_x	-100
+offset_y	15

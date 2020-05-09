@@ -18,5 +18,16 @@ public:
 	static void action_set_sprite_texture(EButton* _b, float _d);
 	static void action_set_button_as_removed(EButton* _b, float _d);
 	static void action_close_window(EButton* _b, float _d);
+
+	static void action_save_map(EButton* _b, float _d);
+	static void action_load_map(EButton* _b, float _d);
+
+
+
+
+
+	//actions_for_input
+	static void action_input_search_brick(EButton* _b, float _d);
+
 	
 };

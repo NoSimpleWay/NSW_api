@@ -48,6 +48,21 @@ EWindowEditor::EWindowEditor()
 	link_to_add_new_sprite_button = but;
 	button_list.push_back(but);
 
+	but = new EButton(10.0f, -10.0f, 64.0f, 16.0f);
+	but->master_window = this;
+	button_list.push_back(but);
+	but->text = "save";
+	but->position_mode_x = Enums::PositionMode::LEFT;
+	but->position_mode_y = Enums::PositionMode::UP;
+	but->action_on_left_click = &EBA::action_save_map;
+
+	but = new EButton(90.0f, -10.0f, 64.0f, 16.0f);
+	but->master_window = this;
+	button_list.push_back(but);
+	but->text = "load";
+	but->position_mode_x = Enums::PositionMode::LEFT;
+	but->position_mode_y = Enums::PositionMode::UP;
+	but->action_on_left_click = &EBA::action_load_map;
 
 
 	//

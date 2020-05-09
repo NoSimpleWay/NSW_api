@@ -18,9 +18,12 @@ class EWindow;
 class EButton
 {
 public:
-	typedef void (*AOLC)(EButton* _b, float _d);
-	AOLC action_on_left_click;
-	AOLC action_on_right_click;
+	typedef void (*BUTTON_ACTION)(EButton* _b, float _d);
+
+	BUTTON_ACTION action_on_left_click;
+	BUTTON_ACTION action_on_right_click;
+
+	BUTTON_ACTION action_on_input;
 	
 	static void static_click();
 	static void static_click2();

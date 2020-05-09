@@ -14,6 +14,10 @@ public:
 	virtual void draw(float _d);
 	virtual void draw_interface(float _d);
 
+	int search_mode;
 
+	void update_search(std::string _text);
+
+	enum SearchMode{ SEARCH_TEXTURE, SEARCH_ENTITY };
 
 };

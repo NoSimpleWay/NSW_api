@@ -200,6 +200,11 @@ void EButton::update(float _d)
 		if (is_input_mode_active)
 		{
 			input_event();
+
+			if (action_on_input != NULL)
+			{
+				action_on_input(this, _d);
+			}
 		}
 
 		//if (master_block != NULL) { StaticData::window_filter_block->unsave_change = true; }
@@ -376,6 +381,11 @@ void EButton::update(float _d)
 
 			//if (master_block != NULL) { StaticData::window_filter_block->unsave_change = true; }
 			input_event();
+
+			if (action_on_input != NULL)
+			{
+				action_on_input(this, _d);
+			}
 		}
 
 
@@ -386,6 +396,11 @@ void EButton::update(float _d)
 			text = "";
 
 			input_event();
+
+			if (action_on_input != NULL)
+			{
+				action_on_input(this, _d);
+			}
 		}
 
 		if
@@ -412,6 +427,11 @@ void EButton::update(float _d)
 				text = "";
 				input_event();
 				//if (master_block != NULL) { StaticData::window_filter_block->unsave_change = true; }
+			}
+
+			if (action_on_input != NULL)
+			{
+				action_on_input(this, _d);
 			}
 
 			//input_event();

@@ -92,3 +92,7 @@ void EWindowSearchBrick::draw(float _d)
 void EWindowSearchBrick::draw_interface(float _d)
 {
 }
+
+void EWindowSearchBrick::update_search(std::string _text)
+{
+}

@@ -76,6 +76,7 @@ public:
 	Enums::PositionMode text_align_x = Enums::PositionMode::LEFT;
 
 	EWindow* master_window;
+	EButton* master_button;
 
 
 	float master_position_x = 0;

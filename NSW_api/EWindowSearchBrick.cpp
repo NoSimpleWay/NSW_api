@@ -50,6 +50,8 @@ EWindowSearchBrick::EWindowSearchBrick()
 		but->have_description = true;
 		but->have_rama = true;
 
+		//std::cout << "try load texture: " << p.path().filename().u8string() << std::endl;
+
 		but->gabarite = ETextureAtlas::put_texture_to_atlas(p.path().u8string(), EWindow::default_texture_atlas);
 		but->data_string = p.path().filename().u8string();//texture path
 		but->description_text = p.path().filename().u8string();
@@ -102,6 +104,8 @@ void EWindowSearchBrick::update_search(EButton* _b)
 	float xx = 0.0f;
 	float yy = 0.0f;
 
+	int new_data_id = 0;
+
 	if (search_mode == SearchMode::SEARCH_TEXTURE)
 	{
 		for (int i = 0; i < brick_button.size(); i++)
@@ -121,6 +125,9 @@ void EWindowSearchBrick::update_search(EButton* _b)
 
 				brick_button.at(i)->button_x = 15.0f + xx;
 				brick_button.at(i)->button_y = -50.0f + yy;
+				brick_button.at(i)->data_id = new_data_id;
+
+				new_data_id++;
 			}
 			else
 			{

@@ -50,20 +50,53 @@ void EBA::action_add_new_sprite(EButton* _b, float _d)
 		EWindow::window_editor->selected_entity->sprite_list.begin() + EWindow::window_editor->selected_sprite_id,
 		spr
 	);
+
+	EWindow::window_editor->update_sprite_buttons();
 }
 
 void EBA::action_select_sprite(EButton* _b, float _d)
 {
-	EWindow::window_editor->sprite_button_list.at(EWindow::window_editor->selected_sprite_id)->rama_color->set_color(EColor::COLOR_BLACK);
-	EWindow::window_editor->selected_sprite_id = _b->data_id;
-	_b->rama_color->set_color(EColor::COLOR_ORANGE);
+	//SetCursorPos(0, 0);
 
-	EWindow::window_search_brick->is_active = true;
+	/*POINT cursorPos;
+	GetCursorPos(&cursorPos);
+	float x = 0;
+	x = cursorPos.x;
+	float y = 0;
+	y = cursorPos.y;
+	
+	char msg[50];*/
+
+//	sprintf(msg, "x: %.2f\n"
+//		"y : %.2f\n", x, y);
+
+	//MessageBox(0, msg, "Mouse Position", 0);
+
+	//std::cout << "x=" << x << "y=" << y << endl;
+
+	//EWindow::push_cursor(-20.0f, 0.0f);
+
+	EWindow::window_editor->selected_sprite_id = _b->data_id;
+	EWindow::window_editor->selected_sprite_button = _b;
+
+
+	//EWindow::window_search_brick->is_active = true;
+
+	EWindow::window_editor->update_sprite_buttons();
 }
 
 void EBA::action_set_sprite_texture(EButton* _b, float _d)
 {
-	EWindow::window_test->link_to_player->sprite_list.at(EWindow::window_editor->selected_sprite_id)->gabarite.at(0) = _b->gabarite;
+	EWindow::window_editor->selected_entity->sprite_list.at(EWindow::window_editor->selected_sprite_id)->gabarite.at(0) = _b->gabarite;
+
+	EWindow::window_editor->update_sprite_buttons();
+}
+
+void EBA::action_open_select_texture_window(EButton* _b, float _d)
+{
+	EWindow::window_search_brick->is_active = true;
+
+	EWindow::window_editor->update_sprite_buttons();
 }
 
 void EBA::action_set_button_as_removed(EButton* _b, float _d)
@@ -96,7 +129,7 @@ void EBA::action_save_map(EButton* _b, float _d)
 		for (int i = 0; i < ECluster::CLUSTER_DIM; i++)
 		for (Entity* e : ECluster::clusters[j][i]->entity_list)
 		{
-			w_string += "ADD_NEW_ENTITY\r\n";
+			w_string += "ADD_NEW_ENTITY";
 
 			//just_created_entity = new Entity();
 
@@ -193,6 +226,7 @@ void EBA::action_load_map(EButton* _b, float _d)
 			{
 				just_created_entity->controlled_by_player = true;
 				EWindow::window_test->link_to_player = just_created_entity;
+				EWindow::window_editor->selected_entity = just_created_entity;
 			}
 
 			if (EFile::data_array[i] == "ADD_NEW_SPRITE")
@@ -227,7 +261,58 @@ void EBA::action_load_map(EButton* _b, float _d)
 	}
 
 	myfile.close();
+
+	EWindow::window_editor->update_sprite_buttons();
 	//string line;
+}
+
+void EBA::action_add_new_entity(EButton* _b, float _d)
+{
+	Entity* en = new Entity();
+
+
+	ECluster::put_entity(en, EWindow::window_test->game_camera->position_x, EWindow::window_test->game_camera->position_y);
+}
+
+void EBA::action_move_sprite_up(EButton* _b, float _d)
+{
+	//std::cout << "data id = " << _b->data_id << std::endl;
+
+	if (EWindow::window_editor->selected_sprite_id > 0)
+	{
+		ESprite* swap = EWindow::window_editor->selected_entity->sprite_list.at(EWindow::window_editor->selected_sprite_id - 1);
+
+		EWindow::window_editor->selected_entity->sprite_list.at(EWindow::window_editor->selected_sprite_id - 1)
+		=
+		EWindow::window_editor->selected_entity->sprite_list.at(EWindow::window_editor->selected_sprite_id);
+
+		EWindow::window_editor->selected_entity->sprite_list.at(EWindow::window_editor->selected_sprite_id) = swap;
+	}
+
+	EWindow::window_editor->update_sprite_buttons();
+}
+
+void EBA::action_move_sprite_down(EButton* _b, float _d)
+{
+	//std::cout << "size = " << std::to_string((EWindow::window_editor->sprite_button_list.size() + 10)) << std::endl;
+
+	if
+	(
+		(EWindow::window_editor->selected_sprite_id + 1 < EWindow::window_editor->sprite_button_list.size())
+		&&
+		(EWindow::window_editor->selected_sprite_id + 1 < EWindow::window_editor->selected_entity->sprite_list.size())
+	)
+	{
+		ESprite* swap = EWindow::window_editor->selected_entity->sprite_list.at(EWindow::window_editor->selected_sprite_id + 1);
+
+		EWindow::window_editor->selected_entity->sprite_list.at(EWindow::window_editor->selected_sprite_id + 1)
+		=
+		EWindow::window_editor->selected_entity->sprite_list.at(EWindow::window_editor->selected_sprite_id);
+
+		EWindow::window_editor->selected_entity->sprite_list.at(EWindow::window_editor->selected_sprite_id) = swap;
+	}
+
+	EWindow::window_editor->update_sprite_buttons();
 }
 
 

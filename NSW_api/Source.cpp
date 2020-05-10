@@ -196,6 +196,8 @@ int main()
 
 	while (!glfwWindowShouldClose(EWindow::main_window))
 	{
+
+
 		EWindow::time_process_name.clear();
 		EWindow::time_process_value.clear();
 
@@ -210,7 +212,22 @@ int main()
 
 		delta_time /= 1.0f;//
 
-		if (delta_time > 0.2f) { delta_time = 0.2f; }
+		if (delta_time > 0.5f) { delta_time = 0.5f; }
+
+
+		POINT cursorPos;
+		GetCursorPos(&cursorPos);
+
+		EWindow::mouse_speed_x = cursorPos.x - EWindow::prev_mouse_x;
+		EWindow::mouse_speed_y = -(cursorPos.y - EWindow::prev_mouse_y);
+
+		EWindow::real_mouse_x = cursorPos.x;
+		EWindow::real_mouse_y = cursorPos.y;
+
+		EWindow::prev_mouse_x = cursorPos.x;
+		EWindow::prev_mouse_y = cursorPos.y;
+
+		glfwPollEvents();
 
 		//update windows
 		for (EWindow* w : EWindow::window_list)
@@ -297,9 +314,12 @@ int main()
 		EGraphicCore::batch->draw_call();
 
 		glfwSwapBuffers(EWindow::main_window);
-		glfwPollEvents();
+
+
 
 		processInput(EWindow::main_window);
+
+
 	}
 
 	return 0;
@@ -363,8 +383,13 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 
 void mouse_position_callback(GLFWwindow* window, double _x, double _y)
 {
+
+
 	EWindow::mouse_x = _x;
 	EWindow::mouse_y = EGraphicCore::SCR_HEIGHT - _y;
+
+
+
 }
 
 void char_input_callback(GLFWwindow* window, unsigned int _char)

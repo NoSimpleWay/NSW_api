@@ -256,7 +256,7 @@ void EButton::update(float _d)
 
 
 
-	if (master_position == Enums::PositionMaster::WINDOW)
+	if ((master_position == Enums::PositionMaster::WINDOW)&&(master_window != NULL))
 	{
 		if (position_mode_x == Enums::PositionMode::LEFT) { master_position_x = master_window->offset_x + button_x; }
 		if (position_mode_x == Enums::PositionMode::MID) { master_position_x = master_window->offset_x + (master_window->window_size_x - button_size_x) / 2.0f + button_x; }
@@ -265,6 +265,19 @@ void EButton::update(float _d)
 		if (position_mode_y == Enums::PositionMode::DOWN) { master_position_y = master_window->offset_y + button_y; }
 		if (position_mode_y == Enums::PositionMode::MID) { master_position_y = master_window->offset_y + (master_window->window_size_y - button_size_y) / 2.0f + button_y; }
 		if (position_mode_y == Enums::PositionMode::UP) { master_position_y = master_window->offset_y + master_window->window_size_y + button_y - button_size_y; }
+	}
+
+	if ((master_position == Enums::PositionMaster::BUTTON)&&(master_button != NULL))
+	{
+		if (position_mode_x == Enums::PositionMode::SUPER_LEFT) { master_position_x = master_button->master_position_x + button_x - master_button->button_size_x; }
+		if (position_mode_x == Enums::PositionMode::LEFT) { master_position_x = master_button->master_position_x + button_x; }
+		if (position_mode_x == Enums::PositionMode::MID) { master_position_x = master_button->master_position_x + (master_button->button_size_x - button_size_x) / 2.0f + button_x; }
+		if (position_mode_x == Enums::PositionMode::RIGHT) { master_position_x = master_button->master_position_x + master_button->button_size_x + button_x - button_size_x; }
+		if (position_mode_x == Enums::PositionMode::SUPER_RIGHT) { master_position_x = master_button->master_position_x + master_button->button_size_x + button_x; }
+
+		if (position_mode_y == Enums::PositionMode::UP) { master_position_y = master_button->master_position_y + button_y + master_button->button_size_y; }
+		if (position_mode_y == Enums::PositionMode::MID) { master_position_y = master_button->master_position_y + (master_button->button_size_y - button_size_y) / 2.0f + button_y; }
+		if (position_mode_y == Enums::PositionMode::DOWN) { master_position_y = master_button->master_position_y + button_y - button_size_y; }
 	}
 
 	if (master_position == Enums::PositionMaster::SCREEN)
@@ -716,7 +729,7 @@ void EButton::text_pass(Batcher* _batch)
 		_batch->draw_gabarite(x_description, EWindow::mouse_y - 20.0f - th, EFont::get_width(target_font, description_text) + 8, th, EGraphicCore::gabarite_white_pixel);
 
 		_batch->setcolor(EColor::COLOR_BLACK);
-		target_font->draw(_batch, description_text, x_description + 5.0f, EWindow::mouse_y - 34.0f);
+		target_font->draw(_batch, description_text + "[data_id:" + std::to_string(data_id) + "]", x_description + 5.0f, EWindow::mouse_y - 34.0f);
 
 		_batch->draw_rama(x_description, EWindow::mouse_y - 20.0f - th, EFont::get_width(target_font, description_text) + 8, th, 2, EGraphicCore::gabarite_white_pixel);
 	}

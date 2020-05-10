@@ -19,6 +19,18 @@ unsigned int EWindow::transformLoc;
 int EWindow::mouse_x = 0;
 int EWindow::mouse_y = 0;
 
+int EWindow::saved_pos_x = 0;
+int EWindow::saved_pos_y = 0;
+
+int EWindow::prev_mouse_x = 0;
+int EWindow::prev_mouse_y = 0;
+
+float EWindow::mouse_speed_x = 0.0f;
+float EWindow::mouse_speed_y = 0.0f;
+
+float EWindow::real_mouse_x;
+float EWindow::real_mouse_y;
+
 bool EWindow::LMB = false;
 bool EWindow::RMB = false;
 
@@ -177,6 +189,17 @@ void EWindow::add_time_process(std::string _name)
 	time_process_name.push_back(_name);
 
 	start = std::chrono::high_resolution_clock::now();
+}
+
+void EWindow::push_cursor(float _x, float _y)
+{
+	SetCursorPos(real_mouse_x + _x, real_mouse_y + _y);
+
+	mouse_x += _x;
+	mouse_y += _y;
+
+	real_mouse_x += _x;
+	real_mouse_y += _y;
 }
 
 EWindow::EWindow()

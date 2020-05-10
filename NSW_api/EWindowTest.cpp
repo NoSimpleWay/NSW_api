@@ -108,22 +108,21 @@ void EWindowTest::default_update(float _d)
 
 void EWindowTest::update(float _d)
 {
-	EWindow::window_editor->selected_entity = link_to_player;
-	EWindow::window_editor->update_sprite_buttons();
+	//EWindow::window_editor->selected_entity = link_to_player;
+	
 
 	add_time_process("game_window_update");
 
-	if (link_to_player != NULL)
-	{
-		game_camera->position_x = *link_to_player->position_x;
-		game_camera->position_y = *link_to_player->position_y;
-	}
 
 
-	if (glfwGetKey(EWindow::main_window, GLFW_KEY_SPACE) == GLFW_PRESS)
-	{
-		_d *= 0.10f;
-	}
+	//game_camera->position_x = round(game_camera->position_x);
+	//game_camera->position_y = round(game_camera->position_y);
+
+
+	//if (glfwGetKey(EWindow::main_window, GLFW_KEY_SPACE) == GLFW_PRESS)
+	//{
+	//	_d *= 0.10f;
+	//}
 
 	if (LMB)
 	{
@@ -280,24 +279,27 @@ void EWindowTest::update(float _d)
 
 
 
+	int prev_cluster_x = 0;
+	int prev_cluster_y = 0;
 
+	
 	for (int i = draw_border_up; i >= draw_border_down; i--)
 	for (int j = draw_border_left; j <= draw_border_right; j++)
 	for (Entity* e : ECluster::clusters[j][i]->entity_list)
-	if (!*e->already_updated)
 	{
 		int dir_x = 0;
 		int dir_y = 0;
 		float dir_mul = 1.0f;
 
-		int prev_cluster_x = (int)(*e->position_x / ECluster::CLUSTER_SIZE);
-		int prev_cluster_y = (int)(*e->position_y / ECluster::CLUSTER_SIZE);
+		*e->already_moved_x = false;
+		*e->already_moved_y = false;
 
 		if (e->controlled_by_player)
 		{
 			if (glfwGetKey(EWindow::main_window, GLFW_KEY_A) == GLFW_PRESS)
 			{
 				dir_x = -1;
+				//if (*e->speed_x > -100) { *e->speed_x = -100.0f; }
 			}
 
 			if (glfwGetKey(EWindow::main_window, GLFW_KEY_D) == GLFW_PRESS)
@@ -321,9 +323,6 @@ void EWindowTest::update(float _d)
 				EPath::path[(int)(*e->position_x / EPath::PATH_SIZE)][(int)(*e->position_y / EPath::PATH_SIZE)][EPath::active_buffer] = 1;
 			}
 		}
-
-
-
 		if (e->controlled_by_ai)
 		{
 			int path_pos_left = (int)((*e->position_x - *e->collision_left - 2.0f) / EPath::PATH_SIZE);
@@ -446,49 +445,9 @@ void EWindowTest::update(float _d)
 					dir_x = -1;
 					dir_y = -1;
 				}
-
-				/*
-				if (left_dir < right_dir)
-				{
-					dir_x = -1;
-				}
-				else
-				{
-					dir_x = 1;
-				}
-
-				if (down_dir < up_dir)
-				{
-					dir_y = -1;
-				}
-				else
-				{
-					dir_y = 1;
-				}*/
 			}
 
-			/*
-			//block x-axis move if unwalking map near
-			if ((EPath::block[path_pos_x + dir_x][path_pos_down] > 999) || (EPath::block[path_pos_x + dir_x][path_pos_up] > 999))
-			{
-				dir_x = 0;
-			}
 
-			//block y-axis move if unwalking map near
-			if ((EPath::block[path_pos_left][path_pos_y + dir_y] > 999) || (EPath::block[path_pos_right][path_pos_y + dir_y] > 999))
-			{
-				dir_y = 0;
-			}*/
-
-			//anti corner move
-			//if ((EPath::block[path_pos_left][path_pos_y + dir_y])||(EPath::block[path_pos_right][path_pos_y + dir_y]))
-			//{
-			//	dir_y = 0;
-			//}
-			//if (left_block)
-			//{
-			//	dir_x = 1;
-			//}
 
 
 			if (corner_block_A)
@@ -523,16 +482,16 @@ void EWindowTest::update(float _d)
 
 		//add_time_process("entities_path_find");
 
-		*e->speed_x += dir_x * _d * 500.0f * dir_mul;
-		*e->speed_y += dir_y * _d * 500.0f * dir_mul;
+		*e->speed_x += dir_x * _d * 1000.0f * dir_mul;
+		*e->speed_y += dir_y * _d * 1000.0f * dir_mul;
 
 		*e->real_speed_x = *e->speed_x * _d;
 		*e->real_speed_y = *e->speed_y * _d;
+	}
+		////
+		////===>
+		////
 
-		bool collision_left = false;
-		bool collision_right = false;
-		bool collision_up = false;
-		bool collision_down = false;
 
 		float total_impulse = 0;
 		float total_mass = 0;
@@ -541,156 +500,207 @@ void EWindowTest::update(float _d)
 
 		float delta = 0;
 
-		////
-		////===>
-		////
-		for (int k = 0; k <= 1; k++)
-		for (int z = -1; z <= 1; z++)
-		for (Entity* e2 : ECluster::clusters[j + k][i + z]->entity_list)
-		if (e!=e2)
+		bool any_collision = false;
+
+		for (int u = 0; u < 2; u++)
+		if ((u == 0)||(any_collision))
 		{
-			if (ECluster::collision_left(e, e2))
+			for (int i = draw_border_up; i >= draw_border_down; i--)
+			for (int j = draw_border_left; j <= draw_border_right; j++)
+			for (Entity* e : ECluster::clusters[j][i]->entity_list)
+			//if (!*e->already_updated)
 			{
-				collision_left = true;
+				bool collision_left = false;
+				bool collision_right = false;
+				bool collision_up = false;
+				bool collision_down = false;
+
+				*e->already_updated = true;
+
+				prev_cluster_x = (int)(*e->position_x / ECluster::CLUSTER_SIZE);
+				prev_cluster_y = (int)(*e->position_y / ECluster::CLUSTER_SIZE);
+
+				for (int k = 1; k >= -1; k--)
+					for (int z = -1; z <= 1; z++)
+						for (Entity* e2 : ECluster::clusters[j + k][i + z]->entity_list)
+							if (e != e2)
+							{
+								if (ECluster::collision_left(e, e2))
+								{
+									collision_left = true;
+									any_collision = true;
 
 
 
-				if ((*e->speed_x) > (*e2->speed_x))
-				{
-					total_mass = *e->mass + *e2->mass;
-					total_impulse = (*e->mass * *e->speed_x) + (*e2->mass * *e2->speed_x);
+									if ((*e->speed_x) > (*e2->speed_x))
+									{
+										total_mass = *e->mass + *e2->mass;
+										total_impulse = (*e->mass * *e->speed_x) + (*e2->mass * *e2->speed_x);
 
-					*e->speed_x = total_impulse / total_mass;
-					*e2->speed_x = total_impulse / total_mass;
-					//*e->position_x -= 1.0f;
-				}
-			}
+										*e->speed_x = total_impulse / total_mass;
+										*e2->speed_x = total_impulse / total_mass;
+										//*e->position_x -= 1.0f;
+									}
 
+									*e2->updates_count = *e2->updates_count + 1;
 
-		}
+									if (*e2->updates_count > 1)
+									{
+										std::cout << "-------TOO MANY UPDATES-------" << std::endl;
+									}
 
-		for (int k = 0; k >= -1; k--)
-		for (int z = -1; z <= 1; z++)
-		for (Entity* e2 : ECluster::clusters[j + k][i + z]->entity_list)
-		if (e!=e2)
-		{
-		if (ECluster::collision_right(e, e2))
-		{
-			collision_right = true;
-
-			if ((*e->speed_x) < (*e2->speed_x))
-			{
-				total_mass = *e->mass + *e2->mass;
-				total_impulse = (*e->mass * *e->speed_x) + (*e2->mass * *e2->speed_x);
-
-				*e->speed_x = total_impulse / total_mass;
-				*e2->speed_x = total_impulse / total_mass;
-				//*e->position_x -= 1.0f;
-			}
-		}
-		}
-
-		for (int k = 0; k >= -1; k--)
-		for (int z = -1; z <= 1; z++)
-			for (Entity* e2 : ECluster::clusters[j + z][i + k]->entity_list)
-				if (e != e2)
-				{
-					if (ECluster::collision_up(e, e2))
-					{
-						collision_up = true;
-
-						if ((*e->speed_y) < (*e2->speed_y))
-						{
-							total_mass = *e->mass + *e2->mass;
-							total_impulse = (*e->mass * *e->speed_y) + (*e2->mass * *e2->speed_y);
-
-							*e->speed_y = total_impulse / total_mass;
-							*e2->speed_y = total_impulse / total_mass;
-							//*e->position_x -= 1.0f;
-						}
-					}
+									//std::cout << "-------BONK!-------" << std::endl;
+									*e->position_x = *e2->position_x - *e2->collision_left - *e->collision_right - 0.0f;
+								}
 
 
-				}
+							}
 
-		for (int k = 0; k <= 1; k++)
-		for (int z = -1; z <= 1; z++)
-			for (Entity* e2 : ECluster::clusters[j + z][i + k]->entity_list)
-				if (e != e2)
-				{
-					if (ECluster::collision_down(e, e2))
-					{
-						collision_down = true;
+				for (int k = 1; k >= -1; k--)
+					for (int z = -1; z <= 1; z++)
+						for (Entity* e2 : ECluster::clusters[j + k][i + z]->entity_list)
+							if (e != e2)
+							{
+								if (ECluster::collision_right(e, e2))
+								{
+									collision_right = true;
+									//any_collision = true;
 
-						if ((*e->speed_y) > (*e2->speed_y))
-						{
-							total_mass = *e->mass + *e2->mass;
-							total_impulse = (*e->mass * *e->speed_y) + (*e2->mass * *e2->speed_y);
+									if ((*e->speed_x) < (*e2->speed_x))
+									{
+										total_mass = *e->mass + *e2->mass;
+										total_impulse = (*e->mass * *e->speed_x) + (*e2->mass * *e2->speed_x);
 
-							*e->speed_y = total_impulse / total_mass;
-							*e2->speed_y = total_impulse / total_mass;
-							//*e->position_x -= 1.0f;
-						}
-					}
+										*e->speed_x = total_impulse / total_mass;
+										*e2->speed_x = total_impulse / total_mass;
+										//*e->position_x -= 1.0f;
+									}
+
+									*e->position_x = *e2->position_x + *e2->collision_right + *e->collision_left + 0.5f;
+								}
+							}
+
+				for (int k = 1; k >= -1; k--)
+					for (int z = -1; z <= 1; z++)
+						for (Entity* e2 : ECluster::clusters[j + z][i + k]->entity_list)
+							if (e != e2)
+							{
+								if (ECluster::collision_up(e, e2))
+								{
+									collision_up = true;
+									any_collision = true;
+
+									if ((*e->speed_y) < (*e2->speed_y))
+									{
+										total_mass = *e->mass + *e2->mass;
+										total_impulse = (*e->mass * *e->speed_y) + (*e2->mass * *e2->speed_y);
+
+										*e->speed_y = total_impulse / total_mass;
+										*e2->speed_y = total_impulse / total_mass;
+										//*e->position_x -= 1.0f;
+									}
+								}
 
 
-				}
+							}
 
-		//if (!any_collision)
-		{
-			if ((!collision_left)&&(!collision_right))
-			{
-				*e->position_x += *e->speed_x * _d;
-			}
+				for (int k = -1; k <= 1; k++)
+					for (int z = -1; z <= 1; z++)
+						for (Entity* e2 : ECluster::clusters[j + z][i + k]->entity_list)
+							if (e != e2)
+							{
+								if (ECluster::collision_down(e, e2))
+								{
+									collision_down = true;
+									any_collision = true;
+
+									if ((*e->speed_y) > (*e2->speed_y))
+									{
+										total_mass = *e->mass + *e2->mass;
+										total_impulse = (*e->mass * *e->speed_y) + (*e2->mass * *e2->speed_y);
+
+										*e->speed_y = total_impulse / total_mass;
+										*e2->speed_y = total_impulse / total_mass;
+										//*e->position_x -= 1.0f;
+									}
+								}
+							}
+
 			
-			if ((!collision_up) && (!collision_down))
-			{
-				*e->position_y += *e->speed_y * _d;
+				{
+					if ((!collision_left) && (!collision_right) && (!*e->already_moved_x))
+					{
+						*e->position_x += *e->speed_x * _d;
+						*e->already_moved_x = true;
+
+						//if (u != 0) { *e->position_y += 10.0f; }
+						//any_collision = true;
+					}
+
+					if ((!collision_up) && (!collision_down) && (!*e->already_moved_y))
+					{
+						*e->position_y += *e->speed_y * _d;
+						*e->already_moved_y = true;
+
+					
+						//any_collision = true;
+					}
+
+				
+				}
+
+				if (!any_collision)
+				{
+					*e->speed_x *= pow(0.5, _d);
+					*e->speed_y *= pow(0.5, _d);
+				}
+
+
+				int new_cluster_x = (int)(*e->position_x / ECluster::CLUSTER_SIZE);
+				int new_cluster_y = (int)(*e->position_y / ECluster::CLUSTER_SIZE);
+
+				if ((new_cluster_x != prev_cluster_x) || (new_cluster_y != prev_cluster_y))
+				{*e->need_change_cluster = true;}
 			}
+
+			for (int i = draw_border_up; i >= draw_border_down; i--)
+			for (int j = draw_border_left; j <= draw_border_right; j++)
+			{
+				for (int k = 0; k < ECluster::clusters[j][i]->entity_list.size(); k++)
+				{
+					Entity* e = ECluster::clusters[j][i]->entity_list.at(k);
+
+					*e->already_updated = false;
+					*e->updates_count = 0;
+
+					if (*e->need_change_cluster)
+					{
+						ECluster::clusters[j][i]->entity_list.erase(ECluster::clusters[j][i]->entity_list.begin() + k);
+						ECluster::put_entity(e, *e->position_x, *e->position_y);
+
+						*e->need_change_cluster = false;
+
+						k--;
+					}
+				}
+			}
+
+			//if (!any_collision) { u = 99999; break; }
+
+
 		}
 
-		*e->speed_x *= pow(0.1, _d);
-		*e->speed_y *= pow(0.1, _d);
-
-	
-
-		//EPath::block[(int)(*e->position_x / EPath::PATH_SIZE)][(int)(*e->position_y / EPath::PATH_SIZE)] -= EPath::ENTITY_BLOCK_VALUE;
-
-		int new_cluster_x = (int)(*e->position_x / ECluster::CLUSTER_SIZE);
-		int new_cluster_y = (int)(*e->position_y / ECluster::CLUSTER_SIZE);
-
-		
-		if ((new_cluster_x != prev_cluster_x) || (new_cluster_y != prev_cluster_y))
-		{
-			*e->need_change_cluster = true;
-		}
-
-		*e->already_updated = true;
+	if (!glfwGetKey(EWindow::main_window, GLFW_KEY_SPACE) == GLFW_PRESS)
+	if (link_to_player != NULL)
+	{
+		game_camera->position_x = *link_to_player->position_x;
+		game_camera->position_y = *link_to_player->position_y;
 	}
 
 	add_time_process("entities_update");
 
 	
-	for (int i = draw_border_up;	i >= draw_border_down;	i--)
-	for (int j = draw_border_left;	j <= draw_border_right;	j++)
-	{
-		for (int k = 0; k < ECluster::clusters[j][i]->entity_list.size(); k++)
-		{
-			Entity* e = ECluster::clusters[j][i]->entity_list.at(k);
-
-			*e->already_updated = false;
-
-			if (*e->need_change_cluster)
-			{
-				ECluster::clusters[j][i]->entity_list.erase(ECluster::clusters[j][i]->entity_list.begin() + k);
-				ECluster::put_entity(e, *e->position_x, *e->position_y);
-
-				*e->need_change_cluster = false;
-
-				k++;
-			}
-		}
-	}
+	
 
 	add_time_process("cluster_change");
 
@@ -771,8 +781,11 @@ void EWindowTest::draw(float _d)
 
 			for (Entity* e : ECluster::clusters[j][i]->entity_list)
 			{
+				if (EWindow::window_editor->selected_entity == e)
+				{EGraphicCore::batch->setcolor(EColor::COLOR_RED); }
+				else
+				{EGraphicCore::batch->setcolor(EColor::COLOR_BLUE);}
 
-				EGraphicCore::batch->setcolor(EColor::COLOR_BLUE);
 				EGraphicCore::batch->draw_rama(*e->position_x - *e->collision_left, *e->position_y - *e->collision_down, *e->collision_left + *e->collision_right, *e->collision_down + *e->collision_up, 1.0f, EGraphicCore::gabarite_white_pixel);
 				//EGraphicCore::batch->draw_gabarite(*e->position_x + e->body_offset_x.at(sprite_id), *e->position_y + e->body_offset_y.at(sprite_id), e->body.at(sprite_id)->size_x, e->body.at(sprite_id)->size_y, e->body.at(sprite_id));
 

@@ -19,14 +19,26 @@ public:
 
 	float* mass = new float(10.0f);
 
-	float* collision_up = new float(12.0f);
-	float* collision_down = new float(12.0f);
-	float* collision_left = new float(25.0f);
-	float* collision_right = new float(25.0f);
+	float* collision_up = new float(20.0f);
+	float* collision_down = new float(20.0f);
+	float* collision_left = new float(20.0f);
+	float* collision_right = new float(20.0f);
 
 	bool* already_updated = new bool(false);
+	int* updates_count = new int(0);
+
+	int* prev_cluster_x = new int(0);
+	int* prev_cluster_y = new int(0);
+
+	bool* already_moved_x = new bool(false);
+	bool* already_moved_y = new bool(false);
 
 	bool* need_change_cluster = new bool(false);
+
+	bool* is_left_side_collided = new bool(false);
+	bool* is_right_side_collided = new bool(false);
+	bool* is_up_side_collided = new bool(false);
+	bool* is_down_side_collided = new bool(false);
 
 	Entity();
 	~Entity();
@@ -40,7 +52,7 @@ public:
 
 	bool body_rotate_by_move = false;
 
-	bool controlled_by_ai = true;
+	bool controlled_by_ai = false;
 	bool controlled_by_player = false;
 
 	std::vector<ESprite*> sprite_list;
@@ -60,8 +72,8 @@ public:
 	
 
 	//----------STATIC----------------------------
-	static const int CLUSTER_SIZE = 250;
-	static const int CLUSTER_DIM = 30;
+	static const int CLUSTER_SIZE = 500;
+	static const int CLUSTER_DIM = 300;
 
 	static void put_entity(Entity* _e, float _x, float _y);
 

@@ -52,17 +52,20 @@ void Entity::draw_sprite(Batcher* _b, float _d)
 		}
 
 		//link = spr->gabarite.at(sprite_id);
+		if (!spr->gabarite.empty())
+		if (spr->gabarite.at(sprite_id) != NULL)
+		{
+			_b->draw_gabarite
+			(
+				*position_x + spr->offset_x.at(sprite_id),
+				*position_y + spr->offset_y.at(sprite_id),
 
-		_b->draw_gabarite
-		(
-			*position_x + spr->offset_x.at(sprite_id),
-			*position_y + spr->offset_y.at(sprite_id),
+				spr->gabarite.at(sprite_id)->size_x,
+				spr->gabarite.at(sprite_id)->size_y,
 
-			spr->gabarite.at(sprite_id)->size_x,
-			spr->gabarite.at(sprite_id)->size_y,
-
-			spr->gabarite.at(sprite_id)
-		);
+				spr->gabarite.at(sprite_id)
+			);
+		}
 	}
 }
 
@@ -72,7 +75,7 @@ bool ECluster::collision_left(Entity* _a, Entity* _b)
 
 	if
 	(
-		(*_a->position_x < pseudo_line)
+		(*_a->position_x <= pseudo_line)
 		&&
 		(*_a->position_x + *_a->real_speed_x >= pseudo_line)
 		&&
@@ -93,7 +96,7 @@ bool ECluster::collision_right(Entity* _a, Entity* _b)
 
 	if
 	(
-		(*_a->position_x > pseudo_line)
+		(*_a->position_x >= pseudo_line)
 		&&
 		(*_a->position_x + *_a->real_speed_x <= pseudo_line)
 		&&
@@ -114,7 +117,7 @@ bool ECluster::collision_up(Entity* _a, Entity* _b)
 
 	if
 	(
-		(*_a->position_y > pseudo_line)
+		(*_a->position_y >= pseudo_line)
 		&&
 		(*_a->position_y + *_a->real_speed_y <= pseudo_line)
 		&&
@@ -135,7 +138,7 @@ bool ECluster::collision_down(Entity* _a, Entity* _b)
 
 	if
 	(
-		(*_a->position_y < pseudo_line)
+		(*_a->position_y <= pseudo_line)
 		&&
 		(*_a->position_y + *_a->real_speed_y >= pseudo_line)
 		&&
@@ -169,8 +172,8 @@ void ECluster::put_entity(Entity* _e, float _x, float _y)
 
 	clusters[cluster_x][cluster_y]->entity_list.push_back(_e);
 
-	int path_x = EMath::clamp_value_int((int)(_x / EPath::PATH_SIZE), 0, EPath::PATH_DIM);
-	int path_y = EMath::clamp_value_int((int)(_y / EPath::PATH_SIZE), 0, EPath::PATH_DIM);
+	//int path_x = EMath::clamp_value_int((int)(_x / EPath::PATH_SIZE), 0, EPath::PATH_DIM);
+	//int path_y = EMath::clamp_value_int((int)(_y / EPath::PATH_SIZE), 0, EPath::PATH_DIM);
 
 	//EPath::block[path_x][path_y] += EPath::ENTITY_BLOCK_VALUE;
 }

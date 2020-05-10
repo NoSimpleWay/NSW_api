@@ -59,6 +59,18 @@ public:
 
 	static int mouse_x;
 	static int mouse_y;
+	
+	static int prev_mouse_x;
+	static int prev_mouse_y;
+
+	static int saved_pos_x;
+	static int saved_pos_y;
+
+	static float mouse_speed_x;
+	static float mouse_speed_y;
+
+	static float real_mouse_x;
+	static float real_mouse_y;
 
 	static bool LMB;
 	static bool RMB;
@@ -71,6 +83,8 @@ public:
 	static std::vector < std::string > time_process_name;
 
 	static std::chrono::time_point<std::chrono::high_resolution_clock> start, stop;
+
+	static void push_cursor(float _x, float _y);
 
 	EWindow();
 	~EWindow();

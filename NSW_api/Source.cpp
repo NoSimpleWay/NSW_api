@@ -16,6 +16,7 @@
 
 #include "NSW_api/Enums.h"
 #include "NSW_api/EFont.h"
+#include "EBA.h"
 
 
 
@@ -153,6 +154,8 @@ int main()
 	//EWindow::window_game = wg;
 	EWindow::window_list.push_back(EWindow::window_search_brick);
 	EWindow::window_search_brick->id = 2;
+	EWindow::window_search_brick->is_active = false;
+
 	
 	//wg->init();
 
@@ -193,6 +196,7 @@ int main()
 	EFont::active_font = new_font;
 	EFont::font_list.push_back(new_font);
 
+	EBA::action_load_map(NULL, 0.0f);
 
 	while (!glfwWindowShouldClose(EWindow::main_window))
 	{
@@ -227,22 +231,11 @@ int main()
 		EWindow::prev_mouse_x = cursorPos.x;
 		EWindow::prev_mouse_y = cursorPos.y;
 
+		EWindow::scroll = 0;
+
 		glfwPollEvents();
 
-		//update windows
-		for (EWindow* w : EWindow::window_list)
-			if (w->is_active)
-		{
-			w->default_update(delta_time);
-			w->update(delta_time);
 
-			for (EButton* b : w->button_list)
-			if (b->is_active)
-			{
-				b->update(delta_time);
-				b->update_additional(delta_time);
-			}
-		}
 
 
 		//очищаем графический буфер и подготавливаем трансформацию
@@ -286,6 +279,18 @@ int main()
 
 		}
 
+		if
+		(
+			(glfwGetKey(EWindow::main_window, GLFW_KEY_E) == GLFW_RELEASE)
+			&&
+			(glfwGetKey(EWindow::main_window, GLFW_KEY_V) == GLFW_RELEASE)
+			&&
+			(glfwGetKey(EWindow::main_window, GLFW_KEY_DELETE) == GLFW_RELEASE)
+		)
+		{
+			EWindow::button_main_group_pressed = false;
+		}
+
 		EButton::top_window_id = -1;
 		for (int i = 0; i < EWindow::window_list.size(); i++)
 		{
@@ -296,6 +301,21 @@ int main()
 				)
 			{
 				EButton::top_window_id = i;
+			}
+		}
+
+				//update windows
+		for (EWindow* w : EWindow::window_list)
+		if (w->is_active)
+		{
+			w->default_update(delta_time);
+			w->update(delta_time);
+
+			for (EButton* b : w->button_list)
+			if (b->is_active)
+			{
+				b->update(delta_time);
+				b->update_additional(delta_time);
 			}
 		}
 
@@ -354,7 +374,7 @@ void recalculate_correction()
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
-
+	EWindow::scroll = yoffset;
 }
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)

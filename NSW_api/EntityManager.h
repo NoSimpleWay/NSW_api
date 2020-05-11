@@ -1,13 +1,35 @@
 #pragma once
+
 #include <vector>
 #include "NSW_api/EGabarite.h"
 #include "NSW_api/Batcher.h"
+
+
 class ECluster;
 class ESprite;
+
 
 class Entity
 {
 public:
+
+	/////////////////////////////////////////////////////////
+	typedef void (*HIT_ACTION)(Entity* _a, Entity* _b, int _side);
+	enum Side { HIT_SIDE_NONE, HIT_SIDE_UP, HIT_SIDE_RIGHT, HIT_SIDE_DOWN, HIT_SIDE_LEFT };
+
+	
+
+	static std::vector<HIT_ACTION> HIT_ACTIONS_LIST;
+	static std::vector < std::string> HIT_ACTION_NAME_LIST;
+	static int search_hit_action(std::string _text);
+
+
+	HIT_ACTION action_on_hit;
+	HIT_ACTION action_on_hited;
+	
+	static void action_hit(Entity* _a, Entity* _b, int _side);
+	/////////////////////////////////////////////////////////
+
 	float* position_x = new float();
 	float* position_y = new float();
 
@@ -34,11 +56,14 @@ public:
 	bool* already_moved_y = new bool(false);
 
 	bool* need_change_cluster = new bool(false);
+	bool* need_remove = new bool(false);
 
 	bool* is_left_side_collided = new bool(false);
 	bool* is_right_side_collided = new bool(false);
 	bool* is_up_side_collided = new bool(false);
 	bool* is_down_side_collided = new bool(false);
+
+	
 
 	Entity();
 	~Entity();
@@ -76,6 +101,7 @@ public:
 	static const int CLUSTER_DIM = 300;
 
 	static void put_entity(Entity* _e, float _x, float _y);
+	static void put_entity(Entity* _e);
 
 	static ECluster* clusters[CLUSTER_DIM][CLUSTER_DIM];
 
@@ -83,6 +109,11 @@ public:
 	bool static collision_right(Entity* _a, Entity* _b);
 	bool static collision_down(Entity* _a, Entity* _b);
 	bool static collision_up(Entity* _a, Entity* _b);
+
+	int static cluster_on_mouse_x;
+	int static cluster_on_mouse_y;
+
+	void static get_cluster_on_mouse_coords();
 };
 
 class ESprite

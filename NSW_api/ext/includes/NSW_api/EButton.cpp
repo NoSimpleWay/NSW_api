@@ -531,25 +531,32 @@ void EButton::default_draw(Batcher* _batch, float _d)
 	{
 		if (icon_adaptation)
 		{
-			float mul_x = 1;
-			float mul_y = 1;
+			//float mul_x = 1;
+			//float mul_y = 1;
+			float mul = 1;
+
+			float mul_method_vertical = 0.0f;
+			float mul_method_horizontal = 0.0f;
 
 			if ((gabarite->size_x > button_size_x) || (gabarite->size_y > button_size_y))
 			{
-				if (gabarite->size_x > gabarite->size_y)
+				mul_method_vertical = button_size_x / gabarite->size_x;
+				mul_method_horizontal = button_size_y / gabarite->size_y;
+
+				if (mul_method_vertical < mul_method_horizontal)
 				{
-					mul_x = button_size_x / gabarite->size_x;
-					mul_y = button_size_x / gabarite->size_x;
+					mul = mul_method_vertical;
+					mul = mul_method_vertical;
 				}
 				else
 				{
-					mul_x = button_size_y / gabarite->size_y;
-					mul_y = button_size_y / gabarite->size_y;
+					mul = mul_method_horizontal;
+					mul = mul_method_horizontal;
 				}
 			}
 
 			_batch->setcolor(icon_color);
-			_batch->draw_gabarite(master_position_x + (button_size_x - gabarite->size_x * mul_x) / 2.0f, master_position_y, gabarite->size_x * mul_x, gabarite->size_y * mul_x, gabarite);
+			_batch->draw_gabarite(master_position_x + (button_size_x - gabarite->size_x * mul) / 2.0f, master_position_y, gabarite->size_x * mul, gabarite->size_y * mul, gabarite);
 		}
 		else
 		{

@@ -1,12 +1,12 @@
 #pragma once
 #include "NSW_api/EButton.h"
+#include "EntityManager.h"
 
 class EBA
 {
 public:
 	EBA();
 	~EBA();
-
 
 
 	static void set_method(void (*function)());
@@ -24,9 +24,12 @@ public:
 	static void action_save_map(EButton* _b, float _d);
 	static void action_load_map(EButton* _b, float _d);
 	static void action_add_new_entity(EButton* _b, float _d);
+	static void action_select_frame(EButton* _b, float _d);
 
 	static void action_move_sprite_up(EButton* _b, float _d);
 	static void action_move_sprite_down(EButton* _b, float _d);
+
+	static void action_set_sprite_mode_4(EButton* _b, float _d);
 
 
 
@@ -34,6 +37,10 @@ public:
 
 	//actions_for_input
 	static void action_input_search_brick(EButton* _b, float _d);
+
+
+	//hit action
+
 
 	
 };

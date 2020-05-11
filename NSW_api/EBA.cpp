@@ -21,9 +21,6 @@ EBA::~EBA()
 
 
 
-
-
-
 void EBA::set_method(void(*function)())
 {
 	foo = function;
@@ -47,9 +44,11 @@ void EBA::action_add_new_sprite(EButton* _b, float _d)
 
 	EWindow::window_editor->selected_entity->sprite_list.insert
 	(
-		EWindow::window_editor->selected_entity->sprite_list.begin() + EWindow::window_editor->selected_sprite_id,
+		EWindow::window_editor->selected_entity->sprite_list.begin() + EWindow::window_editor->selected_sprite_id + 1,
 		spr
 	);
+
+	EWindow::window_editor->selected_sprite_id++;
 
 	EWindow::window_editor->update_sprite_buttons();
 }
@@ -87,9 +86,11 @@ void EBA::action_select_sprite(EButton* _b, float _d)
 
 void EBA::action_set_sprite_texture(EButton* _b, float _d)
 {
-	EWindow::window_editor->selected_entity->sprite_list.at(EWindow::window_editor->selected_sprite_id)->gabarite.at(0) = _b->gabarite;
+	EWindow::window_editor->selected_entity->sprite_list.at(EWindow::window_editor->selected_sprite_id)->gabarite.at(EWindow::window_editor->selected_frame_id) = _b->gabarite;
 
 	EWindow::window_editor->update_sprite_buttons();
+
+	EWindow::window_search_brick->is_active = false;
 }
 
 void EBA::action_open_select_texture_window(EButton* _b, float _d)
@@ -139,15 +140,15 @@ void EBA::action_save_map(EButton* _b, float _d)
 			w_string += "\t";
 			w_string += std::to_string(*e->position_y);
 
-			w_string += "\r\n";
+			w_string += "\n";
 
 			for (ESprite* spr : e->sprite_list)
 			{
-				w_string += "ADD_NEW_SPRITE\r\n";
+				w_string += "ADD_NEW_SPRITE\n";
 
-				if (spr->rotate_by_move)
+				if (*spr->rotate_by_move)
 				{
-					w_string += "*rotate_by_move\r\n";
+					w_string += "*rotate_by_move\n";
 				}
 
 				order = 0;
@@ -155,15 +156,15 @@ void EBA::action_save_map(EButton* _b, float _d)
 				{
 					w_string += "add_new_texture\t";
 					w_string += g->name;
-					w_string += "\r\n";
+					w_string += "\n";
 
 					w_string += "texture_offset_x\t";
 					w_string += std::to_string(spr->offset_x.at(order));
-					w_string += "\r\n";
+					w_string += "\n";
 
 					w_string += "texture_offset_y\t";
 					w_string += std::to_string(spr->offset_y.at(order));
-					w_string += "\r\n";
+					w_string += "\n";
 
 					order++;
 				}
@@ -171,13 +172,35 @@ void EBA::action_save_map(EButton* _b, float _d)
 
 			if (e->controlled_by_player)
 			{
-				w_string += "*entity_controlled_by_player\r\n";
+				w_string += "*entity_controlled_by_player\n";
 			}
 			
 			if (e->controlled_by_ai)
 			{
-				w_string += "*entity_controlled_by_ai\r\n";
+				w_string += "*entity_controlled_by_ai\n";
 			}
+
+			w_string += "mass\t";
+			w_string += std::to_string(*e->mass);
+			w_string += "\n";
+
+			w_string += "collision_up\t";
+			w_string += std::to_string(*e->collision_up);
+			w_string += "\n";
+
+			w_string += "collision_down\t";
+			w_string += std::to_string(*e->collision_down);
+			w_string += "\n";
+
+			w_string += "collision_right\t";
+			w_string += std::to_string(*e->collision_right);
+			w_string += "\n";
+
+			w_string += "collision_left\t";
+			w_string += std::to_string(*e->collision_left);
+			w_string += "\n";
+
+			w_string += "=====================================\n\n";
 		}
 
 	writer << w_string;
@@ -197,6 +220,12 @@ void EBA::action_load_map(EButton* _b, float _d)
 
 	std::string line;
 	//cout << "open: " << _path << endl;
+
+	for (int i = 0; i < ECluster::CLUSTER_DIM; i++)
+	for (int j = 0; j < ECluster::CLUSTER_DIM; j++)
+	{
+		ECluster::clusters[j][i]->entity_list.clear();
+	}
 
 	while (getline(myfile, line))
 	{
@@ -256,6 +285,18 @@ void EBA::action_load_map(EButton* _b, float _d)
 				*just_created_sprite->rotate_by_move = true;
 			}
 
+			if (EFile::data_array[i] == "mass")
+			{
+				i++; *just_created_entity->mass = std::stof(EFile::data_array[i]);
+
+				std::cout << "mass is:" << std::to_string(*just_created_entity->mass) << std::endl;
+			}
+
+			if (EFile::data_array[i] == "collision_down"){i++; *just_created_entity->collision_down = std::stof(EFile::data_array[i]);}
+			if (EFile::data_array[i] == "collision_left"){i++; *just_created_entity->collision_left = std::stof(EFile::data_array[i]);}
+			if (EFile::data_array[i] == "collision_right"){i++; *just_created_entity->collision_right = std::stof(EFile::data_array[i]);}
+			if (EFile::data_array[i] == "collision_up"){i++; *just_created_entity->collision_up = std::stof(EFile::data_array[i]);}
+
 
 		}
 	}
@@ -269,9 +310,23 @@ void EBA::action_load_map(EButton* _b, float _d)
 void EBA::action_add_new_entity(EButton* _b, float _d)
 {
 	Entity* en = new Entity();
+	ESprite* spr = new ESprite();
+
+	spr->gabarite.push_back(EGraphicCore::gabarite_white_pixel);
+
+	spr->offset_x.push_back(0.0f);
+	spr->offset_y.push_back(0.0f);
+
+	en->sprite_list.push_back(spr);
 
 
 	ECluster::put_entity(en, EWindow::window_test->game_camera->position_x, EWindow::window_test->game_camera->position_y);
+}
+
+void EBA::action_select_frame(EButton* _b, float _d)
+{
+	EWindow::window_editor->selected_frame_id = _b->data_id;
+	EWindow::window_editor->update_sprite_buttons();
 }
 
 void EBA::action_move_sprite_up(EButton* _b, float _d)
@@ -315,12 +370,51 @@ void EBA::action_move_sprite_down(EButton* _b, float _d)
 	EWindow::window_editor->update_sprite_buttons();
 }
 
+void EBA::action_set_sprite_mode_4(EButton* _b, float _d)
+{
+	EWindowEditor* we = EWindow::window_editor;
 
+	*we->selected_entity->sprite_list.at(we->selected_sprite_id)->rotate_by_move = true;
+
+	for (int i = we->selected_entity->sprite_list.at(we->selected_sprite_id)->gabarite.size(); i < 4; i++)
+	{
+		EGabarite* g = EGraphicCore::gabarite_white_pixel;
+
+		we->selected_entity->sprite_list.at(we->selected_sprite_id)->offset_x.push_back(0);
+		we->selected_entity->sprite_list.at(we->selected_sprite_id)->offset_y.push_back(0);
+
+		we->selected_entity->sprite_list.at(we->selected_sprite_id)->gabarite.push_back(g);
+	}
+
+	we->update_sprite_buttons();
+}
+
+
+
+/*
+int EBA::search_hit_action(std::string _text)
+{
+	for (int i = 0; i < HIT_ACTION_NAME_LIST.size(); i++)
+	{
+		if (HIT_ACTION_NAME_LIST.at(i) == _text)
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+*/
 
 void EBA::action_input_search_brick(EButton* _b, float _d)
 {
 	EWindow::window_search_brick->update_search(_b);
 }
+
+
+/*
+void EBA::action_hit(Entity* _a, Entity* _b)
+{
+}*/
 
 /*
 void EBA::action_add_new_sprite()

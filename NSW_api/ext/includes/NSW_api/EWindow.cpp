@@ -35,8 +35,12 @@ bool EWindow::LMB = false;
 bool EWindow::RMB = false;
 
 bool EWindow::button_pressed = false;
+bool EWindow::button_main_group_pressed = false;
+
 bool EWindow::button_right_pressed = false;
 bool EWindow::button_backspace_released = true;
+
+
 //bool EWindow::is_active = true;
 
 float EWindow::delete_button_hold_time = 0.0f;
@@ -47,6 +51,8 @@ std::vector <float> EWindow::time_process_value;
 std::vector <std::string> EWindow::time_process_name;
 
 bool EWindow::system_button_release = true;
+double EWindow::scroll = 0;
+
 
 std::chrono::time_point<std::chrono::high_resolution_clock> EWindow::start, EWindow::stop;
 

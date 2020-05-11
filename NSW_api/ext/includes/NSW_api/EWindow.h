@@ -77,6 +77,8 @@ public:
 
 	static bool system_button_release;
 
+	static double scroll;
+
 	//static std::pair<float, std::string> time_process;
 
 	static std::vector<float> time_process_value;
@@ -100,6 +102,9 @@ public:
 	static ETextureAtlas* default_texture_atlas;
 
 	static bool button_pressed;
+
+	static bool button_main_group_pressed;
+
 	static bool button_right_pressed;
 	static bool button_backspace_released;
 	bool is_active = true;

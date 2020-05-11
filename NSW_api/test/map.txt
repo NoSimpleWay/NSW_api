@@ -1,11 +1,63 @@
-ADD_NEW_ENTITY	3625.948975	3575.296875
+ADD_NEW_ENTITY	3626.000000	3627.000000
 ADD_NEW_SPRITE
-add_new_texture	data/textures/sphere.png
-texture_offset_x	-21.800003
-texture_offset_y	-3.200016
-ADD_NEW_ENTITY	3417.319824	3692.305908
+add_new_texture	data/textures/wall_arc.png
+texture_offset_x	-19.000000
+texture_offset_y	-17.000000
+mass	10.000000
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+=====================================
+
+ADD_NEW_ENTITY	3653.000000	3715.000000
 ADD_NEW_SPRITE
-add_new_texture	data/textures/block.png
-texture_offset_x	-25.000000
-texture_offset_y	0.000000
+add_new_texture	data/textures/wall_beton.png
+texture_offset_x	-28.000000
+texture_offset_y	-12.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall_beton.png
+texture_offset_x	-127.000000
+texture_offset_y	-12.000000
+mass	10000.000000
+collision_up	1.000000
+collision_down	11.000000
+collision_right	74.000000
+collision_left	127.000000
+=====================================
+
+ADD_NEW_ENTITY	3540.000000	3627.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall_arc.png
+texture_offset_x	-20.000000
+texture_offset_y	-18.000000
+mass	10.000000
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+=====================================
+
+ADD_NEW_ENTITY	3759.208740	3640.637207
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-27.000000
+texture_offset_y	-12.000000
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-17.599998
+texture_offset_y	-11.099993
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-27.000000
+texture_offset_y	-13.000000
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.499990
+texture_offset_y	-13.300004
 *entity_controlled_by_player
+mass	10.000000
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+=====================================
+

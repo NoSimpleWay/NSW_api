@@ -18,6 +18,18 @@ public:
 
 	virtual void draw_interface(float _d);
 
+		int draw_border_left;
+		int draw_border_right;
+
+		int draw_border_down;
+		int draw_border_up;
+
+		int left_path_draw;
+		int right_path_draw;
+
+		int down_path_draw;
+		int up_path_draw;
+
 	Entity* link_to_player;
 
 	ECamera* game_camera = new ECamera();

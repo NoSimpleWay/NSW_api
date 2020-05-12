@@ -23,7 +23,10 @@ public:
 
 	static void action_save_map(EButton* _b, float _d);
 	static void action_load_map(EButton* _b, float _d);
+
 	static void action_add_new_entity(EButton* _b, float _d);
+	static void action_open_select_entity_collection_window(EButton* _b, float _d);
+
 	static void action_select_frame(EButton* _b, float _d);
 
 	static void action_move_sprite_up(EButton* _b, float _d);

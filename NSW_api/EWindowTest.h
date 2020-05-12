@@ -30,8 +30,13 @@ public:
 		int down_path_draw;
 		int up_path_draw;
 
+		float free_camera_x;
+		float free_camera_y;
+
 	Entity* link_to_player;
 
 	ECamera* game_camera = new ECamera();
+
+	std::vector<Entity*> new_added_entity_list;
 
 };

@@ -156,7 +156,7 @@ EWindowEditor::EWindowEditor()
 	but->text = "add new entity";
 	but->position_mode_x = Enums::PositionMode::LEFT;
 	but->position_mode_y = Enums::PositionMode::UP;
-	but->action_on_left_click = &EBA::action_add_new_entity;
+	but->action_on_left_click = &EBA::action_open_select_entity_collection_window;
 
 
 	for (int i = 0; i < 8; i++)
@@ -222,6 +222,70 @@ void EWindowEditor::update(float _d)
 		}
 	}
 
+	if (glfwGetKey(EWindow::main_window, GLFW_KEY_DOWN) == GLFW_PRESS)
+	{
+		float min_y = 999999.0f;
+
+		for (Entity* e : selected_entity_list)
+		{
+			if (*e->position_y < min_y) { min_y = *e->position_y; }
+		}
+
+		for (Entity* e : selected_entity_list)
+		{
+			*e->position_y = min_y;
+		}
+	}
+
+	if (glfwGetKey(EWindow::main_window, GLFW_KEY_SPACE) == GLFW_PRESS)
+	{
+		if (!rama_start_selection)
+		{
+			rama_start_selection = true;
+
+			rama_selector_start_x = ECamera::get_world_position_x(EWindow::window_test->game_camera);
+			rama_selector_start_y = ECamera::get_world_position_y(EWindow::window_test->game_camera);
+		}
+		else
+		{
+			rama_selector_end_x = ECamera::get_world_position_x(EWindow::window_test->game_camera);
+			rama_selector_end_y = ECamera::get_world_position_y(EWindow::window_test->game_camera);
+		}
+
+		selected_entity = NULL;
+		selected_entity_list.clear();
+
+		for (int j = 0; j < ECluster::CLUSTER_DIM; j++)
+		for (int i = 0; i < ECluster::CLUSTER_DIM; i++)
+		for (Entity* e : ECluster::clusters[j][i]->entity_list)
+		{
+			if
+			(
+				(*e->position_x >= rama_selector_start_x - *e->collision_left)
+				&
+				(*e->position_x <= rama_selector_end_x + *e->collision_right)
+				&
+				(*e->position_y >= rama_selector_start_y - *e->collision_up)
+				&
+				(*e->position_y <= rama_selector_end_y + *e->collision_down)
+			)
+			{
+				selected_entity_list.push_back(e);
+			}
+		}
+
+
+	}
+	else
+	{
+		if (rama_start_selection)
+		{
+			rama_start_selection = false;
+
+
+		}
+	}
+
 	if (glfwGetKey(EWindow::main_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 	{
 		editor_mode = EditMode::SelectEntities;
@@ -248,48 +312,8 @@ void EWindowEditor::update(float _d)
 	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_V) == GLFW_PRESS) & (!EWindow::button_main_group_pressed) & (selected_entity != NULL))
 	{
 		EWindow::button_main_group_pressed = true;
-		Entity* clone = new Entity();
-		*clone->position_x = *selected_entity->position_x;
-		*clone->position_y = *selected_entity->position_y;
-
-		*clone->mass = *selected_entity->mass;
-
-		*clone->collision_down = *selected_entity->collision_down;
-		*clone->collision_left = *selected_entity->collision_left;
-		*clone->collision_right = *selected_entity->collision_right;
-		*clone->collision_up = *selected_entity->collision_up;
-
-		clone->controlled_by_ai = selected_entity->controlled_by_ai;
-		clone->controlled_by_player = selected_entity->controlled_by_player;
-
-
-
-		for (ESprite* spr : selected_entity->sprite_list)
-		{
-			int id = 0;
-
-			ESprite* clone_sprite = new ESprite();
-			clone->sprite_list.push_back(spr);
-
-			clone_sprite->rotate_by_move = spr->rotate_by_move;
-			clone_sprite->rotate_by_target = spr->rotate_by_target;
-
-			for (EGabarite* g : spr->gabarite)
-			{
-				clone_sprite->gabarite.push_back(g);
-				clone_sprite->offset_x.push_back(spr->offset_x.at(id));
-				clone_sprite->offset_y.push_back(spr->offset_y.at(id));
-
-				id++;
-			}
-		}
-
-		*clone->position_x = round( ECamera::get_world_position_x(EWindow::window_test->game_camera) );
-		*clone->position_y = round( ECamera::get_world_position_y(EWindow::window_test->game_camera) );
-
-		selected_entity = clone;
-
-		ECluster::put_entity(clone);
+		
+		clone_entity(selected_entity);
 
 	}
 
@@ -324,6 +348,8 @@ void EWindowEditor::update(float _d)
 
 	if ((EWindow::LMB)&(EButton::top_window_id == id)&(!button_overlap)&(!EWindow::button_pressed)&(editor_mode == EditMode::SelectEntities))
 	{
+
+		selected_entity_list.clear();
 		int target_cluster_left = EMath::clamp_value_int((int)( ECamera::get_world_position_x(EWindow::window_test->game_camera)/ ECluster::CLUSTER_SIZE) - 1, 0, ECluster::CLUSTER_DIM - 1);
 		int target_cluster_right = EMath::clamp_value_int((int)(ECamera::get_world_position_x(EWindow::window_test->game_camera) / ECluster::CLUSTER_SIZE) + 1, 0, ECluster::CLUSTER_DIM - 1);
 		
@@ -562,7 +588,7 @@ void EWindowEditor::update(float _d)
 		}
 	}
 
-	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_C) == GLFW_PRESS) & (selected_entity != NULL))
+	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_C) == GLFW_PRESS))
 	{
 		if (!started_entity_move)
 		{
@@ -572,8 +598,8 @@ void EWindowEditor::update(float _d)
 
 		started_entity_move = true;
 
-		if (selected_entity != NULL)
-		{
+		
+		
 			float mul = 1.0f;
 			if
 				(
@@ -585,23 +611,50 @@ void EWindowEditor::update(float _d)
 				mul = 0.1f;
 			}
 
-			*selected_entity->position_x += EWindow::mouse_speed_x * mul;
-			*selected_entity->position_y += EWindow::mouse_speed_y * mul;
+			if (selected_entity != NULL)
+			{
+				*selected_entity->position_x += EWindow::mouse_speed_x * mul;
+				*selected_entity->position_y += EWindow::mouse_speed_y * mul;
 
-			*selected_entity->need_change_cluster = true;
+				*selected_entity->need_change_cluster = true;
+			}
+
+			if (!selected_entity_list.empty())
+			{
+				for (Entity* e : selected_entity_list)
+				{
+					*e->position_x += EWindow::mouse_speed_x * mul;
+					*e->position_y += EWindow::mouse_speed_y * mul;
+
+					*e->need_change_cluster = true;
+				}
+			}
 
 			SetCursorPos(saved_pos_x, saved_pos_y);
 			prev_mouse_x = saved_pos_x;
 			prev_mouse_y = saved_pos_y;
 			//EWindow::push_cursor(EWindow::mouse_speed_x, EWindow::mouse_speed_y);
-		}
+		
 	}
 	else
 	{
 		if (started_entity_move)
 		{
-			*selected_entity->position_x = round(*selected_entity->position_x);
-			*selected_entity->position_y = round(*selected_entity->position_y);
+			if (selected_entity != NULL)
+			{
+				*selected_entity->position_x = round(*selected_entity->position_x);
+				*selected_entity->position_y = round(*selected_entity->position_y);
+			}
+
+			if (!selected_entity_list.empty())
+			{
+				for (Entity* e : selected_entity_list)
+				{
+					*e->position_x = round(*e->position_x);
+					*e->position_y = round(*e->position_y);
+				}
+			}
+
 		}
 		started_entity_move = false;
 
@@ -609,6 +662,52 @@ void EWindowEditor::update(float _d)
 		
 	}
 
+}
+
+void EWindowEditor::clone_entity(Entity* _e)
+{
+	Entity* clone = new Entity();
+	*clone->position_x = *_e->position_x;
+	*clone->position_y = *_e->position_y;
+
+	*clone->mass = *_e->mass;
+
+	*clone->collision_down = *_e->collision_down;
+	*clone->collision_left = *_e->collision_left;
+	*clone->collision_right = *_e->collision_right;
+	*clone->collision_up = *_e->collision_up;
+
+	clone->controlled_by_ai = _e->controlled_by_ai;
+	clone->controlled_by_player = _e->controlled_by_player;
+
+
+
+	for (ESprite* spr : _e->sprite_list)
+	{
+		int id = 0;
+
+		ESprite* clone_sprite = new ESprite();
+		clone->sprite_list.push_back(spr);
+
+		clone_sprite->rotate_by_move = spr->rotate_by_move;
+		clone_sprite->rotate_by_target = spr->rotate_by_target;
+
+		for (EGabarite* g : spr->gabarite)
+		{
+			clone_sprite->gabarite.push_back(g);
+			clone_sprite->offset_x.push_back(spr->offset_x.at(id));
+			clone_sprite->offset_y.push_back(spr->offset_y.at(id));
+
+			id++;
+		}
+	}
+
+	*clone->position_x = round(EWindow::window_test->game_camera->position_x);
+	*clone->position_y = round(EWindow::window_test->game_camera->position_y);
+
+	selected_entity = clone;
+
+	ECluster::put_entity(clone);
 }
 
 void EWindowEditor::draw(float _d)
@@ -627,7 +726,7 @@ void EWindowEditor::draw(float _d)
 
 
 	
-
+	//indicate selected collision gabarites
 	if ((editor_mode == EditMode::SelectEntities) & (selected_entity != NULL))
 	{
 		EGraphicCore::batch->setcolor(EColor::COLOR_BLUE);
@@ -684,6 +783,13 @@ void EWindowEditor::draw(float _d)
 			);
 		}
 		
+	}
+
+	//rama selector
+	if (rama_start_selection)
+	{
+		EGraphicCore::batch->setcolor(EColor::COLOR_RED);
+		EGraphicCore::batch->draw_rama(rama_selector_start_x, rama_selector_start_y, rama_selector_end_x - rama_selector_start_x, rama_selector_end_y - rama_selector_start_y, 2.0f / EWindow::window_test->game_camera->zoom, EGraphicCore::gabarite_white_pixel);
 	}
 }
 

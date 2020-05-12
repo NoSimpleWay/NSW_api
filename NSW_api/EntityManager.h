@@ -21,13 +21,17 @@ public:
 
 	static std::vector<HIT_ACTION> HIT_ACTIONS_LIST;
 	static std::vector < std::string> HIT_ACTION_NAME_LIST;
+
 	static int search_hit_action(std::string _text);
+	static std::string get_hit_action_name(HIT_ACTION _action);
+
 
 
 	HIT_ACTION action_on_hit;
 	HIT_ACTION action_on_hited;
 	
-	static void action_hit(Entity* _a, Entity* _b, int _side);
+	static void test_hit_action_destroy_touch(Entity* _a, Entity* _b, int _side);
+	static void test_hit_action_self_destroy_on_hit(Entity* _a, Entity* _b, int _side);
 	/////////////////////////////////////////////////////////
 
 	float* position_x = new float();
@@ -45,6 +49,8 @@ public:
 	float* collision_down = new float(20.0f);
 	float* collision_left = new float(20.0f);
 	float* collision_right = new float(20.0f);
+
+	float* shoot_cooldown = new float(0.0f);
 
 	bool* already_updated = new bool(false);
 	int* updates_count = new int(0);
@@ -84,6 +90,10 @@ public:
 
 	void draw_sprite(Batcher* _b, float _d);
 
+	bool* is_bullet = new bool(false);
+
+
+	static std::vector <Entity*> entity_collection_list;
 };
 
 
@@ -97,7 +107,7 @@ public:
 	
 
 	//----------STATIC----------------------------
-	static const int CLUSTER_SIZE = 500;
+	static const int CLUSTER_SIZE = 400;
 	static const int CLUSTER_DIM = 300;
 
 	static void put_entity(Entity* _e, float _x, float _y);

@@ -7,20 +7,54 @@
 #include "EWindowEditor.h"
 
 std::vector <Entity*> Entity::entity_list;
+std::vector <Entity*> Entity::entity_collection_list;
+
 ECluster* ECluster::clusters[CLUSTER_DIM][CLUSTER_DIM];
 
 std::vector<Entity::HIT_ACTION> Entity::HIT_ACTIONS_LIST;
 std::vector<std::string> Entity::HIT_ACTION_NAME_LIST;
 
 
-void Entity::action_hit(Entity* _a, Entity* _b, int _side)
+void Entity::test_hit_action_destroy_touch(Entity* _a, Entity* _b, int _side)
 {
+	*_b->need_remove = true;
+}
+
+void Entity::test_hit_action_self_destroy_on_hit(Entity* _a, Entity* _b, int _side)
+{
+	*_a->need_remove = true;
 }
 
 int Entity::search_hit_action(std::string _text)
 {
-	return 0;
+	for (int i = 0; i < HIT_ACTION_NAME_LIST.size(); i++)
+	{
+		if (HIT_ACTION_NAME_LIST.at(i) == _text)
+		{
+			return i;
+		}
+	}
+	return -1;
 }
+
+std::string Entity::get_hit_action_name(HIT_ACTION _action)
+{
+	for (int i = 0; i < HIT_ACTIONS_LIST.size(); i++)
+	{
+		if (HIT_ACTIONS_LIST.at(i) == _action)
+		{
+			return HIT_ACTION_NAME_LIST.at(i);
+		}
+	}
+
+	return "";
+}
+
+/*int Entity::get_hit_action_name(HIT_ACTION* _action)
+{
+
+	return 0;
+}*/
 
 Entity::Entity()
 {
@@ -71,10 +105,14 @@ void Entity::draw_sprite(Batcher* _b, float _d)
 		if (spr->gabarite.at(frame_id) != NULL)
 		{
 			if
-			(
-				(EWindow::window_editor->sprite_flash_cooldown < 0.5f)
-				&
-				(EWindow::window_editor->selected_entity == this)
+				(
+					(EWindow::window_editor->sprite_flash_cooldown < 0.5f)
+					&
+					(
+					(EWindow::window_editor->selected_entity == this)
+					||
+					(find(EWindow::window_editor->selected_entity_list.begin(), EWindow::window_editor->selected_entity_list.end(), this) != EWindow::window_editor->selected_entity_list.end())
+				)
 				&
 				(
 					(

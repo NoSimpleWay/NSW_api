@@ -305,6 +305,11 @@ void EButton::update(float _d)
 		//(*action_on_left_click)();
 		//if (master_block != NULL) { StaticData::window_filter_block->unsave_change = true; }
 
+		if (simple_action_open_window != NULL)
+		{
+			simple_action_open_window->is_active = true;
+		}
+
 		if (!is_holdable) { EWindow::button_pressed = true; }
 		std::cout << "Button pressed" << std::endl;
 
@@ -736,7 +741,7 @@ void EButton::text_pass(Batcher* _batch)
 		_batch->draw_gabarite(x_description, EWindow::mouse_y - 20.0f - th, EFont::get_width(target_font, description_text) + 8, th, EGraphicCore::gabarite_white_pixel);
 
 		_batch->setcolor(EColor::COLOR_BLACK);
-		target_font->draw(_batch, description_text + "[data_id:" + std::to_string(data_id) + "]", x_description + 5.0f, EWindow::mouse_y - 34.0f);
+		target_font->draw(_batch, description_text, x_description + 5.0f, EWindow::mouse_y - 34.0f);
 
 		_batch->draw_rama(x_description, EWindow::mouse_y - 20.0f - th, EFont::get_width(target_font, description_text) + 8, th, 2, EGraphicCore::gabarite_white_pixel);
 	}

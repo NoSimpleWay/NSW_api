@@ -182,6 +182,8 @@ public:
 
 	bool can_receive_paste = false;
 
+	EWindow* simple_action_open_window;
+
 	/*
 	EButtonAction* button_action_press;
 	EButtonAction* button_action_right_press;

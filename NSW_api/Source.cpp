@@ -286,6 +286,8 @@ int main()
 			(glfwGetKey(EWindow::main_window, GLFW_KEY_V) == GLFW_RELEASE)
 			&&
 			(glfwGetKey(EWindow::main_window, GLFW_KEY_DELETE) == GLFW_RELEASE)
+			&&
+			(glfwGetKey(EWindow::main_window, GLFW_KEY_Z) == GLFW_RELEASE)
 		)
 		{
 			EWindow::button_main_group_pressed = false;
@@ -338,6 +340,8 @@ int main()
 
 
 		processInput(EWindow::main_window);
+
+		EWindow::last_inputed_char = NULL;
 
 
 	}

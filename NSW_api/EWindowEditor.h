@@ -18,6 +18,8 @@ public:
 	int selected_frame_id;
 	EButton* selected_sprite_button;
 
+	std::vector <Entity*> selected_entity_list;
+
 	bool started_sprite_move;
 	bool started_entity_move;
 	bool started_collision_move;
@@ -30,6 +32,7 @@ public:
 	std::vector<EButton*> link_to_sprite_editor_group;
 
 	virtual void update(float _d);
+	void clone_entity(Entity* _e);
 	virtual void draw(float _d);
 	virtual void draw_interface(float _d);
 
@@ -42,6 +45,14 @@ public:
 	void update_sprite_buttons();
 
 	float sprite_flash_cooldown = 0.5;
+
+	bool rama_start_selection = false;
+	float rama_selector_start_x;
+	float rama_selector_start_y;
+	float rama_selector_end_x;
+	float rama_selector_end_y;
+
+	
 
 
 };

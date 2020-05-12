@@ -96,6 +96,10 @@ void EBA::action_set_sprite_texture(EButton* _b, float _d)
 void EBA::action_open_select_texture_window(EButton* _b, float _d)
 {
 	EWindow::window_search_brick->is_active = true;
+	EWindow::window_search_brick->search_mode = EWindowSearchBrick::SearchMode::SEARCH_TEXTURE;
+
+	EWindow::window_search_brick->update_search(EWindow::window_search_brick->link_to_input);
+
 
 	EWindow::window_editor->update_sprite_buttons();
 }
@@ -200,6 +204,18 @@ void EBA::action_save_map(EButton* _b, float _d)
 			w_string += std::to_string(*e->collision_left);
 			w_string += "\n";
 
+			if (e->action_on_hit != NULL)
+			{
+				w_string += "hit_action\t";
+
+				std::string name_of_action = Entity::get_hit_action_name(e->action_on_hit);
+
+				if (name_of_action != "")
+				{w_string += name_of_action;}
+
+				w_string += "\n";
+			}
+			w_string += "- PUT TO MAP -\n\n";
 			w_string += "=====================================\n\n";
 		}
 
@@ -248,7 +264,7 @@ void EBA::action_load_map(EButton* _b, float _d)
 				i++; *just_created_entity->position_x = std::stof(EFile::data_array[i]);
 				i++; *just_created_entity->position_y = std::stof(EFile::data_array[i]);
 
-				ECluster::put_entity(just_created_entity, *just_created_entity->position_x, *just_created_entity->position_y);
+				
 			}
 			
 			if ((EFile::data_array[i] == "*entity_controlled_by_player") && (just_created_entity != NULL))
@@ -292,12 +308,34 @@ void EBA::action_load_map(EButton* _b, float _d)
 				std::cout << "mass is:" << std::to_string(*just_created_entity->mass) << std::endl;
 			}
 
+
 			if (EFile::data_array[i] == "collision_down"){i++; *just_created_entity->collision_down = std::stof(EFile::data_array[i]);}
 			if (EFile::data_array[i] == "collision_left"){i++; *just_created_entity->collision_left = std::stof(EFile::data_array[i]);}
 			if (EFile::data_array[i] == "collision_right"){i++; *just_created_entity->collision_right = std::stof(EFile::data_array[i]);}
 			if (EFile::data_array[i] == "collision_up"){i++; *just_created_entity->collision_up = std::stof(EFile::data_array[i]);}
 
+			if (EFile::data_array[i] == "hit_action")
+			{
+				i++;
+				int hit_action_id = Entity::search_hit_action(EFile::data_array[i]);
 
+				std::cout << "hit action is:" << hit_action_id << std::endl;
+
+				if (hit_action_id != -1)
+				{
+					just_created_entity->action_on_hit = Entity::HIT_ACTIONS_LIST.at(hit_action_id);
+				}
+			}
+
+			if (EFile::data_array[i] == "- PUT TO MAP -")
+			{
+				ECluster::put_entity(just_created_entity, *just_created_entity->position_x, *just_created_entity->position_y);
+			}
+
+			if (EFile::data_array[i] == "- PUT TO COLLECTION -")
+			{
+				Entity::entity_collection_list.push_back(just_created_entity);
+			}
 		}
 	}
 
@@ -309,7 +347,7 @@ void EBA::action_load_map(EButton* _b, float _d)
 
 void EBA::action_add_new_entity(EButton* _b, float _d)
 {
-	Entity* en = new Entity();
+	/*Entity* en = new Entity();
 	ESprite* spr = new ESprite();
 
 	spr->gabarite.push_back(EGraphicCore::gabarite_white_pixel);
@@ -320,7 +358,17 @@ void EBA::action_add_new_entity(EButton* _b, float _d)
 	en->sprite_list.push_back(spr);
 
 
-	ECluster::put_entity(en, EWindow::window_test->game_camera->position_x, EWindow::window_test->game_camera->position_y);
+	ECluster::put_entity(en, EWindow::window_test->game_camera->position_x, EWindow::window_test->game_camera->position_y);*/
+
+	EWindow::window_editor->clone_entity(Entity::entity_collection_list.at(_b->data_id));
+	EWindow::window_search_brick->is_active = false;
+}
+
+void EBA::action_open_select_entity_collection_window(EButton* _b, float _d)
+{
+	EWindow::window_search_brick->search_mode = EWindowSearchBrick::SearchMode::SEARCH_ENTITY;
+	EWindow::window_search_brick->is_active = true;
+	EWindow::window_search_brick->update_search(EWindow::window_search_brick->link_to_input);
 }
 
 void EBA::action_select_frame(EButton* _b, float _d)

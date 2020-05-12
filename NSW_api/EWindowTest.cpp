@@ -11,7 +11,7 @@ int maximum_alloy = 0;
 
 EWindowTest::EWindowTest():EWindow()
 {
-	Entity::HIT_ACTIONS_LIST.push_back(Entity::action_hit);
+	Entity::HIT_ACTIONS_LIST.push_back(Entity::test_hit_action_destroy_touch);
 	Entity::HIT_ACTION_NAME_LIST.push_back("test_hit");
 
 	for (int i=0; i<ECluster::CLUSTER_DIM; i++)
@@ -113,6 +113,21 @@ void EWindowTest::default_update(float _d)
 void EWindowTest::update(float _d)
 {
 	
+	if (EWindow::window_editor->is_active)
+	{
+		if (glfwGetKey(EWindow::main_window, GLFW_KEY_W) == GLFW_PRESS) { free_camera_y += 512.0f * _d; }
+		if (glfwGetKey(EWindow::main_window, GLFW_KEY_S) == GLFW_PRESS) { free_camera_y -= 512.0f * _d; }
+
+		if (glfwGetKey(EWindow::main_window, GLFW_KEY_A) == GLFW_PRESS) { free_camera_x -= 512.0f * _d; }
+		if (glfwGetKey(EWindow::main_window, GLFW_KEY_D) == GLFW_PRESS) { free_camera_x += 512.0f * _d; }
+	}
+
+	if (EWindow::window_editor->is_active)
+	{
+		_d = 0.0f;
+	}
+
+
 	//remove/destroy entities
 	for (int i = draw_border_up; i >= draw_border_down; i--)
 	for (int j = draw_border_left; j <= draw_border_right; j++)
@@ -148,6 +163,15 @@ void EWindowTest::update(float _d)
 	//{
 	//	_d *= 0.10f;
 	//}
+
+
+	
+	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_Z) == GLFW_PRESS) & (!EWindow::button_main_group_pressed))
+	{
+		EWindow::window_editor->is_active = !EWindow::window_editor->is_active;
+
+		EWindow::button_main_group_pressed = true;
+	}
 
 	if (glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS)
 	{
@@ -268,7 +292,7 @@ void EWindowTest::update(float _d)
 			for (int j = left_path_heat_draw; j <= right_path_heat_draw; j++)
 				for (int i = down_path_heat_draw; i <= up_path_heat_draw; i++)
 				{
-					EPath::path[j][i][EPath::back_buffer] += 8;
+					EPath::path[j][i][EPath::back_buffer] += 16;
 				}
 
 			int swap_buffer = EPath::back_buffer;
@@ -303,11 +327,24 @@ void EWindowTest::update(float _d)
 	int prev_cluster_x = 0;
 	int prev_cluster_y = 0;
 
+	if (!new_added_entity_list.empty())
+	{
+		for (Entity* e : new_added_entity_list)
+		{
+			ECluster::put_entity(e);
+		}
+
+		new_added_entity_list.clear();
+	}
+
 	
 	for (int i = draw_border_up; i >= draw_border_down; i--)
 	for (int j = draw_border_left; j <= draw_border_right; j++)
 	for (Entity* e : ECluster::clusters[j][i]->entity_list)
 	{
+		if (*e->shoot_cooldown > 0)
+		{*e->shoot_cooldown -= _d;}
+
 		int dir_x = 0;
 		int dir_y = 0;
 		float dir_mul = 1.0f;
@@ -336,6 +373,48 @@ void EWindowTest::update(float _d)
 			if (glfwGetKey(EWindow::main_window, GLFW_KEY_W) == GLFW_PRESS)
 			{
 				dir_y = 1;
+			}
+
+			if ((LMB) & (true) & (!EWindow::window_editor->is_active))
+			{
+				if (*e->shoot_cooldown <= 0.0f)
+				{
+					*e->shoot_cooldown += 0.333f;
+
+					Entity* bullet = new Entity();
+					*bullet->position_x = *e->position_x;
+					*bullet->position_y = *e->position_y;
+					*bullet->mass = 1.0;
+
+					*bullet->is_bullet = true;
+
+					bullet->action_on_hit = &Entity::test_hit_action_self_destroy_on_hit;
+
+					float ray_length_x = ECamera::get_world_position_x(game_camera) - *e->position_x;
+					float ray_length_y = ECamera::get_world_position_y(game_camera) - *e->position_y;
+
+					float dst = sqrt(ray_length_x * ray_length_x + ray_length_y * ray_length_y) + 1.0f;
+
+					float mul_x = ray_length_x / dst;
+					float mul_y = ray_length_y / dst;
+
+					*bullet->speed_x += _d * 100000.0f * mul_x;
+					*bullet->speed_y += _d * 100000.0f * mul_y;
+
+					*bullet->real_speed_x = *bullet->speed_x * _d;
+					*bullet->real_speed_y = *bullet->speed_y * _d;
+
+					ESprite* spr = new ESprite();
+					spr->gabarite.push_back(EGraphicCore::gabarite_white_pixel);
+					spr->offset_x.push_back(0);
+					spr->offset_y.push_back(0);
+
+					bullet->sprite_list.push_back(spr);
+
+					//ECluster::put_entity(bullet);
+
+					new_added_entity_list.push_back(bullet);
+				}
 			}
 
 			if (EPath::phase == Enums::HEATMAP_PHASE::PHASE_UP)
@@ -521,10 +600,10 @@ void EWindowTest::update(float _d)
 
 		float delta = 0;
 
-		bool any_collision = false;
+		bool need_second_move_update = false;
 
 		for (int u = 0; u < 2; u++)
-		if ((u == 0)||(any_collision))
+		if ((u == 0)||(need_second_move_update))
 		{
 			for (int i = draw_border_up; i >= draw_border_down; i--)
 			for (int j = draw_border_left; j <= draw_border_right; j++)
@@ -547,12 +626,12 @@ void EWindowTest::update(float _d)
 					for (int k = 1; k >= -1; k--)
 						for (int z = -1; z <= 1; z++)
 							for (Entity* e2 : ECluster::clusters[j + k][i + z]->entity_list)
-								if (e != e2)
+								if ((e != e2) & (! (*e->is_bullet & *e2->is_bullet)))
 								{
 									if (ECluster::collision_left(e, e2))
 									{
 										collision_left = true;
-										any_collision = true;
+										need_second_move_update = true;
 
 
 
@@ -566,15 +645,12 @@ void EWindowTest::update(float _d)
 											//*e->position_x -= 1.0f;
 										}
 
-										*e2->updates_count = *e2->updates_count + 1;
-
-										if (*e2->updates_count > 1)
-										{
-											std::cout << "-------TOO MANY UPDATES-------" << std::endl;
-										}
 
 										//std::cout << "-------BONK!-------" << std::endl;
 										*e->position_x = *e2->position_x - *e2->collision_left - *e->collision_right - 0.0f;
+
+										if (e->action_on_hit != NULL) { e->action_on_hit(e, e2, Entity::Side::HIT_SIDE_LEFT);}
+										if (e->action_on_hited != NULL) { e->action_on_hited(e2, e, Entity::Side::HIT_SIDE_LEFT); }
 									}
 
 
@@ -587,7 +663,7 @@ void EWindowTest::update(float _d)
 					for (int k = 1; k >= -1; k--)
 						for (int z = -1; z <= 1; z++)
 							for (Entity* e2 : ECluster::clusters[j + k][i + z]->entity_list)
-								if (e != e2)
+								if ((e != e2) & (!(*e->is_bullet & *e2->is_bullet)))
 								{
 									if (ECluster::collision_right(e, e2))
 									{
@@ -605,6 +681,9 @@ void EWindowTest::update(float _d)
 										}
 
 										*e->position_x = *e2->position_x + *e2->collision_right + *e->collision_left + 0.5f;
+
+										if (e->action_on_hit != NULL) { e->action_on_hit(e, e2, Entity::Side::HIT_SIDE_RIGHT); }
+										if (e->action_on_hited != NULL) { e->action_on_hited(e2, e, Entity::Side::HIT_SIDE_RIGHT); }
 									}
 								}
 				}
@@ -615,12 +694,12 @@ void EWindowTest::update(float _d)
 					for (int k = 1; k >= -1; k--)
 						for (int z = -1; z <= 1; z++)
 							for (Entity* e2 : ECluster::clusters[j + z][i + k]->entity_list)
-								if (e != e2)
+								if ((e != e2) & (!(*e->is_bullet & *e2->is_bullet)))
 								{
 									if (ECluster::collision_up(e, e2))
 									{
 										collision_up = true;
-										any_collision = true;
+										need_second_move_update = true;
 
 										if ((*e->speed_y) < (*e2->speed_y))
 										{
@@ -631,6 +710,9 @@ void EWindowTest::update(float _d)
 											*e2->speed_y = total_impulse / total_mass;
 											//*e->position_x -= 1.0f;
 										}
+
+										if (e->action_on_hit != NULL) { e->action_on_hit(e, e2, Entity::Side::HIT_SIDE_UP); }
+										if (e->action_on_hited != NULL) { e->action_on_hited(e2, e, Entity::Side::HIT_SIDE_UP); }
 									}
 
 
@@ -643,12 +725,12 @@ void EWindowTest::update(float _d)
 					for (int k = -1; k <= 1; k++)
 						for (int z = -1; z <= 1; z++)
 							for (Entity* e2 : ECluster::clusters[j + z][i + k]->entity_list)
-								if (e != e2)
+								if ((e != e2) & (!(*e->is_bullet & *e2->is_bullet)))
 								{
 									if (ECluster::collision_down(e, e2))
 									{
 										collision_down = true;
-										any_collision = true;
+										need_second_move_update = true;
 
 										if ((*e->speed_y) > (*e2->speed_y))
 										{
@@ -659,6 +741,9 @@ void EWindowTest::update(float _d)
 											*e2->speed_y = total_impulse / total_mass;
 											//*e->position_x -= 1.0f;
 										}
+
+										if (e->action_on_hit != NULL) { e->action_on_hit(e, e2, Entity::Side::HIT_SIDE_DOWN); }
+										if (e->action_on_hited != NULL) { e->action_on_hited(e2, e, Entity::Side::HIT_SIDE_DOWN); }
 									}
 								}
 				}
@@ -667,7 +752,7 @@ void EWindowTest::update(float _d)
 				{
 					if ((!collision_left) && (!collision_right) && (!*e->already_moved_x))
 					{
-						*e->position_x += *e->speed_x * _d;
+						*e->position_x += *e->real_speed_x;
 						*e->already_moved_x = true;
 
 						*e->position_x = EMath::clamp_value_float(*e->position_x, 1.0f, ECluster::CLUSTER_SIZE * ECluster::CLUSTER_DIM);
@@ -676,12 +761,12 @@ void EWindowTest::update(float _d)
 
 					if ((!collision_up) && (!collision_down) && (!*e->already_moved_y))
 					{
-						*e->position_y += *e->speed_y * _d;
+						*e->position_y += *e->real_speed_y;
 						*e->already_moved_y = true;
 					}
 				}
 
-				if (!any_collision)
+				if (!need_second_move_update)
 				{
 					*e->speed_x *= pow(0.5, _d);
 					*e->speed_y *= pow(0.5, _d);
@@ -693,6 +778,8 @@ void EWindowTest::update(float _d)
 
 				if ((new_cluster_x != prev_cluster_x) || (new_cluster_y != prev_cluster_y))
 				{*e->need_change_cluster = true;}
+
+				if (*e->is_bullet) { need_second_move_update = false; }
 			}
 
 			for (int i = draw_border_up; i >= draw_border_down; i--)
@@ -717,13 +804,14 @@ void EWindowTest::update(float _d)
 				}
 			}
 
+
 			//if (!any_collision) { u = 99999; break; }
 
 
 		}
 
 	if (!glfwGetKey(EWindow::main_window, GLFW_KEY_SPACE) == GLFW_PRESS)
-	if (link_to_player != NULL)
+	if ((link_to_player != NULL) & (!EWindow::window_editor->is_active))
 	{
 		if (EWindow::RMB)
 		{
@@ -737,6 +825,13 @@ void EWindowTest::update(float _d)
 		}
 
 	}
+
+	if (EWindow::window_editor->is_active)
+	{
+		game_camera->position_x = free_camera_x * game_camera->zoom;
+		game_camera->position_y = free_camera_y * game_camera->zoom;
+	}
+
 
 	add_time_process("entities_update");
 
@@ -795,16 +890,19 @@ void EWindowTest::draw(float _d)
 
 		EGraphicCore::batch->draw_gabarite(j * EPath::PATH_SIZE, i * EPath::PATH_SIZE, EPath::PATH_SIZE, EPath::PATH_SIZE, EGraphicCore::gabarite_white_pixel);
 
-		EGraphicCore::batch->setcolor(EColor::COLOR_ORANGE);
-		EFont::active_font->draw(EGraphicCore::batch, std::to_string(EPath::path[j][i][EPath::active_buffer]), j * EPath::PATH_SIZE + 20.0f, i * EPath::PATH_SIZE + 10.0f);
+		if (glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
+		{
+			EGraphicCore::batch->setcolor(EColor::COLOR_ORANGE);
+			EFont::active_font->draw(EGraphicCore::batch, std::to_string(EPath::path[j][i][EPath::active_buffer]), j * EPath::PATH_SIZE + 20.0f, i * EPath::PATH_SIZE + 10.0f);
+		}
 	}
 	add_time_process("y-sort begin");
 	//----------------DRAW ENTITIES----------------
-	draw_border_left =	(int)((game_camera->position_x / game_camera->zoom - EGraphicCore::SCR_WIDTH / 2.0f) / ECluster::CLUSTER_SIZE) - 1; if (draw_border_left < 0) { draw_border_left = 0; }
-	draw_border_right = (int)((game_camera->position_x / game_camera->zoom + EGraphicCore::SCR_WIDTH / 2.0f)  / ECluster::CLUSTER_SIZE) + 1; if (draw_border_right >= ECluster::CLUSTER_DIM) { draw_border_right = ECluster::CLUSTER_DIM - 1;; }
+	draw_border_left =	(int)((game_camera->position_x - EGraphicCore::SCR_WIDTH / 3.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) - 1; if (draw_border_left < 0) { draw_border_left = 0; }
+	draw_border_right = (int)((game_camera->position_x + EGraphicCore::SCR_WIDTH / 3.0f) / game_camera->zoom  / ECluster::CLUSTER_SIZE) + 1; if (draw_border_right >= ECluster::CLUSTER_DIM) { draw_border_right = ECluster::CLUSTER_DIM - 1;; }
 
-	draw_border_down =	(int)((game_camera->position_y / game_camera->zoom - EGraphicCore::SCR_HEIGHT / 2.0f) / ECluster::CLUSTER_SIZE) - 1; if (draw_border_down < 0) { draw_border_down = 0; }
-	draw_border_up =	(int)((game_camera->position_y / game_camera->zoom + EGraphicCore::SCR_HEIGHT / 2.0f) / ECluster::CLUSTER_SIZE) + 1; if (draw_border_up > ECluster::CLUSTER_DIM) { draw_border_up = ECluster::CLUSTER_DIM - 1; }
+	draw_border_down =	(int)((game_camera->position_y - EGraphicCore::SCR_HEIGHT / 3.0f )/ game_camera->zoom / ECluster::CLUSTER_SIZE) - 1; if (draw_border_down < 0) { draw_border_down = 0; }
+	draw_border_up =	(int)((game_camera->position_y + EGraphicCore::SCR_HEIGHT / 3.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) + 1; if (draw_border_up > ECluster::CLUSTER_DIM) { draw_border_up = ECluster::CLUSTER_DIM - 1; }
 
 
 	EGraphicCore::batch->setcolor_alpha(EColor::COLOR_GREEN, 0.55f);

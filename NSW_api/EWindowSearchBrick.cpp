@@ -35,6 +35,7 @@ EWindowSearchBrick::EWindowSearchBrick()
 
 	float xx = 0;
 	float yy = 0;
+	list_of_textures.clear();
 
 	//for (EGabarite* g: EGraphicCore::gabarite_list)
 	for (auto& p : fs::directory_iterator("data/textures"))
@@ -53,6 +54,10 @@ EWindowSearchBrick::EWindowSearchBrick()
 		//std::cout << "try load texture: " << p.path().filename().u8string() << std::endl;
 
 		but->gabarite = ETextureAtlas::put_texture_to_atlas(p.path().u8string(), EWindow::default_texture_atlas);
+
+		list_of_textures.push_back(but->gabarite);
+		list_of_textures_names.push_back(p.path().filename().u8string().substr(0, p.path().filename().u8string().length() - 4));
+
 		but->data_string = p.path().filename().u8string();//texture path
 		but->description_text = p.path().filename().u8string();
 
@@ -97,6 +102,67 @@ void EWindowSearchBrick::draw(float _d)
 
 void EWindowSearchBrick::draw_interface(float _d)
 {
+	if (search_mode == SearchMode::SEARCH_ENTITY)
+	{
+		for (int i = 0; i < Entity::entity_collection_list.size(); i++)
+		{
+			Entity* e = Entity::entity_collection_list.at(i);
+			EButton* b = brick_button.at(i);
+
+			float min_gabarite_x = 0;
+			float min_gabarite_y = 0;
+
+			float max_gabarite_x = -10000.0f;
+			float max_gabarite_y = -10000.0f;
+
+			for (ESprite* spr : e->sprite_list)
+			{
+				for (int j = 0; j< spr->gabarite.size(); j++)
+				{
+					if (spr->offset_x.at(j) < min_gabarite_x) { min_gabarite_x = spr->offset_x.at(j); }
+					if (spr->offset_y.at(j) < min_gabarite_y) { min_gabarite_y = spr->offset_y.at(j); }
+
+					if (spr->offset_x.at(j) + spr->gabarite.at(j)->size_x > max_gabarite_x) { max_gabarite_x = spr->offset_x.at(j) + spr->gabarite.at(j)->size_x; }
+					if (spr->offset_y.at(j) + spr->gabarite.at(j)->size_y > max_gabarite_y) { max_gabarite_y = spr->offset_y.at(j) + spr->gabarite.at(j)->size_y; }
+				}
+			}
+
+			float total_size_x = abs(min_gabarite_x) + max_gabarite_x;
+			float total_size_y = abs(min_gabarite_y) + max_gabarite_y;
+
+			float resizer_horizontal = b->button_size_x / total_size_x;
+			float resizer_vertical = b->button_size_y / total_size_y;
+
+			float resize = 1.0;
+
+			
+
+			if (resizer_horizontal < resizer_vertical)
+			{resize = resizer_horizontal;}
+			else
+			{resize = resizer_vertical;}
+
+			if (resize > 1.0) { resize = 1.0f; }
+
+			float sprite_image_offset_x = (b->button_size_x - (total_size_x  * resize)) / 2.0f;
+			sprite_image_offset_x += abs(min_gabarite_x * resize);
+
+			EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
+
+			for (ESprite* spr : e->sprite_list)
+			{
+					EGraphicCore::batch->draw_gabarite
+					(
+						b->master_position_x + spr->offset_x.at(0) * resize + sprite_image_offset_x,
+						b->master_position_y + spr->offset_y.at(0) * resize - min_gabarite_y * resize,
+						spr->gabarite.at(0)->size_x * resize,
+						spr->gabarite.at(0)->size_y * resize,
+						spr->gabarite.at(0)
+					);
+			}
+
+		}
+	}
 }
 
 void EWindowSearchBrick::update_search(EButton* _b)
@@ -108,6 +174,28 @@ void EWindowSearchBrick::update_search(EButton* _b)
 
 	if (search_mode == SearchMode::SEARCH_TEXTURE)
 	{
+		for (int i = 0; i < brick_button.size(); i++)
+		{
+			brick_button.at(i)->have_icon = true;
+			brick_button.at(i)->gabarite = list_of_textures.at(i);
+
+			brick_button.at(i)->description_text = brick_button.at(i)->gabarite->name;
+			brick_button.at(i)->data_string = list_of_textures_names.at(i);
+
+			brick_button.at(i)->action_on_left_click = &EBA::action_select_sprite;
+		}
+	}
+
+	if (search_mode == SearchMode::SEARCH_ENTITY)
+	{
+		for (int i = 0; i < brick_button.size(); i++)
+		{
+			brick_button.at(i)->have_icon = false;
+
+			brick_button.at(i)->action_on_left_click = &EBA::action_add_new_entity;
+		}
+	}
+
 		for (int i = 0; i < brick_button.size(); i++)
 		{
 			//std::cout << "gabarite [" << i << "] name is " << EGraphicCore::gabarite_list.at(i)->name << std::endl;
@@ -134,8 +222,8 @@ void EWindowSearchBrick::update_search(EButton* _b)
 				brick_button.at(i)->is_active = false;
 			}
 		}
-	}
 }
+
 
 
 

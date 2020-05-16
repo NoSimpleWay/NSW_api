@@ -89,7 +89,8 @@ public:
 
 	std::vector<ESprite*> sprite_list;
 
-	static void draw_sprite(Entity* _e, Batcher* _b, float _d);
+	static void draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode);
+	//static void draw_shadow_sprite(Entity* _e, Batcher* _b, float _d);
 
 	bool* is_bullet = new bool(false);
 
@@ -140,6 +141,7 @@ public:
 	bool* rotate_by_move = new bool(false);
 	bool* rotate_by_target = new bool(false);
 	bool* wall_mode = new bool(false);
+	bool* is_shadow = new bool(false);
 
 	static void clear_default_data(ESprite* _sprite);
 

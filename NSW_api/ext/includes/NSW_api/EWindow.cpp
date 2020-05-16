@@ -6,6 +6,7 @@ GLFWwindow* EWindow::main_window = NULL;
 std::vector<EWindow*> EWindow::window_list;
 
 ETextureAtlas* EWindow::default_texture_atlas;
+ETextureAtlas* EWindow::shadow_FBO;
 
 
 

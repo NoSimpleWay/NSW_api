@@ -27,7 +27,7 @@ EGabarite* ETextureAtlas::put_texture_to_atlas(std::string _name, ETextureAtlas*
 
 
 
-	glViewport(0, 0, 4096, 4096);
+	glViewport(0, 0, _ta->size_x, _ta->size_y);
 	glBindFramebuffer(GL_FRAMEBUFFER, _ta->framebuffer);
 
 	//glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -40,7 +40,7 @@ EGabarite* ETextureAtlas::put_texture_to_atlas(std::string _name, ETextureAtlas*
 	//set correct zoom
 	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
 	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(-1, -1, 0.0f));
-	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(1 / 4096.0f * 2.0f, 1 / 4096.0f * 2.0f, 1));
+	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(1.0f / _ta->size_x * 2.0f, 1.0f / _ta->size_y * 2.0f, 1));
 
 	//use shader
 	EGraphicCore::ourShader->use();
@@ -103,7 +103,7 @@ EGabarite* ETextureAtlas::put_texture_to_atlas(std::string _name, ETextureAtlas*
 
 		std::cout << "draw to x=" << place_x << " y=" << place_y << std::endl;
 
-		new_gabarite = new EGabarite(_name, place_x / 4096.0f, place_y / 4096.0f, EGraphicCore::last_texture_w / 4096.0f, EGraphicCore::last_texture_h / 4096.0f);
+		new_gabarite = new EGabarite(_name, place_x / _ta->size_x, place_y / _ta->size_y, EGraphicCore::last_texture_w / _ta->size_x, EGraphicCore::last_texture_h / _ta->size_y);
 		
 		EGraphicCore::gabarite_list.push_back(new_gabarite);
 	}
@@ -134,35 +134,86 @@ EGabarite* ETextureAtlas::put_texture_to_atlas(std::string _name, ETextureAtlas*
 
 	//active main texture
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, _ta->textureColorbuffer);
+	glBindTexture(GL_TEXTURE_2D, _ta->colorbuffer);
 	EGraphicCore::ourShader->setInt("texture1", 0);
 	EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
 
 	return new_gabarite;
 }
 
-ETextureAtlas::ETextureAtlas()
+void ETextureAtlas::active_this_texture_atlas(ETextureAtlas* _ta, ETextureAtlas* _ta2, float _offset_x, float _offset_y, float _zoom)
 {
+	glViewport(0, 0, EGraphicCore::SCR_WIDTH, EGraphicCore::SCR_HEIGHT);
+	glBindFramebuffer(GL_FRAMEBUFFER, _ta->framebuffer);
+
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glBlendEquation(GL_MAX);
+
+	//set correct zoom
+	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3((EGraphicCore::SCR_WIDTH / 2.0f - _offset_x) * EGraphicCore::correction_x - 1, (EGraphicCore::SCR_HEIGHT / 2.0f - _offset_y) * EGraphicCore::correction_y - 1, 0.0f));
+	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x * _zoom, EGraphicCore::correction_y * _zoom, 1));
+
+	//use shader
+	EGraphicCore::ourShader->use();
+
+	unsigned int transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, _ta2->colorbuffer);
+	EGraphicCore::ourShader->setInt("texture1", 0);
+}
+
+void ETextureAtlas::return_to_this_texture_atlas(ETextureAtlas* _ta)
+{
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	//return normal blend mode
+	glDisable(GL_DEPTH_TEST);
+	glBlendEquation(GL_FUNC_ADD);
+
+
+	glViewport(0, 0, EGraphicCore::SCR_WIDTH, EGraphicCore::SCR_HEIGHT);
+
+	//active main texture
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, _ta->colorbuffer);
+	EGraphicCore::ourShader->setInt("texture1", 0);
+	EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
+}
+
+ETextureAtlas::ETextureAtlas(int _x, int _y)
+{
+	size_x = _x;
+	size_y = _y;
+
 	for (int j = 0; j < 1024; j++)
 	for (int i = 0; i < 1024; i++)
 	{free_space[j][i] = true;}
 
 	//glGenTextures(1, &ETexture::texture[1]);
 
+
+	//////////////////////////////
 	glGenFramebuffers(1, &framebuffer);
 	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 
-	glGenTextures(1, &textureColorbuffer);
-	glBindTexture(GL_TEXTURE_2D, textureColorbuffer);
+	glGenTextures(1, &colorbuffer);
+	glBindTexture(GL_TEXTURE_2D, colorbuffer);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 4096, 4096, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _x, _y, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);//texture filtering
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);//
 
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureColorbuffer, 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorbuffer, 0);
 	// create a renderbuffer object for depth and stencil attachment (we won't be sampling these)	glGenRenderbuffers(1, &rbo);
 	glBindRenderbuffer(GL_RENDERBUFFER, rbo);
-	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 4096, 4096); // use a single renderbuffer object for both a depth AND stencil buffer.
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, _x, _y); // use a single renderbuffer object for both a depth AND stencil buffer.
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo); // now actually attach it
 	// now that we actually created the framebuffer and added all attachments we want to check if it is actually complete now
 	
@@ -172,6 +223,7 @@ ETextureAtlas::ETextureAtlas()
 	}
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	//////////////////////////////////////
 
 	glViewport(0, 0, EGraphicCore::SCR_WIDTH, EGraphicCore::SCR_HEIGHT);
 

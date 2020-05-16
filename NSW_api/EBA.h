@@ -46,6 +46,7 @@ public:
 	//actions_for_input
 	static void action_input_search_brick(EButton* _b, float _d);
 	static void action_set_sprite_mode_wall(EButton* _b, float _d);
+	static void action_set_shadow_mode(EButton* _b, float _d);
 
 	static void action_set_mass(EButton* _b, float _d);
 	static void action_set_inmovable(EButton* _b, float _d);

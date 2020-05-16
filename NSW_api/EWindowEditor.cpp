@@ -150,6 +150,25 @@ EWindowEditor::EWindowEditor()
 	link_to_sprite_editor_group.push_back(but);
 	link_to_is_wall_mode = but;
 
+	////////////////////////////////////////////////
+/////	set shadow mode		////////////////
+///////////////////////////////////////////////
+	but = new EButton(3.0f, 00.0f, 20.0f, 20.0f);
+	but->master_button = link_to_is_wall_mode;
+	but->master_window = this;
+	but->have_rama = true;
+
+	but->master_position = Enums::PositionMaster::BUTTON;
+	but->position_mode_x = Enums::PositionMode::SUPER_RIGHT;
+	but->position_mode_y = Enums::PositionMode::MID;
+	but->text = "sh";
+
+	but->action_on_left_click = &EBA::action_set_shadow_mode;
+
+	button_list.push_back(but);
+	link_to_sprite_editor_group.push_back(but);
+	link_to_is_shadow = but;
+
 
 	//save map
 	but = new EButton(10.0f, -10.0f, 64.0f, 16.0f);
@@ -1010,6 +1029,7 @@ void EWindowEditor::update_sprite_buttons()
 	{
 		selected_or_unselected_color(link_to_is_rotate_by_move_button, *selected_entity->sprite_list.at(selected_sprite_id)->rotate_by_move);
 		selected_or_unselected_color(link_to_is_wall_mode, *selected_entity->sprite_list.at(selected_sprite_id)->wall_mode);
+		selected_or_unselected_color(link_to_is_shadow, *selected_entity->sprite_list.at(selected_sprite_id)->is_shadow);
 
 		if (selected_entity != NULL)
 		{

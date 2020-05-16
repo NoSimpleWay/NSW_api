@@ -138,6 +138,7 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 		w_string += "ADD_NEW_SPRITE\n";
 
 		if (*spr->rotate_by_move) { w_string += "*rotate_by_move\n"; }
+		if (*spr->is_shadow) { w_string += "*shadow\n"; }
 		if (*spr->wall_mode) { w_string += "*wall_mode\n"; }
 
 		order = 0;
@@ -355,6 +356,7 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 				}
 
 				if (EFile::data_array[i] == "*rotate_by_move") { *just_created_sprite->rotate_by_move = true; }
+				if (EFile::data_array[i] == "*shadow") { *just_created_sprite->is_shadow = true; }
 				if (EFile::data_array[i] == "*wall_mode") { *just_created_sprite->wall_mode = true; }
 
 				if (EFile::data_array[i] == "mass")
@@ -493,6 +495,9 @@ void EBA::action_move_sprite_up(EButton* _b, float _d)
 		EWindow::window_editor->selected_entity->sprite_list.at(EWindow::window_editor->selected_sprite_id);
 
 		EWindow::window_editor->selected_entity->sprite_list.at(EWindow::window_editor->selected_sprite_id) = swap;
+
+		if (EWindow::window_editor->selected_sprite_id == EWindow::window_editor->selected_sprite_id)
+		{EWindow::window_editor->selected_sprite_id--;}
 	}
 
 	EWindow::window_editor->update_sprite_buttons();
@@ -516,6 +521,9 @@ void EBA::action_move_sprite_down(EButton* _b, float _d)
 		EWindow::window_editor->selected_entity->sprite_list.at(EWindow::window_editor->selected_sprite_id);
 
 		EWindow::window_editor->selected_entity->sprite_list.at(EWindow::window_editor->selected_sprite_id) = swap;
+
+		if (EWindow::window_editor->selected_sprite_id == EWindow::window_editor->selected_sprite_id)
+		{EWindow::window_editor->selected_sprite_id++;}
 	}
 
 	EWindow::window_editor->update_sprite_buttons();
@@ -550,6 +558,14 @@ void EBA::action_set_sprite_mode_wall(EButton* _b, float _d)
 	we->reset_mode(we->selected_entity->sprite_list.at(we->selected_sprite_id));
 
 	*we->selected_entity->sprite_list.at(we->selected_sprite_id)->wall_mode = !*we->selected_entity->sprite_list.at(we->selected_sprite_id)->wall_mode;
+	EWindow::window_editor->update_sprite_buttons();
+}
+
+void EBA::action_set_shadow_mode(EButton* _b, float _d)
+{
+	EWindowEditor* we = EWindow::window_editor;
+
+	*we->selected_entity->sprite_list.at(we->selected_sprite_id)->is_shadow = !*we->selected_entity->sprite_list.at(we->selected_sprite_id)->is_shadow;
 	EWindow::window_editor->update_sprite_buttons();
 }
 

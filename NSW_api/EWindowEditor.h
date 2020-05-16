@@ -30,6 +30,7 @@ public:
 
 	EButton* link_to_is_rotate_by_move_button;
 	EButton* link_to_is_wall_mode;
+	EButton* link_to_is_shadow;
 
 	std::vector<EButton*> link_to_sprite_frame;
 	std::vector<EButton*> link_to_sprite_editor_group;

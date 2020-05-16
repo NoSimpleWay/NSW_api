@@ -130,7 +130,9 @@ int main()
 	//cout << (int)01.35f << endl;
 	glViewport(0, 0, EGraphicCore::SCR_WIDTH, EGraphicCore::SCR_HEIGHT);
 
-	EWindow::default_texture_atlas = new ETextureAtlas();
+	EWindow::default_texture_atlas = new ETextureAtlas(4096, 4096);
+
+	EWindow::shadow_FBO = new ETextureAtlas(1920, 1080);
 
 	EGraphicCore::load_texture("data/textures/white_pixel.png", 0);
 	glActiveTexture(GL_TEXTURE0);
@@ -197,6 +199,8 @@ int main()
 	new_font = new EFont("franklin", font_gabarite, false);
 	EFont::active_font = new_font;
 	EFont::font_list.push_back(new_font);
+
+	//EGabarite* zzz = ETextureAtlas::put_texture_to_atlas("data/font/franklin_0.png", EWindow::shadow_FBO);
 
 	EBA::action_load_map(NULL, 0.0f);
 	EBA::action_load_entity_collection(NULL, 0.0f);

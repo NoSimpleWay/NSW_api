@@ -1,6 +1,7 @@
 #include "NSW_api/EWindow.h"
 #include "ECamera.h"
 #include "EntityManager.h"
+#include "EPath.h"
 
 class EWindowTest : public EWindow
 {
@@ -14,6 +15,7 @@ public:
 	virtual void update(float _d);
 
 	void default_draw(float _d);
+	void draw_shadows();
 	virtual void draw(float _d);
 
 	virtual void draw_interface(float _d);
@@ -38,5 +40,11 @@ public:
 	ECamera* game_camera = new ECamera();
 
 	std::vector<Entity*> new_added_entity_list;
+
+	std::vector <EGabarite*> terrain_textures_list;
+
+	short terrain[EPath::PATH_DIM][EPath::PATH_DIM];
+	
+	void generate_terrain();
 
 };

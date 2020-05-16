@@ -100,6 +100,7 @@ public:
 	static EWindowSearchBrick* window_search_brick;
 
 	static ETextureAtlas* default_texture_atlas;
+	static ETextureAtlas* shadow_FBO;
 
 	static bool button_pressed;
 

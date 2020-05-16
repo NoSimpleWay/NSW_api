@@ -75,7 +75,7 @@ Entity::~Entity()
 {
 }
 
-void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d)
+void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode)
 {
 	
 	EGabarite* link;
@@ -86,6 +86,7 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d)
 
 
 	for (ESprite* spr : _e->sprite_list)
+	if (*spr->is_shadow == _is_shadow_mode)
 	{
 		int end_frame = 1;
 		if (*spr->wall_mode) { end_frame = 3; }
@@ -105,6 +106,11 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d)
 			{
 				if (*_e->speed_y > 0) { frame_id = 0; }
 				else { frame_id = 2; }
+			}
+
+			if (EWindow::window_editor->is_active)
+			{
+				frame_id = EWindow::window_editor->selected_frame_id;
 			}
 		}
 
@@ -213,6 +219,10 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d)
 			}
 		}
 
+		sprite_id++;
+	}
+	else
+	{
 		sprite_id++;
 	}
 

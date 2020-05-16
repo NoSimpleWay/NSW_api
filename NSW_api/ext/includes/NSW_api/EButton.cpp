@@ -89,6 +89,8 @@ bool EButton::is_number(char _c)
 {
 	if
 	(
+		(_c == '-') ||
+		(_c == '.') ||
 		(_c == '0') ||
 		(_c == '1') ||
 		(_c == '2') ||
@@ -243,6 +245,8 @@ void EButton::update(float _d)
 		{
 			is_input_mode_active = false;
 			input_finish_event();
+
+			if (action_on_input_finish != NULL) {action_on_input_finish(this, _d);}
 		}
 	}
 
@@ -474,6 +478,7 @@ void EButton::update(float _d)
 			}
 
 			input_finish_event();
+			if (action_on_input_finish != NULL) { action_on_input_finish(this, _d); }
 		}
 
 
@@ -764,6 +769,7 @@ void EButton::input_event()
 
 void EButton::input_finish_event()
 {
+
 }
 
 void EButton::drop_list_select_event()

@@ -15,6 +15,8 @@ public:
 
 	void set_color(float _r, float _g, float _b, float _a);
 	void set_color(EColorCollection* _c);
+	void set_color_lum(EColorCollection* _c, float _lum);
+	void set_color_alpha(EColorCollection* _c, float _lum);
 
 	static EColorCollection* COLOR_RED;
 	static EColorCollection* COLOR_GREEN;

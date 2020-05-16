@@ -17,6 +17,43 @@ int EMath::clamp_value_int(int _v, int _min, int _max)
 	return _v;
 }
 
+float EMath::to_float(std::string _text)
+{
+	int dot_count = 0;
+	//bool too_many_dots = false;
+	//bool no_number_after_dot = true;
+
+	bool number_error = false;
+
+	for (int i = 0; i < _text.length(); i++)
+	{
+		if (_text[i] == '.')
+		{
+			dot_count++;
+
+			//too many dots
+			if (dot_count > 1) { number_error = true; std::cout << "too many dots" << std::endl; break; }
+		}
+		
+		////have no numbers after dot
+		//if ((dot_count >= 1) & (i + 1 >= _text.length())) { number_error = true; std::cout << "no number after dot" << std::endl; break; }
+
+		//wrong position of minus
+		if ((_text[i] == '-') && (i != 0)) { number_error = true; std::cout << "wrong position of '-'" << std::endl; break; }
+	}
+
+	if (number_error) { return 0.0f; }
+
+	if (dot_count > 0)
+	{
+		return std::stof(_text + "0");
+	}
+	else
+	{
+		return std::stof(_text);
+	}
+}
+
 
 std::string*EFile::data_array = new std::string[1];
 int EFile::array_size = 0;

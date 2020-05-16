@@ -88,6 +88,8 @@ int main()
 	glfwSetCursorPosCallback(EWindow::main_window, mouse_position_callback);
 	glfwSetCharCallback(EWindow::main_window, char_input_callback);
 
+	glfwSetInputMode(EWindow::main_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+
 	//glfwSetMousePos(0, 0);
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
@@ -197,6 +199,7 @@ int main()
 	EFont::font_list.push_back(new_font);
 
 	EBA::action_load_map(NULL, 0.0f);
+	EBA::action_load_entity_collection(NULL, 0.0f);
 
 	while (!glfwWindowShouldClose(EWindow::main_window))
 	{
@@ -288,6 +291,10 @@ int main()
 			(glfwGetKey(EWindow::main_window, GLFW_KEY_DELETE) == GLFW_RELEASE)
 			&&
 			(glfwGetKey(EWindow::main_window, GLFW_KEY_Z) == GLFW_RELEASE)
+			&&
+			(glfwGetKey(EWindow::main_window, GLFW_KEY_COMMA) == GLFW_RELEASE)
+			&&
+			(glfwGetKey(EWindow::main_window, GLFW_KEY_PERIOD) == GLFW_RELEASE)
 		)
 		{
 			EWindow::button_main_group_pressed = false;

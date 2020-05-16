@@ -28,6 +28,9 @@ public:
 	EButton* link_to_move_sprite_up;
 	EButton* link_to_move_sprite_down;
 
+	EButton* link_to_is_rotate_by_move_button;
+	EButton* link_to_is_wall_mode;
+
 	std::vector<EButton*> link_to_sprite_frame;
 	std::vector<EButton*> link_to_sprite_editor_group;
 
@@ -36,6 +39,8 @@ public:
 	virtual void draw(float _d);
 	virtual void draw_interface(float _d);
 
+	void selected_or_unselected_color(EButton* _b, bool _selected);
+
 	bool catched_collision_up = false;
 	bool catched_collision_down = false;
 	bool catched_collision_left = false;
@@ -43,6 +48,7 @@ public:
 
 
 	void update_sprite_buttons();
+	void reset_mode(ESprite* _spr);
 
 	float sprite_flash_cooldown = 0.5;
 
@@ -51,6 +57,16 @@ public:
 	float rama_selector_start_y;
 	float rama_selector_end_x;
 	float rama_selector_end_y;
+
+	EButton* link_to_entity_mass_button;
+	EButton* link_to_entity_inmovable_button;
+	EButton* link_to_entity_propeties_button;
+	EButton* link_to_entity_controlled_by_player_button;
+	EButton* link_to_entity_controlled_by_AI_button;
+	EButton* link_to_set_camera_target_button;
+
+
+	void update_on_entity_select();
 
 	
 

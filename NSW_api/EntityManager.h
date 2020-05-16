@@ -44,11 +44,12 @@ public:
 	float* real_speed_y = new float();
 
 	float* mass = new float(10.0f);
+	bool* inmovable = new bool(false);
 
-	float* collision_up = new float(20.0f);
-	float* collision_down = new float(20.0f);
-	float* collision_left = new float(20.0f);
-	float* collision_right = new float(20.0f);
+	float* collision_up		= new float(20.0f);
+	float* collision_down	= new float(20.0f);
+	float* collision_left	= new float(20.0f);
+	float* collision_right	= new float(20.0f);
 
 	float* shoot_cooldown = new float(0.0f);
 
@@ -88,7 +89,7 @@ public:
 
 	std::vector<ESprite*> sprite_list;
 
-	void draw_sprite(Batcher* _b, float _d);
+	static void draw_sprite(Entity* _e, Batcher* _b, float _d);
 
 	bool* is_bullet = new bool(false);
 
@@ -134,8 +135,13 @@ public:
 	std::vector<float> offset_x;
 	std::vector<float> offset_y;
 
+	std::vector<int> copies;
+
 	bool* rotate_by_move = new bool(false);
 	bool* rotate_by_target = new bool(false);
+	bool* wall_mode = new bool(false);
+
+	static void clear_default_data(ESprite* _sprite);
 
 	ESprite();
 	~ESprite();

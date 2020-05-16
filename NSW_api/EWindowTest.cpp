@@ -112,14 +112,15 @@ void EWindowTest::default_update(float _d)
 
 void EWindowTest::update(float _d)
 {
-	
+	//if (glfwGetWindowAttrib(EWindow::main_window, GLFW_FOCUSED) == 1) { SetCursorPos(1920.0 / 2.0f, 1080.0 / 2.0f); }
+
 	if (EWindow::window_editor->is_active)
 	{
-		if (glfwGetKey(EWindow::main_window, GLFW_KEY_W) == GLFW_PRESS) { free_camera_y += 512.0f * _d; }
-		if (glfwGetKey(EWindow::main_window, GLFW_KEY_S) == GLFW_PRESS) { free_camera_y -= 512.0f * _d; }
-
-		if (glfwGetKey(EWindow::main_window, GLFW_KEY_A) == GLFW_PRESS) { free_camera_x -= 512.0f * _d; }
-		if (glfwGetKey(EWindow::main_window, GLFW_KEY_D) == GLFW_PRESS) { free_camera_x += 512.0f * _d; }
+		if (glfwGetKey(EWindow::main_window, GLFW_KEY_W) == GLFW_PRESS) { free_camera_y += 512.0f / game_camera->zoom * _d; }
+		if (glfwGetKey(EWindow::main_window, GLFW_KEY_S) == GLFW_PRESS) { free_camera_y -= 512.0f / game_camera->zoom * _d; }
+																								 
+		if (glfwGetKey(EWindow::main_window, GLFW_KEY_A) == GLFW_PRESS) { free_camera_x -= 512.0f / game_camera->zoom * _d; }
+		if (glfwGetKey(EWindow::main_window, GLFW_KEY_D) == GLFW_PRESS) { free_camera_x += 512.0f / game_camera->zoom * _d; }
 	}
 
 	if (EWindow::window_editor->is_active)
@@ -384,6 +385,12 @@ void EWindowTest::update(float _d)
 					Entity* bullet = new Entity();
 					*bullet->position_x = *e->position_x;
 					*bullet->position_y = *e->position_y;
+
+					*bullet->collision_down = 3.0f;
+					*bullet->collision_left = 3.0f;
+					*bullet->collision_right = 3.0f;
+					*bullet->collision_up = 3.0f;
+
 					*bullet->mass = 1.0;
 
 					*bullet->is_bullet = true;
@@ -393,7 +400,23 @@ void EWindowTest::update(float _d)
 					float ray_length_x = ECamera::get_world_position_x(game_camera) - *e->position_x;
 					float ray_length_y = ECamera::get_world_position_y(game_camera) - *e->position_y;
 
+					float angleInRadian = atan2(ray_length_x, ray_length_y);
+					float angleInDegree = angleInRadian * 180 / 3.1415926;
+
+					std::cout << "angle is:" << angleInDegree << std::endl;
+
+					float new_angle = angleInDegree;
+
+					
+
+					//EFont::active_font->draw(EGraphicCore::batch, std::to_string(angleInDegree), ECamera::get_world_position_x(game_camera), ECamera::get_world_position_y(game_camera));
+
 					float dst = sqrt(ray_length_x * ray_length_x + ray_length_y * ray_length_y) + 1.0f;
+
+					float new_x = *e->position_x + sin(new_angle) * dst;
+					float new_y = *e->position_y + cos(new_angle) * dst;
+
+					//SetCursorPos(EWindow::real_mouse_x + (ECamera::get_world_position_x(game_camera) - new_x), EWindow::real_mouse_y + (ECamera::get_world_position_y(game_camera) - new_y));
 
 					float mul_x = ray_length_x / dst;
 					float mul_y = ray_length_y / dst;
@@ -405,15 +428,13 @@ void EWindowTest::update(float _d)
 					*bullet->real_speed_y = *bullet->speed_y * _d;
 
 					ESprite* spr = new ESprite();
-					spr->gabarite.push_back(EGraphicCore::gabarite_white_pixel);
-					spr->offset_x.push_back(0);
-					spr->offset_y.push_back(0);
 
 					bullet->sprite_list.push_back(spr);
 
 					//ECluster::put_entity(bullet);
 
 					new_added_entity_list.push_back(bullet);
+
 				}
 			}
 
@@ -623,8 +644,9 @@ void EWindowTest::update(float _d)
 				//left_side
 				if (*e->speed_x > 0)
 				{
-					for (int k = 1; k >= -1; k--)
+					for (int k = 0; k <= 1; k++)
 						for (int z = -1; z <= 1; z++)
+							if ((j + k >= 0) & (j + k <ECluster::CLUSTER_DIM) & (i + z >= 0) & (i + z < ECluster::CLUSTER_DIM))
 							for (Entity* e2 : ECluster::clusters[j + k][i + z]->entity_list)
 								if ((e != e2) & (! (*e->is_bullet & *e2->is_bullet)))
 								{
@@ -634,16 +656,25 @@ void EWindowTest::update(float _d)
 										need_second_move_update = true;
 
 
+										
+											if ((*e->speed_x > * e2->speed_x))
+											{
+												*e->speed_y *= pow(0.1, _d);
 
-										if ((*e->speed_x) > (*e2->speed_x))
-										{
-											total_mass = *e->mass + *e2->mass;
-											total_impulse = (*e->mass * *e->speed_x) + (*e2->mass * *e2->speed_x);
+												if (*e2->inmovable) { *e->speed_x = 0.5f;}
+												else
+												{
+													total_mass = *e->mass + *e2->mass;
+													total_impulse = (*e->mass * *e->speed_x) + (*e2->mass * *e2->speed_x);
 
-											*e->speed_x = total_impulse / total_mass;
-											*e2->speed_x = total_impulse / total_mass;
-											//*e->position_x -= 1.0f;
-										}
+													*e->speed_x = total_impulse / total_mass;
+													*e2->speed_x = total_impulse / total_mass;
+												}
+												
+												//*e->position_x -= 1.0f;
+											}
+										
+										
 
 
 										//std::cout << "-------BONK!-------" << std::endl;
@@ -662,6 +693,7 @@ void EWindowTest::update(float _d)
 				{
 					for (int k = 1; k >= -1; k--)
 						for (int z = -1; z <= 1; z++)
+							if ((j + k >= 0) & (j + k < ECluster::CLUSTER_DIM) & (i + z >= 0) & (i + z < ECluster::CLUSTER_DIM))
 							for (Entity* e2 : ECluster::clusters[j + k][i + z]->entity_list)
 								if ((e != e2) & (!(*e->is_bullet & *e2->is_bullet)))
 								{
@@ -672,11 +704,17 @@ void EWindowTest::update(float _d)
 
 										if ((*e->speed_x) < (*e2->speed_x))
 										{
-											total_mass = *e->mass + *e2->mass;
-											total_impulse = (*e->mass * *e->speed_x) + (*e2->mass * *e2->speed_x);
+											*e->speed_y *= pow(0.1, _d); 
 
-											*e->speed_x = total_impulse / total_mass;
-											*e2->speed_x = total_impulse / total_mass;
+											if (*e2->inmovable) { *e->speed_x *= 0.5f;}
+											else
+											{
+												total_mass = *e->mass + *e2->mass;
+												total_impulse = (*e->mass * *e->speed_x) + (*e2->mass * *e2->speed_x);
+
+												*e->speed_x = total_impulse / total_mass;
+												*e2->speed_x = total_impulse / total_mass;
+											}
 											//*e->position_x -= 1.0f;
 										}
 
@@ -693,6 +731,7 @@ void EWindowTest::update(float _d)
 				{
 					for (int k = 1; k >= -1; k--)
 						for (int z = -1; z <= 1; z++)
+							if ((j + z >= 0) & (j + z < ECluster::CLUSTER_DIM) & (i + k >= 0) & (i + k < ECluster::CLUSTER_DIM))
 							for (Entity* e2 : ECluster::clusters[j + z][i + k]->entity_list)
 								if ((e != e2) & (!(*e->is_bullet & *e2->is_bullet)))
 								{
@@ -703,11 +742,17 @@ void EWindowTest::update(float _d)
 
 										if ((*e->speed_y) < (*e2->speed_y))
 										{
-											total_mass = *e->mass + *e2->mass;
-											total_impulse = (*e->mass * *e->speed_y) + (*e2->mass * *e2->speed_y);
+											*e->speed_x *= pow(0.1, _d);
 
-											*e->speed_y = total_impulse / total_mass;
-											*e2->speed_y = total_impulse / total_mass;
+											if (*e2->inmovable) { *e->speed_y *= 0.5f; }
+											else
+											{
+												total_mass = *e->mass + *e2->mass;
+												total_impulse = (*e->mass * *e->speed_y) + (*e2->mass * *e2->speed_y);
+
+												*e->speed_y = total_impulse / total_mass;
+												*e2->speed_y = total_impulse / total_mass;
+											}
 											//*e->position_x -= 1.0f;
 										}
 
@@ -724,6 +769,7 @@ void EWindowTest::update(float _d)
 				{
 					for (int k = -1; k <= 1; k++)
 						for (int z = -1; z <= 1; z++)
+							if ((j + z >= 0) & (j + z < ECluster::CLUSTER_DIM) & (i + k >= 0) & (i + k < ECluster::CLUSTER_DIM))
 							for (Entity* e2 : ECluster::clusters[j + z][i + k]->entity_list)
 								if ((e != e2) & (!(*e->is_bullet & *e2->is_bullet)))
 								{
@@ -734,12 +780,18 @@ void EWindowTest::update(float _d)
 
 										if ((*e->speed_y) > (*e2->speed_y))
 										{
-											total_mass = *e->mass + *e2->mass;
-											total_impulse = (*e->mass * *e->speed_y) + (*e2->mass * *e2->speed_y);
+											*e->speed_x *= pow(0.01, _d);
 
-											*e->speed_y = total_impulse / total_mass;
-											*e2->speed_y = total_impulse / total_mass;
-											//*e->position_x -= 1.0f;
+											if (*e2->inmovable) { *e->speed_y *= 0.5f;  }
+											else
+											{
+												total_mass = *e->mass + *e2->mass;
+												total_impulse = (*e->mass * *e->speed_y) + (*e2->mass * *e2->speed_y);
+
+												*e->speed_y = total_impulse / total_mass;
+												*e2->speed_y = total_impulse / total_mass;
+												//*e->position_x -= 1.0f;
+											}
 										}
 
 										if (e->action_on_hit != NULL) { e->action_on_hit(e, e2, Entity::Side::HIT_SIDE_DOWN); }
@@ -750,6 +802,9 @@ void EWindowTest::update(float _d)
 
 			
 				{
+					*e->real_speed_x = *e->speed_x * _d;
+					*e->real_speed_y = *e->speed_y * _d;
+
 					if ((!collision_left) && (!collision_right) && (!*e->already_moved_x))
 					{
 						*e->position_x += *e->real_speed_x;
@@ -810,27 +865,7 @@ void EWindowTest::update(float _d)
 
 		}
 
-	if (!glfwGetKey(EWindow::main_window, GLFW_KEY_SPACE) == GLFW_PRESS)
-	if ((link_to_player != NULL) & (!EWindow::window_editor->is_active))
-	{
-		if (EWindow::RMB)
-		{
-			game_camera->position_x = *link_to_player->position_x * game_camera->zoom + (EWindow::mouse_x - EGraphicCore::SCR_WIDTH / 2.0f) * 0.5f;
-			game_camera->position_y = *link_to_player->position_y * game_camera->zoom + (EWindow::mouse_y - EGraphicCore::SCR_HEIGHT / 2.0f) * 0.5f;
-		}
-		else
-		{
-			game_camera->position_x = *link_to_player->position_x * game_camera->zoom + (EWindow::mouse_x - EGraphicCore::SCR_WIDTH / 2.0f) * 0.00f;
-			game_camera->position_y = *link_to_player->position_y * game_camera->zoom + (EWindow::mouse_y - EGraphicCore::SCR_HEIGHT / 2.0f) * 0.00f;
-		}
 
-	}
-
-	if (EWindow::window_editor->is_active)
-	{
-		game_camera->position_x = free_camera_x * game_camera->zoom;
-		game_camera->position_y = free_camera_y * game_camera->zoom;
-	}
 
 
 	add_time_process("entities_update");
@@ -848,6 +883,31 @@ void EWindowTest::default_draw(float _d)
 
 void EWindowTest::draw(float _d)
 {
+
+	if (link_to_player != NULL)
+	if (!glfwGetKey(EWindow::main_window, GLFW_KEY_SPACE) == GLFW_PRESS)
+	{
+		if ((!EWindow::window_editor->is_active))
+		{
+			if (EWindow::RMB)
+			{
+				game_camera->position_x = *link_to_player->position_x * game_camera->zoom + (EWindow::mouse_x - EGraphicCore::SCR_WIDTH / 2.0f) * 0.5f;
+				game_camera->position_y = *link_to_player->position_y * game_camera->zoom + (EWindow::mouse_y - EGraphicCore::SCR_HEIGHT / 2.0f) * 0.5f;
+			}
+			else
+			{
+				game_camera->position_x = *link_to_player->position_x * game_camera->zoom + (EWindow::mouse_x - EGraphicCore::SCR_WIDTH / 2.0f) * 0.00f;
+				game_camera->position_y = *link_to_player->position_y * game_camera->zoom + (EWindow::mouse_y - EGraphicCore::SCR_HEIGHT / 2.0f) * 0.00f;
+			}
+
+		}
+
+	}
+	if (EWindow::window_editor->is_active)
+	{
+		game_camera->position_x = free_camera_x * game_camera->zoom;
+		game_camera->position_y = free_camera_y * game_camera->zoom;
+	}
 	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
 
 	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3((EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1, (EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1, 0.0f));
@@ -964,10 +1024,11 @@ void EWindowTest::draw(float _d)
 			EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
 
 
-			dsb->draw_sprite(EGraphicCore::batch, _d);
+			Entity::draw_sprite(dsb, EGraphicCore::batch, _d);
 		}
 	}
 
+	if (EWindow::window_editor->is_active)
 	for (int i = draw_border_up; i >= draw_border_down; i--)
 	for (int j = draw_border_left; j <= draw_border_right; j++)
 	{
@@ -983,6 +1044,20 @@ void EWindowTest::draw(float _d)
 				//EGraphicCore::batch->draw_gabarite(*e->position_x + e->body_offset_x.at(sprite_id), *e->position_y + e->body_offset_y.at(sprite_id), e->body.at(sprite_id)->size_x, e->body.at(sprite_id)->size_y, e->body.at(sprite_id));
 
 
+			}
+	}
+
+	if (EWindow::window_editor->is_active)
+	{
+		EGraphicCore::batch->setcolor(EColor::COLOR_PINK);
+		for (int i = draw_border_up; i >= draw_border_down; i--)
+		for (int j = draw_border_left; j <= draw_border_right; j++)
+			for (Entity* e : ECluster::clusters[j][i]->entity_list)
+			{
+				EGraphicCore::batch->draw_gabarite(*e->position_x - 1.0f, *e->position_y - 1.0f, 3.0f, 3.0f, EGraphicCore::gabarite_white_pixel);
+
+				EGraphicCore::batch->draw_gabarite(*e->position_x - 0.0f, *e->position_y - 5.0f, 1.0f, 12.0f, EGraphicCore::gabarite_white_pixel);
+				EGraphicCore::batch->draw_gabarite(*e->position_x - 5.0f, *e->position_y - 0.0f, 12.0f, 1.0f, EGraphicCore::gabarite_white_pixel);
 			}
 	}
 

@@ -1,0 +1,202 @@
+ADD_NEW_ENTITY	247.000000	196.000000
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/wall_with_neon_lines_corner_left.png
+texture_offset_x	-20.000000
+texture_offset_y	-18.000000
+texture_copies	1
+add_new_texture	data/textures/wall_with_neon_lines.png
+texture_offset_x	-4.000000
+texture_offset_y	8.999997
+texture_copies	2
+add_new_texture	data/textures/wall_with_neon_lines_corner_right.png
+texture_offset_x	-3.299999
+texture_offset_y	-4.100002
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_copies	1
+mass	10.000000
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+- PUT TO COLLECTION -
+
+=====================================
+
+ADD_NEW_ENTITY	200.391113	200.283691
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-27.000000
+texture_offset_y	-12.000000
+texture_copies	1
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-17.599998
+texture_offset_y	-11.099993
+texture_copies	1
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-27.000000
+texture_offset_y	-13.000000
+texture_copies	1
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.499990
+texture_offset_y	-13.300004
+texture_copies	1
+*entity_controlled_by_player
+mass	10.000000
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+- PUT TO COLLECTION -
+
+=====================================
+
+ADD_NEW_ENTITY	255.000000	201.000000
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/wall_with_neon_lines_corner_left.png
+texture_offset_x	-20.000000
+texture_offset_y	-18.000000
+texture_copies	1
+add_new_texture	data/textures/wall_with_neon_lines.png
+texture_offset_x	-4.000000
+texture_offset_y	8.999997
+texture_copies	2
+add_new_texture	data/textures/wall_with_neon_lines_corner_right.png
+texture_offset_x	-3.299999
+texture_offset_y	-4.100002
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_metal_up_01.png
+texture_offset_x	2.000000
+texture_offset_y	125.000000
+texture_copies	2
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_metal_01.png
+texture_offset_x	2.000000
+texture_offset_y	61.000000
+texture_copies	2
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/roof_metal_corner_01.png
+texture_offset_x	-4.000000
+texture_offset_y	41.000000
+texture_copies	1
+add_new_texture	data/textures/roof_metal_01_skew.png
+texture_offset_x	-2.000000
+texture_offset_y	1.500000
+texture_copies	2
+add_new_texture	data/textures/roof_metal_corner_01.png
+texture_offset_x	-2.000000
+texture_offset_y	-2.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_copies	1
+mass	10.000000
+collision_up	2.000000
+collision_down	17.000000
+collision_right	218.000000
+collision_left	20.000000
+- PUT TO COLLECTION -
+
+=====================================
+
+ADD_NEW_ENTITY	255.000000	201.000000
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/wall_with_neon_lines_corner_left.png
+texture_offset_x	-10.000000
+texture_offset_y	-19.000000
+texture_copies	1
+add_new_texture	data/textures/wall_with_neon_lines.png
+texture_offset_x	-19.000006
+texture_offset_y	3.999994
+texture_copies	2
+add_new_texture	data/textures/wall_with_neon_lines_corner_right.png
+texture_offset_x	-12.700012
+texture_offset_y	-0.000001
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_metal_up_01.png
+texture_offset_x	2.000000
+texture_offset_y	125.000000
+texture_copies	2
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_metal_01.png
+texture_offset_x	2.000000
+texture_offset_y	61.000000
+texture_copies	2
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/roof_metal_corner_01.png
+texture_offset_x	-4.000000
+texture_offset_y	41.000000
+texture_copies	1
+add_new_texture	data/textures/roof_metal_01_skew.png
+texture_offset_x	-2.000000
+texture_offset_y	1.500000
+texture_copies	2
+add_new_texture	data/textures/roof_metal_corner_01.png
+texture_offset_x	-2.000000
+texture_offset_y	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_copies	1
+mass	10.000000
+collision_up	2.000000
+collision_down	17.000000
+collision_right	218.000000
+collision_left	20.000000
+- PUT TO COLLECTION -
+
+=====================================
+
+ADD_NEW_ENTITY	459.000000	389.000000
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/wall_corner_c18_left.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_copies	1
+add_new_texture	data/textures/wall_c18.png
+texture_offset_x	-6.000000
+texture_offset_y	17.000000
+texture_copies	2
+add_new_texture	data/textures/wall_corner_c18_right.png
+texture_offset_x	-7.599998
+texture_offset_y	0.500000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_c18.aseprite
+texture_offset_x	27.000000
+texture_offset_y	139.000000
+texture_copies	1
+mass	10.000000
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+- PUT TO COLLECTION -
+
+=====================================
+

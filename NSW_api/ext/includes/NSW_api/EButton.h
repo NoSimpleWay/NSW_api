@@ -24,6 +24,7 @@ public:
 	BUTTON_ACTION action_on_right_click;
 
 	BUTTON_ACTION action_on_input;
+	BUTTON_ACTION action_on_input_finish;
 
 	static void static_click();
 	static void static_click2();

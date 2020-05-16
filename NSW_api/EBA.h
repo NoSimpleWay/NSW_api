@@ -22,8 +22,13 @@ public:
 	static void action_close_window(EButton* _b, float _d);
 
 	static void action_save_map(EButton* _b, float _d);
+	static void action_save_entity_to_collection(EButton* _b, float _d);
+	static void save_to_file(std::string& w_string, Entity* e, int& order, bool _to_collection);
+	static void read_data_for_entity(std::ifstream& myfile);
 	static void action_load_map(EButton* _b, float _d);
+	static void action_load_entity_collection(EButton* _b, float _d);
 
+	static void action_add_new_entity_from_collection(EButton* _b, float _d);
 	static void action_add_new_entity(EButton* _b, float _d);
 	static void action_open_select_entity_collection_window(EButton* _b, float _d);
 
@@ -40,7 +45,13 @@ public:
 
 	//actions_for_input
 	static void action_input_search_brick(EButton* _b, float _d);
+	static void action_set_sprite_mode_wall(EButton* _b, float _d);
 
+	static void action_set_mass(EButton* _b, float _d);
+	static void action_set_inmovable(EButton* _b, float _d);
+	static void action_set_controlled_by_player(EButton* _b, float _d);
+	static void action_set_controlled_by_AI(EButton* _b, float _d);
+	static void action_set_camera_target(EButton* _b, float _d);
 
 	//hit action
 

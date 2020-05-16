@@ -182,7 +182,7 @@ void EWindowSearchBrick::update_search(EButton* _b)
 			brick_button.at(i)->description_text = brick_button.at(i)->gabarite->name;
 			brick_button.at(i)->data_string = list_of_textures_names.at(i);
 
-			brick_button.at(i)->action_on_left_click = &EBA::action_select_sprite;
+			brick_button.at(i)->action_on_left_click = &EBA::action_set_sprite_texture;
 		}
 	}
 
@@ -192,7 +192,7 @@ void EWindowSearchBrick::update_search(EButton* _b)
 		{
 			brick_button.at(i)->have_icon = false;
 
-			brick_button.at(i)->action_on_left_click = &EBA::action_add_new_entity;
+			brick_button.at(i)->action_on_left_click = &EBA::action_add_new_entity_from_collection;
 		}
 	}
 

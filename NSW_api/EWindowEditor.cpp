@@ -115,20 +115,40 @@ EWindowEditor::EWindowEditor()
 	////////////////////////////////////////////////
 /////	set 4 textures mode		////////////////
 ///////////////////////////////////////////////
-	but = new EButton(120.0f, 0.0f, 20.0f, 20.0f);
+	but = new EButton(0.0f, -40.0f, 20.0f, 20.0f);
 	but->master_button = link_to_add_new_sprite_button;
 	but->master_window = this;
 	but->have_rama = true;
 
 	but->master_position = Enums::PositionMaster::BUTTON;
 	but->position_mode_x = Enums::PositionMode::LEFT;
-	but->position_mode_y = Enums::PositionMode::MID;
+	but->position_mode_y = Enums::PositionMode::DOWN;
 	but->text = "4";
 
 	but->action_on_left_click = &EBA::action_set_sprite_mode_4;
 
 	button_list.push_back(but);
 	link_to_sprite_editor_group.push_back(but);
+	link_to_is_rotate_by_move_button = but;
+
+	////////////////////////////////////////////////
+/////	set wall mode		////////////////
+///////////////////////////////////////////////
+	but = new EButton(3.0f, 00.0f, 20.0f, 20.0f);
+	but->master_button = link_to_is_rotate_by_move_button;
+	but->master_window = this;
+	but->have_rama = true;
+
+	but->master_position = Enums::PositionMaster::BUTTON;
+	but->position_mode_x = Enums::PositionMode::SUPER_RIGHT;
+	but->position_mode_y = Enums::PositionMode::MID;
+	but->text = "w";
+
+	but->action_on_left_click = &EBA::action_set_sprite_mode_wall;
+
+	button_list.push_back(but);
+	link_to_sprite_editor_group.push_back(but);
+	link_to_is_wall_mode = but;
 
 
 	//save map
@@ -148,21 +168,129 @@ EWindowEditor::EWindowEditor()
 	but->position_mode_x = Enums::PositionMode::LEFT;
 	but->position_mode_y = Enums::PositionMode::UP;
 	but->action_on_left_click = &EBA::action_load_map;
+	but->data_string = "test/map.txt";
 
-	//edd new entity
+	//add new entity from collection (open brick search window)
 	but = new EButton(165.0f, -10.0f, 150.0f, 16.0f);
 	but->master_window = this;
 	button_list.push_back(but);
-	but->text = "add new entity";
+	but->text = "entity from collection";
 	but->position_mode_x = Enums::PositionMode::LEFT;
 	but->position_mode_y = Enums::PositionMode::UP;
 	but->action_on_left_click = &EBA::action_open_select_entity_collection_window;
 
+	//add new entity
+	but = new EButton(165.0f, -30.0f, 150.0f, 16.0f);
+	but->master_window = this;
+	button_list.push_back(but);
+	but->text = "new entity";
+	but->position_mode_x = Enums::PositionMode::LEFT;
+	but->position_mode_y = Enums::PositionMode::UP;
+	but->action_on_left_click = &EBA::action_add_new_entity;
+
+	//add entity to collection
+	but = new EButton(330.0f, -10.0f, 150.0f, 16.0f);
+	but->master_window = this;
+	button_list.push_back(but);
+	but->text = "add entity to collection";
+	but->position_mode_x = Enums::PositionMode::LEFT;
+	but->position_mode_y = Enums::PositionMode::UP;
+	but->action_on_left_click = &EBA::action_save_entity_to_collection;
+
+	//entity properities
+	but = new EButton(-30.0f, 300.0f, 150.0f, 16.0f);
+	but->master_window = this;
+	button_list.push_back(but);
+	link_to_entity_propeties_button = but;
+	but->text = "entity properties";
+	but->position_mode_x = Enums::PositionMode::RIGHT;
+	but->position_mode_y = Enums::PositionMode::DOWN;
+	
+	//entity mass
+	but = new EButton(0.0f, -3.0f, 150.0f, 16.0f);
+	but->master_position = Enums::PositionMaster::BUTTON;
+	but->master_button = link_to_entity_propeties_button;
+	but->master_window = this;
+	but->action_on_input_finish = &EBA::action_set_mass;
+
+	button_list.push_back(but);
+	link_to_entity_mass_button = but;
+	but->input_only_numbers = true;
+
+	but->text = "0";
+	but->input_hint = "mass";
+	but->have_input_mode = true;
+
+	but->position_mode_x = Enums::PositionMode::LEFT;
+	but->position_mode_y = Enums::PositionMode::DOWN;
+
+	//entity inmovable
+	but = new EButton(0.0f, -3.0f, 150.0f, 16.0f);
+	but->master_position = Enums::PositionMaster::BUTTON;
+	but->master_button = link_to_entity_mass_button;
+	but->master_window = this;
+	but->action_on_left_click = &EBA::action_set_inmovable;
+
+	button_list.push_back(but);
+	link_to_entity_inmovable_button = but;
+
+	but->text = "inmovable";
+	but->position_mode_x = Enums::PositionMode::LEFT;
+	but->position_mode_y = Enums::PositionMode::DOWN;
+
+
+	//controlled by player
+	but = new EButton(0.0f, -3.0f, 150.0f, 16.0f);
+	but->master_position = Enums::PositionMaster::BUTTON;
+	but->master_button = link_to_entity_inmovable_button;
+	but->master_window = this;
+	but->action_on_left_click = &EBA::action_set_controlled_by_player;
+
+	button_list.push_back(but);
+	link_to_entity_controlled_by_player_button = but;
+
+	but->text = "controlled by player";
+	but->position_mode_x = Enums::PositionMode::LEFT;
+	but->position_mode_y = Enums::PositionMode::DOWN;
+
+	//controlled by AI
+	but = new EButton(0.0f, -3.0f, 150.0f, 16.0f);
+	but->master_position = Enums::PositionMaster::BUTTON;
+	but->master_button = link_to_entity_controlled_by_player_button;
+	but->master_window = this;
+	but->action_on_left_click = &EBA::action_set_controlled_by_AI;
+
+	button_list.push_back(but);
+	link_to_entity_controlled_by_AI_button = but;
+
+	but->text = "controled by AI";
+	but->position_mode_x = Enums::PositionMode::LEFT;
+	but->position_mode_y = Enums::PositionMode::DOWN;
+
+	//controlled by AI
+	but = new EButton(0.0f, -3.0f, 150.0f, 16.0f);
+	
+	but->master_button = link_to_entity_controlled_by_AI_button;
+	link_to_set_camera_target_button = but;
+
+	but->master_position = Enums::PositionMaster::BUTTON;
+
+	but->master_window = this;
+	but->action_on_left_click = &EBA::action_set_camera_target;
+
+	button_list.push_back(but);
+	
+
+	but->text = "set as camera target";
+	but->position_mode_x = Enums::PositionMode::LEFT;
+	but->position_mode_y = Enums::PositionMode::DOWN;
+	
+	//but->action_on_left_click = &EBA::action_save_entity_to_collection;
 
 	for (int i = 0; i < 8; i++)
 	{
 		//edd new entity
-		but = new EButton(0.0f + i * 22.0f, -10.0f, 20.0f, 20.0f);
+		but = new EButton(0.0f + i * 42.0f, -10.0f, 40.0f, 40.0f);
 		but->master_window = this;
 		but->master_button = sprite_button_list.at(0);
 		but->have_icon = true;
@@ -261,9 +389,9 @@ void EWindowEditor::update(float _d)
 		{
 			if
 			(
-				(*e->position_x >= rama_selector_start_x - *e->collision_left)
+				(*e->position_x >= rama_selector_start_x - *e->collision_right)
 				&
-				(*e->position_x <= rama_selector_end_x + *e->collision_right)
+				(*e->position_x <= rama_selector_end_x + *e->collision_left)
 				&
 				(*e->position_y >= rama_selector_start_y - *e->collision_up)
 				&
@@ -291,6 +419,32 @@ void EWindowEditor::update(float _d)
 		editor_mode = EditMode::SelectEntities;
 		EWindow::button_main_group_pressed = true;
 		update_sprite_buttons();
+	}
+
+	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_COMMA) == GLFW_PRESS) & (!EWindow::button_main_group_pressed) & (editor_mode == EditMode::EditSprites))
+	{
+		EWindow::button_main_group_pressed = true;
+
+		selected_entity->sprite_list.at(selected_sprite_id)->copies.at(selected_frame_id)--;
+		
+		if (selected_entity->sprite_list.at(selected_sprite_id)->copies.at(selected_frame_id) < 1)
+		{
+			selected_entity->sprite_list.at(selected_sprite_id)->copies.at(selected_frame_id) = 1;
+		}
+		//selected_entity
+	}
+
+	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_PERIOD) == GLFW_PRESS) & (!EWindow::button_main_group_pressed) & (editor_mode == EditMode::EditSprites))
+	{
+		EWindow::button_main_group_pressed = true;
+
+		selected_entity->sprite_list.at(selected_sprite_id)->copies.at(selected_frame_id)++;
+		
+		if (selected_entity->sprite_list.at(selected_sprite_id)->copies.at(selected_frame_id) > 100)
+		{
+			selected_entity->sprite_list.at(selected_sprite_id)->copies.at(selected_frame_id) = 100;
+		}
+		//selected_entity
 	}
 
 	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_E) == GLFW_PRESS) & (!EWindow::button_main_group_pressed) & (selected_entity != NULL))
@@ -387,15 +541,17 @@ void EWindowEditor::update(float _d)
 			selected_frame_id = 0;
 		}
 		selected_entity = nearest_entity;
+		update_on_entity_select();
 		update_sprite_buttons();
 	}
 
 	for (int i = 0; i < sprite_button_list.size(); i++)
 	{
+		//EWindow::window_editor->selected_frame_id = 0;
 
 		if (sprite_button_list.at(i)->need_remove)
 		{
-			if (selected_sprite_id == i)
+			//if (selected_sprite_id == i)
 			{
 				selected_sprite_id--;
 				if (selected_sprite_id < 0)
@@ -403,12 +559,16 @@ void EWindowEditor::update(float _d)
 					selected_sprite_id = 0;
 				}
 			}
-			sprite_button_list.erase(sprite_button_list.begin() + i);
 
+			//sprite_button_list.erase(sprite_button_list.begin() + i);
+			//EWindow::window_editor->selected_frame_id = 0;
 			selected_entity->sprite_list.erase(selected_entity->sprite_list.begin() + i);
+			//EWindow::window_editor->selected_sprite_id = 0;
 
 			any_remove = true;
+			sprite_button_list.at(i)->need_remove = false;
 		}
+
 	}
 
 	if (any_remove)
@@ -687,25 +847,35 @@ void EWindowEditor::clone_entity(Entity* _e)
 		int id = 0;
 
 		ESprite* clone_sprite = new ESprite();
-		clone->sprite_list.push_back(spr);
+		ESprite::clear_default_data(clone_sprite);
 
-		clone_sprite->rotate_by_move = spr->rotate_by_move;
-		clone_sprite->rotate_by_target = spr->rotate_by_target;
+		clone->sprite_list.push_back(clone_sprite);
+
+		*clone_sprite->rotate_by_move = *spr->rotate_by_move;
+		*clone_sprite->rotate_by_target = *spr->rotate_by_target;
+
+		*clone_sprite->wall_mode = *spr->wall_mode;
 
 		for (EGabarite* g : spr->gabarite)
 		{
 			clone_sprite->gabarite.push_back(g);
+
 			clone_sprite->offset_x.push_back(spr->offset_x.at(id));
 			clone_sprite->offset_y.push_back(spr->offset_y.at(id));
+
+			clone_sprite->copies.push_back(spr->copies.at(id));
 
 			id++;
 		}
 	}
 
-	*clone->position_x = round(EWindow::window_test->game_camera->position_x);
-	*clone->position_y = round(EWindow::window_test->game_camera->position_y);
+	*clone->position_x = round(EWindow::window_test->game_camera->position_x / EWindow::window_test->game_camera->zoom);
+	*clone->position_y = round(EWindow::window_test->game_camera->position_y / EWindow::window_test->game_camera->zoom);
 
 	selected_entity = clone;
+
+	EWindow::window_editor->selected_frame_id = 0;
+	EWindow::window_editor->selected_sprite_id = 0;
 
 	ECluster::put_entity(clone);
 }
@@ -797,6 +967,26 @@ void EWindowEditor::draw_interface(float _d)
 {
 }
 
+void EWindowEditor::selected_or_unselected_color(EButton* _b, bool _selected)
+{
+	if (_selected)
+	{
+		_b->have_rama = true;
+
+		_b->bg_color->set_color_lum(EColor::COLOR_GREEN, 0.35f);
+		_b->rama_color->set_color_lum(EColor::COLOR_GREEN, 0.85f);
+		_b->text_color->set_color_lum(EColor::COLOR_GREEN, 0.85f);
+	}
+	else
+	{
+		_b->have_rama = false;
+
+		_b->bg_color->set_color_alpha(EColor::COLOR_RED, 0.55f);
+		//_b->rama_color->set_color_lum(EColor::COLOR_GREEN, 0.35f);
+		_b->text_color->set_color_lum(EColor::COLOR_RED, 0.25f);
+	}
+}
+
 void EWindowEditor::update_sprite_buttons()
 {
 
@@ -818,6 +1008,9 @@ void EWindowEditor::update_sprite_buttons()
 
 	if ((editor_mode == EditMode::EditSprites) & (selected_entity != NULL))
 	{
+		selected_or_unselected_color(link_to_is_rotate_by_move_button, *selected_entity->sprite_list.at(selected_sprite_id)->rotate_by_move);
+		selected_or_unselected_color(link_to_is_wall_mode, *selected_entity->sprite_list.at(selected_sprite_id)->wall_mode);
+
 		if (selected_entity != NULL)
 		{
 			for (int i = 0; i < selected_entity->sprite_list.size(); i++)
@@ -831,42 +1024,65 @@ void EWindowEditor::update_sprite_buttons()
 
 
 
+
 				if (i == selected_sprite_id)
 				{
+
+					if (selected_frame_id >= selected_entity->sprite_list.at(i)->gabarite.size())
+					{selected_frame_id = selected_entity->sprite_list.at(i)->gabarite.size() - 1;}
+
 					sprite_button_list.at(i)->rama_color->set_color(EColor::COLOR_ORANGE);
 					sprite_button_list.at(i)->rama_thikness = 5.0f;
 
 
-					yy -= 30.0f;
+					yy -= 50.0f;
+					
 					sprite_button_list.at(i)->gabarite = selected_entity->sprite_list.at(i)->gabarite.at(selected_frame_id);
 				}
 				else
 				{
 					sprite_button_list.at(i)->rama_color->set_color(EColor::COLOR_BLACK);
 					sprite_button_list.at(i)->rama_thikness = 2.0f;
+
+					std::cout << "vector size:" << sprite_button_list.size() << " id:" << i << std::endl;
+
+					/*sprite_button_list.at(i)->gabarite
+					=
+					selected_entity->sprite_list.at(i)
+					->gabarite.at(selected_frame_id);*/
 					sprite_button_list.at(i)->gabarite = selected_entity->sprite_list.at(i)->gabarite.at(0);
 				}
 
 				sprite_button_list.at(i)->data_id = i;
 			}
 
+			
 			for (EButton* b : link_to_sprite_frame)
 			{
 				b->master_button = sprite_button_list.at(selected_sprite_id);
 			}
 
+			int sid = 0;
 			for (int i = 0; i < link_to_sprite_frame.size(); i++)
 			{
 				EButton* fr = link_to_sprite_frame.at(i);
 				//std::cout << "process:" << z << std::endl;
+
+				
 				if (i < selected_entity->sprite_list.at(selected_sprite_id)->gabarite.size())
 				{
 					fr->is_active = true;
+
+					fr->gabarite = selected_entity->sprite_list.at(selected_sprite_id)->gabarite.at(sid);
+
+					sid++;
 				}
 				else
 				{
 					fr->is_active = false;
 				}
+
+
 
 
 
@@ -888,4 +1104,23 @@ void EWindowEditor::update_sprite_buttons()
 		link_to_add_new_sprite_button->button_y = sprite_button_list.at(selected_sprite_id)->button_y - 20.0f;
 	}
 	
+}
+
+void EWindowEditor::reset_mode(ESprite* _spr)
+{
+	*_spr->rotate_by_move = false;
+	*_spr->rotate_by_target = false;
+	*_spr->wall_mode = false;
+}
+
+void EWindowEditor::update_on_entity_select()
+{
+	if (selected_entity != NULL)
+	{
+		link_to_entity_mass_button->text = std::to_string(*selected_entity->mass);
+
+		EWindow::window_editor->selected_or_unselected_color(link_to_entity_inmovable_button, *EWindow::window_editor->selected_entity->inmovable);
+		EWindow::window_editor->selected_or_unselected_color(link_to_entity_controlled_by_player_button, EWindow::window_editor->selected_entity->controlled_by_player);
+		EWindow::window_editor->selected_or_unselected_color(link_to_entity_controlled_by_AI_button, EWindow::window_editor->selected_entity->controlled_by_ai);
+	}
 }

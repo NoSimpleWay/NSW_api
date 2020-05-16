@@ -75,27 +75,35 @@ Entity::~Entity()
 {
 }
 
-void Entity::draw_sprite(Batcher* _b, float _d)
+void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d)
 {
 	
 	EGabarite* link;
 	int sprite_id = 0;
 
 
-	for (ESprite* spr : sprite_list)
+	
+
+
+	for (ESprite* spr : _e->sprite_list)
 	{
+		int end_frame = 1;
+		if (*spr->wall_mode) { end_frame = 3; }
 		int frame_id = 0;
+
+		float offset_x_begin = 0.0f;
+		float offset_y_begin = 0.0f;
 
 		if (*spr->rotate_by_move)
 		{
-			if (*speed_x * *speed_x > * speed_y** speed_y)
+			if (*_e->speed_x * *_e->speed_x > *_e->speed_y* *_e->speed_y)
 			{
-				if (*speed_x > 0) { frame_id = 1; }
+				if (*_e->speed_x > 0) { frame_id = 1; }
 				else { frame_id = 3; }
 			}
 			else
 			{
-				if (*speed_y > 0) { frame_id = 0; }
+				if (*_e->speed_y > 0) { frame_id = 0; }
 				else { frame_id = 2; }
 			}
 		}
@@ -103,15 +111,48 @@ void Entity::draw_sprite(Batcher* _b, float _d)
 		//link = spr->gabarite.at(sprite_id);
 		if (!spr->gabarite.empty())
 		if (spr->gabarite.at(frame_id) != NULL)
+		for (int f=0; f<end_frame; f++)
+		for (int i=0; i<spr->copies.at(frame_id); i++)
 		{
+
+			if (*spr->wall_mode)
+			{
+				if (f == 0)
+				{
+					frame_id = 1;
+					offset_x_begin = spr->gabarite.at(0)->size_x * spr->copies.at(0) + spr->offset_x.at(0);
+					offset_y_begin = spr->offset_y.at(0);
+				}
+
+				if (f == 1)
+				{
+					frame_id = 0;
+					offset_x_begin = 0.0f;
+					offset_y_begin = 0.0f;
+				}
+
+				if (f == 2)
+				{
+					frame_id = 2;
+
+					offset_x_begin
+					=
+					spr->gabarite.at(0)->size_x * spr->copies.at(0) + spr->offset_x.at(0)
+					+
+					spr->gabarite.at(1)->size_x * spr->copies.at(1) + spr->offset_x.at(1);
+
+					offset_y_begin = spr->offset_y.at(0) + spr->offset_y.at(2);
+				}
+				//frame_id = f;
+			}
 			if
 				(
 					(EWindow::window_editor->sprite_flash_cooldown < 0.5f)
 					&
 					(
-					(EWindow::window_editor->selected_entity == this)
+					(EWindow::window_editor->selected_entity == _e)
 					||
-					(find(EWindow::window_editor->selected_entity_list.begin(), EWindow::window_editor->selected_entity_list.end(), this) != EWindow::window_editor->selected_entity_list.end())
+					(find(EWindow::window_editor->selected_entity_list.begin(), EWindow::window_editor->selected_entity_list.end(), _e) != EWindow::window_editor->selected_entity_list.end())
 				)
 				&
 				(
@@ -137,8 +178,8 @@ void Entity::draw_sprite(Batcher* _b, float _d)
 
 			_b->draw_gabarite
 			(
-				*position_x + spr->offset_x.at(frame_id),
-				*position_y + spr->offset_y.at(frame_id),
+				*_e->position_x + spr->offset_x.at(frame_id) + i * spr->gabarite.at(frame_id)->size_x + offset_x_begin,
+				*_e->position_y + spr->offset_y.at(frame_id) + offset_y_begin,
 
 				spr->gabarite.at(frame_id)->size_x,
 				spr->gabarite.at(frame_id)->size_y,
@@ -146,13 +187,20 @@ void Entity::draw_sprite(Batcher* _b, float _d)
 				spr->gabarite.at(frame_id)
 			);
 
+			/*
+			if (i + 1>= spr->copies.at(frame_id))
+			{
+				offset_x_begin += spr->gabarite.at(frame_id)->size_x * spr->copies.at(frame_id) + spr->offset_x.at(frame_id);
+				offset_y_begin += spr->offset_y.at(frame_id);
+			}*/
+
 			if (EWindow::window_editor->editor_mode == EWindowEditor::EditMode::EditSprites)
 			{
 				EGraphicCore::batch->setcolor(EColor::COLOR_RED);
 				_b->draw_gabarite
 				(
-					*position_x + spr->offset_x.at(frame_id) - 1.0f,
-					*position_y + spr->offset_y.at(frame_id) - 1.0f,
+					*_e->position_x + spr->offset_x.at(frame_id) - 1.0f,
+					*_e->position_y + spr->offset_y.at(frame_id) - 1.0f,
 
 					3.0f,
 					3.0f,
@@ -173,8 +221,8 @@ void Entity::draw_sprite(Batcher* _b, float _d)
 		EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
 		_b->draw_gabarite
 		(
-			*position_x - 1.0f,
-			*position_y - 1.0f,
+			*_e->position_x - 1.0f,
+			*_e->position_y - 1.0f,
 
 			3.0f,
 			3.0f,
@@ -339,8 +387,21 @@ void ECluster::put_entity(Entity* _e)
 	clusters[cluster_x][cluster_y]->entity_list.push_back(_e);
 }
 
+void ESprite::clear_default_data(ESprite* _sprite)
+{
+	_sprite->offset_x.clear();
+	_sprite->offset_y.clear();
+	_sprite->copies.clear();
+	_sprite->gabarite.clear();
+}
+
 ESprite::ESprite()
 {
+	gabarite.push_back(EGraphicCore::gabarite_white_pixel);
+
+	offset_x.push_back(0.0f);
+	offset_y.push_back(0.0f);
+	copies.push_back(1);
 }
 
 ESprite::~ESprite()

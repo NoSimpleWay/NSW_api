@@ -362,6 +362,9 @@ int main()
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {//
+	//width = round(width / 2.0f) * 2;
+	//height = round(height / 2.0f) * 2;
+
 	glViewport(0, 0, width, height);
 	glfwGetWindowSize(window, &EGraphicCore::SCR_WIDTH, &EGraphicCore::SCR_HEIGHT);
 

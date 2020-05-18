@@ -27,7 +27,7 @@ public:
 	float batch_color_b;
 	float batch_color_a;
 
-	int batch_force_draw_call = 160000;
+	int batch_force_draw_call = 120000;
 
 	void reinit();
 

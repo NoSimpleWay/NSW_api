@@ -40,57 +40,11 @@ EWindowTest::EWindowTest():EWindow()
 		ECluster::put_entity(en, *en->position_x, *en->position_y);
 	}
 
-	/*
-	link_to_player = new Entity();
-
-	*link_to_player->position_x = +ECluster::CLUSTER_SIZE * ECluster::CLUSTER_DIM / 2.0f;
-	*link_to_player->position_y = +ECluster::CLUSTER_SIZE * ECluster::CLUSTER_DIM / 2.0f;
-	*link_to_player->mass = 100.0f;
 	
-
-
-	link_to_player->sprite_list.clear();
-	ESprite* sp = new ESprite();
-	link_to_player->sprite_list.push_back(sp);
-
-	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/textures/mech_1.png", EWindow::default_texture_atlas));
-	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/textures/mech_2.png", EWindow::default_texture_atlas));
-	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/textures/mech_3.png", EWindow::default_texture_atlas));
-	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/textures/mech_4.png", EWindow::default_texture_atlas));
-
-	*sp->rotate_by_move = true;
-
-	sp->offset_x.push_back(-27.0f);
-	sp->offset_x.push_back(-14.0f);
-	sp->offset_x.push_back(-27.0f);
-	sp->offset_x.push_back(-14.0f);
-
-	sp->offset_y.push_back(0.0f);
-	sp->offset_y.push_back(-5.0f);
-	sp->offset_y.push_back(0.0f);
-	sp->offset_y.push_back(-5.0f);
-
-	sp = new ESprite();
-	link_to_player->sprite_list.push_back(sp);
-
-	sp->gabarite.push_back(ETextureAtlas::put_texture_to_atlas("data/textures/block.png", EWindow::default_texture_atlas));
-
-	sp->offset_x.push_back(-25.0f);
-	sp->offset_y.push_back(0.0f);
-
-
-
-
-
-	ECluster::put_entity(link_to_player, *link_to_player->position_x, *link_to_player->position_y);
-
-	link_to_player->controlled_by_ai = false;
-	link_to_player->controlled_by_player = true;
-
-	*/
 	always_fullscreen = true;
 	short default_path = 250;
 
+	/*
 	for (int j = 0; j < EPath::PATH_DIM; j++)
 	for (int i = 0; i < EPath::PATH_DIM; i++)
 	{
@@ -102,6 +56,7 @@ EWindowTest::EWindowTest():EWindow()
 		EPath::path[j][i][0] = default_path;
 		EPath::path[j][i][1] = default_path;
 	}
+	*/
 
 	
 
@@ -120,7 +75,30 @@ void EWindowTest::default_update(float _d)
 
 void EWindowTest::update(float _d)
 {
-	//if (glfwGetWindowAttrib(EWindow::main_window, GLFW_FOCUSED) == 1) { SetCursorPos(1920.0 / 2.0f, 1080.0 / 2.0f); }
+
+
+
+	//glfwGetCursorPos(EWindow::main_window, &EWindow::mouse_x, &EWindow::mouse_y);
+
+
+
+
+	//crosshair_pos_x = EMath::clamp_value_float(crosshair_pos_x, 0.0f, EGraphicCore::SCR_WIDTH - 1.0f);
+	//crosshair_pos_y = EMath::clamp_value_float(crosshair_pos_y, 0.0f, EGraphicCore::SCR_HEIGHT - 1.0f);
+	if
+	(
+		(glfwGetWindowAttrib(EWindow::main_window, GLFW_FOCUSED) == 1)
+		&
+		(!EWindow::window_editor->is_active)
+	)
+	{
+		SetCursorPos(1920.0 / 2.0f, 1080.0 / 2.0f);
+		prev_mouse_x = 1920.0 / 2.0f;
+		prev_mouse_y = 1080.0 / 2.0f;
+	}
+
+	if (EWindow::scroll > 0) game_camera->zoom /= 0.5f;
+	if (EWindow::scroll < 0) game_camera->zoom *= 0.5f;
 
 	if (EWindow::window_editor->is_active)
 	{
@@ -136,8 +114,113 @@ void EWindowTest::update(float _d)
 		_d = 0.0f;
 	}
 
+	if (link_to_player != NULL)
+		if (!glfwGetKey(EWindow::main_window, GLFW_KEY_SPACE) == GLFW_PRESS)
+		{
+			if ((!EWindow::window_editor->is_active))
+			{
+				if (EWindow::RMB)
+				{
+					game_camera->position_x = *link_to_player->position_x * game_camera->zoom + (EWindow::mouse_x - EGraphicCore::SCR_WIDTH / 2.0f) * 0.5f;
+					game_camera->position_y = *link_to_player->position_y * game_camera->zoom + (EWindow::mouse_y - EGraphicCore::SCR_HEIGHT / 2.0f) * 0.5f;
+				}
+				else
+				{
+					game_camera->position_x = *link_to_player->position_x * game_camera->zoom + (EWindow::mouse_x - EGraphicCore::SCR_WIDTH / 2.0f) * 0.00f;
+					game_camera->position_y = *link_to_player->position_y * game_camera->zoom + (EWindow::mouse_y - EGraphicCore::SCR_HEIGHT / 2.0f) * 0.00f;
+				}
 
-	//remove/destroy entities
+			}
+
+		}
+
+	if (EWindow::window_editor->is_active)
+	{
+		game_camera->position_x = free_camera_x * game_camera->zoom;
+		game_camera->position_y = free_camera_y * game_camera->zoom;
+	}
+
+
+
+	add_time_process("game_window_update");
+
+	//crosshair_pos_x = ECamera::get_world_position_x(game_camera);
+	//crosshair_pos_y = ECamera::get_world_position_y(game_camera);
+	crosshair_add_x += EWindow::mouse_speed_x / 1.0f;
+	crosshair_add_y += EWindow::mouse_speed_y / 1.0f;
+	
+	crosshair_add_x = EMath::clamp_value_float(crosshair_add_x, -0.0f, EGraphicCore::SCR_WIDTH / 1.0f);
+	crosshair_add_y = EMath::clamp_value_float(crosshair_add_y, -0.0f, EGraphicCore::SCR_HEIGHT / 1.0f);
+
+
+	crosshair_pos_x = (game_camera->position_x - EGraphicCore::SCR_WIDTH / 2.0f + crosshair_add_x) / game_camera->zoom;
+	crosshair_pos_y = (game_camera->position_y - EGraphicCore::SCR_HEIGHT / 2.0f + crosshair_add_y) / game_camera->zoom ;
+
+	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_Z) == GLFW_PRESS) & (!EWindow::button_main_group_pressed))
+	{
+		EWindow::window_editor->is_active = !EWindow::window_editor->is_active;
+
+		EWindow::button_main_group_pressed = true;
+
+		if (EWindow::window_editor->is_active)
+		{glfwSetInputMode(EWindow::main_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);}
+		else
+		{glfwSetInputMode(EWindow::main_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN); }
+	}
+
+	if (false)
+	{
+		if (glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS)
+		{
+			if (LMB)
+			{
+				EPath::block
+					[EMath::clamp_value_int((int)(ECamera::get_world_position_x(game_camera) / EPath::PATH_SIZE), 0, EPath::PATH_DIM - 1)]
+				[EMath::clamp_value_int((int)(ECamera::get_world_position_y(game_camera) / EPath::PATH_SIZE), 0, EPath::PATH_DIM - 1)]
+				= true;
+
+
+
+				//EPath::block[0][0] = 1000;
+			}
+
+			if (RMB)
+			{
+				EPath::block
+					[EMath::clamp_value_int((int)(ECamera::get_world_position_x(game_camera) / EPath::PATH_SIZE), 0, EPath::PATH_DIM - 1)]
+				[EMath::clamp_value_int((int)(ECamera::get_world_position_y(game_camera) / EPath::PATH_SIZE), 0, EPath::PATH_DIM - 1)]
+				= false;
+
+				//EPath::block[0][0] = 1000;
+			}
+		}
+	}
+
+	
+
+	//----------------PATH MATRIX GABARITES----------------
+	left_path_draw = (int)((game_camera->position_x / game_camera->zoom - EGraphicCore::SCR_WIDTH / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) - 10; if (left_path_draw < 0) { left_path_draw = 0; }
+	right_path_draw = (int)((game_camera->position_x / game_camera->zoom + EGraphicCore::SCR_WIDTH / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) + 10; if (right_path_draw >= EPath::PATH_DIM) { right_path_draw = EPath::PATH_DIM - 1; }
+
+	down_path_draw = (int)((game_camera->position_y / game_camera->zoom - EGraphicCore::SCR_HEIGHT / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) - 10; if (down_path_draw < 0) { down_path_draw = 0; }
+	up_path_draw = (int)((game_camera->position_y / game_camera->zoom + EGraphicCore::SCR_HEIGHT / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) + 10; if (up_path_draw >= EPath::PATH_DIM) { up_path_draw = EPath::PATH_DIM - 1; }
+
+	//----------------DRAW BORDER GABARITES----------------
+	draw_border_left = (int)((game_camera->position_x - EGraphicCore::SCR_WIDTH / 1.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) - 1; if (draw_border_left < 0) { draw_border_left = 0; }
+	draw_border_right = (int)((game_camera->position_x + EGraphicCore::SCR_WIDTH / 1.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) + 1; if (draw_border_right >= ECluster::CLUSTER_DIM) { draw_border_right = ECluster::CLUSTER_DIM - 1;; }
+
+	draw_border_down = (int)((game_camera->position_y - EGraphicCore::SCR_HEIGHT / 1.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) - 1; if (draw_border_down < 0) { draw_border_down = 0; }
+	draw_border_up = (int)((game_camera->position_y + EGraphicCore::SCR_HEIGHT / 1.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) + 1; if (draw_border_up > ECluster::CLUSTER_DIM) { draw_border_up = ECluster::CLUSTER_DIM - 1; }
+
+	//----------------UPDATE BORDER GABARITES----------------
+	update_border_left = (int)((game_camera->position_x - EGraphicCore::SCR_WIDTH / 2.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) - 3; if (update_border_left < 0) { update_border_left = 0; }
+	update_border_right = (int)((game_camera->position_x + EGraphicCore::SCR_WIDTH / 2.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) + 3; if (update_border_right >= ECluster::CLUSTER_DIM) { update_border_right = ECluster::CLUSTER_DIM - 1;; }
+
+	update_border_down = (int)((game_camera->position_y - EGraphicCore::SCR_HEIGHT / 2.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) - 3; if (update_border_down < 0) { update_border_down = 0; }
+	update_border_up = (int)((game_camera->position_y + EGraphicCore::SCR_HEIGHT / 2.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) + 3; if (update_border_up > ECluster::CLUSTER_DIM) { update_border_up = ECluster::CLUSTER_DIM - 1; }
+
+
+		//remove/destroy entities
 	for (int i = draw_border_up; i >= draw_border_down; i--)
 	for (int j = draw_border_left; j <= draw_border_right; j++)
 	{
@@ -145,76 +228,10 @@ void EWindowTest::update(float _d)
 		{
 			Entity* e = ECluster::clusters[j][i]->entity_list.at(k);
 
-			if (*e->need_remove)
-			{
-				ECluster::clusters[j][i]->entity_list.erase(ECluster::clusters[j][i]->entity_list.begin() + k);
-			}
+			if (*e->need_remove){ECluster::clusters[j][i]->entity_list.erase(ECluster::clusters[j][i]->entity_list.begin() + k);}
 		}
 	}
 	//
-
-
-
-	if (EWindow::scroll > 0) game_camera->zoom /= 0.5f;
-	if (EWindow::scroll < 0) game_camera->zoom *= 0.5f;
-	//EWindow::window_editor->selected_entity = link_to_player;
-	
-
-	add_time_process("game_window_update");
-
-
-
-	//game_camera->position_x = round(game_camera->position_x);
-	//game_camera->position_y = round(game_camera->position_y);
-
-
-	//if (glfwGetKey(EWindow::main_window, GLFW_KEY_SPACE) == GLFW_PRESS)
-	//{
-	//	_d *= 0.10f;
-	//}
-
-
-	
-	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_Z) == GLFW_PRESS) & (!EWindow::button_main_group_pressed))
-	{
-		EWindow::window_editor->is_active = !EWindow::window_editor->is_active;
-
-		EWindow::button_main_group_pressed = true;
-	}
-
-	if (glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS)
-	{
-		if (LMB)
-		{
-			EPath::block
-				[EMath::clamp_value_int((int)(ECamera::get_world_position_x(game_camera) / EPath::PATH_SIZE), 0, EPath::PATH_DIM - 1)]
-			[EMath::clamp_value_int((int)(ECamera::get_world_position_y(game_camera) / EPath::PATH_SIZE), 0, EPath::PATH_DIM - 1)]
-			= true;
-
-
-
-			//EPath::block[0][0] = 1000;
-		}
-
-		if (RMB)
-		{
-			EPath::block
-				[EMath::clamp_value_int((int)(ECamera::get_world_position_x(game_camera) / EPath::PATH_SIZE), 0, EPath::PATH_DIM - 1)]
-			[EMath::clamp_value_int((int)(ECamera::get_world_position_y(game_camera) / EPath::PATH_SIZE), 0, EPath::PATH_DIM - 1)]
-			= false;
-
-			//EPath::block[0][0] = 1000;
-		}
-	}
-
-	
-
-	//----------------PATH MATRIX GABARITES----------------
-	left_path_draw = (int)((game_camera->position_x / game_camera->zoom - EGraphicCore::SCR_WIDTH / 2.0f) / EPath::PATH_SIZE) - 3; if (left_path_draw < 0) { left_path_draw = 0; }
-	right_path_draw = (int)((game_camera->position_x / game_camera->zoom + EGraphicCore::SCR_WIDTH / 2.0f) / EPath::PATH_SIZE) + 3; if (right_path_draw >= EPath::PATH_DIM) { right_path_draw = EPath::PATH_DIM - 1; }
-
-	down_path_draw = (int)((game_camera->position_y / game_camera->zoom - EGraphicCore::SCR_HEIGHT / 2.0f) / EPath::PATH_SIZE) - 3; if (down_path_draw < 0) { down_path_draw = 0; }
-	up_path_draw = (int)((game_camera->position_y / game_camera->zoom + EGraphicCore::SCR_HEIGHT / 2.0f) / EPath::PATH_SIZE) + 3; if (up_path_draw >= EPath::PATH_DIM) { up_path_draw = EPath::PATH_DIM - 1; }
 
 	int left_path_heat_draw = left_path_draw - 1;		if (left_path_heat_draw < 0)					{ left_path_heat_draw = 0; }
 	int right_path_heat_draw = right_path_draw + 1;		if (right_path_heat_draw >= EPath::PATH_DIM)	{ right_path_heat_draw = EPath::PATH_DIM - 1; }
@@ -223,8 +240,8 @@ void EWindowTest::update(float _d)
 	int down_path_heat_draw = down_path_draw - 1;		if (down_path_heat_draw < 0)					{ down_path_heat_draw = 0; }
 	add_time_process("game_window_pre_path");
 	//----------------ENTITIES PATH FIND----------------
-	for (int i = draw_border_up;	i >= draw_border_down;	i--)
-	for (int j = draw_border_left;	j <= draw_border_right;	j++)
+	for (int i = update_border_up;		i >= update_border_down;	i--)
+	for (int j = update_border_left;	j <= update_border_right;	j++)
 	for (Entity* e : ECluster::clusters[j][i]->entity_list)
 	{
 		//clear block
@@ -238,6 +255,8 @@ void EWindowTest::update(float _d)
 	//}
 
 	EPath::cooldown -= _d;
+
+	if (EWindow::window_editor->is_active) { EPath::cooldown = 0.0f; }
 
 	if (EPath::cooldown <= 0)
 	{
@@ -347,8 +366,8 @@ void EWindowTest::update(float _d)
 	}
 
 	
-	for (int i = draw_border_up; i >= draw_border_down; i--)
-	for (int j = draw_border_left; j <= draw_border_right; j++)
+	for (int i = update_border_up;		i >= update_border_down; i--)
+	for (int j = update_border_left;	j <= update_border_right; j++)
 	for (Entity* e : ECluster::clusters[j][i]->entity_list)
 	{
 		if (*e->shoot_cooldown > 0)
@@ -363,32 +382,19 @@ void EWindowTest::update(float _d)
 
 		if (e->controlled_by_player)
 		{
-			if (glfwGetKey(EWindow::main_window, GLFW_KEY_A) == GLFW_PRESS)
-			{
-				dir_x = -1;
-				//if (*e->speed_x > -100) { *e->speed_x = -100.0f; }
-			}
+			if (glfwGetKey(EWindow::main_window, GLFW_KEY_A) == GLFW_PRESS) {dir_x = -1;}
 
-			if (glfwGetKey(EWindow::main_window, GLFW_KEY_D) == GLFW_PRESS)
-			{
-				dir_x = 1;
-			}
+			if (glfwGetKey(EWindow::main_window, GLFW_KEY_D) == GLFW_PRESS)	{dir_x = 1;}
 
-			if (glfwGetKey(EWindow::main_window, GLFW_KEY_S) == GLFW_PRESS)
-			{
-				dir_y = -1;
-			}
+			if (glfwGetKey(EWindow::main_window, GLFW_KEY_S) == GLFW_PRESS)	{dir_y = -1;}
 
-			if (glfwGetKey(EWindow::main_window, GLFW_KEY_W) == GLFW_PRESS)
-			{
-				dir_y = 1;
-			}
+			if (glfwGetKey(EWindow::main_window, GLFW_KEY_W) == GLFW_PRESS) {dir_y = 1;}
 
 			if ((LMB) & (true) & (!EWindow::window_editor->is_active))
 			{
 				if (*e->shoot_cooldown <= 0.0f)
 				{
-					*e->shoot_cooldown += 0.333f;
+					*e->shoot_cooldown += 0.133f;
 
 					Entity* bullet = new Entity();
 					*bullet->position_x = *e->position_x;
@@ -405,24 +411,38 @@ void EWindowTest::update(float _d)
 
 					bullet->action_on_hit = &Entity::test_hit_action_self_destroy_on_hit;
 
-					float ray_length_x = ECamera::get_world_position_x(game_camera) - *e->position_x;
-					float ray_length_y = ECamera::get_world_position_y(game_camera) - *e->position_y;
+					
+					//float ray_length_x = ECamera::get_world_position_x(game_camera) - *e->position_x;
+					//float ray_length_y = ECamera::get_world_position_y(game_camera) - *e->position_y;
+					
+
+
+					float ray_length_x = crosshair_pos_x - *e->position_x;
+					float ray_length_y = crosshair_pos_y - *e->position_y;
 
 					float angleInRadian = atan2(ray_length_x, ray_length_y);
 					float angleInDegree = angleInRadian * 180 / 3.1415926;
 
-					std::cout << "angle is:" << angleInDegree << std::endl;
+					/*std::cout << "angle is:" << angleInDegree << std::endl;
 
-					float new_angle = angleInDegree;
-
-					
-
+					std::cout << "ray x:" << ray_length_x << std::endl;
+					std::cout << "ray y:" << ray_length_y << std::endl;*/
+					//float new_angle = angleInDegree;
 					//EFont::active_font->draw(EGraphicCore::batch, std::to_string(angleInDegree), ECamera::get_world_position_x(game_camera), ECamera::get_world_position_y(game_camera));
 
 					float dst = sqrt(ray_length_x * ray_length_x + ray_length_y * ray_length_y) + 1.0f;
+					//std::cout << "dst:" << dst << std::endl;
 
-					float new_x = *e->position_x + sin(new_angle) * dst;
-					float new_y = *e->position_y + cos(new_angle) * dst;
+					float recoil_angle = (angleInDegree + 5.0f - rand() % 10) * 3.1415926f / 180.0f;
+
+					float new_x = sin(recoil_angle) * dst;
+					float new_y = cos(recoil_angle) * dst;
+
+					//std::cout << "sin:" << new_x << std::endl;
+					//std::cout << "cos:" << new_y << std::endl;
+
+					crosshair_add_x = new_x + EGraphicCore::SCR_WIDTH / 2.0f;
+					crosshair_add_y = new_y + EGraphicCore::SCR_HEIGHT / 2.0f;
 
 					//SetCursorPos(EWindow::real_mouse_x + (ECamera::get_world_position_x(game_camera) - new_x), EWindow::real_mouse_y + (ECamera::get_world_position_y(game_camera) - new_y));
 
@@ -452,6 +472,7 @@ void EWindowTest::update(float _d)
 				EPath::path[(int)(*e->position_x / EPath::PATH_SIZE)][(int)(*e->position_y / EPath::PATH_SIZE)][EPath::active_buffer] = 1;
 			}
 		}
+
 		if (e->controlled_by_ai)
 		{
 			int path_pos_left = (int)((*e->position_x - *e->collision_left - 2.0f) / EPath::PATH_SIZE);
@@ -616,6 +637,8 @@ void EWindowTest::update(float _d)
 
 		*e->real_speed_x = *e->speed_x * _d;
 		*e->real_speed_y = *e->speed_y * _d;
+
+
 	}
 		////
 		////===>
@@ -634,10 +657,11 @@ void EWindowTest::update(float _d)
 		for (int u = 0; u < 2; u++)
 		if ((u == 0)||(need_second_move_update))
 		{
-			for (int i = draw_border_up; i >= draw_border_down; i--)
-			for (int j = draw_border_left; j <= draw_border_right; j++)
+			for (int i = update_border_up;		i >= update_border_down; i--)
+			for (int j = update_border_left;	j <= update_border_right; j++)
 			for (Entity* e : ECluster::clusters[j][i]->entity_list)
 			//if (!*e->already_updated)
+			if (!*e->inmovable)
 			{
 				bool collision_left = false;
 				bool collision_right = false;
@@ -649,169 +673,175 @@ void EWindowTest::update(float _d)
 				prev_cluster_x = (int)(*e->position_x / ECluster::CLUSTER_SIZE);
 				prev_cluster_y = (int)(*e->position_y / ECluster::CLUSTER_SIZE);
 
-				//left_side
-				if (*e->speed_x > 0)
+				if (!*e->already_moved_x)
 				{
-					for (int k = 0; k <= 1; k++)
-						for (int z = -1; z <= 1; z++)
-							if ((j + k >= 0) & (j + k <ECluster::CLUSTER_DIM) & (i + z >= 0) & (i + z < ECluster::CLUSTER_DIM))
-							for (Entity* e2 : ECluster::clusters[j + k][i + z]->entity_list)
-								if ((e != e2) & (! (*e->is_bullet & *e2->is_bullet)))
-								{
-									if (ECluster::collision_left(e, e2))
-									{
-										collision_left = true;
-										need_second_move_update = true;
-
-
-										
-											if ((*e->speed_x > * e2->speed_x))
+					//left_side
+					if (*e->real_speed_x > 0)
+					{
+						for (int k = 0; k <= 1; k++)
+							for (int z = -1; z <= 1; z++)
+								if ((j + k >= 0) & (j + k < ECluster::CLUSTER_DIM) & (i + z >= 0) & (i + z < ECluster::CLUSTER_DIM))
+									for (Entity* e2 : ECluster::clusters[j + k][i + z]->entity_list)
+										if ((e != e2) & (!(*e->is_bullet & *e2->is_bullet)))
+										{
+											if (ECluster::collision_left(e, e2))
 											{
-												*e->speed_y *= pow(0.1, _d);
+												collision_left = true;
+												need_second_move_update = true;
 
-												if (*e2->inmovable) { *e->speed_x = 0.5f;}
-												else
+												if ((*e->real_speed_x > * e2->real_speed_x))
 												{
-													total_mass = *e->mass + *e2->mass;
-													total_impulse = (*e->mass * *e->speed_x) + (*e2->mass * *e2->speed_x);
+													*e->speed_y *= pow(0.1, _d);
 
-													*e->speed_x = total_impulse / total_mass;
-													*e2->speed_x = total_impulse / total_mass;
+													if (*e2->inmovable) { *e->speed_x = 0.5f; }
+													else
+													{
+														total_mass = *e->mass + *e2->mass;
+														total_impulse = (*e->mass * *e->speed_x) + (*e2->mass * *e2->speed_x);
+
+														*e->speed_x = total_impulse / total_mass;
+														*e2->speed_x = total_impulse / total_mass;
+													}
+
+													//*e->position_x -= 1.0f;
 												}
-												
-												//*e->position_x -= 1.0f;
+
+
+
+
+												//std::cout << "-------BONK!-------" << std::endl;
+												*e->position_x = *e2->position_x - *e2->collision_left - *e->collision_right - 0.0f;
+
+												if (e->action_on_hit != NULL) { e->action_on_hit(e, e2, Entity::Side::HIT_SIDE_LEFT); }
+												if (e->action_on_hited != NULL) { e->action_on_hited(e2, e, Entity::Side::HIT_SIDE_LEFT); }
 											}
-										
-										
 
 
-										//std::cout << "-------BONK!-------" << std::endl;
-										*e->position_x = *e2->position_x - *e2->collision_left - *e->collision_right - 0.0f;
-
-										if (e->action_on_hit != NULL) { e->action_on_hit(e, e2, Entity::Side::HIT_SIDE_LEFT);}
-										if (e->action_on_hited != NULL) { e->action_on_hited(e2, e, Entity::Side::HIT_SIDE_LEFT); }
-									}
-
-
-								}
-				}
-
-				//right_side
-				if (*e->speed_x < 0)
-				{
-					for (int k = 1; k >= -1; k--)
-						for (int z = -1; z <= 1; z++)
-							if ((j + k >= 0) & (j + k < ECluster::CLUSTER_DIM) & (i + z >= 0) & (i + z < ECluster::CLUSTER_DIM))
-							for (Entity* e2 : ECluster::clusters[j + k][i + z]->entity_list)
-								if ((e != e2) & (!(*e->is_bullet & *e2->is_bullet)))
-								{
-									if (ECluster::collision_right(e, e2))
-									{
-										collision_right = true;
-										//any_collision = true;
-
-										if ((*e->speed_x) < (*e2->speed_x))
-										{
-											*e->speed_y *= pow(0.1, _d); 
-
-											if (*e2->inmovable) { *e->speed_x *= 0.5f;}
-											else
-											{
-												total_mass = *e->mass + *e2->mass;
-												total_impulse = (*e->mass * *e->speed_x) + (*e2->mass * *e2->speed_x);
-
-												*e->speed_x = total_impulse / total_mass;
-												*e2->speed_x = total_impulse / total_mass;
-											}
-											//*e->position_x -= 1.0f;
 										}
+					}
 
-										*e->position_x = *e2->position_x + *e2->collision_right + *e->collision_left + 0.5f;
-
-										if (e->action_on_hit != NULL) { e->action_on_hit(e, e2, Entity::Side::HIT_SIDE_RIGHT); }
-										if (e->action_on_hited != NULL) { e->action_on_hited(e2, e, Entity::Side::HIT_SIDE_RIGHT); }
-									}
-								}
-				}
-
-				//up_side
-				if (*e->speed_y < 0)
-				{
-					for (int k = 1; k >= -1; k--)
-						for (int z = -1; z <= 1; z++)
-							if ((j + z >= 0) & (j + z < ECluster::CLUSTER_DIM) & (i + k >= 0) & (i + k < ECluster::CLUSTER_DIM))
-							for (Entity* e2 : ECluster::clusters[j + z][i + k]->entity_list)
-								if ((e != e2) & (!(*e->is_bullet & *e2->is_bullet)))
-								{
-									if (ECluster::collision_up(e, e2))
-									{
-										collision_up = true;
-										need_second_move_update = true;
-
-										if ((*e->speed_y) < (*e2->speed_y))
+					//right_side
+					if (*e->real_speed_x < 0)
+					{
+						for (int k = 1; k >= -1; k--)
+							for (int z = -1; z <= 1; z++)
+								if ((j + k >= 0) & (j + k < ECluster::CLUSTER_DIM) & (i + z >= 0) & (i + z < ECluster::CLUSTER_DIM))
+									for (Entity* e2 : ECluster::clusters[j + k][i + z]->entity_list)
+										if ((e != e2) & (!(*e->is_bullet & *e2->is_bullet)))
 										{
-											*e->speed_x *= pow(0.1, _d);
-
-											if (*e2->inmovable) { *e->speed_y *= 0.5f; }
-											else
+											if (ECluster::collision_right(e, e2))
 											{
-												total_mass = *e->mass + *e2->mass;
-												total_impulse = (*e->mass * *e->speed_y) + (*e2->mass * *e2->speed_y);
+												collision_right = true;
+												//any_collision = true;
 
-												*e->speed_y = total_impulse / total_mass;
-												*e2->speed_y = total_impulse / total_mass;
-											}
-											//*e->position_x -= 1.0f;
-										}
+												if ((*e->speed_x) < (*e2->speed_x))
+												{
+													*e->speed_y *= pow(0.1, _d);
 
-										if (e->action_on_hit != NULL) { e->action_on_hit(e, e2, Entity::Side::HIT_SIDE_UP); }
-										if (e->action_on_hited != NULL) { e->action_on_hited(e2, e, Entity::Side::HIT_SIDE_UP); }
-									}
+													if (*e2->inmovable) { *e->speed_x *= 0.5f; }
+													else
+													{
+														total_mass = *e->mass + *e2->mass;
+														total_impulse = (*e->mass * *e->speed_x) + (*e2->mass * *e2->speed_x);
 
+														*e->speed_x = total_impulse / total_mass;
+														*e2->speed_x = total_impulse / total_mass;
+													}
+													//*e->position_x -= 1.0f;
+												}
 
-								}
-				}
+												*e->position_x = *e2->position_x + *e2->collision_right + *e->collision_left + 0.5f;
 
-				//down_side
-				if (*e->speed_y > 0)
-				{
-					for (int k = -1; k <= 1; k++)
-						for (int z = -1; z <= 1; z++)
-							if ((j + z >= 0) & (j + z < ECluster::CLUSTER_DIM) & (i + k >= 0) & (i + k < ECluster::CLUSTER_DIM))
-							for (Entity* e2 : ECluster::clusters[j + z][i + k]->entity_list)
-								if ((e != e2) & (!(*e->is_bullet & *e2->is_bullet)))
-								{
-									if (ECluster::collision_down(e, e2))
-									{
-										collision_down = true;
-										need_second_move_update = true;
-
-										if ((*e->speed_y) > (*e2->speed_y))
-										{
-											*e->speed_x *= pow(0.01, _d);
-
-											if (*e2->inmovable) { *e->speed_y *= 0.5f;  }
-											else
-											{
-												total_mass = *e->mass + *e2->mass;
-												total_impulse = (*e->mass * *e->speed_y) + (*e2->mass * *e2->speed_y);
-
-												*e->speed_y = total_impulse / total_mass;
-												*e2->speed_y = total_impulse / total_mass;
-												//*e->position_x -= 1.0f;
+												if (e->action_on_hit != NULL) { e->action_on_hit(e, e2, Entity::Side::HIT_SIDE_RIGHT); }
+												if (e->action_on_hited != NULL) { e->action_on_hited(e2, e, Entity::Side::HIT_SIDE_RIGHT); }
 											}
 										}
-
-										if (e->action_on_hit != NULL) { e->action_on_hit(e, e2, Entity::Side::HIT_SIDE_DOWN); }
-										if (e->action_on_hited != NULL) { e->action_on_hited(e2, e, Entity::Side::HIT_SIDE_DOWN); }
-									}
-								}
+					}
 				}
 
+				if (!*e->already_moved_y)
+				{
+					//up_side
+					if (*e->real_speed_y < 0)
+					{
+						for (int k = 1; k >= -1; k--)
+							for (int z = -1; z <= 1; z++)
+								if ((j + z >= 0) & (j + z < ECluster::CLUSTER_DIM) & (i + k >= 0) & (i + k < ECluster::CLUSTER_DIM))
+									for (Entity* e2 : ECluster::clusters[j + z][i + k]->entity_list)
+										if ((e != e2) & (!(*e->is_bullet & *e2->is_bullet)))
+										{
+											if (ECluster::collision_up(e, e2))
+											{
+												collision_up = true;
+												need_second_move_update = true;
+
+												if ((*e->speed_y) < (*e2->speed_y))
+												{
+													*e->speed_x *= pow(0.1, _d);
+
+													if (*e2->inmovable) { *e->speed_y *= 0.5f; }
+													else
+													{
+														total_mass = *e->mass + *e2->mass;
+														total_impulse = (*e->mass * *e->speed_y) + (*e2->mass * *e2->speed_y);
+
+														*e->speed_y = total_impulse / total_mass;
+														*e2->speed_y = total_impulse / total_mass;
+													}
+													//*e->position_x -= 1.0f;
+												}
+
+												if (e->action_on_hit != NULL) { e->action_on_hit(e, e2, Entity::Side::HIT_SIDE_UP); }
+												if (e->action_on_hited != NULL) { e->action_on_hited(e2, e, Entity::Side::HIT_SIDE_UP); }
+											}
+
+
+										}
+					}
+
+					//down_side
+					if (*e->real_speed_y > 0)
+					{
+						for (int k = -1; k <= 1; k++)
+							for (int z = -1; z <= 1; z++)
+								if ((j + z >= 0) & (j + z < ECluster::CLUSTER_DIM) & (i + k >= 0) & (i + k < ECluster::CLUSTER_DIM))
+									for (Entity* e2 : ECluster::clusters[j + z][i + k]->entity_list)
+										if ((e != e2) & (!(*e->is_bullet & *e2->is_bullet)))
+										{
+											if (ECluster::collision_down(e, e2))
+											{
+												collision_down = true;
+												need_second_move_update = true;
+
+												if ((*e->speed_y) > (*e2->speed_y))
+												{
+													*e->speed_x *= pow(0.1, _d);
+
+													if (*e2->inmovable) { *e->speed_y *= 0.5f; }
+													else
+													{
+														total_mass = *e->mass + *e2->mass;
+														total_impulse = (*e->mass * *e->speed_y) + (*e2->mass * *e2->speed_y);
+
+														*e->speed_y = total_impulse / total_mass;
+														*e2->speed_y = total_impulse / total_mass;
+														//*e->position_x -= 1.0f;
+													}
+												}
+
+												if (e->action_on_hit != NULL) { e->action_on_hit(e, e2, Entity::Side::HIT_SIDE_DOWN); }
+												if (e->action_on_hited != NULL) { e->action_on_hited(e2, e, Entity::Side::HIT_SIDE_DOWN); }
+											}
+										}
+					}
+				}
 			
 				{
 					*e->real_speed_x = *e->speed_x * _d;
 					*e->real_speed_y = *e->speed_y * _d;
+
+					if (*e->real_speed_x * *e->real_speed_x < 0.05f) { *e->real_speed_x = 0.0f; }
+					if (*e->real_speed_y * *e->real_speed_y < 0.05f) { *e->real_speed_y = 0.0f; }
 
 					if ((!collision_left) && (!collision_right) && (!*e->already_moved_x))
 					{
@@ -829,7 +859,7 @@ void EWindowTest::update(float _d)
 					}
 				}
 
-				if (!need_second_move_update)
+				if ((!need_second_move_update) & (!*e->is_bullet))
 				{
 					*e->speed_x *= pow(0.5, _d);
 					*e->speed_y *= pow(0.5, _d);
@@ -878,11 +908,6 @@ void EWindowTest::update(float _d)
 
 	add_time_process("entities_update");
 
-	
-	
-
-	add_time_process("cluster_change");
-
 }
 
 void EWindowTest::default_draw(float _d)
@@ -901,12 +926,12 @@ void EWindowTest::draw_shadows()
 
 	
 	for (int i = draw_border_up; i >= draw_border_down; i--)
-		for (int j = draw_border_left; j <= draw_border_right; j++)
-			for (Entity* e : ECluster::clusters[j][i]->entity_list)
-			{
-				Entity::draw_sprite(e, EGraphicCore::batch, 0.1f, true);
-				//EGraphicCore::batch->draw_gabarite(*e->position_x, *e->position_y, 300.0f, 100.0f, EGraphicCore::gabarite_white_pixel);
-			}
+	for (int j = draw_border_left; j <= draw_border_right; j++)
+	for (Entity* e : ECluster::clusters[j][i]->entity_list)
+	{
+		Entity::draw_sprite(e, EGraphicCore::batch, 0.1f, true);
+		//EGraphicCore::batch->draw_gabarite(*e->position_x, *e->position_y, 300.0f, 100.0f, EGraphicCore::gabarite_white_pixel);
+	}
 	
 	//EGraphicCore::batch->draw_gabarite(0.0f, 0.0f, 100.0f, 100.0f, EGraphicCore::gabarite_white_pixel);
 
@@ -938,7 +963,7 @@ void EWindowTest::draw_shadows()
 
 	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
 
-	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3((EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1, (EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1, 0.0f));
+	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(round(EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1, round(EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1, 0.0f));
 	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x * game_camera->zoom, EGraphicCore::correction_y * game_camera->zoom, 1));
 
 	transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
@@ -948,52 +973,24 @@ void EWindowTest::draw_shadows()
 void EWindowTest::draw(float _d)
 {
 
-	if (link_to_player != NULL)
-	if (!glfwGetKey(EWindow::main_window, GLFW_KEY_SPACE) == GLFW_PRESS)
-	{
-		if ((!EWindow::window_editor->is_active))
-		{
-			if (EWindow::RMB)
-			{
-				game_camera->position_x = *link_to_player->position_x * game_camera->zoom + (EWindow::mouse_x - EGraphicCore::SCR_WIDTH / 2.0f) * 0.5f;
-				game_camera->position_y = *link_to_player->position_y * game_camera->zoom + (EWindow::mouse_y - EGraphicCore::SCR_HEIGHT / 2.0f) * 0.5f;
-			}
-			else
-			{
-				game_camera->position_x = *link_to_player->position_x * game_camera->zoom + (EWindow::mouse_x - EGraphicCore::SCR_WIDTH / 2.0f) * 0.00f;
-				game_camera->position_y = *link_to_player->position_y * game_camera->zoom + (EWindow::mouse_y - EGraphicCore::SCR_HEIGHT / 2.0f) * 0.00f;
-			}
 
-		}
 
-	}
-	if (EWindow::window_editor->is_active)
-	{
-		game_camera->position_x = free_camera_x * game_camera->zoom;
-		game_camera->position_y = free_camera_y * game_camera->zoom;
-	}
 
 	//game_camera->position_x = round(game_camera->position_x / 10.0f) * 10.0f;
 	//game_camera->position_y = round(game_camera->position_y / 10.0f) * 10.0f;
 
-	game_camera->position_x = round(game_camera->position_x );
-	game_camera->position_y = round(game_camera->position_y );
+	//game_camera->position_x = round(game_camera->position_x );
+	//game_camera->position_y = round(game_camera->position_y );
 
 
-	//----------------PATH MATRIX GABARITES----------------
-	draw_border_left = (int)((game_camera->position_x - EGraphicCore::SCR_WIDTH / 3.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) - 1; if (draw_border_left < 0) { draw_border_left = 0; }
-	draw_border_right = (int)((game_camera->position_x + EGraphicCore::SCR_WIDTH / 3.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) + 1; if (draw_border_right >= ECluster::CLUSTER_DIM) { draw_border_right = ECluster::CLUSTER_DIM - 1;; }
 
-	draw_border_down = (int)((game_camera->position_y - EGraphicCore::SCR_HEIGHT / 3.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) - 1; if (draw_border_down < 0) { draw_border_down = 0; }
-	draw_border_up = (int)((game_camera->position_y + EGraphicCore::SCR_HEIGHT / 3.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) + 1; if (draw_border_up > ECluster::CLUSTER_DIM) { draw_border_up = ECluster::CLUSTER_DIM - 1; }
-
-	//----------------PATH MATRIX SPREAD----------------
 
 
 	//for (int i = EPath::clamp_phase; i < EPath::PATH_DIM; i++)
 
 
 	
+	//----------------DRAW TERRAIN AND SHADOW----------------
 	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
 
 	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3((EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1, (EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1, 0.0f));
@@ -1023,7 +1020,7 @@ void EWindowTest::draw(float _d)
 		}
 		else
 		{
-			EGraphicCore::batch->setcolor_lum(EColor::COLOR_WHITE, 1.0f - EMath::clamp_value_float(EPath::path[j][i][EPath::active_buffer] / 100.0f, 0.0f, 1.0f));
+			EGraphicCore::batch->setcolor_lum(EColor::COLOR_WHITE, (1.0f - EMath::clamp_value_float(EPath::path[j][i][EPath::active_buffer] / 200.0f, 0.0f, 1.0f)) * 0.9f + 0.1f);
 
 			if (EPath::path[j][i][EPath::active_buffer] < 5)
 			{
@@ -1044,20 +1041,24 @@ void EWindowTest::draw(float _d)
 	add_time_process("y-sort begin");
 	//----------------DRAW ENTITIES----------------
 
-	EGraphicCore::batch->setcolor_alpha(EColor::COLOR_GREEN, 0.55f);
-	EGraphicCore::batch->draw_gabarite(draw_border_left * ECluster::CLUSTER_SIZE, draw_border_down * ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, EGraphicCore::gabarite_white_pixel);
 
-	EGraphicCore::batch->setcolor_alpha(EColor::COLOR_RED, 0.55f);
-	EGraphicCore::batch->draw_gabarite(draw_border_right * ECluster::CLUSTER_SIZE, draw_border_up * ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, EGraphicCore::gabarite_white_pixel);
+	//draw borders
+	if (EWindow::window_editor->is_active)
+	{
+		EGraphicCore::batch->setcolor_alpha(EColor::COLOR_GREEN, 0.55f);
+		EGraphicCore::batch->draw_gabarite(draw_border_left * ECluster::CLUSTER_SIZE, draw_border_down * ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, EGraphicCore::gabarite_white_pixel);
 
+		EGraphicCore::batch->setcolor_alpha(EColor::COLOR_RED, 0.55f);
+		EGraphicCore::batch->draw_gabarite(draw_border_right * ECluster::CLUSTER_SIZE, draw_border_up * ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, EGraphicCore::gabarite_white_pixel);
+	}
 
-	//int cluster_collector_start_x = 
+	//cluster rama draw
 	if (glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS)
 	for (int i = draw_border_up; i >= draw_border_down; i--)
 	for (int j = draw_border_left; j <= draw_border_right; j++)
 		{
 			EGraphicCore::batch->setcolor(EColor::COLOR_BLACK);
-			EGraphicCore::batch->draw_rama(j * ECluster::CLUSTER_SIZE, i * ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, 2, EGraphicCore::gabarite_white_pixel);
+			EGraphicCore::batch->draw_rama(j * ECluster::CLUSTER_SIZE, i * ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, 2 / game_camera->zoom, EGraphicCore::gabarite_white_pixel);
 		}
 
 	std::vector<Entity*> draw_sort_buffer;
@@ -1142,8 +1143,17 @@ void EWindowTest::draw(float _d)
 
 	
 	add_time_process("y-sort");
-	
 
+
+	
+	EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
+	EGraphicCore::batch->draw_gabarite
+	(
+		crosshair_pos_x - 3.0f,
+		crosshair_pos_y - 3.0f,
+		7.0f,
+		7.0f,
+		EGraphicCore::gabarite_white_pixel);
 
 	
 	/*EGraphicCore::batch->setcolor(EColor::COLOR_BLACK);
@@ -1163,9 +1173,13 @@ void EWindowTest::draw_interface(float _d)
 
 	EGraphicCore::batch->setcolor(EColor::COLOR_DARK_GRAY);
 	EGraphicCore::batch->draw_gabarite(250.0f, 5.0f, 200.0f, 20.0f, EGraphicCore::gabarite_white_pixel);
-
 	EGraphicCore::batch->setcolor(EColor::COLOR_LIGHT_GRAY);
-	EFont::active_font->draw(EGraphicCore::batch, std::to_string(game_camera->position_x), 257.0f, 7.0f);
+	EFont::active_font->draw(EGraphicCore::batch, std::to_string(crosshair_add_x), 257.0f, 7.0f);
+
+	EGraphicCore::batch->setcolor(EColor::COLOR_DARK_GRAY);
+	EGraphicCore::batch->draw_gabarite(450.0f, 5.0f, 200.0f, 20.0f, EGraphicCore::gabarite_white_pixel);
+	EGraphicCore::batch->setcolor(EColor::COLOR_LIGHT_GRAY);
+	EFont::active_font->draw(EGraphicCore::batch, std::to_string(crosshair_add_y), 457.0f, 7.0f);
 
 	if (time_process_active)
 	{

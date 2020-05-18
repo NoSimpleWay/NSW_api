@@ -20,11 +20,23 @@ public:
 
 	virtual void draw_interface(float _d);
 
+	//
 		int draw_border_left;
 		int draw_border_right;
 
 		int draw_border_down;
 		int draw_border_up;
+	//
+
+
+
+	//
+		int update_border_left;
+		int update_border_right;
+
+		int update_border_down;
+		int update_border_up;
+	//
 
 		int left_path_draw;
 		int right_path_draw;
@@ -46,5 +58,11 @@ public:
 	short terrain[EPath::PATH_DIM][EPath::PATH_DIM];
 	
 	void generate_terrain();
+
+	float crosshair_pos_x;
+	float crosshair_pos_y;
+
+	float crosshair_add_x;
+	float crosshair_add_y;
 
 };

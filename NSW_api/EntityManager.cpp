@@ -242,6 +242,51 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 	}
 }
 
+void Entity::update_path_block(Entity* _e)
+{
+	
+		int path_pos_x = int(*_e->position_x / EPath::PATH_SIZE);
+		int path_pos_y = int(*_e->position_y / EPath::PATH_SIZE);
+
+		int cluster_pos_x = int(*_e->position_x / ECluster::CLUSTER_SIZE);
+		int cluster_pos_y = int(*_e->position_y / ECluster::CLUSTER_SIZE);
+
+		//clear block
+		for (int j = path_pos_x - 20; j <= path_pos_x + 20; j++)
+		for (int i = path_pos_y - 20; i <= path_pos_y + 20; i++)
+		if ((j >= 0) & (j < EPath::PATH_DIM) & (i >= 0) & (i < EPath::PATH_DIM))
+		{
+			EPath::block[j][i] = false;
+		}
+
+		//set block
+	
+	
+		spread_path_block(_e);
+}
+
+void Entity::spread_path_block(Entity* _e)
+{
+	int cluster_pos_x = int(*_e->position_x / ECluster::CLUSTER_SIZE);
+	int cluster_pos_y = int(*_e->position_y / ECluster::CLUSTER_SIZE);
+	
+		for (int cj = cluster_pos_x - 3; cj <= cluster_pos_x + 3; cj++)
+		for (int ci = cluster_pos_y - 3; ci <= cluster_pos_y + 3; ci++)
+		if ((cj >= 0) & (cj < ECluster::CLUSTER_DIM) & (ci >= 0) & (ci < ECluster::CLUSTER_DIM))
+		for (Entity* e: ECluster::clusters[cj][ci]->entity_list)
+		if (*e->inmovable)
+		{
+			int block_start_x = (EMath::clamp_value_int((int)((*e->position_x - *e->collision_left)  / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+			int block_end_x = (EMath::clamp_value_int((int)((*e->position_x + *e->collision_right)  / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+
+			int block_start_y = (EMath::clamp_value_int((int)((*e->position_y - *e->collision_down)  / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+			int block_end_y = (EMath::clamp_value_int((int)((*e->position_y + *e->collision_up)  / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+
+			for (int j = block_start_x; j <= block_end_x; j++)
+			for (int i = block_start_y; i <= block_end_y; i++)
+			{EPath::block[j][i] = true;}
+		}
+}
 bool ECluster::collision_left(Entity* _a, Entity* _b)
 {
 	float pseudo_line = *_b->position_x - *_b->collision_left - *_a->collision_right;

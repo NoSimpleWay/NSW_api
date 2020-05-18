@@ -57,8 +57,8 @@ public:
 	float window_size_x = 100.0f;
 	float window_size_y = 100.0f;
 
-	static int mouse_x;
-	static int mouse_y;
+	static double mouse_x;
+	static double mouse_y;
 	
 	static int prev_mouse_x;
 	static int prev_mouse_y;

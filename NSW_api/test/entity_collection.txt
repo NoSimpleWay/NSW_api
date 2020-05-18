@@ -200,3 +200,69 @@ collision_left	20.000000
 
 =====================================
 
+ADD_NEW_ENTITY	3226.000000	2095.000000
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/tall_building_c18_corner_left.png
+texture_offset_x	-280.000000
+texture_offset_y	2.000000
+texture_copies	1
+add_new_texture	data/textures/tall_building_c18_wall.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_copies	5
+add_new_texture	data/textures/tall_building_c18_corner_right.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/tall_building_c18_window..png
+texture_offset_x	-249.000000
+texture_offset_y	87.000000
+texture_copies	7
+*inmovable
+collision_up	207.000000
+collision_down	0.000000
+collision_right	403.000000
+collision_left	283.000000
+- PUT TO COLLECTION -
+
+=====================================
+
+ADD_NEW_ENTITY	3226.000000	2095.000000
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/tall_building_c18_corner_left.png
+texture_offset_x	-280.000000
+texture_offset_y	2.000000
+texture_copies	1
+add_new_texture	data/textures/tall_building_c18_wall.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_copies	5
+add_new_texture	data/textures/tall_building_c18_corner_right.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/tall_building_c18_window..png
+texture_offset_x	-249.000000
+texture_offset_y	87.000000
+texture_copies	7
+*inmovable
+collision_up	207.000000
+collision_down	0.000000
+collision_right	403.000000
+collision_left	283.000000
+- PUT TO COLLECTION -
+
+=====================================
+

@@ -17,8 +17,8 @@ ETextureAtlas* EWindow::shadow_FBO;
 
 unsigned int EWindow::transformLoc;
 
-int EWindow::mouse_x = 0;
-int EWindow::mouse_y = 0;
+double EWindow::mouse_x = 0;
+double EWindow::mouse_y = 0;
 
 int EWindow::saved_pos_x = 0;
 int EWindow::saved_pos_y = 0;

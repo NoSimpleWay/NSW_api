@@ -3,6 +3,7 @@
 #include <vector>
 #include "NSW_api/EGabarite.h"
 #include "NSW_api/Batcher.h"
+#include "EPath.h"
 
 
 class ECluster;
@@ -96,6 +97,9 @@ public:
 
 
 	static std::vector <Entity*> entity_collection_list;
+
+	static void update_path_block(Entity* _e);
+	static void spread_path_block(Entity* _e);
 };
 
 

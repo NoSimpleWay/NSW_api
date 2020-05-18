@@ -14,6 +14,7 @@ public:
 
 	std::vector <EButton*> sprite_button_list;
 	Entity* selected_entity;
+	Entity* prev_entity;
 	int selected_sprite_id;
 	int selected_frame_id;
 	EButton* selected_sprite_button;

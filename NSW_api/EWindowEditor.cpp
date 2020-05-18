@@ -485,8 +485,34 @@ void EWindowEditor::update(float _d)
 	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_V) == GLFW_PRESS) & (!EWindow::button_main_group_pressed) & (selected_entity != NULL))
 	{
 		EWindow::button_main_group_pressed = true;
-		
+		if
+		(
+			(glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+			||
+			(glfwGetKey(EWindow::main_window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS)
+		)
+		{
+			prev_entity = selected_entity;
+		}
+				
 		clone_entity(selected_entity);
+
+
+		if
+		(
+			(glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+			||
+			(glfwGetKey(EWindow::main_window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS)
+		)
+		{
+			if (ECamera::get_world_position_y(EWindow::window_test->game_camera) >= *prev_entity->position_y+*prev_entity->collision_up)
+			{
+				*selected_entity->position_x = *prev_entity->position_x;
+				*selected_entity->position_y = *prev_entity->position_y + *prev_entity->collision_up + *selected_entity->collision_down;
+
+				*selected_entity->need_change_cluster = true;
+			}
+		}
 
 	}
 
@@ -796,6 +822,8 @@ void EWindowEditor::update(float _d)
 				*selected_entity->position_y += EWindow::mouse_speed_y * mul;
 
 				*selected_entity->need_change_cluster = true;
+
+				Entity::update_path_block(selected_entity);
 			}
 
 			if (!selected_entity_list.empty())
@@ -806,6 +834,7 @@ void EWindowEditor::update(float _d)
 					*e->position_y += EWindow::mouse_speed_y * mul;
 
 					*e->need_change_cluster = true;
+					Entity::update_path_block(e);
 				}
 			}
 
@@ -851,6 +880,7 @@ void EWindowEditor::clone_entity(Entity* _e)
 
 	*clone->mass = *_e->mass;
 
+
 	*clone->collision_down = *_e->collision_down;
 	*clone->collision_left = *_e->collision_left;
 	*clone->collision_right = *_e->collision_right;
@@ -858,6 +888,7 @@ void EWindowEditor::clone_entity(Entity* _e)
 
 	clone->controlled_by_ai = _e->controlled_by_ai;
 	clone->controlled_by_player = _e->controlled_by_player;
+	*clone->inmovable = *_e->inmovable;
 
 
 
@@ -873,6 +904,7 @@ void EWindowEditor::clone_entity(Entity* _e)
 		*clone_sprite->rotate_by_move = *spr->rotate_by_move;
 		*clone_sprite->rotate_by_target = *spr->rotate_by_target;
 
+		*clone_sprite->is_shadow = *spr->rotate_by_target;
 		*clone_sprite->wall_mode = *spr->wall_mode;
 
 		for (EGabarite* g : spr->gabarite)

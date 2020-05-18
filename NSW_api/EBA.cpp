@@ -417,6 +417,13 @@ void EBA::action_load_map(EButton* _b, float _d)
 
 	myfile.close();
 
+	for (int i = 0; i < ECluster::CLUSTER_DIM; i++)
+	for (int j = 0; j < ECluster::CLUSTER_DIM; j++)
+	for (Entity* e:ECluster::clusters[j][i]->entity_list)
+	{
+		Entity::spread_path_block(e);
+	}
+
 	EWindow::window_editor->update_sprite_buttons();
 }
 
@@ -574,7 +581,7 @@ void EBA::action_set_mass(EButton* _b, float _d)
 	if (EWindow::window_editor->selected_entity != NULL)
 	{
 		std::cout << "mass is:" << EMath::to_float(_b->text) << std::endl;
-		//EWindow::window_editor->selected_entity;
+		*EWindow::window_editor->selected_entity->mass = EMath::to_float(_b->text);
 	}
 }
 
@@ -583,7 +590,7 @@ void EBA::action_set_inmovable(EButton* _b, float _d)
 	if (EWindow::window_editor->selected_entity != NULL)
 	{
 		*EWindow::window_editor->selected_entity->inmovable = !*EWindow::window_editor->selected_entity->inmovable;
-		EWindow::window_editor->selected_or_unselected_color(_b, EWindow::window_editor->selected_entity->inmovable);
+		EWindow::window_editor->selected_or_unselected_color(_b, *EWindow::window_editor->selected_entity->inmovable);
 	}
 }
 

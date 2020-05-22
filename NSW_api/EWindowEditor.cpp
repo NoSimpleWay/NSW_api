@@ -350,6 +350,21 @@ EWindowEditor::~EWindowEditor()
 }
 
 
+float EWindowEditor::get_move_multiplier(float _zoom)
+{
+	if
+		(
+		(glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+			||
+			(glfwGetKey(EWindow::main_window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS)
+			)
+	{
+		return 0.1f * _zoom;
+	}
+
+	return 1.0f * _zoom;
+}
+
 void EWindowEditor::update(float _d)
 {
 	sprite_flash_cooldown -= _d* 2.0f;
@@ -635,16 +650,7 @@ void EWindowEditor::update(float _d)
 
 			if (selected_entity != NULL)
 			{
-				float mul = 1.0f;
-				if
-					(
-					(glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
-						||
-						(glfwGetKey(EWindow::main_window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS)
-						)
-				{
-					mul = 0.1f;
-				}
+				float mul = get_move_multiplier(1.0f / EWindow::window_test->game_camera->zoom);
 
 				if (!selected_entity->sprite_list.empty())
 				{
@@ -672,6 +678,50 @@ void EWindowEditor::update(float _d)
 			}
 
 			started_sprite_move = false;
+		}
+	}
+
+	if ((editor_mode == EditMode::EditSprites) & (selected_entity != NULL))
+	{
+		if (glfwGetKey(EWindow::main_window, GLFW_KEY_Z) == GLFW_PRESS)
+		{
+			if (!started_z_move)
+			{
+				saved_pos_x = real_mouse_x;
+				saved_pos_y = real_mouse_y;
+			}
+
+			started_z_move = true;
+
+			if (selected_entity != NULL)
+			{
+				float mul = get_move_multiplier(1.0f / EWindow::window_test->game_camera->zoom);
+
+				if (!selected_entity->sprite_list.empty())
+				{
+					selected_entity->sprite_list.at(selected_sprite_id)->offset_z.at(EWindow::window_editor->selected_frame_id) += mouse_speed_y * mul;
+				}
+
+
+				SetCursorPos(saved_pos_x, saved_pos_y);
+				prev_mouse_x = saved_pos_x;
+				prev_mouse_y = saved_pos_y;
+				//EWindow::push_cursor(EWindow::mouse_speed_x, EWindow::mouse_speed_y);
+			}
+		}
+		else
+		{
+			if (started_z_move)
+			{
+				selected_entity->sprite_list.at(selected_sprite_id)->offset_z.at(0) = round(selected_entity->sprite_list.at(selected_sprite_id)->offset_z.at(0));
+	
+
+				saved_pos_x = -1;
+				saved_pos_y = -1;
+
+			}
+
+			started_z_move = false;
 		}
 	}
 
@@ -747,16 +797,7 @@ void EWindowEditor::update(float _d)
 			}
 
 			started_collision_move = true;
-			float mul = 1.0f;
-			if
-			(
-				(glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
-				||
-				(glfwGetKey(EWindow::main_window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS)
-			)
-			{
-				mul = 0.1f;
-			}
+			float mul = get_move_multiplier(1.0f / EWindow::window_test->game_camera->zoom);
 
 
 			if (catched_collision_down)
@@ -805,16 +846,7 @@ void EWindowEditor::update(float _d)
 
 		
 		
-			float mul = 1.0f;
-			if
-				(
-				(glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
-				||
-				(glfwGetKey(EWindow::main_window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS)
-				)
-			{
-				mul = 0.1f;
-			}
+		float mul = get_move_multiplier(1.0f / EWindow::window_test->game_camera->zoom);
 
 			if (selected_entity != NULL)
 			{
@@ -904,15 +936,17 @@ void EWindowEditor::clone_entity(Entity* _e)
 		*clone_sprite->rotate_by_move = *spr->rotate_by_move;
 		*clone_sprite->rotate_by_target = *spr->rotate_by_target;
 
-		*clone_sprite->is_shadow = *spr->rotate_by_target;
+		*clone_sprite->is_shadow = *spr->is_shadow;
 		*clone_sprite->wall_mode = *spr->wall_mode;
 
 		for (EGabarite* g : spr->gabarite)
 		{
 			clone_sprite->gabarite.push_back(g);
+			clone_sprite->supermap.push_back(spr->supermap.at(id));
 
 			clone_sprite->offset_x.push_back(spr->offset_x.at(id));
 			clone_sprite->offset_y.push_back(spr->offset_y.at(id));
+			clone_sprite->offset_z.push_back(spr->offset_z.at(id));
 
 			clone_sprite->copies.push_back(spr->copies.at(id));
 

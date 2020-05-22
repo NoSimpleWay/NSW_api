@@ -23,6 +23,7 @@ public:
 
 	bool started_sprite_move;
 	bool started_entity_move;
+	bool started_z_move;
 	bool started_collision_move;
 
 	EButton* link_to_add_new_sprite_button;
@@ -35,6 +36,8 @@ public:
 
 	std::vector<EButton*> link_to_sprite_frame;
 	std::vector<EButton*> link_to_sprite_editor_group;
+
+	float get_move_multiplier(float _zoom);
 
 	virtual void update(float _d);
 	void clone_entity(Entity* _e);

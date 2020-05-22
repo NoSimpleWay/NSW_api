@@ -1,519 +1,9 @@
-ADD_NEW_ENTITY	1.000000	1.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	1.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	-1.062251
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-hit_action	
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	-1.235967
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-hit_action	
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	-0.686051
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-hit_action	
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	-0.338721
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-hit_action	
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	-0.258469
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-hit_action	
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	0.098626
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-hit_action	
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	7.070784
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-hit_action	
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	0.299999
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-hit_action	
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	377.466705	1037.143921
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	293.228241	1341.547119
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	44.110477	1475.522095
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	1865.961914
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	3516.712158
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-hit_action	
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	6232.271484
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-hit_action	
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	6131.012207
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-hit_action	
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	6156.382324
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-hit_action	
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	5492.669434
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-hit_action	
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	5530.796387
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-hit_action	
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	4439.012207
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-hit_action	
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	4416.518555
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-hit_action	
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	5004.898438
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-hit_action	
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1.000000	5405.687012
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-hit_action	
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	662.621765	1926.542236
-ADD_NEW_SPRITE
-*rotate_by_move
-add_new_texture	data/textures/mech_1.png
-texture_offset_x	-27.000000
-texture_offset_y	-12.000000
-texture_copies	1
-add_new_texture	data/textures/mech_2.png
-texture_offset_x	-18.000000
-texture_offset_y	-11.000000
-texture_copies	1
-add_new_texture	data/textures/mech_3.png
-texture_offset_x	-27.000000
-texture_offset_y	-13.000000
-texture_copies	1
-add_new_texture	data/textures/mech_4.png
-texture_offset_x	-16.000000
-texture_offset_y	-13.000000
-texture_copies	1
-mass	10.000000
-collision_up	20.000000
-collision_down	20.000000
-collision_right	20.000000
-collision_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1165.776611	128.336838
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	854.791016	3007.899414
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1007.839050	3125.719971
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1406.948486	2778.604492
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1570.778931	2802.429688
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1682.152466	4.166557
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	1991.307007	247.073029
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
 ADD_NEW_ENTITY	1783.000000	1443.000000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/canal_c18.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 *inmovable
 collision_up	198.999878
@@ -530,46 +20,56 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/wall_with_neon_lines_corner_left.png
 texture_offset_x	-210.000000
 texture_offset_y	-7.000000
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/wall_with_neon_lines.png
 texture_offset_x	-19.000000
 texture_offset_y	4.000000
+texture_offset_z	0.000000
 texture_copies	4
 add_new_texture	data/textures/wall_with_neon_lines_corner_right.png
 texture_offset_x	-12.700012
 texture_offset_y	-0.000001
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/white_pixel.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 ADD_NEW_SPRITE
 add_new_texture	data/textures/roof_metal_up_01.png
 texture_offset_x	-199.000000
 texture_offset_y	149.000000
+texture_offset_z	0.000000
 texture_copies	4
 ADD_NEW_SPRITE
 add_new_texture	data/textures/roof_metal_01.png
 texture_offset_x	-199.000000
 texture_offset_y	86.000000
+texture_offset_z	0.000000
 texture_copies	4
 ADD_NEW_SPRITE
 *wall_mode
 add_new_texture	data/textures/roof_metal_corner_01.png
 texture_offset_x	-205.000000
 texture_offset_y	65.000000
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/roof_metal_01_skew.png
 texture_offset_x	-2.000000
 texture_offset_y	1.500000
+texture_offset_z	0.000000
 texture_copies	4
 add_new_texture	data/textures/roof_metal_corner_01.png
 texture_offset_x	-2.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/white_pixel.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 *inmovable
 collision_up	4.000000
@@ -585,6 +85,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/canal_c18_with_wall.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 *inmovable
 collision_up	198.999878
@@ -600,6 +101,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/canal_c18.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 *inmovable
 collision_up	198.999878
@@ -610,11 +112,64 @@ collision_left	1.000000
 
 =====================================
 
+ADD_NEW_ENTITY	1826.000000	1766.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_c18.png
+texture_offset_x	35.000000
+texture_offset_y	14.000000
+texture_offset_z	113.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/wall_corner_c18_right_shadow.png
+texture_offset_x	21.000000
+texture_offset_y	4.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/wall_corner_c18_right_shadow.png
+texture_offset_x	168.000000
+texture_offset_y	4.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/wall_corner_c18_left.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/wall_c18.png
+texture_offset_x	-6.000000
+texture_offset_y	17.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/wall_corner_c18_right.png
+texture_offset_x	-8.000000
+texture_offset_y	0.500000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+*inmovable
+collision_up	72.000000
+collision_down	0.000000
+collision_right	184.000000
+collision_left	0.000000
+- PUT TO MAP -
+
+=====================================
+
 ADD_NEW_ENTITY	1785.000000	2362.000000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/canal_c18.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 *inmovable
 collision_up	198.999878
@@ -630,6 +185,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/canal_c18.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 *inmovable
 collision_up	198.999878
@@ -645,6 +201,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/canal_c18.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 *inmovable
 collision_up	198.999878
@@ -655,107 +212,64 @@ collision_left	1.000000
 
 =====================================
 
-ADD_NEW_ENTITY	1828.737671	4768.293945
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	2066.847412	1.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	2063.713135	93.468369
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	2285.000000	1578.000000
+ADD_NEW_ENTITY	2327.000000	1790.000000
 ADD_NEW_SPRITE
 *shadow
 add_new_texture	data/textures/wall_corner_c18_right_shadow.png
-texture_offset_x	94.000000
-texture_offset_y	11.000000
-texture_copies	1
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/wall_corner_c18_right_shadow.png
-texture_offset_x	-153.000000
-texture_offset_y	-3.000000
+texture_offset_x	133.000000
+texture_offset_y	-4.000000
+texture_offset_z	0.000000
 texture_copies	1
 ADD_NEW_SPRITE
 add_new_texture	data/textures/roof_c18.png
 texture_offset_x	-129.000000
 texture_offset_y	120.000000
+texture_offset_z	0.000000
 texture_copies	2
 ADD_NEW_SPRITE
 *wall_mode
 add_new_texture	data/textures/wall_corner_c18_left.png
 texture_offset_x	-162.000000
 texture_offset_y	-9.000000
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/wall_c18.png
 texture_offset_x	-6.000000
 texture_offset_y	17.000000
+texture_offset_z	0.000000
 texture_copies	2
-add_new_texture	data/textures/wall_corner_c18_right_shaded.png
+add_new_texture	data/textures/wall_corner_c18_right.png
 texture_offset_x	-8.000000
 texture_offset_y	0.500000
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/white_pixel.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 *inmovable
 collision_up	75.000000
-collision_down	5.000000
+collision_down	8.000000
 collision_right	141.000000
 collision_left	160.000000
 - PUT TO MAP -
 
 =====================================
 
-ADD_NEW_ENTITY	2310.000000	1554.000000
+ADD_NEW_ENTITY	2296.000000	1765.000000
 ADD_NEW_SPRITE
 *shadow
 add_new_texture	data/textures/wall_corner_c18_right_shadow.png
-texture_offset_x	75.000000
+texture_offset_x	70.000000
 texture_offset_y	-10.000000
+texture_offset_z	0.000000
 texture_copies	1
 ADD_NEW_SPRITE
 add_new_texture	data/textures/extension_c18.png
 texture_offset_x	-69.000000
 texture_offset_y	-20.000000
+texture_offset_z	0.000000
 texture_copies	1
 *inmovable
 collision_up	44.000000
@@ -766,40 +280,47 @@ collision_left	69.000000
 
 =====================================
 
-ADD_NEW_ENTITY	2321.000000	2105.000000
+ADD_NEW_ENTITY	2378.000000	2168.000000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/decor_sign_hotel.png
 texture_offset_x	100.000000
-texture_offset_y	84.000000
+texture_offset_y	-7.000000
+texture_offset_z	94.000000
 texture_copies	1
 ADD_NEW_SPRITE
 *wall_mode
 add_new_texture	data/textures/tall_building_c18_corner_left.png
 texture_offset_x	-99.000000
 texture_offset_y	-10.000000
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/tall_building_c18_wall.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/tall_building_c18_corner_right.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/white_pixel.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 ADD_NEW_SPRITE
 add_new_texture	data/textures/tall_building_c18_window..png
-texture_offset_x	-40.000000
-texture_offset_y	78.000000
+texture_offset_x	-43.000000
+texture_offset_y	-14.000000
+texture_offset_z	90.000000
 texture_copies	1
 ADD_NEW_SPRITE
 *shadow
 add_new_texture	data/textures/tall_building_c18_shadow.png
-texture_offset_x	-102.000000
-texture_offset_y	-13.000000
+texture_offset_x	-100.000000
+texture_offset_y	-4.000000
+texture_offset_z	0.000000
 texture_copies	1
 *inmovable
 collision_up	177.000000
@@ -810,119 +331,220 @@ collision_left	97.000000
 
 =====================================
 
-ADD_NEW_ENTITY	2527.000000	1572.000000
+ADD_NEW_ENTITY	2525.000000	1267.000000
 ADD_NEW_SPRITE
-add_new_texture	data/textures/roof_c18.png
-texture_offset_x	28.000000
-texture_offset_y	127.000000
-texture_copies	1
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/wall_corner_c18_right_shadow.png
-texture_offset_x	-3.000000
-texture_offset_y	-3.000000
-texture_copies	1
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/wall_corner_c18_right_shadow.png
-texture_offset_x	152.000000
-texture_offset_y	-2.000000
-texture_copies	1
-ADD_NEW_SPRITE
-*wall_mode
-add_new_texture	data/textures/wall_corner_c18_left.png
-texture_offset_x	0.000000
+add_new_texture	data/textures/beton_fence_corner.png
+texture_offset_x	-60.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
-add_new_texture	data/textures/wall_c18.png
-texture_offset_x	-6.000000
-texture_offset_y	17.000000
-texture_copies	1
-add_new_texture	data/textures/wall_corner_c18_right.png
-texture_offset_x	-8.000000
-texture_offset_y	0.500000
-texture_copies	1
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-57.000000
+texture_offset_y	-6.000000
+texture_offset_z	0.000000
 texture_copies	1
 *inmovable
-collision_up	72.000000
-collision_down	0.000000
-collision_right	184.000000
-collision_left	0.000000
+collision_up	8.125000
+collision_down	2.125000
+collision_right	58.500000
+collision_left	56.875000
 - PUT TO MAP -
 
 =====================================
 
-ADD_NEW_ENTITY	2535.000000	2205.000000
+ADD_NEW_ENTITY	2464.000000	1270.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_vertical.png
+texture_offset_x	-3.000000
+texture_offset_y	68.000000
+texture_offset_z	0.000000
+texture_copies	1
+*inmovable
+collision_up	56.375000
+collision_down	3.750000
+collision_right	3.500000
+collision_left	2.625000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2464.000000	1330.125000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_vertical.png
+texture_offset_x	-3.000000
+texture_offset_y	68.000000
+texture_offset_z	0.000000
+texture_copies	1
+*inmovable
+collision_up	56.375000
+collision_down	3.750000
+collision_right	3.500000
+collision_left	2.625000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2464.000000	1390.250000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_vertical.png
+texture_offset_x	-3.000000
+texture_offset_y	68.000000
+texture_offset_z	0.000000
+texture_copies	1
+*inmovable
+collision_up	56.375000
+collision_down	3.750000
+collision_right	3.500000
+collision_left	2.625000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2464.000000	1450.375000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_vertical.png
+texture_offset_x	-3.000000
+texture_offset_y	68.000000
+texture_offset_z	0.000000
+texture_copies	1
+*inmovable
+collision_up	56.375000
+collision_down	3.750000
+collision_right	3.500000
+collision_left	2.625000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2464.000000	1510.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_vertical.png
+texture_offset_x	-3.000000
+texture_offset_y	68.000000
+texture_offset_z	0.000000
+texture_copies	1
+*inmovable
+collision_up	56.375000
+collision_down	3.750000
+collision_right	3.500000
+collision_left	2.625000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2640.000000	1267.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-57.000000
+texture_offset_y	-6.000000
+texture_offset_z	0.000000
+texture_copies	1
+*inmovable
+collision_up	8.125000
+collision_down	2.125000
+collision_right	58.500000
+collision_left	56.875000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2755.000000	1267.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-57.000000
+texture_offset_y	-6.000000
+texture_offset_z	0.000000
+texture_copies	1
+*inmovable
+collision_up	8.125000
+collision_down	2.125000
+collision_right	58.500000
+collision_left	56.875000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2536.000000	2274.000000
 ADD_NEW_SPRITE
 *wall_mode
 add_new_texture	data/textures/tall_building_c18_corner_left.png
 texture_offset_x	-269.000000
 texture_offset_y	-14.000000
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/tall_building_c18_wall.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	4
 add_new_texture	data/textures/tall_building_c18_corner_right.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/white_pixel.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 ADD_NEW_SPRITE
 add_new_texture	data/textures/tall_building_c18_window..png
 texture_offset_x	-33.000000
-texture_offset_y	73.000000
+texture_offset_y	-21.000000
+texture_offset_z	92.000000
 texture_copies	1
 ADD_NEW_SPRITE
 *shadow
 add_new_texture	data/textures/tall_building_c18_shadow.png
 texture_offset_x	-316.000000
 texture_offset_y	18.000000
+texture_offset_z	0.000000
 texture_copies	1
 *inmovable
 collision_up	174.000000
 collision_down	15.000000
-collision_right	310.000000
-collision_left	293.000000
+collision_right	287.000000
+collision_left	267.000000
 - PUT TO MAP -
 
 =====================================
 
-ADD_NEW_ENTITY	2762.000000	2111.000000
+ADD_NEW_ENTITY	2714.000000	2168.000000
 ADD_NEW_SPRITE
 *wall_mode
 add_new_texture	data/textures/tall_building_c18_corner_left.png
 texture_offset_x	-99.000000
 texture_offset_y	-10.000000
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/tall_building_c18_wall.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/tall_building_c18_corner_right.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/white_pixel.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 ADD_NEW_SPRITE
 add_new_texture	data/textures/tall_building_c18_window..png
-texture_offset_x	-40.000000
-texture_offset_y	78.000000
+texture_offset_x	-43.000000
+texture_offset_y	-13.000000
+texture_offset_z	90.000000
 texture_copies	1
 ADD_NEW_SPRITE
 *shadow
 add_new_texture	data/textures/tall_building_c18_shadow.png
-texture_offset_x	-86.000000
-texture_offset_y	-17.000000
+texture_offset_x	-100.000000
+texture_offset_y	-4.000000
+texture_offset_z	0.000000
 texture_copies	1
 *inmovable
 collision_up	177.000000
@@ -933,114 +555,28 @@ collision_left	97.000000
 
 =====================================
 
-ADD_NEW_ENTITY	2668.204590	4088.155273
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	2890.629395	493.356140
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	2829.536621	496.295807
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	2810.000000	1573.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/roof_c18.png
-texture_offset_x	28.000000
-texture_offset_y	127.000000
-texture_copies	1
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/wall_corner_c18_right_shadow.png
-texture_offset_x	-3.000000
-texture_offset_y	-3.000000
-texture_copies	1
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/wall_corner_c18_right_shadow.png
-texture_offset_x	152.000000
-texture_offset_y	-2.000000
-texture_copies	1
-ADD_NEW_SPRITE
-*wall_mode
-add_new_texture	data/textures/wall_corner_c18_left.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-add_new_texture	data/textures/wall_c18.png
-texture_offset_x	-6.000000
-texture_offset_y	17.000000
-texture_copies	1
-add_new_texture	data/textures/wall_corner_c18_right.png
-texture_offset_x	-8.000000
-texture_offset_y	0.500000
-texture_copies	1
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-*inmovable
-collision_up	72.000000
-collision_down	0.000000
-collision_right	184.000000
-collision_left	0.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	2874.695801	1996.954468
+ADD_NEW_ENTITY	2550.386719	2193.242188
 ADD_NEW_SPRITE
 *rotate_by_move
 add_new_texture	data/textures/mech_1.png
 texture_offset_x	-26.000000
-texture_offset_y	0.000000
+texture_offset_y	-27.000000
+texture_offset_z	19.000000
 texture_copies	1
 add_new_texture	data/textures/mech_2.png
-texture_offset_x	-18.399998
-texture_offset_y	2.100000
+texture_offset_x	-17.399998
+texture_offset_y	-12.400000
+texture_offset_z	3.500000
 texture_copies	1
 add_new_texture	data/textures/mech_3.png
-texture_offset_x	-26.000000
-texture_offset_y	0.400000
+texture_offset_x	-25.500000
+texture_offset_y	-23.100000
+texture_offset_z	14.000000
 texture_copies	1
 add_new_texture	data/textures/mech_4.png
-texture_offset_x	-15.899996
-texture_offset_y	2.799998
+texture_offset_x	-16.899996
+texture_offset_y	-18.700001
+texture_offset_z	11.000000
 texture_copies	1
 ADD_NEW_SPRITE
 *rotate_by_move
@@ -1048,146 +584,114 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/mech_shadow_for_up_down.png
 texture_offset_x	41.000000
 texture_offset_y	-14.000000
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/mech_shadow_for_left_right.png
-texture_offset_x	39.799992
-texture_offset_y	-21.999985
+texture_offset_x	41.799992
+texture_offset_y	-14.999985
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/mech_shadow_for_up_down.png
 texture_offset_x	41.100006
 texture_offset_y	-13.999996
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/mech_shadow_for_left_right.png
-texture_offset_x	39.699989
-texture_offset_y	-22.200001
+texture_offset_x	41.574989
+texture_offset_y	-14.700001
+texture_offset_z	0.000000
 texture_copies	1
 *entity_controlled_by_player
 *camera_target
-mass	10.000000
-collision_up	15.000000
-collision_down	3.000000
+mass	1.000000
+collision_up	16.000000
+collision_down	29.750000
 collision_right	26.000000
 collision_left	25.000000
 - PUT TO MAP -
 
 =====================================
 
-ADD_NEW_ENTITY	2891.914307	4891.593750
+ADD_NEW_ENTITY	2866.000000	2197.659912
 ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-57.000000
+texture_offset_y	-6.000000
+texture_offset_z	0.000000
 texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
+*inmovable
+collision_up	8.125000
+collision_down	8.000000
+collision_right	58.500000
+collision_left	56.875000
 - PUT TO MAP -
 
 =====================================
 
-ADD_NEW_ENTITY	3449.626953	298.360718
+ADD_NEW_ENTITY	2874.000000	2465.000000
 ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-57.000000
+texture_offset_y	-6.000000
+texture_offset_z	0.000000
 texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
+*inmovable
+collision_up	8.125000
+collision_down	8.000000
+collision_right	58.500000
+collision_left	56.875000
 - PUT TO MAP -
 
 =====================================
 
-ADD_NEW_ENTITY	3559.412598	294.631958
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	3259.870605	1.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	3204.000000	2093.000000
+ADD_NEW_ENTITY	3207.000000	2172.000000
 ADD_NEW_SPRITE
 *wall_mode
 add_new_texture	data/textures/tall_building_c18_corner_left.png
-texture_offset_x	-280.000000
-texture_offset_y	2.000000
+texture_offset_x	-283.000000
+texture_offset_y	-4.000000
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/tall_building_c18_wall.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	5
 add_new_texture	data/textures/tall_building_c18_corner_right.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/white_pixel.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 ADD_NEW_SPRITE
 *shadow
 add_new_texture	data/textures/tall_building_c18_shadow.png
 texture_offset_x	382.000000
-texture_offset_y	-1.000000
+texture_offset_y	5.000000
+texture_offset_z	0.000000
 texture_copies	1
 ADD_NEW_SPRITE
 *shadow
 add_new_texture	data/textures/tall_building_c18_shadow.png
-texture_offset_x	-286.000000
-texture_offset_y	1.000000
+texture_offset_x	-291.000000
+texture_offset_y	7.000000
+texture_offset_z	0.000000
 texture_copies	1
 ADD_NEW_SPRITE
 add_new_texture	data/textures/tall_building_c18_window..png
-texture_offset_x	-249.000000
-texture_offset_y	87.000000
+texture_offset_x	-248.000000
+texture_offset_y	-1.000000
+texture_offset_z	84.000000
 texture_copies	7
 *inmovable
 collision_up	207.000000
-collision_down	0.000000
+collision_down	5.500000
 collision_right	403.000000
 collision_left	282.300354
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	3356.737305	3488.145020
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
 - PUT TO MAP -
 
 =====================================
@@ -1198,18 +702,22 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/wall_with_neon_lines_corner_left.png
 texture_offset_x	-20.000000
 texture_offset_y	-18.000000
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/wall_with_neon_lines.png
 texture_offset_x	-4.000000
 texture_offset_y	9.000000
+texture_offset_z	0.000000
 texture_copies	2
 add_new_texture	data/textures/wall_with_neon_lines_corner_right.png
 texture_offset_x	-3.000000
 texture_offset_y	-4.000000
+texture_offset_z	0.000000
 texture_copies	1
 add_new_texture	data/textures/white_pixel.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 *inmovable
 collision_up	20.000000
@@ -1220,47 +728,162 @@ collision_left	20.000000
 
 =====================================
 
-ADD_NEW_ENTITY	3614.294922	136.506210
+ADD_NEW_ENTITY	3837.005615	727.141785
 ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-27.000000
+texture_offset_y	-12.000000
+texture_offset_z	0.000000
 texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-18.000000
+texture_offset_y	-11.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-27.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+mass	10.000000
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
 - PUT TO MAP -
 
 =====================================
 
-ADD_NEW_ENTITY	3601.685303	609.324036
+ADD_NEW_ENTITY	3823.000000	543.000000
 ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-27.000000
+texture_offset_y	-12.000000
+texture_offset_z	0.000000
 texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-18.000000
+texture_offset_y	-11.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-27.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+mass	10.000000
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
 - PUT TO MAP -
 
 =====================================
 
-ADD_NEW_ENTITY	3730.857422	1211.810913
+ADD_NEW_ENTITY	3803.000000	633.000000
 ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-27.000000
+texture_offset_y	-12.000000
+texture_offset_z	0.000000
 texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-18.000000
+texture_offset_y	-11.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-27.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+mass	10.000000
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3833.000000	830.000000
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-27.000000
+texture_offset_y	-12.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-18.000000
+texture_offset_y	-11.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-27.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+mass	10.000000
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3823.000000	912.000000
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-27.000000
+texture_offset_y	-12.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-18.000000
+texture_offset_y	-11.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-27.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+mass	10.000000
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
 - PUT TO MAP -
 
 =====================================
@@ -1270,46 +893,55 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/wall_with_neon_lines.png
 texture_offset_x	-126.000000
 texture_offset_y	-9.000000
+texture_offset_z	0.000000
 texture_copies	1
 ADD_NEW_SPRITE
 add_new_texture	data/textures/wall_with_neon_lines.png
 texture_offset_x	-26.000000
 texture_offset_y	-9.000000
+texture_offset_z	0.000000
 texture_copies	1
 ADD_NEW_SPRITE
 add_new_texture	data/textures/wall_with_neon_lines.png
 texture_offset_x	74.000000
 texture_offset_y	-9.000000
+texture_offset_z	0.000000
 texture_copies	1
 ADD_NEW_SPRITE
 add_new_texture	data/textures/wall_with_neon_lines_corner_left.png
 texture_offset_x	-143.000000
 texture_offset_y	-13.000000
+texture_offset_z	0.000000
 texture_copies	1
 ADD_NEW_SPRITE
 add_new_texture	data/textures/wall_with_neon_lines_corner_right.png
 texture_offset_x	170.000000
 texture_offset_y	-13.000000
+texture_offset_z	0.000000
 texture_copies	1
 ADD_NEW_SPRITE
 add_new_texture	data/textures/roof.png
 texture_offset_x	-40.000000
 texture_offset_y	51.000000
+texture_offset_z	0.000000
 texture_copies	1
 ADD_NEW_SPRITE
 add_new_texture	data/textures/roof.png
 texture_offset_x	49.000000
 texture_offset_y	51.000000
+texture_offset_z	0.000000
 texture_copies	1
 ADD_NEW_SPRITE
 add_new_texture	data/textures/roof.png
 texture_offset_x	139.000000
 texture_offset_y	51.000000
+texture_offset_z	0.000000
 texture_copies	1
 ADD_NEW_SPRITE
 add_new_texture	data/textures/roof.png
 texture_offset_x	-130.000000
 texture_offset_y	51.000000
+texture_offset_z	0.000000
 texture_copies	1
 mass	10000.000000
 collision_up	1.000000
@@ -1320,26 +952,12 @@ collision_left	127.000000
 
 =====================================
 
-ADD_NEW_ENTITY	3766.194824	3583.767822
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
 ADD_NEW_ENTITY	3626.000000	3627.000000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/wall_arc.png
 texture_offset_x	-19.000000
 texture_offset_y	-17.000000
+texture_offset_z	0.000000
 texture_copies	1
 *inmovable
 collision_up	20.000000
@@ -1355,11 +973,13 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/wall_with_neon_lines.png
 texture_offset_x	-126.000000
 texture_offset_y	-9.000000
+texture_offset_z	0.000000
 texture_copies	1
 ADD_NEW_SPRITE
 add_new_texture	data/textures/wall_beton.png
 texture_offset_x	-127.000000
 texture_offset_y	-12.000000
+texture_offset_z	0.000000
 texture_copies	1
 *inmovable
 collision_up	1.000000
@@ -1370,332 +990,63 @@ collision_left	127.000000
 
 =====================================
 
-ADD_NEW_ENTITY	4299.304199	169.885910
+ADD_NEW_ENTITY	4196.000000	2186.000000
 ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/tall_building_c18_corner_left.png
+texture_offset_x	-471.000000
+texture_offset_y	-20.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/tall_building_c18_wall.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	7
+add_new_texture	data/textures/tall_building_c18_corner_right.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
 add_new_texture	data/textures/white_pixel.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/tall_building_c18_window..png
+texture_offset_x	-396.000000
+texture_offset_y	-19.000000
+texture_offset_z	85.000000
+texture_copies	9
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/tall_building_c18_shadow.png
+texture_offset_x	-100.000000
+texture_offset_y	-4.000000
+texture_offset_z	0.000000
+texture_copies	1
+*inmovable
+collision_up	158.000000
+collision_down	19.000000
+collision_right	449.000000
+collision_left	468.000000
 - PUT TO MAP -
 
 =====================================
 
-ADD_NEW_ENTITY	4270.088379	1509.784058
+ADD_NEW_ENTITY	5287.938477	2954.498291
 ADD_NEW_SPRITE
 add_new_texture	data/textures/white_pixel.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	4362.764160	2465.787842
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	4264.658691	3017.825195
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	4626.618164	1470.831665
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	4615.394531	1485.946289
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	4739.213379	2038.220947
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	4436.937500	2479.611816
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	4565.320801	2865.312256
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	4916.029785	3551.116211
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	5380.358887	1125.900757
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	5240.366699	2093.701172
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	5403.487305	2598.815918
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	5394.889160	2887.652832
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	5243.832031	3107.051758
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6314.699707	2125.425781
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6308.104980	2125.472168
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6300.349121	2121.994385
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6290.567383	2116.431641
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6277.746094	2110.257813
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6112.141602	2113.261230
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6092.108398	2802.604492
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_copies	1
-mass	1.000000
-collision_up	3.000000
-collision_down	3.000000
-collision_right	3.000000
-collision_left	3.000000
+mass	10.000000
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
 - PUT TO MAP -
 
 =====================================

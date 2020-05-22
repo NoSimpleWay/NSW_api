@@ -7,13 +7,19 @@ class Batcher
 
 public:
 	Batcher();
+
 	void init();
+	void init_shadowmap();
+
 	void draw_rect(float _x, float _y, float _w, float _h);
 	void draw_rect_position(float _x, float _y, float _x2, float _y2);
 	void draw_rect_without_color(float _x, float _y, float _w, float _h, int _tx, int _ty);
 	void draw_with_custom_uv(float _x, float _y, float _w, float _h, float _start_x, float _start_y, float _end_x, float _end_y);
 
 	void draw_gabarite(float _x, float _y, float _w, float _h, EGabarite* _g);
+	void draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EGabarite* _g, EGabarite* _supermap, float _z);
+
+
 	void draw_gabarite_with_offset(float _x, float _y, float _w, float _h, float _offset_x, float _offset_y, float _offset_end_x, float _offset_end_y,  EGabarite* _g);
 
 	void fill_indices();
@@ -41,6 +47,8 @@ public:
 	unsigned int indices[5000*6];
 
 	void draw_call();
+	void draw_call_shadowmap();
+
 	void reset();
 
 	void setcolor(EColor* _color);
@@ -53,4 +61,7 @@ public:
 	void draw_rect_gabarite_custom_uv(float _x, float _y, float _w, float _h, EGabarite* _g, float _sx, float _sy, float _ex, float _ey);
 
 	void draw_simple_rect(float _x, float _y, float _size_x, float _size_y);
+
+	void force_draw_call();
+	void force_draw_call_shadowmap();
 };

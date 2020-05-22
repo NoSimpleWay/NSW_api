@@ -90,7 +90,7 @@ public:
 
 	std::vector<ESprite*> sprite_list;
 
-	static void draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode);
+	static void draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode, bool _transparent_is_height);
 	//static void draw_shadow_sprite(Entity* _e, Batcher* _b, float _d);
 
 	bool* is_bullet = new bool(false);
@@ -136,9 +136,11 @@ class ESprite
 {
 public:
 	std::vector<EGabarite*> gabarite;
+	std::vector<EGabarite*> supermap;
 
 	std::vector<float> offset_x;
 	std::vector<float> offset_y;
+	std::vector<float> offset_z;
 
 	std::vector<int> copies;
 

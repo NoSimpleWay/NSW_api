@@ -156,6 +156,10 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 			w_string += std::to_string(spr->offset_y.at(order));
 			w_string += "\n";
 
+			w_string += "texture_offset_z\t";
+			w_string += std::to_string(spr->offset_z.at(order));
+			w_string += "\n";
+
 			w_string += "texture_copies\t";
 			w_string += std::to_string(spr->copies.at(order));
 			w_string += "\n";
@@ -245,6 +249,7 @@ void EBA::action_save_map(EButton* _b, float _d)
 		for (int j=0; j<ECluster::CLUSTER_DIM; j++)
 		for (int i = 0; i < ECluster::CLUSTER_DIM; i++)
 		for (Entity* e : ECluster::clusters[j][i]->entity_list)
+		if(!*e->is_bullet)
 		{
 			EBA::save_to_file(w_string, e, order, false);
 		}
@@ -298,7 +303,7 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 			//std::cout << "array length:" << array_length << std::endl;
 			for (int i = 0; i < EFile::array_size; i++)
 			{
-				std::cout << "=" << EFile::data_array[i] << "=" << std::endl;
+				//std::cout << "=" << EFile::data_array[i] << "=" << std::endl;
 
 				if (EFile::data_array[i] == "ADD_NEW_ENTITY")
 				{
@@ -336,8 +341,17 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 
 				if (EFile::data_array[i] == "add_new_texture")
 				{
-					i++; just_created_gabarite = ETextureAtlas::put_texture_to_atlas(EFile::data_array[i], EWindow::default_texture_atlas);
+					i++;
+					
+					just_created_gabarite = ETextureAtlas::put_texture_to_atlas(EFile::data_array[i], EWindow::default_texture_atlas);
 					just_created_sprite->gabarite.push_back(just_created_gabarite);
+
+					just_created_gabarite = ETextureAtlas::put_texture_to_atlas
+					(
+						EFile::data_array[i].substr(0, EFile::data_array[i].length() - 4) + "#supermap.png",
+						EWindow::default_texture_atlas
+					);
+					just_created_sprite->supermap.push_back(just_created_gabarite);
 				}
 
 				if (EFile::data_array[i] == "texture_offset_x")
@@ -348,6 +362,12 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 				if (EFile::data_array[i] == "texture_offset_y")
 				{
 					i++; just_created_sprite->offset_y.push_back(std::stof(EFile::data_array[i]));
+					//just_created_sprite->offset_z.push_back(0.0f);
+				}
+
+				if (EFile::data_array[i] == "texture_offset_z")
+				{
+					i++; just_created_sprite->offset_z.push_back(std::stof(EFile::data_array[i]));
 				}
 
 				if (EFile::data_array[i] == "texture_copies")
@@ -363,7 +383,7 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 				{
 					i++; *just_created_entity->mass = std::stof(EFile::data_array[i]);
 
-					std::cout << "mass is:" << std::to_string(*just_created_entity->mass) << std::endl;
+					//std::cout << "mass is:" << std::to_string(*just_created_entity->mass) << std::endl;
 				}
 
 
@@ -377,7 +397,7 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 					i++;
 					int hit_action_id = Entity::search_hit_action(EFile::data_array[i]);
 
-					std::cout << "hit action is:" << hit_action_id << std::endl;
+					//std::cout << "hit action is:" << hit_action_id << std::endl;
 
 					if (hit_action_id != -1)
 					{

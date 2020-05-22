@@ -16,6 +16,11 @@ public:
 
 	void default_draw(float _d);
 	void draw_shadows();
+	void draw_debug_draw_path();
+	void draw_debug_collision();
+	void draw_debug_entity_position();
+	void draw_debug_cluster_border();
+	void draw_debug_cluster_rama();
 	virtual void draw(float _d);
 
 	virtual void draw_interface(float _d);

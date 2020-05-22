@@ -24,7 +24,10 @@ public:
 	static int last_texture_h;
 
 	static Shader* ourShader;
+	static Shader* shadowmap;
+
 	static Batcher* batch;
+	static Batcher* batch_shadowmap;
 
 	static glm::mat4 matrix_transform;
 

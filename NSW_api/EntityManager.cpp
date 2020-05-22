@@ -75,7 +75,7 @@ Entity::~Entity()
 {
 }
 
-void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode)
+void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode, bool _transparent_is_height)
 {
 	
 	EGabarite* link;
@@ -151,8 +151,11 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 				}
 				//frame_id = f;
 			}
+
 			if
 				(
+					(EWindow::window_editor->is_active)
+					&&
 					(EWindow::window_editor->sprite_flash_cooldown < 0.5f)
 					&
 					(
@@ -174,24 +177,51 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 				)
 			)
 			{
-				EGraphicCore::batch->setcolor_alpha(EColor::COLOR_GRAY,0.8f);
+				_b->setcolor_alpha(EColor::COLOR_GRAY,0.8f);
 			}
 			else
 			{
-				EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
+				if (_is_shadow_mode)
+				{
+					if (_transparent_is_height)
+					{_b->setcolor(0.5f, 0.55f, 0.6f, spr->gabarite.at(frame_id)->size_x / 512.0f);}
+					else
+					{_b->setcolor(0.5f, 0.55f, 0.6f, 1.0f);}
+
+				}
+				else
+				{_b->setcolor(EColor::COLOR_WHITE);}
 			}
 
 
-			_b->draw_gabarite
-			(
-				*_e->position_x + spr->offset_x.at(frame_id) + i * spr->gabarite.at(frame_id)->size_x + offset_x_begin,
-				*_e->position_y + spr->offset_y.at(frame_id) + offset_y_begin,
+			if (!_is_shadow_mode)
+			{
+				_b->draw_gabarite_shadowmap
+				(
+					*_e->position_x + spr->offset_x.at(frame_id) + i * spr->gabarite.at(frame_id)->size_x + offset_x_begin,
+					*_e->position_y + spr->offset_y.at(frame_id) + offset_y_begin + spr->offset_z.at(frame_id),
 
-				spr->gabarite.at(frame_id)->size_x,
-				spr->gabarite.at(frame_id)->size_y,
+					spr->gabarite.at(frame_id)->size_x,
+					spr->gabarite.at(frame_id)->size_y,
 
-				spr->gabarite.at(frame_id)
-			);
+					spr->gabarite.at(frame_id),
+					spr->supermap.at(frame_id),
+					spr->offset_z.at(frame_id)
+				);
+			}
+			else
+			{
+				_b->draw_gabarite
+				(
+					*_e->position_x + spr->offset_x.at(frame_id) + i * spr->gabarite.at(frame_id)->size_x + offset_x_begin,
+					*_e->position_y + spr->offset_y.at(frame_id) + offset_y_begin + spr->offset_y.at(frame_id),
+
+					spr->gabarite.at(frame_id)->size_x,
+					spr->gabarite.at(frame_id)->size_y,
+
+					spr->gabarite.at(frame_id)
+				);
+			}
 
 			/*
 			if (i + 1>= spr->copies.at(frame_id))
@@ -200,9 +230,9 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 				offset_y_begin += spr->offset_y.at(frame_id);
 			}*/
 
-			if (EWindow::window_editor->editor_mode == EWindowEditor::EditMode::EditSprites)
+			if ((EWindow::window_editor->editor_mode == EWindowEditor::EditMode::EditSprites)&(false))
 			{
-				EGraphicCore::batch->setcolor(EColor::COLOR_RED);
+				_b->setcolor(EColor::COLOR_RED);
 				_b->draw_gabarite
 				(
 					*_e->position_x + spr->offset_x.at(frame_id) - 1.0f,
@@ -226,9 +256,10 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 		sprite_id++;
 	}
 
-	if (EWindow::window_editor->editor_mode == EWindowEditor::EditMode::EditSprites)
+
+	if ((EWindow::window_editor->editor_mode == EWindowEditor::EditMode::EditSprites) & (false))
 	{
-		EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
+		_b->setcolor(EColor::COLOR_GREEN);
 		_b->draw_gabarite
 		(
 			*_e->position_x - 1.0f,
@@ -302,6 +333,7 @@ bool ECluster::collision_left(Entity* _a, Entity* _b)
 		(*_a->position_y + *_a->real_speed_y / *_a->real_speed_x * (pseudo_line - *_a->position_x) >= *_b->position_y - *_b->collision_down - *_a->collision_up)
 	)
 	{ 
+		/*
 		EGraphicCore::batch->setcolor(EColor::COLOR_RED);
 		EGraphicCore::batch->draw_gabarite(*_b->position_x - *_b->collision_left, *_b->position_y + *_b->collision_up + *_a->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
 		EGraphicCore::batch->draw_gabarite(*_b->position_x - *_b->collision_left, *_b->position_y - *_b->collision_down - *_a->collision_up, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
@@ -309,7 +341,7 @@ bool ECluster::collision_left(Entity* _a, Entity* _b)
 
 		EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
 		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_left, *_a->position_y + *_a->real_speed_y / *_a->real_speed_x * (pseudo_line - *_a->position_x), 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
-
+		*/
 		return true;
 	}
 
@@ -331,6 +363,7 @@ bool ECluster::collision_right(Entity* _a, Entity* _b)
 		(*_a->position_y + *_a->real_speed_y / *_a->real_speed_x * (*_a->position_x - pseudo_line) >= *_b->position_y - *_b->collision_down - *_a->collision_up)
 	)
 	{ 
+		/*
 		EGraphicCore::batch->setcolor(EColor::COLOR_RED);
 		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_right, *_b->position_y + *_b->collision_up + *_a->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
 		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_right, *_b->position_y - *_b->collision_down - *_a->collision_up, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
@@ -338,7 +371,7 @@ bool ECluster::collision_right(Entity* _a, Entity* _b)
 
 		EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
 		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_right, *_a->position_y + *_a->real_speed_y / *_a->real_speed_x * (*_a->position_x - pseudo_line), 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
-
+		*/
 		return true;
 	}
 
@@ -360,6 +393,7 @@ bool ECluster::collision_up(Entity* _a, Entity* _b)
 		(*_a->position_x + *_a->real_speed_x / *_a->real_speed_y * ( pseudo_line  - *_a->position_y ) >= *_b->position_x - *_b->collision_left - *_a->collision_right)
 	)
 	{ 
+		/*
 		EGraphicCore::batch->setcolor(EColor::COLOR_RED);
 		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_right + *_a->collision_left, *_b->position_y + *_b->collision_up, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
 		EGraphicCore::batch->draw_gabarite(*_b->position_x - *_b->collision_left - *_a->collision_right, *_b->position_y + *_b->collision_up, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
@@ -367,7 +401,7 @@ bool ECluster::collision_up(Entity* _a, Entity* _b)
 
 		EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
 		EGraphicCore::batch->draw_gabarite(*_a->position_x + *_a->real_speed_x / *_a->real_speed_y * (pseudo_line - *_a->position_y), *_b->position_y + *_b->collision_up, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
-
+		*/
 
 		return true;
 	}
@@ -390,7 +424,7 @@ bool ECluster::collision_down(Entity* _a, Entity* _b)
 		(*_a->position_x + *_a->real_speed_x / *_a->real_speed_y * ( *_a->position_y - pseudo_line) >= *_b->position_x - *_b->collision_left - *_a->collision_right)
 	)
 	{ 
-
+		/*
 		EGraphicCore::batch->setcolor(EColor::COLOR_RED);
 		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_right + *_a->collision_left, *_b->position_y - *_b->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
 		EGraphicCore::batch->draw_gabarite(*_b->position_x - *_b->collision_left - *_a->collision_right, *_b->position_y - *_b->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
@@ -398,7 +432,7 @@ bool ECluster::collision_down(Entity* _a, Entity* _b)
 
 		EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
 		EGraphicCore::batch->draw_gabarite(*_a->position_x + *_a->real_speed_x / *_a->real_speed_y * (*_a->position_y - pseudo_line), *_b->position_y - *_b->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
-
+		*/
 		return true;
 	}
 
@@ -446,16 +480,22 @@ void ESprite::clear_default_data(ESprite* _sprite)
 {
 	_sprite->offset_x.clear();
 	_sprite->offset_y.clear();
+	_sprite->offset_z.clear();
+
 	_sprite->copies.clear();
 	_sprite->gabarite.clear();
+	_sprite->supermap.clear();
 }
 
 ESprite::ESprite()
 {
 	gabarite.push_back(EGraphicCore::gabarite_white_pixel);
+	supermap.push_back(EGraphicCore::gabarite_white_pixel);
 
 	offset_x.push_back(0.0f);
 	offset_y.push_back(0.0f);
+	offset_z.push_back(0.0f);
+
 	copies.push_back(1);
 }
 

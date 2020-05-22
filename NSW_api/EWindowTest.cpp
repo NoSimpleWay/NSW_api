@@ -140,6 +140,9 @@ void EWindowTest::update(float _d)
 		game_camera->position_y = free_camera_y * game_camera->zoom;
 	}
 
+	game_camera->position_x = round(game_camera->position_x);
+	game_camera->position_y = round(game_camera->position_y);
+
 
 
 	add_time_process("game_window_update");
@@ -156,7 +159,7 @@ void EWindowTest::update(float _d)
 	crosshair_pos_x = (game_camera->position_x - EGraphicCore::SCR_WIDTH / 2.0f + crosshair_add_x) / game_camera->zoom;
 	crosshair_pos_y = (game_camera->position_y - EGraphicCore::SCR_HEIGHT / 2.0f + crosshair_add_y) / game_camera->zoom ;
 
-	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_Z) == GLFW_PRESS) & (!EWindow::button_main_group_pressed))
+	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_F1) == GLFW_PRESS) & (!EWindow::button_main_group_pressed))
 	{
 		EWindow::window_editor->is_active = !EWindow::window_editor->is_active;
 
@@ -652,110 +655,94 @@ void EWindowTest::update(float _d)
 
 		float delta = 0;
 
-		bool need_second_move_update = false;
+		bool need_second_move_update = true;
 
 		for (int u = 0; u < 2; u++)
 		if ((u == 0)||(need_second_move_update))
 		{
+
 			for (int i = update_border_up;		i >= update_border_down; i--)
 			for (int j = update_border_left;	j <= update_border_right; j++)
 			for (Entity* e : ECluster::clusters[j][i]->entity_list)
 			//if (!*e->already_updated)
 			if (!*e->inmovable)
 			{
-				bool collision_left = false;
-				bool collision_right = false;
-				bool collision_up = false;
-				bool collision_down = false;
+				*e->real_speed_x = *e->speed_x * _d;
+				*e->real_speed_y = *e->speed_y * _d;
+
+				bool collision_left = *e->already_moved_x;
+				bool collision_right = *e->already_moved_x;
+				bool collision_up = *e->already_moved_y;
+				bool collision_down = *e->already_moved_y;
+
+				
 
 				*e->already_updated = true;
 
 				prev_cluster_x = (int)(*e->position_x / ECluster::CLUSTER_SIZE);
 				prev_cluster_y = (int)(*e->position_y / ECluster::CLUSTER_SIZE);
 
+				Entity* nearest_entity_left_side = NULL;
+				Entity* nearest_entity_right_side = NULL;
+				Entity* nearest_entity_up_side = NULL;
+				Entity* nearest_entity_down_side = NULL;
+
+				float nearest_dist_left_side = 99999.0f;
+				float nearest_dist_right_side = 99999.0f;
+				float nearest_dist_up_side = 99999.0f;
+				float nearest_dist_down_side = 99999.0f;
+
 				if (!*e->already_moved_x)
 				{
+
 					//left_side
 					if (*e->real_speed_x > 0)
 					{
-						for (int k = 0; k <= 1; k++)
-							for (int z = -1; z <= 1; z++)
-								if ((j + k >= 0) & (j + k < ECluster::CLUSTER_DIM) & (i + z >= 0) & (i + z < ECluster::CLUSTER_DIM))
-									for (Entity* e2 : ECluster::clusters[j + k][i + z]->entity_list)
-										if ((e != e2) & (!(*e->is_bullet & *e2->is_bullet)))
-										{
-											if (ECluster::collision_left(e, e2))
-											{
-												collision_left = true;
-												need_second_move_update = true;
+						for (int k = -1; k <= 1; k++)
+						for (int z = -1; z <= 1; z++)
+							if ((j + k >= 0) & (j + k < ECluster::CLUSTER_DIM) & (i + z >= 0) & (i + z < ECluster::CLUSTER_DIM))
+							for (Entity* e2 : ECluster::clusters[j + k][i + z]->entity_list)
+							if ((e != e2) & (!(*e->is_bullet & *e2->is_bullet)))
+							{
+								if (ECluster::collision_left(e, e2))
+								{
+									if (*e2->position_x - *e2->collision_left - *e->position_x < nearest_dist_left_side)
+									{
+										nearest_dist_left_side = *e2->position_x - *e2->collision_left - *e->position_x;
+										nearest_entity_left_side = e2;
+										//EWindow::window_editor->selected_entity = nearest_entity_left_side;
+									}
 
-												if ((*e->real_speed_x > * e2->real_speed_x))
-												{
-													*e->speed_y *= pow(0.1, _d);
-
-													if (*e2->inmovable) { *e->speed_x = 0.5f; }
-													else
-													{
-														total_mass = *e->mass + *e2->mass;
-														total_impulse = (*e->mass * *e->speed_x) + (*e2->mass * *e2->speed_x);
-
-														*e->speed_x = total_impulse / total_mass;
-														*e2->speed_x = total_impulse / total_mass;
-													}
-
-													//*e->position_x -= 1.0f;
-												}
-
-
-
-
-												//std::cout << "-------BONK!-------" << std::endl;
-												*e->position_x = *e2->position_x - *e2->collision_left - *e->collision_right - 0.0f;
-
-												if (e->action_on_hit != NULL) { e->action_on_hit(e, e2, Entity::Side::HIT_SIDE_LEFT); }
-												if (e->action_on_hited != NULL) { e->action_on_hited(e2, e, Entity::Side::HIT_SIDE_LEFT); }
-											}
-
-
-										}
+									collision_left = true;
+									need_second_move_update = true;
+								}
+							}
 					}
 
 					//right_side
 					if (*e->real_speed_x < 0)
 					{
 						for (int k = 1; k >= -1; k--)
-							for (int z = -1; z <= 1; z++)
-								if ((j + k >= 0) & (j + k < ECluster::CLUSTER_DIM) & (i + z >= 0) & (i + z < ECluster::CLUSTER_DIM))
-									for (Entity* e2 : ECluster::clusters[j + k][i + z]->entity_list)
-										if ((e != e2) & (!(*e->is_bullet & *e2->is_bullet)))
-										{
-											if (ECluster::collision_right(e, e2))
-											{
-												collision_right = true;
-												//any_collision = true;
+						for (int z = -1; z <= 1; z++)
+							if ((j + k >= 0) & (j + k < ECluster::CLUSTER_DIM) & (i + z >= 0) & (i + z < ECluster::CLUSTER_DIM))
+							for (Entity* e2 : ECluster::clusters[j + k][i + z]->entity_list)
+							if ((e != e2) & (!(*e->is_bullet & *e2->is_bullet)))
+							{
+								if (ECluster::collision_right(e, e2))
+								{
+									if (*e->position_x - *e2->position_x - *e2->collision_right < nearest_dist_right_side)
+									{
+										nearest_dist_right_side = *e->position_x - *e2->position_x - *e2->collision_right;
+										nearest_entity_right_side = e2;
+									}
 
-												if ((*e->speed_x) < (*e2->speed_x))
-												{
-													*e->speed_y *= pow(0.1, _d);
+									collision_right = true;
+									need_second_move_update = true;
+									//any_collision = true;
 
-													if (*e2->inmovable) { *e->speed_x *= 0.5f; }
-													else
-													{
-														total_mass = *e->mass + *e2->mass;
-														total_impulse = (*e->mass * *e->speed_x) + (*e2->mass * *e2->speed_x);
-
-														*e->speed_x = total_impulse / total_mass;
-														*e2->speed_x = total_impulse / total_mass;
-													}
-													//*e->position_x -= 1.0f;
-												}
-
-												*e->position_x = *e2->position_x + *e2->collision_right + *e->collision_left + 0.5f;
-
-												if (e->action_on_hit != NULL) { e->action_on_hit(e, e2, Entity::Side::HIT_SIDE_RIGHT); }
-												if (e->action_on_hited != NULL) { e->action_on_hited(e2, e, Entity::Side::HIT_SIDE_RIGHT); }
-											}
-										}
+									
+								}
+							}
 					}
 				}
 
@@ -772,27 +759,14 @@ void EWindowTest::update(float _d)
 										{
 											if (ECluster::collision_up(e, e2))
 											{
-												collision_up = true;
-												need_second_move_update = true;
-
-												if ((*e->speed_y) < (*e2->speed_y))
+												if (*e->position_y - *e2->position_y - *e2->collision_up  < nearest_dist_up_side)
 												{
-													*e->speed_x *= pow(0.1, _d);
-
-													if (*e2->inmovable) { *e->speed_y *= 0.5f; }
-													else
-													{
-														total_mass = *e->mass + *e2->mass;
-														total_impulse = (*e->mass * *e->speed_y) + (*e2->mass * *e2->speed_y);
-
-														*e->speed_y = total_impulse / total_mass;
-														*e2->speed_y = total_impulse / total_mass;
-													}
-													//*e->position_x -= 1.0f;
+													nearest_dist_up_side = *e->position_y - *e2->position_y - *e2->collision_up;
+													nearest_entity_up_side = e2;
 												}
 
-												if (e->action_on_hit != NULL) { e->action_on_hit(e, e2, Entity::Side::HIT_SIDE_UP); }
-												if (e->action_on_hited != NULL) { e->action_on_hited(e2, e, Entity::Side::HIT_SIDE_UP); }
+												collision_up = true;
+												need_second_move_update = true;
 											}
 
 
@@ -810,56 +784,150 @@ void EWindowTest::update(float _d)
 										{
 											if (ECluster::collision_down(e, e2))
 											{
+												if (*e2->position_y - *e->position_y - *e2->collision_down < nearest_dist_down_side)
+												{
+													nearest_dist_down_side = *e->position_y - *e->position_y - *e2->collision_up;
+													nearest_entity_down_side = e2;
+												}
 												collision_down = true;
 												need_second_move_update = true;
 
-												if ((*e->speed_y) > (*e2->speed_y))
-												{
-													*e->speed_x *= pow(0.1, _d);
-
-													if (*e2->inmovable) { *e->speed_y *= 0.5f; }
-													else
-													{
-														total_mass = *e->mass + *e2->mass;
-														total_impulse = (*e->mass * *e->speed_y) + (*e2->mass * *e2->speed_y);
-
-														*e->speed_y = total_impulse / total_mass;
-														*e2->speed_y = total_impulse / total_mass;
-														//*e->position_x -= 1.0f;
-													}
-												}
-
-												if (e->action_on_hit != NULL) { e->action_on_hit(e, e2, Entity::Side::HIT_SIDE_DOWN); }
-												if (e->action_on_hited != NULL) { e->action_on_hited(e2, e, Entity::Side::HIT_SIDE_DOWN); }
+												
 											}
 										}
 					}
 				}
-			
+
+				//end of collision detect
+				if (nearest_entity_left_side != NULL)
+				{*e->position_x = *nearest_entity_left_side->position_x - *nearest_entity_left_side->collision_left - *e->collision_right;}
+				
 				{
-					*e->real_speed_x = *e->speed_x * _d;
-					*e->real_speed_y = *e->speed_y * _d;
 
-					if (*e->real_speed_x * *e->real_speed_x < 0.05f) { *e->real_speed_x = 0.0f; }
-					if (*e->real_speed_y * *e->real_speed_y < 0.05f) { *e->real_speed_y = 0.0f; }
+					//if (*e->real_speed_x * *e->real_speed_x < 0.05f) { *e->real_speed_x = 0.0f; }
+					//if (*e->real_speed_y * *e->real_speed_y < 0.05f) { *e->real_speed_y = 0.0f; }
 
-					if ((!collision_left) && (!collision_right) && (!*e->already_moved_x))
+					if ((!collision_left) & (!collision_right) & (!*e->already_moved_x))
 					{
 						*e->position_x += *e->real_speed_x;
 						*e->already_moved_x = true;
 
 						*e->position_x = EMath::clamp_value_float(*e->position_x, 1.0f, ECluster::CLUSTER_SIZE * ECluster::CLUSTER_DIM);
-						*e->position_y = EMath::clamp_value_float(*e->position_y, 1.0f, ECluster::CLUSTER_SIZE * ECluster::CLUSTER_DIM);
+
 					}
 
-					if ((!collision_up) && (!collision_down) && (!*e->already_moved_y))
+					if ((!collision_up) & (!collision_down) & (!*e->already_moved_y))
 					{
 						*e->position_y += *e->real_speed_y;
 						*e->already_moved_y = true;
+
+						*e->position_y = EMath::clamp_value_float(*e->position_y, 1.0f, ECluster::CLUSTER_SIZE * ECluster::CLUSTER_DIM);
 					}
 				}
 
-				if ((!need_second_move_update) & (!*e->is_bullet))
+				if (nearest_entity_left_side != NULL)
+				{
+					if (*e->real_speed_x > * nearest_entity_left_side->real_speed_x)
+					{
+						*e->speed_y *= pow(0.1, _d);
+
+						if (*nearest_entity_left_side->inmovable) { *e->speed_x *= 0.5f; }
+						else
+						{
+							total_mass = *e->mass + *nearest_entity_left_side->mass;
+							total_impulse = (*e->mass * *e->speed_x) + (*nearest_entity_left_side->mass * *nearest_entity_left_side->speed_x);
+
+							*e->speed_x = total_impulse / total_mass;
+							*nearest_entity_left_side->speed_x = total_impulse / total_mass;
+						}
+					}
+
+					
+
+					if (e->action_on_hit != NULL) { e->action_on_hit(e, nearest_entity_left_side, Entity::Side::HIT_SIDE_LEFT); }
+					if (e->action_on_hited != NULL) { e->action_on_hited(nearest_entity_left_side, e, Entity::Side::HIT_SIDE_LEFT); }
+					//*e->position_x -= 1.0f;
+				}
+
+				if (nearest_entity_right_side != NULL)
+				{
+					if ((*e->speed_x) < (*nearest_entity_right_side->speed_x))
+					{
+						*e->speed_y *= pow(0.1, _d);
+
+						if (*nearest_entity_right_side->inmovable) { *e->speed_x *= 0.5f; }
+						else
+						{
+							total_mass = *e->mass + *nearest_entity_right_side->mass;
+							total_impulse = (*e->mass * *e->speed_x) + (*nearest_entity_right_side->mass * *nearest_entity_right_side->speed_x);
+
+							*e->speed_x = total_impulse / total_mass;
+							*nearest_entity_right_side->speed_x = total_impulse / total_mass;
+						}
+						//*e->position_x -= 1.0f;
+					}
+
+					*e->position_x = *nearest_entity_right_side->position_x + *nearest_entity_right_side->collision_right + *e->collision_left;
+
+					if (e->action_on_hit != NULL) { e->action_on_hit(e, nearest_entity_right_side, Entity::Side::HIT_SIDE_RIGHT); }
+					if (e->action_on_hited != NULL) { e->action_on_hited(nearest_entity_right_side, e, Entity::Side::HIT_SIDE_RIGHT); }
+				}
+
+				if (nearest_entity_up_side != NULL)
+				{
+					if ((*e->speed_y) < (*nearest_entity_up_side->speed_y))
+					{
+						*e->speed_x *= pow(0.1, _d);
+
+						if (*nearest_entity_up_side->inmovable) { *e->speed_y *= 0.5f; }
+						else
+						{
+							total_mass = *e->mass + *nearest_entity_up_side->mass;
+							total_impulse = (*e->mass * *e->speed_y) + (*nearest_entity_up_side->mass * *nearest_entity_up_side->speed_y);
+
+							*e->speed_y = total_impulse / total_mass;
+							*nearest_entity_up_side->speed_y = total_impulse / total_mass;
+						}
+						//*e->position_x -= 1.0f;
+					}
+
+					*e->position_y = *nearest_entity_up_side->position_y + *nearest_entity_up_side->collision_up + *e->collision_down;
+
+					if (e->action_on_hit != NULL) { e->action_on_hit(e, nearest_entity_up_side, Entity::Side::HIT_SIDE_UP); }
+					if (e->action_on_hited != NULL) { e->action_on_hited(nearest_entity_up_side, e, Entity::Side::HIT_SIDE_UP); }
+				}
+
+				if (nearest_entity_down_side != NULL)
+				{
+					if ((*e->speed_y) > (*nearest_entity_down_side->speed_y))
+					{
+						*e->speed_x *= pow(0.1, _d);
+
+						if (*nearest_entity_down_side->inmovable) { *e->speed_y *= 0.5f; }
+						else
+						{
+							total_mass = *e->mass + *nearest_entity_down_side->mass;
+							total_impulse = (*e->mass * *e->speed_y) + (*nearest_entity_down_side->mass * *nearest_entity_down_side->speed_y);
+
+							*e->speed_y = total_impulse / total_mass;
+							*nearest_entity_down_side->speed_y = total_impulse / total_mass;
+							//*e->position_x -= 1.0f;
+						}
+					}
+
+					*e->position_y = *nearest_entity_down_side->position_y - *nearest_entity_down_side->collision_down - *e->collision_up;
+
+					if (e->action_on_hit != NULL) { e->action_on_hit(e, nearest_entity_down_side, Entity::Side::HIT_SIDE_DOWN); }
+					if (e->action_on_hited != NULL) { e->action_on_hited(nearest_entity_down_side, e, Entity::Side::HIT_SIDE_DOWN); }
+				}
+
+
+				//std::cout << "-------BONK!-------" << std::endl;
+	
+
+
+
+				if ((!*e->is_bullet) && (u == 0))
 				{
 					*e->speed_x *= pow(0.5, _d);
 					*e->speed_y *= pow(0.5, _d);
@@ -872,7 +940,7 @@ void EWindowTest::update(float _d)
 				if ((new_cluster_x != prev_cluster_x) || (new_cluster_y != prev_cluster_y))
 				{*e->need_change_cluster = true;}
 
-				if (*e->is_bullet) { need_second_move_update = false; }
+				//if (*e->is_bullet) { need_second_move_update = false; }
 			}
 
 			for (int i = draw_border_up; i >= draw_border_down; i--)
@@ -916,133 +984,192 @@ void EWindowTest::default_draw(float _d)
 
 void EWindowTest::draw_shadows()
 {
-	EGraphicCore::batch->reinit();
-	EGraphicCore::batch->draw_call();
-	EGraphicCore::batch->reset();
+	EGraphicCore::batch->force_draw_call();
 
 	ETextureAtlas::active_this_texture_atlas(EWindow::shadow_FBO, EWindow::default_texture_atlas, game_camera->position_x, game_camera->position_y, game_camera->zoom);
-	EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
-	//EGraphicCore::batch->setcolor(EColor::COLOR_PINK);
+	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glBlendEquation(GL_MAX);
+
+	//set correct zoom
+	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3((EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1, (EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1, 0.0f));
+	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x * game_camera->zoom, EGraphicCore::correction_y * game_camera->zoom, 1));
+
+	//use shader
+	EGraphicCore::ourShader->use();
+
+	unsigned int transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
+	EGraphicCore::batch->setcolor(EColor::COLOR_GRAY);
 
 	
 	for (int i = draw_border_up; i >= draw_border_down; i--)
 	for (int j = draw_border_left; j <= draw_border_right; j++)
 	for (Entity* e : ECluster::clusters[j][i]->entity_list)
 	{
-		Entity::draw_sprite(e, EGraphicCore::batch, 0.1f, true);
+		Entity::draw_sprite(e, EGraphicCore::batch, 0.1f, true, false);
 		//EGraphicCore::batch->draw_gabarite(*e->position_x, *e->position_y, 300.0f, 100.0f, EGraphicCore::gabarite_white_pixel);
 	}
 	
 	//EGraphicCore::batch->draw_gabarite(0.0f, 0.0f, 100.0f, 100.0f, EGraphicCore::gabarite_white_pixel);
 
 
-	EGraphicCore::batch->reinit();
-	EGraphicCore::batch->draw_call();
-	EGraphicCore::batch->reset();
+	EGraphicCore::batch->force_draw_call();
 
 	ETextureAtlas::return_to_this_texture_atlas(EWindow::default_texture_atlas);
 
 	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-
 	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3( -1,  -1, 0.0f));
 	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x, EGraphicCore::correction_y, 1));
-
 	transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
+	glBlendFunc(GL_ZERO, GL_SRC_COLOR);
+	glBlendEquation(GL_FUNC_ADD);
+
 	glBindTexture(GL_TEXTURE_2D, EWindow::shadow_FBO->colorbuffer);
-	EGraphicCore::batch->setcolor_alpha(EColor::COLOR_DARK_GRAY, 0.5f);
-	EGraphicCore::batch->draw_rect(0.0f, 0.0f, 1920.0f, 1080.0f);
+			EGraphicCore::batch->setcolor_alpha(EColor::COLOR_WHITE, 1.0f);
+			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 1920.0f, 1080.0f);
 
-	EGraphicCore::batch->reinit();
-	EGraphicCore::batch->draw_call();
-	EGraphicCore::batch->reset();
+	EGraphicCore::batch->force_draw_call();
 
+
+
+	//////redraw shadowmap for entities
+	ETextureAtlas::active_this_texture_atlas(EWindow::shadow_FBO, EWindow::default_texture_atlas, game_camera->position_x, game_camera->position_y, game_camera->zoom);
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glBlendEquation(GL_MAX);
+
+	//set correct zoom
+	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3((EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1, (EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1, 0.0f));
+	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x * game_camera->zoom, EGraphicCore::correction_y * game_camera->zoom, 1));
+
+	//use shader
+	EGraphicCore::ourShader->use();
+
+	transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
+	EGraphicCore::batch->setcolor(EColor::COLOR_GRAY);
+
+
+	for (int i = draw_border_up; i >= draw_border_down; i--)
+		for (int j = draw_border_left; j <= draw_border_right; j++)
+			for (Entity* e : ECluster::clusters[j][i]->entity_list)
+			{
+				Entity::draw_sprite(e, EGraphicCore::batch, 0.1f, true, true);
+				//EGraphicCore::batch->draw_gabarite(*e->position_x, *e->position_y, 300.0f, 100.0f, EGraphicCore::gabarite_white_pixel);
+			}
+
+	//EGraphicCore::batch->draw_gabarite(0.0f, 0.0f, 100.0f, 100.0f, EGraphicCore::gabarite_white_pixel);
+
+
+	EGraphicCore::batch->force_draw_call();
+	ETextureAtlas::return_to_this_texture_atlas(EWindow::default_texture_atlas);
+
+
+
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glBindTexture(GL_TEXTURE_2D, EWindow::default_texture_atlas->colorbuffer);
 
 
 	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-
 	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(round(EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1, round(EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1, 0.0f));
 	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x * game_camera->zoom, EGraphicCore::correction_y * game_camera->zoom, 1));
 
 	transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
+
 }
 
-void EWindowTest::draw(float _d)
+void EWindowTest::draw_debug_draw_path()
 {
-
-
-
-
-	//game_camera->position_x = round(game_camera->position_x / 10.0f) * 10.0f;
-	//game_camera->position_y = round(game_camera->position_y / 10.0f) * 10.0f;
-
-	//game_camera->position_x = round(game_camera->position_x );
-	//game_camera->position_y = round(game_camera->position_y );
-
-
-
-
-
-	//for (int i = EPath::clamp_phase; i < EPath::PATH_DIM; i++)
-
-
-	
-	//----------------DRAW TERRAIN AND SHADOW----------------
-	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-
-	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3((EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1, (EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1, 0.0f));
-	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x * game_camera->zoom, EGraphicCore::correction_y * game_camera->zoom, 1));
-
-	transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
-	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
-	EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
-
-	for (int i = up_path_draw; i >= down_path_draw; i--)
-	for (int j = left_path_draw; j <= right_path_draw; j++)
-	{
-		EGraphicCore::batch->draw_gabarite(j * EPath::PATH_SIZE, i * EPath::PATH_SIZE, EPath::PATH_SIZE + 0.1f, EPath::PATH_SIZE + 0.1f, terrain_textures_list.at(terrain[j][i]));
-	}
-
-	draw_shadows();
-
-	//----------------DRAW PATH MATRIX----------------
-	//if (true)
 	if (glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS)
-	for (int i = up_path_draw; i >= down_path_draw; i--)
-	for (int j = left_path_draw; j <= right_path_draw; j++)
-	{
-		if (EPath::block[j][i])
-		{
-			EGraphicCore::batch->setcolor(EColor::COLOR_RED);
-		}
-		else
-		{
-			EGraphicCore::batch->setcolor_lum(EColor::COLOR_WHITE, (1.0f - EMath::clamp_value_float(EPath::path[j][i][EPath::active_buffer] / 200.0f, 0.0f, 1.0f)) * 0.9f + 0.1f);
-
-			if (EPath::path[j][i][EPath::active_buffer] < 5)
+		for (int i = up_path_draw; i >= down_path_draw; i--)
+			for (int j = left_path_draw; j <= right_path_draw; j++)
 			{
-				EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
+				if (EPath::block[j][i])
+				{
+					EGraphicCore::batch->setcolor(EColor::COLOR_RED);
+				}
+				else
+				{
+					EGraphicCore::batch->setcolor_lum(EColor::COLOR_WHITE, (1.0f - EMath::clamp_value_float(EPath::path[j][i][EPath::active_buffer] / 200.0f, 0.0f, 1.0f)) * 0.9f + 0.1f);
+
+					if (EPath::path[j][i][EPath::active_buffer] < 5)
+					{
+						EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
+					}
+				}
+
+
+
+				EGraphicCore::batch->draw_gabarite(j * EPath::PATH_SIZE, i * EPath::PATH_SIZE, EPath::PATH_SIZE, EPath::PATH_SIZE, EGraphicCore::gabarite_white_pixel);
+
+				if (glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
+				{
+					EGraphicCore::batch->setcolor(EColor::COLOR_ORANGE);
+					EFont::active_font->draw(EGraphicCore::batch, std::to_string(EPath::path[j][i][EPath::active_buffer]), j * EPath::PATH_SIZE + 20.0f, i * EPath::PATH_SIZE + 10.0f);
+				}
 			}
-		}
+}
+
+void EWindowTest::draw_debug_collision()
+{
+	if ((EWindow::window_editor->is_active) || (false))
+		for (int i = draw_border_up; i >= draw_border_down; i--)
+			for (int j = draw_border_left; j <= draw_border_right; j++)
+			{
+
+				for (Entity* e : ECluster::clusters[j][i]->entity_list)
+				{
+					if (EWindow::window_editor->selected_entity == e)
+					{
+						EGraphicCore::batch->setcolor(EColor::COLOR_RED);
+					}
+					else
+					{
+						EGraphicCore::batch->setcolor(EColor::COLOR_BLUE);
+					}
+
+					EGraphicCore::batch->draw_rama(*e->position_x - *e->collision_left, *e->position_y - *e->collision_down, *e->collision_left + *e->collision_right, *e->collision_down + *e->collision_up, 1.0f, EGraphicCore::gabarite_white_pixel);
+					//EGraphicCore::batch->draw_gabarite(*e->position_x + e->body_offset_x.at(sprite_id), *e->position_y + e->body_offset_y.at(sprite_id), e->body.at(sprite_id)->size_x, e->body.at(sprite_id)->size_y, e->body.at(sprite_id));
 
 
+				}
+			}
+}
 
-		EGraphicCore::batch->draw_gabarite(j * EPath::PATH_SIZE, i * EPath::PATH_SIZE, EPath::PATH_SIZE, EPath::PATH_SIZE, EGraphicCore::gabarite_white_pixel);
+void EWindowTest::draw_debug_entity_position()
+{
+	if (EWindow::window_editor->is_active)
+	{
+		EGraphicCore::batch->setcolor(EColor::COLOR_PINK);
+		for (int i = draw_border_up; i >= draw_border_down; i--)
+			for (int j = draw_border_left; j <= draw_border_right; j++)
+				for (Entity* e : ECluster::clusters[j][i]->entity_list)
+				{
+					EGraphicCore::batch->draw_gabarite(*e->position_x - 1.0f, *e->position_y - 1.0f, 3.0f, 3.0f, EGraphicCore::gabarite_white_pixel);
 
-		if (glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
-		{
-			EGraphicCore::batch->setcolor(EColor::COLOR_ORANGE);
-			EFont::active_font->draw(EGraphicCore::batch, std::to_string(EPath::path[j][i][EPath::active_buffer]), j * EPath::PATH_SIZE + 20.0f, i * EPath::PATH_SIZE + 10.0f);
-		}
+					EGraphicCore::batch->draw_gabarite(*e->position_x - 0.0f, *e->position_y - 5.0f, 1.0f, 12.0f, EGraphicCore::gabarite_white_pixel);
+					EGraphicCore::batch->draw_gabarite(*e->position_x - 5.0f, *e->position_y - 0.0f, 12.0f, 1.0f, EGraphicCore::gabarite_white_pixel);
+				}
 	}
-	add_time_process("y-sort begin");
-	//----------------DRAW ENTITIES----------------
+}
 
-
-	//draw borders
+void EWindowTest::draw_debug_cluster_border()
+{
 	if (EWindow::window_editor->is_active)
 	{
 		EGraphicCore::batch->setcolor_alpha(EColor::COLOR_GREEN, 0.55f);
@@ -1051,15 +1178,83 @@ void EWindowTest::draw(float _d)
 		EGraphicCore::batch->setcolor_alpha(EColor::COLOR_RED, 0.55f);
 		EGraphicCore::batch->draw_gabarite(draw_border_right * ECluster::CLUSTER_SIZE, draw_border_up * ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, EGraphicCore::gabarite_white_pixel);
 	}
+}
+
+void EWindowTest::draw_debug_cluster_rama()
+{
+	if (glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS)
+		for (int i = draw_border_up; i >= draw_border_down; i--)
+			for (int j = draw_border_left; j <= draw_border_right; j++)
+			{
+				EGraphicCore::batch->setcolor(EColor::COLOR_BLACK);
+				EGraphicCore::batch->draw_rama(j * ECluster::CLUSTER_SIZE, i * ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, 2 / game_camera->zoom, EGraphicCore::gabarite_white_pixel);
+			}
+}
+
+void EWindowTest::draw(float _d)
+{
+	//----------------DRAW TERRAIN AND SHADOW----------------
+
+	EGraphicCore::ourShader->use();
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, EWindow::default_texture_atlas->colorbuffer);
+	EGraphicCore::shadowmap->setInt("texture1", 0);
+
+	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(round(EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1.0f, round(EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1.0f, 0.0f));
+	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x * game_camera->zoom, EGraphicCore::correction_y * game_camera->zoom, 1));
+	transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
+
+	EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
+
+	for (int i = up_path_draw; i >= down_path_draw; i--)
+	for (int j = left_path_draw; j <= right_path_draw; j++)
+	{EGraphicCore::batch->draw_gabarite(j * EPath::PATH_SIZE - 0.0f, i * EPath::PATH_SIZE - 0.0f, EPath::PATH_SIZE + 0.0f, EPath::PATH_SIZE + 0.0f, terrain_textures_list.at(terrain[j][i]));}
+
+	draw_shadows();
+
+	//----------------DRAW PATH MATRIX----------------
+	draw_debug_draw_path();
+
+	add_time_process("draw_path");
+	//----------------DRAW ENTITIES----------------
+
+	//draw borders
+	draw_debug_cluster_border();
 
 	//cluster rama draw
-	if (glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS)
-	for (int i = draw_border_up; i >= draw_border_down; i--)
-	for (int j = draw_border_left; j <= draw_border_right; j++)
-		{
-			EGraphicCore::batch->setcolor(EColor::COLOR_BLACK);
-			EGraphicCore::batch->draw_rama(j * ECluster::CLUSTER_SIZE, i * ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, 2 / game_camera->zoom, EGraphicCore::gabarite_white_pixel);
-		}
+	draw_debug_cluster_rama();
+
+
+	//draw entities to shadowmap batcher
+	EGraphicCore::shadowmap->use();
+	EGraphicCore::batch_shadowmap->setcolor(EColor::COLOR_WHITE);
+
+	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(round(EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1.0f, round(EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1.0f, 0.0f));
+	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x * game_camera->zoom, EGraphicCore::correction_y * game_camera->zoom, 1));
+
+	transformLoc = glGetUniformLocation(EGraphicCore::shadowmap->ID, "transform");
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
+
+	GLint loc_x = glGetUniformLocation(EGraphicCore::shadowmap->ID, "offset_x");
+	glUniform1f(loc_x, (EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) / 1920.0f);
+
+	GLint loc_y = glGetUniformLocation(EGraphicCore::shadowmap->ID, "offset_y");
+	glUniform1f(loc_y, (EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) / 1080.0f);
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, EWindow::default_texture_atlas->colorbuffer);
+	EGraphicCore::shadowmap->setInt("texture1", 0);
+
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, EWindow::shadow_FBO->colorbuffer);
+	EGraphicCore::shadowmap->setInt("texture2", 1);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 	std::vector<Entity*> draw_sort_buffer;
 	//y-sort
@@ -1098,63 +1293,48 @@ void EWindowTest::draw(float _d)
 
 		for (Entity* dsb : draw_sort_buffer)
 		{
-			
-
 			int sprite_id = 0;
-			EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
+			EGraphicCore::batch_shadowmap->setcolor(EColor::COLOR_WHITE);
 
-
-			Entity::draw_sprite(dsb, EGraphicCore::batch, _d, false);
+			Entity::draw_sprite(dsb, EGraphicCore::batch_shadowmap, _d, false, false);
 		}
 	}
 
-	if (EWindow::window_editor->is_active)
-	for (int i = draw_border_up; i >= draw_border_down; i--)
-	for (int j = draw_border_left; j <= draw_border_right; j++)
-	{
+	EGraphicCore::batch_shadowmap->force_draw_call_shadowmap();
 
-			for (Entity* e : ECluster::clusters[j][i]->entity_list)
-			{
-				if (EWindow::window_editor->selected_entity == e)
-				{EGraphicCore::batch->setcolor(EColor::COLOR_RED); }
-				else
-				{EGraphicCore::batch->setcolor(EColor::COLOR_BLUE);}
+	EGraphicCore::ourShader->use();
+	EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
 
-				EGraphicCore::batch->draw_rama(*e->position_x - *e->collision_left, *e->position_y - *e->collision_down, *e->collision_left + *e->collision_right, *e->collision_down + *e->collision_up, 1.0f, EGraphicCore::gabarite_white_pixel);
-				//EGraphicCore::batch->draw_gabarite(*e->position_x + e->body_offset_x.at(sprite_id), *e->position_y + e->body_offset_y.at(sprite_id), e->body.at(sprite_id)->size_x, e->body.at(sprite_id)->size_y, e->body.at(sprite_id));
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, EWindow::default_texture_atlas->colorbuffer);
+	EGraphicCore::ourShader->setInt("texture1", 0);
 
+	EGraphicCore::batch->force_draw_call();
 
-			}
-	}
-
-	if (EWindow::window_editor->is_active)
-	{
-		EGraphicCore::batch->setcolor(EColor::COLOR_PINK);
-		for (int i = draw_border_up; i >= draw_border_down; i--)
-		for (int j = draw_border_left; j <= draw_border_right; j++)
-			for (Entity* e : ECluster::clusters[j][i]->entity_list)
-			{
-				EGraphicCore::batch->draw_gabarite(*e->position_x - 1.0f, *e->position_y - 1.0f, 3.0f, 3.0f, EGraphicCore::gabarite_white_pixel);
-
-				EGraphicCore::batch->draw_gabarite(*e->position_x - 0.0f, *e->position_y - 5.0f, 1.0f, 12.0f, EGraphicCore::gabarite_white_pixel);
-				EGraphicCore::batch->draw_gabarite(*e->position_x - 5.0f, *e->position_y - 0.0f, 12.0f, 1.0f, EGraphicCore::gabarite_white_pixel);
-			}
-	}
+	draw_debug_collision();
+	draw_debug_entity_position();
 
 	
 	add_time_process("y-sort");
 
 
 	
-	EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
-	EGraphicCore::batch->draw_gabarite
-	(
-		crosshair_pos_x - 3.0f,
-		crosshair_pos_y - 3.0f,
-		7.0f,
-		7.0f,
-		EGraphicCore::gabarite_white_pixel);
 
+
+
+
+	if (!EWindow::window_editor->is_active)
+	{
+		EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
+		EGraphicCore::batch->draw_gabarite
+		(
+			crosshair_pos_x - 3.0f,
+			crosshair_pos_y - 3.0f,
+			7.0f,
+			7.0f,
+			EGraphicCore::gabarite_white_pixel
+		);
+	}
 	
 	/*EGraphicCore::batch->setcolor(EColor::COLOR_BLACK);
 	EGraphicCore::batch->draw_gabarite(100.0f + rand() % 10, 200.0f, 512.0f, 64.0f, EGraphicCore::gabarite_white_pixel);*/

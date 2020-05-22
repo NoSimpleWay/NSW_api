@@ -98,6 +98,7 @@ int main()
 	}
 
 	EGraphicCore::ourShader = new Shader("data/5.1.transform.vs", "data/5.1.transform.fs");
+	EGraphicCore::shadowmap = new Shader("data/shadowmap.vs", "data/shadowmap.fs");
 
 	EGraphicCore::ourShader->use();
 	glfwSwapInterval(1);
@@ -111,13 +112,17 @@ int main()
 	//
 	//batcher initiation
 	EGraphicCore::batch = new Batcher();
+	EGraphicCore::batch_shadowmap = new Batcher();
 
 	for (int i = 0; i < 5000; i++)
 	{
 		EGraphicCore::batch->fill_indices();
+		EGraphicCore::batch_shadowmap->fill_indices();
+
 	}
 
 	EGraphicCore::batch->init();
+	EGraphicCore::batch_shadowmap->init_shadowmap();
 	//
 	//
 
@@ -135,8 +140,10 @@ int main()
 	EWindow::shadow_FBO = new ETextureAtlas(1920, 1080);
 
 	EGraphicCore::load_texture("data/textures/white_pixel.png", 0);
+
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, EGraphicCore::texture[0]);
+
 	EGraphicCore::ourShader->setInt("texture1", EGraphicCore::texture[0]);
 
 	
@@ -294,7 +301,7 @@ int main()
 			&&
 			(glfwGetKey(EWindow::main_window, GLFW_KEY_DELETE) == GLFW_RELEASE)
 			&&
-			(glfwGetKey(EWindow::main_window, GLFW_KEY_Z) == GLFW_RELEASE)
+			(glfwGetKey(EWindow::main_window, GLFW_KEY_F1) == GLFW_RELEASE)
 			&&
 			(glfwGetKey(EWindow::main_window, GLFW_KEY_COMMA) == GLFW_RELEASE)
 			&&

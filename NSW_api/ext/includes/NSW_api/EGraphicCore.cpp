@@ -13,7 +13,10 @@ int EGraphicCore::last_texture_w;
 int EGraphicCore::last_texture_h;
 
 Shader* EGraphicCore::ourShader;
+Shader* EGraphicCore::shadowmap;
+
 Batcher* EGraphicCore::batch;
+Batcher* EGraphicCore::batch_shadowmap;
 
 glm::mat4 EGraphicCore::matrix_transform;
 

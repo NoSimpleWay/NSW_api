@@ -35,7 +35,7 @@ EGabarite* ETextureAtlas::put_texture_to_atlas(std::string _name, ETextureAtlas*
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glBlendEquation(GL_MAX);
+
 
 	//set correct zoom
 	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -97,9 +97,37 @@ EGabarite* ETextureAtlas::put_texture_to_atlas(std::string _name, ETextureAtlas*
 		}
 
 		EGraphicCore::batch->reset();
-		EGraphicCore::batch->draw_rect(place_x, place_y, EGraphicCore::last_texture_w, EGraphicCore::last_texture_h);
+
+		
+		/*glBlendEquation(GL_MAX);
+		EGraphicCore::batch->draw_rect(place_x - 1, place_y + 1, EGraphicCore::last_texture_w, EGraphicCore::last_texture_h);
+		EGraphicCore::batch->draw_rect(place_x + 0, place_y + 1, EGraphicCore::last_texture_w, EGraphicCore::last_texture_h);
+		EGraphicCore::batch->draw_rect(place_x + 1, place_y + 1, EGraphicCore::last_texture_w, EGraphicCore::last_texture_h);
+		EGraphicCore::batch->draw_rect(place_x - 1, place_y + 0, EGraphicCore::last_texture_w, EGraphicCore::last_texture_h);
+		EGraphicCore::batch->draw_rect(place_x + 1, place_y + 0, EGraphicCore::last_texture_w, EGraphicCore::last_texture_h);
+		EGraphicCore::batch->draw_rect(place_x - 1, place_y - 1, EGraphicCore::last_texture_w, EGraphicCore::last_texture_h);
+		EGraphicCore::batch->draw_rect(place_x + 0, place_y - 1, EGraphicCore::last_texture_w, EGraphicCore::last_texture_h);
+		EGraphicCore::batch->draw_rect(place_x + 1, place_y - 1, EGraphicCore::last_texture_w, EGraphicCore::last_texture_h);
+
 		EGraphicCore::batch->reinit();
 		EGraphicCore::batch->draw_call();
+		EGraphicCore::batch->reset();*/
+
+		/*EGraphicCore::batch->setcolor_alpha(EColor::COLOR_BLACK, 0.0f);
+		glBlendEquation(GL_MIN);
+		EGraphicCore::batch->draw_rect(place_x, place_y, EGraphicCore::last_texture_w, EGraphicCore::last_texture_h);
+
+		EGraphicCore::batch->reinit();
+		EGraphicCore::batch->draw_call();
+		EGraphicCore::batch->reset();*/
+
+		EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
+		glBlendEquation(GL_MAX);
+		EGraphicCore::batch->draw_rect(place_x, place_y, EGraphicCore::last_texture_w, EGraphicCore::last_texture_h);
+
+		EGraphicCore::batch->reinit();
+		EGraphicCore::batch->draw_call();
+		EGraphicCore::batch->reset();
 
 		std::cout << "draw to x=" << place_x << " y=" << place_y << std::endl;
 
@@ -133,9 +161,16 @@ EGabarite* ETextureAtlas::put_texture_to_atlas(std::string _name, ETextureAtlas*
 	glViewport(0, 0, EGraphicCore::SCR_WIDTH, EGraphicCore::SCR_HEIGHT);
 
 	//active main texture
+
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, _ta->colorbuffer);
+	
+	//glActiveTexture(GL_TEXTURE1);
+	//glBindTexture(GL_TEXTURE_2D, _ta->colorbuffer);
+
 	EGraphicCore::ourShader->setInt("texture1", 0);
+	//EGraphicCore::ourShader->setInt("texture2", 1);
+
 	EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
 
 	return new_gabarite;
@@ -146,23 +181,7 @@ void ETextureAtlas::active_this_texture_atlas(ETextureAtlas* _ta, ETextureAtlas*
 	glViewport(0, 0, EGraphicCore::SCR_WIDTH, EGraphicCore::SCR_HEIGHT);
 	glBindFramebuffer(GL_FRAMEBUFFER, _ta->framebuffer);
 
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glBlendEquation(GL_MAX);
-
-	//set correct zoom
-	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3((EGraphicCore::SCR_WIDTH / 2.0f - _offset_x) * EGraphicCore::correction_x - 1, (EGraphicCore::SCR_HEIGHT / 2.0f - _offset_y) * EGraphicCore::correction_y - 1, 0.0f));
-	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x * _zoom, EGraphicCore::correction_y * _zoom, 1));
-
-	//use shader
-	EGraphicCore::ourShader->use();
-
-	unsigned int transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
-	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
+	
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, _ta2->colorbuffer);

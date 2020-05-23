@@ -7,7 +7,11 @@
 #include "EGabarite.h"
 
 
+float Batcher::screen_w;
+float Batcher::screen_h;
+float Batcher::zoom;
 
+float Batcher::skew_factor;
 
 
 void Batcher::setcolor(float _r, float _g, float _b, float _a)
@@ -457,6 +461,242 @@ void Batcher::draw_gabarite(float _x, float _y, float _w, float _h, EGabarite* _
 	}
 }
 
+void Batcher::draw_gabarite_skew(float _x, float _y, float _collision_x, float _collision_y, float _tall, EGabarite* _g)
+{
+	//std::cout << "filled rect" << std::endl;
+
+	//.#
+	//..
+	vertices[id + 0] = (_x + _tall * (1.0f - skew_factor));
+	vertices[id + 1] = (_y + _collision_y + _tall * skew_factor) + 1.0f;
+	//vertices[id + 2] = 0;
+
+	vertices[id + 2] = batch_color_r;
+	vertices[id + 3] = batch_color_g;
+	vertices[id + 4] = batch_color_b;
+	vertices[id + 5] = batch_color_a;
+
+	vertices[id + 6] = _g->x2;
+	vertices[id + 7] = _g->y2;
+
+
+	//..
+	//.#
+	vertices[id + 8] = (_x + _tall * (1.0f - skew_factor));
+	vertices[id + 9] = _y + _tall * skew_factor;
+	//vertices[id + 10] = 0;
+
+	vertices[id + 10] = batch_color_r;
+	vertices[id + 11] = batch_color_g;
+	vertices[id + 12] = batch_color_b;
+	vertices[id + 13] = batch_color_a;
+
+	vertices[id + 14] = _g->x2;
+	vertices[id + 15] = _g->y;
+
+
+
+
+	//..
+	//#.
+	vertices[id + 16] = _x;
+	vertices[id + 17] = _y;
+	//vertices[id + 18] = 0;
+
+	vertices[id + 18] = batch_color_r;
+	vertices[id + 19] = batch_color_g;
+	vertices[id + 20] = batch_color_b;
+	vertices[id + 21] = batch_color_a;
+
+	vertices[id + 22] = _g->x;
+	vertices[id + 23] = _g->y;
+
+
+
+	
+
+	//#.
+	//..
+	vertices[id + 24] = _x;
+	vertices[id + 25] = _y + _collision_y + 1.0f;
+	//vertices[id + 26] = 0;
+
+	vertices[id + 26] = batch_color_r;
+	vertices[id + 27] = batch_color_g;
+	vertices[id + 28] = batch_color_b;
+	vertices[id + 29] = batch_color_a;
+
+	vertices[id + 30] = _g->x;
+	vertices[id + 31] = _g->y2;
+
+
+	
+	id += 32;
+
+	///////////////////////////////////////////////////////////////////////////////
+
+	//.#
+	//..
+	vertices[id + 0] = _x + (_tall) * (1.0f - skew_factor) + 1.0f;
+	vertices[id + 1] = _y + _collision_y + _tall * skew_factor;
+	//vertices[id + 2] = 0;
+
+	vertices[id + 2] = batch_color_r;
+	vertices[id + 3] = batch_color_g;
+	vertices[id + 4] = batch_color_b;
+	vertices[id + 5] = batch_color_a;
+
+	vertices[id + 6] = _g->x2;
+	vertices[id + 7] = _g->y2;
+
+
+	//..
+	//.#
+	vertices[id + 8] =  _x + 1.0f;
+	vertices[id + 9] =  _y + _collision_y;
+	//vertices[id + 10] = 0;
+
+	vertices[id + 10] = batch_color_r;
+	vertices[id + 11] = batch_color_g;
+	vertices[id + 12] = batch_color_b;
+	vertices[id + 13] = batch_color_a;
+
+	vertices[id + 14] = _g->x2;
+	vertices[id + 15] = _g->y;
+
+
+
+
+	//..
+	//#.
+	vertices[id + 16] = _x - _collision_x;
+	vertices[id + 17] = _y + _collision_y;
+	//vertices[id + 18] = 0;
+
+	vertices[id + 18] = batch_color_r;
+	vertices[id + 19] = batch_color_g;
+	vertices[id + 20] = batch_color_b;
+	vertices[id + 21] = batch_color_a;
+
+	vertices[id + 22] = _g->x;
+	vertices[id + 23] = _g->y;
+
+
+
+
+
+	//#.
+	//..
+	vertices[id + 24] = _x - _collision_x + ( _tall) * (1.0f - skew_factor);
+	vertices[id + 25] = (_y + _collision_y + _tall * skew_factor);
+	//vertices[id + 26] = 0;
+
+	vertices[id + 26] = batch_color_r;
+	vertices[id + 27] = batch_color_g;
+	vertices[id + 28] = batch_color_b;
+	vertices[id + 29] = batch_color_a;
+
+	vertices[id + 30] = _g->x;
+	vertices[id + 31] = _g->y2;
+
+	id += 32;
+
+	if (id > batch_force_draw_call)
+	{
+		reinit();
+		draw_call();
+		reset();
+	}
+}
+
+void Batcher::draw_gabarite_ark_shadow(float _x, float _y, EGabarite* _g)
+{
+	//std::cout << "filled rect" << std::endl;
+
+
+//.#
+//..
+
+//*------------*--*
+//*--*------------#
+	vertices[id + 0] = (_x + _g->size_x + (1.0f - skew_factor) * 300.0f);
+	vertices[id + 1] = (_y + skew_factor * 300.0f);
+	//vertices[id + 2] = 0;
+
+	vertices[id + 2] = batch_color_r;
+	vertices[id + 3] = batch_color_g;
+	vertices[id + 4] = batch_color_b;
+	vertices[id + 5] = batch_color_a;
+
+	vertices[id + 6] = _g->x2;
+	vertices[id + 7] = _g->y;
+
+
+
+
+
+	//..
+	//.#
+
+	//*------------*--*
+	//*--#------------*
+	vertices[id + 8] = (_x + _g->size_x);
+	vertices[id + 9] = _y + _g->size_x * skew_factor;
+	//vertices[id + 10] = 0;
+
+	vertices[id + 10] = batch_color_r;
+	vertices[id + 11] = batch_color_g;
+	vertices[id + 12] = batch_color_b;
+	vertices[id + 13] = batch_color_a;
+
+	vertices[id + 14] = _g->x2;
+	vertices[id + 15] = _g->y;
+
+
+
+
+	//..
+	//#.
+	vertices[id + 16] = _x;
+	vertices[id + 17] = _y;
+	//vertices[id + 18] = 0;
+
+	vertices[id + 18] = batch_color_r;
+	vertices[id + 19] = batch_color_g;
+	vertices[id + 20] = batch_color_b;
+	vertices[id + 21] = batch_color_a;
+
+	vertices[id + 22] = _g->x;
+	vertices[id + 23] = _g->y;
+
+
+
+
+
+	//#.
+	//..
+	vertices[id + 24] = _x;
+	vertices[id + 25] = (_y + _g->size_y);
+	//vertices[id + 26] = 0;
+
+	vertices[id + 26] = batch_color_r;
+	vertices[id + 27] = batch_color_g;
+	vertices[id + 28] = batch_color_b;
+	vertices[id + 29] = batch_color_a;
+
+	vertices[id + 30] = _g->x;
+	vertices[id + 31] = _g->y2;
+
+	id += 32;
+
+	if (id > batch_force_draw_call)
+	{
+		reinit();
+		draw_call();
+		reset();
+	}
+}
+
 void Batcher::draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EGabarite* _g, EGabarite* _supermap, float _z)
 {
 	//std::cout << "filled rect" << std::endl;
@@ -475,8 +715,8 @@ void Batcher::draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EG
 	vertices[id + 6] = _g->x2;
 	vertices[id + 7] = _g->y2;
 
-	vertices[id + 8] = (_x + _w) / 1920.0f;
-	vertices[id + 9] = (_y - _z) / 1080.0f;
+	vertices[id + 8] = (_x + _w ) * zoom / screen_w;
+	vertices[id + 9] = (_y - _z) * zoom / screen_h;
 
 	vertices[id + 10] = _supermap->x2;
 	vertices[id + 11] = _supermap->y2;
@@ -499,8 +739,8 @@ void Batcher::draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EG
 	vertices[id + 18] = _g->x2;
 	vertices[id + 19] = _g->y;
 
-	vertices[id + 20] = (_x + _w) / 1920.0f;
-	vertices[id + 21] = (_y + 0.0f - _z) / 1080.0f;
+	vertices[id + 20] = (_x + _w ) * zoom / screen_w;
+	vertices[id + 21] = (_y + 0.0f - _z) * zoom / screen_h;
 
 	vertices[id + 22] = _supermap->x2;
 	vertices[id + 23] = _supermap->y;
@@ -521,8 +761,8 @@ void Batcher::draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EG
 	vertices[id + 30] = _g->x;
 	vertices[id + 31] = _g->y;
 
-	vertices[id + 32] = (_x) / 1920.0f;
-	vertices[id + 33] = (_y + 0.0f - _z) / 1080.0f;
+	vertices[id + 32] = (_x)*zoom / screen_w;
+	vertices[id + 33] = (_y + 0.0f - _z) * zoom / screen_h;
 
 	vertices[id + 34] = _supermap->x;
 	vertices[id + 35] = _supermap->y;
@@ -543,8 +783,8 @@ void Batcher::draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EG
 	vertices[id + 42] = _g->x;
 	vertices[id + 43] = _g->y2;
 
-	vertices[id + 44] = (_x) / 1920.0f;
-	vertices[id + 45] = (_y - _z) / 1080.0f;
+	vertices[id + 44] = (_x)*zoom / screen_w;
+	vertices[id + 45] = (_y - _z ) * zoom / screen_h;
 
 	vertices[id + 46] = _supermap->x;
 	vertices[id + 47] = _supermap->y2;

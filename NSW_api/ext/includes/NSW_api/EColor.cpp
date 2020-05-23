@@ -15,6 +15,9 @@ EColorCollection* EColor::COLOR_LIGHT_GRAY			= new EColorCollection(0.75f,	0.75f
 EColorCollection* EColor::COLOR_GRAY				= new EColorCollection(0.5f,	0.5f,	0.5f,	1.0f);
 EColorCollection* EColor::COLOR_DARK_GRAY			= new EColorCollection(0.25f,	0.25f,	0.25f,	1.0f);
 
+EColorCollection* EColor::COLOR_LAZURE_SHADOW		= new EColorCollection(0.5f, 0.55f, 0.6f, 1.0);
+EColorCollection* EColor::COLOR_SKY_AMBIENT			= new EColorCollection(1.0f, 0.9f, 0.8f, 1.0);
+
 EColor::EColor(float _r, float _g, float _b, float _a)
 {
 	red		= _r;

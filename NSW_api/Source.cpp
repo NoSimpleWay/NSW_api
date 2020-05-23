@@ -137,7 +137,7 @@ int main()
 
 	EWindow::default_texture_atlas = new ETextureAtlas(4096, 4096);
 
-	EWindow::shadow_FBO = new ETextureAtlas(1920, 1080);
+	EWindow::shadow_FBO = new ETextureAtlas(1920, 2080);
 
 	EGraphicCore::load_texture("data/textures/white_pixel.png", 0);
 
@@ -160,6 +160,7 @@ int main()
 	EWindow::window_editor->id = 1;
 	EWindow::window_editor->always_fullscreen = true;
 	EWindow::window_editor->have_bg = false;
+	EWindow::window_editor->is_active = false;
 
 	EWindow::window_search_brick = new EWindowSearchBrick();
 	//EWindow::window_game = wg;

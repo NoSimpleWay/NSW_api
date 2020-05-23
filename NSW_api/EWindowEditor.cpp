@@ -38,14 +38,16 @@ EWindowEditor::EWindowEditor()
 	  ////////////////////////////////////////////////
 	 /////	new sprite button		////////////////
 	///////////////////////////////////////////////
-	but = new EButton(-10.0f, 0.0f, 20.0f, 20.0f);
+	but = new EButton(5.0f, 0.0f, 20.0f, 20.0f);
+	but->master_button = sprite_button_list.at(selected_frame_id);
 	but->master_window = this;
 	but->have_description = true;
 	but->have_icon = true;
 	but->have_rama = true;
 
-	but->position_mode_x = Enums::PositionMode::RIGHT;
-	but->position_mode_y = Enums::PositionMode::UP;
+	but->master_position = Enums::PositionMaster::BUTTON;
+	but->position_mode_x = Enums::PositionMode::SUPER_RIGHT;
+	but->position_mode_y = Enums::PositionMode::MID;
 	but->text = "+";
 
 	//but->button_action_press = new EButtonActionAddNewSprite();
@@ -113,10 +115,10 @@ EWindowEditor::EWindowEditor()
 
 
 	////////////////////////////////////////////////
-/////	set 4 textures mode		////////////////
+/////	set 4 textures mode (movement)		////////////////
 ///////////////////////////////////////////////
-	but = new EButton(0.0f, -40.0f, 20.0f, 20.0f);
-	but->master_button = link_to_add_new_sprite_button;
+	but = new EButton(0.0f, -5.0f, 20.0f, 20.0f);
+	but->master_button = sprite_button_list.at(selected_frame_id);
 	but->master_window = this;
 	but->have_rama = true;
 
@@ -132,10 +134,29 @@ EWindowEditor::EWindowEditor()
 	link_to_is_rotate_by_move_button = but;
 
 	////////////////////////////////////////////////
+/////	set 8 textures mode(gun target)		////////////////
+///////////////////////////////////////////////
+	but = new EButton(3.0f, 0.0f, 20.0f, 20.0f);
+	but->master_button = link_to_is_rotate_by_move_button;
+	but->master_window = this;
+	but->have_rama = true;
+
+	but->master_position = Enums::PositionMaster::BUTTON;
+	but->position_mode_x = Enums::PositionMode::SUPER_RIGHT;
+	but->position_mode_y = Enums::PositionMode::MID;
+	but->text = "8";
+
+	but->action_on_left_click = &EBA::action_set_sprite_mode_8;
+
+	button_list.push_back(but);
+	link_to_sprite_editor_group.push_back(but);
+	link_to_is_rotate_by_gun_target_button = but;
+
+	////////////////////////////////////////////////
 /////	set wall mode		////////////////
 ///////////////////////////////////////////////
 	but = new EButton(3.0f, 00.0f, 20.0f, 20.0f);
-	but->master_button = link_to_is_rotate_by_move_button;
+	but->master_button = link_to_is_rotate_by_gun_target_button;
 	but->master_window = this;
 	but->have_rama = true;
 
@@ -242,11 +263,29 @@ EWindowEditor::EWindowEditor()
 
 	but->position_mode_x = Enums::PositionMode::LEFT;
 	but->position_mode_y = Enums::PositionMode::DOWN;
+	
+	//entity tall shadow value
+	but = new EButton(0.0f, -3.0f, 150.0f, 16.0f);
+	but->master_position = Enums::PositionMaster::BUTTON;
+	but->master_button = link_to_entity_mass_button;
+	but->master_window = this;
+	but->action_on_input_finish = &EBA::action_set_tall;
+
+	button_list.push_back(but);
+	link_to_entity_shadow_tall_button = but;
+	but->input_only_numbers = true;
+
+	but->text = "0";
+	but->input_hint = "shadow tall";
+	but->have_input_mode = true;
+
+	but->position_mode_x = Enums::PositionMode::LEFT;
+	but->position_mode_y = Enums::PositionMode::DOWN;
 
 	//entity inmovable
 	but = new EButton(0.0f, -3.0f, 150.0f, 16.0f);
 	but->master_position = Enums::PositionMaster::BUTTON;
-	but->master_button = link_to_entity_mass_button;
+	but->master_button = link_to_entity_shadow_tall_button;
 	but->master_window = this;
 	but->action_on_left_click = &EBA::action_set_inmovable;
 
@@ -309,7 +348,7 @@ EWindowEditor::EWindowEditor()
 	for (int i = 0; i < 8; i++)
 	{
 		//edd new entity
-		but = new EButton(0.0f + i * 42.0f, -10.0f, 40.0f, 40.0f);
+		but = new EButton(0.0f + i * 42.0f, -40.0f, 40.0f, 40.0f);
 		but->master_window = this;
 		but->master_button = sprite_button_list.at(0);
 		but->have_icon = true;
@@ -330,6 +369,152 @@ EWindowEditor::EWindowEditor()
 		link_to_sprite_editor_group.push_back(but);
 	}
 
+
+	////////////////////////////////////////////////
+/////	shadow color red		////////////////
+///////////////////////////////////////////////
+	but = new EButton(10.0f, 50.0f, 100.0f, 20.0f);
+	but->master_window = this;
+	but->have_description = true;
+	but->have_icon = true;
+	but->have_rama = true;
+
+	but->bg_color->set_color(EColor::COLOR_RED);
+	but->data_id = 0;
+
+	but->master_position = Enums::PositionMaster::WINDOW;
+	but->position_mode_x = Enums::PositionMode::LEFT;
+	but->position_mode_y = Enums::PositionMode::DOWN;
+	but->text = "";
+	but->slider_value = EColor::COLOR_LAZURE_SHADOW->color_red;
+	but->is_slider = true;
+
+	but->action_on_slider_drag = &EBA::action_slider_shadow_color;
+
+	link_to_shadow_color_red = but;
+	button_list.push_back(but);
+
+	////////////////////////////////////////////////
+/////	shadow color green		////////////////
+///////////////////////////////////////////////
+	but = new EButton(10.0f, 25.0f, 100.0f, 20.0f);
+	but->master_window = this;
+	but->have_description = true;
+	but->have_icon = true;
+	but->have_rama = true;
+
+	but->bg_color->set_color(EColor::COLOR_GREEN);
+	but->data_id = 1;
+
+	but->master_position = Enums::PositionMaster::WINDOW;
+	but->position_mode_x = Enums::PositionMode::LEFT;
+	but->position_mode_y = Enums::PositionMode::DOWN;
+	but->text = "";
+	but->slider_value = EColor::COLOR_LAZURE_SHADOW->color_green;
+	but->is_slider = true;
+
+	but->action_on_slider_drag = &EBA::action_slider_shadow_color;
+
+	link_to_shadow_color_green = but;
+	button_list.push_back(but);
+
+	////////////////////////////////////////////////
+/////	shadow color blue		////////////////
+///////////////////////////////////////////////
+	but = new EButton(10.0f, 0.0f, 100.0f, 20.0f);
+	but->master_window = this;
+	but->have_description = true;
+	but->have_icon = true;
+	but->have_rama = true;
+
+	but->bg_color->set_color(EColor::COLOR_BLUE);
+	but->data_id = 2;
+
+	but->master_position = Enums::PositionMaster::WINDOW;
+	but->position_mode_x = Enums::PositionMode::LEFT;
+	but->position_mode_y = Enums::PositionMode::DOWN;
+	but->text = "";
+	but->slider_value = EColor::COLOR_LAZURE_SHADOW->color_blue;
+	but->is_slider = true;
+
+	but->action_on_slider_drag = &EBA::action_slider_shadow_color;
+
+	link_to_shadow_color_blue = but;
+	button_list.push_back(but);
+
+
+
+	////////////////////////////////////////////////
+/////	sky color red		////////////////
+///////////////////////////////////////////////
+	but = new EButton(120.0f, 00.0f, 100.0f, 20.0f);
+	but->master_window = this;
+	but->have_description = true;
+	but->have_icon = true;
+	but->have_rama = true;
+
+	but->bg_color->set_color(EColor::COLOR_RED);
+	but->data_id = 0;
+
+	but->master_position = Enums::PositionMaster::WINDOW;
+	but->position_mode_x = Enums::PositionMode::LEFT;
+	but->position_mode_y = Enums::PositionMode::DOWN;
+	but->text = "";
+	but->slider_value = EColor::COLOR_SKY_AMBIENT->color_red;
+	but->is_slider = true;
+
+	but->action_on_slider_drag = &EBA::action_slider_sky_color;
+
+	link_to_sky_color_red = but;
+	button_list.push_back(but);
+
+	////////////////////////////////////////////////
+/////	sky color green		////////////////
+///////////////////////////////////////////////
+	but = new EButton(120.0f, 25.0f, 100.0f, 20.0f);
+	but->master_window = this;
+	but->have_description = true;
+	but->have_icon = true;
+	but->have_rama = true;
+
+	but->bg_color->set_color(EColor::COLOR_GREEN);
+	but->data_id = 1;
+
+	but->master_position = Enums::PositionMaster::WINDOW;
+	but->position_mode_x = Enums::PositionMode::LEFT;
+	but->position_mode_y = Enums::PositionMode::DOWN;
+	but->text = "";
+	but->slider_value = EColor::COLOR_SKY_AMBIENT->color_green;
+	but->is_slider = true;
+
+	but->action_on_slider_drag = &EBA::action_slider_sky_color;
+
+	link_to_sky_color_green = but;
+	button_list.push_back(but);
+
+	////////////////////////////////////////////////
+/////	sky color blue		////////////////
+///////////////////////////////////////////////
+	but = new EButton(120.0f, 50.0f, 100.0f, 20.0f);
+	but->master_window = this;
+	but->have_description = true;
+	but->have_icon = true;
+	but->have_rama = true;
+
+	but->bg_color->set_color(EColor::COLOR_BLUE);
+	but->data_id = 2;
+
+	but->master_position = Enums::PositionMaster::WINDOW;
+	but->position_mode_x = Enums::PositionMode::LEFT;
+	but->position_mode_y = Enums::PositionMode::DOWN;
+	but->text = "";
+	but->slider_value = EColor::COLOR_SKY_AMBIENT->color_blue;
+	but->is_slider = true;
+
+	but->action_on_slider_drag = &EBA::action_slider_sky_color;
+
+	link_to_sky_color_blue = but;
+	button_list.push_back(but);
 
 
 	//
@@ -740,23 +925,23 @@ void EWindowEditor::update(float _d)
 
 			if
 			(
-				(xx >= *selected_entity->position_x - *selected_entity->collision_left - 20.0f)
+				(xx >= *selected_entity->position_x - *selected_entity->collision_left - 10.0f)
 				&
 				(xx <= *selected_entity->position_x - *selected_entity->collision_left + 10.0f)
 				&
-				(yy <= *selected_entity->position_y + *selected_entity->collision_up + 20.0f)
+				(yy <= *selected_entity->position_y + *selected_entity->collision_up + 10.0f)
 				&
-				(yy >= *selected_entity->position_y - *selected_entity->collision_down - 20.0f)
+				(yy >= *selected_entity->position_y - *selected_entity->collision_down - 10.0f)
 			)
 			{catched_collision_left = true; }
 
 			if
 			(
-				(xx >= *selected_entity->position_x - *selected_entity->collision_left - 20.0f)
+				(xx >= *selected_entity->position_x - *selected_entity->collision_left - 10.0f)
 				&
-				(xx <= *selected_entity->position_x + *selected_entity->collision_right + 20.0f)
+				(xx <= *selected_entity->position_x + *selected_entity->collision_right + 10.0f)
 				&
-				(yy <= *selected_entity->position_y + *selected_entity->collision_up + 20.0f)
+				(yy <= *selected_entity->position_y + *selected_entity->collision_up + 10.0f)
 				&
 				(yy >= *selected_entity->position_y + *selected_entity->collision_up - 10.0f)
 			)
@@ -764,23 +949,23 @@ void EWindowEditor::update(float _d)
 
 			if
 			(
-				(xx <= *selected_entity->position_x + *selected_entity->collision_right + 20.0f)
+				(xx <= *selected_entity->position_x + *selected_entity->collision_right + 10.0f)
 				&
 				(xx >= *selected_entity->position_x + *selected_entity->collision_right - 10.0f)
 				&
-				(yy <= *selected_entity->position_y + *selected_entity->collision_up + 20.0f)
+				(yy <= *selected_entity->position_y + *selected_entity->collision_up + 10.0f)
 				&
-				(yy >= *selected_entity->position_y - *selected_entity->collision_down - 20.0f)
+				(yy >= *selected_entity->position_y - *selected_entity->collision_down - 10.0f)
 			)
 			{catched_collision_right = true; }
 
 			if
 			(
-				(xx >= *selected_entity->position_x - *selected_entity->collision_left - 20.0f)
+				(xx >= *selected_entity->position_x - *selected_entity->collision_left - 10.0f)
 				&
-				(xx <= *selected_entity->position_x + *selected_entity->collision_right + 20.0f)
+				(xx <= *selected_entity->position_x + *selected_entity->collision_right + 10.0f)
 				&
-				(yy >= *selected_entity->position_y - *selected_entity->collision_down - 20.0f)
+				(yy >= *selected_entity->position_y - *selected_entity->collision_down - 10.0f)
 				&
 				(yy <= *selected_entity->position_y - *selected_entity->collision_down + 10.0f)
 			)
@@ -790,6 +975,8 @@ void EWindowEditor::update(float _d)
 
 		if (glfwGetKey(EWindow::main_window, GLFW_KEY_X) == GLFW_PRESS)
 		{
+			Entity::update_path_block(selected_entity);
+
 			if (!started_collision_move)
 			{
 				saved_pos_x = real_mouse_x;
@@ -911,6 +1098,7 @@ void EWindowEditor::clone_entity(Entity* _e)
 	*clone->position_y = *_e->position_y;
 
 	*clone->mass = *_e->mass;
+	*clone->shadow_tall = *_e->shadow_tall;
 
 
 	*clone->collision_down = *_e->collision_down;
@@ -935,9 +1123,11 @@ void EWindowEditor::clone_entity(Entity* _e)
 
 		*clone_sprite->rotate_by_move = *spr->rotate_by_move;
 		*clone_sprite->rotate_by_target = *spr->rotate_by_target;
+		*clone_sprite->rotate_by_target_gun = *spr->rotate_by_target_gun;
 
 		*clone_sprite->is_shadow = *spr->is_shadow;
 		*clone_sprite->wall_mode = *spr->wall_mode;
+		
 
 		for (EGabarite* g : spr->gabarite)
 		{
@@ -994,7 +1184,7 @@ void EWindowEditor::draw(float _d)
 			*selected_entity->position_y		- *selected_entity->collision_down - 3.0f,
 			6.0f,
 			*selected_entity->collision_down	+ *selected_entity->collision_up + 3.0f,
-			3.0f,
+			1.0f,
 			EGraphicCore::gabarite_white_pixel
 			);
 		}
@@ -1007,7 +1197,7 @@ void EWindowEditor::draw(float _d)
 			*selected_entity->position_y		+ *selected_entity->collision_up - 3.0f,
 			*selected_entity->collision_left + *selected_entity->collision_right + 3.0f,
 			6.0f,
-			3.0f,
+			1.0f,
 			EGraphicCore::gabarite_white_pixel
 			);
 		}
@@ -1020,7 +1210,7 @@ void EWindowEditor::draw(float _d)
 			*selected_entity->position_y		- *selected_entity->collision_down - 3.0f,
 			6.0f,
 			*selected_entity->collision_down	+ *selected_entity->collision_up + 3.0f,
-			3.0f,
+			1.0f,
 			EGraphicCore::gabarite_white_pixel
 			);
 		}
@@ -1033,7 +1223,7 @@ void EWindowEditor::draw(float _d)
 			*selected_entity->position_y		- *selected_entity->collision_down - 3.0f,
 			*selected_entity->collision_left + *selected_entity->collision_right + 3.0f,
 			6.0f,
-			3.0f,
+			1.0f,
 			EGraphicCore::gabarite_white_pixel
 			);
 		}
@@ -1074,6 +1264,8 @@ void EWindowEditor::selected_or_unselected_color(EButton* _b, bool _selected)
 
 void EWindowEditor::update_sprite_buttons()
 {
+	link_to_add_new_sprite_button->master_button = sprite_button_list.at(selected_sprite_id);
+	link_to_is_rotate_by_move_button->master_button = sprite_button_list.at(selected_sprite_id);
 
 	for (EButton* b : link_to_sprite_editor_group)
 	{
@@ -1094,6 +1286,7 @@ void EWindowEditor::update_sprite_buttons()
 	if ((editor_mode == EditMode::EditSprites) & (selected_entity != NULL))
 	{
 		selected_or_unselected_color(link_to_is_rotate_by_move_button, *selected_entity->sprite_list.at(selected_sprite_id)->rotate_by_move);
+		selected_or_unselected_color(link_to_is_rotate_by_gun_target_button, *selected_entity->sprite_list.at(selected_sprite_id)->rotate_by_target_gun);
 		selected_or_unselected_color(link_to_is_wall_mode, *selected_entity->sprite_list.at(selected_sprite_id)->wall_mode);
 		selected_or_unselected_color(link_to_is_shadow, *selected_entity->sprite_list.at(selected_sprite_id)->is_shadow);
 
@@ -1121,7 +1314,7 @@ void EWindowEditor::update_sprite_buttons()
 					sprite_button_list.at(i)->rama_thikness = 5.0f;
 
 
-					yy -= 50.0f;
+					yy -= 80.0f;
 					
 					sprite_button_list.at(i)->gabarite = selected_entity->sprite_list.at(i)->gabarite.at(selected_frame_id);
 				}
@@ -1186,8 +1379,9 @@ void EWindowEditor::update_sprite_buttons()
 			}
 		}
 
+		/*
 		link_to_add_new_sprite_button->button_x = sprite_button_list.at(selected_sprite_id)->button_x + link_to_add_new_sprite_button->button_size_x + 10.0f;
-		link_to_add_new_sprite_button->button_y = sprite_button_list.at(selected_sprite_id)->button_y - 20.0f;
+		link_to_add_new_sprite_button->button_y = sprite_button_list.at(selected_sprite_id)->button_y - 20.0f;*/
 	}
 	
 }
@@ -1197,6 +1391,7 @@ void EWindowEditor::reset_mode(ESprite* _spr)
 	*_spr->rotate_by_move = false;
 	*_spr->rotate_by_target = false;
 	*_spr->wall_mode = false;
+	*_spr->rotate_by_target = false;
 }
 
 void EWindowEditor::update_on_entity_select()
@@ -1204,6 +1399,7 @@ void EWindowEditor::update_on_entity_select()
 	if (selected_entity != NULL)
 	{
 		link_to_entity_mass_button->text = std::to_string(*selected_entity->mass);
+		link_to_entity_shadow_tall_button->text = std::to_string(*selected_entity->shadow_tall);
 
 		EWindow::window_editor->selected_or_unselected_color(link_to_entity_inmovable_button, *EWindow::window_editor->selected_entity->inmovable);
 		EWindow::window_editor->selected_or_unselected_color(link_to_entity_controlled_by_player_button, EWindow::window_editor->selected_entity->controlled_by_player);

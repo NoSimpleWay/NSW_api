@@ -38,6 +38,10 @@ public:
 	static void action_move_sprite_down(EButton* _b, float _d);
 
 	static void action_set_sprite_mode_4(EButton* _b, float _d);
+	static void action_set_sprite_mode_8(EButton* _b, float _d);
+
+	static void action_slider_shadow_color(EButton* _b, float _d);
+	static void action_slider_sky_color(EButton* _b, float _d);
 
 
 
@@ -49,6 +53,8 @@ public:
 	static void action_set_shadow_mode(EButton* _b, float _d);
 
 	static void action_set_mass(EButton* _b, float _d);
+	static void action_set_tall(EButton* _b, float _d);
+
 	static void action_set_inmovable(EButton* _b, float _d);
 	static void action_set_controlled_by_player(EButton* _b, float _d);
 	static void action_set_controlled_by_AI(EButton* _b, float _d);

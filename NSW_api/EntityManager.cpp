@@ -92,6 +92,9 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 		if (*spr->wall_mode) { end_frame = 3; }
 		int frame_id = 0;
 
+		float rotator_x = 0.0f;
+		float rotator_y = 0.0f;
+
 		float offset_x_begin = 0.0f;
 		float offset_y_begin = 0.0f;
 
@@ -99,19 +102,29 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 		{
 			if (*_e->speed_x * *_e->speed_x > *_e->speed_y* *_e->speed_y)
 			{
-				if (*_e->speed_x > 0) { frame_id = 1; }
-				else { frame_id = 3; }
+				if (*_e->speed_x > 0) { frame_id = 1;}
+				else { frame_id = 3;}
 			}
 			else
 			{
-				if (*_e->speed_y > 0) { frame_id = 0; }
-				else { frame_id = 2; }
+				if (*_e->speed_y > 0) { frame_id = 0;}
+				else { frame_id = 2;}
 			}
 
-			if (EWindow::window_editor->is_active)
-			{
-				frame_id = EWindow::window_editor->selected_frame_id;
-			}
+			if ((EWindow::window_editor->is_active) & (sprite_id == EWindow::window_editor->selected_sprite_id)) {frame_id = EWindow::window_editor->selected_frame_id;}
+		}
+
+
+		if (*spr->rotate_by_target_gun)
+		{
+			frame_id = *_e->target_angle_id;
+
+			if (*_e->speed_x * *_e->speed_x > * _e->speed_y** _e->speed_y)
+			{if (*_e->speed_x > 0) { offset_y_begin = 5.0f; } else { offset_y_begin = -5.0f; }}
+			else
+			{if (*_e->speed_y > 0) { offset_x_begin = -15.0f; } else { offset_x_begin = 15.0f; }}
+
+			if ((EWindow::window_editor->is_active) & (sprite_id == EWindow::window_editor->selected_sprite_id)) { frame_id = EWindow::window_editor->selected_frame_id; }
 		}
 
 		//link = spr->gabarite.at(sprite_id);
@@ -154,6 +167,8 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 
 			if
 				(
+					(!_is_shadow_mode)
+					&
 					(EWindow::window_editor->is_active)
 					&&
 					(EWindow::window_editor->sprite_flash_cooldown < 0.5f)
@@ -184,13 +199,13 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 				if (_is_shadow_mode)
 				{
 					if (_transparent_is_height)
-					{_b->setcolor(0.5f, 0.55f, 0.6f, spr->gabarite.at(frame_id)->size_x / 512.0f);}
+					{_b->setcolor_alpha(EColor::COLOR_LAZURE_SHADOW, *_e->shadow_tall / 512.0f);}
 					else
-					{_b->setcolor(0.5f, 0.55f, 0.6f, 1.0f);}
+					{_b->setcolor(EColor::COLOR_LAZURE_SHADOW);}
 
 				}
 				else
-				{_b->setcolor(EColor::COLOR_WHITE);}
+				{_b->setcolor(EColor::COLOR_SKY_AMBIENT);}
 			}
 
 
@@ -211,13 +226,13 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 			}
 			else
 			{
-				_b->draw_gabarite
+				_b->draw_gabarite_skew
 				(
 					*_e->position_x + spr->offset_x.at(frame_id) + i * spr->gabarite.at(frame_id)->size_x + offset_x_begin,
 					*_e->position_y + spr->offset_y.at(frame_id) + offset_y_begin + spr->offset_y.at(frame_id),
-
-					spr->gabarite.at(frame_id)->size_x,
-					spr->gabarite.at(frame_id)->size_y,
+					*_e->collision_left + *_e->collision_right,
+					*_e->collision_up + *_e->collision_down,
+					*_e->shadow_tall,
 
 					spr->gabarite.at(frame_id)
 				);
@@ -298,20 +313,22 @@ void Entity::update_path_block(Entity* _e)
 
 void Entity::spread_path_block(Entity* _e)
 {
+	float safe_border = 5.0f;
+
 	int cluster_pos_x = int(*_e->position_x / ECluster::CLUSTER_SIZE);
 	int cluster_pos_y = int(*_e->position_y / ECluster::CLUSTER_SIZE);
 	
-		for (int cj = cluster_pos_x - 3; cj <= cluster_pos_x + 3; cj++)
-		for (int ci = cluster_pos_y - 3; ci <= cluster_pos_y + 3; ci++)
+		for (int cj = cluster_pos_x - 8; cj <= cluster_pos_x + 8; cj++)
+		for (int ci = cluster_pos_y - 8; ci <= cluster_pos_y + 8; ci++)
 		if ((cj >= 0) & (cj < ECluster::CLUSTER_DIM) & (ci >= 0) & (ci < ECluster::CLUSTER_DIM))
 		for (Entity* e: ECluster::clusters[cj][ci]->entity_list)
 		if (*e->inmovable)
 		{
-			int block_start_x = (EMath::clamp_value_int((int)((*e->position_x - *e->collision_left)  / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
-			int block_end_x = (EMath::clamp_value_int((int)((*e->position_x + *e->collision_right)  / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+			int block_start_x = (EMath::clamp_value_int((int)((*e->position_x - *e->collision_left + 15.0f)  / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+			int block_end_x = (EMath::clamp_value_int((int)((*e->position_x + *e->collision_right - 15.0f)  / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
 
-			int block_start_y = (EMath::clamp_value_int((int)((*e->position_y - *e->collision_down)  / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
-			int block_end_y = (EMath::clamp_value_int((int)((*e->position_y + *e->collision_up)  / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+			int block_start_y = (EMath::clamp_value_int((int)((*e->position_y - *e->collision_down + 15.0f)  / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+			int block_end_y = (EMath::clamp_value_int((int)((*e->position_y + *e->collision_up - 15.0f)  / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
 
 			for (int j = block_start_x; j <= block_end_x; j++)
 			for (int i = block_start_y; i <= block_end_y; i++)
@@ -485,6 +502,19 @@ void ESprite::clear_default_data(ESprite* _sprite)
 	_sprite->copies.clear();
 	_sprite->gabarite.clear();
 	_sprite->supermap.clear();
+}
+
+void ESprite::set_default_data(ESprite* _sprite)
+{
+	EGabarite* g = EGraphicCore::gabarite_white_pixel;
+	_sprite->offset_x.push_back(0);
+	_sprite->offset_y.push_back(0);
+	_sprite->offset_z.push_back(0);
+
+	_sprite->gabarite.push_back(g);
+	_sprite->supermap.push_back(g);
+
+	_sprite->copies.push_back(1);
 }
 
 ESprite::ESprite()

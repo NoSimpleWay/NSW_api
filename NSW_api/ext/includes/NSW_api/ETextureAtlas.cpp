@@ -178,13 +178,12 @@ EGabarite* ETextureAtlas::put_texture_to_atlas(std::string _name, ETextureAtlas*
 
 void ETextureAtlas::active_this_texture_atlas(ETextureAtlas* _ta, ETextureAtlas* _ta2, float _offset_x, float _offset_y, float _zoom)
 {
-	glViewport(0, 0, EGraphicCore::SCR_WIDTH, EGraphicCore::SCR_HEIGHT);
+	glViewport(0, 0, _ta->size_x, _ta->size_y);
 	glBindFramebuffer(GL_FRAMEBUFFER, _ta->framebuffer);
-
-	
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, _ta2->colorbuffer);
+
 	EGraphicCore::ourShader->setInt("texture1", 0);
 }
 

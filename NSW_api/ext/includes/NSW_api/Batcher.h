@@ -17,6 +17,10 @@ public:
 	void draw_with_custom_uv(float _x, float _y, float _w, float _h, float _start_x, float _start_y, float _end_x, float _end_y);
 
 	void draw_gabarite(float _x, float _y, float _w, float _h, EGabarite* _g);
+
+	void draw_gabarite_skew(float _x, float _y, float _collision_x, float _collision_y, float _tall, EGabarite* _g);
+	void draw_gabarite_ark_shadow(float _x, float _y, EGabarite* _g);
+
 	void draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EGabarite* _g, EGabarite* _supermap, float _z);
 
 
@@ -64,4 +68,10 @@ public:
 
 	void force_draw_call();
 	void force_draw_call_shadowmap();
+
+	static float screen_w;
+	static float screen_h;
+	static float zoom;
+
+	static float skew_factor;
 };

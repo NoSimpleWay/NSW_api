@@ -71,6 +71,8 @@ public:
 	bool* is_up_side_collided = new bool(false);
 	bool* is_down_side_collided = new bool(false);
 
+	int* target_angle_id = new int(0);
+
 	
 
 	Entity();
@@ -100,6 +102,11 @@ public:
 
 	static void update_path_block(Entity* _e);
 	static void spread_path_block(Entity* _e);
+
+	bool* have_lifetime = new bool(false);
+	float* lifetime = new float(1.0f);
+
+	float* shadow_tall = new float(100.0f);
 };
 
 
@@ -113,8 +120,8 @@ public:
 	
 
 	//----------STATIC----------------------------
-	static const int CLUSTER_SIZE = 400;
-	static const int CLUSTER_DIM = 300;
+	static const int CLUSTER_SIZE = 200;
+	static const int CLUSTER_DIM = 100;
 
 	static void put_entity(Entity* _e, float _x, float _y);
 	static void put_entity(Entity* _e);
@@ -148,8 +155,14 @@ public:
 	bool* rotate_by_target = new bool(false);
 	bool* wall_mode = new bool(false);
 	bool* is_shadow = new bool(false);
+	bool* rotate_by_target_gun = new bool(false);
+
+	
 
 	static void clear_default_data(ESprite* _sprite);
+	static void set_default_data(ESprite* _sprite);
+
+
 
 	ESprite();
 	~ESprite();

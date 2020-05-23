@@ -62,5 +62,7 @@ public:
 	static std::vector<EFont*> font_list;
 	bool is_not_cyrrilic;
 
+	void draw_with_background(std::string _s, Batcher* _b, float _x, float _y, EColorCollection* _text_color, EColorCollection* _bg_color);
+
 };
 

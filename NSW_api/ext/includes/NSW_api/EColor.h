@@ -33,5 +33,8 @@ public:
 	static EColorCollection* COLOR_GRAY;
 	static EColorCollection* COLOR_DARK_GRAY;
 
+	static EColorCollection* COLOR_LAZURE_SHADOW;
+	static EColorCollection* COLOR_SKY_AMBIENT;
+
 
 };

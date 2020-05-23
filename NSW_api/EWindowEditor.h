@@ -31,13 +31,22 @@ public:
 	EButton* link_to_move_sprite_down;
 
 	EButton* link_to_is_rotate_by_move_button;
+	EButton* link_to_is_rotate_by_gun_target_button;
 	EButton* link_to_is_wall_mode;
 	EButton* link_to_is_shadow;
+
+	EButton* link_to_shadow_color_red;
+	EButton* link_to_shadow_color_green;
+	EButton* link_to_shadow_color_blue;
+
+	EButton* link_to_sky_color_red;
+	EButton* link_to_sky_color_green;
+	EButton* link_to_sky_color_blue;
 
 	std::vector<EButton*> link_to_sprite_frame;
 	std::vector<EButton*> link_to_sprite_editor_group;
 
-	float get_move_multiplier(float _zoom);
+	static float get_move_multiplier(float _zoom);
 
 	virtual void update(float _d);
 	void clone_entity(Entity* _e);
@@ -65,6 +74,7 @@ public:
 
 	EButton* link_to_entity_mass_button;
 	EButton* link_to_entity_inmovable_button;
+	EButton* link_to_entity_shadow_tall_button;
 	EButton* link_to_entity_propeties_button;
 	EButton* link_to_entity_controlled_by_player_button;
 	EButton* link_to_entity_controlled_by_AI_button;

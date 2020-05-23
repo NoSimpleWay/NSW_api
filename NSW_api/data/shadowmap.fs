@@ -27,11 +27,9 @@ void main()
 	clamp
 	(
 		(
-			texture(texture2, ShadowCoord + vec2(offset_x, offset_y)).a //0.2 const
+			texture(texture2, ShadowCoord + vec2(offset_x, offset_y)).a //0.21
 			-
-			texture(texture1, SuperMapCoord).g// from 0 to 1
-			
-			
+			texture(texture1, SuperMapCoord).g// 0.43
 		)
 		*
 		5.0f
@@ -53,6 +51,7 @@ void main()
 	*
 	ourColor.rgb;
 	
+	//FragColor.rgb = texture(texture1, SuperMapCoord).rgb;
 	
 	FragColor.a = texture(texture1, TexCoord).a * ourColor.a;
 }

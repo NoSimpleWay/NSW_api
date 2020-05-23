@@ -140,6 +140,7 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 		if (*spr->rotate_by_move) { w_string += "*rotate_by_move\n"; }
 		if (*spr->is_shadow) { w_string += "*shadow\n"; }
 		if (*spr->wall_mode) { w_string += "*wall_mode\n"; }
+		if (*spr->rotate_by_target_gun) { w_string += "*target_gun\n"; }
 
 		order = 0;
 		for (EGabarite* g : spr->gabarite)
@@ -194,6 +195,10 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 		w_string += "\n";
 	}
 
+	w_string += "shadow_tall\t";
+	w_string += std::to_string(*e->shadow_tall);
+	w_string += "\n";
+
 	w_string += "collision_up\t";
 	w_string += std::to_string(*e->collision_up);
 	w_string += "\n";
@@ -245,6 +250,10 @@ void EBA::action_save_map(EButton* _b, float _d)
 
 	ofstream writer;
 	writer.open("test/map.txt");
+
+	w_string += "#shadow_skew\t";
+	w_string += std::to_string(Batcher::skew_factor);
+	w_string += "\n";
 
 		for (int j=0; j<ECluster::CLUSTER_DIM; j++)
 		for (int i = 0; i < ECluster::CLUSTER_DIM; i++)
@@ -305,6 +314,10 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 			{
 				//std::cout << "=" << EFile::data_array[i] << "=" << std::endl;
 
+				if (EFile::data_array[i] == "#shadow_skew")
+				{
+					i++; Batcher::skew_factor = std::stof(EFile::data_array[i]);
+				}
 				if (EFile::data_array[i] == "ADD_NEW_ENTITY")
 				{
 					just_created_entity = new Entity();
@@ -317,6 +330,13 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 				if ((EFile::data_array[i] == "*entity_controlled_by_player") && (just_created_entity != NULL))
 				{
 					just_created_entity->controlled_by_player = true;
+					//EWindow::window_test->link_to_player = just_created_entity;
+					//EWindow::window_editor->selected_entity = just_created_entity;
+				}
+
+				if ((EFile::data_array[i] == "*entity_controlled_by_ai") && (just_created_entity != NULL))
+				{
+					just_created_entity->controlled_by_ai = true;
 					//EWindow::window_test->link_to_player = just_created_entity;
 					//EWindow::window_editor->selected_entity = just_created_entity;
 				}
@@ -378,6 +398,7 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 				if (EFile::data_array[i] == "*rotate_by_move") { *just_created_sprite->rotate_by_move = true; }
 				if (EFile::data_array[i] == "*shadow") { *just_created_sprite->is_shadow = true; }
 				if (EFile::data_array[i] == "*wall_mode") { *just_created_sprite->wall_mode = true; }
+				if (EFile::data_array[i] == "*target_gun") { *just_created_sprite->rotate_by_target_gun = true; }
 
 				if (EFile::data_array[i] == "mass")
 				{
@@ -386,6 +407,10 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 					//std::cout << "mass is:" << std::to_string(*just_created_entity->mass) << std::endl;
 				}
 
+				if (EFile::data_array[i] == "shadow_tall")
+				{
+					i++; *just_created_entity->shadow_tall = std::stof(EFile::data_array[i]);
+				}
 
 				if (EFile::data_array[i] == "collision_down") { i++; *just_created_entity->collision_down = std::stof(EFile::data_array[i]); }
 				if (EFile::data_array[i] == "collision_left") { i++; *just_created_entity->collision_left = std::stof(EFile::data_array[i]); }
@@ -567,16 +592,43 @@ void EBA::action_set_sprite_mode_4(EButton* _b, float _d)
 
 	for (int i = we->selected_entity->sprite_list.at(we->selected_sprite_id)->gabarite.size(); i < 4; i++)
 	{
-		EGabarite* g = EGraphicCore::gabarite_white_pixel;
-
-		we->selected_entity->sprite_list.at(we->selected_sprite_id)->offset_x.push_back(0);
-		we->selected_entity->sprite_list.at(we->selected_sprite_id)->offset_y.push_back(0);
-
-		we->selected_entity->sprite_list.at(we->selected_sprite_id)->gabarite.push_back(g);
-		we->selected_entity->sprite_list.at(we->selected_sprite_id)->copies.push_back(1);
+		ESprite::set_default_data(we->selected_entity->sprite_list.at(we->selected_sprite_id));
 	}
 
 	we->update_sprite_buttons();
+}
+
+void EBA::action_set_sprite_mode_8(EButton* _b, float _d)
+{
+
+	EWindowEditor* we = EWindow::window_editor;
+
+	we->reset_mode(we->selected_entity->sprite_list.at(we->selected_sprite_id));
+
+	*we->selected_entity->sprite_list.at(we->selected_sprite_id)->rotate_by_target_gun = true;
+
+	for (int i = we->selected_entity->sprite_list.at(we->selected_sprite_id)->gabarite.size(); i < 8; i++)
+	{
+		EGabarite* g = EGraphicCore::gabarite_white_pixel;
+
+		ESprite::set_default_data(we->selected_entity->sprite_list.at(we->selected_sprite_id));
+	}
+
+	we->update_sprite_buttons();
+}
+
+void EBA::action_slider_shadow_color(EButton* _b, float _d)
+{
+	if (_b->data_id == 0) { EColor::COLOR_LAZURE_SHADOW->color_red = _b->slider_value; }
+	if (_b->data_id == 1) { EColor::COLOR_LAZURE_SHADOW->color_green = _b->slider_value; }
+	if (_b->data_id == 2) { EColor::COLOR_LAZURE_SHADOW->color_blue = _b->slider_value; }
+}
+
+void EBA::action_slider_sky_color(EButton* _b, float _d)
+{
+	if (_b->data_id == 0) { EColor::COLOR_SKY_AMBIENT->color_red = _b->slider_value; }
+	if (_b->data_id == 1) { EColor::COLOR_SKY_AMBIENT->color_green = _b->slider_value; }
+	if (_b->data_id == 2) { EColor::COLOR_SKY_AMBIENT->color_blue = _b->slider_value; }
 }
 
 void EBA::action_set_sprite_mode_wall(EButton* _b, float _d)
@@ -602,6 +654,15 @@ void EBA::action_set_mass(EButton* _b, float _d)
 	{
 		std::cout << "mass is:" << EMath::to_float(_b->text) << std::endl;
 		*EWindow::window_editor->selected_entity->mass = EMath::to_float(_b->text);
+	}
+}
+
+void EBA::action_set_tall(EButton* _b, float _d)
+{
+	if (EWindow::window_editor->selected_entity != NULL)
+	{
+		std::cout << "tall is:" << EMath::to_float(_b->text) << std::endl;
+		*EWindow::window_editor->selected_entity->shadow_tall = EMath::to_float(_b->text);
 	}
 }
 

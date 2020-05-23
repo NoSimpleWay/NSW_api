@@ -365,7 +365,12 @@ void EButton::update(float _d)
 		slider_value = (EWindow::mouse_x - master_position_x) / button_size_x;
 		slider_value = EMath::clamp_value_float(slider_value, 0.0f, 1.0f);
 
-		slide_drag_event();
+		slider_drag_event();
+
+		if (action_on_slider_drag != NULL)
+		{
+			action_on_slider_drag(this, _d);
+		}
 		//if (master_block != NULL) { StaticData::window_filter_block->unsave_change = true; }
 	}
 
@@ -374,7 +379,12 @@ void EButton::update(float _d)
 		slider_value = 1.0f - (EWindow::mouse_y - master_position_y) / button_size_y;
 		slider_value = EMath::clamp_value_float(slider_value, 0.0f, 1.0f);
 
-		slide_drag_event();
+		slider_drag_event();
+
+		if (action_on_slider_drag != NULL)
+		{
+			action_on_slider_drag(this, _d);
+		}
 		//if (master_block != NULL) { StaticData::window_filter_block->unsave_change = true; }
 	}
 
@@ -776,8 +786,9 @@ void EButton::drop_list_select_event()
 {
 }
 
-void EButton::slide_drag_event()
+void EButton::slider_drag_event()
 {
+
 }
 
 

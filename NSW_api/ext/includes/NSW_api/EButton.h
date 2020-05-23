@@ -26,6 +26,8 @@ public:
 	BUTTON_ACTION action_on_input;
 	BUTTON_ACTION action_on_input_finish;
 
+	BUTTON_ACTION action_on_slider_drag;
+
 	static void static_click();
 	static void static_click2();
 
@@ -129,7 +131,7 @@ public:
 	virtual void input_finish_event();
 	virtual void drop_list_select_event();
 
-	virtual void slide_drag_event();
+	virtual void slider_drag_event();
 
 
 	static int top_window_id;
@@ -192,7 +194,7 @@ public:
 	EButtonAction* button_action_outclick;*/
 
 
-
+	//bool& link_to_boolean;
 
 
 };

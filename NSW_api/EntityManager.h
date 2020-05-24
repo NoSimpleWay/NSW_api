@@ -8,6 +8,8 @@
 
 class ECluster;
 class ESprite;
+class EItem;
+class EItemAttribute;
 
 
 class Entity
@@ -107,6 +109,76 @@ public:
 	float* lifetime = new float(1.0f);
 
 	float* shadow_tall = new float(100.0f);
+
+	/*-------attribute section-------*/
+
+	enum EntityCurrentAttribute
+	{
+		CURRENT_LIFE,
+		CURRENT_SHIELD,
+		CURRENT_SHIELD_OVERLOAD_CAPACITY,
+		CURRENT_SHIELD_OVERLOAD_DURATION,
+
+		/*---------DO NOT TOUCH!-----------*/
+		/* mark of enum size*/_LAST_ELEMENT_OF_CA
+		/*---------DO NOT TOUCH!-----------*/
+	};
+
+
+	//names of all attributes
+	enum EAttr
+	{
+		EA_LIFE,
+		EA_SHIELD,
+		ENTITY_ATTRIBUTE_SHIELD_REGEN,
+
+		ENTITY_ATTRIBUTE_SHIELD_OVERLOAD_CAPACITY,
+		ENTITY_ATTRIBUTE_SHIELD_OVERLOAD_DURATION,
+
+		ENTITY_ATTRIBUTE_MASS,
+		ENTITY_ATTRIBUTE_SPEED,
+		ENTITY_ATTRIBUTE_DRAG,
+
+		/*---------DO NOT TOUCH!-----------*/
+		/* mark of enum size*/_LAST_ELEMENT_OF_EA
+		/*---------DO NOT TOUCH!-----------*/
+	};
+
+
+
+
+
+
+
+
+	//all attributes, who can change, and have maximum (life, shield, overload)
+	std::vector <float> eattr_current = std::vector<float>(EntityCurrentAttribute::_LAST_ELEMENT_OF_CA, 0.0f);
+
+	//list of all attributes
+	std::vector <float> eattr_BASE = std::vector<float>(EAttr::_LAST_ELEMENT_OF_EA, 0.0f);
+
+	//increase attribute (accumulate calues and multiply. Example: +15% increased life, + 40% increased life, + 20% increased life = 0.15 + 0.4 + 0.2 = +75% more life
+	std::vector <float> eattr_INCREASE = std::vector<float>(EAttr::_LAST_ELEMENT_OF_EA, 0.0f);
+
+	//more attribute (multiply between bomuses. Example: 15% more life, 40% more life, 20% more life = 1.15 * 1.4 * 1.2 = 93.2% more life
+	std::vector <float> eattr_MORE = std::vector<float>(EAttr::_LAST_ELEMENT_OF_EA, 0.0f);
+
+	//attribute after all bonuses
+	std::vector <float> eattr_TOTAL = std::vector<float>(EAttr::_LAST_ELEMENT_OF_EA, 0.0f);
+
+	float* hp_pointer;
+	float* max_hp_pointer;
+
+	float* shield_pointer;
+	float* max_shield_pointer;
+
+	float* shield_overload_capacity_pointer;
+	float* max_shield_overload_capacity_pointer;
+
+	float* shield_overload_duration_pointer;
+	float* max_shield_overload_duration_pointer;
+
+	static void update_entity_attributes(Entity* _e);
 };
 
 
@@ -166,4 +238,24 @@ public:
 
 	ESprite();
 	~ESprite();
+};
+
+class EItem
+{
+public:
+	EItem();
+	~EItem();
+
+	float* item_level = new float(1.0f);
+
+	EGabarite* icon;
+};
+
+class EItemAttribute
+{
+public:
+	EItemAttribute();
+	~EItemAttribute();
+
+	int* tier = new int(1);
 };

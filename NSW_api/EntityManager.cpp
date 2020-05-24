@@ -58,6 +58,30 @@ std::string Entity::get_hit_action_name(HIT_ACTION _action)
 
 Entity::Entity()
 {
+
+	hp_pointer											= &eattr_current.at(EntityCurrentAttribute::CURRENT_LIFE);
+	max_hp_pointer										= &eattr_TOTAL.at(EAttr::EA_LIFE);
+
+	shield_pointer										= &eattr_current.at(EntityCurrentAttribute::CURRENT_SHIELD);
+	max_shield_pointer									= &eattr_TOTAL.at(EAttr::EA_SHIELD);
+
+	shield_overload_capacity_pointer					= &eattr_current.at(EntityCurrentAttribute::CURRENT_SHIELD_OVERLOAD_CAPACITY);
+	max_shield_overload_capacity_pointer				= &eattr_TOTAL.at(EAttr::ENTITY_ATTRIBUTE_SHIELD_OVERLOAD_CAPACITY);
+
+	shield_overload_duration_pointer					= &eattr_current.at(EntityCurrentAttribute::CURRENT_SHIELD_OVERLOAD_DURATION);
+	max_shield_overload_duration_pointer				= &eattr_TOTAL.at(EAttr::ENTITY_ATTRIBUTE_SHIELD_OVERLOAD_DURATION);
+
+	/*
+	*max_hp_pointer = 4500.0f;
+	EString::out_debug("life before: " + std::to_string(*max_hp_pointer));
+
+	*max_hp_pointer = 9500.0f;
+	EString::out_debug("life after: " + std::to_string(*max_hp_pointer));
+	*/
+
+	//EString::out_debug("size of vector: " + std::to_string(attribute_list.size()));
+	//int n = 3;
+	//attribute_list(n, 0.0f);
 	//already_updated = false;
 	/*
 	ESprite* sp = new ESprite();
@@ -335,6 +359,28 @@ void Entity::spread_path_block(Entity* _e)
 			{EPath::block[j][i] = true;}
 		}
 }
+void Entity::update_entity_attributes(Entity* _e)
+{
+	_e->eattr_BASE.at(EAttr::EA_LIFE) = 1000.0f;
+
+	for (int i = 0; i < EAttr::_LAST_ELEMENT_OF_EA; i++)
+	{
+		_e->eattr_MORE.at(i) = 1.0f;
+		_e->eattr_TOTAL.at(i) = _e->eattr_BASE.at(i) * (1.0f + _e->eattr_INCREASE.at(i)) * (_e->eattr_MORE.at(i));
+	}
+
+	/*
+	_e->eattr_BASE.at(EAttr::EA_LIFE) = 1000.0f;
+	_e->eattr_MORE.at(EAttr::EA_LIFE) = 1.0f;
+
+	_e->eattr_TOTAL.at(EAttr::EA_LIFE)
+	=
+	_e->eattr_BASE.at(EAttr::EA_LIFE) * (1.0f + _e->eattr_INCREASE.at(EAttr::EA_LIFE)) * (_e->eattr_MORE.at(EAttr::EA_LIFE));
+	*/
+
+
+}
+
 bool ECluster::collision_left(Entity* _a, Entity* _b)
 {
 	float pseudo_line = *_b->position_x - *_b->collision_left - *_a->collision_right;
@@ -530,5 +576,21 @@ ESprite::ESprite()
 }
 
 ESprite::~ESprite()
+{
+}
+
+EItem::EItem()
+{
+}
+
+EItem::~EItem()
+{
+}
+
+EItemAttribute::EItemAttribute()
+{
+}
+
+EItemAttribute::~EItemAttribute()
 {
 }

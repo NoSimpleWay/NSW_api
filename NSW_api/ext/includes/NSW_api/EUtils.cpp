@@ -111,3 +111,8 @@ bool EString::is_contain(std::string _text_source, std::string _text_value)
 
 	return false;
 }
+
+void EString::out_debug(std::string _s)
+{
+	std::cout << _s << std::endl;
+}

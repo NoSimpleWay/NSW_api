@@ -12,8 +12,7 @@ namespace fs = std::experimental::filesystem;
 EWindowSearchBrick::EWindowSearchBrick()
 {
 
-	for (auto& p : fs::directory_iterator("data/textures"))
-		std::cout << p << '\n';
+	//for (auto& p : fs::directory_iterator("data/textures"))std::cout << p << '\n';
 
 	window_size_x = 700.0f;
 	window_size_y = 800.0f;

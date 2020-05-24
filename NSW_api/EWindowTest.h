@@ -6,6 +6,7 @@
 class EWindowTest : public EWindow
 {
 public:
+	void test_of_values();
 	EWindowTest();
 	~EWindowTest();
 
@@ -69,5 +70,10 @@ public:
 
 	float crosshair_add_x;
 	float crosshair_add_y;
+
+	float test_value_A = 17.0f;
+	float test_value_B = 6167711.4214f;
+
+	std::vector <float> test_vector = {17.0f, 6167711.4214f};
 
 };

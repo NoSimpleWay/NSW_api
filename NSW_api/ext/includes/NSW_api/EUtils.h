@@ -24,4 +24,5 @@ class EString
 {
 public:
 	static bool is_contain(std::string _text_source, std::string _text_value);
+	static void out_debug(std::string _s);
 };

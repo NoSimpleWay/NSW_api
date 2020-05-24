@@ -72,7 +72,7 @@ EGabarite* ETextureAtlas::put_texture_to_atlas(std::string _name, ETextureAtlas*
 	if (duplicate_gabarite == NULL)
 	{
 
-		std::cout << "no dublicates with <" << _name << ">" << std::endl;
+		//std::cout << "no dublicates with <" << _name << ">" << std::endl;
 
 		int place_x = 0;
 		int place_y = 0;
@@ -129,7 +129,7 @@ EGabarite* ETextureAtlas::put_texture_to_atlas(std::string _name, ETextureAtlas*
 		EGraphicCore::batch->draw_call();
 		EGraphicCore::batch->reset();
 
-		std::cout << "draw to x=" << place_x << " y=" << place_y << std::endl;
+		//std::cout << "draw to x=" << place_x << " y=" << place_y << std::endl;
 
 		new_gabarite = new EGabarite(_name, place_x / _ta->size_x, place_y / _ta->size_y, EGraphicCore::last_texture_w / _ta->size_x, EGraphicCore::last_texture_h / _ta->size_y);
 		
@@ -137,7 +137,7 @@ EGabarite* ETextureAtlas::put_texture_to_atlas(std::string _name, ETextureAtlas*
 	}
 	else
 	{
-		std::cout << "DUBLICATE <" << _name << ">" << std::endl;
+		//std::cout << "DUBLICATE <" << _name << ">" << std::endl;
 		new_gabarite = duplicate_gabarite;
 	}
 

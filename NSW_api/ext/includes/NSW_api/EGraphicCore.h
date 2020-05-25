@@ -25,9 +25,11 @@ public:
 
 	static Shader* ourShader;
 	static Shader* shadowmap;
+	static Shader* shader_terrain;
 
 	static Batcher* batch;
 	static Batcher* batch_shadowmap;
+	static Batcher* batch_terrain;
 
 	static glm::mat4 matrix_transform;
 

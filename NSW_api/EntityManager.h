@@ -110,6 +110,9 @@ public:
 
 	float* shadow_tall = new float(100.0f);
 
+	float* target_position_x = new float(0.0f);
+	float* target_position_y = new float(0.0f);
+
 	/*-------attribute section-------*/
 
 	enum EntityCurrentAttribute

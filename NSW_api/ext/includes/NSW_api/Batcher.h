@@ -10,6 +10,7 @@ public:
 
 	void init();
 	void init_shadowmap();
+	void init_terrain();
 
 	void draw_rect(float _x, float _y, float _w, float _h);
 	void draw_rect_position(float _x, float _y, float _x2, float _y2);
@@ -17,6 +18,8 @@ public:
 	void draw_with_custom_uv(float _x, float _y, float _w, float _h, float _start_x, float _start_y, float _end_x, float _end_y);
 
 	void draw_gabarite(float _x, float _y, float _w, float _h, EGabarite* _g);
+
+	void draw_terrain(float _x, float _y, float _w, float _h, EGabarite* _g);
 
 	void draw_gabarite_skew(float _x, float _y, float _collision_x, float _collision_y, float _tall, EGabarite* _g);
 	void draw_gabarite_ark_shadow(float _x, float _y, EGabarite* _g);
@@ -51,6 +54,7 @@ public:
 	unsigned int indices[5000*6];
 
 	void draw_call();
+	void draw_call_terrain();
 	void draw_call_shadowmap();
 
 	void reset();
@@ -67,6 +71,7 @@ public:
 	void draw_simple_rect(float _x, float _y, float _size_x, float _size_y);
 
 	void force_draw_call();
+	void force_draw_call_terrain();
 	void force_draw_call_shadowmap();
 
 	static float screen_w;

@@ -847,14 +847,16 @@ add_time_process("calculate path");
 						(
 							(cx >=0)&&(cy >=0)&&(cx < ECluster::CLUSTER_DIM) && (cy < ECluster::CLUSTER_DIM)
 							&
-							(abs(projection_y - cy) <= 3)
-							||
 							(
-								(progress_x <=7) & (progress_y <= 7)
-							)
-							||
-							(
-								(progress_x >= abs(cluster_length_x) - 7) & (progress_y >= abs(cluster_length_y) - 7)
+								(abs(projection_y - cy) <= 3)
+								||
+								(
+									(progress_x <=7) & (progress_y <= 7)
+								)
+								||
+								(
+									(progress_x >= abs(cluster_length_x) - 7) & (progress_y >= abs(cluster_length_y) - 7)
+								)
 							)
 						)
 						{
@@ -871,9 +873,11 @@ add_time_process("calculate path");
 								EGraphicCore::batch->draw_gabarite(projection_x * ECluster::CLUSTER_SIZE, projection_y * ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, EGraphicCore::gabarite_white_pixel);
 							}
 
+							float cadist = 0.0f;
 							if (!*e->already_moved_x)
 							{
 
+								
 								//left_side
 								if (*e->real_speed_x > 0)
 								{
@@ -882,9 +886,10 @@ add_time_process("calculate path");
 										{
 											if (ECluster::collision_left(e, e2))
 											{
-												if (*e2->position_x - *e2->collision_left - *e->position_x < nearest_dist_left_side)
+												cadist = *e2->position_x - *e2->collision_left - *e->position_x;
+												if (cadist < nearest_dist_left_side)
 												{
-													nearest_dist_left_side = *e2->position_x - *e2->collision_left - *e->position_x;
+													nearest_dist_left_side = cadist;
 													nearest_entity_left_side = e2;
 													//EWindow::window_editor->selected_entity = nearest_entity_left_side;
 												}
@@ -896,14 +901,16 @@ add_time_process("calculate path");
 								//right_side
 								if (*e->real_speed_x < 0)
 								{
+									
 									for (Entity* e2 : ECluster::clusters[cx][cy]->entity_list)
 										if ((e != e2) & (!(*e->is_bullet & *e2->is_bullet)))
 										{
 											if (ECluster::collision_right(e, e2))
 											{
-												if (*e->position_x - *e2->position_x - *e2->collision_right < nearest_dist_right_side)
+												cadist = *e->position_x - *e2->position_x - *e2->collision_right;
+												if (cadist < nearest_dist_right_side)
 												{
-													nearest_dist_right_side = *e->position_x - *e2->position_x - *e2->collision_right;
+													nearest_dist_right_side = cadist;
 													nearest_entity_right_side = e2;
 												}
 
@@ -923,9 +930,11 @@ add_time_process("calculate path");
 										{
 											if (ECluster::collision_up(e, e2))
 											{
-												if (*e->position_y - *e2->position_y - *e2->collision_up < nearest_dist_up_side)
+												cadist = *e->position_y - *e2->position_y - *e2->collision_up;
+
+												if (cadist < nearest_dist_up_side)
 												{
-													nearest_dist_up_side = *e->position_y - *e2->position_y - *e2->collision_up;
+													nearest_dist_up_side = cadist;
 													nearest_entity_up_side = e2;
 												}
 
@@ -942,9 +951,11 @@ add_time_process("calculate path");
 										{
 											if (ECluster::collision_down(e, e2))
 											{
-												if (*e2->position_y - *e->position_y - *e2->collision_down < nearest_dist_down_side)
+												cadist = *e2->position_y - *e->position_y - *e2->collision_down;
+
+												if (cadist < nearest_dist_down_side)
 												{
-													nearest_dist_down_side = *e->position_y - *e->position_y - *e2->collision_up;
+													nearest_dist_down_side = cadist;
 													nearest_entity_down_side = e2;
 												}
 												collision_down = true;
@@ -1157,7 +1168,7 @@ void EWindowTest::draw_shadows()
 {
 
 	//draw call terrain
-	EGraphicCore::batch->force_draw_call();
+
 
 
 	//active shadow FBO
@@ -1380,27 +1391,30 @@ void EWindowTest::draw_debug_cluster_rama()
 
 void EWindowTest::draw(float _d)
 {
+	EGraphicCore::batch_terrain->reset();
 	add_time_process("DRAW BEGIN");
 	//----------------DRAW TERRAIN AND SHADOW----------------
-
-	EGraphicCore::ourShader->use();
+	
+	//EGraphicCore::batch_terrain->force_draw_call_terrain
+	EGraphicCore::shader_terrain->use();
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, EWindow::default_texture_atlas->colorbuffer);
-	EGraphicCore::shadowmap->setInt("texture1", 0);
+	EGraphicCore::shader_terrain->setInt("texture1", 0);
 
 	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
 	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(round(EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1.0f, round(EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1.0f, 0.0f));
 	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x * game_camera->zoom, EGraphicCore::correction_y * game_camera->zoom, 1));
-	transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
+	transformLoc = glGetUniformLocation(EGraphicCore::shader_terrain->ID, "transform");
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 
-	EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
+	EGraphicCore::batch_terrain->setcolor(EColor::COLOR_WHITE);
 
 	if (true)
 	for (int i = up_path_draw; i >= down_path_draw; i--)
 	for (int j = left_path_draw; j <= right_path_draw; j++)
-	{EGraphicCore::batch->draw_gabarite(j * EPath::PATH_SIZE - 0.0f, i * EPath::PATH_SIZE - 0.0f, EPath::PATH_SIZE + 0.0f, EPath::PATH_SIZE + 0.0f, terrain_textures_list.at(terrain[j][i]));}
+	{EGraphicCore::batch_terrain->draw_terrain(j * EPath::PATH_SIZE - 0.0f, i * EPath::PATH_SIZE - 0.0f, EPath::PATH_SIZE + 0.0f, EPath::PATH_SIZE + 0.0f, terrain_textures_list.at(terrain[j][i]));}
+	EGraphicCore::batch_terrain->force_draw_call_terrain();
 
 	draw_shadows();
 	add_time_process("draw terrain and shadows");

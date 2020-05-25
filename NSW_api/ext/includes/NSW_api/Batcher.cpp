@@ -92,6 +92,30 @@ void Batcher::init_shadowmap()
 	glEnableVertexAttribArray(4);
 }
 
+void Batcher::init_terrain()
+{
+	std::cout << "initiate" << std::endl;
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &EBO);
+
+	glBindVertexArray(VAO);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+	// position attribute
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+
+	// texture coord attribute
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+	glEnableVertexAttribArray(1);
+}
+
 void Batcher::draw_rect_position(float _x, float _y, float _x2, float _y2)
 {
 	//std::cout << "filled rect" << std::endl;
@@ -457,6 +481,68 @@ void Batcher::draw_gabarite(float _x, float _y, float _w, float _h, EGabarite* _
 	{
 		reinit();
 		draw_call();
+		reset();
+	}
+}
+
+void Batcher::draw_terrain(float _x, float _y, float _w, float _h, EGabarite* _g)
+{
+	//std::cout << "filled rect" << std::endl;
+
+	//.#
+	//..
+	vertices[id + 0] = (_x + _w);
+	vertices[id + 1] = (_y + _h);
+	//vertices[id + 2] = 0;
+
+	vertices[id + 2] = _g->x2;
+	vertices[id + 3] = _g->y2;
+
+
+
+
+
+	//..
+	//.#
+	vertices[id + 4] = (_x + _w);
+	vertices[id + 5] = _y;
+	//vertices[id + 10] = 0;
+
+
+	vertices[id + 6] = _g->x2;
+	vertices[id + 7] = _g->y;
+
+
+
+
+	//..
+	//#.
+	vertices[id + 8] = _x;
+	vertices[id + 9] = _y;
+	//vertices[id + 18] = 0;
+
+	vertices[id + 10] = _g->x;
+	vertices[id + 11] = _g->y;
+
+
+
+
+
+	//#.
+	//..
+	vertices[id + 12] = _x;
+	vertices[id + 13] = (_y + _h);
+	//vertices[id + 26] = 0;
+
+	vertices[id + 14] = _g->x;
+	vertices[id + 15] = _g->y2;
+
+	id += 16;
+
+	if (id > 16000)
+	{
+		reinit();
+		draw_call_terrain();
 		reset();
 	}
 }
@@ -919,6 +1005,12 @@ void Batcher::draw_call()
 	//std::cout << blue << "vertices: " << red << id << std::endl<<white;
 }
 
+void Batcher::draw_call_terrain()
+{
+	glBindVertexArray(VAO);
+	glDrawElements(GL_TRIANGLES, 6 * (id / 16), GL_UNSIGNED_INT, 0);
+}
+
 void Batcher::draw_call_shadowmap()
 {
 	glBindVertexArray(VAO);
@@ -1071,6 +1163,13 @@ void Batcher::force_draw_call()
 {
 	reinit();
 	draw_call();
+	reset();
+}
+
+void Batcher::force_draw_call_terrain()
+{
+	reinit();
+	draw_call_terrain();
 	reset();
 }
 

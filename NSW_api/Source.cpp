@@ -99,6 +99,7 @@ int main()
 
 	EGraphicCore::ourShader = new Shader("data/5.1.transform.vs", "data/5.1.transform.fs");
 	EGraphicCore::shadowmap = new Shader("data/shadowmap.vs", "data/shadowmap.fs");
+	EGraphicCore::shader_terrain = new Shader("data/terrain.vs", "data/terrain.fs");
 
 	EGraphicCore::ourShader->use();
 	glfwSwapInterval(1);
@@ -113,16 +114,19 @@ int main()
 	//batcher initiation
 	EGraphicCore::batch = new Batcher();
 	EGraphicCore::batch_shadowmap = new Batcher();
+	EGraphicCore::batch_terrain = new Batcher();
 
 	for (int i = 0; i < 5000; i++)
 	{
 		EGraphicCore::batch->fill_indices();
 		EGraphicCore::batch_shadowmap->fill_indices();
+		EGraphicCore::batch_terrain->fill_indices();
 
 	}
 
 	EGraphicCore::batch->init();
 	EGraphicCore::batch_shadowmap->init_shadowmap();
+	EGraphicCore::batch_terrain->init_terrain();
 	//
 	//
 

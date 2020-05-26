@@ -32,7 +32,7 @@ void main()
 			texture(texture1, SuperMapCoord).g// 0.43
 		)
 		*
-		5.0f
+		10.0f
 		,
 		0.0f
 		,
@@ -44,12 +44,14 @@ void main()
 	texture(texture1, TexCoord).rgb
 	*
 	(
-		(1.0f - shadow_multiplier)
+		(
+			shadow_multiplier * texture(texture2, ShadowCoord + vec2(offset_x, offset_y)).rgb
+		)
 		+
-		texture(texture2, ShadowCoord + vec2(offset_x, offset_y)).rgb * shadow_multiplier
-	)
-	*
-	ourColor.rgb;
+		(
+			(1.0f - shadow_multiplier) * ourColor.rgb
+		)
+	);
 	
 	//FragColor.rgb = texture(texture1, SuperMapCoord).rgb;
 	

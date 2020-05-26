@@ -1412,7 +1412,7 @@ void EWindowTest::draw_interface(float _d)
 
 		glBindTexture(GL_TEXTURE_2D, EWindow::shadow_FBO->colorbuffer);
 		EGraphicCore::batch->setcolor_alpha(EColor::COLOR_WHITE, 1.0f);
-		EGraphicCore::batch->draw_rect(0.0f, 0.0f, EWindow::shadow_FBO->size_x, EWindow::shadow_FBO->size_y);
+		EGraphicCore::batch->draw_rect(0.0f, -500.0f, EWindow::shadow_FBO->size_x, EWindow::shadow_FBO->size_y);
 
 		EGraphicCore::batch->reinit();
 		EGraphicCore::batch->draw_call();

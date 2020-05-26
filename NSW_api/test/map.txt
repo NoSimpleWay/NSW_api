@@ -1,4 +1,4 @@
-#shadow_skew	0.445000
+#shadow_skew	0.449899
 ADD_NEW_ENTITY	1783.000000	1443.000000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/canal_c18.png
@@ -168,7 +168,7 @@ collision_left	208.000000
 
 =====================================
 
-ADD_NEW_ENTITY	2088.000000	2130.000000
+ADD_NEW_ENTITY	2034.000000	2141.000000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/roof_c18.png
 texture_offset_x	35.000000
@@ -177,7 +177,7 @@ texture_offset_z	113.000000
 texture_copies	1
 ADD_NEW_SPRITE
 *shadow
-add_new_texture	data/textures/wall_corner_c18_right_shadow.png
+add_new_texture	data/textures/white_pixel.png
 texture_offset_x	174.000000
 texture_offset_y	4.000000
 texture_offset_z	0.000000
@@ -604,7 +604,243 @@ collision_left	56.875000
 
 =====================================
 
-ADD_NEW_ENTITY	3244.000000	2385.000000
+ADD_NEW_ENTITY	2942.000000	2290.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/truck.png
+texture_offset_x	-86.000000
+texture_offset_y	-20.000000
+texture_offset_z	10.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	67.000000
+texture_offset_y	3.000000
+texture_offset_z	0.000000
+texture_copies	1
+*inmovable
+shadow_tall	50.000000
+collision_up	33.500000
+collision_down	2.000000
+collision_right	66.000000
+collision_left	77.750000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3005.000000	2183.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_corner.png
+texture_offset_x	55.000000
+texture_offset_y	-1.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-57.000000
+texture_offset_y	-6.000000
+texture_offset_z	0.000000
+texture_copies	1
+*inmovable
+shadow_tall	100.000000
+collision_up	8.125000
+collision_down	8.000000
+collision_right	58.500000
+collision_left	56.875000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3012.000000	2056.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/truck_back02(cystern).png
+texture_offset_x	-35.000000
+texture_offset_y	-14.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/truck_head02.png
+texture_offset_x	-55.000000
+texture_offset_y	-2.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	103.000000
+texture_offset_y	1.000000
+texture_offset_z	0.000000
+texture_copies	1
+*inmovable
+shadow_tall	100.000000
+collision_up	30.500000
+collision_down	3.500000
+collision_right	104.500000
+collision_left	52.500000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3048.475098	2163.500000
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-26.000000
+texture_offset_y	-27.000000
+texture_offset_z	19.000000
+texture_copies	1
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-17.399998
+texture_offset_y	-12.400000
+texture_offset_z	3.500000
+texture_copies	1
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-25.500000
+texture_offset_y	-23.100000
+texture_offset_z	14.000000
+texture_copies	1
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.899996
+texture_offset_y	-18.700001
+texture_offset_z	11.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*target_gun
+add_new_texture	data/textures/head_gun_mech_violet_1.png
+texture_offset_x	-4.000000
+texture_offset_y	1.000000
+texture_offset_z	49.000000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_2.png
+texture_offset_x	-4.875000
+texture_offset_y	1.875000
+texture_offset_z	45.250000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_3.png
+texture_offset_x	-4.375000
+texture_offset_y	1.125000
+texture_offset_z	49.000000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_4.png
+texture_offset_x	-6.250000
+texture_offset_y	0.625000
+texture_offset_z	36.500000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_5.png
+texture_offset_x	-8.125000
+texture_offset_y	-17.375000
+texture_offset_z	51.875000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_6.png
+texture_offset_x	-15.375000
+texture_offset_y	1.000000
+texture_offset_z	36.250000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_7.png
+texture_offset_x	-27.500000
+texture_offset_y	0.875000
+texture_offset_z	49.250000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_8.png
+texture_offset_x	-15.000000
+texture_offset_y	41.750000
+texture_offset_z	5.375000
+texture_copies	1
+ADD_NEW_SPRITE
+*rotate_by_move
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.000000
+texture_offset_y	-7.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.549992
+texture_offset_y	-8.249985
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.350006
+texture_offset_y	-6.999996
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	28.324989
+texture_offset_y	-8.450001
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	14.000000
+texture_offset_y	61.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*camera_target
+mass	100.000000
+shadow_tall	50.000000
+collision_up	11.500000
+collision_down	9.250000
+collision_right	14.250000
+collision_left	13.500000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3012.000000	2339.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_corner.png
+texture_offset_x	55.000000
+texture_offset_y	-1.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-57.000000
+texture_offset_y	-6.000000
+texture_offset_z	0.000000
+texture_copies	1
+*inmovable
+shadow_tall	100.000000
+collision_up	8.125000
+collision_down	8.000000
+collision_right	58.500000
+collision_left	56.875000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3217.000000	2052.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/truck_head01.png
+texture_offset_x	-86.000000
+texture_offset_y	-20.000000
+texture_offset_z	10.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/truck_back02(cystern).png
+texture_offset_x	6.000000
+texture_offset_y	-10.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	145.000000
+texture_offset_y	3.000000
+texture_offset_z	0.000000
+texture_copies	1
+*inmovable
+shadow_tall	50.000000
+collision_up	33.500000
+collision_down	2.000000
+collision_right	146.500000
+collision_left	77.750000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3526.000000	2548.000000
 ADD_NEW_SPRITE
 *shadow
 add_new_texture	data/textures/white_pixel.png
@@ -656,7 +892,7 @@ collision_left	338.300354
 
 =====================================
 
-ADD_NEW_ENTITY	3267.000000	2278.000000
+ADD_NEW_ENTITY	3567.000000	2474.000000
 ADD_NEW_SPRITE
 *shadow
 add_new_texture	data/textures/white_pixel.png
@@ -978,113 +1214,7 @@ collision_left	20.000000
 
 =====================================
 
-ADD_NEW_ENTITY	3979.250000	2313.000000
-ADD_NEW_SPRITE
-*rotate_by_move
-add_new_texture	data/textures/mech_1.png
-texture_offset_x	-26.000000
-texture_offset_y	-27.000000
-texture_offset_z	19.000000
-texture_copies	1
-add_new_texture	data/textures/mech_2.png
-texture_offset_x	-17.399998
-texture_offset_y	-12.400000
-texture_offset_z	3.500000
-texture_copies	1
-add_new_texture	data/textures/mech_3.png
-texture_offset_x	-25.500000
-texture_offset_y	-23.100000
-texture_offset_z	14.000000
-texture_copies	1
-add_new_texture	data/textures/mech_4.png
-texture_offset_x	-16.899996
-texture_offset_y	-18.700001
-texture_offset_z	11.000000
-texture_copies	1
-ADD_NEW_SPRITE
-*target_gun
-add_new_texture	data/textures/head_gun_mech_violet_1.png
-texture_offset_x	-4.000000
-texture_offset_y	1.000000
-texture_offset_z	49.000000
-texture_copies	1
-add_new_texture	data/textures/head_gun_mech_violet_2.png
-texture_offset_x	-4.875000
-texture_offset_y	1.875000
-texture_offset_z	45.250000
-texture_copies	1
-add_new_texture	data/textures/head_gun_mech_violet_3.png
-texture_offset_x	-4.375000
-texture_offset_y	1.125000
-texture_offset_z	49.000000
-texture_copies	1
-add_new_texture	data/textures/head_gun_mech_violet_4.png
-texture_offset_x	-6.250000
-texture_offset_y	0.625000
-texture_offset_z	36.500000
-texture_copies	1
-add_new_texture	data/textures/head_gun_mech_violet_5.png
-texture_offset_x	-8.125000
-texture_offset_y	-17.375000
-texture_offset_z	51.875000
-texture_copies	1
-add_new_texture	data/textures/head_gun_mech_violet_6.png
-texture_offset_x	-15.375000
-texture_offset_y	1.000000
-texture_offset_z	36.250000
-texture_copies	1
-add_new_texture	data/textures/head_gun_mech_violet_7.png
-texture_offset_x	-27.500000
-texture_offset_y	0.875000
-texture_offset_z	49.250000
-texture_copies	1
-add_new_texture	data/textures/head_gun_mech_violet_8.png
-texture_offset_x	-15.000000
-texture_offset_y	41.750000
-texture_offset_z	5.375000
-texture_copies	1
-ADD_NEW_SPRITE
-*rotate_by_move
-*shadow
-add_new_texture	data/textures/mech_shadow_for_up_down.png
-texture_offset_x	29.000000
-texture_offset_y	-7.000000
-texture_offset_z	0.000000
-texture_copies	1
-add_new_texture	data/textures/mech_shadow_for_left_right.png
-texture_offset_x	29.549992
-texture_offset_y	-8.249985
-texture_offset_z	0.000000
-texture_copies	1
-add_new_texture	data/textures/mech_shadow_for_up_down.png
-texture_offset_x	29.350006
-texture_offset_y	-6.999996
-texture_offset_z	0.000000
-texture_copies	1
-add_new_texture	data/textures/mech_shadow_for_left_right.png
-texture_offset_x	28.324989
-texture_offset_y	-8.450001
-texture_offset_z	0.000000
-texture_copies	1
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	14.000000
-texture_offset_y	61.000000
-texture_offset_z	0.000000
-texture_copies	1
-*entity_controlled_by_player
-*camera_target
-mass	100.000000
-shadow_tall	50.000000
-collision_up	11.500000
-collision_down	10.000000
-collision_right	29.750000
-collision_left	30.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	4162.670410	692.498535
+ADD_NEW_ENTITY	4162.670410	185.147858
 ADD_NEW_SPRITE
 *rotate_by_move
 add_new_texture	data/textures/mech_1.png
@@ -1117,7 +1247,59 @@ collision_left	20.000000
 
 =====================================
 
-ADD_NEW_ENTITY	4137.996094	722.498535
+ADD_NEW_ENTITY	4445.000000	1437.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/canal_c18.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/canal_c18.png
+texture_offset_x	1.000000
+texture_offset_y	-199.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/canal_c18.png
+texture_offset_x	2.000000
+texture_offset_y	-371.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/canal_c18.png
+texture_offset_x	2.000000
+texture_offset_y	133.000000
+texture_offset_z	0.000000
+texture_copies	1
+*inmovable
+shadow_tall	100.000000
+collision_up	331.000000
+collision_down	373.000000
+collision_right	139.000000
+collision_left	0.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	5287.938477	2954.498291
+ADD_NEW_SPRITE
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+mass	10.000000
+shadow_tall	100.000000
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	5412.000000	1246.000000
 ADD_NEW_SPRITE
 *rotate_by_move
 add_new_texture	data/textures/mech_1.png
@@ -1211,7 +1393,6 @@ texture_offset_x	14.000000
 texture_offset_y	61.000000
 texture_offset_z	0.000000
 texture_copies	1
-*entity_controlled_by_ai
 mass	10.000000
 shadow_tall	50.000000
 collision_up	11.500000
@@ -1222,7 +1403,7 @@ collision_left	30.000000
 
 =====================================
 
-ADD_NEW_ENTITY	5287.938477	2954.498291
+ADD_NEW_ENTITY	6764.000000	4297.000000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/white_pixel.png
 texture_offset_x	0.000000

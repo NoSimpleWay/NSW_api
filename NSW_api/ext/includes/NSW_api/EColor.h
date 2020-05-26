@@ -22,6 +22,10 @@ public:
 	static EColorCollection* COLOR_GREEN;
 	static EColorCollection* COLOR_BLUE;
 
+	static EColorCollection* COLOR_DARK_RED;
+	static EColorCollection* COLOR_DARK_GREEN;
+	static EColorCollection* COLOR_DARK_BLUE;
+
 	static EColorCollection* COLOR_YELLOW;
 	static EColorCollection* COLOR_ORANGE;
 	static EColorCollection* COLOR_PINK;

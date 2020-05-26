@@ -50,8 +50,16 @@ public:
 		int down_path_draw;
 		int up_path_draw;
 
+		//
 		float free_camera_x;
 		float free_camera_y;
+		
+		//
+		int left_terrain_draw;
+		int right_terrain_draw;
+
+		int down_terrain_draw;
+		int up_terrain_draw;
 
 	Entity* link_to_player;
 
@@ -75,5 +83,7 @@ public:
 	float test_value_B = 6167711.4214f;
 
 	std::vector <float> test_vector = {17.0f, 6167711.4214f};
+
+	EGabarite* terrain_200;
 
 };

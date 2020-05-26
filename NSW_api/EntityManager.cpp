@@ -14,6 +14,11 @@ ECluster* ECluster::clusters[CLUSTER_DIM][CLUSTER_DIM];
 std::vector<Entity::HIT_ACTION> Entity::HIT_ACTIONS_LIST;
 std::vector<std::string> Entity::HIT_ACTION_NAME_LIST;
 
+bool Entity::is_collision_down;
+bool Entity::is_collision_left;
+bool Entity::is_collision_right;
+bool Entity::is_collision_up;
+
 
 void Entity::test_hit_action_destroy_touch(Entity* _a, Entity* _b, int _side)
 {
@@ -55,6 +60,498 @@ std::string Entity::get_hit_action_name(HIT_ACTION _action)
 
 	return 0;
 }*/
+
+void Entity::collision_process(Entity* _e, float _d)
+{
+	bool collision_left = *_e->already_moved_x;
+	bool collision_right = *_e->already_moved_x;
+	bool collision_up = *_e->already_moved_y;
+	bool collision_down = *_e->already_moved_y;
+
+
+
+	*_e->already_updated = true;
+
+	*_e->prev_cluster_x = (int)(*_e->position_x / ECluster::CLUSTER_SIZE);
+	*_e->prev_cluster_y = (int)(*_e->position_y / ECluster::CLUSTER_SIZE);
+
+	Entity* nearest_entity_left_side = NULL;
+	Entity* nearest_entity_right_side = NULL;
+	Entity* nearest_entity_up_side = NULL;
+	Entity* nearest_entity_down_side = NULL;
+
+	float nearest_dist_left_side = 99999.0f;
+	float nearest_dist_right_side = 99999.0f;
+	float nearest_dist_up_side = 99999.0f;
+	float nearest_dist_down_side = 99999.0f;
+
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	*_e->target_vector_x = *_e->real_speed_x;
+	*_e->target_vector_y = *_e->real_speed_y;
+
+	int start_cluster_x = int(*_e->position_x / ECluster::CLUSTER_SIZE);
+	int start_cluster_y = int(*_e->position_y / ECluster::CLUSTER_SIZE);
+	if (*_e->real_speed_x > 0) { start_cluster_x -= 3; }
+	else { start_cluster_x += 3; }
+	if (*_e->real_speed_y > 0) { start_cluster_y -= 3; }
+	else { start_cluster_y += 3; }
+	//if (*e->real_speed_y > 0) { start_cluster_y -= 3; } else { start_cluster_y += 3; }
+
+	int end_cluster_x = int((*_e->position_x + *_e->real_speed_x) / ECluster::CLUSTER_SIZE);
+	int end_cluster_y = int((*_e->position_y + *_e->real_speed_y) / ECluster::CLUSTER_SIZE);
+	if (*_e->real_speed_x > 0) { end_cluster_x += 3; }
+	else { end_cluster_x -= 3; }
+	if (*_e->real_speed_y > 0) { end_cluster_y += 3; }
+	else { end_cluster_y -= 3; }
+
+
+	int cluster_length_x = end_cluster_x - start_cluster_x;
+	int cluster_length_y = end_cluster_y - start_cluster_y;
+
+	int direction_x = 1;
+	int direction_y = 1;
+
+	if (cluster_length_x < 0) { direction_x = -1; }
+	if (cluster_length_y < 0) { direction_y = -1; }
+
+	int progress_x = 0;
+	int progress_y = 0;
+
+
+	for (int cx = start_cluster_x; cx != end_cluster_x + direction_x; cx += direction_x)
+	{
+		float projection_x = start_cluster_x;
+		float projection_y = start_cluster_y;
+
+		if (cluster_length_x != 0)
+		{
+			projection_x = cx;
+			projection_y = start_cluster_y + cluster_length_y * progress_x / abs(cluster_length_x);
+		}
+
+
+		progress_y = 0;
+
+		for (int cy = start_cluster_y; cy != end_cluster_y + direction_y; cy += direction_y)
+			if
+				(
+				(cx >= 0) && (cy >= 0) && (cx < ECluster::CLUSTER_DIM) && (cy < ECluster::CLUSTER_DIM)
+					&
+					(
+					(abs(projection_y - cy) <= 3)
+						||
+						(
+						(progress_x <= 7) & (progress_y <= 7)
+							)
+						||
+						(
+						(progress_x >= abs(cluster_length_x) - 7) & (progress_y >= abs(cluster_length_y) - 7)
+							)
+						)
+					)
+			{
+				if ((_e->controlled_by_player) & ((EWindow::window_editor->is_active)||(false)) & (false))
+				{
+					if (abs(projection_y - cy) <= 3)
+					{
+						EGraphicCore::batch->setcolor(EColor::COLOR_PINK);
+					}
+					else
+					{
+						EGraphicCore::batch->setcolor_lum(EColor::COLOR_PINK, 0.55f);
+					}
+					EGraphicCore::batch->draw_gabarite(cx * ECluster::CLUSTER_SIZE, cy * ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, EGraphicCore::gabarite_white_pixel);
+
+
+					EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
+					EGraphicCore::batch->draw_gabarite(projection_x * ECluster::CLUSTER_SIZE, projection_y * ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, EGraphicCore::gabarite_white_pixel);
+				}
+
+				float cadist = 0.0f;
+				if (!*_e->already_moved_x)
+				{
+
+
+					//left_side
+					if (*_e->real_speed_x > 0)
+					{
+						for (Entity* e2 : ECluster::clusters[cx][cy]->entity_list)
+							if ((_e != e2) & (!(*_e->is_bullet & *e2->is_bullet)))
+							{
+								if (ECluster::collision_left(_e, e2))
+								{
+									cadist = *e2->position_x - *e2->collision_left - *_e->position_x;
+									if (cadist < nearest_dist_left_side)
+									{
+										nearest_dist_left_side = cadist;
+										nearest_entity_left_side = e2;
+										//EWindow::window_editor->selected_entity = nearest_entity_left_side;
+									}
+									collision_left = true;
+								}
+							}
+					}
+
+					//right_side
+					if (*_e->real_speed_x < 0)
+					{
+
+						for (Entity* e2 : ECluster::clusters[cx][cy]->entity_list)
+							if ((_e != e2) & (!(*_e->is_bullet & *e2->is_bullet)))
+							{
+								if (ECluster::collision_right(_e, e2))
+								{
+									cadist = *_e->position_x - *e2->position_x - *e2->collision_right;
+									if (cadist < nearest_dist_right_side)
+									{
+										nearest_dist_right_side = cadist;
+										nearest_entity_right_side = e2;
+									}
+
+									collision_right = true;
+								}
+							}
+					}
+				}
+
+				if (!*_e->already_moved_y)
+				{
+					//up_side
+					if (*_e->real_speed_y < 0)
+					{
+						for (Entity* e2 : ECluster::clusters[cx][cy]->entity_list)
+							if ((_e != e2) & (!(*_e->is_bullet & *e2->is_bullet)))
+							{
+								if (ECluster::collision_up(_e, e2))
+								{
+									cadist = *_e->position_y - *e2->position_y - *e2->collision_up;
+
+									if (cadist < nearest_dist_up_side)
+									{
+										nearest_dist_up_side = cadist;
+										nearest_entity_up_side = e2;
+									}
+
+									collision_up = true;
+								}
+							}
+					}
+
+					//down_side
+					if (*_e->real_speed_y > 0)
+					{
+						for (Entity* e2 : ECluster::clusters[cx][cy]->entity_list)
+							if ((_e != e2) & (!(*_e->is_bullet & *e2->is_bullet)))
+							{
+								if (ECluster::collision_down(_e, e2))
+								{
+									cadist = *e2->position_y - *_e->position_y - *e2->collision_down;
+
+									if (cadist < nearest_dist_down_side)
+									{
+										nearest_dist_down_side = cadist;
+										nearest_entity_down_side = e2;
+									}
+									collision_down = true;
+								}
+							}
+					}
+				}
+
+				progress_y++;
+			}
+			else
+			{
+				progress_y++;
+			}
+
+		progress_x++;
+	}
+
+
+	float total_impulse = 0;
+	float total_mass = 0;
+	float transfer_multiplier = 0;
+	float speed_diff = 0;
+
+	float delta = 0;
+	//end of collision detect
+	if (nearest_entity_left_side != NULL)
+	{
+		*_e->position_x = *nearest_entity_left_side->position_x - *nearest_entity_left_side->collision_left - *_e->collision_right;
+	}
+
+	{
+
+		//if (*e->real_speed_x * *e->real_speed_x < 0.05f) { *e->real_speed_x = 0.0f; }
+		//if (*e->real_speed_y * *e->real_speed_y < 0.05f) { *e->real_speed_y = 0.0f; }
+
+		if ((!collision_left) & (!collision_right) & (!*_e->already_moved_x))
+		{
+			*_e->position_x += *_e->real_speed_x;
+			*_e->already_moved_x = true;
+
+			*_e->position_x = EMath::clamp_value_float(*_e->position_x, 1.0f, ECluster::CLUSTER_SIZE * ECluster::CLUSTER_DIM);
+
+		}
+
+		if ((!collision_up) & (!collision_down) & (!*_e->already_moved_y))
+		{
+			*_e->position_y += *_e->real_speed_y;
+			*_e->already_moved_y = true;
+
+			*_e->position_y = EMath::clamp_value_float(*_e->position_y, 1.0f, ECluster::CLUSTER_SIZE * ECluster::CLUSTER_DIM);
+		}
+	}
+
+	if (nearest_entity_left_side != NULL)
+	{
+		if (*_e->real_speed_x > * nearest_entity_left_side->real_speed_x)
+		{
+			*_e->speed_y *= pow(0.1, _d);
+
+			if (*nearest_entity_left_side->inmovable) { *_e->speed_x *= 0.5f; }
+			else
+			{
+				total_mass = *_e->mass + *nearest_entity_left_side->mass;
+				total_impulse = (*_e->mass * *_e->speed_x) + (*nearest_entity_left_side->mass * *nearest_entity_left_side->speed_x);
+
+				*_e->speed_x = total_impulse / total_mass;
+				*nearest_entity_left_side->speed_x = total_impulse / total_mass;
+			}
+		}
+
+
+
+		if (_e->action_on_hit != NULL) { _e->action_on_hit(_e, nearest_entity_left_side, Entity::Side::HIT_SIDE_LEFT); }
+		if (_e->action_on_hited != NULL) { _e->action_on_hited(nearest_entity_left_side, _e, Entity::Side::HIT_SIDE_LEFT); }
+		//*e->position_x -= 1.0f;
+	}
+
+	if (nearest_entity_right_side != NULL)
+	{
+		if ((*_e->speed_x) < (*nearest_entity_right_side->speed_x))
+		{
+			*_e->speed_y *= pow(0.1, _d);
+
+			if (*nearest_entity_right_side->inmovable) { *_e->speed_x *= 0.5f; }
+			else
+			{
+				total_mass = *_e->mass + *nearest_entity_right_side->mass;
+				total_impulse = (*_e->mass * *_e->speed_x) + (*nearest_entity_right_side->mass * *nearest_entity_right_side->speed_x);
+
+				*_e->speed_x = total_impulse / total_mass;
+				*nearest_entity_right_side->speed_x = total_impulse / total_mass;
+			}
+			//*e->position_x -= 1.0f;
+		}
+
+		*_e->position_x = *nearest_entity_right_side->position_x + *nearest_entity_right_side->collision_right + *_e->collision_left;
+
+		if (_e->action_on_hit != NULL) { _e->action_on_hit(_e, nearest_entity_right_side, Entity::Side::HIT_SIDE_RIGHT); }
+		if (_e->action_on_hited != NULL) { _e->action_on_hited(nearest_entity_right_side, _e, Entity::Side::HIT_SIDE_RIGHT); }
+	}
+
+	if (nearest_entity_up_side != NULL)
+	{
+		if ((*_e->speed_y) < (*nearest_entity_up_side->speed_y))
+		{
+			*_e->speed_x *= pow(0.1, _d);
+
+			if (*nearest_entity_up_side->inmovable) { *_e->speed_y *= 0.5f; }
+			else
+			{
+				total_mass = *_e->mass + *nearest_entity_up_side->mass;
+				total_impulse = (*_e->mass * *_e->speed_y) + (*nearest_entity_up_side->mass * *nearest_entity_up_side->speed_y);
+
+				*_e->speed_y = total_impulse / total_mass;
+				*nearest_entity_up_side->speed_y = total_impulse / total_mass;
+			}
+			//*e->position_x -= 1.0f;
+		}
+
+		*_e->position_y = *nearest_entity_up_side->position_y + *nearest_entity_up_side->collision_up + *_e->collision_down;
+
+		if (_e->action_on_hit != NULL) { _e->action_on_hit(_e, nearest_entity_up_side, Entity::Side::HIT_SIDE_UP); }
+		if (_e->action_on_hited != NULL) { _e->action_on_hited(nearest_entity_up_side, _e, Entity::Side::HIT_SIDE_UP); }
+	}
+
+	if (nearest_entity_down_side != NULL)
+	{
+		if ((*_e->speed_y) > (*nearest_entity_down_side->speed_y))
+		{
+			*_e->speed_x *= pow(0.1, _d);
+
+			if (*nearest_entity_down_side->inmovable) { *_e->speed_y *= 0.5f; }
+			else
+			{
+				total_mass = *_e->mass + *nearest_entity_down_side->mass;
+				total_impulse = (*_e->mass * *_e->speed_y) + (*nearest_entity_down_side->mass * *nearest_entity_down_side->speed_y);
+
+				*_e->speed_y = total_impulse / total_mass;
+				*nearest_entity_down_side->speed_y = total_impulse / total_mass;
+				//*e->position_x -= 1.0f;
+			}
+		}
+
+		*_e->position_y = *nearest_entity_down_side->position_y - *nearest_entity_down_side->collision_down - *_e->collision_up;
+
+		if (_e->action_on_hit != NULL) { _e->action_on_hit(_e, nearest_entity_down_side, Entity::Side::HIT_SIDE_DOWN); }
+		if (_e->action_on_hited != NULL) { _e->action_on_hited(nearest_entity_down_side, _e, Entity::Side::HIT_SIDE_DOWN); }
+	}
+}
+
+bool Entity::can_see(Entity* _e, Entity* _target, float _d)
+{
+	//*_e->already_updated = true;
+
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	*_e->target_vector_x =  *_target->position_x - *_e->position_x;
+	*_e->target_vector_y =  *_target->position_y - *_e->position_y;
+
+	int start_cluster_x = int(*_e->position_x / ECluster::CLUSTER_SIZE);
+	int start_cluster_y = int(*_e->position_y / ECluster::CLUSTER_SIZE);
+
+	if (*_e->target_vector_x > 0) { start_cluster_x -= 3; }
+	else { start_cluster_x += 3; }
+	if (*_e->target_vector_y > 0) { start_cluster_y -= 3; }
+	else { start_cluster_y += 3; }
+	//if (*e->real_speed_y > 0) { start_cluster_y -= 3; } else { start_cluster_y += 3; }
+
+	int end_cluster_x = int((*_target->position_x) / ECluster::CLUSTER_SIZE);
+	int end_cluster_y = int((*_target->position_y) / ECluster::CLUSTER_SIZE);
+	if (*_e->target_vector_x > 0) { end_cluster_x += 3; }
+	else { end_cluster_x -= 3; }
+	if (*_e->target_vector_y > 0) { end_cluster_y += 3; }
+	else { end_cluster_y -= 3; }
+
+
+	int cluster_length_x = end_cluster_x - start_cluster_x;
+	int cluster_length_y = end_cluster_y - start_cluster_y;
+
+	int direction_x = 1;
+	int direction_y = 1;
+
+	if (cluster_length_x < 0) { direction_x = -1; }
+	if (cluster_length_y < 0) { direction_y = -1; }
+
+	int progress_x = 0;
+	int progress_y = 0;
+
+
+	for (int cx = start_cluster_x; cx != end_cluster_x + direction_x; cx += direction_x)
+	{
+		float projection_x = start_cluster_x;
+		float projection_y = start_cluster_y;
+
+		if (cluster_length_x != 0)
+		{
+			projection_x = cx;
+			projection_y = start_cluster_y + cluster_length_y * progress_x / abs(cluster_length_x);
+		}
+
+
+		progress_y = 0;
+
+		for (int cy = start_cluster_y; cy != end_cluster_y + direction_y; cy += direction_y)
+			if
+				(
+				(cx >= 0) && (cy >= 0) && (cx < ECluster::CLUSTER_DIM) && (cy < ECluster::CLUSTER_DIM)
+					&
+					(
+					(abs(projection_y - cy) <= 3)
+						||
+						(
+						(progress_x <= 7) & (progress_y <= 7)
+							)
+						||
+						(
+						(progress_x >= abs(cluster_length_x) - 7) & (progress_y >= abs(cluster_length_y) - 7)
+							)
+						)
+					)
+			{
+				if ((_e->controlled_by_player) & ((EWindow::window_editor->is_active) || (false)) & (false))
+				{
+					if (abs(projection_y - cy) <= 3)
+					{
+						EGraphicCore::batch->setcolor_alpha(EColor::COLOR_PINK, 0.5f);
+					}
+					else
+					{
+						EGraphicCore::batch->setcolor_alpha(EColor::COLOR_PINK, 0.2f);
+					}
+					EGraphicCore::batch->draw_gabarite(cx * ECluster::CLUSTER_SIZE, cy * ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, EGraphicCore::gabarite_white_pixel);
+
+
+					//EGraphicCore::batch->setcolor_alpha(EColor::COLOR_GREEN, 0.2f);
+					//EGraphicCore::batch->draw_gabarite(projection_x * ECluster::CLUSTER_SIZE, projection_y * ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, EGraphicCore::gabarite_white_pixel);
+				}
+
+
+
+
+					//left_side
+					if (*_e->target_vector_x > 0)
+					{
+						for (Entity* e2 : ECluster::clusters[cx][cy]->entity_list)
+							if ((_e != e2) & (!*e2->is_bullet))
+							{
+								if (ECluster::collision_left_zero_volume(_e, e2)) {if (e2 != _target) { return false; }}
+							}
+					}
+
+					//right_side
+					if (*_e->target_vector_x < 0)
+					{
+
+						for (Entity* e2 : ECluster::clusters[cx][cy]->entity_list)
+							if ((_e != e2) & (!*e2->is_bullet))
+							{
+								if (ECluster::collision_right_zero_volume(_e, e2)) { if (e2 != _target) { return false; } }
+							}
+					}
+				
+
+
+					//up_side
+					if (*_e->target_vector_y < 0)
+					{
+						for (Entity* e2 : ECluster::clusters[cx][cy]->entity_list)
+							if ((_e != e2) & (!*e2->is_bullet))
+							{
+								if (ECluster::collision_up_zero_volume(_e, e2)) { if (e2 != _target) { return false; } }
+							}
+					}
+
+					//down_side
+					if (*_e->target_vector_y > 0)
+					{
+						for (Entity* e2 : ECluster::clusters[cx][cy]->entity_list)
+							if ((_e != e2) & (!*e2->is_bullet))
+							{
+								if (ECluster::collision_down_zero_volume(_e, e2)) { if (e2 != _target) { return false; } }
+							}
+					}
+				
+
+				progress_y++;
+			}
+			else
+			{
+				progress_y++;
+			}
+
+		progress_x++;
+	}
+
+
+	return true;
+}
 
 Entity::Entity()
 {
@@ -389,22 +886,22 @@ bool ECluster::collision_left(Entity* _a, Entity* _b)
 	(
 		(*_a->position_x <= pseudo_line)
 		&&
-		(*_a->position_x + *_a->real_speed_x >= pseudo_line)
+		(*_a->position_x + *_a->target_vector_x >= pseudo_line)
 		&&
-		(*_a->position_y + *_a->real_speed_y / *_a->real_speed_x * (pseudo_line  - *_a->position_x) <= *_b->position_y + *_b->collision_up + *_a->collision_down)
+		(*_a->position_y + *_a->target_vector_y / *_a->target_vector_x * (pseudo_line  - *_a->position_x) <= *_b->position_y + *_b->collision_up + *_a->collision_down)
 		&&
-		(*_a->position_y + *_a->real_speed_y / *_a->real_speed_x * (pseudo_line - *_a->position_x) >= *_b->position_y - *_b->collision_down - *_a->collision_up)
+		(*_a->position_y + *_a->target_vector_y / *_a->target_vector_x * (pseudo_line - *_a->position_x) >= *_b->position_y - *_b->collision_down - *_a->collision_up)
 	)
 	{ 
-		/*
+		
 		EGraphicCore::batch->setcolor(EColor::COLOR_RED);
 		EGraphicCore::batch->draw_gabarite(*_b->position_x - *_b->collision_left, *_b->position_y + *_b->collision_up + *_a->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
 		EGraphicCore::batch->draw_gabarite(*_b->position_x - *_b->collision_left, *_b->position_y - *_b->collision_down - *_a->collision_up, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
 		EGraphicCore::batch->draw_gabarite(*_a->position_x, *_a->position_y, -*_a->collision_right, 1.0f, EGraphicCore::gabarite_white_pixel);
 
 		EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
-		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_left, *_a->position_y + *_a->real_speed_y / *_a->real_speed_x * (pseudo_line - *_a->position_x), 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
-		*/
+		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_left, *_a->position_y + *_a->target_vector_y / *_a->target_vector_x * (pseudo_line - *_a->position_x), 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
+		
 		return true;
 	}
 
@@ -419,22 +916,24 @@ bool ECluster::collision_right(Entity* _a, Entity* _b)
 	(
 		(*_a->position_x >= pseudo_line)
 		&&
-		(*_a->position_x + *_a->real_speed_x <= pseudo_line)
+		(*_a->position_x + *_a->target_vector_x <= pseudo_line)
 		&&
-		(*_a->position_y + *_a->real_speed_y / *_a->real_speed_x * ( *_a->position_x - pseudo_line) <= *_b->position_y + *_b->collision_up + *_a->collision_down)
+		(*_a->position_y - *_a->target_vector_y / *_a->target_vector_x * ( *_a->position_x - pseudo_line) <= *_b->position_y + *_b->collision_up + *_a->collision_down)
 		&&
-		(*_a->position_y + *_a->real_speed_y / *_a->real_speed_x * (*_a->position_x - pseudo_line) >= *_b->position_y - *_b->collision_down - *_a->collision_up)
+		(*_a->position_y - *_a->target_vector_y / *_a->target_vector_x * (*_a->position_x - pseudo_line) >= *_b->position_y - *_b->collision_down - *_a->collision_up)
+		//500 + -500 / -500 * 500 - 0
+		//500 + 1 * 500
 	)
 	{ 
-		/*
+		
 		EGraphicCore::batch->setcolor(EColor::COLOR_RED);
 		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_right, *_b->position_y + *_b->collision_up + *_a->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
 		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_right, *_b->position_y - *_b->collision_down - *_a->collision_up, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
 		EGraphicCore::batch->draw_gabarite(*_a->position_x, *_a->position_y, -*_a->collision_left, 1.0f, EGraphicCore::gabarite_white_pixel);
 
 		EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
-		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_right, *_a->position_y + *_a->real_speed_y / *_a->real_speed_x * (*_a->position_x - pseudo_line), 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
-		*/
+		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_right, *_a->position_y - *_a->target_vector_y / *_a->target_vector_x * (*_a->position_x - pseudo_line), 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
+		
 		return true;
 	}
 
@@ -449,22 +948,22 @@ bool ECluster::collision_up(Entity* _a, Entity* _b)
 	(
 		(*_a->position_y >= pseudo_line)
 		&&
-		(*_a->position_y + *_a->real_speed_y <= pseudo_line)
+		(*_a->position_y + *_a->target_vector_y <= pseudo_line)
 		&&
-		(*_a->position_x + *_a->real_speed_x / *_a->real_speed_y * ( pseudo_line - *_a->position_y ) <= *_b->position_x + *_b->collision_right + *_a->collision_left)
+		(*_a->position_x + *_a->target_vector_x / *_a->target_vector_y * ( pseudo_line - *_a->position_y ) <= *_b->position_x + *_b->collision_right + *_a->collision_left)
 		&&
-		(*_a->position_x + *_a->real_speed_x / *_a->real_speed_y * ( pseudo_line  - *_a->position_y ) >= *_b->position_x - *_b->collision_left - *_a->collision_right)
+		(*_a->position_x + *_a->target_vector_x / *_a->target_vector_y * ( pseudo_line  - *_a->position_y ) >= *_b->position_x - *_b->collision_left - *_a->collision_right)
 	)
 	{ 
-		/*
+		
 		EGraphicCore::batch->setcolor(EColor::COLOR_RED);
 		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_right + *_a->collision_left, *_b->position_y + *_b->collision_up, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
 		EGraphicCore::batch->draw_gabarite(*_b->position_x - *_b->collision_left - *_a->collision_right, *_b->position_y + *_b->collision_up, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
 		EGraphicCore::batch->draw_gabarite(*_a->position_x, *_a->position_y, 1.0f, -*_a->collision_down, EGraphicCore::gabarite_white_pixel);
 
 		EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
-		EGraphicCore::batch->draw_gabarite(*_a->position_x + *_a->real_speed_x / *_a->real_speed_y * (pseudo_line - *_a->position_y), *_b->position_y + *_b->collision_up, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
-		*/
+		EGraphicCore::batch->draw_gabarite(*_a->position_x + *_a->target_vector_x / *_a->target_vector_y * (pseudo_line - *_a->position_y), *_b->position_y + *_b->collision_up, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
+		
 
 		return true;
 	}
@@ -480,25 +979,154 @@ bool ECluster::collision_down(Entity* _a, Entity* _b)
 	(
 		(*_a->position_y <= pseudo_line)
 		&&
-		(*_a->position_y + *_a->real_speed_y >= pseudo_line)
+		(*_a->position_y + *_a->target_vector_y >= pseudo_line)
 		&&
-		(*_a->position_x + *_a->real_speed_x / *_a->real_speed_y * ( *_a->position_y - pseudo_line) <= *_b->position_x + *_b->collision_right + *_a->collision_left)
+		(*_a->position_x + *_a->target_vector_x / *_a->target_vector_y * ( *_a->position_y - pseudo_line) <= *_b->position_x + *_b->collision_right + *_a->collision_left)
 		&&
-		(*_a->position_x + *_a->real_speed_x / *_a->real_speed_y * ( *_a->position_y - pseudo_line) >= *_b->position_x - *_b->collision_left - *_a->collision_right)
+		(*_a->position_x + *_a->target_vector_x / *_a->target_vector_y * ( *_a->position_y - pseudo_line) >= *_b->position_x - *_b->collision_left - *_a->collision_right)
 	)
 	{ 
-		/*
+		
 		EGraphicCore::batch->setcolor(EColor::COLOR_RED);
 		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_right + *_a->collision_left, *_b->position_y - *_b->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
 		EGraphicCore::batch->draw_gabarite(*_b->position_x - *_b->collision_left - *_a->collision_right, *_b->position_y - *_b->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
 		EGraphicCore::batch->draw_gabarite(*_a->position_x, *_a->position_y, 1.0f, *_a->collision_up, EGraphicCore::gabarite_white_pixel);
 
 		EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
-		EGraphicCore::batch->draw_gabarite(*_a->position_x + *_a->real_speed_x / *_a->real_speed_y * (*_a->position_y - pseudo_line), *_b->position_y - *_b->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
-		*/
+		EGraphicCore::batch->draw_gabarite(*_a->position_x + *_a->target_vector_x / *_a->target_vector_y * (*_a->position_y - pseudo_line), *_b->position_y - *_b->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
+		
 		return true;
 	}
 
+
+	return false;
+}
+
+
+
+
+bool ECluster::collision_left_zero_volume(Entity* _a, Entity* _b)
+{
+	float pseudo_line = *_b->position_x - *_b->collision_left;
+
+	if
+		(
+		(*_a->position_x <= pseudo_line)
+			&&
+			(*_a->position_x + *_a->target_vector_x >= pseudo_line)
+			&&
+			(*_a->position_y + *_a->target_vector_y / *_a->target_vector_x * (pseudo_line - *_a->position_x) <= *_b->position_y + *_b->collision_up)
+			&&
+			(*_a->position_y + *_a->target_vector_y / *_a->target_vector_x * (pseudo_line - *_a->position_x) >= *_b->position_y - *_b->collision_down)
+			)
+	{
+
+		EGraphicCore::batch->setcolor(EColor::COLOR_RED);
+		EGraphicCore::batch->draw_gabarite(*_b->position_x - *_b->collision_left, *_b->position_y + *_b->collision_up, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
+		EGraphicCore::batch->draw_gabarite(*_b->position_x - *_b->collision_left, *_b->position_y - *_b->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
+		EGraphicCore::batch->draw_gabarite(*_a->position_x, *_a->position_y, 0.0f, 1.0f, EGraphicCore::gabarite_white_pixel);
+
+		EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
+		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_left, *_a->position_y + *_a->target_vector_y / *_a->target_vector_x * (pseudo_line - *_a->position_x), 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
+
+		return true;
+	}
+
+	return false;
+
+	return true;
+}
+
+bool ECluster::collision_right_zero_volume(Entity* _a, Entity* _b)
+{
+	float pseudo_line = *_b->position_x + *_b->collision_right;
+
+	if
+		(
+		(*_a->position_x >= pseudo_line)
+			&&
+			(*_a->position_x + *_a->target_vector_x <= pseudo_line)
+			&&
+			(*_a->position_y - *_a->target_vector_y / *_a->target_vector_x * (*_a->position_x - pseudo_line) <= *_b->position_y + *_b->collision_up)
+			&&
+			(*_a->position_y - *_a->target_vector_y / *_a->target_vector_x * (*_a->position_x - pseudo_line) >= *_b->position_y - *_b->collision_down)
+			//500 + -500 / -500 * 500 - 0
+			//500 + 1 * 500
+			)
+	{
+
+		EGraphicCore::batch->setcolor(EColor::COLOR_RED);
+		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_right, *_b->position_y + *_b->collision_up, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
+		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_right, *_b->position_y - *_b->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
+		EGraphicCore::batch->draw_gabarite(*_a->position_x, *_a->position_y, 0.0f, 1.0f, EGraphicCore::gabarite_white_pixel);
+
+		EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
+		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_right, *_a->position_y - *_a->target_vector_y / *_a->target_vector_x * (*_a->position_x - pseudo_line), 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
+
+		return true;
+	}
+
+	return false;
+}
+
+bool ECluster::collision_down_zero_volume(Entity* _a, Entity* _b)
+{
+	float pseudo_line = *_b->position_y;
+
+	if
+		(
+		(*_a->position_y <= pseudo_line)
+			&&
+			(*_a->position_y + *_a->target_vector_y >= pseudo_line)
+			&&
+			(*_a->position_x + *_a->target_vector_x / *_a->target_vector_y * (*_a->position_y - pseudo_line) <= *_b->position_x + *_b->collision_right)
+			&&
+			(*_a->position_x + *_a->target_vector_x / *_a->target_vector_y * (*_a->position_y - pseudo_line) >= *_b->position_x - *_b->collision_left)
+			)
+	{
+
+		EGraphicCore::batch->setcolor(EColor::COLOR_RED);
+		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_right, *_b->position_y - *_b->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
+		EGraphicCore::batch->draw_gabarite(*_b->position_x - *_b->collision_left, *_b->position_y - *_b->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
+		EGraphicCore::batch->draw_gabarite(*_a->position_x, *_a->position_y, 1.0f, 0.0f, EGraphicCore::gabarite_white_pixel);
+
+		EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
+		EGraphicCore::batch->draw_gabarite(*_a->position_x + *_a->target_vector_x / *_a->target_vector_y * (*_a->position_y - pseudo_line), *_b->position_y - *_b->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
+
+		return true;
+	}
+
+
+	return false;
+}
+
+bool ECluster::collision_up_zero_volume(Entity* _a, Entity* _b)
+{
+	float pseudo_line = *_b->position_y + *_b->collision_up;
+
+	if
+		(
+		(*_a->position_y >= pseudo_line)
+			&&
+			(*_a->position_y + *_a->target_vector_y <= pseudo_line)
+			&&
+			(*_a->position_x + *_a->target_vector_x / *_a->target_vector_y * (pseudo_line - *_a->position_y) <= *_b->position_x + *_b->collision_right)
+			&&
+			(*_a->position_x + *_a->target_vector_x / *_a->target_vector_y * (pseudo_line - *_a->position_y) >= *_b->position_x - *_b->collision_left)
+			)
+	{
+
+		EGraphicCore::batch->setcolor(EColor::COLOR_RED);
+		EGraphicCore::batch->draw_gabarite(*_b->position_x + *_b->collision_right, *_b->position_y + *_b->collision_up, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
+		EGraphicCore::batch->draw_gabarite(*_b->position_x - *_b->collision_left, *_b->position_y + *_b->collision_up, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
+		EGraphicCore::batch->draw_gabarite(*_a->position_x, *_a->position_y, 1.0f, 0.0f, EGraphicCore::gabarite_white_pixel);
+
+		EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
+		EGraphicCore::batch->draw_gabarite(*_a->position_x + *_a->target_vector_x / *_a->target_vector_y * (pseudo_line - *_a->position_y), *_b->position_y + *_b->collision_up, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
+
+
+		return true;
+	}
 
 	return false;
 }

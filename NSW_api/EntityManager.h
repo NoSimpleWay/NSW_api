@@ -75,7 +75,8 @@ public:
 
 	int* target_angle_id = new int(0);
 
-	
+	static void collision_process(Entity* _e, float _d);
+	static bool can_see(Entity* _e, Entity* _target, float _d);
 
 	Entity();
 	~Entity();
@@ -110,8 +111,24 @@ public:
 
 	float* shadow_tall = new float(100.0f);
 
-	float* target_position_x = new float(0.0f);
-	float* target_position_y = new float(0.0f);
+	float* target_vector_x = new float(0.0f);
+	float* target_vector_y = new float(0.0f);
+
+	static bool is_collision_left;
+	static bool is_collision_right;
+	static bool is_collision_up;
+	static bool is_collision_down;
+
+	Entity* target;
+
+	float* search_cooldown = new float(0.5f);
+	bool* is_see_target = new bool(false);
+	float* random_move_timer = new float(0.0f);
+	float* random_move_cooldown = new float(0.0f);
+
+	int* random_direction_x = new int(0);
+	int* random_direction_y = new int(0);
+
 
 	/*-------attribute section-------*/
 
@@ -207,6 +224,11 @@ public:
 	bool static collision_right(Entity* _a, Entity* _b);
 	bool static collision_down(Entity* _a, Entity* _b);
 	bool static collision_up(Entity* _a, Entity* _b);
+
+	bool static collision_left_zero_volume(Entity* _a, Entity* _b);
+	bool static collision_right_zero_volume(Entity* _a, Entity* _b);
+	bool static collision_down_zero_volume(Entity* _a, Entity* _b);
+	bool static collision_up_zero_volume(Entity* _a, Entity* _b);
 
 	int static cluster_on_mouse_x;
 	int static cluster_on_mouse_y;

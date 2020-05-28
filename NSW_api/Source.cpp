@@ -140,8 +140,9 @@ int main()
 	glViewport(0, 0, EGraphicCore::SCR_WIDTH, EGraphicCore::SCR_HEIGHT);
 
 	EWindow::default_texture_atlas = new ETextureAtlas(4096, 4096);
-
 	EWindow::shadow_FBO = new ETextureAtlas(1920, 2080);
+	EWindow::lightmap_FBO = new ETextureAtlas(300, 300);
+	EWindow::lightmap_FBO2 = new ETextureAtlas(300, 300);
 
 	EGraphicCore::load_texture("data/textures/white_pixel.png", 0);
 

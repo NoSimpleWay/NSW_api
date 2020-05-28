@@ -5,6 +5,8 @@
 #include "NSW_api/Batcher.h"
 #include "EPath.h"
 
+#include <map>
+
 
 class ECluster;
 class ESprite;
@@ -37,6 +39,8 @@ public:
 	static void test_hit_action_self_destroy_on_hit(Entity* _a, Entity* _b, int _side);
 	/////////////////////////////////////////////////////////
 
+
+
 	float* position_x = new float();
 	float* position_y = new float();
 
@@ -46,8 +50,7 @@ public:
 	float* real_speed_x = new float();
 	float* real_speed_y = new float();
 
-	float* mass = new float(10.0f);
-	bool* inmovable = new bool(false);
+	//bool* inmovable = new bool(false);
 
 	float* collision_up		= new float(20.0f);
 	float* collision_down	= new float(20.0f);
@@ -90,8 +93,8 @@ public:
 
 	bool body_rotate_by_move = false;
 
-	bool controlled_by_ai = false;
-	bool controlled_by_player = false;
+	bool* controlled_by_ai = new bool (false);
+	bool* controlled_by_player = new bool (false);
 
 	std::vector<ESprite*> sprite_list;
 
@@ -109,7 +112,6 @@ public:
 	bool* have_lifetime = new bool(false);
 	float* lifetime = new float(1.0f);
 
-	float* shadow_tall = new float(100.0f);
 
 	float* target_vector_x = new float(0.0f);
 	float* target_vector_y = new float(0.0f);
@@ -144,6 +146,27 @@ public:
 		/*---------DO NOT TOUCH!-----------*/
 	};
 
+	enum EntityBoolAttributes
+	{
+		ENTITY_BOOL_ATTRIBUTE_INMOVABLE,
+		ENTITY_BOOL_CONTROLLED_BY_AI,
+		ENTITY_BOOL_CONTROLLED_BY_PLAYER,
+		ENTITY_BOOL_HAVE_LIGHT_SOURCE,
+		ENTITY_BOOL_GHOST,
+
+
+		/*---------DO NOT TOUCH!-----------*/
+		/* mark of enum size*/_LAST_ELEMENT_OF_EBA
+		/*---------DO NOT TOUCH!-----------*/
+	};
+
+	//std::vector <bool> eattr_bool = std::vector<bool>(EntityBoolAttributes::_LAST_ELEMENT_OF_EBA, false);
+
+	static std::vector <int> entity_bool_attribute_id;
+	static std::vector < std::string > entity_bool_attribute_names;
+
+	bool* inmovable = new bool(false);
+	std::vector <bool*> pointer_to_bool_list = std::vector<bool*>(EntityBoolAttributes::_LAST_ELEMENT_OF_EBA, false);
 
 	//names of all attributes
 	enum EAttr
@@ -159,12 +182,20 @@ public:
 		ENTITY_ATTRIBUTE_SPEED,
 		ENTITY_ATTRIBUTE_DRAG,
 
+		ENTITY_ATTRIBUTE_SHADOW_TALL,
+
 		/*---------DO NOT TOUCH!-----------*/
 		/* mark of enum size*/_LAST_ELEMENT_OF_EA
 		/*---------DO NOT TOUCH!-----------*/
 	};
 
+	//static struct attribute_pair
+	//{
+	static std::vector <int> entity_attribute_id;
+	static std::vector < std::string > entity_attribute_names;
 
+
+	//};
 
 
 
@@ -198,6 +229,20 @@ public:
 	float* shield_overload_duration_pointer;
 	float* max_shield_overload_duration_pointer;
 
+	float* mass_pointer;
+	float* speed_pointer;
+	float* shadow_tall_pointer;
+	float* drag_pointer;
+
+	float* light_source_red		= new float(0.0f);
+	float* light_source_green	= new float(0.0f);
+	float* light_source_blue	= new float(0.0f);
+
+	bool* have_light_source = new bool (false);
+	bool* is_ghost = new bool (false);
+
+
+
 	static void update_entity_attributes(Entity* _e);
 };
 
@@ -213,7 +258,7 @@ public:
 
 	//----------STATIC----------------------------
 	static const int CLUSTER_SIZE = 200;
-	static const int CLUSTER_DIM = 100;
+	static const int CLUSTER_DIM = 60;
 
 	static void put_entity(Entity* _e, float _x, float _y);
 	static void put_entity(Entity* _e);
@@ -239,6 +284,22 @@ public:
 class ESprite
 {
 public:
+
+	struct sprite_struct
+	{
+		float* offset_x = new float(0.0f);
+		float* offset_y = new float(0.0f);
+		float* offset_z = new float(0.0f);
+
+		int* copies = new int(1);
+
+		EGabarite* gabarite = NULL;
+		EGabarite* supermap = NULL;
+	};
+
+	std::vector <sprite_struct*> sprite_struct_list;
+
+	/*
 	std::vector<EGabarite*> gabarite;
 	std::vector<EGabarite*> supermap;
 
@@ -247,6 +308,7 @@ public:
 	std::vector<float> offset_z;
 
 	std::vector<int> copies;
+	*/
 
 	bool* rotate_by_move = new bool(false);
 	bool* rotate_by_target = new bool(false);

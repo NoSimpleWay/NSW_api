@@ -18,7 +18,7 @@ public:
 	bool can_place_here(int _x, int _y, int _w, int _h);
 
 	static EGabarite* put_texture_to_atlas(std::string _name, ETextureAtlas* _ta);
-	static void active_this_texture_atlas(ETextureAtlas* _ta, ETextureAtlas* _ta2, float _offset_x, float _offset_y, float _zoom);
+	static void active_this_texture_atlas(ETextureAtlas* _ta, ETextureAtlas* _ta2);
 	static void return_to_this_texture_atlas(ETextureAtlas* _ta);
 
 	ETextureAtlas(int _x, int _y);

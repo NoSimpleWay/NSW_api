@@ -19,6 +19,56 @@ bool Entity::is_collision_left;
 bool Entity::is_collision_right;
 bool Entity::is_collision_up;
 
+std::vector <int> Entity::entity_attribute_id
+=
+{
+	EAttr::EA_LIFE,
+	EAttr::EA_SHIELD,
+	EAttr::ENTITY_ATTRIBUTE_SHIELD_REGEN,
+	EAttr::ENTITY_ATTRIBUTE_SHIELD_OVERLOAD_CAPACITY,
+	EAttr::ENTITY_ATTRIBUTE_SHIELD_OVERLOAD_DURATION,
+	EAttr::ENTITY_ATTRIBUTE_MASS,
+	EAttr::ENTITY_ATTRIBUTE_SPEED,
+	EAttr::ENTITY_ATTRIBUTE_DRAG,
+	EAttr::ENTITY_ATTRIBUTE_SHADOW_TALL
+};
+
+std::vector < std::string > Entity::entity_attribute_names
+=
+{
+	"Life",
+	"Shield",
+	"Shield regen",
+	"Overload capacity",
+	"Overload duration",
+	"Mass",
+	"Speed",
+	"Drag",
+	"Shadow tall"
+};
+
+std::vector <int> Entity::entity_bool_attribute_id
+=
+{
+	EntityBoolAttributes::ENTITY_BOOL_ATTRIBUTE_INMOVABLE,
+	EntityBoolAttributes::ENTITY_BOOL_CONTROLLED_BY_AI,
+	EntityBoolAttributes::ENTITY_BOOL_CONTROLLED_BY_PLAYER,
+	EntityBoolAttributes::ENTITY_BOOL_HAVE_LIGHT_SOURCE,
+	EntityBoolAttributes::ENTITY_BOOL_GHOST,
+
+};
+
+std::vector < std::string > Entity::entity_bool_attribute_names
+=
+{
+	"Inmovable",
+	"Controlled by AI",
+	"Controlled by Player",
+	"Light Source",
+	"Ghost"
+
+
+};
 
 void Entity::test_hit_action_destroy_touch(Entity* _a, Entity* _b, int _side)
 {
@@ -152,7 +202,7 @@ void Entity::collision_process(Entity* _e, float _d)
 						)
 					)
 			{
-				if ((_e->controlled_by_player) & ((EWindow::window_editor->is_active)||(false)) & (false))
+				if ((*_e->controlled_by_player) & ((EWindow::window_editor->is_active)||(false)) & (false))
 				{
 					if (abs(projection_y - cy) <= 3)
 					{
@@ -178,7 +228,7 @@ void Entity::collision_process(Entity* _e, float _d)
 					if (*_e->real_speed_x > 0)
 					{
 						for (Entity* e2 : ECluster::clusters[cx][cy]->entity_list)
-							if ((_e != e2) & (!(*_e->is_bullet & *e2->is_bullet)))
+							if ((_e != e2) & (!(*_e->is_bullet & *e2->is_bullet)) & (!*e2->is_ghost))
 							{
 								if (ECluster::collision_left(_e, e2))
 								{
@@ -199,7 +249,7 @@ void Entity::collision_process(Entity* _e, float _d)
 					{
 
 						for (Entity* e2 : ECluster::clusters[cx][cy]->entity_list)
-							if ((_e != e2) & (!(*_e->is_bullet & *e2->is_bullet)))
+							if ((_e != e2) & (!(*_e->is_bullet & *e2->is_bullet)) & (!*e2->is_ghost))
 							{
 								if (ECluster::collision_right(_e, e2))
 								{
@@ -222,7 +272,7 @@ void Entity::collision_process(Entity* _e, float _d)
 					if (*_e->real_speed_y < 0)
 					{
 						for (Entity* e2 : ECluster::clusters[cx][cy]->entity_list)
-							if ((_e != e2) & (!(*_e->is_bullet & *e2->is_bullet)))
+							if ((_e != e2) & (!(*_e->is_bullet & *e2->is_bullet)) & (!*e2->is_ghost))
 							{
 								if (ECluster::collision_up(_e, e2))
 								{
@@ -243,7 +293,7 @@ void Entity::collision_process(Entity* _e, float _d)
 					if (*_e->real_speed_y > 0)
 					{
 						for (Entity* e2 : ECluster::clusters[cx][cy]->entity_list)
-							if ((_e != e2) & (!(*_e->is_bullet & *e2->is_bullet)))
+							if ((_e != e2) & (!(*_e->is_bullet & *e2->is_bullet)) & (!*e2->is_ghost))
 							{
 								if (ECluster::collision_down(_e, e2))
 								{
@@ -315,8 +365,8 @@ void Entity::collision_process(Entity* _e, float _d)
 			if (*nearest_entity_left_side->inmovable) { *_e->speed_x *= 0.5f; }
 			else
 			{
-				total_mass = *_e->mass + *nearest_entity_left_side->mass;
-				total_impulse = (*_e->mass * *_e->speed_x) + (*nearest_entity_left_side->mass * *nearest_entity_left_side->speed_x);
+				total_mass = *_e->mass_pointer + *nearest_entity_left_side->mass_pointer;
+				total_impulse = (*_e->mass_pointer * *_e->speed_x) + (*nearest_entity_left_side->mass_pointer * *nearest_entity_left_side->speed_x);
 
 				*_e->speed_x = total_impulse / total_mass;
 				*nearest_entity_left_side->speed_x = total_impulse / total_mass;
@@ -339,8 +389,8 @@ void Entity::collision_process(Entity* _e, float _d)
 			if (*nearest_entity_right_side->inmovable) { *_e->speed_x *= 0.5f; }
 			else
 			{
-				total_mass = *_e->mass + *nearest_entity_right_side->mass;
-				total_impulse = (*_e->mass * *_e->speed_x) + (*nearest_entity_right_side->mass * *nearest_entity_right_side->speed_x);
+				total_mass = *_e->mass_pointer + *nearest_entity_right_side->mass_pointer;
+				total_impulse = (*_e->mass_pointer * *_e->speed_x) + (*nearest_entity_right_side->mass_pointer * *nearest_entity_right_side->speed_x);
 
 				*_e->speed_x = total_impulse / total_mass;
 				*nearest_entity_right_side->speed_x = total_impulse / total_mass;
@@ -363,8 +413,8 @@ void Entity::collision_process(Entity* _e, float _d)
 			if (*nearest_entity_up_side->inmovable) { *_e->speed_y *= 0.5f; }
 			else
 			{
-				total_mass = *_e->mass + *nearest_entity_up_side->mass;
-				total_impulse = (*_e->mass * *_e->speed_y) + (*nearest_entity_up_side->mass * *nearest_entity_up_side->speed_y);
+				total_mass = *_e->mass_pointer + *nearest_entity_up_side->mass_pointer;
+				total_impulse = (*_e->mass_pointer * *_e->speed_y) + (*nearest_entity_up_side->mass_pointer * *nearest_entity_up_side->speed_y);
 
 				*_e->speed_y = total_impulse / total_mass;
 				*nearest_entity_up_side->speed_y = total_impulse / total_mass;
@@ -387,8 +437,8 @@ void Entity::collision_process(Entity* _e, float _d)
 			if (*nearest_entity_down_side->inmovable) { *_e->speed_y *= 0.5f; }
 			else
 			{
-				total_mass = *_e->mass + *nearest_entity_down_side->mass;
-				total_impulse = (*_e->mass * *_e->speed_y) + (*nearest_entity_down_side->mass * *nearest_entity_down_side->speed_y);
+				total_mass = *_e->mass_pointer + *nearest_entity_down_side->mass_pointer;
+				total_impulse = (*_e->mass_pointer * *_e->speed_y) + (*nearest_entity_down_side->mass_pointer * *nearest_entity_down_side->speed_y);
 
 				*_e->speed_y = total_impulse / total_mass;
 				*nearest_entity_down_side->speed_y = total_impulse / total_mass;
@@ -475,7 +525,7 @@ bool Entity::can_see(Entity* _e, Entity* _target, float _d)
 						)
 					)
 			{
-				if ((_e->controlled_by_player) & ((EWindow::window_editor->is_active) || (false)) & (false))
+				if ((*_e->controlled_by_player) & ((EWindow::window_editor->is_active) || (false)) & (false))
 				{
 					if (abs(projection_y - cy) <= 3)
 					{
@@ -499,7 +549,7 @@ bool Entity::can_see(Entity* _e, Entity* _target, float _d)
 					if (*_e->target_vector_x > 0)
 					{
 						for (Entity* e2 : ECluster::clusters[cx][cy]->entity_list)
-							if ((_e != e2) & (!*e2->is_bullet))
+							if ((_e != e2) & (!*e2->is_bullet) & (!*e2->is_ghost))
 							{
 								if (ECluster::collision_left_zero_volume(_e, e2)) {if (e2 != _target) { return false; }}
 							}
@@ -510,7 +560,7 @@ bool Entity::can_see(Entity* _e, Entity* _target, float _d)
 					{
 
 						for (Entity* e2 : ECluster::clusters[cx][cy]->entity_list)
-							if ((_e != e2) & (!*e2->is_bullet))
+							if ((_e != e2) & (!*e2->is_bullet) & (!*e2->is_ghost))
 							{
 								if (ECluster::collision_right_zero_volume(_e, e2)) { if (e2 != _target) { return false; } }
 							}
@@ -522,7 +572,7 @@ bool Entity::can_see(Entity* _e, Entity* _target, float _d)
 					if (*_e->target_vector_y < 0)
 					{
 						for (Entity* e2 : ECluster::clusters[cx][cy]->entity_list)
-							if ((_e != e2) & (!*e2->is_bullet))
+							if ((_e != e2) & (!*e2->is_bullet) & (!*e2->is_ghost))
 							{
 								if (ECluster::collision_up_zero_volume(_e, e2)) { if (e2 != _target) { return false; } }
 							}
@@ -532,7 +582,7 @@ bool Entity::can_see(Entity* _e, Entity* _target, float _d)
 					if (*_e->target_vector_y > 0)
 					{
 						for (Entity* e2 : ECluster::clusters[cx][cy]->entity_list)
-							if ((_e != e2) & (!*e2->is_bullet))
+							if ((_e != e2) & (!*e2->is_bullet) & (!*e2->is_ghost))
 							{
 								if (ECluster::collision_down_zero_volume(_e, e2)) { if (e2 != _target) { return false; } }
 							}
@@ -568,6 +618,18 @@ Entity::Entity()
 	shield_overload_duration_pointer					= &eattr_current.at(EntityCurrentAttribute::CURRENT_SHIELD_OVERLOAD_DURATION);
 	max_shield_overload_duration_pointer				= &eattr_TOTAL.at(EAttr::ENTITY_ATTRIBUTE_SHIELD_OVERLOAD_DURATION);
 
+	mass_pointer										= &eattr_TOTAL.at(EAttr::ENTITY_ATTRIBUTE_MASS);
+	speed_pointer										= &eattr_TOTAL.at(EAttr::ENTITY_ATTRIBUTE_SPEED);
+	shadow_tall_pointer									= &eattr_TOTAL.at(EAttr::ENTITY_ATTRIBUTE_SHADOW_TALL);
+	drag_pointer										= &eattr_TOTAL.at(EAttr::ENTITY_ATTRIBUTE_DRAG);
+
+	pointer_to_bool_list.at(EntityBoolAttributes::ENTITY_BOOL_ATTRIBUTE_INMOVABLE) =	inmovable;
+	pointer_to_bool_list.at(EntityBoolAttributes::ENTITY_BOOL_CONTROLLED_BY_AI) =		controlled_by_ai;
+	pointer_to_bool_list.at(EntityBoolAttributes::ENTITY_BOOL_CONTROLLED_BY_PLAYER) =	controlled_by_player;
+	pointer_to_bool_list.at(EntityBoolAttributes::ENTITY_BOOL_HAVE_LIGHT_SOURCE) =		have_light_source;
+	pointer_to_bool_list.at(EntityBoolAttributes::ENTITY_BOOL_GHOST) =					is_ghost;
+
+	//inmovable_pointer									= &eattr_bool.at(EntityBoolAttributes::ENTITY_BOOL_ATTRIBUTE_INMOVABLE);
 	/*
 	*max_hp_pointer = 4500.0f;
 	EString::out_debug("life before: " + std::to_string(*max_hp_pointer));
@@ -649,39 +711,41 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 		}
 
 		//link = spr->gabarite.at(sprite_id);
-		if (!spr->gabarite.empty())
-		if (spr->gabarite.at(frame_id) != NULL)
+
+		//spr->sprite_struct_list.at(0)->copies = 1;
+
+		if (!spr->sprite_struct_list.empty())//if non empty sprite list
+		if (spr->sprite_struct_list.at(frame_id)->gabarite != NULL)
 		for (int f=0; f<end_frame; f++)
-		for (int i=0; i<spr->copies.at(frame_id); i++)
+		for (int i=0; i < *spr->sprite_struct_list.at(frame_id)->copies; i++)
 		{
 
 			if (*spr->wall_mode)
 			{
-				if (f == 0)
+				if (f == 0)//wall
 				{
 					frame_id = 1;
-					offset_x_begin = spr->gabarite.at(0)->size_x * spr->copies.at(0) + spr->offset_x.at(0);
-					offset_y_begin = spr->offset_y.at(0);
+					offset_x_begin = spr->sprite_struct_list.at(0)->gabarite->size_x * *spr->sprite_struct_list.at(0)->copies + *spr->sprite_struct_list.at(0)->offset_x;
+					offset_y_begin = *spr->sprite_struct_list.at(0)->offset_y;
 				}
-
-				if (f == 1)
+				else
+				if (f == 1)//left corner
 				{
 					frame_id = 0;
 					offset_x_begin = 0.0f;
 					offset_y_begin = 0.0f;
 				}
-
-				if (f == 2)
+				else//right corner
 				{
 					frame_id = 2;
 
 					offset_x_begin
 					=
-					spr->gabarite.at(0)->size_x * spr->copies.at(0) + spr->offset_x.at(0)
+					spr->sprite_struct_list.at(0)->gabarite->size_x * *spr->sprite_struct_list.at(0)->copies + *spr->sprite_struct_list.at(0)->offset_x
 					+
-					spr->gabarite.at(1)->size_x * spr->copies.at(1) + spr->offset_x.at(1);
+					spr->sprite_struct_list.at(1)->gabarite ->size_x * *spr->sprite_struct_list.at(1)->copies + *spr->sprite_struct_list.at(1)->offset_x;
 
-					offset_y_begin = spr->offset_y.at(0) + spr->offset_y.at(2);
+					offset_y_begin = *spr->sprite_struct_list.at(0)->offset_y + *spr->sprite_struct_list.at(2)->offset_y;
 				}
 				//frame_id = f;
 			}
@@ -720,7 +784,7 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 				if (_is_shadow_mode)
 				{
 					if (_transparent_is_height)
-					{_b->setcolor_alpha(EColor::COLOR_LAZURE_SHADOW, *_e->shadow_tall / 512.0f);}
+					{_b->setcolor_alpha(EColor::COLOR_LAZURE_SHADOW, *_e->shadow_tall_pointer / 512.0f);}
 					else
 					{_b->setcolor(EColor::COLOR_LAZURE_SHADOW);}
 
@@ -734,28 +798,29 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 			{
 				_b->draw_gabarite_shadowmap
 				(
-					*_e->position_x + spr->offset_x.at(frame_id) + i * spr->gabarite.at(frame_id)->size_x + offset_x_begin,
-					*_e->position_y + spr->offset_y.at(frame_id) + offset_y_begin + spr->offset_z.at(frame_id),
+					*_e->position_x + *spr->sprite_struct_list.at(frame_id)->offset_x + i * spr->sprite_struct_list.at(frame_id)->gabarite->size_x + offset_x_begin,
+					*_e->position_y + *spr->sprite_struct_list.at(frame_id)->offset_y + offset_y_begin + *spr->sprite_struct_list.at(frame_id)->offset_z,
 
-					spr->gabarite.at(frame_id)->size_x,
-					spr->gabarite.at(frame_id)->size_y,
+					spr->sprite_struct_list.at(frame_id)->gabarite->size_x,
+					spr->sprite_struct_list.at(frame_id)->gabarite->size_y,
 
-					spr->gabarite.at(frame_id),
-					spr->supermap.at(frame_id),
-					spr->offset_z.at(frame_id)
+					spr->sprite_struct_list.at(frame_id)->gabarite,
+					spr->sprite_struct_list.at(frame_id)->supermap,
+					*spr->sprite_struct_list.at(frame_id)->offset_z
 				);
 			}
 			else
 			{
 				_b->draw_gabarite_skew
 				(
-					*_e->position_x + spr->offset_x.at(frame_id) + i * spr->gabarite.at(frame_id)->size_x + offset_x_begin,
-					*_e->position_y + spr->offset_y.at(frame_id) + offset_y_begin + spr->offset_y.at(frame_id),
+					*_e->position_x + *spr->sprite_struct_list.at(frame_id)->offset_x + i * spr->sprite_struct_list.at(frame_id)->gabarite->size_x + offset_x_begin,
+					*_e->position_y + *spr->sprite_struct_list.at(frame_id)->offset_y + offset_y_begin + *spr->sprite_struct_list.at(frame_id)->offset_y,
+
 					*_e->collision_left + *_e->collision_right,
 					*_e->collision_up + *_e->collision_down,
-					*_e->shadow_tall,
+					*_e->shadow_tall_pointer,
 
-					spr->gabarite.at(frame_id)
+					spr->sprite_struct_list.at(frame_id)->gabarite
 				);
 			}
 
@@ -766,13 +831,13 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 				offset_y_begin += spr->offset_y.at(frame_id);
 			}*/
 
-			if ((EWindow::window_editor->editor_mode == EWindowEditor::EditMode::EditSprites)&(false))
+			if ((EWindow::window_editor->editor_mode == EWindowEditor::EditMode::EditSprites)&(true))
 			{
-				_b->setcolor(EColor::COLOR_RED);
-				_b->draw_gabarite
+				EGraphicCore::batch->setcolor(EColor::COLOR_RED);
+				EGraphicCore::batch->draw_gabarite
 				(
-					*_e->position_x + spr->offset_x.at(frame_id) - 1.0f,
-					*_e->position_y + spr->offset_y.at(frame_id) - 1.0f,
+					*_e->position_x + *spr->sprite_struct_list.at(frame_id)->offset_x - 1.0f,
+					*_e->position_y + *spr->sprite_struct_list.at(frame_id)->offset_y - 1.0f,
 
 					3.0f,
 					3.0f,
@@ -981,9 +1046,9 @@ bool ECluster::collision_down(Entity* _a, Entity* _b)
 		&&
 		(*_a->position_y + *_a->target_vector_y >= pseudo_line)
 		&&
-		(*_a->position_x + *_a->target_vector_x / *_a->target_vector_y * ( *_a->position_y - pseudo_line) <= *_b->position_x + *_b->collision_right + *_a->collision_left)
+		(*_a->position_x - *_a->target_vector_x / *_a->target_vector_y * ( *_a->position_y - pseudo_line) <= *_b->position_x + *_b->collision_right + *_a->collision_left)
 		&&
-		(*_a->position_x + *_a->target_vector_x / *_a->target_vector_y * ( *_a->position_y - pseudo_line) >= *_b->position_x - *_b->collision_left - *_a->collision_right)
+		(*_a->position_x - *_a->target_vector_x / *_a->target_vector_y * ( *_a->position_y - pseudo_line) >= *_b->position_x - *_b->collision_left - *_a->collision_right)
 	)
 	{ 
 		
@@ -993,7 +1058,7 @@ bool ECluster::collision_down(Entity* _a, Entity* _b)
 		EGraphicCore::batch->draw_gabarite(*_a->position_x, *_a->position_y, 1.0f, *_a->collision_up, EGraphicCore::gabarite_white_pixel);
 
 		EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
-		EGraphicCore::batch->draw_gabarite(*_a->position_x + *_a->target_vector_x / *_a->target_vector_y * (*_a->position_y - pseudo_line), *_b->position_y - *_b->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
+		EGraphicCore::batch->draw_gabarite(*_a->position_x - *_a->target_vector_x / *_a->target_vector_y * (*_a->position_y - pseudo_line), *_b->position_y - *_b->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
 		
 		return true;
 	}
@@ -1079,9 +1144,9 @@ bool ECluster::collision_down_zero_volume(Entity* _a, Entity* _b)
 			&&
 			(*_a->position_y + *_a->target_vector_y >= pseudo_line)
 			&&
-			(*_a->position_x + *_a->target_vector_x / *_a->target_vector_y * (*_a->position_y - pseudo_line) <= *_b->position_x + *_b->collision_right)
+			(*_a->position_x - *_a->target_vector_x / *_a->target_vector_y * (*_a->position_y - pseudo_line) <= *_b->position_x + *_b->collision_right)
 			&&
-			(*_a->position_x + *_a->target_vector_x / *_a->target_vector_y * (*_a->position_y - pseudo_line) >= *_b->position_x - *_b->collision_left)
+			(*_a->position_x - *_a->target_vector_x / *_a->target_vector_y * (*_a->position_y - pseudo_line) >= *_b->position_x - *_b->collision_left)
 			)
 	{
 
@@ -1091,7 +1156,7 @@ bool ECluster::collision_down_zero_volume(Entity* _a, Entity* _b)
 		EGraphicCore::batch->draw_gabarite(*_a->position_x, *_a->position_y, 1.0f, 0.0f, EGraphicCore::gabarite_white_pixel);
 
 		EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
-		EGraphicCore::batch->draw_gabarite(*_a->position_x + *_a->target_vector_x / *_a->target_vector_y * (*_a->position_y - pseudo_line), *_b->position_y - *_b->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
+		EGraphicCore::batch->draw_gabarite(*_a->position_x - *_a->target_vector_x / *_a->target_vector_y * (*_a->position_y - pseudo_line), *_b->position_y - *_b->collision_down, 5.0f, 5.0f, EGraphicCore::gabarite_white_pixel);
 
 		return true;
 	}
@@ -1169,38 +1234,26 @@ void ECluster::put_entity(Entity* _e)
 
 void ESprite::clear_default_data(ESprite* _sprite)
 {
-	_sprite->offset_x.clear();
-	_sprite->offset_y.clear();
-	_sprite->offset_z.clear();
-
-	_sprite->copies.clear();
-	_sprite->gabarite.clear();
-	_sprite->supermap.clear();
+	_sprite->sprite_struct_list.clear();
 }
 
 void ESprite::set_default_data(ESprite* _sprite)
 {
 	EGabarite* g = EGraphicCore::gabarite_white_pixel;
-	_sprite->offset_x.push_back(0);
-	_sprite->offset_y.push_back(0);
-	_sprite->offset_z.push_back(0);
+	sprite_struct* ss = new sprite_struct;
 
-	_sprite->gabarite.push_back(g);
-	_sprite->supermap.push_back(g);
+	ss->gabarite =  ETextureAtlas::put_texture_to_atlas("data/textures/white_pixel.png", EWindow::default_texture_atlas);
+	ss->supermap =  ETextureAtlas::put_texture_to_atlas("data/textures/white_pixel.png", EWindow::default_texture_atlas);
 
-	_sprite->copies.push_back(1);
+	_sprite->sprite_struct_list.push_back(ss);
+
 }
 
 ESprite::ESprite()
 {
-	gabarite.push_back(EGraphicCore::gabarite_white_pixel);
-	supermap.push_back(EGraphicCore::gabarite_white_pixel);
-
-	offset_x.push_back(0.0f);
-	offset_y.push_back(0.0f);
-	offset_z.push_back(0.0f);
-
-	copies.push_back(1);
+	sprite_struct_list.push_back(new sprite_struct);
+	sprite_struct_list.at(0)->gabarite = ETextureAtlas::put_texture_to_atlas("data/textures/white_pixel.png", EWindow::default_texture_atlas);
+	sprite_struct_list.at(0)->supermap = ETextureAtlas::put_texture_to_atlas("data/textures/white_pixel.png", EWindow::default_texture_atlas);
 }
 
 ESprite::~ESprite()

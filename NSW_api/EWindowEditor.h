@@ -1,6 +1,7 @@
 #include "NSW_api/EWindow.h"
 #include "ECamera.h"
 #include "EntityManager.h"
+#include "EBA.h"
 
 class EWindowEditor : public EWindow
 {
@@ -43,6 +44,10 @@ public:
 	EButton* link_to_sky_color_green;
 	EButton* link_to_sky_color_blue;
 
+	EButton* link_to_lightsource_red;
+	EButton* link_to_lightsource_green;
+	EButton* link_to_lightsource_blue;
+
 	std::vector<EButton*> link_to_sprite_frame;
 	std::vector<EButton*> link_to_sprite_editor_group;
 
@@ -83,7 +88,14 @@ public:
 
 	void update_on_entity_select();
 
-	
+	float button_group_start_x;
+	float button_group_start_y;
+
+	void add_button_group_for_float_data(int _data_id);
+	void add_button_group_for_bool_data(int _data_id);
+
+	std::vector <EButton*> float_data_button_list;
+	std::vector <EButton*> bool_data_button_list;
 
 
 };

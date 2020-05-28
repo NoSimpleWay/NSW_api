@@ -22,6 +22,7 @@ public:
 	void draw_debug_entity_position();
 	void draw_debug_cluster_border();
 	void draw_debug_cluster_rama();
+	void draw_terrain();
 	virtual void draw(float _d);
 
 	virtual void draw_interface(float _d);

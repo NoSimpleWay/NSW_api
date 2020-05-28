@@ -129,9 +129,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="EBA.cpp" />
-    <ClCompile Include="EButtonActionAddNewSprite.cpp" />
-    <ClCompile Include="EButtonActionSetActiveSprite.cpp" />
-    <ClCompile Include="EButtonActionSetSpriteTexture.cpp" />
     <ClCompile Include="ECamera.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="EPath.cpp" />
@@ -154,9 +151,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EBA.h" />
-    <ClInclude Include="EButtonActionAddNewSprite.h" />
-    <ClInclude Include="EButtonActionSetActiveSprite.h" />
-    <ClInclude Include="EButtonActionSetSpriteTexture.h" />
     <ClInclude Include="ECamera.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EPath.h" />

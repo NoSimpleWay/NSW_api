@@ -41,7 +41,10 @@ public:
 	static void action_set_sprite_mode_8(EButton* _b, float _d);
 
 	static void action_slider_shadow_color(EButton* _b, float _d);
+	static void action_slider_light_source_color(EButton* _b, float _d);
 	static void action_slider_sky_color(EButton* _b, float _d);
+
+	//static void action_slider_sky_color(EButton* _b, float _d);
 
 
 
@@ -59,6 +62,11 @@ public:
 	static void action_set_controlled_by_player(EButton* _b, float _d);
 	static void action_set_controlled_by_AI(EButton* _b, float _d);
 	static void action_set_camera_target(EButton* _b, float _d);
+
+	static void action_set_light_power(EButton* _b, float _d);
+	static void action_set_value_by_data_id(EButton* _b, float _d);
+	static void action_set_entity_float_attribute(EButton* _b, float _d);
+	static void action_set_entity_bool_attribute(EButton* _b, float _d);
 
 	//hit action
 

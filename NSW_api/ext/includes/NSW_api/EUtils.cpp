@@ -116,3 +116,62 @@ void EString::out_debug(std::string _s)
 {
 	std::cout << _s << std::endl;
 }
+
+std::string EString::float_to_string(float _f)
+{
+	std::string t = std::to_string(_f);
+
+	bool dot_is_found = false;
+	bool minus_is_found = false;
+
+	int numbers_before_dot = 0;
+	int numbers_after_dot = 0;
+	
+
+	std::string subdata = "";
+
+	for (int i = 0; i < t.length(); i++)
+	{
+		subdata += t.at(i);
+
+		//non-zero numbers after dot
+		if ((!dot_is_found) &(t.at(i) != '.'))
+		{
+			numbers_before_dot++;
+		}
+
+		//non-zero numbers after dot
+		if ((t.at(i) != '0') & (dot_is_found))
+		{
+			numbers_after_dot++;
+		}
+
+		if ((t.at(i) == '0') & (dot_is_found))
+		{
+			if (numbers_after_dot == 0)
+			{
+				if (numbers_before_dot <= 0)
+				{
+					return "0";
+				}
+
+				return subdata.substr(0, subdata.length() - 2);
+			}
+			else
+			{
+				return subdata.substr(0, subdata.length() - 1);
+			}
+		}
+
+		if (t.at(i) == '.')
+		{
+			dot_is_found = true;
+		}
+
+	}
+
+
+	
+
+	return subdata;
+}

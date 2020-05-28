@@ -75,9 +75,6 @@
     <ClCompile Include="ext\includes\NSW_api\EButtonAction.cpp">
       <Filter>NSW_api</Filter>
     </ClCompile>
-    <ClCompile Include="EButtonActionSetSpriteTexture.cpp">
-      <Filter>External\ButtonActions</Filter>
-    </ClCompile>
     <ClCompile Include="EWindowEditor.cpp">
       <Filter>External\Windows</Filter>
     </ClCompile>
@@ -86,12 +83,6 @@
     </ClCompile>
     <ClCompile Include="EWindowTest.cpp">
       <Filter>External\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="EButtonActionSetActiveSprite.cpp">
-      <Filter>External\ButtonActions</Filter>
-    </ClCompile>
-    <ClCompile Include="EButtonActionAddNewSprite.cpp">
-      <Filter>External\ButtonActions</Filter>
     </ClCompile>
     <ClCompile Include="EBA.cpp">
       <Filter>External\ButtonActions</Filter>
@@ -146,9 +137,6 @@
     <ClInclude Include="ext\includes\NSW_api\EButtonAction.h">
       <Filter>NSW_api</Filter>
     </ClInclude>
-    <ClInclude Include="EButtonActionSetSpriteTexture.h">
-      <Filter>External\ButtonActions</Filter>
-    </ClInclude>
     <ClInclude Include="EWindowEditor.h">
       <Filter>External\Windows</Filter>
     </ClInclude>
@@ -157,12 +145,6 @@
     </ClInclude>
     <ClInclude Include="EWindowTest.h">
       <Filter>External\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="EButtonActionSetActiveSprite.h">
-      <Filter>External\ButtonActions</Filter>
-    </ClInclude>
-    <ClInclude Include="EButtonActionAddNewSprite.h">
-      <Filter>External\ButtonActions</Filter>
     </ClInclude>
     <ClInclude Include="EBA.h">
       <Filter>External\ButtonActions</Filter>

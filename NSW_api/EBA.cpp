@@ -88,7 +88,7 @@ void EBA::action_select_sprite(EButton* _b, float _d)
 
 void EBA::action_set_sprite_texture(EButton* _b, float _d)
 {
-	EWindow::window_editor->selected_entity->sprite_list.at(EWindow::window_editor->selected_sprite_id)->gabarite.at(EWindow::window_editor->selected_frame_id) = _b->gabarite;
+	EWindow::window_editor->selected_entity->sprite_list.at(EWindow::window_editor->selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->gabarite = _b->gabarite;
 
 	EWindow::window_editor->update_sprite_buttons();
 
@@ -137,67 +137,98 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 	{
 		w_string += "ADD_NEW_SPRITE\n";
 
+
 		if (*spr->rotate_by_move) { w_string += "*rotate_by_move\n"; }
 		if (*spr->is_shadow) { w_string += "*shadow\n"; }
 		if (*spr->wall_mode) { w_string += "*wall_mode\n"; }
 		if (*spr->rotate_by_target_gun) { w_string += "*target_gun\n"; }
 
 		order = 0;
-		for (EGabarite* g : spr->gabarite)
+		for (ESprite::sprite_struct* str : spr->sprite_struct_list)
 		{
 			w_string += "add_new_texture\t";
-			w_string += g->name;
+			w_string += str->gabarite->name;
 			w_string += "\n";
 
 			w_string += "texture_offset_x\t";
-			w_string += std::to_string(spr->offset_x.at(order));
+			w_string += std::to_string(*str->offset_x);
 			w_string += "\n";
 
 			w_string += "texture_offset_y\t";
-			w_string += std::to_string(spr->offset_y.at(order));
+			w_string += std::to_string(*str->offset_y);
 			w_string += "\n";
 
 			w_string += "texture_offset_z\t";
-			w_string += std::to_string(spr->offset_z.at(order));
+			w_string += std::to_string(*str->offset_z);
 			w_string += "\n";
 
 			w_string += "texture_copies\t";
-			w_string += std::to_string(spr->copies.at(order));
+			w_string += std::to_string(*str->copies);
 			w_string += "\n";
 
 			order++;
 		}
 	}
 
-	if (e->controlled_by_player)
+
+	/*if (e->controlled_by_player)
 	{
 		w_string += "*entity_controlled_by_player\n";
-	}
+	}*/
 
-	if (e->controlled_by_ai)
+	/*if (e->controlled_by_ai)
 	{
 		w_string += "*entity_controlled_by_ai\n";
-	}
+	}*/
 
 	if ((!_to_collection) & (EWindow::window_test->link_to_player == e))
 	{
 		w_string += "*camera_target\n";
 	}
 
-	if (*e->inmovable)
+	/*if (*e->inmovable)
 	{
 		w_string += "*inmovable\n";
-	}
-	else
+	}*/
+
+	for (int i = 0; i <e->eattr_BASE.size(); i++)
 	{
-		w_string += "mass\t";
-		w_string += std::to_string(*e->mass);
-		w_string += "\n";
+		int id = -1;
+
+		for (int j = 0; j < Entity::entity_attribute_id.size(); j++)
+		{
+			if (Entity::entity_attribute_id.at(j) == i) { id = j; break; }
+		}
+
+		if ((id != -1) && (e->eattr_BASE.at(id) != 0.0f))
+		{
+			w_string += "entity base attribute\t";
+
+			w_string += Entity::entity_attribute_names.at(id);
+			w_string += "\t";
+			w_string += std::to_string(e->eattr_BASE.at(id));
+
+			w_string += "\n";
+		}
 	}
 
-	w_string += "shadow_tall\t";
-	w_string += std::to_string(*e->shadow_tall);
-	w_string += "\n";
+	for (int i = 0; i < e->pointer_to_bool_list.size(); i++)
+	{
+		int id = -1;
+
+		for (int j = 0; j < Entity::entity_attribute_id.size(); j++)
+		{
+			if (Entity::entity_bool_attribute_id.at(j) == i) { id = j; break; }
+		}
+
+		if ((id != -1) && (*e->pointer_to_bool_list.at(id)))
+		{
+			w_string += "entity bool attribute\t";
+			w_string += Entity::entity_bool_attribute_names.at(id);
+			w_string += "\n";
+		}
+	}
+
 
 	w_string += "collision_up\t";
 	w_string += std::to_string(*e->collision_up);
@@ -299,6 +330,8 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 		Entity* just_created_entity = NULL;
 		ESprite* just_created_sprite = NULL;
 		EGabarite* just_created_gabarite = NULL;
+		ESprite::sprite_struct* just_create_sprite_struct = NULL;
+
 		while (getline(myfile, line))
 		{
 
@@ -329,14 +362,14 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 
 				if ((EFile::data_array[i] == "*entity_controlled_by_player") && (just_created_entity != NULL))
 				{
-					just_created_entity->controlled_by_player = true;
+					*just_created_entity->controlled_by_player = true;
 					//EWindow::window_test->link_to_player = just_created_entity;
 					//EWindow::window_editor->selected_entity = just_created_entity;
 				}
 
 				if ((EFile::data_array[i] == "*entity_controlled_by_ai") && (just_created_entity != NULL))
 				{
-					just_created_entity->controlled_by_ai = true;
+					*just_created_entity->controlled_by_ai = true;
 					//EWindow::window_test->link_to_player = just_created_entity;
 					//EWindow::window_editor->selected_entity = just_created_entity;
 				}
@@ -354,63 +387,102 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 				if (EFile::data_array[i] == "ADD_NEW_SPRITE")
 				{
 					just_created_sprite = new ESprite();
+					ESprite::clear_default_data(just_created_sprite);//set empty struct list
 
-					ESprite::clear_default_data(just_created_sprite);
+					//just_create_sprite_struct = just_created_sprite->sprite_struct_list.at(0);
+
+
 					just_created_entity->sprite_list.push_back(just_created_sprite);
 				}
 
 				if (EFile::data_array[i] == "add_new_texture")
 				{
+					just_create_sprite_struct = new ESprite::sprite_struct;//create new struct
+					just_created_sprite->sprite_struct_list.push_back(just_create_sprite_struct);//add struct to sprite
+
 					i++;
 					
 					just_created_gabarite = ETextureAtlas::put_texture_to_atlas(EFile::data_array[i], EWindow::default_texture_atlas);
-					just_created_sprite->gabarite.push_back(just_created_gabarite);
+					just_create_sprite_struct->gabarite = just_created_gabarite;
 
 					just_created_gabarite = ETextureAtlas::put_texture_to_atlas
 					(
 						EFile::data_array[i].substr(0, EFile::data_array[i].length() - 4) + "#supermap.png",
 						EWindow::default_texture_atlas
 					);
-					just_created_sprite->supermap.push_back(just_created_gabarite);
+
+					just_create_sprite_struct->supermap = just_created_gabarite;
 				}
 
 				if (EFile::data_array[i] == "texture_offset_x")
 				{
-					i++; just_created_sprite->offset_x.push_back(std::stof(EFile::data_array[i]));
+					i++; *just_create_sprite_struct->offset_x = std::stof(EFile::data_array[i]);
 				}
 
 				if (EFile::data_array[i] == "texture_offset_y")
 				{
-					i++; just_created_sprite->offset_y.push_back(std::stof(EFile::data_array[i]));
+					i++; *just_create_sprite_struct->offset_y = std::stof(EFile::data_array[i]);
 					//just_created_sprite->offset_z.push_back(0.0f);
 				}
 
 				if (EFile::data_array[i] == "texture_offset_z")
 				{
-					i++; just_created_sprite->offset_z.push_back(std::stof(EFile::data_array[i]));
+					i++; *just_create_sprite_struct->offset_z = std::stof(EFile::data_array[i]);
 				}
 
 				if (EFile::data_array[i] == "texture_copies")
 				{
-					i++; just_created_sprite->copies.push_back(std::stoi(EFile::data_array[i]));
+					i++; *just_create_sprite_struct->copies = std::stoi(EFile::data_array[i]);
 				}
 
+				//Controlled by Player
 				if (EFile::data_array[i] == "*rotate_by_move") { *just_created_sprite->rotate_by_move = true; }
 				if (EFile::data_array[i] == "*shadow") { *just_created_sprite->is_shadow = true; }
 				if (EFile::data_array[i] == "*wall_mode") { *just_created_sprite->wall_mode = true; }
 				if (EFile::data_array[i] == "*target_gun") { *just_created_sprite->rotate_by_target_gun = true; }
+				
+				if (EFile::data_array[i] == "entity base attribute")
+				{
+					i++;
 
+					int id = -1;
+					for (int j = 0; j < Entity::entity_attribute_names.size(); j++)
+					{
+						if (Entity::entity_attribute_names.at(j) == EFile::data_array[i]) { id = Entity::entity_attribute_id.at(j); break; }
+					}
+
+					if (id != -1)
+					{i++;	just_created_entity->eattr_BASE.at(id) = std::stof(EFile::data_array[i]);}
+				}
+
+				if (EFile::data_array[i] == "entity bool attribute")
+				{
+					i++;
+
+					int id = -1;
+					for (int j = 0; j < Entity::entity_bool_attribute_names.size(); j++)
+					{
+						if (Entity::entity_bool_attribute_names.at(j) == EFile::data_array[i]) { id = Entity::entity_bool_attribute_id.at(j); break; }
+					}
+
+					if (id != -1)
+					{
+						*just_created_entity->pointer_to_bool_list.at(id) = true;
+					}
+				}
+				/*
 				if (EFile::data_array[i] == "mass")
 				{
-					i++; *just_created_entity->mass = std::stof(EFile::data_array[i]);
+					i++; just_created_entity->eattr_BASE.at(Entity::EAttr::ENTITY_ATTRIBUTE_MASS) = std::stof(EFile::data_array[i]);
 
 					//std::cout << "mass is:" << std::to_string(*just_created_entity->mass) << std::endl;
 				}
 
 				if (EFile::data_array[i] == "shadow_tall")
 				{
-					i++; *just_created_entity->shadow_tall = std::stof(EFile::data_array[i]);
+					i++; *just_created_entity->shadow_tall_pointer = std::stof(EFile::data_array[i]);
 				}
+				*/
 
 				if (EFile::data_array[i] == "collision_down") { i++; *just_created_entity->collision_down = std::stof(EFile::data_array[i]); }
 				if (EFile::data_array[i] == "collision_left") { i++; *just_created_entity->collision_left = std::stof(EFile::data_array[i]); }
@@ -432,7 +504,10 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 
 				if (EFile::data_array[i] == "- PUT TO MAP -")
 				{
+					Entity::update_entity_attributes(just_created_entity);
+
 					ECluster::put_entity(just_created_entity, *just_created_entity->position_x, *just_created_entity->position_y);
+
 				}
 
 				if (EFile::data_array[i] == "- PUT TO COLLECTION -")
@@ -512,10 +587,11 @@ void EBA::action_add_new_entity_from_collection(EButton* _b, float _d)
 void EBA::action_add_new_entity(EButton* _b, float _d)
 {
 	Entity* en = new Entity();
+
 	ESprite* spr = new ESprite();
 	en->sprite_list.push_back(spr);
 
-	ECluster::put_entity(en, EWindow::window_test->game_camera->position_x, EWindow::window_test->game_camera->position_y);
+	ECluster::put_entity(en, EWindow::window_test->game_camera->position_x / EWindow::window_test->game_camera->zoom, EWindow::window_test->game_camera->position_y / EWindow::window_test->game_camera->zoom);
 
 }
 
@@ -587,11 +663,11 @@ void EBA::action_set_sprite_mode_4(EButton* _b, float _d)
 	EWindowEditor* we = EWindow::window_editor;
 
 	we->reset_mode(we->selected_entity->sprite_list.at(we->selected_sprite_id));
-
 	*we->selected_entity->sprite_list.at(we->selected_sprite_id)->rotate_by_move = true;
 
-	for (int i = we->selected_entity->sprite_list.at(we->selected_sprite_id)->gabarite.size(); i < 4; i++)
+	for (int i = we->selected_entity->sprite_list.at(we->selected_sprite_id)->sprite_struct_list.size(); i < 4; i++)
 	{
+
 		ESprite::set_default_data(we->selected_entity->sprite_list.at(we->selected_sprite_id));
 	}
 
@@ -607,7 +683,7 @@ void EBA::action_set_sprite_mode_8(EButton* _b, float _d)
 
 	*we->selected_entity->sprite_list.at(we->selected_sprite_id)->rotate_by_target_gun = true;
 
-	for (int i = we->selected_entity->sprite_list.at(we->selected_sprite_id)->gabarite.size(); i < 8; i++)
+	for (int i = we->selected_entity->sprite_list.at(we->selected_sprite_id)->sprite_struct_list.size(); i < 8; i++)
 	{
 		EGabarite* g = EGraphicCore::gabarite_white_pixel;
 
@@ -624,6 +700,13 @@ void EBA::action_slider_shadow_color(EButton* _b, float _d)
 	if (_b->data_id == 2) { EColor::COLOR_LAZURE_SHADOW->color_blue = _b->slider_value; }
 }
 
+void EBA::action_slider_light_source_color(EButton* _b, float _d)
+{
+	if (_b->data_id == 0) { *EWindow::window_editor->selected_entity->light_source_red		= _b->slider_value; }
+	if (_b->data_id == 1) { *EWindow::window_editor->selected_entity->light_source_green	= _b->slider_value; }
+	if (_b->data_id == 2) { *EWindow::window_editor->selected_entity->light_source_blue		= _b->slider_value; }
+}
+
 void EBA::action_slider_sky_color(EButton* _b, float _d)
 {
 	if (_b->data_id == 0) { EColor::COLOR_SKY_AMBIENT->color_red = _b->slider_value; }
@@ -635,6 +718,12 @@ void EBA::action_set_sprite_mode_wall(EButton* _b, float _d)
 {
 	EWindowEditor* we = EWindow::window_editor;
 	we->reset_mode(we->selected_entity->sprite_list.at(we->selected_sprite_id));
+
+	for (int i = we->selected_entity->sprite_list.at(we->selected_sprite_id)->sprite_struct_list.size(); i < 3; i++)
+	{
+
+		ESprite::set_default_data(we->selected_entity->sprite_list.at(we->selected_sprite_id));
+	}
 
 	*we->selected_entity->sprite_list.at(we->selected_sprite_id)->wall_mode = !*we->selected_entity->sprite_list.at(we->selected_sprite_id)->wall_mode;
 	EWindow::window_editor->update_sprite_buttons();
@@ -653,7 +742,7 @@ void EBA::action_set_mass(EButton* _b, float _d)
 	if (EWindow::window_editor->selected_entity != NULL)
 	{
 		std::cout << "mass is:" << EMath::to_float(_b->text) << std::endl;
-		*EWindow::window_editor->selected_entity->mass = EMath::to_float(_b->text);
+		*EWindow::window_editor->selected_entity->mass_pointer = EMath::to_float(_b->text);
 	}
 }
 
@@ -662,7 +751,7 @@ void EBA::action_set_tall(EButton* _b, float _d)
 	if (EWindow::window_editor->selected_entity != NULL)
 	{
 		std::cout << "tall is:" << EMath::to_float(_b->text) << std::endl;
-		*EWindow::window_editor->selected_entity->shadow_tall = EMath::to_float(_b->text);
+		*EWindow::window_editor->selected_entity->shadow_tall_pointer = EMath::to_float(_b->text);
 	}
 }
 
@@ -679,8 +768,8 @@ void EBA::action_set_controlled_by_player(EButton* _b, float _d)
 {
 	if (EWindow::window_editor->selected_entity != NULL)
 	{
-		EWindow::window_editor->selected_entity->controlled_by_player = !EWindow::window_editor->selected_entity->controlled_by_player;
-		EWindow::window_editor->selected_or_unselected_color(_b, EWindow::window_editor->selected_entity->controlled_by_player);
+		*EWindow::window_editor->selected_entity->controlled_by_player = !*EWindow::window_editor->selected_entity->controlled_by_player;
+		EWindow::window_editor->selected_or_unselected_color(_b, *EWindow::window_editor->selected_entity->controlled_by_player);
 	}
 }
 
@@ -688,8 +777,8 @@ void EBA::action_set_controlled_by_AI(EButton* _b, float _d)
 {
 	if (EWindow::window_editor->selected_entity != NULL)
 	{
-		EWindow::window_editor->selected_entity->controlled_by_ai = !EWindow::window_editor->selected_entity->controlled_by_ai;
-		EWindow::window_editor->selected_or_unselected_color(_b, EWindow::window_editor->selected_entity->controlled_by_ai);
+		*EWindow::window_editor->selected_entity->controlled_by_ai = !*EWindow::window_editor->selected_entity->controlled_by_ai;
+		EWindow::window_editor->selected_or_unselected_color(_b, *EWindow::window_editor->selected_entity->controlled_by_ai);
 	}
 }
 
@@ -698,6 +787,32 @@ void EBA::action_set_camera_target(EButton* _b, float _d)
 	if (EWindow::window_editor->selected_entity != NULL)
 	{
 		EWindow::window_test->link_to_player = EWindow::window_editor->selected_entity;
+	}
+}
+
+void EBA::action_set_value_by_data_id(EButton* _b, float _d)
+{
+}
+
+void EBA::action_set_entity_float_attribute(EButton* _b, float _d)
+{
+	if (EWindow::window_editor->selected_entity != NULL)
+	{
+		EWindow::window_editor->selected_entity->eattr_BASE.at(_b->data_id) = EMath::to_float(_b->text);
+
+		Entity::update_entity_attributes(EWindow::window_editor->selected_entity);
+	}
+}
+
+void EBA::action_set_entity_bool_attribute(EButton* _b, float _d)
+{
+	if (EWindow::window_editor->selected_entity != NULL)
+	{
+		*EWindow::window_editor->selected_entity->pointer_to_bool_list.at(_b->data_id) = !*EWindow::window_editor->selected_entity->pointer_to_bool_list.at(_b->data_id);
+
+		EWindow::window_editor->selected_or_unselected_color(_b, *EWindow::window_editor->selected_entity->pointer_to_bool_list.at(_b->data_id));
+
+		Entity::update_entity_attributes(EWindow::window_editor->selected_entity);
 	}
 }
 

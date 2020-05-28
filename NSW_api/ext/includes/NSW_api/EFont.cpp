@@ -572,7 +572,7 @@ void EFont::set_align_once(Enums::PositionMode _al)
 void EFont::draw_with_background(std::string _s, Batcher* _b, float _x, float _y, EColorCollection* _text_color, EColorCollection* _bg_color)
 {
 	_b->setcolor(_bg_color);
-	_b->draw_gabarite(_x, _y, get_width(active_font, _s) + 5.0f, get_height(active_font, _s) + 5.0f, EGraphicCore::gabarite_white_pixel);
+	_b->draw_gabarite(_x, _y, get_width(active_font, _s) + 5.0f, get_height(active_font, _s) + 0.0f, EGraphicCore::gabarite_white_pixel);
 
 	_b->setcolor(_text_color);
 	draw(_b, _s, _x + 5.0f, _y + 3.0f);

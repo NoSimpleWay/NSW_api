@@ -1,11 +1,11 @@
 #include "EWindowEditor.h"
 #include "EWindowTest.h"
-#include "EButtonActionSetActiveSprite.h"
-#include "EButtonActionAddNewSprite.h"
-#include "EBA.h"
+
 
 EWindowEditor::EWindowEditor()
 {
+
+
 	EButton* but;
 	for (int i = 0; i < 10; i++)
 	{
@@ -237,6 +237,7 @@ EWindowEditor::EWindowEditor()
 	but->position_mode_y = Enums::PositionMode::UP;
 	but->action_on_left_click = &EBA::action_save_entity_to_collection;
 
+	/*
 	//entity properities
 	but = new EButton(-30.0f, 300.0f, 150.0f, 16.0f);
 	but->master_window = this;
@@ -344,10 +345,10 @@ EWindowEditor::EWindowEditor()
 	but->position_mode_y = Enums::PositionMode::DOWN;
 	
 	//but->action_on_left_click = &EBA::action_save_entity_to_collection;
-
+	*/
 	for (int i = 0; i < 8; i++)
 	{
-		//edd new entity
+		//frames
 		but = new EButton(0.0f + i * 42.0f, -40.0f, 40.0f, 40.0f);
 		but->master_window = this;
 		but->master_button = sprite_button_list.at(0);
@@ -516,6 +517,78 @@ EWindowEditor::EWindowEditor()
 	link_to_sky_color_blue = but;
 	button_list.push_back(but);
 
+	////////////////////////////////////////////////
+/////	lightsource color red		////////////////
+///////////////////////////////////////////////
+	but = new EButton(-120.0f, 00.0f, 100.0f, 20.0f);
+	but->master_window = this;
+	but->have_description = true;
+	but->have_icon = true;
+	but->have_rama = true;
+
+	but->bg_color->set_color(EColor::COLOR_RED);
+	but->data_id = 0;
+
+	but->master_position = Enums::PositionMaster::WINDOW;
+	but->position_mode_x = Enums::PositionMode::RIGHT;
+	but->position_mode_y = Enums::PositionMode::DOWN;
+	but->text = "";
+	but->slider_value = EColor::COLOR_SKY_AMBIENT->color_red;
+	but->is_slider = true;
+
+	but->action_on_slider_drag = &EBA::action_slider_light_source_color;
+
+	link_to_lightsource_red = but;
+	button_list.push_back(but);
+
+	////////////////////////////////////////////////
+/////	sky color green		////////////////
+///////////////////////////////////////////////
+	but = new EButton(-120.0f, 25.0f, 100.0f, 20.0f);
+	but->master_window = this;
+	but->have_description = true;
+	but->have_icon = true;
+	but->have_rama = true;
+
+	but->bg_color->set_color(EColor::COLOR_GREEN);
+	but->data_id = 1;
+
+	but->master_position = Enums::PositionMaster::WINDOW;
+	but->position_mode_x = Enums::PositionMode::RIGHT;
+	but->position_mode_y = Enums::PositionMode::DOWN;
+	but->text = "";
+	but->slider_value = EColor::COLOR_SKY_AMBIENT->color_green;
+	but->is_slider = true;
+
+	but->action_on_slider_drag = &EBA::action_slider_light_source_color;
+
+	link_to_lightsource_green = but;
+	button_list.push_back(but);
+
+	////////////////////////////////////////////////
+/////	sky color blue		////////////////
+///////////////////////////////////////////////
+	but = new EButton(-120.0f, 50.0f, 100.0f, 20.0f);
+	but->master_window = this;
+	but->have_description = true;
+	but->have_icon = true;
+	but->have_rama = true;
+
+	but->bg_color->set_color(EColor::COLOR_BLUE);
+	but->data_id = 2;
+
+	but->master_position = Enums::PositionMaster::WINDOW;
+	but->position_mode_x = Enums::PositionMode::RIGHT;
+	but->position_mode_y = Enums::PositionMode::DOWN;
+	but->text = "";
+	but->slider_value = EColor::COLOR_SKY_AMBIENT->color_blue;
+	but->is_slider = true;
+
+	but->action_on_slider_drag = &EBA::action_slider_light_source_color;
+
+	link_to_lightsource_blue = but;
+	button_list.push_back(but);
+
 
 	//
 
@@ -528,6 +601,22 @@ EWindowEditor::EWindowEditor()
 	update_sprite_buttons();
 
 	//default_resize_event();
+
+	button_group_start_x = -250.0f;
+	button_group_start_y = 460.0f;
+
+	add_button_group_for_float_data(Entity::EAttr::ENTITY_ATTRIBUTE_MASS);
+	add_button_group_for_float_data(Entity::EAttr::ENTITY_ATTRIBUTE_SHADOW_TALL);
+	add_button_group_for_float_data(Entity::EAttr::ENTITY_ATTRIBUTE_SPEED);
+	add_button_group_for_float_data(Entity::EAttr::ENTITY_ATTRIBUTE_DRAG);
+	
+	button_group_start_x = -16.0f;
+	button_group_start_y = 460.0f;
+	add_button_group_for_bool_data(Entity::EntityBoolAttributes::ENTITY_BOOL_ATTRIBUTE_INMOVABLE);
+	add_button_group_for_bool_data(Entity::EntityBoolAttributes::ENTITY_BOOL_CONTROLLED_BY_AI);
+	add_button_group_for_bool_data(Entity::EntityBoolAttributes::ENTITY_BOOL_CONTROLLED_BY_PLAYER);
+	add_button_group_for_bool_data(Entity::EntityBoolAttributes::ENTITY_BOOL_HAVE_LIGHT_SOURCE);
+	add_button_group_for_bool_data(Entity::EntityBoolAttributes::ENTITY_BOOL_GHOST);
 }
 
 EWindowEditor::~EWindowEditor()
@@ -644,11 +733,11 @@ void EWindowEditor::update(float _d)
 	{
 		EWindow::button_main_group_pressed = true;
 
-		selected_entity->sprite_list.at(selected_sprite_id)->copies.at(selected_frame_id)--;
+		(*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(selected_frame_id)->copies)--;
 		
-		if (selected_entity->sprite_list.at(selected_sprite_id)->copies.at(selected_frame_id) < 1)
+		if (*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(selected_frame_id)->copies < 1)
 		{
-			selected_entity->sprite_list.at(selected_sprite_id)->copies.at(selected_frame_id) = 1;
+			*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(selected_frame_id)->copies = 1;
 		}
 		//selected_entity
 	}
@@ -657,11 +746,11 @@ void EWindowEditor::update(float _d)
 	{
 		EWindow::button_main_group_pressed = true;
 
-		selected_entity->sprite_list.at(selected_sprite_id)->copies.at(selected_frame_id)++;
+		(*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(selected_frame_id)->copies)++;
 		
-		if (selected_entity->sprite_list.at(selected_sprite_id)->copies.at(selected_frame_id) > 100)
+		if (*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(selected_frame_id)->copies > 100)
 		{
-			selected_entity->sprite_list.at(selected_sprite_id)->copies.at(selected_frame_id) = 100;
+			*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(selected_frame_id)->copies = 100;
 		}
 		//selected_entity
 	}
@@ -730,8 +819,8 @@ void EWindowEditor::update(float _d)
 			{
 				ESprite* sp = selected_entity->sprite_list.at(i);
 
-				float dst_x = *selected_entity->position_x + sp->offset_x.at(0) - xx;
-				float dst_y = *selected_entity->position_y + sp->offset_y.at(0) - yy;
+				float dst_x = *selected_entity->position_x + *sp->sprite_struct_list.at(0)->offset_x - xx;
+				float dst_y = *selected_entity->position_y + *sp->sprite_struct_list.at(0)->offset_y - yy;
 				float dst = dst_x * dst_x + dst_y * dst_y;
 
 				if (dst < min_dist)
@@ -839,8 +928,8 @@ void EWindowEditor::update(float _d)
 
 				if (!selected_entity->sprite_list.empty())
 				{
-					selected_entity->sprite_list.at(selected_sprite_id)->offset_x.at(EWindow::window_editor->selected_frame_id) += mouse_speed_x * mul;
-					selected_entity->sprite_list.at(selected_sprite_id)->offset_y.at(EWindow::window_editor->selected_frame_id) += mouse_speed_y * mul;
+					*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(0)->offset_x += mouse_speed_x * mul;
+					*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->offset_y += mouse_speed_y * mul;
 				}
 
 
@@ -854,8 +943,8 @@ void EWindowEditor::update(float _d)
 		{
 			if (started_sprite_move)
 			{
-				selected_entity->sprite_list.at(selected_sprite_id)->offset_x.at(0) = round(selected_entity->sprite_list.at(selected_sprite_id)->offset_x.at(0));
-				selected_entity->sprite_list.at(selected_sprite_id)->offset_y.at(0) = round(selected_entity->sprite_list.at(selected_sprite_id)->offset_y.at(0));
+				*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->offset_x = round(*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->offset_x);
+				*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->offset_y = round(*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->offset_y);
 
 				saved_pos_x = -1;
 				saved_pos_y = -1;
@@ -884,7 +973,7 @@ void EWindowEditor::update(float _d)
 
 				if (!selected_entity->sprite_list.empty())
 				{
-					selected_entity->sprite_list.at(selected_sprite_id)->offset_z.at(EWindow::window_editor->selected_frame_id) += mouse_speed_y * mul;
+					*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->offset_z += mouse_speed_y * mul;
 				}
 
 
@@ -898,7 +987,7 @@ void EWindowEditor::update(float _d)
 		{
 			if (started_z_move)
 			{
-				selected_entity->sprite_list.at(selected_sprite_id)->offset_z.at(0) = round(selected_entity->sprite_list.at(selected_sprite_id)->offset_z.at(0));
+				*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->offset_z = round(*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->offset_z);
 	
 
 				saved_pos_x = -1;
@@ -1097,18 +1186,20 @@ void EWindowEditor::clone_entity(Entity* _e)
 	*clone->position_x = *_e->position_x;
 	*clone->position_y = *_e->position_y;
 
-	*clone->mass = *_e->mass;
-	*clone->shadow_tall = *_e->shadow_tall;
+	int did = 0;
 
+	for (float f :_e->eattr_BASE)
+	{
+		clone->eattr_BASE.at(did) = f;
+		did++;
+	}
 
-	*clone->collision_down = *_e->collision_down;
-	*clone->collision_left = *_e->collision_left;
-	*clone->collision_right = *_e->collision_right;
-	*clone->collision_up = *_e->collision_up;
-
-	clone->controlled_by_ai = _e->controlled_by_ai;
-	clone->controlled_by_player = _e->controlled_by_player;
-	*clone->inmovable = *_e->inmovable;
+	did = 0;
+	for (bool* b : _e->pointer_to_bool_list)
+	{
+		*clone->pointer_to_bool_list.at(did) = *b;
+		did++;
+	}
 
 
 
@@ -1117,10 +1208,11 @@ void EWindowEditor::clone_entity(Entity* _e)
 		int id = 0;
 
 		ESprite* clone_sprite = new ESprite();
+		ESprite::sprite_struct* clone_struct = NULL;
 		ESprite::clear_default_data(clone_sprite);
 
 		clone->sprite_list.push_back(clone_sprite);
-
+		
 		*clone_sprite->rotate_by_move = *spr->rotate_by_move;
 		*clone_sprite->rotate_by_target = *spr->rotate_by_target;
 		*clone_sprite->rotate_by_target_gun = *spr->rotate_by_target_gun;
@@ -1129,16 +1221,22 @@ void EWindowEditor::clone_entity(Entity* _e)
 		*clone_sprite->wall_mode = *spr->wall_mode;
 		
 
-		for (EGabarite* g : spr->gabarite)
+		EString::out_debug("size of struct of original sprite: " + std::to_string(spr->sprite_struct_list.size()));
+		for (ESprite::sprite_struct* st : spr->sprite_struct_list)
 		{
-			clone_sprite->gabarite.push_back(g);
-			clone_sprite->supermap.push_back(spr->supermap.at(id));
+			EString::out_debug("created new struct: " + std::to_string(id));
+			clone_struct = new ESprite::sprite_struct;
 
-			clone_sprite->offset_x.push_back(spr->offset_x.at(id));
-			clone_sprite->offset_y.push_back(spr->offset_y.at(id));
-			clone_sprite->offset_z.push_back(spr->offset_z.at(id));
+			clone_sprite->sprite_struct_list.push_back(clone_struct);
 
-			clone_sprite->copies.push_back(spr->copies.at(id));
+			clone_struct->gabarite = st->gabarite;
+			clone_struct->supermap = st->supermap;
+
+			*clone_struct->offset_x = *st->offset_x;
+			*clone_struct->offset_y = *st->offset_y;
+			*clone_struct->offset_z = *st->offset_z;
+
+			*clone_struct->copies = *st->copies;
 
 			id++;
 		}
@@ -1151,6 +1249,8 @@ void EWindowEditor::clone_entity(Entity* _e)
 
 	EWindow::window_editor->selected_frame_id = 0;
 	EWindow::window_editor->selected_sprite_id = 0;
+
+	Entity::update_entity_attributes(clone);
 
 	ECluster::put_entity(clone);
 }
@@ -1272,19 +1372,22 @@ void EWindowEditor::update_sprite_buttons()
 		{b->is_active = editor_mode == EditMode::EditSprites;}
 	}
 
+	EString::out_debug("1");
 
-
+	//mark button as inactive (invisible)
 	for (EButton* b : sprite_button_list)
 	{
 		b->is_active = false;
 	}
 
+	//EString::out_debug("2");
 
 	int id = 0;
 	float yy = -10.0f;
 
 	if ((editor_mode == EditMode::EditSprites) & (selected_entity != NULL))
 	{
+
 		selected_or_unselected_color(link_to_is_rotate_by_move_button, *selected_entity->sprite_list.at(selected_sprite_id)->rotate_by_move);
 		selected_or_unselected_color(link_to_is_rotate_by_gun_target_button, *selected_entity->sprite_list.at(selected_sprite_id)->rotate_by_target_gun);
 		selected_or_unselected_color(link_to_is_wall_mode, *selected_entity->sprite_list.at(selected_sprite_id)->wall_mode);
@@ -1292,69 +1395,78 @@ void EWindowEditor::update_sprite_buttons()
 
 		if (selected_entity != NULL)
 		{
+			//for all sprite button
 			for (int i = 0; i < selected_entity->sprite_list.size(); i++)
 			{
-				sprite_button_list.at(i)->button_y = yy;
-				sprite_button_list.at(i)->is_active = true;
-				sprite_button_list.at(i)->description_text = selected_entity->sprite_list.at(i)->gabarite.at(0)->name;
+				
+				sprite_button_list.at(i)->button_y = yy;//align button
+				sprite_button_list.at(i)->is_active = true;//active by default
 				//sprite_button_list.at(i)->gabarite = selected_entity->sprite_list.at(i)->gabarite.at(0);
 
 				yy -= sprite_button_list.at(i)->button_size_y + 10.0f;
 
 
 
-
+				//currect button is selected
 				if (i == selected_sprite_id)
 				{
+					sprite_button_list.at(i)->description_text = selected_entity->sprite_list.at(i)->sprite_struct_list.at(0)->gabarite->name;//set_description
 
-					if (selected_frame_id >= selected_entity->sprite_list.at(i)->gabarite.size())
-					{selected_frame_id = selected_entity->sprite_list.at(i)->gabarite.size() - 1;}
+					//check selected frame bound
+					if (selected_frame_id >= selected_entity->sprite_list.at(i)->sprite_struct_list.size())
+					{selected_frame_id = selected_entity->sprite_list.at(i)->sprite_struct_list.size() - 1;}
 
+					//set color of selected button
 					sprite_button_list.at(i)->rama_color->set_color(EColor::COLOR_ORANGE);
 					sprite_button_list.at(i)->rama_thikness = 5.0f;
 
 
 					yy -= 80.0f;
 					
-					sprite_button_list.at(i)->gabarite = selected_entity->sprite_list.at(i)->gabarite.at(selected_frame_id);
+					//set texture as selected frame
+					sprite_button_list.at(i)->gabarite = selected_entity->sprite_list.at(i)->sprite_struct_list.at(selected_frame_id)->gabarite;
 				}
 				else
 				{
+					//color as unselected
 					sprite_button_list.at(i)->rama_color->set_color(EColor::COLOR_BLACK);
 					sprite_button_list.at(i)->rama_thikness = 2.0f;
 
-					std::cout << "vector size:" << sprite_button_list.size() << " id:" << i << std::endl;
+					//std::cout << "vector size:" << sprite_button_list.size() << " id:" << i << std::endl;
 
 					/*sprite_button_list.at(i)->gabarite
 					=
 					selected_entity->sprite_list.at(i)
 					->gabarite.at(selected_frame_id);*/
-					sprite_button_list.at(i)->gabarite = selected_entity->sprite_list.at(i)->gabarite.at(0);
+					sprite_button_list.at(i)->gabarite = selected_entity->sprite_list.at(i)->sprite_struct_list.at(0)->gabarite;
 				}
 
 				sprite_button_list.at(i)->data_id = i;
 			}
 
 			
+			//id order frame
 			for (EButton* b : link_to_sprite_frame)
 			{
 				b->master_button = sprite_button_list.at(selected_sprite_id);
 			}
 
-			int sid = 0;
+			int frame_data_id = 0;
 			for (int i = 0; i < link_to_sprite_frame.size(); i++)
 			{
 				EButton* fr = link_to_sprite_frame.at(i);
 				//std::cout << "process:" << z << std::endl;
 
 				
-				if (i < selected_entity->sprite_list.at(selected_sprite_id)->gabarite.size())
+				if (i < selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.size())
 				{
 					fr->is_active = true;
 
-					fr->gabarite = selected_entity->sprite_list.at(selected_sprite_id)->gabarite.at(sid);
+					fr->gabarite = selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(frame_data_id)->gabarite;
 
-					sid++;
+					fr->data_id = frame_data_id;
+
+					frame_data_id++;
 				}
 				else
 				{
@@ -1391,18 +1503,98 @@ void EWindowEditor::reset_mode(ESprite* _spr)
 	*_spr->rotate_by_move = false;
 	*_spr->rotate_by_target = false;
 	*_spr->wall_mode = false;
-	*_spr->rotate_by_target = false;
+	*_spr->rotate_by_target_gun = false;
 }
 
 void EWindowEditor::update_on_entity_select()
 {
 	if (selected_entity != NULL)
 	{
-		link_to_entity_mass_button->text = std::to_string(*selected_entity->mass);
-		link_to_entity_shadow_tall_button->text = std::to_string(*selected_entity->shadow_tall);
+		for (EButton* b : float_data_button_list)
+		{
+			b->text = EString::float_to_string(selected_entity->eattr_BASE.at(b->data_id));
+		}
 
-		EWindow::window_editor->selected_or_unselected_color(link_to_entity_inmovable_button, *EWindow::window_editor->selected_entity->inmovable);
-		EWindow::window_editor->selected_or_unselected_color(link_to_entity_controlled_by_player_button, EWindow::window_editor->selected_entity->controlled_by_player);
-		EWindow::window_editor->selected_or_unselected_color(link_to_entity_controlled_by_AI_button, EWindow::window_editor->selected_entity->controlled_by_ai);
+		for (EButton* b : bool_data_button_list)
+		{
+			//b->text = std::to_string(selected_entity->eattr_BASE.at(b->data_id));
+
+			selected_or_unselected_color(b, *selected_entity->pointer_to_bool_list.at(b->data_id));
+		}
+
+		link_to_lightsource_red->slider_value = *selected_entity->light_source_red;
+		link_to_lightsource_green->slider_value = *selected_entity->light_source_green;
+		link_to_lightsource_blue->slider_value = *selected_entity->light_source_blue;
+	}
+}
+
+void EWindowEditor::add_button_group_for_float_data(int _data_id)
+{
+
+
+	int id = -1;
+
+	for (int i = 0; i < Entity::entity_attribute_names.size(); i++)
+	{
+		if (Entity::entity_attribute_id.at(i) == _data_id) { id = i; break; }
+	}
+
+
+	if (id != -1)
+	{
+		EButton* b = new EButton(button_group_start_x, button_group_start_y, 50.0f, 20.0f);
+		b->master_position = Enums::PositionMaster::WINDOW;
+		b->master_window = this;
+		b->have_input_mode = true;
+
+		b->is_active = true;
+
+		b->position_mode_x = Enums::PositionMode::RIGHT;
+		b->position_mode_y = Enums::PositionMode::DOWN;
+
+		b->input_only_numbers = true;
+
+		*b->side_text = Entity::entity_attribute_names.at(id);
+		b->data_id = id;
+
+		b->action_on_input_finish = &EBA::action_set_entity_float_attribute;
+
+		float_data_button_list.push_back(b);
+		button_list.push_back(b);
+
+		button_group_start_y -= 25.0f;
+	}
+}
+
+void EWindowEditor::add_button_group_for_bool_data(int _data_id)
+{
+	int id = -1;
+
+	for (int i = 0; i < Entity::entity_bool_attribute_names.size(); i++)
+	{
+		if (Entity::entity_bool_attribute_id.at(i) == _data_id) { id = i; break; }
+	}
+
+
+	if (id != -1)
+	{
+		EButton* b = new EButton(button_group_start_x, button_group_start_y, 80.0f, 20.0f);
+		b->master_position = Enums::PositionMaster::WINDOW;
+		b->master_window = this;
+
+		b->is_active = true;
+
+		b->position_mode_x = Enums::PositionMode::RIGHT;
+		b->position_mode_y = Enums::PositionMode::DOWN;
+
+		b->text = Entity::entity_bool_attribute_names.at(id);
+		b->data_id = id;
+
+		b->action_on_left_click = &EBA::action_set_entity_bool_attribute;
+
+		bool_data_button_list.push_back(b);
+		button_list.push_back(b);
+
+		button_group_start_y -= 25.0f;
 	}
 }

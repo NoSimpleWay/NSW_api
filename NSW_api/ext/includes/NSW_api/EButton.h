@@ -187,6 +187,8 @@ public:
 
 	EWindow* simple_action_open_window;
 
+	std::string* side_text = new string("");
+
 	/*
 	EButtonAction* button_action_press;
 	EButtonAction* button_action_right_press;

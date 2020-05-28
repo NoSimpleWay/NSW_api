@@ -162,6 +162,14 @@ bool EButton::is_right_click()
 void EButton::update(float _d)
 {
 
+	if ((is_overlap()) & (have_input_mode) & (input_only_numbers) & (text != "") & (EWindow::scroll != 0))
+	{
+		text = EString::float_to_string(EMath::to_float(text) + EWindow::scroll);
+		input_finish_event();
+
+		if (action_on_input_finish != NULL) { action_on_input_finish(this, _d); }
+	}
+
 	if
 	(
 		(can_receive_paste)
@@ -236,6 +244,13 @@ void EButton::update(float _d)
 
 	if (is_outclick())
 	{
+		//if (text == "") { text = "0"; }
+
+		if ((input_only_numbers) && (text == ""))
+		{
+			text = "0";
+		}
+
 		if ((is_expanded) && (is_drop_list))
 		{
 			is_expanded = false;
@@ -585,9 +600,13 @@ void EButton::default_draw(Batcher* _batch, float _d)
 		}
 	}
 
+	EFont* target_font = EFont::active_font;
+
+
+
 	if (have_text)
 	{
-		EFont* target_font = EFont::active_font;
+	
 
 		//if (EFont::get_width(EFont::active_font, text) + 5.0f > button_size_x)
 		//{
@@ -631,6 +650,10 @@ void EButton::default_draw(Batcher* _batch, float _d)
 		}
 	}
 
+	if (*side_text != "")
+	{
+		target_font->draw_with_background(*side_text, _batch, master_position_x - 8.0f - EFont::get_width(target_font, *side_text), master_position_y + round((button_size_y - 20.0f) / 2.0f + 0.0f), EColor::COLOR_LIGHT_GRAY, EColor::COLOR_DARK_GRAY);
+	}
 
 	if (have_rama)
 	{

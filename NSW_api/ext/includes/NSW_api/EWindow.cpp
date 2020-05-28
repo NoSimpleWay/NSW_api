@@ -7,6 +7,8 @@ std::vector<EWindow*> EWindow::window_list;
 
 ETextureAtlas* EWindow::default_texture_atlas;
 ETextureAtlas* EWindow::shadow_FBO;
+ETextureAtlas* EWindow::lightmap_FBO;
+ETextureAtlas* EWindow::lightmap_FBO2;
 
 
 
@@ -139,7 +141,7 @@ void EWindow::default_draw_interface(float _d)
 
 	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
 
-	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(-1, -1, 0.0f));
+	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(-1.0f, -1.0f, 0.0f));
 	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x, EGraphicCore::correction_y, 1));
 
 	transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");

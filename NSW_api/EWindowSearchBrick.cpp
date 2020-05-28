@@ -5,7 +5,6 @@
 #include <fstream>
 #include <iostream>
 #include <experimental/filesystem>
-#include "EButtonActionSetSpriteTexture.h"
 #include "EBA.h"
 namespace fs = std::experimental::filesystem;
 
@@ -41,7 +40,7 @@ EWindowSearchBrick::EWindowSearchBrick()
 	{
 		
 
-		but = new EButton(15.0f + xx, -50.0f + yy, 50.0f, 50.0f);
+		but = new EButton(15.0f + xx, -50.0f + yy, 80.0f, 80.0f);
 		but->master_window = this;
 
 		but->position_mode_x = Enums::LEFT;
@@ -66,11 +65,11 @@ EWindowSearchBrick::EWindowSearchBrick()
 		brick_button.push_back(but);
 		button_list.push_back(but);
 
-		xx += 55.0f;
+		xx += 85.0f;
 		if (xx + but->button_size_x > window_size_x)
 		{
 			xx = 0;
-			yy -= 50.0f;
+			yy -= 85.0f;
 		}
 
 		but->button_x = 15.0f + xx;
@@ -116,13 +115,13 @@ void EWindowSearchBrick::draw_interface(float _d)
 
 			for (ESprite* spr : e->sprite_list)
 			{
-				for (int j = 0; j< spr->gabarite.size(); j++)
+				for (int j = 0; j< spr->sprite_struct_list.size(); j++)
 				{
-					if (spr->offset_x.at(j) < min_gabarite_x) { min_gabarite_x = spr->offset_x.at(j); }
-					if (spr->offset_y.at(j) < min_gabarite_y) { min_gabarite_y = spr->offset_y.at(j); }
+					if (*spr->sprite_struct_list.at(j)->offset_x < min_gabarite_x) { min_gabarite_x = *spr->sprite_struct_list.at(j)->offset_x; }
+					if (*spr->sprite_struct_list.at(j)->offset_y < min_gabarite_y) { min_gabarite_y = *spr->sprite_struct_list.at(j)->offset_y; }
 
-					if (spr->offset_x.at(j) + spr->gabarite.at(j)->size_x > max_gabarite_x) { max_gabarite_x = spr->offset_x.at(j) + spr->gabarite.at(j)->size_x; }
-					if (spr->offset_y.at(j) + spr->gabarite.at(j)->size_y > max_gabarite_y) { max_gabarite_y = spr->offset_y.at(j) + spr->gabarite.at(j)->size_y; }
+					if (*spr->sprite_struct_list.at(j)->offset_x + spr->sprite_struct_list.at(j)->gabarite->size_x > max_gabarite_x) { max_gabarite_x = *spr->sprite_struct_list.at(j)->offset_x + spr->sprite_struct_list.at(j)->gabarite->size_x; }
+					if (*spr->sprite_struct_list.at(j)->offset_y + spr->sprite_struct_list.at(j)->gabarite->size_y > max_gabarite_y) { max_gabarite_y = *spr->sprite_struct_list.at(j)->offset_y + spr->sprite_struct_list.at(j)->gabarite->size_y; }
 				}
 			}
 
@@ -152,11 +151,11 @@ void EWindowSearchBrick::draw_interface(float _d)
 			{
 					EGraphicCore::batch->draw_gabarite
 					(
-						b->master_position_x + spr->offset_x.at(0) * resize + sprite_image_offset_x,
-						b->master_position_y + spr->offset_y.at(0) * resize - min_gabarite_y * resize,
-						spr->gabarite.at(0)->size_x * resize,
-						spr->gabarite.at(0)->size_y * resize,
-						spr->gabarite.at(0)
+						b->master_position_x + *spr->sprite_struct_list.at(0)->offset_x * resize + sprite_image_offset_x,
+						b->master_position_y + *spr->sprite_struct_list.at(0)->offset_y * resize - min_gabarite_y * resize,
+						spr->sprite_struct_list.at(0)->gabarite->size_x * resize,
+						spr->sprite_struct_list.at(0)->gabarite->size_y * resize,
+						spr->sprite_struct_list.at(0)->gabarite
 					);
 			}
 
@@ -203,11 +202,11 @@ void EWindowSearchBrick::update_search(EButton* _b)
 			{
 				brick_button.at(i)->is_active = true;
 
-				xx += 55.0f;
+				xx += 85.0f;
 				if (xx + brick_button.at(i)->button_size_x > window_size_x)
 				{
 					xx = 0;
-					yy -= 50.0f;
+					yy -= 85.0f;
 				}
 
 				brick_button.at(i)->button_x = 15.0f + xx;

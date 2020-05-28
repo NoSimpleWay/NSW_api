@@ -1,0 +1,1672 @@
+#shadow_skew	0.449899
+ADD_NEW_ENTITY	1783.000000	1443.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/canal_c18.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	198.999878
+collision_down	0.000000
+collision_right	139.600037
+collision_left	0.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	1783.000000	1642.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/canal_c18_with_wall.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	198.999878
+collision_down	0.000000
+collision_right	139.600037
+collision_left	1.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	1785.000000	1964.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/canal_c18.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	198.999878
+collision_down	0.000000
+collision_right	139.600037
+collision_left	1.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	1785.000000	2163.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/canal_c18.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	198.999878
+collision_down	0.000000
+collision_right	139.600037
+collision_left	1.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	1785.000000	2362.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/canal_c18.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	198.999878
+collision_down	0.000000
+collision_right	139.600037
+collision_left	1.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	1785.000000	2561.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/canal_c18.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	198.999878
+collision_down	0.000000
+collision_right	139.600037
+collision_left	1.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	1852.000000	1421.000000
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/wall_with_neon_lines_corner_left.png
+texture_offset_x	-210.000000
+texture_offset_y	-7.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/wall_with_neon_lines.png
+texture_offset_x	-19.000000
+texture_offset_y	4.000000
+texture_offset_z	0.000000
+texture_copies	4
+add_new_texture	data/textures/wall_with_neon_lines_corner_right.png
+texture_offset_x	-12.700012
+texture_offset_y	-0.000001
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_metal_up_01.png
+texture_offset_x	-199.000000
+texture_offset_y	149.000000
+texture_offset_z	0.000000
+texture_copies	4
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_metal_01.png
+texture_offset_x	-199.000000
+texture_offset_y	86.000000
+texture_offset_z	0.000000
+texture_copies	4
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/roof_metal_corner_01.png
+texture_offset_x	-205.000000
+texture_offset_y	65.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/roof_metal_01_skew.png
+texture_offset_x	-2.000000
+texture_offset_y	1.500000
+texture_offset_z	0.000000
+texture_copies	4
+add_new_texture	data/textures/roof_metal_corner_01.png
+texture_offset_x	-2.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	4.000000
+collision_down	9.000000
+collision_right	210.000000
+collision_left	208.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2034.000000	2141.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_c18.png
+texture_offset_x	35.000000
+texture_offset_y	14.000000
+texture_offset_z	113.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	174.000000
+texture_offset_y	4.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/wall_corner_c18_left.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/wall_c18.png
+texture_offset_x	-6.000000
+texture_offset_y	17.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/wall_corner_c18_right.png
+texture_offset_x	-8.000000
+texture_offset_y	0.500000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	72.000000
+collision_down	0.000000
+collision_right	184.000000
+collision_left	0.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2329.000000	1858.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	133.000000
+texture_offset_y	-4.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_c18.png
+texture_offset_x	-129.000000
+texture_offset_y	120.000000
+texture_offset_z	0.000000
+texture_copies	2
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/wall_corner_c18_left.png
+texture_offset_x	-162.000000
+texture_offset_y	-9.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/wall_c18.png
+texture_offset_x	-6.000000
+texture_offset_y	17.000000
+texture_offset_z	0.000000
+texture_copies	2
+add_new_texture	data/textures/wall_corner_c18_right.png
+texture_offset_x	-8.000000
+texture_offset_y	0.500000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	75.000000
+collision_down	8.000000
+collision_right	141.000000
+collision_left	160.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2337.000000	1832.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	68.000000
+texture_offset_y	-12.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/extension_c18.png
+texture_offset_x	-69.000000
+texture_offset_y	-20.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	44.250000
+collision_down	20.000000
+collision_right	76.250000
+collision_left	69.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2398.000000	2162.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/decor_sign_hotel.png
+texture_offset_x	99.000000
+texture_offset_y	3.000000
+texture_offset_z	84.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/tall_building_c18_corner_left.png
+texture_offset_x	-99.000000
+texture_offset_y	-10.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/tall_building_c18_wall.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/tall_building_c18_corner_right.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/tall_building_c18_window..png
+texture_offset_x	-43.000000
+texture_offset_y	-14.000000
+texture_offset_z	90.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	92.000000
+texture_offset_y	-5.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	177.000000
+collision_down	8.500000
+collision_right	103.000000
+collision_left	97.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2525.000000	1267.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_corner.png
+texture_offset_x	-60.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-57.000000
+texture_offset_y	-6.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	8.125000
+collision_down	2.125000
+collision_right	58.500000
+collision_left	56.875000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2464.000000	1270.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_vertical.png
+texture_offset_x	-3.000000
+texture_offset_y	68.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	56.375000
+collision_down	3.750000
+collision_right	3.500000
+collision_left	2.625000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2464.000000	1330.125000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_vertical.png
+texture_offset_x	-3.000000
+texture_offset_y	68.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	56.375000
+collision_down	3.750000
+collision_right	3.500000
+collision_left	2.625000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2464.000000	1390.250000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_vertical.png
+texture_offset_x	-3.000000
+texture_offset_y	68.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	56.375000
+collision_down	3.750000
+collision_right	3.500000
+collision_left	2.625000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2464.000000	1450.375000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_vertical.png
+texture_offset_x	-3.000000
+texture_offset_y	68.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	56.375000
+collision_down	3.750000
+collision_right	3.500000
+collision_left	2.625000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2464.000000	1510.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_vertical.png
+texture_offset_x	-3.000000
+texture_offset_y	68.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	56.375000
+collision_down	3.750000
+collision_right	3.500000
+collision_left	2.625000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2553.000000	2273.000000
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/tall_building_c18_corner_left.png
+texture_offset_x	-269.000000
+texture_offset_y	-14.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/tall_building_c18_wall.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	4
+add_new_texture	data/textures/tall_building_c18_corner_right.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/tall_building_c18_window..png
+texture_offset_x	-33.000000
+texture_offset_y	-20.000000
+texture_offset_z	92.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	288.000000
+texture_offset_y	-7.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	174.000000
+collision_down	15.000000
+collision_right	287.000000
+collision_left	267.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2640.000000	1267.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-57.000000
+texture_offset_y	-6.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	8.125000
+collision_down	2.125000
+collision_right	58.500000
+collision_left	56.875000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2755.000000	1267.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-57.000000
+texture_offset_y	-6.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	8.125000
+collision_down	2.125000
+collision_right	58.500000
+collision_left	56.875000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2730.000000	2162.000000
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/tall_building_c18_corner_left.png
+texture_offset_x	-99.000000
+texture_offset_y	-10.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/tall_building_c18_wall.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/tall_building_c18_corner_right.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/tall_building_c18_window..png
+texture_offset_x	-43.000000
+texture_offset_y	-13.000000
+texture_offset_z	90.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	86.000000
+texture_offset_y	-5.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	177.000000
+collision_down	9.500000
+collision_right	103.000000
+collision_left	97.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2659.000000	2010.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/human.png
+texture_offset_x	-8.000000
+texture_offset_y	2.000000
+texture_offset_z	-1.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	6.750000
+collision_down	0.000000
+collision_right	7.875000
+collision_left	7.750000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2843.336426	1852.142700
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-26.000000
+texture_offset_y	-27.000000
+texture_offset_z	19.000000
+texture_copies	1
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-17.399998
+texture_offset_y	-12.400000
+texture_offset_z	3.500000
+texture_copies	1
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-25.500000
+texture_offset_y	-23.100000
+texture_offset_z	14.000000
+texture_copies	1
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.899996
+texture_offset_y	-18.700001
+texture_offset_z	11.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*target_gun
+add_new_texture	data/textures/head_gun_mech_violet_1.png
+texture_offset_x	-4.000000
+texture_offset_y	1.000000
+texture_offset_z	49.000000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_2.png
+texture_offset_x	-4.875000
+texture_offset_y	1.875000
+texture_offset_z	45.250000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_3.png
+texture_offset_x	-4.375000
+texture_offset_y	1.125000
+texture_offset_z	49.000000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_4.png
+texture_offset_x	-6.250000
+texture_offset_y	0.625000
+texture_offset_z	36.500000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_5.png
+texture_offset_x	-8.125000
+texture_offset_y	-17.375000
+texture_offset_z	51.875000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_6.png
+texture_offset_x	-15.375000
+texture_offset_y	1.000000
+texture_offset_z	36.250000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_7.png
+texture_offset_x	-27.500000
+texture_offset_y	0.875000
+texture_offset_z	49.250000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_8.png
+texture_offset_x	-15.000000
+texture_offset_y	41.750000
+texture_offset_z	5.375000
+texture_copies	1
+ADD_NEW_SPRITE
+*rotate_by_move
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.000000
+texture_offset_y	-7.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.549992
+texture_offset_y	-8.249985
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.350006
+texture_offset_y	-6.999996
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	28.324989
+texture_offset_y	-8.450001
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	14.000000
+texture_offset_y	61.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*camera_target
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	100.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	11.500000
+collision_down	9.250000
+collision_right	14.250000
+collision_left	13.500000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2890.000000	2183.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-57.000000
+texture_offset_y	-6.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	8.125000
+collision_down	8.000000
+collision_right	58.500000
+collision_left	56.875000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2897.000000	2339.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-57.000000
+texture_offset_y	-6.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	8.125000
+collision_down	8.000000
+collision_right	58.500000
+collision_left	56.875000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	2942.000000	2290.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/truck.png
+texture_offset_x	-86.000000
+texture_offset_y	-20.000000
+texture_offset_z	10.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	67.000000
+texture_offset_y	3.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	33.500000
+collision_down	2.000000
+collision_right	66.000000
+collision_left	77.750000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3005.000000	2183.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_corner.png
+texture_offset_x	55.000000
+texture_offset_y	-1.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-57.000000
+texture_offset_y	-6.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	8.125000
+collision_down	8.000000
+collision_right	58.500000
+collision_left	56.875000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3012.000000	2056.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/truck_back02(cystern).png
+texture_offset_x	-35.000000
+texture_offset_y	-14.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/truck_head02.png
+texture_offset_x	-55.000000
+texture_offset_y	-2.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	103.000000
+texture_offset_y	1.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	30.500000
+collision_down	3.500000
+collision_right	104.500000
+collision_left	52.500000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3012.000000	2339.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_corner.png
+texture_offset_x	55.000000
+texture_offset_y	-1.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-57.000000
+texture_offset_y	-6.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	8.125000
+collision_down	8.000000
+collision_right	58.500000
+collision_left	56.875000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3217.000000	2052.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/truck_head01.png
+texture_offset_x	-86.000000
+texture_offset_y	-20.000000
+texture_offset_z	10.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/truck_back02(cystern).png
+texture_offset_x	6.000000
+texture_offset_y	-10.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	145.000000
+texture_offset_y	3.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	33.500000
+collision_down	2.000000
+collision_right	146.500000
+collision_left	77.750000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3526.000000	2548.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	338.000000
+texture_offset_y	-14.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/tall_building_c18_corner_left.png
+texture_offset_x	-338.000000
+texture_offset_y	-28.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/tall_building_c18_wall.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	5
+add_new_texture	data/textures/tall_building_c18_corner_right.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/tall_building_c18_window..png
+texture_offset_x	-309.000000
+texture_offset_y	-27.000000
+texture_offset_z	84.000000
+texture_copies	2
+ADD_NEW_SPRITE
+add_new_texture	data/textures/tall_building_c18_window..png
+texture_offset_x	213.000000
+texture_offset_y	-33.000000
+texture_offset_z	107.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	158.000000
+collision_down	30.500000
+collision_right	338.000000
+collision_left	338.300354
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3567.000000	2474.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	158.000000
+texture_offset_y	-3.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/tall_building_c18_corner_left.png
+texture_offset_x	-157.000000
+texture_offset_y	-6.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/tall_building_c18_wall.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	2
+add_new_texture	data/textures/tall_building_c18_corner_right.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_metal_01_skew.png
+texture_offset_x	-148.000000
+texture_offset_y	141.000000
+texture_offset_z	0.000000
+texture_copies	3
+ADD_NEW_SPRITE
+add_new_texture	data/textures/decor_bars_dark.png
+texture_offset_x	-115.000000
+texture_offset_y	277.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	161.000000
+collision_down	4.000000
+collision_right	160.000000
+collision_left	156.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3540.000000	3627.000000
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/wall_with_neon_lines_corner_left.png
+texture_offset_x	-20.000000
+texture_offset_y	-18.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/wall_with_neon_lines.png
+texture_offset_x	-4.000000
+texture_offset_y	9.000000
+texture_offset_z	0.000000
+texture_copies	2
+add_new_texture	data/textures/wall_with_neon_lines_corner_right.png
+texture_offset_x	-3.000000
+texture_offset_y	-4.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3608.928955	3005.246094
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall_with_neon_lines.png
+texture_offset_x	-126.000000
+texture_offset_y	-9.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall_with_neon_lines.png
+texture_offset_x	-26.000000
+texture_offset_y	-9.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall_with_neon_lines.png
+texture_offset_x	74.000000
+texture_offset_y	-9.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall_with_neon_lines_corner_left.png
+texture_offset_x	-143.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall_with_neon_lines_corner_right.png
+texture_offset_x	170.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof.png
+texture_offset_x	-40.000000
+texture_offset_y	51.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof.png
+texture_offset_x	49.000000
+texture_offset_y	51.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof.png
+texture_offset_x	139.000000
+texture_offset_y	51.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof.png
+texture_offset_x	-130.000000
+texture_offset_y	51.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	10000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	1.000000
+collision_down	11.000000
+collision_right	74.000000
+collision_left	127.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3626.000000	3627.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall_arc.png
+texture_offset_x	-19.000000
+texture_offset_y	-17.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3653.000000	3715.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall_with_neon_lines.png
+texture_offset_x	-126.000000
+texture_offset_y	-9.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall_beton.png
+texture_offset_x	-127.000000
+texture_offset_y	-12.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	1.000000
+collision_down	11.000000
+collision_right	74.000000
+collision_left	127.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3938.694580	543.000000
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-27.000000
+texture_offset_y	-12.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-18.000000
+texture_offset_y	-11.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-27.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	10.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3837.005615	727.141785
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-27.000000
+texture_offset_y	-12.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-18.000000
+texture_offset_y	-11.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-27.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	10.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3923.160400	633.000000
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-27.000000
+texture_offset_y	-12.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-18.000000
+texture_offset_y	-11.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-27.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	10.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	3833.000000	830.000000
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-27.000000
+texture_offset_y	-12.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-18.000000
+texture_offset_y	-11.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-27.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	10.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	4162.670410	185.147858
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-27.000000
+texture_offset_y	-12.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-18.000000
+texture_offset_y	-11.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-27.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.000000
+texture_offset_y	-13.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	10.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	4445.000000	1437.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/canal_c18.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/canal_c18.png
+texture_offset_x	1.000000
+texture_offset_y	-199.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/canal_c18.png
+texture_offset_x	2.000000
+texture_offset_y	-371.000000
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/canal_c18.png
+texture_offset_x	2.000000
+texture_offset_y	133.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	331.000000
+collision_down	373.000000
+collision_right	139.000000
+collision_left	0.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	5287.938477	2954.498291
+ADD_NEW_SPRITE
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	10.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	5412.000000	1246.000000
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-26.000000
+texture_offset_y	-27.000000
+texture_offset_z	19.000000
+texture_copies	1
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-17.399998
+texture_offset_y	-12.400000
+texture_offset_z	3.500000
+texture_copies	1
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-25.500000
+texture_offset_y	-23.100000
+texture_offset_z	14.000000
+texture_copies	1
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.899996
+texture_offset_y	-18.700001
+texture_offset_z	11.000000
+texture_copies	1
+ADD_NEW_SPRITE
+*target_gun
+add_new_texture	data/textures/head_gun_mech_violet_1.png
+texture_offset_x	-4.000000
+texture_offset_y	1.000000
+texture_offset_z	49.000000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_2.png
+texture_offset_x	-4.875000
+texture_offset_y	1.875000
+texture_offset_z	45.250000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_3.png
+texture_offset_x	-4.375000
+texture_offset_y	1.125000
+texture_offset_z	49.000000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_4.png
+texture_offset_x	-6.250000
+texture_offset_y	0.625000
+texture_offset_z	36.500000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_5.png
+texture_offset_x	-8.125000
+texture_offset_y	-17.375000
+texture_offset_z	51.875000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_6.png
+texture_offset_x	-15.375000
+texture_offset_y	1.000000
+texture_offset_z	36.250000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_7.png
+texture_offset_x	-27.500000
+texture_offset_y	0.875000
+texture_offset_z	49.250000
+texture_copies	1
+add_new_texture	data/textures/head_gun_mech_violet_8.png
+texture_offset_x	-15.000000
+texture_offset_y	41.750000
+texture_offset_z	5.375000
+texture_copies	1
+ADD_NEW_SPRITE
+*rotate_by_move
+*shadow
+add_new_texture	data/textures/mech_shadow_for_up_down.png
+texture_offset_x	29.000000
+texture_offset_y	-7.000000
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_shadow_for_left_right.png
+texture_offset_x	29.549992
+texture_offset_y	-8.249985
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_shadow_for_up_down.png
+texture_offset_x	29.350006
+texture_offset_y	-6.999996
+texture_offset_z	0.000000
+texture_copies	1
+add_new_texture	data/textures/mech_shadow_for_left_right.png
+texture_offset_x	28.324989
+texture_offset_y	-8.450001
+texture_offset_z	0.000000
+texture_copies	1
+ADD_NEW_SPRITE
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	14.000000
+texture_offset_y	61.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	10.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	11.500000
+collision_down	10.000000
+collision_right	29.750000
+collision_left	30.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6764.000000	4297.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+*entity_controlled_by_player
+*entity_controlled_by_ai
+*inmovable
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	10.000000
+entity bool attribute	Inmovable
+entity bool attribute	Controlled by AI
+entity bool attribute	Controlled by Player
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+- PUT TO MAP -
+
+=====================================
+

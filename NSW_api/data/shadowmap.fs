@@ -7,10 +7,12 @@ in vec4 ourColor;
 in vec2 TexCoord;
 in vec2 ShadowCoord;
 in vec2 SuperMapCoord;
+in vec2 LightMapCoord;
 
 // texture samplers
 uniform sampler2D texture1;//normal texture and supermap texture
 uniform sampler2D texture2;//shadowmap
+uniform sampler2D texture3;//shadowmap
 
 uniform float offset_x;
 uniform float offset_y;
@@ -51,7 +53,11 @@ void main()
 		(
 			(1.0f - shadow_multiplier) * ourColor.rgb
 		)
-	);
+		+
+		(texture(texture3, LightMapCoord).rgb * (1.0f - texture(texture1, SuperMapCoord).g))
+	)
+
+	;
 	
 	//FragColor.rgb = texture(texture1, SuperMapCoord).rgb;
 	

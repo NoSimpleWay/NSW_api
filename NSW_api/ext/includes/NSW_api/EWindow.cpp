@@ -9,6 +9,7 @@ ETextureAtlas* EWindow::default_texture_atlas;
 ETextureAtlas* EWindow::shadow_FBO;
 ETextureAtlas* EWindow::lightmap_FBO;
 ETextureAtlas* EWindow::lightmap_FBO2;
+ETextureAtlas* EWindow::lightmap_with_ambient;
 
 
 
@@ -50,8 +51,9 @@ float EWindow::delete_button_hold_time = 0.0f;
 
 char EWindow::last_inputed_char = NULL;
 
-std::vector <float> EWindow::time_process_value;
-std::vector <std::string> EWindow::time_process_name;
+int EWindow::time_process_rota_id = 0;
+
+std::vector<EWindow::time_process_struct*> EWindow::tps_list;
 
 bool EWindow::system_button_release = true;
 double EWindow::scroll = 0;
@@ -192,12 +194,39 @@ void EWindow::draw_interface(float _d)
 
 void EWindow::add_time_process(std::string _name)
 {
-	stop = std::chrono::high_resolution_clock::now();
+	//std::vector <float> tvec = new std::vector<float>(60, 0.0f);
 
-	time_process_value.push_back(std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count() / 1000.0f);
-	time_process_name.push_back(_name);
+	int id = -1;
+	int tid = 0;
+	for (time_process_struct* tps : tps_list)
+	{
+		if (tps->time_process_name == _name) { id = tid; break; }
+
+		tid++;
+	}
+
+	stop = std::chrono::high_resolution_clock::now();
+	
+
+	if (id != -1)
+	{
+		tps_list.at(id)->time_process_name = _name;
+		tps_list.at(id)->time_process_value.at(time_process_rota_id) = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count() / 1000.0f;
+	}
+	else
+	{
+		time_process_struct* new_tps = new time_process_struct;
+
+		tps_list.push_back(new_tps);
+
+		for (int i = 0; i < 30; i++)
+		{new_tps->time_process_value.push_back(std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count() / 1000.0f);}
+
+		new_tps->time_process_name = _name;
+	}
 
 	start = std::chrono::high_resolution_clock::now();
+
 }
 
 void EWindow::push_cursor(float _x, float _y)

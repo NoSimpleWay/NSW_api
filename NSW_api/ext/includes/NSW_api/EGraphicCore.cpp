@@ -15,6 +15,7 @@ int EGraphicCore::last_texture_h;
 Shader* EGraphicCore::ourShader;
 Shader* EGraphicCore::shadowmap;
 Shader* EGraphicCore::shader_terrain;
+Shader* EGraphicCore::lightmap_blur;
 
 Batcher* EGraphicCore::batch;
 Batcher* EGraphicCore::batch_shadowmap;

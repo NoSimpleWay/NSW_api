@@ -26,6 +26,7 @@ public:
 	static Shader* ourShader;
 	static Shader* shadowmap;
 	static Shader* shader_terrain;
+	static Shader* lightmap_blur;
 
 	static Batcher* batch;
 	static Batcher* batch_shadowmap;

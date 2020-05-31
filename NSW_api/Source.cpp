@@ -100,6 +100,7 @@ int main()
 	EGraphicCore::ourShader = new Shader("data/5.1.transform.vs", "data/5.1.transform.fs");
 	EGraphicCore::shadowmap = new Shader("data/shadowmap.vs", "data/shadowmap.fs");
 	EGraphicCore::shader_terrain = new Shader("data/terrain.vs", "data/terrain.fs");
+	EGraphicCore::lightmap_blur = new Shader("data/lightmap_blur.vs", "data/lightmap_blur.fs");
 
 	EGraphicCore::ourShader->use();
 	glfwSwapInterval(1);
@@ -143,6 +144,7 @@ int main()
 	EWindow::shadow_FBO = new ETextureAtlas(1920, 2080);
 	EWindow::lightmap_FBO = new ETextureAtlas(300, 300);
 	EWindow::lightmap_FBO2 = new ETextureAtlas(300, 300);
+	EWindow::lightmap_with_ambient = new ETextureAtlas(300, 300);
 
 	EGraphicCore::load_texture("data/textures/white_pixel.png", 0);
 
@@ -222,8 +224,8 @@ int main()
 	{
 
 
-		EWindow::time_process_name.clear();
-		EWindow::time_process_value.clear();
+		//EWindow::time_process_name.clear();
+		//EWindow::time_process_value.clear();
 
 		EWindow::stop = std::chrono::high_resolution_clock::now();
 		EWindow::start = std::chrono::high_resolution_clock::now();
@@ -263,13 +265,7 @@ int main()
 		glClearColor(0.4f, 0.5f, 0.6f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
 
-		EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(-1, -1, 0.0f));
-		EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x, EGraphicCore::correction_y, 1));
-
-		transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
-		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 
 		//ñáğîñ áàò÷åğà
 		EGraphicCore::batch->reset();

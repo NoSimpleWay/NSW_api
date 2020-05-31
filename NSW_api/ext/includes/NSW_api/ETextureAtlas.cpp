@@ -180,9 +180,13 @@ void ETextureAtlas::active_this_texture_atlas(ETextureAtlas* _ta, ETextureAtlas*
 {
 	glViewport(0, 0, _ta->size_x, _ta->size_y);
 	glBindFramebuffer(GL_FRAMEBUFFER, _ta->framebuffer);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);//texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);//
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, _ta2->colorbuffer);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);//texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);//
 
 	EGraphicCore::ourShader->setInt("texture1", 0);
 }

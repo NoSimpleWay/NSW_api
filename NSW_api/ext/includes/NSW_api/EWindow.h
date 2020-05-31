@@ -81,9 +81,15 @@ public:
 
 	//static std::pair<float, std::string> time_process;
 
-	static std::vector<float> time_process_value;
-	static std::vector < std::string > time_process_name;
+	struct time_process_struct
+	{
+		std::vector<float> time_process_value;
+		std::string time_process_name;
+	};
 
+	static std::vector<time_process_struct*> tps_list;
+
+	static int time_process_rota_id;
 	static std::chrono::time_point<std::chrono::high_resolution_clock> start, stop;
 
 	static void push_cursor(float _x, float _y);
@@ -103,6 +109,7 @@ public:
 	static ETextureAtlas* shadow_FBO;
 	static ETextureAtlas* lightmap_FBO;
 	static ETextureAtlas* lightmap_FBO2;
+	static ETextureAtlas* lightmap_with_ambient;
 
 	static bool button_pressed;
 
@@ -126,5 +133,7 @@ public:
 	int align_x;
 	int align_y;
 
+
+	//void draw_lightmap();
 
 };

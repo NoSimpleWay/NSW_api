@@ -72,24 +72,28 @@ void Batcher::init_shadowmap()
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// position attribute
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 12 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
 	// color attribute
-	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 12 * sizeof(float), (void*)(2 * sizeof(float)));
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*)(2 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
 	// texture coord attribute
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 12 * sizeof(float), (void*)(6 * sizeof(float)));
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*)(6 * sizeof(float)));
 	glEnableVertexAttribArray(2);
 
 	// shadowmap coord attribute
-	glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 12 * sizeof(float), (void*)(8 * sizeof(float)));
+	glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*)(8 * sizeof(float)));
 	glEnableVertexAttribArray(3);
 
 	// supermap coord attribute
-	glVertexAttribPointer(4, 2, GL_FLOAT, GL_FALSE, 12 * sizeof(float), (void*)(10 * sizeof(float)));
+	glVertexAttribPointer(4, 2, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*)(10 * sizeof(float)));
 	glEnableVertexAttribArray(4);
+
+	// lightmap coord attribute
+	glVertexAttribPointer(5, 2, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*)(12 * sizeof(float)));
+	glEnableVertexAttribArray(5);
 }
 
 void Batcher::init_terrain()
@@ -807,75 +811,85 @@ void Batcher::draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EG
 	vertices[id + 10] = _supermap->x2;
 	vertices[id + 11] = _supermap->y2;
 
+	vertices[id + 12] = (_x + _w) / 12000.0f;
+	vertices[id + 13] = (_y - 4.0f) / 12000.0f;
+
 
 
 
 
 	//..
 	//.#
-	vertices[id + 12] = (_x + _w);
-	vertices[id + 13] = _y;
+	vertices[id + 14] = (_x + _w);
+	vertices[id + 15] = _y;
 	//vertices[id + 10] = 0;
 
-	vertices[id + 14] = batch_color_r;
-	vertices[id + 15] = batch_color_g;
-	vertices[id + 16] = batch_color_b;
-	vertices[id + 17] = batch_color_a;
+	vertices[id + 16] = batch_color_r;
+	vertices[id + 17] = batch_color_g;
+	vertices[id + 18] = batch_color_b;
+	vertices[id + 19] = batch_color_a;
 
-	vertices[id + 18] = _g->x2;
-	vertices[id + 19] = _g->y;
+	vertices[id + 20] = _g->x2;
+	vertices[id + 21] = _g->y;
 
-	vertices[id + 20] = (_x + _w ) * zoom / screen_w;
-	vertices[id + 21] = (_y + 0.0f - _z) * zoom / screen_h;
+	vertices[id + 22] = (_x + _w ) * zoom / screen_w;
+	vertices[id + 23] = (_y + 0.0f - _z) * zoom / screen_h;
 
-	vertices[id + 22] = _supermap->x2;
-	vertices[id + 23] = _supermap->y;
+	vertices[id + 24] = _supermap->x2;
+	vertices[id + 25] = _supermap->y;
+
+	vertices[id + 26] = (_x + _w) / 12000.0f;
+	vertices[id + 27] = (_y - 40.0f) / 12000.0f;
 
 
 
 	//..
 	//#.
-	vertices[id + 24] = _x;
-	vertices[id + 25] = _y;
+	vertices[id + 28] = _x;
+	vertices[id + 29] = _y;
 	//vertices[id + 18] = 0;
 
-	vertices[id + 26] = batch_color_r;
-	vertices[id + 27] = batch_color_g;
-	vertices[id + 28] = batch_color_b;
-	vertices[id + 29] = batch_color_a;
+	vertices[id + 30] = batch_color_r;
+	vertices[id + 31] = batch_color_g;
+	vertices[id + 32] = batch_color_b;
+	vertices[id + 33] = batch_color_a;
 
-	vertices[id + 30] = _g->x;
-	vertices[id + 31] = _g->y;
+	vertices[id + 34] = _g->x;
+	vertices[id + 35] = _g->y;
 
-	vertices[id + 32] = (_x)*zoom / screen_w;
-	vertices[id + 33] = (_y + 0.0f - _z) * zoom / screen_h;
+	vertices[id + 36] = (_x)*zoom / screen_w;
+	vertices[id + 37] = (_y + 0.0f - _z) * zoom / screen_h;
 
-	vertices[id + 34] = _supermap->x;
-	vertices[id + 35] = _supermap->y;
+	vertices[id + 38] = _supermap->x;
+	vertices[id + 39] = _supermap->y;
 
-
+	vertices[id + 40] = (_x) / 12000.0f;
+	vertices[id + 41] = (_y - 40.0f) / 12000.0f;
 
 	//#.
 	//..
-	vertices[id + 36] = _x;
-	vertices[id + 37] = (_y + _h);
+	vertices[id + 42] = _x;
+	vertices[id + 43] = (_y + _h);
 	//vertices[id + 26] = 0;
 
-	vertices[id + 38] = batch_color_r;
-	vertices[id + 39] = batch_color_g;
-	vertices[id + 40] = batch_color_b;
-	vertices[id + 41] = batch_color_a;
+	vertices[id + 44] = batch_color_r;
+	vertices[id + 45] = batch_color_g;
+	vertices[id + 46] = batch_color_b;
+	vertices[id + 47] = batch_color_a;
 
-	vertices[id + 42] = _g->x;
-	vertices[id + 43] = _g->y2;
+	vertices[id + 48] = _g->x;
+	vertices[id + 49] = _g->y2;
 
-	vertices[id + 44] = (_x)*zoom / screen_w;
-	vertices[id + 45] = (_y - _z ) * zoom / screen_h;
+	vertices[id + 50] = (_x)*zoom / screen_w;
+	vertices[id + 51] = (_y - _z ) * zoom / screen_h;
 
-	vertices[id + 46] = _supermap->x;
-	vertices[id + 47] = _supermap->y2;
+	vertices[id + 52] = _supermap->x;
+	vertices[id + 53] = _supermap->y2;
 
-	id += 48;
+	vertices[id + 54] = (_x) / 12000.0f;
+	vertices[id + 55] = (_y - 4.0f) / 12000.0f;
+
+	id += 56;
 
 	if (id > batch_force_draw_call)
 	{
@@ -994,7 +1008,7 @@ void Batcher::reinit()
 {
 	glBindBuffer(GL_ARRAY_BUFFER, VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STREAM_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * id, vertices, GL_DYNAMIC_DRAW);
 }
 
 void Batcher::draw_call()
@@ -1014,7 +1028,7 @@ void Batcher::draw_call_terrain()
 void Batcher::draw_call_shadowmap()
 {
 	glBindVertexArray(VAO);
-	glDrawElements(GL_TRIANGLES, 6 * (id / 48), GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, 6 * (id / 56), GL_UNSIGNED_INT, 0);
 }
 
 void Batcher::reset()

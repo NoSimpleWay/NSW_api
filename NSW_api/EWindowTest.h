@@ -11,6 +11,7 @@ public:
 	~EWindowTest();
 
 	bool time_process_active = true;
+	bool main_lightmap_active = true;
 
 	void default_update(float _d);
 	virtual void update(float _d);
@@ -23,6 +24,7 @@ public:
 	void draw_debug_cluster_border();
 	void draw_debug_cluster_rama();
 	void draw_terrain();
+	void draw_lightmap();
 	virtual void draw(float _d);
 
 	virtual void draw_interface(float _d);
@@ -86,5 +88,7 @@ public:
 	std::vector <float> test_vector = {17.0f, 6167711.4214f};
 
 	EGabarite* terrain_200;
+
+
 
 };

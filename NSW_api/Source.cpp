@@ -101,6 +101,7 @@ int main()
 	EGraphicCore::shadowmap = new Shader("data/shadowmap.vs", "data/shadowmap.fs");
 	EGraphicCore::shader_terrain = new Shader("data/terrain.vs", "data/terrain.fs");
 	EGraphicCore::lightmap_blur = new Shader("data/lightmap_blur.vs", "data/lightmap_blur.fs");
+	EGraphicCore::lightmap_spread = new Shader("data/lightmap_spread.vs", "data/lightmap_spread.fs");
 
 	EGraphicCore::ourShader->use();
 	glfwSwapInterval(1);
@@ -141,10 +142,11 @@ int main()
 	glViewport(0, 0, EGraphicCore::SCR_WIDTH, EGraphicCore::SCR_HEIGHT);
 
 	EWindow::default_texture_atlas = new ETextureAtlas(4096, 4096);
-	EWindow::shadow_FBO = new ETextureAtlas(1920, 2080);
+	EWindow::shadow_FBO = new ETextureAtlas(1920, 1580);
+	EWindow::shadow_ground_FBO = new ETextureAtlas(1920, 1080);
 	EWindow::lightmap_FBO = new ETextureAtlas(300, 300);
 	EWindow::lightmap_FBO2 = new ETextureAtlas(300, 300);
-	EWindow::lightmap_with_ambient = new ETextureAtlas(300, 300);
+	EWindow::base_lightmap = new ETextureAtlas(300, 300);
 
 	EGraphicCore::load_texture("data/textures/white_pixel.png", 0);
 

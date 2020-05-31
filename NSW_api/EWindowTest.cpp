@@ -58,6 +58,16 @@ void EWindowTest::test_of_values()
 
 EWindowTest::EWindowTest():EWindow()
 {
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+	ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO, EWindow::default_texture_atlas);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO2, EWindow::default_texture_atlas);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	ETextureAtlas::return_to_this_texture_atlas(default_texture_atlas);
+
 	terrain_200 = ETextureAtlas::put_texture_to_atlas("data/textures/terrain_200.png", EWindow::default_texture_atlas);
 	//test_of_values();
 
@@ -926,15 +936,15 @@ void EWindowTest::draw_shadows()
 	EGraphicCore::batch->reset();
 
 	//active shadow FBO
-	ETextureAtlas::active_this_texture_atlas(EWindow::shadow_FBO, EWindow::default_texture_atlas);
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	ETextureAtlas::active_this_texture_atlas(EWindow::shadow_ground_FBO, EWindow::default_texture_atlas);
+	glClearColor(EColor::COLOR_SKY_AMBIENT->color_red, EColor::COLOR_SKY_AMBIENT->color_green, EColor::COLOR_SKY_AMBIENT->color_blue, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	//glBlendEquation(GL_MAX);
-	float scx = (EGraphicCore::SCR_WIDTH / EWindow::shadow_FBO->size_x);
-	float scy = (EGraphicCore::SCR_HEIGHT / EWindow::shadow_FBO->size_y);
+	float scx = (EGraphicCore::SCR_WIDTH / EWindow::shadow_ground_FBO->size_x);
+	float scy = (EGraphicCore::SCR_HEIGHT / EWindow::shadow_ground_FBO->size_y);
 
 	float	cx = 1.0f / EGraphicCore::SCR_WIDTH * 2.0f * scx;
 	float	cy = 1.0f / EGraphicCore::SCR_HEIGHT * 2.0f * scy;
@@ -946,7 +956,7 @@ void EWindowTest::draw_shadows()
 	//set correct zoom
 	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
 	//EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3((EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1, (EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1, 0.0f));
-	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3((EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * cx - 1.0f, (EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y + 500.0f) * cy - 1.0f, 0.0f));
+	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3((EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * cx - 1.0f, (EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * cy - 1.0f, 0.0f));
 	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(cx * game_camera->zoom, cy * game_camera->zoom, 1));
 
 	//use shader
@@ -984,14 +994,14 @@ void EWindowTest::draw_shadows()
 	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 
-	glBlendFunc(GL_ZERO, GL_SRC_COLOR);
+	/*glBlendFunc(GL_ZERO, GL_SRC_COLOR);
 	glBlendEquation(GL_FUNC_ADD);
 
 	glBindTexture(GL_TEXTURE_2D, EWindow::shadow_FBO->colorbuffer);
 			EGraphicCore::batch->setcolor_alpha(EColor::COLOR_WHITE, 1.0f);
 			EGraphicCore::batch->draw_rect(0.0f, -500.0f, EWindow::shadow_FBO->size_x, EWindow::shadow_FBO->size_y);
 
-	EGraphicCore::batch->force_draw_call();
+	EGraphicCore::batch->force_draw_call();*/
 
 
 
@@ -1004,6 +1014,10 @@ void EWindowTest::draw_shadows()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glBlendEquation(GL_MAX);
 
+	scx = (EGraphicCore::SCR_WIDTH / EWindow::shadow_FBO->size_x);
+	scy = (EGraphicCore::SCR_HEIGHT / EWindow::shadow_FBO->size_y);
+	cx = 1.0f / EGraphicCore::SCR_WIDTH * 2.0f * scx;
+	cy = 1.0f / EGraphicCore::SCR_HEIGHT * 2.0f * scy;
 	//set correct zoom
 	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
 	//EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3((EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1, (EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1, 0.0f));
@@ -1160,10 +1174,20 @@ void EWindowTest::draw_terrain()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);//texture filtering
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);//
 
-	GLint vertexColorLocation = glGetUniformLocation(EGraphicCore::shader_terrain->ID, "ambient_color");
+	glActiveTexture(GL_TEXTURE2);
+	glBindTexture(GL_TEXTURE_2D, EWindow::shadow_ground_FBO->colorbuffer);
+	EGraphicCore::shader_terrain->setInt("texture3", 2);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);//texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);//
 
-	GLfloat color[] = { 0.0f, 1.0f, 0.0f, 1.0f };
-	glUniform4f(vertexColorLocation, EColor::COLOR_SKY_AMBIENT->color_red, EColor::COLOR_SKY_AMBIENT->color_green, EColor::COLOR_SKY_AMBIENT->color_blue, 1.0f);
+	GLint loc_x = glGetUniformLocation(EGraphicCore::shader_terrain->ID, "screen_size_x");
+	glUniform1f(loc_x, EGraphicCore::SCR_WIDTH  / EWindow::shadow_ground_FBO->size_x);
+
+	GLint loc_y = glGetUniformLocation(EGraphicCore::shader_terrain->ID, "screen_size_y");
+	glUniform1f(loc_y, (EGraphicCore::SCR_HEIGHT + 000.0f) / (EWindow::shadow_ground_FBO->size_y));
+
+	GLint ambient_loc = glGetUniformLocation(EGraphicCore::shader_terrain->ID, "ambient_color");
+	glUniform4f(ambient_loc, EColor::COLOR_SKY_AMBIENT->color_red, EColor::COLOR_SKY_AMBIENT->color_green, EColor::COLOR_SKY_AMBIENT->color_blue, 1.0f);
 	//glUniform4f(ambient_loc, EColor::COLOR_SKY_AMBIENT->color_red * 0.0f, EColor::COLOR_SKY_AMBIENT->color_green, EColor::COLOR_SKY_AMBIENT->color_blue, 1.0f);
 
 	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -1206,9 +1230,11 @@ void EWindowTest::draw_lightmap()
 	EGraphicCore::batch->reset();
 	EGraphicCore::ourShader->use();
 
-	ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO, EWindow::default_texture_atlas);
-	//glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-	//glClear(GL_COLOR_BUFFER_BIT);
+	ETextureAtlas::active_this_texture_atlas(EWindow::base_lightmap, EWindow::default_texture_atlas);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);//texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);//
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
 
 	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
 	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(-1.0f, -1.0f, 0.0f));
@@ -1225,7 +1251,11 @@ void EWindowTest::draw_lightmap()
 					if (*e->have_light_source)
 					{
 						EGraphicCore::batch->setcolor(*e->light_source_red, *e->light_source_green, *e->light_source_blue, 1.0f);
-						EGraphicCore::batch->draw_gabarite((int)(*e->position_x / 40.0f) - 1.0f, (int)(*e->position_y / 40.0f) - 1.0f, 3.0f, 3.0f, EGraphicCore::gabarite_white_pixel);
+						if (*e->is_bullet)
+						{EGraphicCore::batch->draw_gabarite((int)(*e->position_x / 40.0f) - 0.0f, (int)(*e->position_y / 40.0f) - 0.0f, 1.0f, 1.0f, EGraphicCore::gabarite_white_pixel);}
+						else
+						{EGraphicCore::batch->draw_gabarite((int)(*e->position_x / 40.0f) - 1.0f, (int)(*e->position_y / 40.0f) - 1.0f, 3.0f, 3.0f, EGraphicCore::gabarite_white_pixel);}
+
 					}
 
 	EGraphicCore::batch->force_draw_call();
@@ -1234,34 +1264,42 @@ void EWindowTest::draw_lightmap()
 
 
 
+
 	//glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-	EGraphicCore::lightmap_blur->use();
-	transformLoc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "transform");
-	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
+	EGraphicCore::batch->reset();
+	EGraphicCore::batch->setcolor_lum(EColor::COLOR_WHITE, 0.15f);
+		//spread lightmap
+		//put lightmap
+	
+			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO, EWindow::base_lightmap);
+			EGraphicCore::lightmap_spread->use();
+			transformLoc = glGetUniformLocation(EGraphicCore::lightmap_spread->ID, "transform");
+			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
+			glBlendFunc(GL_ONE, GL_ONE);
+			for (int i = 0; i < 1; i++)
+			{
+				EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
+				EGraphicCore::batch->force_draw_call();
+			}
 
+	//blur lightmap
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);//texture filtering
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);//
-
-
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable(GL_BLEND);
-	glBlendEquation(GL_FUNC_ADD);
+			EGraphicCore::batch->setcolor_lum(EColor::COLOR_WHITE, 1.0f);
+		EGraphicCore::lightmap_blur->use();
+		transformLoc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "transform");
+		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
+	//glBlendFunc(GL_ONE, GL_ZERO);
 	for (int i = 0; i < 1; i++)
 	{
-
 			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO2, EWindow::lightmap_FBO);
-			EGraphicCore::batch->setcolor_alpha(EColor::COLOR_WHITE, 1.0f);
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
 			EGraphicCore::batch->force_draw_call();
-		
 
-
-		ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO, EWindow::lightmap_FBO2);
-
-		EGraphicCore::batch->setcolor_alpha(EColor::COLOR_WHITE, 1.0f);
-		EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
-		EGraphicCore::batch->force_draw_call();
+			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO, EWindow::lightmap_FBO2);
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
+			EGraphicCore::batch->force_draw_call();
 	}
 
 
@@ -1278,12 +1316,12 @@ void EWindowTest::draw(float _d)
 	
 	draw_lightmap(); add_time_process("draw lightmap");
 	
+	draw_shadows();	add_time_process("draw shadows");
 
 	draw_terrain(); add_time_process("draw terrain");
 
 	
-
-	draw_shadows();	add_time_process("draw shadows");
+	
 
 	
 
@@ -1307,7 +1345,7 @@ void EWindowTest::draw(float _d)
 
 
 
-
+	EGraphicCore::batch->reset();
 	////////////////return to normal texture draw mode/////////////////
 	ETextureAtlas::return_to_this_texture_atlas(EWindow::default_texture_atlas);
 	glBindTexture(GL_TEXTURE_2D, EWindow::default_texture_atlas->colorbuffer);
@@ -1435,16 +1473,26 @@ void EWindowTest::draw(float _d)
 	add_time_process("draw buffer");
 	EGraphicCore::batch_shadowmap->force_draw_call_shadowmap();
 
-	EGraphicCore::ourShader->use();
-	EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
 
-	glActiveTexture(GL_TEXTURE0);
+	////////////////return to normal texture draw mode/////////////////
+	ETextureAtlas::return_to_this_texture_atlas(EWindow::default_texture_atlas);
 	glBindTexture(GL_TEXTURE_2D, EWindow::default_texture_atlas->colorbuffer);
-	EGraphicCore::ourShader->setInt("texture1", 0);
 
-	EGraphicCore::batch->force_draw_call();
+	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(round(EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1, round(EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1, 0.0f));
+	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x * game_camera->zoom, EGraphicCore::correction_y * game_camera->zoom, 1));
+
+	transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
+	/////////////////////////////////////////////////////////////////
+
+
+
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 
 	add_time_process("draw call buffer");
+
 
 	draw_debug_collision();
 	draw_debug_entity_position();

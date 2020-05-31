@@ -30,7 +30,12 @@ std::vector <int> Entity::entity_attribute_id
 	EAttr::ENTITY_ATTRIBUTE_MASS,
 	EAttr::ENTITY_ATTRIBUTE_SPEED,
 	EAttr::ENTITY_ATTRIBUTE_DRAG,
-	EAttr::ENTITY_ATTRIBUTE_SHADOW_TALL
+
+	EAttr::ENTITY_ATTRIBUTE_SHADOW_TALL,
+
+	EAttr::ENTITY_ATTRIBUTE_LIGHT_SOURCE_RED,
+	EAttr::ENTITY_ATTRIBUTE_LIGHT_SOURCE_GREEN,
+	EAttr::ENTITY_ATTRIBUTE_LIGHT_SOURCE_BLUE
 };
 
 std::vector < std::string > Entity::entity_attribute_names
@@ -44,7 +49,12 @@ std::vector < std::string > Entity::entity_attribute_names
 	"Mass",
 	"Speed",
 	"Drag",
-	"Shadow tall"
+
+	"Shadow tall",
+
+	"Lightsoucre red",
+	"Lightsoucre green",
+	"Lightsoucre blue"
 };
 
 std::vector <int> Entity::entity_bool_attribute_id
@@ -628,6 +638,10 @@ Entity::Entity()
 	pointer_to_bool_list.at(EntityBoolAttributes::ENTITY_BOOL_CONTROLLED_BY_PLAYER) =	controlled_by_player;
 	pointer_to_bool_list.at(EntityBoolAttributes::ENTITY_BOOL_HAVE_LIGHT_SOURCE) =		have_light_source;
 	pointer_to_bool_list.at(EntityBoolAttributes::ENTITY_BOOL_GHOST) =					is_ghost;
+
+	light_source_red									= &eattr_TOTAL.at(EAttr::ENTITY_ATTRIBUTE_LIGHT_SOURCE_RED);
+	light_source_green									= &eattr_TOTAL.at(EAttr::ENTITY_ATTRIBUTE_LIGHT_SOURCE_GREEN);
+	light_source_blue									= &eattr_TOTAL.at(EAttr::ENTITY_ATTRIBUTE_LIGHT_SOURCE_BLUE);
 
 	//inmovable_pointer									= &eattr_bool.at(EntityBoolAttributes::ENTITY_BOOL_ATTRIBUTE_INMOVABLE);
 	/*

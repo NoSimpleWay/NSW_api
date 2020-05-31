@@ -520,7 +520,7 @@ EWindowEditor::EWindowEditor()
 	////////////////////////////////////////////////
 /////	lightsource color red		////////////////
 ///////////////////////////////////////////////
-	but = new EButton(-120.0f, 00.0f, 100.0f, 20.0f);
+	but = new EButton(-120.0f, 00.0f, 200.0f, 20.0f);
 	but->master_window = this;
 	but->have_description = true;
 	but->have_icon = true;
@@ -544,7 +544,7 @@ EWindowEditor::EWindowEditor()
 	////////////////////////////////////////////////
 /////	sky color green		////////////////
 ///////////////////////////////////////////////
-	but = new EButton(-120.0f, 25.0f, 100.0f, 20.0f);
+	but = new EButton(-120.0f, 25.0f, 200.0f, 20.0f);
 	but->master_window = this;
 	but->have_description = true;
 	but->have_icon = true;
@@ -568,7 +568,7 @@ EWindowEditor::EWindowEditor()
 	////////////////////////////////////////////////
 /////	sky color blue		////////////////
 ///////////////////////////////////////////////
-	but = new EButton(-120.0f, 50.0f, 100.0f, 20.0f);
+	but = new EButton(-120.0f, 50.0f, 200.0f, 20.0f);
 	but->master_window = this;
 	but->have_description = true;
 	but->have_icon = true;

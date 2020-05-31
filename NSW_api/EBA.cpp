@@ -702,9 +702,14 @@ void EBA::action_slider_shadow_color(EButton* _b, float _d)
 
 void EBA::action_slider_light_source_color(EButton* _b, float _d)
 {
-	if (_b->data_id == 0) { *EWindow::window_editor->selected_entity->light_source_red		= _b->slider_value; }
-	if (_b->data_id == 1) { *EWindow::window_editor->selected_entity->light_source_green	= _b->slider_value; }
-	if (_b->data_id == 2) { *EWindow::window_editor->selected_entity->light_source_blue		= _b->slider_value; }
+	if (EWindow::window_editor->selected_entity != NULL)
+	{
+		if (_b->data_id == 0) { EWindow::window_editor->selected_entity->eattr_BASE.at(Entity::EAttr::ENTITY_ATTRIBUTE_LIGHT_SOURCE_RED) = _b->slider_value; }
+		if (_b->data_id == 1) { EWindow::window_editor->selected_entity->eattr_BASE.at(Entity::EAttr::ENTITY_ATTRIBUTE_LIGHT_SOURCE_GREEN) = _b->slider_value; }
+		if (_b->data_id == 2) { EWindow::window_editor->selected_entity->eattr_BASE.at(Entity::EAttr::ENTITY_ATTRIBUTE_LIGHT_SOURCE_BLUE) = _b->slider_value; }
+
+		Entity::update_entity_attributes(EWindow::window_editor->selected_entity);
+	}
 }
 
 void EBA::action_slider_sky_color(EButton* _b, float _d)

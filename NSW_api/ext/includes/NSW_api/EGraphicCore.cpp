@@ -16,6 +16,7 @@ Shader* EGraphicCore::ourShader;
 Shader* EGraphicCore::shadowmap;
 Shader* EGraphicCore::shader_terrain;
 Shader* EGraphicCore::lightmap_blur;
+Shader* EGraphicCore::lightmap_spread;
 
 Batcher* EGraphicCore::batch;
 Batcher* EGraphicCore::batch_shadowmap;

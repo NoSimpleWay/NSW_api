@@ -39,7 +39,10 @@ void main()
 		0.0f
 		,
 		1.0f
-	);
+	)
+	*
+	texture(texture2, ShadowCoord + vec2(offset_x, offset_y)).a
+	;
 	
 	FragColor.rgb
 	=

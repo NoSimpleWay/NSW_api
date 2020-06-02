@@ -72,28 +72,32 @@ void Batcher::init_shadowmap()
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// position attribute
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 15 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
 	// color attribute
-	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*)(2 * sizeof(float)));
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 15 * sizeof(float), (void*)(2 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
 	// texture coord attribute
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*)(6 * sizeof(float)));
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 15 * sizeof(float), (void*)(6 * sizeof(float)));
 	glEnableVertexAttribArray(2);
 
 	// shadowmap coord attribute
-	glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*)(8 * sizeof(float)));
+	glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 15 * sizeof(float), (void*)(8 * sizeof(float)));
 	glEnableVertexAttribArray(3);
 
 	// supermap coord attribute
-	glVertexAttribPointer(4, 2, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*)(10 * sizeof(float)));
+	glVertexAttribPointer(4, 2, GL_FLOAT, GL_FALSE, 15 * sizeof(float), (void*)(10 * sizeof(float)));
 	glEnableVertexAttribArray(4);
 
 	// lightmap coord attribute
-	glVertexAttribPointer(5, 2, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*)(12 * sizeof(float)));
+	glVertexAttribPointer(5, 2, GL_FLOAT, GL_FALSE, 15 * sizeof(float), (void*)(12 * sizeof(float)));
 	glEnableVertexAttribArray(5);
+	
+	// full shadow coord attribute
+	glVertexAttribPointer(6, 1, GL_FLOAT, GL_FALSE, 15 * sizeof(float), (void*)(14 * sizeof(float)));
+	glEnableVertexAttribArray(6);
 }
 
 void Batcher::init_terrain()
@@ -793,8 +797,8 @@ void Batcher::draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EG
 
 	//.#
 	//..
-	vertices[id + 0] = (_x + _w);
-	vertices[id + 1] = (_y + _h);
+	vertices[id + 0] = (_x + _g->size_x);
+	vertices[id + 1] = (_y + _g->size_y);
 	//vertices[id + 2] = 0;
 
 	vertices[id + 2] = batch_color_r;
@@ -805,14 +809,16 @@ void Batcher::draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EG
 	vertices[id + 6] = _g->x2;
 	vertices[id + 7] = _g->y2;
 
-	vertices[id + 8] = (_x + _w ) * zoom / screen_w;
-	vertices[id + 9] = (_y - _z) * zoom / screen_h;
+	vertices[id + 8] = (_x + _g->size_x) * zoom / screen_w;
+	vertices[id + 9] = (_y - _z ) * zoom / screen_h;
 
 	vertices[id + 10] = _supermap->x2;
 	vertices[id + 11] = _supermap->y2;
 
-	vertices[id + 12] = (_x + _w) / 12000.0f;
+	vertices[id + 12] = (_x + _g->size_x) / 12000.0f;
 	vertices[id + 13] = (_y - 4.0f) / 12000.0f;
+
+	vertices[id + 14] = (_y - _z + _h) * zoom / screen_h;
 
 
 
@@ -820,76 +826,82 @@ void Batcher::draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EG
 
 	//..
 	//.#
-	vertices[id + 14] = (_x + _w);
-	vertices[id + 15] = _y;
+	vertices[id + 15] = (_x + _g->size_x);
+	vertices[id + 16] = _y;
 	//vertices[id + 10] = 0;
 
-	vertices[id + 16] = batch_color_r;
-	vertices[id + 17] = batch_color_g;
-	vertices[id + 18] = batch_color_b;
-	vertices[id + 19] = batch_color_a;
+	vertices[id + 17] = batch_color_r;
+	vertices[id + 18] = batch_color_g;
+	vertices[id + 19] = batch_color_b;
+	vertices[id + 20] = batch_color_a;
 
-	vertices[id + 20] = _g->x2;
-	vertices[id + 21] = _g->y;
+	vertices[id + 21] = _g->x2;
+	vertices[id + 22] = _g->y;
 
-	vertices[id + 22] = (_x + _w ) * zoom / screen_w;
-	vertices[id + 23] = (_y + 0.0f - _z) * zoom / screen_h;
+	vertices[id + 23] = (_x + _g->size_x) * zoom / screen_w;
+	vertices[id + 24] = (_y + 0.0f - _z) * zoom / screen_h;
 
-	vertices[id + 24] = _supermap->x2;
-	vertices[id + 25] = _supermap->y;
+	vertices[id + 25] = _supermap->x2;
+	vertices[id + 26] = _supermap->y;
 
-	vertices[id + 26] = (_x + _w) / 12000.0f;
-	vertices[id + 27] = (_y - 40.0f) / 12000.0f;
+	vertices[id + 27] = (_x + _g->size_x) / 12000.0f;
+	vertices[id + 28] = (_y - 40.0f) / 12000.0f;
+
+	vertices[id + 29] = vertices[id + 24];
 
 
 
 	//..
 	//#.
-	vertices[id + 28] = _x;
-	vertices[id + 29] = _y;
+	vertices[id + 30] = _x;
+	vertices[id + 31] = _y;
 	//vertices[id + 18] = 0;
 
-	vertices[id + 30] = batch_color_r;
-	vertices[id + 31] = batch_color_g;
-	vertices[id + 32] = batch_color_b;
-	vertices[id + 33] = batch_color_a;
+	vertices[id + 32] = batch_color_r;
+	vertices[id + 33] = batch_color_g;
+	vertices[id + 34] = batch_color_b;
+	vertices[id + 35] = batch_color_a;
 
-	vertices[id + 34] = _g->x;
-	vertices[id + 35] = _g->y;
+	vertices[id + 36] = _g->x;
+	vertices[id + 37] = _g->y;
 
-	vertices[id + 36] = (_x)*zoom / screen_w;
-	vertices[id + 37] = (_y + 0.0f - _z) * zoom / screen_h;
+	vertices[id + 38] = (_x)*zoom / screen_w;
+	vertices[id + 39] = (_y + 0.0f - _z) * zoom / screen_h;
 
-	vertices[id + 38] = _supermap->x;
-	vertices[id + 39] = _supermap->y;
+	vertices[id + 40] = _supermap->x;
+	vertices[id + 41] = _supermap->y;
 
-	vertices[id + 40] = (_x) / 12000.0f;
-	vertices[id + 41] = (_y - 40.0f) / 12000.0f;
+	vertices[id + 42] = (_x) / 12000.0f;
+	vertices[id + 43] = (_y - 40.0f) / 12000.0f;
+
+	vertices[id + 44] = vertices[id + 39];
 
 	//#.
 	//..
-	vertices[id + 42] = _x;
-	vertices[id + 43] = (_y + _h);
+	vertices[id + 45] = _x;
+	vertices[id + 46] = (_y + _g->size_y);
 	//vertices[id + 26] = 0;
 
-	vertices[id + 44] = batch_color_r;
-	vertices[id + 45] = batch_color_g;
-	vertices[id + 46] = batch_color_b;
-	vertices[id + 47] = batch_color_a;
+	vertices[id + 47] = batch_color_r;
+	vertices[id + 48] = batch_color_g;
+	vertices[id + 49] = batch_color_b;
+	vertices[id + 50] = batch_color_a;
 
-	vertices[id + 48] = _g->x;
-	vertices[id + 49] = _g->y2;
+	vertices[id + 51] = _g->x;
+	vertices[id + 52] = _g->y2;
 
-	vertices[id + 50] = (_x)*zoom / screen_w;
-	vertices[id + 51] = (_y - _z ) * zoom / screen_h;
+	vertices[id + 53] = (_x)*zoom / screen_w;
+	vertices[id + 54] = (_y - _z) * zoom / screen_h;
 
-	vertices[id + 52] = _supermap->x;
-	vertices[id + 53] = _supermap->y2;
+	vertices[id + 55] = _supermap->x;
+	vertices[id + 56] = _supermap->y2;
 
-	vertices[id + 54] = (_x) / 12000.0f;
-	vertices[id + 55] = (_y - 4.0f) / 12000.0f;
+	vertices[id + 57] = (_x) / 12000.0f;
+	vertices[id + 58] = (_y - 4.0f) / 12000.0f;
 
-	id += 56;
+	vertices[id + 59] = (_y - _z + _h) * zoom / screen_h;
+
+	id += 60;
 
 	if (id > batch_force_draw_call)
 	{
@@ -1192,4 +1204,13 @@ void Batcher::force_draw_call_shadowmap()
 	reinit();
 	draw_call_shadowmap();
 	reset();
+}
+
+void Batcher::set_interpolated_color(EColorCollection* _a, EColorCollection* _b, float _value)
+{
+	batch_color_r = _a->color_red * _value + _b->color_red * (1.0f - _value);
+	batch_color_g = _a->color_green * _value + _b->color_green * (1.0f - _value);
+	batch_color_b = _a->color_blue * _value + _b->color_blue * (1.0f - _value);
+
+	batch_color_a = _a->color_alpha * _value + _b->color_alpha * (1.0f - _value);
 }

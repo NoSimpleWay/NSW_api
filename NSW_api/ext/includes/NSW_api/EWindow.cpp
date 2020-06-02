@@ -11,6 +11,7 @@ ETextureAtlas* EWindow::shadow_ground_FBO;
 ETextureAtlas* EWindow::lightmap_FBO;
 ETextureAtlas* EWindow::lightmap_FBO2;
 ETextureAtlas* EWindow::base_lightmap;
+ETextureAtlas* EWindow::base_blockmap;
 
 
 

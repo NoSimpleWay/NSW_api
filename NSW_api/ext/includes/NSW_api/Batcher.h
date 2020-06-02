@@ -79,4 +79,6 @@ public:
 	static float zoom;
 
 	static float skew_factor;
+
+	void set_interpolated_color(EColorCollection* _a, EColorCollection* _b, float _value);
 };

@@ -138,6 +138,38 @@ void EWindowTest::update(float _d)
 
 	add_time_process("UPDATE BEGIN");
 
+	day_time += _d/100.0f;
+
+	if (day_time > 2.0f)
+	{
+		day_time -= 2.0f;
+	}
+
+	Batcher::skew_factor = EMath::clamp_value_float(day_time, 0.0f, 1.0f);
+
+	if (Batcher::skew_factor <= 0.1f)
+	{ EColor::get_interpolate_color(EColor::COLOR_SKY_TIME_SUNSET, EColor::COLOR_SKY_TIME_DAWN, Batcher::skew_factor * 10.0f, EColor::COLOR_SKY_AMBIENT); }
+	else if (Batcher::skew_factor <= 0.2f)
+	{ EColor::get_interpolate_color(EColor::COLOR_SKY_TIME_DAWN, EColor::COLOR_SKY_TIME_NOON, (Batcher::skew_factor - 0.1f) * 10.0f, EColor::COLOR_SKY_AMBIENT); }
+	else if (Batcher::skew_factor >= 0.8f)
+	{ EColor::get_interpolate_color(EColor::COLOR_SKY_TIME_NOON, EColor::COLOR_SKY_TIME_SUNSET, (Batcher::skew_factor - 0.8f) * 5.0f, EColor::COLOR_SKY_AMBIENT); }
+	else
+	{
+		EColor::apply_color(EColor::COLOR_SKY_AMBIENT, EColor::COLOR_SKY_TIME_NOON);
+	}
+
+	if (Batcher::skew_factor <= 0.1f)
+	{ EColor::get_interpolate_color(EColor::COLOR_SHADOW_TIME_SUNSET, EColor::COLOR_SHADOW_TIME_DAWN, Batcher::skew_factor * 10.0f, EColor::COLOR_LAZURE_SHADOW); }
+	else
+	if (Batcher::skew_factor <= 0.2f)
+	{ EColor::get_interpolate_color(EColor::COLOR_SHADOW_TIME_DAWN, EColor::COLOR_SHADOW_TIME_NOON, (Batcher::skew_factor - 0.1f) * 10.0f, EColor::COLOR_LAZURE_SHADOW); }
+	else
+	if (Batcher::skew_factor >= 0.8f)
+	{ EColor::get_interpolate_color(EColor::COLOR_SHADOW_TIME_NOON, EColor::COLOR_SHADOW_TIME_SUNSET, (Batcher::skew_factor - 0.8f) * 5.0f, EColor::COLOR_LAZURE_SHADOW); }
+	else
+	{
+		EColor::apply_color(EColor::COLOR_LAZURE_SHADOW, EColor::COLOR_SHADOW_TIME_NOON);
+	}
 	//glfwGetCursorPos(EWindow::main_window, &EWindow::mouse_x, &EWindow::mouse_y);
 
 
@@ -937,12 +969,12 @@ void EWindowTest::draw_shadows()
 
 	//active shadow FBO
 	ETextureAtlas::active_this_texture_atlas(EWindow::shadow_ground_FBO, EWindow::default_texture_atlas);
-	glClearColor(EColor::COLOR_SKY_AMBIENT->color_red, EColor::COLOR_SKY_AMBIENT->color_green, EColor::COLOR_SKY_AMBIENT->color_blue, 0.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	//glBlendEquation(GL_MAX);
+	glBlendEquation(GL_MAX);
 	float scx = (EGraphicCore::SCR_WIDTH / EWindow::shadow_ground_FBO->size_x);
 	float scy = (EGraphicCore::SCR_HEIGHT / EWindow::shadow_ground_FBO->size_y);
 
@@ -1261,9 +1293,23 @@ void EWindowTest::draw_lightmap()
 	EGraphicCore::batch->force_draw_call();
 	add_time_process("draw lights");
 
+	ETextureAtlas::active_this_texture_atlas(EWindow::base_blockmap, EWindow::default_texture_atlas);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);//texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);//
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+	EGraphicCore::batch->setcolor_lum(EColor::COLOR_BLACK, 1.0f);
+	for (int i = down_terrain_draw; i <= up_terrain_draw; i++)
+	for (int j = left_terrain_draw; j <= right_terrain_draw; j++)
+	if (EPath::block[j][i])
+	{
+		EGraphicCore::batch->draw_gabarite(j, i, 1.0f, 1.0f, EGraphicCore::gabarite_white_pixel);
+	}
 
-
+	EGraphicCore::batch->force_draw_call();
+	add_time_process("draw block");
 
 	//glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	EGraphicCore::batch->reset();
@@ -1285,17 +1331,33 @@ void EWindowTest::draw_lightmap()
 	//blur lightmap
 
 			EGraphicCore::batch->setcolor_lum(EColor::COLOR_WHITE, 1.0f);
-		EGraphicCore::lightmap_blur->use();
-		transformLoc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "transform");
-		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
+		
 	//glBlendFunc(GL_ONE, GL_ZERO);
 	for (int i = 0; i < 1; i++)
 	{
+			EGraphicCore::ourShader->use();//draw blockmap
+			glBlendFunc(GL_ZERO, GL_SRC_COLOR);
+			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO, EWindow::base_blockmap);
+			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
+			EGraphicCore::batch->force_draw_call();
+
+			EGraphicCore::lightmap_blur->use();
+			transformLoc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "transform");
+			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO2, EWindow::lightmap_FBO);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
 			EGraphicCore::batch->force_draw_call();
 
+			EGraphicCore::ourShader->use();//draw blockmap
+			glBlendFunc(GL_ZERO, GL_SRC_COLOR);
+			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO2, EWindow::base_blockmap);
+			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
+			EGraphicCore::batch->force_draw_call();
+
+			EGraphicCore::lightmap_blur->use();
+			transformLoc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "transform");
+			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO, EWindow::lightmap_FBO2);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
@@ -1309,6 +1371,7 @@ void EWindowTest::draw_lightmap()
 void EWindowTest::draw(float _d)
 {
 	
+
 	add_time_process("DRAW BEGIN");
 	
 	
@@ -1347,6 +1410,7 @@ void EWindowTest::draw(float _d)
 
 	EGraphicCore::batch->reset();
 	////////////////return to normal texture draw mode/////////////////
+	EGraphicCore::ourShader->use();
 	ETextureAtlas::return_to_this_texture_atlas(EWindow::default_texture_atlas);
 	glBindTexture(GL_TEXTURE_2D, EWindow::default_texture_atlas->colorbuffer);
 
@@ -1559,6 +1623,8 @@ void EWindowTest::draw(float _d)
 		);
 	}
 
+	Batcher::skew_factor = EMath::clamp_value_float(Batcher::skew_factor, 0.0f, 1.0f);
+
 	if ((EWindow::window_editor->selected_entity != NULL) & (EWindow::window_editor->is_active))
 	{
 		if (Entity::can_see(link_to_player, EWindow::window_editor->selected_entity, _d))
@@ -1614,15 +1680,12 @@ void EWindowTest::draw_interface(float _d)
 
 		float offset_y = 0.0f;
 
+		
 		for (time_process_struct* str:tps_list)
 		{
 			//time_process_summ += str->time_process_value.at(time_process_rota_id);
 
-			EGraphicCore::batch->setcolor_alpha(EColor::COLOR_BLACK, 0.9f);
-			EGraphicCore::batch->draw_gabarite(0.0f, EGraphicCore::SCR_HEIGHT - 52.0f - offset_y, 300.0f, 20.0f, EGraphicCore::gabarite_white_pixel);
 
-			EGraphicCore::batch->setcolor_alpha(EColor::COLOR_WHITE, 0.9f);
-			EFont::active_font->draw(EGraphicCore::batch, str->time_process_name, 5.0f, EGraphicCore::SCR_HEIGHT - 52.0f - offset_y + 3.0f);
 			//EFont::active_font->draw(EGraphicCore::batch, EString::float_to_string(round(str->time_process_value.at(time_process_rota_id) * 100.0f) / 100.0f), 205.0f, EGraphicCore::SCR_HEIGHT - 52.0f - offset_y + 3.0f);
 		
 			float time_process_average = 0.0f;
@@ -1640,15 +1703,23 @@ void EWindowTest::draw_interface(float _d)
 			time_process_average /= 30.0f;
 			time_process_summ += time_process_average;
 
-			EGraphicCore::batch->setcolor_alpha(EColor::COLOR_WHITE, 0.9f);
-			EFont::active_font->draw(EGraphicCore::batch, EString::float_to_string(round(time_process_average * 100.0f) / 100.0f), 205.0f, EGraphicCore::SCR_HEIGHT - 52.0f - offset_y + 3.0f);
+			if (glfwGetKey(EWindow::main_window, GLFW_KEY_TAB) == GLFW_PRESS)
+			{
+				EGraphicCore::batch->setcolor_alpha(EColor::COLOR_BLACK, 0.9f);
+				EGraphicCore::batch->draw_gabarite(0.0f, EGraphicCore::SCR_HEIGHT - 52.0f - offset_y, 300.0f, 20.0f, EGraphicCore::gabarite_white_pixel);
 
-			EGraphicCore::batch->setcolor_alpha(EColor::COLOR_DARK_GREEN, 0.9f);
-			EFont::active_font->draw(EGraphicCore::batch, EString::float_to_string(min_value), 255.0f, EGraphicCore::SCR_HEIGHT - 52.0f - offset_y + 3.0f);
+				EGraphicCore::batch->setcolor_alpha(EColor::COLOR_WHITE, 0.9f);
+				EFont::active_font->draw(EGraphicCore::batch, str->time_process_name, 5.0f, EGraphicCore::SCR_HEIGHT - 52.0f - offset_y + 3.0f);
 
-			EGraphicCore::batch->setcolor_alpha(EColor::COLOR_DARK_RED, 0.9f);
-			EFont::active_font->draw(EGraphicCore::batch, EString::float_to_string(max_value), 305.0f, EGraphicCore::SCR_HEIGHT - 52.0f - offset_y + 3.0f);
+				EGraphicCore::batch->setcolor_alpha(EColor::COLOR_WHITE, 0.9f);
+				EFont::active_font->draw(EGraphicCore::batch, EString::float_to_string(round(time_process_average * 100.0f) / 100.0f), 205.0f, EGraphicCore::SCR_HEIGHT - 52.0f - offset_y + 3.0f);
 
+				EGraphicCore::batch->setcolor_alpha(EColor::COLOR_DARK_GREEN, 0.9f);
+				EFont::active_font->draw(EGraphicCore::batch, EString::float_to_string(min_value), 255.0f, EGraphicCore::SCR_HEIGHT - 52.0f - offset_y + 3.0f);
+
+				EGraphicCore::batch->setcolor_alpha(EColor::COLOR_DARK_RED, 0.9f);
+				EFont::active_font->draw(EGraphicCore::batch, EString::float_to_string(max_value), 305.0f, EGraphicCore::SCR_HEIGHT - 52.0f - offset_y + 3.0f);
+			}
 			offset_y += 25.0f;
 		}
 
@@ -1675,9 +1746,9 @@ void EWindowTest::draw_interface(float _d)
 		glEnable(GL_BLEND);
 		glBlendEquation(GL_FUNC_ADD);
 
-		glBindTexture(GL_TEXTURE_2D, EWindow::lightmap_FBO->colorbuffer);
+		glBindTexture(GL_TEXTURE_2D, EWindow::base_blockmap->colorbuffer);
 		EGraphicCore::batch->setcolor_alpha(EColor::COLOR_WHITE, 1.0f);
-		EGraphicCore::batch->draw_rect(0.0f, 0.0f, EWindow::lightmap_FBO->size_x, EWindow::lightmap_FBO->size_y);
+		EGraphicCore::batch->draw_rect(0.0f, 000.0f, EWindow::base_blockmap->size_x, EWindow::base_blockmap->size_y);
 
 		EGraphicCore::batch->reinit();
 		EGraphicCore::batch->draw_call();

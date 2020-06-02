@@ -18,6 +18,9 @@ public:
 	void set_color_lum(EColorCollection* _c, float _lum);
 	void set_color_alpha(EColorCollection* _c, float _lum);
 
+	static void get_interpolate_color(EColorCollection* _a, EColorCollection* _b, float _value, EColorCollection* _target);
+	static void apply_color(EColorCollection* _target, EColorCollection* _source);
+
 	static EColorCollection* COLOR_RED;
 	static EColorCollection* COLOR_GREEN;
 	static EColorCollection* COLOR_BLUE;
@@ -39,6 +42,14 @@ public:
 
 	static EColorCollection* COLOR_LAZURE_SHADOW;
 	static EColorCollection* COLOR_SKY_AMBIENT;
+
+	static EColorCollection* COLOR_SKY_TIME_DAWN;
+	static EColorCollection* COLOR_SKY_TIME_NOON;
+	static EColorCollection* COLOR_SKY_TIME_SUNSET;
+
+	static EColorCollection* COLOR_SHADOW_TIME_DAWN;
+	static EColorCollection* COLOR_SHADOW_TIME_NOON;
+	static EColorCollection* COLOR_SHADOW_TIME_SUNSET;
 
 
 };

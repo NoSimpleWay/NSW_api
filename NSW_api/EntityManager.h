@@ -295,6 +295,12 @@ public:
 		float* offset_y = new float(0.0f);
 		float* offset_z = new float(0.0f);
 
+		float* shadow_size_x = new float(1.0f);
+		float* shadow_size_y = new float(1.0f);
+
+		float* shadow_tall = new float(100.0f);
+		float* shadow_height = new float(100.0f);
+
 		int* copies = new int(1);
 
 		EGabarite* gabarite = NULL;

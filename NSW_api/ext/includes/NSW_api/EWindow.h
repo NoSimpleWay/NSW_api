@@ -111,6 +111,7 @@ public:
 	static ETextureAtlas* lightmap_FBO;
 	static ETextureAtlas* lightmap_FBO2;
 	static ETextureAtlas* base_lightmap;
+	static ETextureAtlas* base_blockmap;
 
 	static bool button_pressed;
 

@@ -798,7 +798,7 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 				if (_is_shadow_mode)
 				{
 					if (_transparent_is_height)
-					{_b->setcolor_alpha(EColor::COLOR_LAZURE_SHADOW, *_e->shadow_tall_pointer / 512.0f);}
+					{_b->setcolor_alpha(EColor::COLOR_LAZURE_SHADOW, (*spr->sprite_struct_list.at(frame_id)->shadow_tall + *spr->sprite_struct_list.at(frame_id)->offset_z) / 512.0f);}
 					else
 					{_b->setcolor(EColor::COLOR_LAZURE_SHADOW);}
 
@@ -815,8 +815,8 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 					*_e->position_x + *spr->sprite_struct_list.at(frame_id)->offset_x + i * spr->sprite_struct_list.at(frame_id)->gabarite->size_x + offset_x_begin,
 					*_e->position_y + *spr->sprite_struct_list.at(frame_id)->offset_y + offset_y_begin + *spr->sprite_struct_list.at(frame_id)->offset_z,
 
-					spr->sprite_struct_list.at(frame_id)->gabarite->size_x,
-					spr->sprite_struct_list.at(frame_id)->gabarite->size_y,
+					0.0f,
+					*_e->collision_up + *_e->collision_down,
 
 					spr->sprite_struct_list.at(frame_id)->gabarite,
 					spr->sprite_struct_list.at(frame_id)->supermap,
@@ -830,9 +830,9 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 					*_e->position_x + *spr->sprite_struct_list.at(frame_id)->offset_x + i * spr->sprite_struct_list.at(frame_id)->gabarite->size_x + offset_x_begin,
 					*_e->position_y + *spr->sprite_struct_list.at(frame_id)->offset_y + offset_y_begin + *spr->sprite_struct_list.at(frame_id)->offset_y,
 
-					*_e->collision_left + *_e->collision_right,
-					*_e->collision_up + *_e->collision_down,
-					*_e->shadow_tall_pointer,
+					*spr->sprite_struct_list.at(frame_id)->shadow_size_x,
+					*spr->sprite_struct_list.at(frame_id)->shadow_size_y,
+					*spr->sprite_struct_list.at(frame_id)->shadow_tall,
 
 					spr->sprite_struct_list.at(frame_id)->gabarite
 				);

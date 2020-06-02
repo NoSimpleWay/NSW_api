@@ -5,12 +5,14 @@ layout (location = 2) in vec2 aTexCoord;
 layout (location = 3) in vec2 aShadowCoord;
 layout (location = 4) in vec2 aSuperMapCoord;
 layout (location = 5) in vec2 aLightmapCoord;
+layout (location = 6) in float aFullShadowCoord;
 
 out vec4 ourColor;
 out vec2 TexCoord;
 out vec2 ShadowCoord;
 out vec2 SuperMapCoord;
 out vec2 LightMapCoord;
+out float FullShadowCoord;
 
 uniform mat4 transform;
 
@@ -24,4 +26,5 @@ void main()
 	ShadowCoord = vec2(aShadowCoord.x, aShadowCoord.y);
 	SuperMapCoord = vec2(aSuperMapCoord.x, aSuperMapCoord.y);
 	LightMapCoord = vec2(aLightmapCoord.x, aLightmapCoord.y);
+	FullShadowCoord = aFullShadowCoord;
 }

@@ -147,6 +147,7 @@ int main()
 	EWindow::lightmap_FBO = new ETextureAtlas(300, 300);
 	EWindow::lightmap_FBO2 = new ETextureAtlas(300, 300);
 	EWindow::base_lightmap = new ETextureAtlas(300, 300);
+	EWindow::base_blockmap = new ETextureAtlas(300, 300);
 
 	EGraphicCore::load_texture("data/textures/white_pixel.png", 0);
 

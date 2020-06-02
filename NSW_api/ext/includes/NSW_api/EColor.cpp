@@ -22,6 +22,16 @@ EColorCollection* EColor::COLOR_DARK_GRAY			= new EColorCollection(0.25f,	0.25f,
 EColorCollection* EColor::COLOR_LAZURE_SHADOW		= new EColorCollection(0.5f,	 0.55f,	0.6f,	1.0);
 EColorCollection* EColor::COLOR_SKY_AMBIENT			= new EColorCollection(1.0f,	 0.9f,	0.8f,	1.0);
 
+EColorCollection* EColor::COLOR_SKY_TIME_DAWN		= new EColorCollection(0.1f, 0.025f, 0.0f, 1.0);
+EColorCollection* EColor::COLOR_SKY_TIME_NOON		= new EColorCollection(1.0f, 0.9f, 0.8f, 1.0);
+EColorCollection* EColor::COLOR_SKY_TIME_SUNSET		= new EColorCollection(0.0f, 0.05f, 0.1f, 1.0);
+
+EColorCollection* EColor::COLOR_SHADOW_TIME_DAWN	= new EColorCollection(0.03f, 0.01f, 0.05f, 1.0);
+EColorCollection* EColor::COLOR_SHADOW_TIME_NOON	= new EColorCollection(0.5f, 0.55f, 0.6f, 1.0);
+EColorCollection* EColor::COLOR_SHADOW_TIME_SUNSET	= new EColorCollection(0.0f, 0.05f, 0.1f, 1.0);
+
+
+
 EColor::EColor(float _r, float _g, float _b, float _a)
 {
 	red		= _r;
@@ -64,4 +74,22 @@ void EColor::set_color_alpha(EColorCollection* _c, float _a)
 	green = _c->color_green;
 	blue = _c->color_blue;
 	alpha = _a;
+}
+
+void EColor::get_interpolate_color(EColorCollection* _a, EColorCollection* _b, float _value, EColorCollection* _target)
+{
+	_target->color_red = _a->color_red * (1.0f - _value) + _b->color_red * _value;
+	_target->color_green = _a->color_green * (1.0f - _value) + _b->color_green * _value;
+	_target->color_blue = _a->color_blue * (1.0f - _value) + _b->color_blue * _value;
+
+	_target->color_alpha = _a->color_alpha * (1.0f - _value) + _b->color_alpha *  _value;
+}
+
+void EColor::apply_color(EColorCollection* _target, EColorCollection* _source)
+{
+	_target->color_red = _source->color_red;
+	_target->color_green = _source->color_green;
+	_target->color_blue = _source->color_blue;
+
+	_target->color_alpha = _source->color_alpha;
 }

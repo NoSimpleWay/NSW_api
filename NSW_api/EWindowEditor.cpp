@@ -928,7 +928,7 @@ void EWindowEditor::update(float _d)
 
 				if (!selected_entity->sprite_list.empty())
 				{
-					*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(0)->offset_x += mouse_speed_x * mul;
+					*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->offset_x += mouse_speed_x * mul;
 					*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->offset_y += mouse_speed_y * mul;
 				}
 
@@ -952,6 +952,80 @@ void EWindowEditor::update(float _d)
 			}
 
 			started_sprite_move = false;
+		}
+
+		if (glfwGetKey(EWindow::main_window, GLFW_KEY_B) == GLFW_PRESS)
+		{
+			if (!started_shadow_resize)
+			{
+				saved_pos_x = real_mouse_x;
+				saved_pos_y = real_mouse_y;
+			}
+
+			started_shadow_resize = true;
+
+			if (selected_entity != NULL)
+			{
+				float mul = get_move_multiplier(1.0f / EWindow::window_test->game_camera->zoom);
+
+				if (!selected_entity->sprite_list.empty())
+				{
+					*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->shadow_size_x -= mouse_speed_x * mul;
+					*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->shadow_size_y += mouse_speed_y * mul;
+				}
+
+
+				SetCursorPos(saved_pos_x, saved_pos_y);
+				prev_mouse_x = saved_pos_x;
+				prev_mouse_y = saved_pos_y;
+				//EWindow::push_cursor(EWindow::mouse_speed_x, EWindow::mouse_speed_y);
+			}
+		}
+		else
+		{
+			if (started_shadow_resize)
+			{
+				*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->shadow_size_x = round(*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->shadow_size_x);
+				*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->shadow_size_y = round(*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->shadow_size_y);
+
+				saved_pos_x = -1;
+				saved_pos_y = -1;
+
+			}
+
+			started_shadow_resize = false;
+		}
+
+		if (glfwGetKey(EWindow::main_window, GLFW_KEY_N) == GLFW_PRESS)
+		{
+			if (!started_shadow_tall)
+			{
+				saved_pos_x = real_mouse_x;
+				saved_pos_y = real_mouse_y;
+			}
+
+			started_shadow_tall = true;
+
+			if (selected_entity != NULL)
+			{
+				float mul = get_move_multiplier(1.0f / EWindow::window_test->game_camera->zoom);
+
+				if (!selected_entity->sprite_list.empty())
+				{
+					*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->shadow_tall += mouse_speed_x * mul;
+				
+				}
+
+
+				SetCursorPos(saved_pos_x, saved_pos_y);
+				prev_mouse_x = saved_pos_x;
+				prev_mouse_y = saved_pos_y;
+				//EWindow::push_cursor(EWindow::mouse_speed_x, EWindow::mouse_speed_y);
+			}
+		}
+		else
+		{
+			started_shadow_tall = false;
 		}
 	}
 
@@ -1235,6 +1309,10 @@ void EWindowEditor::clone_entity(Entity* _e)
 			*clone_struct->offset_x = *st->offset_x;
 			*clone_struct->offset_y = *st->offset_y;
 			*clone_struct->offset_z = *st->offset_z;
+
+			*clone_struct->shadow_size_x = *st->shadow_size_x;
+			*clone_struct->shadow_size_y = *st->shadow_size_y;
+			*clone_struct->shadow_tall = *st->shadow_tall;
 
 			*clone_struct->copies = *st->copies;
 

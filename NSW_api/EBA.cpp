@@ -154,6 +154,7 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 			w_string += std::to_string(*str->offset_x);
 			w_string += "\n";
 
+
 			w_string += "texture_offset_y\t";
 			w_string += std::to_string(*str->offset_y);
 			w_string += "\n";
@@ -164,6 +165,18 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 
 			w_string += "texture_copies\t";
 			w_string += std::to_string(*str->copies);
+			w_string += "\n";
+
+			w_string += "shadow_size_x\t";
+			w_string += std::to_string(*str->shadow_size_x);
+			w_string += "\n";
+
+			w_string += "shadow_size_y\t";
+			w_string += std::to_string(*str->shadow_size_y);
+			w_string += "\n";
+
+			w_string += "shadow_tall\t";
+			w_string += std::to_string(*str->shadow_tall);
 			w_string += "\n";
 
 			order++;
@@ -428,6 +441,21 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 				if (EFile::data_array[i] == "texture_offset_z")
 				{
 					i++; *just_create_sprite_struct->offset_z = std::stof(EFile::data_array[i]);
+				}
+
+				if (EFile::data_array[i] == "shadow_size_x")
+				{
+					i++; *just_create_sprite_struct->shadow_size_x = std::stof(EFile::data_array[i]);
+				}
+
+				if (EFile::data_array[i] == "shadow_size_y")
+				{
+					i++; *just_create_sprite_struct->shadow_size_y = std::stof(EFile::data_array[i]);
+				}
+
+				if (EFile::data_array[i] == "shadow_tall")
+				{
+					i++; *just_create_sprite_struct->shadow_tall = std::stof(EFile::data_array[i]);
 				}
 
 				if (EFile::data_array[i] == "texture_copies")

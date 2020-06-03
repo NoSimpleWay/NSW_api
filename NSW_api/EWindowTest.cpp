@@ -135,7 +135,10 @@ void EWindowTest::default_update(float _d)
 
 void EWindowTest::update(float _d)
 {
-
+	if (glfwGetKey(EWindow::main_window, GLFW_KEY_SPACE) == GLFW_PRESS)
+	{
+		_d /= 10.0f;
+	}
 	add_time_process("UPDATE BEGIN");
 
 	day_time += _d/100.0f;
@@ -221,7 +224,7 @@ void EWindowTest::update(float _d)
 	}
 
 	if (link_to_player != NULL)
-		if (!glfwGetKey(EWindow::main_window, GLFW_KEY_SPACE) == GLFW_PRESS)
+		//if (!glfwGetKey(EWindow::main_window, GLFW_KEY_SPACE) == GLFW_PRESS)
 		{
 			if ((!EWindow::window_editor->is_active))
 			{
@@ -239,6 +242,8 @@ void EWindowTest::update(float _d)
 			}
 
 		}
+
+
 
 	if (EWindow::window_editor->is_active)
 	{
@@ -1313,13 +1318,13 @@ void EWindowTest::draw_lightmap()
 
 	//glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	EGraphicCore::batch->reset();
-	EGraphicCore::batch->setcolor_lum(EColor::COLOR_WHITE, 0.15f);
+	EGraphicCore::batch->setcolor_lum(EColor::COLOR_WHITE, 1.0f);
 		//spread lightmap
 		//put lightmap
 	
 			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO, EWindow::base_lightmap);
-			EGraphicCore::lightmap_spread->use();
-			transformLoc = glGetUniformLocation(EGraphicCore::lightmap_spread->ID, "transform");
+			EGraphicCore::lightmap_blur->use();
+			transformLoc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "transform");
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 			glBlendFunc(GL_ONE, GL_ONE);
 			for (int i = 0; i < 1; i++)
@@ -1327,6 +1332,15 @@ void EWindowTest::draw_lightmap()
 				EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
 				EGraphicCore::batch->force_draw_call();
 			}
+
+			EGraphicCore::batch->setcolor_lum(EColor::COLOR_WHITE, 1.0f);
+			EGraphicCore::ourShader->use();//draw blockmap
+			glBlendFunc(GL_ZERO, GL_SRC_COLOR);
+			transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
+			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
+			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO, EWindow::base_blockmap);
+			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
+			EGraphicCore::batch->force_draw_call();
 
 	//blur lightmap
 

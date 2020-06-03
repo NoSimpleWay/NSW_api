@@ -1260,6 +1260,11 @@ void EWindowEditor::clone_entity(Entity* _e)
 	*clone->position_x = *_e->position_x;
 	*clone->position_y = *_e->position_y;
 
+	*clone->collision_down		=	*_e->collision_down;
+	*clone->collision_left		=	*_e->collision_left;
+	*clone->collision_right		=	*_e->collision_right;
+	*clone->collision_up		=	*_e->collision_up;
+
 	int did = 0;
 
 	for (float f :_e->eattr_BASE)
@@ -1274,6 +1279,8 @@ void EWindowEditor::clone_entity(Entity* _e)
 		*clone->pointer_to_bool_list.at(did) = *b;
 		did++;
 	}
+
+
 
 
 

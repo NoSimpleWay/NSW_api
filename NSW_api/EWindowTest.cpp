@@ -141,7 +141,7 @@ void EWindowTest::update(float _d)
 	}
 	add_time_process("UPDATE BEGIN");
 
-	day_time += _d/100.0f;
+	day_time += _d/1000.0f;
 
 	if (day_time > 2.0f)
 	{
@@ -375,6 +375,9 @@ void EWindowTest::update(float _d)
 	{
 		//clear block
 		EPath::entity_block[(int)(*e->position_x / EPath::PATH_SIZE)][(int)(*e->position_y / EPath::PATH_SIZE)] = true;
+
+		*e->saved_eb_x = (int)(*e->position_x / EPath::PATH_SIZE);
+		*e->saved_eb_y = (int)(*e->position_y / EPath::PATH_SIZE);
 	}
 
 	add_time_process("add entity block");
@@ -475,14 +478,17 @@ void EWindowTest::update(float _d)
 
 add_time_process("calculate path");
 
-	for (int i = draw_border_up;	i >= draw_border_down;	i--)
-	for (int j = draw_border_left;	j <= draw_border_right;	j++)
+	for (int i = update_border_up;		i >= update_border_down;	i--)
+	for (int j = update_border_left;	j <= update_border_right;	j++)
 	for (Entity* e : ECluster::clusters[j][i]->entity_list)
 	//if (!*e->already_updated)
 	if ((!*e->inmovable) & (!*e->is_bullet))
 	{
 		//clear block
-		EPath::entity_block[(int)(*e->position_x / EPath::PATH_SIZE)][(int)(*e->position_y / EPath::PATH_SIZE)] = false;
+		if ((*e->saved_eb_x >= 0) & (*e->saved_eb_y >= 0))
+		{
+			EPath::entity_block[*e->saved_eb_x][*e->saved_eb_y] = false;
+		}
 	}
 
 	add_time_process("path entity unblock");
@@ -1326,6 +1332,10 @@ void EWindowTest::draw_lightmap()
 			EGraphicCore::lightmap_blur->use();
 			transformLoc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "transform");
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
+
+			GLint blur_loc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "blur");
+			glUniform1f(blur_loc, blur_factor);
+
 			glBlendFunc(GL_ONE, GL_ONE);
 			for (int i = 0; i < 1; i++)
 			{
@@ -1610,11 +1620,11 @@ void EWindowTest::draw(float _d)
 
 	if (glfwGetKey(EWindow::main_window, GLFW_KEY_UP) == GLFW_PRESS)
 	{
-		Batcher::skew_factor += EWindowEditor::get_move_multiplier(1.0f) * _d;
+		blur_factor += EWindowEditor::get_move_multiplier(0.5f) * _d;
 
 		EFont::active_font->draw_with_background
 		(
-			"skew: " + std::to_string(Batcher::skew_factor),
+			"blur: " + std::to_string(blur_factor),
 			EGraphicCore::batch,
 			ECamera::get_world_position_x(game_camera),
 			ECamera::get_world_position_y(game_camera),
@@ -1624,11 +1634,11 @@ void EWindowTest::draw(float _d)
 	}
 	if (glfwGetKey(EWindow::main_window, GLFW_KEY_DOWN) == GLFW_PRESS)
 	{
-		Batcher::skew_factor -= EWindowEditor::get_move_multiplier(1.0f) * _d;
+		blur_factor -= EWindowEditor::get_move_multiplier(0.5f) * _d;
 
 		EFont::active_font->draw_with_background
 		(
-			"skew: " + std::to_string(Batcher::skew_factor),
+			"blur: " + std::to_string(blur_factor),
 			EGraphicCore::batch,
 			ECamera::get_world_position_x(game_camera),
 			ECamera::get_world_position_y(game_camera),

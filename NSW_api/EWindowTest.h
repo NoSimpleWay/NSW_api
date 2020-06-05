@@ -16,6 +16,8 @@ public:
 	void default_update(float _d);
 	virtual void update(float _d);
 
+	float blur_factor = 0.12f;
+
 	void default_draw(float _d);
 	void draw_shadows();
 	void draw_debug_draw_path();

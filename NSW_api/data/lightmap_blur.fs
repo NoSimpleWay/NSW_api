@@ -9,23 +9,28 @@ in vec2 TexCoord;
 // texture samplers
 uniform sampler2D texture1;
 uniform sampler2D texture2;
+uniform float blur;
+
+float blur2;
+
 
 void main()
 {
+	blur2 = (1.0f - blur) / 4.0f;
 	// linearly interpolate between both textures (80% container, 20% awesomeface)
 	FragColor
 	=
 	(
 		(
-			texture(texture1, TexCoord)* 0.7f
+			texture(texture1, TexCoord) * blur
 			+
-			texture(texture1, TexCoord + vec2(0.003333f, 0.0f)) * 0.075f
+			texture(texture1, TexCoord + vec2(0.003333f, 0.0f)) * blur2
 			+
-			texture(texture1, TexCoord + vec2(-0.003333f, 0.0f)) * 0.075f
+			texture(texture1, TexCoord + vec2(-0.003333f, 0.0f)) * blur2
 			+
-			texture(texture1, TexCoord + vec2(0.0f, 0.003333f)) * 0.075f
+			texture(texture1, TexCoord + vec2(0.0f, 0.003333f)) * blur2
 			+
-			texture(texture1, TexCoord + vec2(0.0f, -0.003333f)) * 0.075f
+			texture(texture1, TexCoord + vec2(0.0f, -0.003333f)) * blur2
 		)
 	)
 	*

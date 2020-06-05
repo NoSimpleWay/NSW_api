@@ -131,6 +131,9 @@ public:
 	int* random_direction_x = new int(0);
 	int* random_direction_y = new int(0);
 
+	int* saved_eb_x = new int(-1);
+	int* saved_eb_y = new int(-1);
+
 
 	/*-------attribute section-------*/
 

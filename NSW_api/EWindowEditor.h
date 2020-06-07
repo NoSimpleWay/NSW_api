@@ -25,6 +25,7 @@ public:
 	bool started_sprite_move;
 	bool started_shadow_resize;
 	bool started_shadow_tall;
+	bool started_shadow_bottom_tall;
 	bool started_entity_move;
 	bool started_z_move;
 	bool started_collision_move;

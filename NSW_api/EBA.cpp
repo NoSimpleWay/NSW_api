@@ -179,6 +179,10 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 			w_string += std::to_string(*str->shadow_tall);
 			w_string += "\n";
 
+			w_string += "shadow_bottom_tall\t";
+			w_string += std::to_string(*str->bottom_tall);
+			w_string += "\n";
+
 			order++;
 		}
 	}
@@ -456,6 +460,13 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 				if (EFile::data_array[i] == "shadow_tall")
 				{
 					i++; *just_create_sprite_struct->shadow_tall = std::stof(EFile::data_array[i]);
+					//*just_create_sprite_struct->bottom_tall = std::stof(EFile::data_array[i]);
+				}
+
+				
+				if (EFile::data_array[i] == "shadow_bottom_tall")
+				{
+					i++; *just_create_sprite_struct->bottom_tall = std::stof(EFile::data_array[i]);
 				}
 
 				if (EFile::data_array[i] == "texture_copies")

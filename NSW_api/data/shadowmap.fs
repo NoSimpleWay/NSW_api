@@ -26,7 +26,9 @@ void main()
 {
 	// linearly interpolate between both textures (80% container, 20% awesomeface)
 	
-	shadow_coord = vec2(ShadowCoord.x, ShadowCoord.y * (1.0f - texture(texture1, SuperMapCoord).b) + FullShadowCoord * texture(texture1, SuperMapCoord).b) + vec2(offset_x, offset_y);
+	//shadow_coord = vec2(ShadowCoord.x, ShadowCoord.y * (1.0f - texture(texture1, SuperMapCoord).b) + FullShadowCoord * texture(texture1, SuperMapCoord).b - texture(texture1, SuperMapCoord).r * 0.161f) + vec2(offset_x, offset_y);
+	
+	shadow_coord = vec2(ShadowCoord.x, FullShadowCoord  - texture(texture1, SuperMapCoord).g * 0.161f) + vec2(offset_x, offset_y);
 	
 	shadow_multiplier
 	=
@@ -36,6 +38,8 @@ void main()
 			texture(texture2, shadow_coord).a //0.21
 			-
 			texture(texture1, SuperMapCoord).g// 0.43
+			-
+			ShadowCoord.y / 255.0f
 		)
 		*
 		10.0f
@@ -44,8 +48,8 @@ void main()
 		,
 		1.0f
 	)
-	*
-	texture(texture2, shadow_coord).a
+	//*
+	//texture(texture2, shadow_coord).a
 	;
 	
 	FragColor.rgb

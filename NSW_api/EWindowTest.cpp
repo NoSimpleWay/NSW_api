@@ -1334,7 +1334,7 @@ void EWindowTest::draw_lightmap()
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 
 			GLint blur_loc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "blur");
-			glUniform1f(blur_loc, blur_factor);
+			glUniform1f(blur_loc, 0.85f);
 
 			glBlendFunc(GL_ONE, GL_ONE);
 			for (int i = 0; i < 1; i++)
@@ -1359,13 +1359,10 @@ void EWindowTest::draw_lightmap()
 	//glBlendFunc(GL_ONE, GL_ZERO);
 	for (int i = 0; i < 1; i++)
 	{
-			EGraphicCore::ourShader->use();//draw blockmap
-			glBlendFunc(GL_ZERO, GL_SRC_COLOR);
-			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO, EWindow::base_blockmap);
-			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
-			EGraphicCore::batch->force_draw_call();
+
 
 			EGraphicCore::lightmap_blur->use();
+			glUniform1f(blur_loc, blur_factor);
 			transformLoc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "transform");
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO2, EWindow::lightmap_FBO);
@@ -1373,9 +1370,12 @@ void EWindowTest::draw_lightmap()
 			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
 			EGraphicCore::batch->force_draw_call();
 
+
 			EGraphicCore::ourShader->use();//draw blockmap
 			glBlendFunc(GL_ZERO, GL_SRC_COLOR);
+			transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
 			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO2, EWindow::base_blockmap);
+			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
 			EGraphicCore::batch->force_draw_call();
 
@@ -1386,6 +1386,16 @@ void EWindowTest::draw_lightmap()
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
 			EGraphicCore::batch->force_draw_call();
+
+			EGraphicCore::ourShader->use();//draw blockmap
+			glBlendFunc(GL_ZERO, GL_SRC_COLOR);
+			transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
+			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
+			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO, EWindow::base_blockmap);
+			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
+			EGraphicCore::batch->force_draw_call();
+
+
 	}
 
 
@@ -1617,6 +1627,10 @@ void EWindowTest::draw(float _d)
 		EColor::COLOR_DARK_GRAY
 	);*/
 
+	if (glfwGetKey(EWindow::main_window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+	{
+		day_time += EWindowEditor::get_move_multiplier(1.0f) * _d;
+	}
 
 	if (glfwGetKey(EWindow::main_window, GLFW_KEY_UP) == GLFW_PRESS)
 	{

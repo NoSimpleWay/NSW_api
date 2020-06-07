@@ -20,6 +20,8 @@ void main()
 	// linearly interpolate between both textures (80% container, 20% awesomeface)
 	FragColor
 	=
+	clamp 
+	(
 	(
 		(
 			texture(texture1, TexCoord) * blur
@@ -35,6 +37,10 @@ void main()
 	)
 	*
 	ourColor
-	- vec4(0.01f,0.01f,0.01f,0.0f);
+	* vec4(0.99f,0.99f,0.99f,1.0f)
+	- vec4(0.002f,0.002f,0.002f,0.0f)
+	, 0.0f
+	, 100.0f
+	);
 }
 

@@ -65,6 +65,8 @@ std::vector <int> Entity::entity_bool_attribute_id
 	EntityBoolAttributes::ENTITY_BOOL_CONTROLLED_BY_PLAYER,
 	EntityBoolAttributes::ENTITY_BOOL_HAVE_LIGHT_SOURCE,
 	EntityBoolAttributes::ENTITY_BOOL_GHOST,
+	EntityBoolAttributes::ENTITY_BOOL_NO_PATH_BLOCK,
+	EntityBoolAttributes::ENTITY_BOOL_NO_LIGHT_BLOCK
 
 };
 
@@ -75,7 +77,9 @@ std::vector < std::string > Entity::entity_bool_attribute_names
 	"Controlled by AI",
 	"Controlled by Player",
 	"Light Source",
-	"Ghost"
+	"Ghost",
+	"No path block",
+	"No light block"
 
 
 };
@@ -638,6 +642,8 @@ Entity::Entity()
 	pointer_to_bool_list.at(EntityBoolAttributes::ENTITY_BOOL_CONTROLLED_BY_PLAYER) =	controlled_by_player;
 	pointer_to_bool_list.at(EntityBoolAttributes::ENTITY_BOOL_HAVE_LIGHT_SOURCE) =		have_light_source;
 	pointer_to_bool_list.at(EntityBoolAttributes::ENTITY_BOOL_GHOST) =					is_ghost;
+	pointer_to_bool_list.at(EntityBoolAttributes::ENTITY_BOOL_NO_PATH_BLOCK) =			no_path_block;
+	pointer_to_bool_list.at(EntityBoolAttributes::ENTITY_BOOL_NO_LIGHT_BLOCK) =			no_light_block;
 
 	light_source_red									= &eattr_TOTAL.at(EAttr::ENTITY_ATTRIBUTE_LIGHT_SOURCE_RED);
 	light_source_green									= &eattr_TOTAL.at(EAttr::ENTITY_ATTRIBUTE_LIGHT_SOURCE_GREEN);
@@ -816,7 +822,7 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 					*_e->position_y + *spr->sprite_struct_list.at(frame_id)->offset_y + offset_y_begin + *spr->sprite_struct_list.at(frame_id)->offset_z,
 
 					0.0f,
-					*_e->collision_up + *_e->collision_down,
+					spr->sprite_struct_list.at(frame_id)->gabarite->size_y,
 
 					spr->sprite_struct_list.at(frame_id)->gabarite,
 					spr->sprite_struct_list.at(frame_id)->supermap,
@@ -834,7 +840,8 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 					*spr->sprite_struct_list.at(frame_id)->shadow_size_y,
 					*spr->sprite_struct_list.at(frame_id)->shadow_tall,
 
-					spr->sprite_struct_list.at(frame_id)->gabarite
+					spr->sprite_struct_list.at(frame_id)->gabarite,
+					*spr->sprite_struct_list.at(frame_id)->bottom_tall
 				);
 			}
 
@@ -913,27 +920,31 @@ void Entity::update_path_block(Entity* _e)
 
 void Entity::spread_path_block(Entity* _e)
 {
-	float safe_border = 5.0f;
-
-	int cluster_pos_x = int(*_e->position_x / ECluster::CLUSTER_SIZE);
-	int cluster_pos_y = int(*_e->position_y / ECluster::CLUSTER_SIZE);
 	
+		float safe_border = 5.0f;
+
+		int cluster_pos_x = int(*_e->position_x / ECluster::CLUSTER_SIZE);
+		int cluster_pos_y = int(*_e->position_y / ECluster::CLUSTER_SIZE);
+
 		for (int cj = cluster_pos_x - 8; cj <= cluster_pos_x + 8; cj++)
-		for (int ci = cluster_pos_y - 8; ci <= cluster_pos_y + 8; ci++)
-		if ((cj >= 0) & (cj < ECluster::CLUSTER_DIM) & (ci >= 0) & (ci < ECluster::CLUSTER_DIM))
-		for (Entity* e: ECluster::clusters[cj][ci]->entity_list)
-		if (*e->inmovable)
-		{
-			int block_start_x = (EMath::clamp_value_int((int)((*e->position_x - *e->collision_left + 15.0f)  / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
-			int block_end_x = (EMath::clamp_value_int((int)((*e->position_x + *e->collision_right - 15.0f)  / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+			for (int ci = cluster_pos_y - 8; ci <= cluster_pos_y + 8; ci++)
+				if ((cj >= 0) & (cj < ECluster::CLUSTER_DIM) & (ci >= 0) & (ci < ECluster::CLUSTER_DIM))
+					for (Entity* e : ECluster::clusters[cj][ci]->entity_list)
+						if ((*e->inmovable) & (!*e->no_path_block))
+						{
+							int block_start_x = (EMath::clamp_value_int((int)((*e->position_x - *e->collision_left + 15.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+							int block_end_x = (EMath::clamp_value_int((int)((*e->position_x + *e->collision_right - 15.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
 
-			int block_start_y = (EMath::clamp_value_int((int)((*e->position_y - *e->collision_down + 15.0f)  / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
-			int block_end_y = (EMath::clamp_value_int((int)((*e->position_y + *e->collision_up - 15.0f)  / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+							int block_start_y = (EMath::clamp_value_int((int)((*e->position_y - *e->collision_down + 15.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+							int block_end_y = (EMath::clamp_value_int((int)((*e->position_y + *e->collision_up - 15.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
 
-			for (int j = block_start_x; j <= block_end_x; j++)
-			for (int i = block_start_y; i <= block_end_y; i++)
-			{EPath::block[j][i] = true;}
-		}
+							for (int j = block_start_x; j <= block_end_x; j++)
+								for (int i = block_start_y; i <= block_end_y; i++)
+								{
+									EPath::block[j][i] = true;
+								}
+						}
+
 }
 void Entity::update_entity_attributes(Entity* _e)
 {

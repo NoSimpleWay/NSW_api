@@ -617,6 +617,7 @@ EWindowEditor::EWindowEditor()
 	add_button_group_for_bool_data(Entity::EntityBoolAttributes::ENTITY_BOOL_CONTROLLED_BY_PLAYER);
 	add_button_group_for_bool_data(Entity::EntityBoolAttributes::ENTITY_BOOL_HAVE_LIGHT_SOURCE);
 	add_button_group_for_bool_data(Entity::EntityBoolAttributes::ENTITY_BOOL_GHOST);
+	add_button_group_for_bool_data(Entity::EntityBoolAttributes::ENTITY_BOOL_NO_PATH_BLOCK);
 }
 
 EWindowEditor::~EWindowEditor()
@@ -1027,6 +1028,38 @@ void EWindowEditor::update(float _d)
 		{
 			started_shadow_tall = false;
 		}
+
+		if (glfwGetKey(EWindow::main_window, GLFW_KEY_M) == GLFW_PRESS)
+		{
+			if (!started_shadow_bottom_tall)
+			{
+				saved_pos_x = real_mouse_x;
+				saved_pos_y = real_mouse_y;
+			}
+
+			started_shadow_bottom_tall = true;
+
+			if (selected_entity != NULL)
+			{
+				float mul = get_move_multiplier(1.0f / EWindow::window_test->game_camera->zoom);
+
+				if (!selected_entity->sprite_list.empty())
+				{
+					*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->bottom_tall += mouse_speed_x * mul;
+				
+				}
+
+
+				SetCursorPos(saved_pos_x, saved_pos_y);
+				prev_mouse_x = saved_pos_x;
+				prev_mouse_y = saved_pos_y;
+				//EWindow::push_cursor(EWindow::mouse_speed_x, EWindow::mouse_speed_y);
+			}
+		}
+		else
+		{
+			started_shadow_bottom_tall = false;
+		}
 	}
 
 	if ((editor_mode == EditMode::EditSprites) & (selected_entity != NULL))
@@ -1048,6 +1081,11 @@ void EWindowEditor::update(float _d)
 				if (!selected_entity->sprite_list.empty())
 				{
 					*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->offset_z += mouse_speed_y * mul;
+
+					if (*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->offset_z < 0)
+					{
+						*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->offset_z = 0;
+					}
 				}
 
 
@@ -1320,6 +1358,8 @@ void EWindowEditor::clone_entity(Entity* _e)
 			*clone_struct->shadow_size_x = *st->shadow_size_x;
 			*clone_struct->shadow_size_y = *st->shadow_size_y;
 			*clone_struct->shadow_tall = *st->shadow_tall;
+
+			*clone_struct->bottom_tall = *st->bottom_tall;
 
 			*clone_struct->copies = *st->copies;
 
@@ -1663,7 +1703,7 @@ void EWindowEditor::add_button_group_for_bool_data(int _data_id)
 
 	if (id != -1)
 	{
-		EButton* b = new EButton(button_group_start_x, button_group_start_y, 80.0f, 20.0f);
+		EButton* b = new EButton(button_group_start_x, button_group_start_y, 240.0f, 20.0f);
 		b->master_position = Enums::PositionMaster::WINDOW;
 		b->master_window = this;
 

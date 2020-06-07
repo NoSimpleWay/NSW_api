@@ -156,6 +156,8 @@ public:
 		ENTITY_BOOL_CONTROLLED_BY_PLAYER,
 		ENTITY_BOOL_HAVE_LIGHT_SOURCE,
 		ENTITY_BOOL_GHOST,
+		ENTITY_BOOL_NO_PATH_BLOCK,
+		ENTITY_BOOL_NO_LIGHT_BLOCK,
 
 
 		/*---------DO NOT TOUCH!-----------*/
@@ -247,6 +249,8 @@ public:
 
 	bool* have_light_source = new bool (false);
 	bool* is_ghost = new bool (false);
+	bool* no_path_block = new bool (false);
+	bool* no_light_block = new bool (false);
 
 
 
@@ -300,6 +304,8 @@ public:
 
 		float* shadow_size_x = new float(1.0f);
 		float* shadow_size_y = new float(1.0f);
+
+		float* bottom_tall = new float(1.0f);
 
 		float* shadow_tall = new float(100.0f);
 		float* shadow_height = new float(100.0f);

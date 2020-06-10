@@ -1,272 +1,5 @@
-#shadow_skew	0.980057
-ADD_NEW_ENTITY	6333.000000	5740.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/human.png
-texture_offset_x	-7.000000
-texture_offset_y	-1.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	-2.000000
-entity base attribute	Life	1000.000000
-entity bool attribute	Inmovable
-collision_up	16.500000
-collision_down	14.500000
-collision_right	15.500000
-collision_left	12.750000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6368.500000	5626.343262
-ADD_NEW_SPRITE
-*rotate_by_move
-add_new_texture	data/textures/mech_1.png
-texture_offset_x	-26.000000
-texture_offset_y	-27.000000
-texture_offset_z	19.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_2.png
-texture_offset_x	-17.399998
-texture_offset_y	-12.400000
-texture_offset_z	3.500000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_3.png
-texture_offset_x	-25.500000
-texture_offset_y	-23.100000
-texture_offset_z	14.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_4.png
-texture_offset_x	-16.899996
-texture_offset_y	-18.700001
-texture_offset_z	11.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*target_gun
-add_new_texture	data/textures/head_gun_mech_violet_1.png
-texture_offset_x	-4.000000
-texture_offset_y	1.000000
-texture_offset_z	49.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_2.png
-texture_offset_x	-4.875000
-texture_offset_y	1.875000
-texture_offset_z	45.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_3.png
-texture_offset_x	-4.375000
-texture_offset_y	1.125000
-texture_offset_z	49.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_4.png
-texture_offset_x	-6.250000
-texture_offset_y	0.625000
-texture_offset_z	36.500000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_5.png
-texture_offset_x	-8.125000
-texture_offset_y	-17.375000
-texture_offset_z	51.875000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_6.png
-texture_offset_x	-15.375000
-texture_offset_y	1.000000
-texture_offset_z	36.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_7.png
-texture_offset_x	-27.500000
-texture_offset_y	0.875000
-texture_offset_z	49.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_8.png
-texture_offset_x	-15.000000
-texture_offset_y	41.750000
-texture_offset_z	5.375000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	25.000000
-texture_offset_y	-9.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	29.549992
-texture_offset_y	-8.249985
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	29.350006
-texture_offset_y	-6.999996
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	28.324989
-texture_offset_y	-8.450001
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	13.000000
-texture_offset_y	61.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-entity base attribute	Life	1000.000000
-entity base attribute	Mass	100.000000
-entity base attribute	Shadow tall	72.000000
-entity bool attribute	Controlled by AI
-collision_up	20.000000
-collision_down	20.000000
-collision_right	20.000000
-collision_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6377.000000	6120.000000
-ADD_NEW_SPRITE
-*wall_mode
-add_new_texture	data/textures/tall_building_c18_corner_left.png
-texture_offset_x	-169.000000
-texture_offset_y	-1.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/tall_building_c18_wall.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_offset_z	0.000000
-texture_copies	2
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/tall_building_c18_corner_right.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/tall_building_c18_window..png
-texture_offset_x	-125.000000
-texture_offset_y	-2.000000
-texture_offset_z	89.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/tall_building_c18_window..png
-texture_offset_x	19.000000
-texture_offset_y	-2.000000
-texture_offset_z	90.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	151.000000
-texture_offset_y	1.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	322.000000
-shadow_size_y	169.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-entity base attribute	Life	1000.000000
-entity base attribute	Mass	10000.000000
-entity base attribute	Shadow tall	512.000000
-entity bool attribute	Inmovable
-collision_up	169.000000
-collision_down	0.000000
-collision_right	149.500000
-collision_left	165.500000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6371.000000	6109.000000
+#shadow_skew	1.000000
+ADD_NEW_ENTITY	5725.000000	5785.000000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/wall_lamp.png
 texture_offset_x	-15.000000
@@ -278,9 +11,7 @@ shadow_size_y	1.000000
 shadow_tall	100.000000
 shadow_bottom_tall	2.000000
 entity base attribute	Life	1000.000000
-entity base attribute	Lightsoucre red	0.130000
 entity base attribute	Lightsoucre green	1.000000
-entity base attribute	Lightsoucre blue	1.000000
 entity bool attribute	Light Source
 entity bool attribute	Ghost
 entity bool attribute	No path block
@@ -288,1037 +19,19 @@ collision_up	20.000000
 collision_down	20.000000
 collision_right	20.000000
 collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
 - PUT TO MAP -
 
 =====================================
 
-ADD_NEW_ENTITY	6360.797852	6020.345215
-ADD_NEW_SPRITE
-*rotate_by_move
-add_new_texture	data/textures/mech_1.png
-texture_offset_x	-26.000000
-texture_offset_y	-27.000000
-texture_offset_z	19.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_2.png
-texture_offset_x	-17.399998
-texture_offset_y	-12.400000
-texture_offset_z	3.500000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_3.png
-texture_offset_x	-25.500000
-texture_offset_y	-23.100000
-texture_offset_z	14.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_4.png
-texture_offset_x	-16.899996
-texture_offset_y	-18.700001
-texture_offset_z	11.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*target_gun
-add_new_texture	data/textures/head_gun_mech_violet_1.png
-texture_offset_x	-4.000000
-texture_offset_y	1.000000
-texture_offset_z	49.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_2.png
-texture_offset_x	-4.875000
-texture_offset_y	1.875000
-texture_offset_z	45.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_3.png
-texture_offset_x	-4.375000
-texture_offset_y	1.125000
-texture_offset_z	49.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_4.png
-texture_offset_x	-6.250000
-texture_offset_y	0.625000
-texture_offset_z	36.500000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_5.png
-texture_offset_x	-8.125000
-texture_offset_y	-17.375000
-texture_offset_z	51.875000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_6.png
-texture_offset_x	-15.375000
-texture_offset_y	1.000000
-texture_offset_z	36.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_7.png
-texture_offset_x	-27.500000
-texture_offset_y	0.875000
-texture_offset_z	49.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_8.png
-texture_offset_x	-15.000000
-texture_offset_y	41.750000
-texture_offset_z	5.375000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	25.000000
-texture_offset_y	-9.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	29.549992
-texture_offset_y	-8.249985
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	29.350006
-texture_offset_y	-6.999996
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	28.324989
-texture_offset_y	-8.450001
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	13.000000
-texture_offset_y	61.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-*camera_target
-entity base attribute	Life	1000.000000
-entity base attribute	Mass	100.000000
-entity base attribute	Shadow tall	72.000000
-entity base attribute	Lightsoucre red	1.000000
-entity base attribute	Lightsoucre green	1.000000
-entity base attribute	Lightsoucre blue	1.000000
-entity bool attribute	Controlled by Player
-entity bool attribute	Light Source
-collision_up	20.000000
-collision_down	16.750000
-collision_right	24.250000
-collision_left	24.750000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6576.000000	6137.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/beton_fence_horizontal.png
-texture_offset_x	-58.000000
-texture_offset_y	0.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	52.000000
-texture_offset_y	1.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-entity base attribute	Life	1000.000000
-entity base attribute	Mass	1000.000000
-entity base attribute	Shadow tall	150.000000
-entity bool attribute	Inmovable
-collision_up	13.000000
-collision_down	3.500000
-collision_right	53.000000
-collision_left	55.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6604.789551	5881.070801
-ADD_NEW_SPRITE
-*rotate_by_move
-add_new_texture	data/textures/mech_1.png
-texture_offset_x	-26.000000
-texture_offset_y	-27.000000
-texture_offset_z	19.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_2.png
-texture_offset_x	-17.399998
-texture_offset_y	-12.400000
-texture_offset_z	3.500000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_3.png
-texture_offset_x	-25.500000
-texture_offset_y	-23.100000
-texture_offset_z	14.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_4.png
-texture_offset_x	-16.899996
-texture_offset_y	-18.700001
-texture_offset_z	11.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*target_gun
-add_new_texture	data/textures/head_gun_mech_violet_1.png
-texture_offset_x	-4.000000
-texture_offset_y	1.000000
-texture_offset_z	49.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_2.png
-texture_offset_x	-4.875000
-texture_offset_y	1.875000
-texture_offset_z	45.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_3.png
-texture_offset_x	-4.375000
-texture_offset_y	1.125000
-texture_offset_z	49.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_4.png
-texture_offset_x	-6.250000
-texture_offset_y	0.625000
-texture_offset_z	36.500000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_5.png
-texture_offset_x	-8.125000
-texture_offset_y	-17.375000
-texture_offset_z	51.875000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_6.png
-texture_offset_x	-15.375000
-texture_offset_y	1.000000
-texture_offset_z	36.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_7.png
-texture_offset_x	-27.500000
-texture_offset_y	0.875000
-texture_offset_z	49.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_8.png
-texture_offset_x	-15.000000
-texture_offset_y	41.750000
-texture_offset_z	5.375000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	25.000000
-texture_offset_y	-9.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	29.549992
-texture_offset_y	-8.249985
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	29.350006
-texture_offset_y	-6.999996
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	28.324989
-texture_offset_y	-8.450001
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	13.000000
-texture_offset_y	61.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-entity base attribute	Life	1000.000000
-entity base attribute	Mass	100.000000
-entity base attribute	Shadow tall	72.000000
-entity bool attribute	Controlled by AI
-collision_up	20.000000
-collision_down	20.000000
-collision_right	20.000000
-collision_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6686.000000	6137.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/beton_fence_horizontal.png
-texture_offset_x	-58.000000
-texture_offset_y	0.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	52.000000
-texture_offset_y	1.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-entity base attribute	Life	1000.000000
-entity base attribute	Mass	1000.000000
-entity base attribute	Shadow tall	150.000000
-entity bool attribute	Inmovable
-collision_up	13.000000
-collision_down	4.000000
-collision_right	53.000000
-collision_left	55.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6798.000000	6137.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/beton_fence_horizontal.png
-texture_offset_x	-58.000000
-texture_offset_y	0.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	52.000000
-texture_offset_y	1.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-entity base attribute	Life	1000.000000
-entity base attribute	Mass	1000.000000
-entity base attribute	Shadow tall	150.000000
-entity bool attribute	Inmovable
-collision_up	13.000000
-collision_down	4.000000
-collision_right	53.000000
-collision_left	55.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6781.000000	6403.000000
-ADD_NEW_SPRITE
-*wall_mode
-add_new_texture	data/textures/tall_building_c18_corner_left.png
-texture_offset_x	-289.000000
-texture_offset_y	-1.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/tall_building_c18_wall.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_offset_z	0.000000
-texture_copies	4
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/tall_building_c18_corner_right.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/tall_building_c18_window..png
-texture_offset_x	-234.000000
-texture_offset_y	-3.000000
-texture_offset_z	89.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	269.000000
-texture_offset_y	0.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-entity base attribute	Life	1000.000000
-entity base attribute	Mass	10000.000000
-entity base attribute	Shadow tall	512.000000
-entity bool attribute	Inmovable
-collision_up	169.000000
-collision_down	0.000000
-collision_right	271.000000
-collision_left	284.500000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6914.000000	6131.000000
-ADD_NEW_SPRITE
-*wall_mode
-add_new_texture	data/textures/building_yellow_01_left_corner.png
-texture_offset_x	-72.000000
-texture_offset_y	-18.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/building_yellow_01_wall.png
-texture_offset_x	-6.000000
-texture_offset_y	1.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/building_yellow_01_right_corner.png
-texture_offset_x	-7.000000
-texture_offset_y	0.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	56.000000
-texture_offset_y	-9.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	136.000000
-shadow_size_y	92.000000
-shadow_tall	637.500000
-shadow_bottom_tall	637.500000
-entity base attribute	Life	1000.000000
-entity bool attribute	Inmovable
-collision_up	52.000000
-collision_down	17.500000
-collision_right	56.000000
-collision_left	69.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6930.749512	6040.061035
-ADD_NEW_SPRITE
-*rotate_by_move
-add_new_texture	data/textures/mech_1.png
-texture_offset_x	-26.000000
-texture_offset_y	-27.000000
-texture_offset_z	19.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_2.png
-texture_offset_x	-17.399998
-texture_offset_y	-12.400000
-texture_offset_z	3.500000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_3.png
-texture_offset_x	-25.500000
-texture_offset_y	-23.100000
-texture_offset_z	14.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_4.png
-texture_offset_x	-16.899996
-texture_offset_y	-18.700001
-texture_offset_z	11.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*target_gun
-add_new_texture	data/textures/head_gun_mech_violet_1.png
-texture_offset_x	-4.000000
-texture_offset_y	1.000000
-texture_offset_z	49.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_2.png
-texture_offset_x	-4.875000
-texture_offset_y	1.875000
-texture_offset_z	45.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_3.png
-texture_offset_x	-4.375000
-texture_offset_y	1.125000
-texture_offset_z	49.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_4.png
-texture_offset_x	-6.250000
-texture_offset_y	0.625000
-texture_offset_z	36.500000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_5.png
-texture_offset_x	-8.125000
-texture_offset_y	-17.375000
-texture_offset_z	51.875000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_6.png
-texture_offset_x	-15.375000
-texture_offset_y	1.000000
-texture_offset_z	36.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_7.png
-texture_offset_x	-27.500000
-texture_offset_y	0.875000
-texture_offset_z	49.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_8.png
-texture_offset_x	-15.000000
-texture_offset_y	41.750000
-texture_offset_z	5.375000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	25.000000
-texture_offset_y	-9.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	29.549992
-texture_offset_y	-8.249985
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	29.350006
-texture_offset_y	-6.999996
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	28.324989
-texture_offset_y	-8.450001
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	13.000000
-texture_offset_y	61.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-entity base attribute	Life	1000.000000
-entity base attribute	Mass	100.000000
-entity base attribute	Shadow tall	72.000000
-entity bool attribute	Controlled by AI
-collision_up	20.000000
-collision_down	20.000000
-collision_right	20.000000
-collision_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	7103.000000	5782.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-entity base attribute	Life	1000.000000
-entity base attribute	Lightsoucre red	0.085000
-entity base attribute	Lightsoucre green	0.150000
-entity base attribute	Lightsoucre blue	0.225000
-entity bool attribute	Light Source
-entity bool attribute	Ghost
-collision_up	20.000000
-collision_down	20.000000
-collision_right	20.000000
-collision_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	7181.000000	5793.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/green_garage.png
-texture_offset_x	-143.000000
-texture_offset_y	-1.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	117.000000
-texture_offset_y	-2.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	252.000000
-shadow_size_y	134.000000
-shadow_tall	144.000000
-shadow_bottom_tall	144.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/beton_fence_horizontal.png
-texture_offset_x	-65.000000
-texture_offset_y	11.000000
-texture_offset_z	131.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	48.000000
-texture_offset_y	14.000000
-texture_offset_z	70.000000
-texture_copies	1
-shadow_size_x	116.000000
-shadow_size_y	13.000000
-shadow_tall	245.000000
-shadow_bottom_tall	245.000000
-entity base attribute	Life	1000.000000
-entity bool attribute	Inmovable
-collision_up	134.500000
-collision_down	2.000000
-collision_right	116.000000
-collision_left	122.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	7130.000000	6200.000000
-ADD_NEW_SPRITE
-*wall_mode
-add_new_texture	data/textures/building_yellow_01_left_corner.png
-texture_offset_x	-288.000000
-texture_offset_y	-31.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/building_yellow_01_wall.png
-texture_offset_x	0.000000
-texture_offset_y	1.000000
-texture_offset_z	0.000000
-texture_copies	5
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/building_yellow_01_right_corner.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	288.000000
-texture_offset_y	-16.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	565.000000
-shadow_size_y	127.000000
-shadow_tall	512.000000
-shadow_bottom_tall	512.000000
-entity base attribute	Life	1000.000000
-entity bool attribute	Inmovable
-collision_up	117.000000
-collision_down	28.000000
-collision_right	288.500000
-collision_left	285.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	7105.000000	6565.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/beton_fence_horizontal.png
-texture_offset_x	-58.000000
-texture_offset_y	0.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	52.000000
-texture_offset_y	1.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-entity base attribute	Life	1000.000000
-entity base attribute	Mass	1000.000000
-entity base attribute	Shadow tall	150.000000
-collision_up	20.000000
-collision_down	20.000000
-collision_right	20.000000
-collision_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	7363.000000	6131.000000
-ADD_NEW_SPRITE
-*wall_mode
-add_new_texture	data/textures/building_yellow_01_left_corner.png
-texture_offset_x	-72.000000
-texture_offset_y	-18.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/building_yellow_01_wall.png
-texture_offset_x	-6.000000
-texture_offset_y	1.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/building_yellow_01_right_corner.png
-texture_offset_x	-7.000000
-texture_offset_y	0.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	56.000000
-texture_offset_y	-9.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	136.000000
-shadow_size_y	92.000000
-shadow_tall	637.500000
-shadow_bottom_tall	637.500000
-entity base attribute	Life	1000.000000
-entity bool attribute	Inmovable
-collision_up	39.000000
-collision_down	17.500000
-collision_right	54.500000
-collision_left	69.500000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	7256.000000	6413.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/decor_sign_hotel.png
-texture_offset_x	99.000000
-texture_offset_y	10.000000
-texture_offset_z	97.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*wall_mode
-add_new_texture	data/textures/tall_building_c18_corner_left.png
-texture_offset_x	-99.000000
-texture_offset_y	-4.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/tall_building_c18_wall.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/tall_building_c18_corner_right.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/tall_building_c18_window..png
-texture_offset_x	-39.000000
-texture_offset_y	-5.000000
-texture_offset_z	89.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	100.000000
-texture_offset_y	-1.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-entity base attribute	Life	1000.000000
-entity base attribute	Mass	10000.000000
-entity base attribute	Shadow tall	512.000000
-entity bool attribute	Inmovable
-collision_up	169.000000
-collision_down	5.000000
-collision_right	97.500000
-collision_left	97.500000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	7577.598633	3990.609375
+ADD_NEW_ENTITY	5870.684082	5172.985352
 ADD_NEW_SPRITE
 *rotate_by_move
 add_new_texture	data/textures/mech_1.png
@@ -1488,6 +201,2300 @@ collision_up	20.000000
 collision_down	20.000000
 collision_right	20.000000
 collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	5903.000000	5775.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall_lamp.png
+texture_offset_x	-15.000000
+texture_offset_y	-2.000000
+texture_offset_z	108.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	2.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Lightsoucre blue	1.000000
+entity bool attribute	Light Source
+entity bool attribute	Ghost
+entity bool attribute	No path block
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	5819.000000	5689.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall_lamp.png
+texture_offset_x	-15.000000
+texture_offset_y	-2.000000
+texture_offset_z	108.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	2.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Lightsoucre red	1.000000
+entity bool attribute	Light Source
+entity bool attribute	Ghost
+entity bool attribute	No path block
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	5928.970215	6127.496094
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-26.000000
+texture_offset_y	-27.000000
+texture_offset_z	19.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-17.399998
+texture_offset_y	-12.400000
+texture_offset_z	3.500000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-25.500000
+texture_offset_y	-23.100000
+texture_offset_z	14.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.899996
+texture_offset_y	-18.700001
+texture_offset_z	11.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*target_gun
+add_new_texture	data/textures/head_gun_mech_violet_1.png
+texture_offset_x	-4.000000
+texture_offset_y	1.000000
+texture_offset_z	49.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_2.png
+texture_offset_x	-4.875000
+texture_offset_y	1.875000
+texture_offset_z	45.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_3.png
+texture_offset_x	-4.375000
+texture_offset_y	1.125000
+texture_offset_z	49.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_4.png
+texture_offset_x	-6.250000
+texture_offset_y	0.625000
+texture_offset_z	36.500000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_5.png
+texture_offset_x	-8.125000
+texture_offset_y	-17.375000
+texture_offset_z	51.875000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_6.png
+texture_offset_x	-15.375000
+texture_offset_y	1.000000
+texture_offset_z	36.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_7.png
+texture_offset_x	-27.500000
+texture_offset_y	0.875000
+texture_offset_z	49.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_8.png
+texture_offset_x	-15.000000
+texture_offset_y	41.750000
+texture_offset_z	5.375000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	25.000000
+texture_offset_y	-9.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.549992
+texture_offset_y	-8.249985
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.350006
+texture_offset_y	-6.999996
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	28.324989
+texture_offset_y	-8.450001
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	13.000000
+texture_offset_y	61.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	100.000000
+entity base attribute	Shadow tall	72.000000
+entity bool attribute	Controlled by AI
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6249.811523	5307.358887
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-26.000000
+texture_offset_y	-27.000000
+texture_offset_z	19.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-17.399998
+texture_offset_y	-12.400000
+texture_offset_z	3.500000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-25.500000
+texture_offset_y	-23.100000
+texture_offset_z	14.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.899996
+texture_offset_y	-18.700001
+texture_offset_z	11.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*target_gun
+add_new_texture	data/textures/head_gun_mech_violet_1.png
+texture_offset_x	-4.000000
+texture_offset_y	1.000000
+texture_offset_z	49.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_2.png
+texture_offset_x	-4.875000
+texture_offset_y	1.875000
+texture_offset_z	45.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_3.png
+texture_offset_x	-4.375000
+texture_offset_y	1.125000
+texture_offset_z	49.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_4.png
+texture_offset_x	-6.250000
+texture_offset_y	0.625000
+texture_offset_z	36.500000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_5.png
+texture_offset_x	-8.125000
+texture_offset_y	-17.375000
+texture_offset_z	51.875000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_6.png
+texture_offset_x	-15.375000
+texture_offset_y	1.000000
+texture_offset_z	36.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_7.png
+texture_offset_x	-27.500000
+texture_offset_y	0.875000
+texture_offset_z	49.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_8.png
+texture_offset_x	-15.000000
+texture_offset_y	41.750000
+texture_offset_z	5.375000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	25.000000
+texture_offset_y	-9.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.549992
+texture_offset_y	-8.249985
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.350006
+texture_offset_y	-6.999996
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	28.324989
+texture_offset_y	-8.450001
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	13.000000
+texture_offset_y	61.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	100.000000
+entity base attribute	Shadow tall	72.000000
+entity bool attribute	Controlled by AI
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6300.000000	5745.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/human.png
+texture_offset_x	-7.000000
+texture_offset_y	-1.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	-2.000000
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+collision_up	16.500000
+collision_down	14.500000
+collision_right	15.500000
+collision_left	12.750000
+path_block_up	6.500000
+path_block_down	18.500000
+path_block_right	9.500000
+path_block_left	15.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6373.000000	6124.000000
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/tall_building_c18_corner_left.png
+texture_offset_x	-174.000000
+texture_offset_y	-19.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/tall_building_c18_wall.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	2
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/tall_building_c18_corner_right.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/tall_building_c18_window..png
+texture_offset_x	-125.000000
+texture_offset_y	-2.000000
+texture_offset_z	89.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/tall_building_c18_window..png
+texture_offset_x	19.000000
+texture_offset_y	-2.000000
+texture_offset_z	90.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	151.000000
+texture_offset_y	1.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	322.000000
+shadow_size_y	169.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	10000.000000
+entity base attribute	Shadow tall	512.000000
+entity bool attribute	Inmovable
+collision_up	169.000000
+collision_down	0.000000
+collision_right	149.500000
+collision_left	165.500000
+path_block_up	176.500000
+path_block_down	0.000000
+path_block_right	128.000000
+path_block_left	161.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6203.870117	6104.000000
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-26.000000
+texture_offset_y	-27.000000
+texture_offset_z	19.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-17.399998
+texture_offset_y	-12.400000
+texture_offset_z	3.500000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-25.500000
+texture_offset_y	-23.100000
+texture_offset_z	14.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.899996
+texture_offset_y	-18.700001
+texture_offset_z	11.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*target_gun
+add_new_texture	data/textures/head_gun_mech_violet_1.png
+texture_offset_x	-4.000000
+texture_offset_y	1.000000
+texture_offset_z	49.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_2.png
+texture_offset_x	-4.875000
+texture_offset_y	1.875000
+texture_offset_z	45.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_3.png
+texture_offset_x	-4.375000
+texture_offset_y	1.125000
+texture_offset_z	49.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_4.png
+texture_offset_x	-6.250000
+texture_offset_y	0.625000
+texture_offset_z	36.500000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_5.png
+texture_offset_x	-8.125000
+texture_offset_y	-17.375000
+texture_offset_z	51.875000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_6.png
+texture_offset_x	-15.375000
+texture_offset_y	1.000000
+texture_offset_z	36.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_7.png
+texture_offset_x	-27.500000
+texture_offset_y	0.875000
+texture_offset_z	49.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_8.png
+texture_offset_x	-15.000000
+texture_offset_y	41.750000
+texture_offset_z	5.375000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	25.000000
+texture_offset_y	-9.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.549992
+texture_offset_y	-8.249985
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.350006
+texture_offset_y	-6.999996
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	28.324989
+texture_offset_y	-8.450001
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	13.000000
+texture_offset_y	61.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	100.000000
+entity base attribute	Shadow tall	72.000000
+entity bool attribute	Controlled by AI
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6486.000000	5675.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+collision_up	61.750000
+collision_down	79.500000
+collision_right	10.250000
+collision_left	2.750000
+path_block_up	60.500000
+path_block_down	79.250000
+path_block_right	8.500000
+path_block_left	2.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6532.000000	5769.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/basement.png
+texture_offset_x	-52.000000
+texture_offset_y	-175.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	-36.000000
+texture_offset_y	-83.000000
+texture_offset_z	9.000000
+texture_copies	1
+shadow_size_x	8.000000
+shadow_size_y	138.000000
+shadow_tall	100.750000
+shadow_bottom_tall	0.750000
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	Ghost
+entity bool attribute	No path block
+collision_up	0.000000
+collision_down	71.250000
+collision_right	50.250000
+collision_left	43.750000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6540.000000	5719.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+collision_up	19.750000
+collision_down	48.000000
+collision_right	40.250000
+collision_left	44.750000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6584.000000	5667.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+collision_up	69.000000
+collision_down	72.250000
+collision_right	8.000000
+collision_left	5.000000
+path_block_up	69.000000
+path_block_down	73.250000
+path_block_right	8.250000
+path_block_left	5.500000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6554.000000	6134.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-58.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	52.000000
+texture_offset_y	1.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	1000.000000
+entity base attribute	Shadow tall	150.000000
+entity bool attribute	Inmovable
+collision_up	13.000000
+collision_down	3.500000
+collision_right	53.000000
+collision_left	55.000000
+path_block_up	16.750000
+path_block_down	4.500000
+path_block_right	48.250000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6774.885742	4650.765137
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-26.000000
+texture_offset_y	-27.000000
+texture_offset_z	19.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-17.399998
+texture_offset_y	-12.400000
+texture_offset_z	3.500000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-25.500000
+texture_offset_y	-23.100000
+texture_offset_z	14.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.899996
+texture_offset_y	-18.700001
+texture_offset_z	11.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*target_gun
+add_new_texture	data/textures/head_gun_mech_violet_1.png
+texture_offset_x	-4.000000
+texture_offset_y	1.000000
+texture_offset_z	49.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_2.png
+texture_offset_x	-4.875000
+texture_offset_y	1.875000
+texture_offset_z	45.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_3.png
+texture_offset_x	-4.375000
+texture_offset_y	1.125000
+texture_offset_z	49.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_4.png
+texture_offset_x	-6.250000
+texture_offset_y	0.625000
+texture_offset_z	36.500000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_5.png
+texture_offset_x	-8.125000
+texture_offset_y	-17.375000
+texture_offset_z	51.875000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_6.png
+texture_offset_x	-15.375000
+texture_offset_y	1.000000
+texture_offset_z	36.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_7.png
+texture_offset_x	-27.500000
+texture_offset_y	0.875000
+texture_offset_z	49.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_8.png
+texture_offset_x	-15.000000
+texture_offset_y	41.750000
+texture_offset_z	5.375000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	25.000000
+texture_offset_y	-9.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.549992
+texture_offset_y	-8.249985
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.350006
+texture_offset_y	-6.999996
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	28.324989
+texture_offset_y	-8.450001
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	13.000000
+texture_offset_y	61.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	100.000000
+entity base attribute	Shadow tall	72.000000
+entity bool attribute	Controlled by AI
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6717.000000	5368.000000
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-26.000000
+texture_offset_y	-27.000000
+texture_offset_z	19.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-17.399998
+texture_offset_y	-12.400000
+texture_offset_z	3.500000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-25.500000
+texture_offset_y	-23.100000
+texture_offset_z	14.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.899996
+texture_offset_y	-18.700001
+texture_offset_z	11.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*target_gun
+add_new_texture	data/textures/head_gun_mech_violet_1.png
+texture_offset_x	-4.000000
+texture_offset_y	1.000000
+texture_offset_z	49.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_2.png
+texture_offset_x	-4.875000
+texture_offset_y	1.875000
+texture_offset_z	45.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_3.png
+texture_offset_x	-4.375000
+texture_offset_y	1.125000
+texture_offset_z	49.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_4.png
+texture_offset_x	-6.250000
+texture_offset_y	0.625000
+texture_offset_z	36.500000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_5.png
+texture_offset_x	-8.125000
+texture_offset_y	-17.375000
+texture_offset_z	51.875000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_6.png
+texture_offset_x	-15.375000
+texture_offset_y	1.000000
+texture_offset_z	36.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_7.png
+texture_offset_x	-27.500000
+texture_offset_y	0.875000
+texture_offset_z	49.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_8.png
+texture_offset_x	-15.000000
+texture_offset_y	41.750000
+texture_offset_z	5.375000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	26.000000
+texture_offset_y	-4.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	52.000000
+shadow_size_y	18.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.549992
+texture_offset_y	-8.249985
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.350006
+texture_offset_y	-6.999996
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	28.324989
+texture_offset_y	-8.450001
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	13.000000
+texture_offset_y	61.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+*camera_target
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	100.000000
+entity base attribute	Shadow tall	72.000000
+entity base attribute	Lightsoucre red	0.620000
+entity base attribute	Lightsoucre green	0.290000
+entity base attribute	Lightsoucre blue	0.170000
+entity bool attribute	Controlled by Player
+entity bool attribute	Light Source
+collision_up	11.000000
+collision_down	3.000000
+collision_right	24.250000
+collision_left	24.750000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6757.000000	5781.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/extension_c18.png
+texture_offset_x	-72.000000
+texture_offset_y	-6.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+collision_up	54.500000
+collision_down	5.500000
+collision_right	74.000000
+collision_left	70.000000
+path_block_up	20.000000
+path_block_down	8.000000
+path_block_right	47.500000
+path_block_left	48.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6724.000000	5828.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_c18.png
+texture_offset_x	-122.000000
+texture_offset_y	110.000000
+texture_offset_z	0.000000
+texture_copies	2
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/wall_corner_c18_left.png
+texture_offset_x	-156.000000
+texture_offset_y	-17.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+add_new_texture	data/textures/wall_c18.png
+texture_offset_x	-8.000000
+texture_offset_y	16.000000
+texture_offset_z	0.000000
+texture_copies	2
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+add_new_texture	data/textures/wall_corner_c18_right.png
+texture_offset_x	-5.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+collision_up	78.500000
+collision_down	15.000000
+collision_right	149.000000
+collision_left	156.000000
+path_block_up	70.000000
+path_block_down	15.000000
+path_block_right	144.500000
+path_block_left	160.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6798.000000	6137.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-58.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	52.000000
+texture_offset_y	1.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	1000.000000
+entity base attribute	Shadow tall	150.000000
+entity bool attribute	Inmovable
+collision_up	13.000000
+collision_down	4.000000
+collision_right	53.000000
+collision_left	55.000000
+path_block_up	20.000000
+path_block_down	12.000000
+path_block_right	45.000000
+path_block_left	46.250000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6712.000000	6138.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-58.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	52.000000
+texture_offset_y	1.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	1000.000000
+entity base attribute	Shadow tall	150.000000
+entity bool attribute	Inmovable
+collision_up	13.000000
+collision_down	4.000000
+collision_right	53.000000
+collision_left	55.000000
+path_block_up	20.000000
+path_block_down	6.500000
+path_block_right	23.250000
+path_block_left	27.500000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6781.000000	6403.000000
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/tall_building_c18_corner_left.png
+texture_offset_x	-289.000000
+texture_offset_y	-1.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/tall_building_c18_wall.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	4
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/tall_building_c18_corner_right.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/tall_building_c18_window..png
+texture_offset_x	-234.000000
+texture_offset_y	-3.000000
+texture_offset_z	89.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	269.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	10000.000000
+entity base attribute	Shadow tall	512.000000
+entity bool attribute	Inmovable
+collision_up	169.000000
+collision_down	0.000000
+collision_right	271.000000
+collision_left	284.500000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6929.000000	6163.000000
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/building_yellow_01_left_corner.png
+texture_offset_x	-72.000000
+texture_offset_y	-18.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/building_yellow_01_wall.png
+texture_offset_x	-6.000000
+texture_offset_y	1.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/building_yellow_01_right_corner.png
+texture_offset_x	-7.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	56.000000
+texture_offset_y	-9.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	136.000000
+shadow_size_y	92.000000
+shadow_tall	637.500000
+shadow_bottom_tall	637.500000
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+collision_up	52.000000
+collision_down	17.500000
+collision_right	56.000000
+collision_left	69.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	35.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6960.000000	6241.000000
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/building_yellow_01_left_corner.png
+texture_offset_x	-288.000000
+texture_offset_y	-31.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/building_yellow_01_wall.png
+texture_offset_x	0.000000
+texture_offset_y	1.000000
+texture_offset_z	0.000000
+texture_copies	5
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/building_yellow_01_right_corner.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	288.000000
+texture_offset_y	-16.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	565.000000
+shadow_size_y	127.000000
+shadow_tall	512.000000
+shadow_bottom_tall	512.000000
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+collision_up	117.000000
+collision_down	28.000000
+collision_right	288.500000
+collision_left	285.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	288.750000
+path_block_left	286.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6868.645508	6378.000000
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-26.000000
+texture_offset_y	-27.000000
+texture_offset_z	19.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-17.399998
+texture_offset_y	-12.400000
+texture_offset_z	3.500000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-25.500000
+texture_offset_y	-23.100000
+texture_offset_z	14.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.899996
+texture_offset_y	-18.700001
+texture_offset_z	11.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*target_gun
+add_new_texture	data/textures/head_gun_mech_violet_1.png
+texture_offset_x	-4.000000
+texture_offset_y	1.000000
+texture_offset_z	49.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_2.png
+texture_offset_x	-4.875000
+texture_offset_y	1.875000
+texture_offset_z	45.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_3.png
+texture_offset_x	-4.375000
+texture_offset_y	1.125000
+texture_offset_z	49.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_4.png
+texture_offset_x	-6.250000
+texture_offset_y	0.625000
+texture_offset_z	36.500000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_5.png
+texture_offset_x	-8.125000
+texture_offset_y	-17.375000
+texture_offset_z	51.875000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_6.png
+texture_offset_x	-15.375000
+texture_offset_y	1.000000
+texture_offset_z	36.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_7.png
+texture_offset_x	-27.500000
+texture_offset_y	0.875000
+texture_offset_z	49.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_8.png
+texture_offset_x	-15.000000
+texture_offset_y	41.750000
+texture_offset_z	5.375000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	25.000000
+texture_offset_y	-9.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.549992
+texture_offset_y	-8.249985
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.350006
+texture_offset_y	-6.999996
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	28.324989
+texture_offset_y	-8.450001
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	13.000000
+texture_offset_y	61.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	100.000000
+entity base attribute	Shadow tall	72.000000
+entity bool attribute	Controlled by AI
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6828.645020	6378.000000
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/mech_1.png
+texture_offset_x	-26.000000
+texture_offset_y	-27.000000
+texture_offset_z	19.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_2.png
+texture_offset_x	-17.399998
+texture_offset_y	-12.400000
+texture_offset_z	3.500000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_3.png
+texture_offset_x	-25.500000
+texture_offset_y	-23.100000
+texture_offset_z	14.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/mech_4.png
+texture_offset_x	-16.899996
+texture_offset_y	-18.700001
+texture_offset_z	11.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*target_gun
+add_new_texture	data/textures/head_gun_mech_violet_1.png
+texture_offset_x	-4.000000
+texture_offset_y	1.000000
+texture_offset_z	49.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_2.png
+texture_offset_x	-4.875000
+texture_offset_y	1.875000
+texture_offset_z	45.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_3.png
+texture_offset_x	-4.375000
+texture_offset_y	1.125000
+texture_offset_z	49.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_4.png
+texture_offset_x	-6.250000
+texture_offset_y	0.625000
+texture_offset_z	36.500000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_5.png
+texture_offset_x	-8.125000
+texture_offset_y	-17.375000
+texture_offset_z	51.875000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_6.png
+texture_offset_x	-15.375000
+texture_offset_y	1.000000
+texture_offset_z	36.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_7.png
+texture_offset_x	-27.500000
+texture_offset_y	0.875000
+texture_offset_z	49.250000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/head_gun_mech_violet_8.png
+texture_offset_x	-15.000000
+texture_offset_y	41.750000
+texture_offset_z	5.375000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	25.000000
+texture_offset_y	-9.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.549992
+texture_offset_y	-8.249985
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.350006
+texture_offset_y	-6.999996
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	28.324989
+texture_offset_y	-8.450001
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	13.000000
+texture_offset_y	61.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	100.000000
+entity base attribute	Shadow tall	72.000000
+entity bool attribute	Controlled by AI
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	7103.000000	5782.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Lightsoucre red	0.085000
+entity base attribute	Lightsoucre green	0.150000
+entity base attribute	Lightsoucre blue	0.225000
+entity bool attribute	Light Source
+entity bool attribute	Ghost
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	7181.000000	5793.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/green_garage.png
+texture_offset_x	-143.000000
+texture_offset_y	-1.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	117.000000
+texture_offset_y	-2.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	252.000000
+shadow_size_y	134.000000
+shadow_tall	144.000000
+shadow_bottom_tall	144.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-65.000000
+texture_offset_y	11.000000
+texture_offset_z	131.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	48.000000
+texture_offset_y	14.000000
+texture_offset_z	70.000000
+texture_copies	1
+shadow_size_x	116.000000
+shadow_size_y	13.000000
+shadow_tall	245.000000
+shadow_bottom_tall	245.000000
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+collision_up	134.500000
+collision_down	2.000000
+collision_right	116.000000
+collision_left	122.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	7072.000000	6565.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-58.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	52.000000
+texture_offset_y	1.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	1000.000000
+entity base attribute	Shadow tall	150.000000
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	7256.000000	6413.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/decor_sign_hotel.png
+texture_offset_x	99.000000
+texture_offset_y	10.000000
+texture_offset_z	97.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/tall_building_c18_corner_left.png
+texture_offset_x	-99.000000
+texture_offset_y	-4.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/tall_building_c18_wall.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/tall_building_c18_corner_right.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/tall_building_c18_window..png
+texture_offset_x	-39.000000
+texture_offset_y	-5.000000
+texture_offset_z	89.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	100.000000
+texture_offset_y	-1.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	10000.000000
+entity base attribute	Shadow tall	512.000000
+entity bool attribute	Inmovable
+collision_up	169.000000
+collision_down	5.000000
+collision_right	97.500000
+collision_left	97.500000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	7575.000000	5525.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/Lamp_supernove.png
+texture_offset_x	-19.000000
+texture_offset_y	-10.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	-4.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Lightsoucre red	0.145000
+entity base attribute	Lightsoucre green	0.240000
+entity base attribute	Lightsoucre blue	0.425000
+entity bool attribute	Inmovable
+entity bool attribute	Light Source
+entity bool attribute	No path block
+collision_up	14.000000
+collision_down	10.000000
+collision_right	20.500000
+collision_left	19.500000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	7564.000000	6231.000000
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/building_yellow_01_left_corner.png
+texture_offset_x	-72.000000
+texture_offset_y	-18.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/building_yellow_01_wall.png
+texture_offset_x	-6.000000
+texture_offset_y	1.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+add_new_texture	data/textures/building_yellow_01_right_corner.png
+texture_offset_x	-7.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	56.000000
+texture_offset_y	-9.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	136.000000
+shadow_size_y	92.000000
+shadow_tall	637.500000
+shadow_bottom_tall	637.500000
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+collision_up	39.000000
+collision_down	17.500000
+collision_right	54.500000
+collision_left	69.500000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
 - PUT TO MAP -
 
 =====================================
@@ -1551,32 +2558,42 @@ collision_up	169.000000
 collision_down	0.000000
 collision_right	271.000000
 collision_left	284.500000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
 - PUT TO MAP -
 
 =====================================
 
-ADD_NEW_ENTITY	7609.000000	6326.000000
+ADD_NEW_ENTITY	7797.217285	5597.601074
 ADD_NEW_SPRITE
-add_new_texture	data/textures/Lamp_supernove.png
-texture_offset_x	-19.000000
-texture_offset_y	-10.000000
+add_new_texture	data/textures/canal_c18.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
 texture_offset_z	0.000000
 texture_copies	1
 shadow_size_x	1.000000
 shadow_size_y	1.000000
 shadow_tall	100.000000
-shadow_bottom_tall	-4.000000
+shadow_bottom_tall	1.000000
 entity base attribute	Life	1000.000000
-entity base attribute	Lightsoucre red	0.145000
-entity base attribute	Lightsoucre green	0.240000
-entity base attribute	Lightsoucre blue	0.425000
-entity bool attribute	Inmovable
-entity bool attribute	Light Source
-entity bool attribute	No path block
-collision_up	14.000000
-collision_down	10.000000
-collision_right	20.500000
-collision_left	19.500000
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
 - PUT TO MAP -
 
 =====================================
@@ -1640,179 +2657,43 @@ collision_up	169.000000
 collision_down	5.000000
 collision_right	97.500000
 collision_left	97.500000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
 - PUT TO MAP -
 
 =====================================
 
-ADD_NEW_ENTITY	7907.415039	4034.780518
+ADD_NEW_ENTITY	7848.000000	6242.000000
 ADD_NEW_SPRITE
-*rotate_by_move
-add_new_texture	data/textures/mech_1.png
-texture_offset_x	-26.000000
-texture_offset_y	-27.000000
-texture_offset_z	19.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_2.png
-texture_offset_x	-17.399998
-texture_offset_y	-12.400000
-texture_offset_z	3.500000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_3.png
-texture_offset_x	-25.500000
-texture_offset_y	-23.100000
-texture_offset_z	14.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_4.png
-texture_offset_x	-16.899996
-texture_offset_y	-18.700001
-texture_offset_z	11.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*target_gun
-add_new_texture	data/textures/head_gun_mech_violet_1.png
-texture_offset_x	-4.000000
-texture_offset_y	1.000000
-texture_offset_z	49.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_2.png
-texture_offset_x	-4.875000
-texture_offset_y	1.875000
-texture_offset_z	45.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_3.png
-texture_offset_x	-4.375000
-texture_offset_y	1.125000
-texture_offset_z	49.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_4.png
-texture_offset_x	-6.250000
-texture_offset_y	0.625000
-texture_offset_z	36.500000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_5.png
-texture_offset_x	-8.125000
-texture_offset_y	-17.375000
-texture_offset_z	51.875000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_6.png
-texture_offset_x	-15.375000
-texture_offset_y	1.000000
-texture_offset_z	36.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_7.png
-texture_offset_x	-27.500000
-texture_offset_y	0.875000
-texture_offset_z	49.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_8.png
-texture_offset_x	-15.000000
-texture_offset_y	41.750000
-texture_offset_z	5.375000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	25.000000
-texture_offset_y	-9.000000
+add_new_texture	data/textures/canal_c18.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
 texture_offset_z	0.000000
 texture_copies	1
 shadow_size_x	1.000000
 shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	29.549992
-texture_offset_y	-8.249985
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	29.350006
-texture_offset_y	-6.999996
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	28.324989
-texture_offset_y	-8.450001
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	13.000000
-texture_offset_y	61.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
+shadow_tall	99.000000
+shadow_bottom_tall	1.000000
 entity base attribute	Life	1000.000000
-entity base attribute	Mass	100.000000
-entity base attribute	Shadow tall	72.000000
-entity bool attribute	Controlled by AI
+entity bool attribute	Inmovable
 collision_up	20.000000
 collision_down	20.000000
 collision_right	20.000000
 collision_left	20.000000
+path_block_up	20.000000
+path_block_down	35.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
 - PUT TO MAP -
 
 =====================================
@@ -1856,383 +2737,14 @@ collision_up	20.000000
 collision_down	13.250000
 collision_right	65.750000
 collision_left	105.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	7900.369629	8117.093750
-ADD_NEW_SPRITE
-*rotate_by_move
-add_new_texture	data/textures/mech_1.png
-texture_offset_x	-26.000000
-texture_offset_y	-27.000000
-texture_offset_z	19.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_2.png
-texture_offset_x	-17.399998
-texture_offset_y	-12.400000
-texture_offset_z	3.500000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_3.png
-texture_offset_x	-25.500000
-texture_offset_y	-23.100000
-texture_offset_z	14.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_4.png
-texture_offset_x	-16.899996
-texture_offset_y	-18.700001
-texture_offset_z	11.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*target_gun
-add_new_texture	data/textures/head_gun_mech_violet_1.png
-texture_offset_x	-4.000000
-texture_offset_y	1.000000
-texture_offset_z	49.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_2.png
-texture_offset_x	-4.875000
-texture_offset_y	1.875000
-texture_offset_z	45.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_3.png
-texture_offset_x	-4.375000
-texture_offset_y	1.125000
-texture_offset_z	49.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_4.png
-texture_offset_x	-6.250000
-texture_offset_y	0.625000
-texture_offset_z	36.500000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_5.png
-texture_offset_x	-8.125000
-texture_offset_y	-17.375000
-texture_offset_z	51.875000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_6.png
-texture_offset_x	-15.375000
-texture_offset_y	1.000000
-texture_offset_z	36.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_7.png
-texture_offset_x	-27.500000
-texture_offset_y	0.875000
-texture_offset_z	49.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_8.png
-texture_offset_x	-15.000000
-texture_offset_y	41.750000
-texture_offset_z	5.375000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	25.000000
-texture_offset_y	-9.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	29.549992
-texture_offset_y	-8.249985
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	29.350006
-texture_offset_y	-6.999996
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	28.324989
-texture_offset_y	-8.450001
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	13.000000
-texture_offset_y	61.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-entity base attribute	Life	1000.000000
-entity base attribute	Mass	100.000000
-entity base attribute	Shadow tall	72.000000
-entity bool attribute	Controlled by AI
-collision_up	20.000000
-collision_down	20.000000
-collision_right	20.000000
-collision_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	8495.150391	8110.531738
-ADD_NEW_SPRITE
-*rotate_by_move
-add_new_texture	data/textures/mech_1.png
-texture_offset_x	-26.000000
-texture_offset_y	-27.000000
-texture_offset_z	19.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_2.png
-texture_offset_x	-17.399998
-texture_offset_y	-12.400000
-texture_offset_z	3.500000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_3.png
-texture_offset_x	-25.500000
-texture_offset_y	-23.100000
-texture_offset_z	14.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_4.png
-texture_offset_x	-16.899996
-texture_offset_y	-18.700001
-texture_offset_z	11.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*target_gun
-add_new_texture	data/textures/head_gun_mech_violet_1.png
-texture_offset_x	-4.000000
-texture_offset_y	1.000000
-texture_offset_z	49.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_2.png
-texture_offset_x	-4.875000
-texture_offset_y	1.875000
-texture_offset_z	45.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_3.png
-texture_offset_x	-4.375000
-texture_offset_y	1.125000
-texture_offset_z	49.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_4.png
-texture_offset_x	-6.250000
-texture_offset_y	0.625000
-texture_offset_z	36.500000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_5.png
-texture_offset_x	-8.125000
-texture_offset_y	-17.375000
-texture_offset_z	51.875000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_6.png
-texture_offset_x	-15.375000
-texture_offset_y	1.000000
-texture_offset_z	36.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_7.png
-texture_offset_x	-27.500000
-texture_offset_y	0.875000
-texture_offset_z	49.250000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/head_gun_mech_violet_8.png
-texture_offset_x	-15.000000
-texture_offset_y	41.750000
-texture_offset_z	5.375000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	25.000000
-texture_offset_y	-9.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	29.549992
-texture_offset_y	-8.249985
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	29.350006
-texture_offset_y	-6.999996
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	28.324989
-texture_offset_y	-8.450001
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	13.000000
-texture_offset_y	61.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-entity base attribute	Life	1000.000000
-entity base attribute	Mass	100.000000
-entity base attribute	Shadow tall	72.000000
-entity bool attribute	Controlled by AI
-collision_up	20.000000
-collision_down	20.000000
-collision_right	20.000000
-collision_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	9534.119141	6026.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/basement.png
-texture_offset_x	-58.000000
-texture_offset_y	-6.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	-41.000000
-texture_offset_y	-1.000000
-texture_offset_z	9.000000
-texture_copies	1
-shadow_size_x	-0.000000
-shadow_size_y	74.000000
-shadow_tall	130.750000
-shadow_bottom_tall	130.750000
-entity base attribute	Life	1000.000000
-collision_up	134.250000
-collision_down	2.250000
-collision_right	54.250000
-collision_left	50.750000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
 - PUT TO MAP -
 
 =====================================

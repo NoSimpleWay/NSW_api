@@ -246,6 +246,7 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 		}
 	}
 
+	////////////////////////////////////////////////////////////////////////////////////////////////
 
 	w_string += "collision_up\t";
 	w_string += std::to_string(*e->collision_up);
@@ -262,6 +263,45 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 	w_string += "collision_left\t";
 	w_string += std::to_string(*e->collision_left);
 	w_string += "\n";
+
+	////////////////////////////////////////////////////////////////////////////////////////////////
+
+	w_string += "path_block_up\t";
+	w_string += std::to_string(*e->path_block_gabarite_up);
+	w_string += "\n";
+
+	w_string += "path_block_down\t";
+	w_string += std::to_string(*e->path_block_gabarite_down);
+	w_string += "\n";
+
+	w_string += "path_block_right\t";
+	w_string += std::to_string(*e->path_block_gabarite_right);
+	w_string += "\n";
+
+	w_string += "path_block_left\t";
+	w_string += std::to_string(*e->path_block_gabarite_left);
+	w_string += "\n";
+
+	////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+	w_string += "shadow_block_up\t";
+	w_string += std::to_string(*e->shadow_block_gabarite_up);
+	w_string += "\n";
+
+	w_string += "shadow_block_down\t";
+	w_string += std::to_string(*e->shadow_block_gabarite_down);
+	w_string += "\n";
+
+	w_string += "shadow_block_right\t";
+	w_string += std::to_string(*e->shadow_block_gabarite_right);
+	w_string += "\n";
+
+	w_string += "shadow_block_left\t";
+	w_string += std::to_string(*e->shadow_block_gabarite_left);
+	w_string += "\n";
+
+	////////////////////////////////////////////////////////////////////////////////////////////////
 
 	if (e->action_on_hit != NULL)
 	{
@@ -528,6 +568,16 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 				if (EFile::data_array[i] == "collision_right") { i++; *just_created_entity->collision_right = std::stof(EFile::data_array[i]); }
 				if (EFile::data_array[i] == "collision_up") { i++; *just_created_entity->collision_up = std::stof(EFile::data_array[i]); }
 
+				if (EFile::data_array[i] == "path_block_down") { i++; *just_created_entity->path_block_gabarite_down = std::stof(EFile::data_array[i]); }
+				if (EFile::data_array[i] == "path_block_left") { i++; *just_created_entity->path_block_gabarite_left = std::stof(EFile::data_array[i]); }
+				if (EFile::data_array[i] == "path_block_right") { i++; *just_created_entity->path_block_gabarite_right = std::stof(EFile::data_array[i]); }
+				if (EFile::data_array[i] == "path_block_up") { i++; *just_created_entity->path_block_gabarite_up = std::stof(EFile::data_array[i]); }
+
+				if (EFile::data_array[i] == "shadow_block_down") { i++; *just_created_entity->shadow_block_gabarite_down = std::stof(EFile::data_array[i]); }
+				if (EFile::data_array[i] == "shadow_block_left") { i++; *just_created_entity->shadow_block_gabarite_left = std::stof(EFile::data_array[i]); }
+				if (EFile::data_array[i] == "shadow_block_right") { i++; *just_created_entity->shadow_block_gabarite_right = std::stof(EFile::data_array[i]); }
+				if (EFile::data_array[i] == "shadow_block_up") { i++; *just_created_entity->shadow_block_gabarite_up = std::stof(EFile::data_array[i]); }
+
 				if (EFile::data_array[i] == "hit_action")
 				{
 					i++;
@@ -756,6 +806,20 @@ void EBA::action_slider_sky_color(EButton* _b, float _d)
 	if (_b->data_id == 0) { EColor::COLOR_SKY_AMBIENT->color_red = _b->slider_value; }
 	if (_b->data_id == 1) { EColor::COLOR_SKY_AMBIENT->color_green = _b->slider_value; }
 	if (_b->data_id == 2) { EColor::COLOR_SKY_AMBIENT->color_blue = _b->slider_value; }
+}
+
+void EBA::action_select_entity_gabarite_mode(EButton* _b, float _d)
+{
+	*EWindow::window_editor->entity_gabarite_mode_active = _b->data_id;
+
+	for (int i = 0; i < EWindow::window_editor->select_gabarite_mode_button_list.size(); i++)
+	{
+		EWindow::window_editor->select_gabarite_mode_button_list.at(i)->rama_thikness = 1.0f;
+		EWindow::window_editor->select_gabarite_mode_button_list.at(i)->rama_color->set_color (EColor::COLOR_GRAY);
+	}
+
+	EWindow::window_editor->select_gabarite_mode_button_list.at(_b->data_id)->rama_thikness = 3.0f;
+	EWindow::window_editor->select_gabarite_mode_button_list.at(_b->data_id)->rama_color->set_color(EColor::COLOR_YELLOW);
 }
 
 void EBA::action_set_sprite_mode_wall(EButton* _b, float _d)

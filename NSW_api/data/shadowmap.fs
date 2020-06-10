@@ -28,7 +28,7 @@ void main()
 	
 	//shadow_coord = vec2(ShadowCoord.x, ShadowCoord.y * (1.0f - texture(texture1, SuperMapCoord).b) + FullShadowCoord * texture(texture1, SuperMapCoord).b - texture(texture1, SuperMapCoord).r * 0.161f) + vec2(offset_x, offset_y);
 	
-	shadow_coord = vec2(ShadowCoord.x, FullShadowCoord  - texture(texture1, SuperMapCoord).g * 0.161f) + vec2(offset_x, offset_y);
+	shadow_coord = vec2(ShadowCoord.x, FullShadowCoord  - texture(texture1, SuperMapCoord).g * 0.161f + texture(texture1, SuperMapCoord).b * 0.161f) + vec2(offset_x, offset_y);
 	
 	shadow_multiplier
 	=

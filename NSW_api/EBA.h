@@ -44,6 +44,8 @@ public:
 	static void action_slider_light_source_color(EButton* _b, float _d);
 	static void action_slider_sky_color(EButton* _b, float _d);
 
+	static void action_select_entity_gabarite_mode(EButton* _b, float _d);
+
 	//static void action_slider_sky_color(EButton* _b, float _d);
 
 

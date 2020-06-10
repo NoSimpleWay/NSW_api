@@ -370,6 +370,28 @@ EWindowEditor::EWindowEditor()
 		link_to_sprite_editor_group.push_back(but);
 	}
 
+	for (int i = 0; i < 3; i++)
+	{
+		but = new EButton(500.0f + 36.0f * i, -10.0f, 30.0f, 30.0f);
+		but->master_window = this;
+		but->have_icon = true;
+
+
+		if (i == 0) { but->gabarite = ETextureAtlas::put_texture_to_atlas("data/textures/button_gabarite_mode_collision.png", EWindow::default_texture_atlas); }
+		if (i == 1) { but->gabarite = ETextureAtlas::put_texture_to_atlas("data/textures/button_gabarite_mode_path_block.png", EWindow::default_texture_atlas); }
+		if (i == 2) { but->gabarite = ETextureAtlas::put_texture_to_atlas("data/textures/button_gabarite_mode_shadow_block.png", EWindow::default_texture_atlas); }
+
+		but->have_rama = true;
+		but->data_id = i;
+
+		but->position_mode_x = Enums::PositionMode::LEFT;
+		but->position_mode_y = Enums::PositionMode::UP;
+		but->action_on_left_click = &EBA::action_select_entity_gabarite_mode;
+
+		button_list.push_back(but);
+		select_gabarite_mode_button_list.push_back(but);
+	}
+
 
 	////////////////////////////////////////////////
 /////	shadow color red		////////////////
@@ -1124,53 +1146,123 @@ void EWindowEditor::update(float _d)
 			float xx= ECamera::get_world_position_x(EWindow::window_test->game_camera);
 			float yy= ECamera::get_world_position_y(EWindow::window_test->game_camera);
 
-			if
-			(
-				(xx >= *selected_entity->position_x - *selected_entity->collision_left - 10.0f)
-				&
-				(xx <= *selected_entity->position_x - *selected_entity->collision_left + 10.0f)
-				&
-				(yy <= *selected_entity->position_y + *selected_entity->collision_up + 10.0f)
-				&
-				(yy >= *selected_entity->position_y - *selected_entity->collision_down - 10.0f)
-			)
-			{catched_collision_left = true; }
+			if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabariteCollision)
+			{
+				if
+					(
+					(xx >= *selected_entity->position_x - *selected_entity->collision_left - 10.0f)
+						&
+						(xx <= *selected_entity->position_x - *selected_entity->collision_left + 10.0f)
+						&
+						(yy <= *selected_entity->position_y + *selected_entity->collision_up + 10.0f)
+						&
+						(yy >= *selected_entity->position_y - *selected_entity->collision_down - 10.0f)
+						)
+				{
+					catched_collision_left = true;
+				}
 
-			if
-			(
-				(xx >= *selected_entity->position_x - *selected_entity->collision_left - 10.0f)
-				&
-				(xx <= *selected_entity->position_x + *selected_entity->collision_right + 10.0f)
-				&
-				(yy <= *selected_entity->position_y + *selected_entity->collision_up + 10.0f)
-				&
-				(yy >= *selected_entity->position_y + *selected_entity->collision_up - 10.0f)
-			)
-			{catched_collision_up = true; }
+				if
+					(
+					(xx >= *selected_entity->position_x - *selected_entity->collision_left - 10.0f)
+						&
+						(xx <= *selected_entity->position_x + *selected_entity->collision_right + 10.0f)
+						&
+						(yy <= *selected_entity->position_y + *selected_entity->collision_up + 10.0f)
+						&
+						(yy >= *selected_entity->position_y + *selected_entity->collision_up - 10.0f)
+						)
+				{
+					catched_collision_up = true;
+				}
 
-			if
-			(
-				(xx <= *selected_entity->position_x + *selected_entity->collision_right + 10.0f)
-				&
-				(xx >= *selected_entity->position_x + *selected_entity->collision_right - 10.0f)
-				&
-				(yy <= *selected_entity->position_y + *selected_entity->collision_up + 10.0f)
-				&
-				(yy >= *selected_entity->position_y - *selected_entity->collision_down - 10.0f)
-			)
-			{catched_collision_right = true; }
+				if
+					(
+					(xx <= *selected_entity->position_x + *selected_entity->collision_right + 10.0f)
+						&
+						(xx >= *selected_entity->position_x + *selected_entity->collision_right - 10.0f)
+						&
+						(yy <= *selected_entity->position_y + *selected_entity->collision_up + 10.0f)
+						&
+						(yy >= *selected_entity->position_y - *selected_entity->collision_down - 10.0f)
+						)
+				{
+					catched_collision_right = true;
+				}
 
-			if
-			(
-				(xx >= *selected_entity->position_x - *selected_entity->collision_left - 10.0f)
-				&
-				(xx <= *selected_entity->position_x + *selected_entity->collision_right + 10.0f)
-				&
-				(yy >= *selected_entity->position_y - *selected_entity->collision_down - 10.0f)
-				&
-				(yy <= *selected_entity->position_y - *selected_entity->collision_down + 10.0f)
-			)
-			{catched_collision_down = true; }
+				if
+					(
+					(xx >= *selected_entity->position_x - *selected_entity->collision_left - 10.0f)
+						&
+						(xx <= *selected_entity->position_x + *selected_entity->collision_right + 10.0f)
+						&
+						(yy >= *selected_entity->position_y - *selected_entity->collision_down - 10.0f)
+						&
+						(yy <= *selected_entity->position_y - *selected_entity->collision_down + 10.0f)
+						)
+				{
+					catched_collision_down = true;
+				}
+			}
+
+			if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabaritePathBlock)
+			{
+				if
+					(
+						(xx >= *selected_entity->position_x - *selected_entity->path_block_gabarite_left - 10.0f)
+						&
+						(xx <= *selected_entity->position_x - *selected_entity->path_block_gabarite_left + 10.0f)
+						&
+						(yy <= *selected_entity->position_y + *selected_entity->path_block_gabarite_up + 10.0f)
+						&
+						(yy >= *selected_entity->position_y - *selected_entity->path_block_gabarite_up - 10.0f)
+						)
+				{
+					catched_collision_left = true;
+				}
+
+				if
+					(
+					(xx >= *selected_entity->position_x - *selected_entity->path_block_gabarite_left - 10.0f)
+						&
+						(xx <= *selected_entity->position_x + *selected_entity->path_block_gabarite_right + 10.0f)
+						&
+						(yy <= *selected_entity->position_y + *selected_entity->path_block_gabarite_up + 10.0f)
+						&
+						(yy >= *selected_entity->position_y + *selected_entity->path_block_gabarite_up - 10.0f)
+						)
+				{
+					catched_collision_up = true;
+				}
+
+				if
+					(
+					(xx <= *selected_entity->position_x + *selected_entity->path_block_gabarite_right + 10.0f)
+						&
+						(xx >= *selected_entity->position_x + *selected_entity->path_block_gabarite_right - 10.0f)
+						&
+						(yy <= *selected_entity->position_y + *selected_entity->path_block_gabarite_up + 10.0f)
+						&
+						(yy >= *selected_entity->position_y - *selected_entity->path_block_gabarite_down - 10.0f)
+						)
+				{
+					catched_collision_right = true;
+				}
+
+				if
+					(
+					(xx >= *selected_entity->position_x - *selected_entity->path_block_gabarite_left - 10.0f)
+						&
+						(xx <= *selected_entity->position_x + *selected_entity->path_block_gabarite_right + 10.0f)
+						&
+						(yy >= *selected_entity->position_y - *selected_entity->path_block_gabarite_down - 10.0f)
+						&
+						(yy <= *selected_entity->position_y - *selected_entity->path_block_gabarite_down + 10.0f)
+						)
+				{
+					catched_collision_down = true;
+				}
+			}
 		}
 	
 
@@ -1190,26 +1282,62 @@ void EWindowEditor::update(float _d)
 
 			if (catched_collision_down)
 			{
-				*selected_entity->collision_down -= EWindow::mouse_speed_y * mul;
-				*selected_entity->collision_down = EMath::clamp_value_float(*selected_entity->collision_down, 0.0f, 512.0f);
+				if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabariteCollision)
+				{
+					*selected_entity->collision_down -= EWindow::mouse_speed_y * mul;
+					*selected_entity->collision_down = EMath::clamp_value_float(*selected_entity->collision_down, 0.0f, 512.0f);
+				}
+
+				if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabaritePathBlock)
+				{
+					*selected_entity->path_block_gabarite_down -= EWindow::mouse_speed_y * mul;
+					*selected_entity->path_block_gabarite_down = EMath::clamp_value_float(*selected_entity->path_block_gabarite_down, 0.0f, 512.0f);
+				}
 			}
 
 			if (catched_collision_up)
 			{
-				*selected_entity->collision_up += EWindow::mouse_speed_y * mul;
-				*selected_entity->collision_up = EMath::clamp_value_float(*selected_entity->collision_up, 0.0f, 512.0f);
+				if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabariteCollision)
+				{
+					*selected_entity->collision_up += EWindow::mouse_speed_y * mul;
+					*selected_entity->collision_up = EMath::clamp_value_float(*selected_entity->collision_up, 0.0f, 512.0f);
+				}
+
+				if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabaritePathBlock)
+				{
+					*selected_entity->path_block_gabarite_up += EWindow::mouse_speed_y * mul;
+					*selected_entity->path_block_gabarite_up = EMath::clamp_value_float(*selected_entity->path_block_gabarite_up, 0.0f, 512.0f);
+				}
 			}
 
 			if (catched_collision_left)
 			{
-				*selected_entity->collision_left -= EWindow::mouse_speed_x * mul;
-				*selected_entity->collision_left = EMath::clamp_value_float(*selected_entity->collision_left, 0.0f, 512.0f);
+				if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabariteCollision)
+				{
+					*selected_entity->collision_left -= EWindow::mouse_speed_x * mul;
+					*selected_entity->collision_left = EMath::clamp_value_float(*selected_entity->collision_left, 0.0f, 512.0f);
+				}
+
+				if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabaritePathBlock)
+				{
+					*selected_entity->path_block_gabarite_left -= EWindow::mouse_speed_x * mul;
+					*selected_entity->path_block_gabarite_left = EMath::clamp_value_float(*selected_entity->path_block_gabarite_left, 0.0f, 512.0f);
+				}
 			}
 
 			if (catched_collision_right)
 			{
-				*selected_entity->collision_right += EWindow::mouse_speed_x * mul;
-				*selected_entity->collision_right = EMath::clamp_value_float(*selected_entity->collision_right, 0.0f, 512.0f);
+				if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabariteCollision)
+				{
+					*selected_entity->collision_right += EWindow::mouse_speed_x * mul;
+					*selected_entity->collision_right = EMath::clamp_value_float(*selected_entity->collision_right, 0.0f, 512.0f);
+				}
+
+				if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabaritePathBlock)
+				{
+					*selected_entity->path_block_gabarite_right += EWindow::mouse_speed_x * mul;
+					*selected_entity->path_block_gabarite_right = EMath::clamp_value_float(*selected_entity->path_block_gabarite_right, 0.0f, 512.0f);
+				}
 			}
 
 			SetCursorPos(saved_pos_x, saved_pos_y);
@@ -1401,57 +1529,116 @@ void EWindowEditor::draw(float _d)
 	{
 		EGraphicCore::batch->setcolor(EColor::COLOR_BLUE);
 
-		if (catched_collision_left)
+		if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabariteCollision)
 		{
-			EGraphicCore::batch->draw_rama
-			(
-			*selected_entity->position_x		- *selected_entity->collision_left - 3.0f,
-			*selected_entity->position_y		- *selected_entity->collision_down - 3.0f,
-			6.0f,
-			*selected_entity->collision_down	+ *selected_entity->collision_up + 3.0f,
-			1.0f,
-			EGraphicCore::gabarite_white_pixel
-			);
+			if (catched_collision_left)
+			{
+				EGraphicCore::batch->draw_rama
+				(
+					*selected_entity->position_x - *selected_entity->collision_left - 3.0f,
+					*selected_entity->position_y - *selected_entity->collision_down - 3.0f,
+					6.0f,
+					*selected_entity->collision_down + *selected_entity->collision_up + 3.0f,
+					1.0f,
+					EGraphicCore::gabarite_white_pixel
+				);
+			}
+
+			if (catched_collision_up)
+			{
+				EGraphicCore::batch->draw_rama
+				(
+					*selected_entity->position_x - *selected_entity->collision_left - 3.0f,
+					*selected_entity->position_y + *selected_entity->collision_up - 3.0f,
+					*selected_entity->collision_left + *selected_entity->collision_right + 3.0f,
+					6.0f,
+					1.0f,
+					EGraphicCore::gabarite_white_pixel
+				);
+			}
+
+			if (catched_collision_right)
+			{
+				EGraphicCore::batch->draw_rama
+				(
+					*selected_entity->position_x + *selected_entity->collision_right - 3.0f,
+					*selected_entity->position_y - *selected_entity->collision_down - 3.0f,
+					6.0f,
+					*selected_entity->collision_down + *selected_entity->collision_up + 3.0f,
+					1.0f,
+					EGraphicCore::gabarite_white_pixel
+				);
+			}
+
+			if (catched_collision_down)
+			{
+				EGraphicCore::batch->draw_rama
+				(
+					*selected_entity->position_x - *selected_entity->collision_left - 3.0f,
+					*selected_entity->position_y - *selected_entity->collision_down - 3.0f,
+					*selected_entity->collision_left + *selected_entity->collision_right + 3.0f,
+					6.0f,
+					1.0f,
+					EGraphicCore::gabarite_white_pixel
+				);
+			}
 		}
 
-		if (catched_collision_up)
+		if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabaritePathBlock)
 		{
-			EGraphicCore::batch->draw_rama
-			(
-			*selected_entity->position_x		- *selected_entity->collision_left - 3.0f,
-			*selected_entity->position_y		+ *selected_entity->collision_up - 3.0f,
-			*selected_entity->collision_left + *selected_entity->collision_right + 3.0f,
-			6.0f,
-			1.0f,
-			EGraphicCore::gabarite_white_pixel
-			);
+			if (catched_collision_left)
+			{
+				EGraphicCore::batch->draw_rama
+				(
+					*selected_entity->position_x - *selected_entity->path_block_gabarite_left - 3.0f,
+					*selected_entity->position_y - *selected_entity->path_block_gabarite_down - 3.0f,
+					6.0f,
+					*selected_entity->path_block_gabarite_down + *selected_entity->path_block_gabarite_up + 3.0f,
+					1.0f,
+					EGraphicCore::gabarite_white_pixel
+				);
+			}
+
+			if (catched_collision_up)
+			{
+				EGraphicCore::batch->draw_rama
+				(
+					*selected_entity->position_x - *selected_entity->path_block_gabarite_left - 3.0f,
+					*selected_entity->position_y + *selected_entity->path_block_gabarite_up - 3.0f,
+					*selected_entity->path_block_gabarite_left + *selected_entity->path_block_gabarite_right + 3.0f,
+					6.0f,
+					1.0f,
+					EGraphicCore::gabarite_white_pixel
+				);
+			}
+
+			if (catched_collision_right)
+			{
+				EGraphicCore::batch->draw_rama
+				(
+					*selected_entity->position_x + *selected_entity->path_block_gabarite_right - 3.0f,
+					*selected_entity->position_y - *selected_entity->path_block_gabarite_down - 3.0f,
+					6.0f,
+					*selected_entity->path_block_gabarite_down + *selected_entity->path_block_gabarite_up + 3.0f,
+					1.0f,
+					EGraphicCore::gabarite_white_pixel
+				);
+			}
+
+			if (catched_collision_down)
+			{
+				EGraphicCore::batch->draw_rama
+				(
+					*selected_entity->position_x - *selected_entity->path_block_gabarite_left - 3.0f,
+					*selected_entity->position_y - *selected_entity->path_block_gabarite_down - 3.0f,
+					*selected_entity->path_block_gabarite_left + *selected_entity->path_block_gabarite_right + 3.0f,
+					6.0f,
+					1.0f,
+					EGraphicCore::gabarite_white_pixel
+				);
+			}
 		}
 
-		if (catched_collision_right)
-		{
-			EGraphicCore::batch->draw_rama
-			(
-			*selected_entity->position_x		+ *selected_entity->collision_right - 3.0f,
-			*selected_entity->position_y		- *selected_entity->collision_down - 3.0f,
-			6.0f,
-			*selected_entity->collision_down	+ *selected_entity->collision_up + 3.0f,
-			1.0f,
-			EGraphicCore::gabarite_white_pixel
-			);
-		}
-
-		if (catched_collision_down)
-		{
-			EGraphicCore::batch->draw_rama
-			(
-			*selected_entity->position_x		- *selected_entity->collision_left - 3.0f,
-			*selected_entity->position_y		- *selected_entity->collision_down - 3.0f,
-			*selected_entity->collision_left + *selected_entity->collision_right + 3.0f,
-			6.0f,
-			1.0f,
-			EGraphicCore::gabarite_white_pixel
-			);
-		}
 		
 	}
 

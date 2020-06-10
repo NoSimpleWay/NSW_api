@@ -52,10 +52,24 @@ public:
 
 	//bool* inmovable = new bool(false);
 
+
+	//physical collision gabarite sides
 	float* collision_up		= new float(20.0f);
 	float* collision_down	= new float(20.0f);
 	float* collision_left	= new float(20.0f);
 	float* collision_right	= new float(20.0f);
+
+	//path block collision gabarite sides
+	float* path_block_gabarite_up = new float(20.0f);
+	float* path_block_gabarite_down = new float(20.0f);
+	float* path_block_gabarite_left = new float(20.0f);
+	float* path_block_gabarite_right = new float(20.0f);
+
+	//shadow block collision gabarite sides
+	float* shadow_block_gabarite_up = new float(20.0f);
+	float* shadow_block_gabarite_down = new float(20.0f);
+	float* shadow_block_gabarite_left = new float(20.0f);
+	float* shadow_block_gabarite_right = new float(20.0f);
 
 	float* shoot_cooldown = new float(0.0f);
 
@@ -353,6 +367,87 @@ public:
 	~EItem();
 
 	float* item_level = new float(1.0f);
+
+	enum ItemAttribute
+	{
+		ITEM_ATTRIBUTE_DAMAGE,
+		ITEM_ATTRIBUTE_FIRE_DAMAGE,
+		ITEM_ATTRIBUTE_COLD_DAMAGE,
+		ITEM_ATTRIBUTE_LIGHTNING_DAMAGE,
+		ITEM_ATTRIBUTE_BULLET_COUNT,
+		ITEM_ATTRIBUTE_ATTACK_COOLDOWN,
+		ITEM_ATTRIBUTE_RECOIL,
+		ITEM_ATTRIBUTE_AMMO_SIZE,
+		ITEM_ATTRIBUTE_RELOAD_TIME,
+		ITEM_ATTRIBUTE_H,
+		ITEM_ATTRIBUTE_I,
+		ITEM_ATTRIBUTE_J,
+		ITEM_ATTRIBUTE_K,
+
+
+		LAST_ELEMENT_OF_ITEM_ATTRIBUTE
+	};
+
+	struct item_attributes_struct
+	{
+		float* item_base_attr			= new float(0.0f);
+		float* item_increase_attr		= new float(0.0f);
+		float* item_more_attr			= new float(0.0f);
+		float* item_total_attr			= new float(0.0f);
+	};
+
+	std::vector <item_attributes_struct*> item_attributes_list = std::vector<item_attributes_struct*>(ItemAttribute::LAST_ELEMENT_OF_ITEM_ATTRIBUTE, new item_attributes_struct);
+
+	enum ItemAttributeCountController
+	{
+		IACC_TRIGGREABLE_ABILITY,
+
+		LAST_ELEMENT_OF_IACC
+	};
+
+	struct iacc_condition_struct
+	{
+		int* id = new int(0);
+		int* more_or_equal = new int(0);
+		int* less_or_equal = new int(0);
+	};
+
+	struct iacc_struct
+	{
+		int* id = new int(0);
+		int* summator = new int(0);
+	};
+
+	struct affix_tier_struct
+	{
+		int* attribute_id = new int(0);
+
+		float* add_base = new float(0.0f);
+		float* increase = new float(0.0f);
+		float* more = new float(0.0f);
+
+		float* weight = new float(0.0f);
+	};
+
+	struct affix_property_struct
+	{
+		std::vector < affix_tier_struct*> affix_tier_list;
+		int* selected_tier = new int(0);
+	};
+
+	struct affix_struct
+	{
+		std::string* name = new string("");
+
+		std::vector < affix_property_struct*> affix_property_list;
+
+		std::vector< iacc_struct*> iacc_list;//count of specific tags. can be used to limit abilities with same effect
+		std::vector< iacc_condition_struct*> iacc_condition_list;//
+
+		float* weight = new float(0.0f);
+	};
+
+	static std::vector< affix_struct*> AFFIX_REGISTERER;
 
 	EGabarite* icon;
 };

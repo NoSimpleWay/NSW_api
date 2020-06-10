@@ -1133,21 +1133,36 @@ void EWindowTest::draw_debug_collision()
 			{
 
 				for (Entity* e : ECluster::clusters[j][i]->entity_list)
-				if (!*e->is_ghost)
 				{
-					if (EWindow::window_editor->selected_entity == e)
+					if (*EWindow::window_editor->entity_gabarite_mode_active == EWindowEditor::EntityGabariteMode::EntityGabariteCollision)
 					{
-						EGraphicCore::batch->setcolor(EColor::COLOR_RED);
+						
+						if (*e->is_ghost)
+						{EGraphicCore::batch->setcolor_alpha(EColor::COLOR_BLUE, 0.35f);}
+						else
+						{EGraphicCore::batch->setcolor(EColor::COLOR_BLUE);}
+
+						if (EWindow::window_editor->selected_entity == e)
+						{EGraphicCore::batch->draw_rama(*e->position_x - *e->collision_left, *e->position_y - *e->collision_down, *e->collision_left + *e->collision_right, *e->collision_down + *e->collision_up, 3.0f / game_camera->zoom, EGraphicCore::gabarite_white_pixel);}
+						else
+						{EGraphicCore::batch->draw_rama(*e->position_x - *e->collision_left, *e->position_y - *e->collision_down, *e->collision_left + *e->collision_right, *e->collision_down + *e->collision_up, 1.0f / game_camera->zoom, EGraphicCore::gabarite_white_pixel);}
+						//EGraphicCore::batch->draw_gabarite(*e->position_x + e->body_offset_x.at(sprite_id), *e->position_y + e->body_offset_y.at(sprite_id), e->body.at(sprite_id)->size_x, e->body.at(sprite_id)->size_y, e->body.at(sprite_id));
 					}
-					else
+
+					if (*EWindow::window_editor->entity_gabarite_mode_active == EWindowEditor::EntityGabariteMode::EntityGabaritePathBlock)
 					{
-						EGraphicCore::batch->setcolor(EColor::COLOR_BLUE);
+						
+						if (*e->no_path_block)
+						{EGraphicCore::batch->setcolor_alpha(EColor::COLOR_ORANGE, 0.35f);}
+						else
+						{EGraphicCore::batch->setcolor(EColor::COLOR_ORANGE);}
+
+						if (EWindow::window_editor->selected_entity == e)
+						{EGraphicCore::batch->draw_rama(*e->position_x - *e->path_block_gabarite_left, *e->position_y - *e->path_block_gabarite_down, *e->path_block_gabarite_left + *e->path_block_gabarite_right, *e->path_block_gabarite_down + *e->path_block_gabarite_up, 3.0f / game_camera->zoom, EGraphicCore::gabarite_white_pixel);}
+						else
+						{EGraphicCore::batch->draw_rama(*e->position_x - *e->path_block_gabarite_left, *e->position_y - *e->path_block_gabarite_down, *e->path_block_gabarite_left + *e->path_block_gabarite_right, *e->path_block_gabarite_down + *e->path_block_gabarite_up, 1.0f / game_camera->zoom, EGraphicCore::gabarite_white_pixel);}
+						//EGraphicCore::batch->draw_gabarite(*e->position_x + e->body_offset_x.at(sprite_id), *e->position_y + e->body_offset_y.at(sprite_id), e->body.at(sprite_id)->size_x, e->body.at(sprite_id)->size_y, e->body.at(sprite_id));
 					}
-
-					EGraphicCore::batch->draw_rama(*e->position_x - *e->collision_left, *e->position_y - *e->collision_down, *e->collision_left + *e->collision_right, *e->collision_down + *e->collision_up, 2.0f / game_camera->zoom, EGraphicCore::gabarite_white_pixel);
-					//EGraphicCore::batch->draw_gabarite(*e->position_x + e->body_offset_x.at(sprite_id), *e->position_y + e->body_offset_y.at(sprite_id), e->body.at(sprite_id)->size_x, e->body.at(sprite_id)->size_y, e->body.at(sprite_id));
-
-
 				}
 			}
 }
@@ -1334,7 +1349,7 @@ void EWindowTest::draw_lightmap()
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 
 			GLint blur_loc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "blur");
-			glUniform1f(blur_loc, 0.85f);
+			glUniform1f(blur_loc, 0.25f);
 
 			glBlendFunc(GL_ONE, GL_ONE);
 			for (int i = 0; i < 1; i++)

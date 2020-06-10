@@ -10,7 +10,9 @@ public:
 	~EWindowEditor();
 
 	enum EditMode {SelectEntities, EditSprites};
+	enum EntityGabariteMode {EntityGabariteCollision, EntityGabaritePathBlock, EntityGabariteShadowBlock};
 
+	int* entity_gabarite_mode_active = new int(EntityGabariteMode::EntityGabariteCollision);
 	int editor_mode = 0;
 
 	std::vector <EButton*> sprite_button_list;
@@ -99,6 +101,10 @@ public:
 
 	std::vector <EButton*> float_data_button_list;
 	std::vector <EButton*> bool_data_button_list;
+
+	std::vector <EButton*> select_gabarite_mode_button_list;
+
+
 
 
 };

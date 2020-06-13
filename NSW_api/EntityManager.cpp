@@ -1293,8 +1293,59 @@ EItem::~EItem()
 {
 }
 
+std::vector< EItem::affix_struct*> EItem::AFFIX_REGISTERER;
+
+void EItem::update_item_attributes(EItem* _item)
+{
+
+	//reset increase/more/total values
+	for (EItem::item_attributes_struct* ias : _item->item_attributes_list)
+	{
+		*ias->item_base_attr = 0.0f;
+
+		*ias->item_increase_attr = 0.0f;
+		*ias->item_more_attr = 1.0f;
+		*ias->item_total_attr = 0.0f;
+	}
+
+	//set base values of attribute
+	for (EItem::set_affix_base_valuse_struct* sbvl : _item->set_base_value_list)
+	{
+
+		float autopower = 1.0f;
+
+		if (*sbvl->autopower_by_level) { autopower = *_item->item_level / 10.0f; }
+		*_item->item_attributes_list.at(*sbvl->id)->item_base_attr = *sbvl->value * autopower;
+	}
+
+
+	//calculate increase/more/total values
+	for (EItem::affix_struct* gal : _item->generated_affixes_list)
+	{
+		affix_tier_struct* selected_tier_affix = gal->affix_tier_list.at(*gal->selected_tier);
+	
+		for (affix_property* ap : selected_tier_affix->affix_property_list)
+		{
+			*_item->item_attributes_list.at(*ap->attribute_id)->item_base_attr += *ap->add_base;
+			*_item->item_attributes_list.at(*ap->attribute_id)->item_increase_attr += *ap->increase;
+			*_item->item_attributes_list.at(*ap->attribute_id)->item_more_attr *= 1.0f + *ap->increase;
+		}
+			//_item->item_attributes_list.at(ats->affix_property_list)
+
+	}
+
+	//calculate total attributes with all bonuses
+	for (EItem::item_attributes_struct* ial : _item->item_attributes_list)
+	{
+		*ial->item_total_attr = *ial->item_base_attr * (*ial->item_increase_attr + 1.0f) * (*ial->item_more_attr);
+	}
+
+
+}
+
 EItemAttribute::EItemAttribute()
 {
+
 }
 
 EItemAttribute::~EItemAttribute()

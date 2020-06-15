@@ -269,6 +269,25 @@ public:
 
 
 	static void update_entity_attributes(Entity* _e);
+
+	struct item_struct
+	{
+		std::string name;
+		std::vector<EItem*> item_array;
+	};
+	
+	enum ITEM_ARRAY_TYPE
+	{
+		ITEM_ARRAY_WEAPON,
+		ITEM_ARRAY_MODULE,
+		ITEM_ARRAY_SHIELD,
+
+		LAST_ELEMENT_OF_ITEM_ARRAY
+	};
+
+
+
+	std::vector<item_struct*> item_struct_list = std::vector<item_struct*>(ITEM_ARRAY_TYPE::LAST_ELEMENT_OF_ITEM_ARRAY, new item_struct);
 };
 
 
@@ -476,11 +495,39 @@ public:
 	|
 	|
 	*/
-	static std::vector< affix_struct*> AFFIX_REGISTERER;
+	/*@@@@@@@@@ __REGISTERER__ @@@@@@@@@*/	static std::vector< affix_struct*> AFFIX_REGISTERER;
+
+	static Entity* create_bullet(Entity* _e,  EItem* _item, float _target_x, float _target_y, float _d);
+	static Entity* shoot_bullet(Entity* _e, EItem* _item, float _target_x, float _target_y, float _d);
 
 	std::vector< affix_struct*> generated_affixes_list;
 	 
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	typedef void (*ITEM_ACTION)(EItem* _item, float _d);
+
+
+	struct item_action_struct
+	{
+		std::string name;
+		ITEM_ACTION action;
+	};
+
+	/*@@@@@@@@@ __REGISTERER__ @@@@@@@@@*/	static std::vector<item_action_struct*> ITEM_ACTION_REGISTERER;
+
+	static void item_action_default_shoot(EItem* _item, float _d);
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////
+	typedef void (*BULLET_ACTION)(Entity* _bullet, EItem* _item, int _data_id, float _d);
+	std::vector<BULLET_ACTION> BULLET_ACTION_ON_CREATE;
+
+	struct bullet_action_sruct
+	{
+		std::string name;
+		BULLET_ACTION action;
+	};
+
+	/*@@@@@@@@@ __REGISTERER__ @@@@@@@@@*/	static std::vector<bullet_action_sruct*> BULLET_ACTION_REGISTERER;
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	std::vector<ITEM_ACTION> ITEM_ACTION_ON_SHOOT;
 	std::vector<ITEM_ACTION> ITEM_ACTION_ON_USE;

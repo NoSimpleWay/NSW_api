@@ -568,7 +568,7 @@ void Batcher::draw_gabarite_skew(float _x, float _y, float _collision_x, float _
 	vertices[id + 2] = batch_color_r;
 	vertices[id + 3] = batch_color_g;
 	vertices[id + 4] = batch_color_b;
-	vertices[id + 5] = batch_color_a * 0.2f;
+	vertices[id + 5] = batch_color_a * 0.1f;
 
 	vertices[id + 6] = _g->x2;
 	vertices[id + 7] = _g->y2;
@@ -583,7 +583,7 @@ void Batcher::draw_gabarite_skew(float _x, float _y, float _collision_x, float _
 	vertices[id + 10] = batch_color_r;
 	vertices[id + 11] = batch_color_g;
 	vertices[id + 12] = batch_color_b;
-	vertices[id + 13] = batch_color_a * 0.2f;
+	vertices[id + 13] = batch_color_a * 0.1f;
 
 	vertices[id + 14] = _g->x2;
 	vertices[id + 15] = _g->y;
@@ -638,7 +638,7 @@ void Batcher::draw_gabarite_skew(float _x, float _y, float _collision_x, float _
 	vertices[id + 2] = batch_color_r;
 	vertices[id + 3] = batch_color_g;
 	vertices[id + 4] = batch_color_b;
-	vertices[id + 5] = batch_color_a * 0.2f;
+	vertices[id + 5] = batch_color_a * 0.1f;
 
 	vertices[id + 6] = _g->x2;
 	vertices[id + 7] = _g->y2;
@@ -688,7 +688,7 @@ void Batcher::draw_gabarite_skew(float _x, float _y, float _collision_x, float _
 	vertices[id + 26] = batch_color_r;
 	vertices[id + 27] = batch_color_g;
 	vertices[id + 28] = batch_color_b;
-	vertices[id + 29] = batch_color_a * 0.2f;
+	vertices[id + 29] = batch_color_a * 0.1f;
 
 	vertices[id + 30] = _g->x;
 	vertices[id + 31] = _g->y2;

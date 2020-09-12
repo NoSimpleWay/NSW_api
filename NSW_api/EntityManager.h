@@ -437,7 +437,7 @@ public:
 
 	struct affix_struct
 	{
-		std::string* name = new string("");
+		std::string name;
 
 		std::vector < affix_property_struct*> affix_property_list;
 

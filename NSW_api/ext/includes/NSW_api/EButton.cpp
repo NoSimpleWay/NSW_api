@@ -117,7 +117,8 @@ bool EButton::is_overlap()
 
 	//std::cout << Helper::x << " " << Helper::y << " " << std::endl;
 	//std::cout << "PIZDOS=" << EMouse::mouse_x<< endl;
-	if (
+	if
+	(
 		(EWindow::mouse_x > master_position_x - bound_size_left)
 		&&
 		(EWindow::mouse_x < master_position_x + button_size_x + bound_size_right)
@@ -127,7 +128,7 @@ bool EButton::is_overlap()
 		(EWindow::mouse_y < master_position_y + button_size_y + bound_size_up)
 		&&
 		(top_window_id == master_window->id)
-		)
+	)
 	{
 		return true;
 	}
@@ -223,7 +224,7 @@ void EButton::update(float _d)
 
 	if
 		(
-		(is_overlap())
+			(is_overlap())
 			&&
 			(glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
 			&&
@@ -411,13 +412,13 @@ void EButton::update(float _d)
 			(EWindow::last_inputed_char != NULL)
 				&&
 				(
-				(!input_only_numbers)
+					(!input_only_numbers)
 					||
 					(is_number(EWindow::last_inputed_char))
-					)
+				)
 				&&
 				(
-				(EFont::active_font->get_width(EFont::active_font, text + EWindow::last_inputed_char) < button_size_x)
+					(EFont::active_font->get_width(EFont::active_font, text + EWindow::last_inputed_char) < button_size_x)
 					||
 					(dynamic_input_width)
 					)
@@ -822,9 +823,3 @@ void EButton::update_localisation()
 
 	//std::cout << "DEFAULT LOCAL" << std::endl;
 }
-
-
-
-
-
-

@@ -269,6 +269,25 @@ public:
 
 
 	static void update_entity_attributes(Entity* _e);
+
+	struct item_struct
+	{
+		std::string name;
+		std::vector<EItem*> item_array;
+	};
+	
+	enum ITEM_ARRAY_TYPE
+	{
+		ITEM_ARRAY_WEAPON,
+		ITEM_ARRAY_MODULE,
+		ITEM_ARRAY_SHIELD,
+
+		LAST_ELEMENT_OF_ITEM_ARRAY
+	};
+
+
+
+	std::vector<item_struct*> item_struct_list = std::vector<item_struct*>(ITEM_ARRAY_TYPE::LAST_ELEMENT_OF_ITEM_ARRAY, new item_struct);
 };
 
 
@@ -368,6 +387,14 @@ public:
 
 	float* item_level = new float(1.0f);
 
+	enum ItemAttributeCurrent
+	{
+		ITEM_ATTRIBUTE_CURRENT_SHOOT_COOLDOWN,
+		ITEM_ATTRIBUTE_CURRENT_RELOAD_TIME_PROCESS,
+
+		LAST_ELEMENT_OF_ITEM_CURRENT_ATTRIBUTE
+	};
+
 	enum ItemAttribute
 	{
 		ITEM_ATTRIBUTE_DAMAGE,
@@ -379,7 +406,7 @@ public:
 		ITEM_ATTRIBUTE_RECOIL,
 		ITEM_ATTRIBUTE_AMMO_SIZE,
 		ITEM_ATTRIBUTE_RELOAD_TIME,
-		ITEM_ATTRIBUTE_H,
+		ITEM_ATTRIBUTE_ADDED_DAMAGE_MULTIPLIER,
 		ITEM_ATTRIBUTE_I,
 		ITEM_ATTRIBUTE_J,
 		ITEM_ATTRIBUTE_K,
@@ -388,13 +415,23 @@ public:
 		LAST_ELEMENT_OF_ITEM_ATTRIBUTE
 	};
 
+	struct set_affix_base_valuse_struct
+	{
+		int* id = new int(0);
+		float* value = new float(0.0f);
+
+		bool* autopower_by_level = new bool (false);
+	};
+
+	std::vector < set_affix_base_valuse_struct*> set_base_value_list;
+
 	struct item_attributes_struct
 	{
 		float* item_base_attr			= new float(0.0f);
 		float* item_increase_attr		= new float(0.0f);
 		float* item_more_attr			= new float(0.0f);
 		float* item_total_attr			= new float(0.0f);
-	};
+	}; 
 
 	std::vector <item_attributes_struct*> item_attributes_list = std::vector<item_attributes_struct*>(ItemAttribute::LAST_ELEMENT_OF_ITEM_ATTRIBUTE, new item_attributes_struct);
 
@@ -418,36 +455,87 @@ public:
 		int* summator = new int(0);
 	};
 
-	struct affix_tier_struct
+	struct affix_property
 	{
-		int* attribute_id = new int(0);
+		int* attribute_id = new int(0);//id of attribute
 
-		float* add_base = new float(0.0f);
-		float* increase = new float(0.0f);
-		float* more = new float(0.0f);
+		float* add_base = new float(0.0f);//add or substract
+		float* increase = new float(0.0f);//increase or decrease ammount
+		float* more = new float(0.0f);//more or less
+	};
+	/*
+	^
+	|
+	|
+	*/
+	struct affix_tier_struct//tiers of affix property
+	{
+		std::vector < affix_property*> affix_property_list;//properties
+		float* weight = new float(0.0f);//chance to be chosen
+	};
+	/*
+	^
+	|
+	|
+	*/
+	struct affix_struct
+	{
+		std::string name = "";
+
+		std::vector < affix_tier_struct*> affix_tier_list;//available affixex
+		int* selected_tier = new int(0);//selected affix
+
+		std::vector< iacc_struct*> iacc_list;//ban some property tags
+		std::vector< iacc_condition_struct*> iacc_condition_list;//banned property cannot be chosed
 
 		float* weight = new float(0.0f);
 	};
+	/*
+	^
+	|
+	|
+	*/
+	/*@@@@@@@@@ __REGISTERER__ @@@@@@@@@*/	static std::vector< affix_struct*> AFFIX_REGISTERER;
 
-	struct affix_property_struct
+	static Entity* create_bullet(Entity* _e,  EItem* _item, float _target_x, float _target_y, float _d);
+	static Entity* shoot_bullet(Entity* _e, EItem* _item, float _target_x, float _target_y, float _d);
+
+	std::vector< affix_struct*> generated_affixes_list;
+	 
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////
+	typedef void (*ITEM_ACTION)(EItem* _item, float _d);
+
+
+	struct item_action_struct
 	{
-		std::vector < affix_tier_struct*> affix_tier_list;
-		int* selected_tier = new int(0);
+		std::string name;
+		ITEM_ACTION action;
 	};
 
 	struct affix_struct
 	{
+		std::string* name = new string("");
+
+	static void item_action_default_shoot(EItem* _item, float _d);
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////
+	typedef void (*BULLET_ACTION)(Entity* _bullet, EItem* _item, int _data_id, float _d);
+	std::vector<BULLET_ACTION> BULLET_ACTION_ON_CREATE;
+
+	struct bullet_action_sruct
+	{
 		std::string name;
-
-		std::vector < affix_property_struct*> affix_property_list;
-
-		std::vector< iacc_struct*> iacc_list;//count of specific tags. can be used to limit abilities with same effect
-		std::vector< iacc_condition_struct*> iacc_condition_list;//
-
-		float* weight = new float(0.0f);
+		BULLET_ACTION action;
 	};
 
-	static std::vector< affix_struct*> AFFIX_REGISTERER;
+	/*@@@@@@@@@ __REGISTERER__ @@@@@@@@@*/	static std::vector<bullet_action_sruct*> BULLET_ACTION_REGISTERER;
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	std::vector<ITEM_ACTION> ITEM_ACTION_ON_SHOOT;
+	std::vector<ITEM_ACTION> ITEM_ACTION_ON_USE;
+
+	void static update_item_attributes(EItem* _item);
+	//static std::vector<std::s
 
 	EGabarite* icon;
 };

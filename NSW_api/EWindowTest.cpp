@@ -58,6 +58,10 @@ void EWindowTest::test_of_values()
 
 EWindowTest::EWindowTest():EWindow()
 {
+
+	//EItem::ITEM_ACTION_REGISTERER
+
+
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 	ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO, EWindow::default_texture_atlas);
@@ -550,109 +554,49 @@ add_time_process("calculate path");
 
 			if (glfwGetKey(EWindow::main_window, GLFW_KEY_W) == GLFW_PRESS) {dir_y = 1 * speed_mul;}
 
-			float ray_length_x = crosshair_pos_x - *e->position_x;
-			float ray_length_y = crosshair_pos_y - *e->position_y;
-
-			float angleInRadian = atan2(ray_length_x, ray_length_y);
-			float angleInDegree = angleInRadian * 180 / 3.1415926;
 
 
-
-			*e->target_angle_id = angleInDegree + 22.5f;
-			if (*e->target_angle_id < 0) { *e->target_angle_id += 360; }
-			*e->target_angle_id = (int)((*e->target_angle_id) / 45.0f);
-
-			for (int y = 0; y< 1; y++)
+			
 			if ((LMB) & (true) & (!EWindow::window_editor->is_active))
 			{
-
-
 				if (*e->shoot_cooldown <= 0.0f)
 				{
+					
 					*e->shoot_cooldown += 0.100f;
 
-					Entity* bullet = new Entity();
-					*bullet->position_x = *e->position_x;
-					*bullet->position_y = *e->position_y;
+					for (int y = 0; y < 1; y++)
+					{
+						Entity* bullet = EItem::create_bullet(e, crosshair_pos_x, crosshair_pos_y, _d);
 
-					*bullet->collision_down = 3.0f;
-					*bullet->collision_left = 3.0f;
-					*bullet->collision_right = 3.0f;
-					*bullet->collision_up = 3.0f;
+						//ECluster::put_entity(bullet);
 
-					*bullet->lifetime = 1.0f;
-					*bullet->have_lifetime = true;
+						new_added_entity_list.push_back(bullet);
+					}
 
-					*bullet->mass_pointer = 0.1;
+					float ray_length_x = crosshair_pos_x - *e->position_x;
+					float ray_length_y = crosshair_pos_y - *e->position_y;
 
-					*bullet->is_bullet = true;
+					float angleInRadian = atan2(ray_length_x, ray_length_y);
+					float angleInDegree = angleInRadian * 180 / 3.1415926;
 
-					
-
-					bullet->action_on_hit = &Entity::test_hit_action_self_destroy_on_hit;
-
-					*bullet->have_light_source = true;
-					*bullet->light_source_red = 1.0f;
-					*bullet->light_source_green = 0.8f;
-					*bullet->light_source_blue = 0.7f;
-
-					
-					//float ray_length_x = ECamera::get_world_position_x(game_camera) - *e->position_x;
-					//float ray_length_y = ECamera::get_world_position_y(game_camera) - *e->position_y;
-					
-
-
-
-
-					/*std::cout << "angle is:" << angleInDegree << std::endl;
-
-					std::cout << "ray x:" << ray_length_x << std::endl;
-					std::cout << "ray y:" << ray_length_y << std::endl;*/
-					//float new_angle = angleInDegree;
-					//EFont::active_font->draw(EGraphicCore::batch, std::to_string(angleInDegree), ECamera::get_world_position_x(game_camera), ECamera::get_world_position_y(game_camera));
+					*e->target_angle_id = angleInDegree + 22.5f;
+					if (*e->target_angle_id < 0) { *e->target_angle_id += 360; }
+					*e->target_angle_id = (int)((*e->target_angle_id) / 45.0f);
 
 					float dst = sqrt(ray_length_x * ray_length_x + ray_length_y * ray_length_y) + 1.0f;
-					//std::cout << "dst:" << dst << std::endl;
 
 					float recoil_angle = (angleInDegree + 5.0f - rand() % 10) * 3.1415926f / 180.0f;
-
 					float new_x = sin(recoil_angle) * dst;
 					float new_y = cos(recoil_angle) * dst;
 
-					//std::cout << "sin:" << new_x << std::endl;
-					//std::cout << "cos:" << new_y << std::endl;
-
 					crosshair_add_x = new_x + EGraphicCore::SCR_WIDTH / 2.0f;
 					crosshair_add_y = new_y + EGraphicCore::SCR_HEIGHT / 2.0f;
-
-					//SetCursorPos(EWindow::real_mouse_x + (ECamera::get_world_position_x(game_camera) - new_x), EWindow::real_mouse_y + (ECamera::get_world_position_y(game_camera) - new_y));
-
-					float mul_x = ray_length_x / dst;
-					float mul_y = ray_length_y / dst;
-
-					*bullet->speed_x += 2000.0f * mul_x;
-					*bullet->speed_y += 2000.0f * mul_y;
-
-
-
-					*bullet->real_speed_x = *bullet->speed_x * _d;
-					*bullet->real_speed_y = *bullet->speed_y * _d;
-
-					ESprite* spr = new ESprite();
-
-					bullet->sprite_list.push_back(spr);
-
-					bullet->sprite_list.at(0)->sprite_struct_list.at(0)->gabarite = ETextureAtlas::put_texture_to_atlas("data/textures/bullet.png", EWindow::default_texture_atlas);
-					bullet->sprite_list.at(0)->sprite_struct_list.at(0)->supermap = ETextureAtlas::put_texture_to_atlas("data/textures/bullet.png", EWindow::default_texture_atlas);
-					
-					*bullet->sprite_list.at(0)->sprite_struct_list.at(0)->offset_x = -26.0f;
-					*bullet->sprite_list.at(0)->sprite_struct_list.at(0)->offset_y = -26.0f;
-					//ECluster::put_entity(bullet);
-
-					new_added_entity_list.push_back(bullet);
-
 				}
 			}
+
+
+
+
 
 			if (EPath::phase == Enums::HEATMAP_PHASE::PHASE_UP)
 			if (!EPath::block[(int)(*e->position_x / EPath::PATH_SIZE)][(int)(*e->position_y  / EPath::PATH_SIZE)])

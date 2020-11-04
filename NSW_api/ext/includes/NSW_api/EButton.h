@@ -198,6 +198,25 @@ public:
 
 	//bool& link_to_boolean;
 
+	struct button_array
+	{
+		std::vector <EButton*> button_list;
+	};
+
+	struct button_array_collection
+	{
+		enum align_rule
+		{
+			FREE,
+			BUTTON_SIZE,
+			MAXIMUM_BUTTON_SIZE
+		};
+
+		float* additional_distance_between_buttons = new float(0.0f);
+
+		std::vector<EButton*> a;
+	};
+
 
 };
 

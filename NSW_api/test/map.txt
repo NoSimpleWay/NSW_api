@@ -1,10 +1,50 @@
-#shadow_skew	0.172598
-ADD_NEW_ENTITY	6357.000000	5766.000000
+#shadow_skew	0.216777
+ADD_NEW_ENTITY	5933.000000	5714.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/green_garage.png
+texture_offset_x	-142.000000
+texture_offset_y	-32.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	116.000000
+texture_offset_y	-17.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	271.000000
+shadow_size_y	107.000000
+shadow_tall	189.000000
+shadow_bottom_tall	190.000000
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+collision_up	73.000000
+collision_down	30.500000
+collision_right	115.500000
+collision_left	150.500000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6166.000000	5559.000000
 ADD_NEW_SPRITE
 *wall_mode
 add_new_texture	data/textures/tall_building_c18_corner_left.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
+texture_offset_x	-98.000000
+texture_offset_y	-19.000000
 texture_offset_z	0.000000
 texture_copies	1
 shadow_size_x	1.000000
@@ -29,38 +69,18 @@ shadow_size_x	1.000000
 shadow_size_y	1.000000
 shadow_tall	100.000000
 shadow_bottom_tall	1.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	1.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/tall_building_c18_window..png
-texture_offset_x	57.000000
-texture_offset_y	86.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	1.000000
 ADD_NEW_SPRITE
 *shadow
 add_new_texture	data/textures/white_pixel.png
-texture_offset_x	198.000000
-texture_offset_y	2.000000
+texture_offset_x	101.000000
+texture_offset_y	-8.000000
 texture_offset_z	0.000000
 texture_copies	1
-shadow_size_x	192.000000
-shadow_size_y	66.000000
-shadow_tall	458.500000
-shadow_bottom_tall	446.000000
+shadow_size_x	194.000000
+shadow_size_y	147.000000
+shadow_tall	901.000000
+shadow_bottom_tall	809.000000
 entity base attribute	Life	1000.000000
-entity base attribute	Shadow tall	512.000000
 collision_up	20.000000
 collision_down	20.000000
 collision_right	20.000000
@@ -77,7 +97,105 @@ shadow_block_left	20.000000
 
 =====================================
 
-ADD_NEW_ENTITY	6699.978027	5587.000000
+ADD_NEW_ENTITY	6246.000000	5913.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/green_garage.png
+texture_offset_x	-142.000000
+texture_offset_y	-32.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	116.000000
+texture_offset_y	-17.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	271.000000
+shadow_size_y	107.000000
+shadow_tall	189.000000
+shadow_bottom_tall	190.000000
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+collision_up	73.000000
+collision_down	30.500000
+collision_right	115.500000
+collision_left	150.500000
+path_block_up	78.500000
+path_block_down	9.500000
+path_block_right	100.500000
+path_block_left	134.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6428.000000	5667.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/canal_c18.png
+texture_offset_x	2.000000
+texture_offset_y	-65.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+entity base attribute	Life	1000.000000
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6663.000000	5773.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/human.png
+texture_offset_x	-7.000000
+texture_offset_y	-1.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	-2.000000
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+entity bool attribute	No path block
+collision_up	16.500000
+collision_down	14.500000
+collision_right	15.500000
+collision_left	12.750000
+path_block_up	6.500000
+path_block_down	18.500000
+path_block_right	9.500000
+path_block_left	15.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6857.000000	5695.000000
 ADD_NEW_SPRITE
 *rotate_by_move
 add_new_texture	data/textures/mech_1.png
@@ -255,65 +373,6 @@ path_block_up	20.000000
 path_block_down	20.000000
 path_block_right	20.000000
 path_block_left	20.000000
-shadow_block_up	20.000000
-shadow_block_down	20.000000
-shadow_block_right	20.000000
-shadow_block_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6663.000000	5773.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/human.png
-texture_offset_x	-7.000000
-texture_offset_y	-1.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	-2.000000
-entity base attribute	Life	1000.000000
-entity bool attribute	Inmovable
-entity bool attribute	No path block
-collision_up	16.500000
-collision_down	14.500000
-collision_right	15.500000
-collision_left	12.750000
-path_block_up	6.500000
-path_block_down	18.500000
-path_block_right	9.500000
-path_block_left	15.000000
-shadow_block_up	20.000000
-shadow_block_down	20.000000
-shadow_block_right	20.000000
-shadow_block_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6735.000000	5848.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/green_garage.png
-texture_offset_x	-142.000000
-texture_offset_y	-32.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	1.000000
-entity base attribute	Life	1000.000000
-entity bool attribute	Inmovable
-collision_up	73.000000
-collision_down	30.500000
-collision_right	115.500000
-collision_left	150.500000
-path_block_up	39.000000
-path_block_down	9.500000
-path_block_right	73.000000
-path_block_left	112.500000
 shadow_block_up	20.000000
 shadow_block_down	20.000000
 shadow_block_right	20.000000

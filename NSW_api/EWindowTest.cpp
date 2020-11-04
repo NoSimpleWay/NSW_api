@@ -1777,11 +1777,11 @@ void EWindowTest::draw_interface(float _d)
 		}
 
 		EGraphicCore::batch->setcolor_alpha(EColor::COLOR_BLACK, 0.9f);
-		EGraphicCore::batch->draw_gabarite(0.0f, EGraphicCore::SCR_HEIGHT - 22.0f, 300.0f, 20.0f, EGraphicCore::gabarite_white_pixel);
+		EGraphicCore::batch->draw_gabarite(0.0f, EGraphicCore::SCR_HEIGHT - 62.0f, 300.0f, 20.0f, EGraphicCore::gabarite_white_pixel);
 
 		EGraphicCore::batch->setcolor_alpha(EColor::COLOR_PINK, 0.9f);
-		EFont::active_font->draw(EGraphicCore::batch, "summ", 5.0f, EGraphicCore::SCR_HEIGHT - 22.0f + 3.0f);
-		EFont::active_font->draw(EGraphicCore::batch, std::to_string(time_process_summ), 205.0f, EGraphicCore::SCR_HEIGHT - 22.0f + 3.0f);
+		EFont::active_font->draw(EGraphicCore::batch, "summ", 5.0f, EGraphicCore::SCR_HEIGHT - 62.0f + 3.0f);
+		EFont::active_font->draw(EGraphicCore::batch, std::to_string(time_process_summ), 205.0f, EGraphicCore::SCR_HEIGHT - 62.0f + 3.0f);
 
 		time_process_rota_id++;
 

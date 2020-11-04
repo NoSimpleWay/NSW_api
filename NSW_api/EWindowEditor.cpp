@@ -640,6 +640,38 @@ EWindowEditor::EWindowEditor()
 	add_button_group_for_bool_data(Entity::EntityBoolAttributes::ENTITY_BOOL_HAVE_LIGHT_SOURCE);
 	add_button_group_for_bool_data(Entity::EntityBoolAttributes::ENTITY_BOOL_GHOST);
 	add_button_group_for_bool_data(Entity::EntityBoolAttributes::ENTITY_BOOL_NO_PATH_BLOCK);
+
+
+
+
+
+	but = new EButton(0.0f, 0.0f, 100.0f, 25.0f);
+	but->master_window = this;
+	but->have_description = true;
+	but->have_icon = false;
+	but->have_rama = true;
+
+	but->bg_color->set_color(EColor::COLOR_BLUE);
+	but->data_id = 2;
+
+	but->master_position = Enums::PositionMaster::WINDOW;
+	but->position_mode_x = Enums::PositionMode::LEFT;
+	but->position_mode_y = Enums::PositionMode::DOWN;
+	but->text = "Z";
+
+	button_list.push_back(but);
+
+	button_array_collection_massive* bacm = new button_array_collection_massive;
+	button_array_horizontal_collection* bahc = new button_array_horizontal_collection;
+	button_array_vertical_collection* bavc = new button_array_vertical_collection;
+	button_array* ba = new button_array;
+
+	ba->button_list.push_back(but);
+	bavc->button_array_list.push_back(ba);
+	bahc->button_array_vertical_collection_list.push_back(bavc);
+	bacm->button_array_horizontal_collection_list.push_back(bahc);
+
+	button_array_collection_massive_list.push_back(bacm);
 }
 
 EWindowEditor::~EWindowEditor()

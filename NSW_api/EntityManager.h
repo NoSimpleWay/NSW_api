@@ -185,7 +185,7 @@ public:
 	static std::vector < std::string > entity_bool_attribute_names;
 
 	bool* inmovable = new bool(false);
-	std::vector <bool*> pointer_to_bool_list = std::vector<bool*>(EntityBoolAttributes::_LAST_ELEMENT_OF_EBA, false);
+	std::vector <bool*> pointer_to_bool_list = std::vector<bool*>(EntityBoolAttributes::_LAST_ELEMENT_OF_EBA);
 
 	//names of all attributes
 	enum EAttr

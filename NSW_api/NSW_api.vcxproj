@@ -143,8 +143,6 @@
     <ClCompile Include="EWindowTest.cpp" />
     <ClCompile Include="ext\includes\glad\glad.c" />
     <ClCompile Include="ext\includes\NSW_api\Batcher.cpp" />
-    <ClCompile Include="ext\includes\NSW_api\EButton.cpp" />
-    <ClCompile Include="ext\includes\NSW_api\EButtonAction.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EColor.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EColorCollection.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EFont.cpp" />
@@ -165,8 +163,6 @@
     <ClInclude Include="EWindowTest.h" />
     <ClInclude Include="ext\includes\glad\glad.h" />
     <ClInclude Include="ext\includes\NSW_api\Batcher.h" />
-    <ClInclude Include="ext\includes\NSW_api\EButton.h" />
-    <ClInclude Include="ext\includes\NSW_api\EButtonAction.h" />
     <ClInclude Include="ext\includes\NSW_api\EColor.h" />
     <ClInclude Include="ext\includes\NSW_api\EColorCollection.h" />
     <ClInclude Include="ext\includes\NSW_api\EFont.h" />

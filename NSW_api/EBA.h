@@ -1,6 +1,6 @@
 #pragma once
-#include "NSW_api/EButton.h"
 #include "EntityManager.h"
+#include "NSW_api/EWindow.h"
 
 class EBA
 {

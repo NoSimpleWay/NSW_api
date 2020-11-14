@@ -149,6 +149,7 @@ public:
 
 	struct button_array_vertical_collection
 	{
+		int* tab_id = new int(0);
 		int* maximum_button_on_array = new int(0);
 
 		enum BUTTON_DISTANCE_ALIGN_RULE
@@ -183,6 +184,9 @@ public:
 
 	struct button_array_horizontal_collection
 	{
+
+		int* selected_tab = new int(0);
+		
 		struct test
 		{
 
@@ -190,12 +194,20 @@ public:
 
 		float* position_x = new float(0.0f);
 		float* position_y = new float(0.0f);
+		
+		float* size_x = new float(0.0f);
+		float* size_y = new float(0.0f);
 
 		std::vector < button_array_vertical_collection*> button_array_vertical_collection_list;
+
+		std::vector <EButton*> tab_button_list;
+		
 	};
 
 	struct button_array_collection_massive
 	{
+
+
 		std::vector < button_array_horizontal_collection* > button_array_horizontal_collection_list;
 
 		float* position_x = new float(0.0f);
@@ -224,6 +236,9 @@ public:
 	BUTTON_ACTION action_on_input_finish;
 
 	BUTTON_ACTION action_on_slider_drag;
+
+	
+	int * target_address_for_int;
 
 	static void static_click();
 	static void static_click2();
@@ -270,10 +285,10 @@ public:
 	bool have_icon = false;
 	EColor* icon_color = new EColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	Enums::PositionMode position_mode_x = Enums::PositionMode::LEFT;
-	Enums::PositionMode position_mode_y = Enums::PositionMode::DOWN;
+	int position_mode_x = Enums::PositionMode::LEFT;
+	int position_mode_y = Enums::PositionMode::DOWN;
 
-	Enums::PositionMode text_align_x = Enums::PositionMode::LEFT;
+	int text_align_x = Enums::PositionMode::LEFT;
 
 	EWindow* master_window;
 	EButton* master_button;
@@ -374,6 +389,8 @@ public:
 
 	virtual void update_localisation();
 
+
+
 	bool input_auto_clear_text = false;
 
 	EFont* force_font;
@@ -396,6 +413,22 @@ public:
 	//bool& link_to_boolean;
 
 	
+	struct button_style
+	{
+		EColor* style_color_bg = new EColor(1.0f, 1.0f, 1.0f, 1.0f);
+		EColor* style_color_text = new EColor(0.0f, 0.0f, 0.0f, 1.0f);;
+		EColor* style_color_rama = new EColor(0.1f, 0.2f, 0.3f, 1.0f);;
+
+		bool style_have_description = true;
+		bool style_have_icon = false;
+		bool style_have_rama = true;
+
+		int style_master_position = Enums::PositionMaster::WINDOW;;
+		int style_position_mode_x = Enums::PositionMode::LEFT;
+		int style_position_mode_y = Enums::PositionMode::DOWN;
+	};
+
+	static void append_style(EButton* _b, button_style* _s);
 
 
 };

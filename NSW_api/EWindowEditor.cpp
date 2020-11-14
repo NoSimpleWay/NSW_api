@@ -32,12 +32,12 @@ EWindowEditor::EWindowEditor()
 
 		if (i == 0) { selected_sprite_button = but; }
 
-		
+
 	}
 
-	  ////////////////////////////////////////////////
-	 /////	new sprite button		////////////////
-	///////////////////////////////////////////////
+	////////////////////////////////////////////////
+   /////	new sprite button		////////////////
+  ///////////////////////////////////////////////
 	but = new EButton(5.0f, 0.0f, 20.0f, 20.0f);
 	but->master_button = sprite_button_list.at(selected_frame_id);
 	but->master_window = this;
@@ -58,9 +58,9 @@ EWindowEditor::EWindowEditor()
 	button_list.push_back(but);
 	link_to_sprite_editor_group.push_back(but);
 
-		  ////////////////////////////////////////////////
-	 /////	move sprite up button		////////////////
-	///////////////////////////////////////////////
+	////////////////////////////////////////////////
+/////	move sprite up button		////////////////
+///////////////////////////////////////////////
 	but = new EButton(0.0f, 5.0f, 40.0f, 20.0f);
 	but->master_button = link_to_add_new_sprite_button;
 	but->master_window = this;
@@ -76,9 +76,9 @@ EWindowEditor::EWindowEditor()
 	button_list.push_back(but);
 	link_to_sprite_editor_group.push_back(but);
 
-	  ////////////////////////////////////////////////
-	 /////	select texture for sprite		////////////////
-	///////////////////////////////////////////////
+	////////////////////////////////////////////////
+   /////	select texture for sprite		////////////////
+  ///////////////////////////////////////////////
 	but = new EButton(80.0f, 0.0f, 30.0f, 20.0f);
 	but->master_button = link_to_add_new_sprite_button;
 	but->master_window = this;
@@ -246,7 +246,7 @@ EWindowEditor::EWindowEditor()
 	but->text = "entity properties";
 	but->position_mode_x = Enums::PositionMode::RIGHT;
 	but->position_mode_y = Enums::PositionMode::DOWN;
-	
+
 	//entity mass
 	but = new EButton(0.0f, -3.0f, 150.0f, 16.0f);
 	but->master_position = Enums::PositionMaster::BUTTON;
@@ -264,7 +264,7 @@ EWindowEditor::EWindowEditor()
 
 	but->position_mode_x = Enums::PositionMode::LEFT;
 	but->position_mode_y = Enums::PositionMode::DOWN;
-	
+
 	//entity tall shadow value
 	but = new EButton(0.0f, -3.0f, 150.0f, 16.0f);
 	but->master_position = Enums::PositionMaster::BUTTON;
@@ -328,7 +328,7 @@ EWindowEditor::EWindowEditor()
 
 	//controlled by AI
 	but = new EButton(0.0f, -3.0f, 150.0f, 16.0f);
-	
+
 	but->master_button = link_to_entity_controlled_by_AI_button;
 	link_to_set_camera_target_button = but;
 
@@ -338,12 +338,12 @@ EWindowEditor::EWindowEditor()
 	but->action_on_left_click = &EBA::action_set_camera_target;
 
 	button_list.push_back(but);
-	
+
 
 	but->text = "set as camera target";
 	but->position_mode_x = Enums::PositionMode::LEFT;
 	but->position_mode_y = Enums::PositionMode::DOWN;
-	
+
 	//but->action_on_left_click = &EBA::action_save_entity_to_collection;
 	*/
 	for (int i = 0; i < 8; i++)
@@ -631,7 +631,7 @@ EWindowEditor::EWindowEditor()
 	add_button_group_for_float_data(Entity::EAttr::ENTITY_ATTRIBUTE_SHADOW_TALL);
 	add_button_group_for_float_data(Entity::EAttr::ENTITY_ATTRIBUTE_SPEED);
 	add_button_group_for_float_data(Entity::EAttr::ENTITY_ATTRIBUTE_DRAG);
-	
+
 	button_group_start_x = -16.0f;
 	button_group_start_y = 460.0f;
 	add_button_group_for_bool_data(Entity::EntityBoolAttributes::ENTITY_BOOL_ATTRIBUTE_INMOVABLE);
@@ -644,30 +644,78 @@ EWindowEditor::EWindowEditor()
 
 
 
+	//////////////////////////////////////////////////////////////////
+	EButton::button_style* just_created_style = new EButton::button_style;
 
-	but = new EButton(0.0f, 0.0f, 100.0f, 25.0f);
-	but->master_window = this;
-	but->have_description = true;
-	but->have_icon = false;
-	but->have_rama = true;
+	just_created_style->style_color_bg->set_color(EColor::COLOR_GREEN);
 
-	but->bg_color->set_color(EColor::COLOR_BLUE);
-	but->data_id = 2;
 
-	but->master_position = Enums::PositionMaster::WINDOW;
-	but->position_mode_x = Enums::PositionMode::LEFT;
-	but->position_mode_y = Enums::PositionMode::DOWN;
-	but->text = "Z";
+	//but->data_id = 2;
 
-	button_list.push_back(but);
+
+
+
+
+	//button_list.push_back(but);
 
 	button_array_collection_massive* bacm = new button_array_collection_massive;
-	button_array_horizontal_collection* bahc = new button_array_horizontal_collection;
-	button_array_vertical_collection* bavc = new button_array_vertical_collection;
-	button_array* ba = new button_array;
+	*bacm->size_x = 500.0f;
+	*bacm->size_y = 100.0f;
+	*bacm->position_x = 100.0f;
+	*bacm->position_y = 120.0f;
 
-	ba->button_list.push_back(but);
-	bavc->button_array_list.push_back(ba);
+	button_array_horizontal_collection* bahc = new button_array_horizontal_collection;
+	*bahc->position_x = 5.0f;
+	*bahc->position_y = 5.0f;
+	*bahc->size_x = 200.0f;
+	*bahc->size_y = 150.0f;
+
+	for (int i = 0; i < 5; i++)
+	{
+		but = new EButton(0.0f, 0.0f, 100.0f, 20.0f);
+		but->append_style(but, just_created_style);
+		but->text = "TAB #" + std::to_string(i);
+		but->master_window = this;
+		bahc->tab_button_list.push_back(but);
+
+		but->data_id = i;
+		but->target_address_for_int = bahc->selected_tab;
+		but->action_on_left_click = &EBA::action_select_button_group_tab;
+	}
+
+	button_array_vertical_collection* bavc = new button_array_vertical_collection;
+	*bavc->position_x = 5.0f;
+	*bavc->position_y = 5.0f;
+
+	for (int f = 0; f < 4; f++)
+	{
+		///
+		button_array* ba = new button_array;
+
+		but = new EButton(0.0f, 100.0f, rand() % 500 + 10.0f, 25.0f);
+		but->master_window = this;
+		but->text = "Z" + std::to_string(f);
+		EButton::append_style(but, just_created_style);
+		ba->button_list.push_back(but);
+
+		but = new EButton(0.0f, 100.0f, rand() % 500 + 10.0f, 25.0f);
+		but->master_window = this;
+		but->text = "X" + std::to_string(f);
+		EButton::append_style(but, just_created_style);
+		ba->button_list.push_back(but);
+		but->bg_color->set_color(1.0f, 1.0f, 0.0f, 1.0f);
+
+		but = new EButton(0.0f, 100.0f, rand() % 500 + 10.0f, 25.0f);
+		but->master_window = this;
+		but->text = "Y" + std::to_string(f);
+		EButton::append_style(but, just_created_style);
+		ba->button_list.push_back(but);
+		but->bg_color->set_color(1.0f, 0.0f, 0.0f, 1.0f);
+
+		bavc->button_array_list.push_back(ba);
+	}
+
+
 	bahc->button_array_vertical_collection_list.push_back(bavc);
 	bacm->button_array_horizontal_collection_list.push_back(bahc);
 

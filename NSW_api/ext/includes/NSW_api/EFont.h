@@ -50,10 +50,10 @@ public:
 
 	static EFont* active_font;
 
-	Enums::PositionMode align_x = Enums::PositionMode::LEFT;
+	int align_x = Enums::PositionMode::LEFT;
 
 	bool align_only_once = false;
-	Enums::PositionMode align_prev = Enums::PositionMode::LEFT;
+	int align_prev = Enums::PositionMode::LEFT;
 
 	float scale = 1.0f;
 

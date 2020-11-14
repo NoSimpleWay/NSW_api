@@ -70,6 +70,11 @@ public:
 	static void action_set_entity_float_attribute(EButton* _b, float _d);
 	static void action_set_entity_bool_attribute(EButton* _b, float _d);
 
+
+	static void action_select_button_group_tab(EButton* _b, float _d);
+
+
+
 	//hit action
 
 

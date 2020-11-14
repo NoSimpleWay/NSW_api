@@ -924,6 +924,11 @@ void EBA::action_set_entity_bool_attribute(EButton* _b, float _d)
 	}
 }
 
+void EBA::action_select_button_group_tab(EButton* _b, float _d)
+{
+	*_b->target_address_for_int = _b->data_id;
+}
+
 
 
 /*
@@ -944,6 +949,7 @@ void EBA::action_input_search_brick(EButton* _b, float _d)
 {
 	EWindow::window_search_brick->update_search(_b);
 }
+ 
 
 
 /*

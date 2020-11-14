@@ -80,8 +80,6 @@ EButton::EButton()
 {
 	update_localisation();
 
-
-
 }
 
 void EButton::static_click()
@@ -921,69 +919,114 @@ void EWindow::default_update(float _d)
 
 		for (button_array_horizontal_collection* horizontal : massive->button_array_horizontal_collection_list)
 		{
-			
+			float tab_button_w = 0.0f;
 
-			for (button_array_vertical_collection* vertical : horizontal->button_array_vertical_collection_list)
+			for (EButton* b : horizontal->tab_button_list)
 			{
-				add_offset_x += *(vertical->position_x);
-				*vertical->maximum_button_on_array = 0;
-				*vertical->size_y = 0.0f;
+				b->button_x = *massive->position_x + *horizontal->position_x + tab_button_w;
+				b->button_y = *massive->position_y + *horizontal->position_y + *horizontal->size_y + b->button_size_y * 0.0f + 2.0f;
 
-				for (button_array* array : vertical->button_array_list)
+				tab_button_w += b->button_size_x + 5.0f;
+
+				if (b->data_id == *horizontal->selected_tab)
 				{
-					if (array->button_list.size() > *vertical->maximum_button_on_array)
-					{
-						*vertical->maximum_button_on_array = array->button_list.size();
-					}
+					b->bg_color->set_color(EColor::COLOR_WHITE);
+					b->rama_thikness = 3.0f;
+				}
+				else
+				{
+					b->bg_color->set_color(EColor::COLOR_DARK_GRAY);
+					b->rama_thikness = 1.0f;
 				}
 
-				
-
-				maximum_button_size_x.clear();
-				maximum_button_size_x.insert(maximum_button_size_x.begin(), *vertical->maximum_button_on_array, 0.0f);
-
-				//get maximum button width on each row
-				for (button_array* array : vertical->button_array_list)
-				{
-					array_id = 0;
-					for (EButton* b : array->button_list)
-					{
-						if (b->button_size_x > maximum_button_size_x.at(array_id)) { maximum_button_size_x.at(array_id) = b->button_size_x; }
-						if (b->button_size_y > * array->size_y) { *array->size_y = b->button_size_y; }
-
-						b->button_x = 0.0f;
-						b->button_y = 0.0f;
-
-						array_id++;
-					}
-				}
-
-				
-				//set new button size
-				for (button_array* array : vertical->button_array_list)
-				{
-					float button_row_offset = 0.0f;
-
-					array_id = 0;
-					for (EButton* b : array->button_list)
-					{
-
-						b->button_size_x = maximum_button_size_x.at(array_id);
-						b->master_position_x += button_row_offset;
-						button_row_offset += b->button_size_x + 5.0f;
-
-						array_id++;
-
-						if (button_row_offset > * vertical->size_x) { *vertical->size_x = button_row_offset; }
-
-					}
-
-					*vertical->size_y += *array->size_y;
-				}
-
-
+				b->update(_d);
 			}
+
+			
+			
+				for (button_array_vertical_collection* vertical : horizontal->button_array_vertical_collection_list)
+				if (*horizontal->selected_tab == *vertical->tab_id)
+				{
+					add_offset_x += *(vertical->position_x);
+					*vertical->maximum_button_on_array = 0;
+					*vertical->size_y = 0.0f;
+
+					for (button_array* array : vertical->button_array_list)
+					{
+						if (array->button_list.size() > * vertical->maximum_button_on_array)
+						{
+							*vertical->maximum_button_on_array = array->button_list.size();
+						}
+					}
+
+
+
+					maximum_button_size_x.clear();
+					maximum_button_size_x.insert(maximum_button_size_x.begin(), *vertical->maximum_button_on_array, 0.0f);
+
+					//get maximum button width on each row
+					for (button_array* array : vertical->button_array_list)
+					{
+
+						float vertical_size = 0.0f;
+
+						array_id = 0;
+						for (EButton* b : array->button_list)
+						{
+							if (b->button_size_x > maximum_button_size_x.at(array_id)) { maximum_button_size_x.at(array_id) = b->button_size_x; }
+							if (b->button_size_y > * array->size_y) { *array->size_y = b->button_size_y; }
+
+							b->button_x = *massive->position_x + *horizontal->position_x + *vertical->position_x;
+							b->button_y = *massive->position_y + *horizontal->position_y + *vertical->position_y;
+
+							array_id++;
+						}
+					}
+
+					float button_y_offset = 0.0f;
+					//set new button size
+					for (button_array* array : vertical->button_array_list)
+					{
+						float button_row_offset = 0.0f;
+						float maximum_y_size_of_button = 0.0f;
+
+
+						array_id = 0;
+						for (EButton* b : array->button_list)
+						{
+
+							//b->button_size_x = maximum_button_size_x.at(array_id);
+							b->button_x += button_row_offset;
+							b->button_y += button_y_offset;
+
+
+							//b->button_x = 100.0f;
+							button_row_offset += maximum_button_size_x.at(array_id) + 5.0f;
+
+							array_id++;
+
+							if (button_row_offset > * vertical->size_x) { *vertical->size_x = button_row_offset; }
+							if (b->button_size_y > maximum_y_size_of_button) { maximum_y_size_of_button = b->button_size_y; }
+
+							b->update(_d);
+						}
+
+						button_y_offset += maximum_y_size_of_button + 5.0f;
+
+						*vertical->size_y += maximum_y_size_of_button + 5.0f;
+						//*array->size_y += maximum_y_size_of_button;
+					}
+
+					if (*vertical->size_y > * horizontal->size_y) { *horizontal->size_y = *vertical->size_y; }
+					if (*vertical->size_x + 10.0f > * horizontal->size_x) { *horizontal->size_x = *vertical->size_x + 10.0f; }
+				}
+
+				
+				if (*horizontal->size_y + 30.0f > * massive->size_y) { *massive->size_y = *horizontal->size_y + 30.0f; }
+				if (*horizontal->size_x + 10.0f > * massive->size_x) { *massive->size_x = *horizontal->size_x + 10.0f; }
 		}
+
+
 	}
 }
 
@@ -997,6 +1040,42 @@ void EWindow::default_draw(float _d)
 	{
 		EGraphicCore::batch->setcolor_alpha(EColor::COLOR_WHITE, 0.8f);
 		EGraphicCore::batch->draw_gabarite(offset_x, offset_y, window_size_x, window_size_y, EGraphicCore::gabarite_white_pixel);
+	}
+
+	float total_rama_offset_x = 0.0f;
+	float total_rama_offset_y = 0.0f;
+
+	
+	//draw graphic for button group
+	for (button_array_collection_massive* massive : button_array_collection_massive_list)
+	{ 
+		EGraphicCore::batch->setcolor(EColor::COLOR_DARK_RED);
+		EGraphicCore::batch->draw_rama(*massive->position_x, *massive->position_y, *massive->size_x, *massive->size_y, 2.0f, EGraphicCore::gabarite_white_pixel);
+		total_rama_offset_x += *massive->position_x;
+		total_rama_offset_y += *massive->position_y;
+
+		for (button_array_horizontal_collection* horizontal : massive->button_array_horizontal_collection_list)
+		{
+			EGraphicCore::batch->setcolor(EColor::COLOR_DARK_GREEN);
+			EGraphicCore::batch->draw_rama(*horizontal->position_x + total_rama_offset_x, *horizontal->position_y + total_rama_offset_y, *horizontal->size_x, *horizontal->size_y, 2.0f, EGraphicCore::gabarite_white_pixel);
+			total_rama_offset_x += *horizontal->position_x;
+			total_rama_offset_y += *horizontal->position_y;
+
+			for (button_array_vertical_collection* vertical : horizontal->button_array_vertical_collection_list)
+			if (*horizontal->selected_tab == *vertical->tab_id)
+			{
+				EGraphicCore::batch->setcolor(EColor::COLOR_DARK_BLUE);
+				EGraphicCore::batch->draw_rama(*vertical->position_x + total_rama_offset_x, *vertical->position_y + total_rama_offset_y, *vertical->size_x, *vertical->size_y, 2.0f, EGraphicCore::gabarite_white_pixel);
+				total_rama_offset_x += *vertical->position_x;
+				total_rama_offset_y += *vertical->position_y;
+
+				for (button_array* array : vertical->button_array_list)
+				{
+					EGraphicCore::batch->setcolor(EColor::COLOR_BLACK);
+					EGraphicCore::batch->draw_rama(*array->position_x + total_rama_offset_x, *array->position_y + total_rama_offset_y, *array->size_x, *array->size_y, 2.0f, EGraphicCore::gabarite_white_pixel);
+				}
+			}
+		}
 	}
 
 
@@ -1082,24 +1161,41 @@ void EWindow::default_draw_interface(float _d)
 
 	for (button_array_collection_massive* massive : button_array_collection_massive_list)
 		for (button_array_horizontal_collection* horizontal : massive->button_array_horizontal_collection_list)
+		{
+			for (EButton* b : horizontal->tab_button_list)
+			{
+				b->default_draw(EGraphicCore::batch, _d);
+				b->additional_draw(EGraphicCore::batch, _d);
+			}
+
 			for (button_array_vertical_collection* vertical : horizontal->button_array_vertical_collection_list)
+			if (*horizontal->selected_tab == *vertical->tab_id)
 				for (button_array* array : vertical->button_array_list)
 					for (EButton* b : array->button_list)
 						if (b->is_active)
 						{
+							//b->update(_d);
 							b->default_draw(EGraphicCore::batch, _d);
 							b->additional_draw(EGraphicCore::batch, _d);
 						}
+		}
 
 	for (button_array_collection_massive* massive : button_array_collection_massive_list)
 		for (button_array_horizontal_collection* horizontal : massive->button_array_horizontal_collection_list)
-			for (button_array_vertical_collection* vertical : horizontal->button_array_vertical_collection_list)
-				for (button_array* array : vertical->button_array_list)
-					for (EButton* b : array->button_list)
-						if (b->is_active)
-						{
-							b->text_pass(EGraphicCore::batch);
-						}
+		{
+			for (EButton* b : horizontal->tab_button_list)
+			{
+				b->text_pass(EGraphicCore::batch);
+			}
+				for (button_array_vertical_collection* vertical : horizontal->button_array_vertical_collection_list)
+				if (*horizontal->selected_tab == *vertical->tab_id)
+					for (button_array* array : vertical->button_array_list)
+						for (EButton* b : array->button_list)
+							if (b->is_active)
+							{
+								b->text_pass(EGraphicCore::batch);
+							}
+		}
 		
 
 }
@@ -1193,6 +1289,23 @@ bool EWindow::is_overlap(EWindow* _w)
 	}
 
 	return false;
+}
+
+void EButton::append_style(EButton* _b, button_style* _s)
+{
+	_b->bg_color->set_color(_s->style_color_bg);
+	_b->text_color->set_color(_s->style_color_text);
+	_b->rama_color->set_color(_s->style_color_rama);
+
+	_b->have_description = _s->style_have_description;
+	_b->have_icon = _s->style_have_icon;
+	_b->have_rama = _s->style_have_rama;
+
+	_b->master_position = _s->style_master_position;
+	_b->position_mode_x = _s->style_position_mode_x;
+	_b->position_mode_y = _s->style_position_mode_y;
+
+	//std::cout << "style appended " << std::to_string(_s->style_color_bg->red) << std::endl;
 }
 
 

@@ -16,7 +16,7 @@
 
 #include "NSW_api/Enums.h"
 #include "NSW_api/EFont.h"
-#include "EBA.h" 
+#include "EBA.h"   
 
 
  
@@ -336,12 +336,12 @@ int main()
 			w->default_update(delta_time);
 			w->update(delta_time);
 
-			for (EButton* b : w->button_list)
+			/*for (EButton* b : w->button_list)
 			if (b->is_active)
 			{
 				b->update(delta_time);
 				b->update_additional(delta_time);
-			}
+			}*/
 		}
 
 		for (EWindow* w : EWindow::window_list)

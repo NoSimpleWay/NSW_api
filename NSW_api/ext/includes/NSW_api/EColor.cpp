@@ -60,6 +60,14 @@ void EColor::set_color(EColorCollection* _c)
 	alpha = _c->color_alpha;
 }
 
+void EColor::set_color(EColor* _c)
+{
+	red = _c->red;
+	green = _c->green;
+	blue = _c->blue;
+	alpha = _c->alpha;
+}
+
 void EColor::set_color_lum(EColorCollection* _c, float _lum)
 {
 	red = _c->color_red * _lum;

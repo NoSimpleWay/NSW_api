@@ -1310,9 +1310,9 @@ void EWindowTest::draw_lightmap()
 					{
 						EGraphicCore::batch->setcolor(*e->light_source_red, *e->light_source_green, *e->light_source_blue, 1.0f);
 						if (*e->is_bullet)
-						{EGraphicCore::batch->draw_gabarite((int)(*e->position_x / 40.0f) - 0.0f, (int)(*e->position_y / 40.0f) - 0.0f, 1.0f, 1.0f, EGraphicCore::gabarite_white_pixel);}
+						{EGraphicCore::batch->draw_gabarite(round(*e->position_x / 40.0f) - 0.0f, round(*e->position_y / 40.0f) - 0.0f, 1.0f, 1.0f, EGraphicCore::gabarite_white_pixel);}
 						else
-						{EGraphicCore::batch->draw_gabarite((int)(*e->position_x / 40.0f) - 1.0f, (int)(*e->position_y / 40.0f) - 1.0f, 3.0f, 3.0f, EGraphicCore::gabarite_white_pixel);}
+						{EGraphicCore::batch->draw_gabarite(round(*e->position_x / 40.0f) - 1.0f, round(*e->position_y / 40.0f) - 1.0f, 3.0f, 3.0f, EGraphicCore::gabarite_white_pixel);}
 
 					}
 
@@ -1349,7 +1349,7 @@ void EWindowTest::draw_lightmap()
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 
 			GLint blur_loc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "blur");
-			glUniform1f(blur_loc, 0.25f);
+			glUniform1f(blur_loc, 0.8f);
 
 			glBlendFunc(GL_ONE, GL_ONE);
 			for (int i = 0; i < 1; i++)
@@ -1358,6 +1358,7 @@ void EWindowTest::draw_lightmap()
 				EGraphicCore::batch->force_draw_call();
 			}
 
+			
 			EGraphicCore::batch->setcolor_lum(EColor::COLOR_WHITE, 1.0f);
 			EGraphicCore::ourShader->use();//draw blockmap
 			glBlendFunc(GL_ZERO, GL_SRC_COLOR);
@@ -1402,13 +1403,14 @@ void EWindowTest::draw_lightmap()
 			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
 			EGraphicCore::batch->force_draw_call();
 
+			/*
 			EGraphicCore::ourShader->use();//draw blockmap
 			glBlendFunc(GL_ZERO, GL_SRC_COLOR);
 			transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO, EWindow::base_blockmap);
 			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
-			EGraphicCore::batch->force_draw_call();
+			EGraphicCore::batch->force_draw_call();*/
 
 
 	}

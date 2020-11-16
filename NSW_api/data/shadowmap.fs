@@ -21,6 +21,7 @@ uniform float offset_y;
 float shadow_multiplier;
 
 vec2 shadow_coord;
+vec2 light_coord;
 
 void main()
 {
@@ -29,6 +30,7 @@ void main()
 	//shadow_coord = vec2(ShadowCoord.x, ShadowCoord.y * (1.0f - texture(texture1, SuperMapCoord).b) + FullShadowCoord * texture(texture1, SuperMapCoord).b - texture(texture1, SuperMapCoord).r * 0.161f) + vec2(offset_x, offset_y);
 	
 	shadow_coord = vec2(ShadowCoord.x, FullShadowCoord  - texture(texture1, SuperMapCoord).g * 0.161f + texture(texture1, SuperMapCoord).b * 0.161f) + vec2(offset_x, offset_y);
+	//light_coord = vec2(LightMapCoord.x, FullShadowCoord  - texture(texture1, SuperMapCoord).g * 0.161f + texture(texture1, SuperMapCoord).b * 0.161f) + vec2(offset_x, offset_y);
 	
 	shadow_multiplier
 	=
@@ -65,7 +67,7 @@ void main()
 			(1.0f - shadow_multiplier) * ourColor.rgb
 		)
 		+
-		(texture(texture3, LightMapCoord).rgb * (1.0f - texture(texture1, SuperMapCoord).g))
+		(texture(texture3, LightMapCoord).rgb * (1.0f - texture(texture1, SuperMapCoord).g) * (1.0f - texture(texture1, SuperMapCoord).g))
 	)
 
 	;

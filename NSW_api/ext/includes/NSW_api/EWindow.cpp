@@ -431,8 +431,20 @@ void EButton::update(float _d)
 
 	if ((is_slider) && (slider_activate) && (slider_is_horizontal))
 	{
-		slider_value = (EWindow::mouse_x - master_position_x) / button_size_x;
-		slider_value = EMath::clamp_value_float(slider_value, 0.0f, 1.0f);
+		//slider_value = (EWindow::mouse_x - master_position_x) / button_size_x;
+		//slider_value = EMath::clamp_value_float(slider_value, 0.0f, 1.0f) * slider_value_multiplier;
+		//slider_value += , 0.0f, 1.0f;
+		float shift_value = 1.0f / button_size_x;
+		if
+		(
+			(glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+			||
+			(glfwGetKey(EWindow::main_window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS)
+		)
+		{
+			shift_value *= 0.1f;
+		}
+		slider_value = EMath::clamp_value_float(slider_value + EWindow::mouse_speed_x * shift_value * slider_value_multiplier, 0.0f, 1.0f);
 
 		slider_drag_event();
 
@@ -836,6 +848,18 @@ void EButton::text_pass(Batcher* _batch)
 		target_font->draw(_batch, description_text, x_description + 5.0f, EWindow::mouse_y - 34.0f);
 
 		_batch->draw_rama(x_description, EWindow::mouse_y - 20.0f - th, EFont::get_width(target_font, description_text) + 8, th, 2, EGraphicCore::gabarite_white_pixel);
+	}
+
+	if ((is_slider) && (slider_activate))
+	{
+		EFont* target_font = EFont::active_font;
+		float th = EFont::get_height(target_font, std::to_string(slider_value * slider_value_multiplier)) + 5.0f;
+
+		_batch->setcolor(EColor::COLOR_WHITE);
+		_batch->draw_gabarite(EWindow::mouse_x + 10.0f, EWindow::mouse_y - 20.0f - th, EFont::get_width(target_font, std::to_string(slider_value * slider_value_multiplier)) + 8, th, EGraphicCore::gabarite_white_pixel);
+
+		_batch->setcolor(EColor::COLOR_BLACK);
+		target_font->draw(_batch, std::to_string(slider_value * slider_value_multiplier), EWindow::mouse_x + 15.0f, EWindow::mouse_y - 34.0f);
 	}
 }
 

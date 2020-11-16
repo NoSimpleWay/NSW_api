@@ -1,10 +1,10 @@
-#shadow_skew	0.110668
-ADD_NEW_ENTITY	5019.000000	5500.000000
+#shadow_skew	0.790480
+ADD_NEW_ENTITY	613.000000	306.000000
 ADD_NEW_SPRITE
-add_new_texture	data/textures/wall_lamp.png
-texture_offset_x	-19.000000
-texture_offset_y	-3.000000
-texture_offset_z	117.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
 texture_copies	1
 shadow_size_x	1.000000
 shadow_size_y	1.000000
@@ -12,43 +12,9 @@ shadow_tall	100.000000
 shadow_bottom_tall	1.000000
 entity base attribute	Life	1000.000000
 entity base attribute	Lightsoucre red	1.000000
-entity bool attribute	Inmovable
-entity bool attribute	Light Source
-entity bool attribute	Ghost
-entity bool attribute	No path block
-collision_up	20.000000
-collision_down	20.000000
-collision_right	20.000000
-collision_left	20.000000
-path_block_up	20.000000
-path_block_down	20.000000
-path_block_right	20.000000
-path_block_left	20.000000
-shadow_block_up	20.000000
-shadow_block_down	20.000000
-shadow_block_right	20.000000
-shadow_block_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	5101.000000	5500.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/wall_lamp.png
-texture_offset_x	-19.000000
-texture_offset_y	-3.000000
-texture_offset_z	117.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	1.000000
-entity base attribute	Life	1000.000000
+entity base attribute	Lightsoucre green	1.000000
 entity base attribute	Lightsoucre blue	1.000000
-entity bool attribute	Inmovable
 entity bool attribute	Light Source
-entity bool attribute	Ghost
-entity bool attribute	No path block
 collision_up	20.000000
 collision_down	20.000000
 collision_right	20.000000
@@ -65,7 +31,7 @@ shadow_block_left	20.000000
 
 =====================================
 
-ADD_NEW_ENTITY	5058.000000	5458.000000
+ADD_NEW_ENTITY	5214.000000	5366.000000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/wall_lamp.png
 texture_offset_x	-12.000000
@@ -98,27 +64,31 @@ shadow_block_left	20.000000
 
 =====================================
 
-ADD_NEW_ENTITY	5763.000000	5580.000000
+ADD_NEW_ENTITY	5212.000000	5446.000000
 ADD_NEW_SPRITE
-add_new_texture	data/textures/beton_fence_horizontal.png
-texture_offset_x	-166.000000
-texture_offset_y	-5.000000
-texture_offset_z	0.000000
-texture_copies	3
+add_new_texture	data/textures/wall_lamp.png
+texture_offset_x	-19.000000
+texture_offset_y	-3.000000
+texture_offset_z	117.000000
+texture_copies	1
 shadow_size_x	1.000000
 shadow_size_y	1.000000
 shadow_tall	100.000000
 shadow_bottom_tall	1.000000
 entity base attribute	Life	1000.000000
+entity base attribute	Lightsoucre blue	1.000000
 entity bool attribute	Inmovable
-collision_up	5.000000
-collision_down	0.000000
-collision_right	178.000000
-collision_left	166.500000
-path_block_up	1.500000
-path_block_down	0.000000
-path_block_right	160.500000
-path_block_left	135.500000
+entity bool attribute	Light Source
+entity bool attribute	Ghost
+entity bool attribute	No path block
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
 shadow_block_up	20.000000
 shadow_block_down	20.000000
 shadow_block_right	20.000000
@@ -127,40 +97,73 @@ shadow_block_left	20.000000
 
 =====================================
 
-ADD_NEW_ENTITY	5985.000000	5563.000000
+ADD_NEW_ENTITY	5252.000000	5414.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall_lamp.png
+texture_offset_x	-19.000000
+texture_offset_y	-3.000000
+texture_offset_z	117.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Lightsoucre red	1.000000
+entity bool attribute	Inmovable
+entity bool attribute	Light Source
+entity bool attribute	Ghost
+entity bool attribute	No path block
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	5585.000000	5187.000000
 ADD_NEW_SPRITE
 *rotate_by_move
-add_new_texture	data/textures/mech_1.png
-texture_offset_x	-26.000000
-texture_offset_y	-27.000000
-texture_offset_z	19.000000
+add_new_texture	data/textures/letoon3.png
+texture_offset_x	-15.000000
+texture_offset_y	1.000000
+texture_offset_z	6.000000
 texture_copies	1
 shadow_size_x	1.000000
 shadow_size_y	1.000000
 shadow_tall	100.000000
 shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_2.png
-texture_offset_x	-17.399998
-texture_offset_y	-12.400000
-texture_offset_z	3.500000
+add_new_texture	data/textures/letoon2.png
+texture_offset_x	-15.000000
+texture_offset_y	0.000000
+texture_offset_z	3.000000
 texture_copies	1
 shadow_size_x	1.000000
 shadow_size_y	1.000000
 shadow_tall	100.000000
 shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_3.png
-texture_offset_x	-25.500000
-texture_offset_y	-23.100000
-texture_offset_z	14.000000
+add_new_texture	data/textures/letoon1.png
+texture_offset_x	-15.000000
+texture_offset_y	0.000000
+texture_offset_z	6.000000
 texture_copies	1
 shadow_size_x	1.000000
 shadow_size_y	1.000000
 shadow_tall	100.000000
 shadow_bottom_tall	100.000000
-add_new_texture	data/textures/mech_4.png
-texture_offset_x	-16.899996
-texture_offset_y	-18.700001
-texture_offset_z	11.000000
+add_new_texture	data/textures/letoon4.png
+texture_offset_x	-15.000000
+texture_offset_y	0.000000
+texture_offset_z	5.000000
 texture_copies	1
 shadow_size_x	1.000000
 shadow_size_y	1.000000
@@ -243,14 +246,14 @@ shadow_bottom_tall	100.000000
 ADD_NEW_SPRITE
 *shadow
 add_new_texture	data/textures/white_pixel.png
-texture_offset_x	26.000000
-texture_offset_y	-4.000000
+texture_offset_x	15.000000
+texture_offset_y	2.000000
 texture_offset_z	0.000000
 texture_copies	1
-shadow_size_x	52.000000
-shadow_size_y	18.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
+shadow_size_x	25.000000
+shadow_size_y	15.000000
+shadow_tall	79.000000
+shadow_bottom_tall	79.000000
 add_new_texture	data/textures/white_pixel.png
 texture_offset_x	29.549992
 texture_offset_y	-8.249985
@@ -278,23 +281,13 @@ shadow_size_x	1.000000
 shadow_size_y	1.000000
 shadow_tall	100.000000
 shadow_bottom_tall	100.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	13.000000
-texture_offset_y	61.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	100.000000
 *camera_target
 entity base attribute	Life	1000.000000
 entity base attribute	Mass	100.000000
 entity base attribute	Shadow tall	72.000000
-entity base attribute	Lightsoucre red	0.620000
-entity base attribute	Lightsoucre green	0.290000
-entity base attribute	Lightsoucre blue	0.170000
+entity base attribute	Lightsoucre red	1.000000
+entity base attribute	Lightsoucre green	1.000000
+entity base attribute	Lightsoucre blue	0.940000
 entity bool attribute	Controlled by Player
 entity bool attribute	Light Source
 collision_up	21.000000
@@ -313,7 +306,65 @@ shadow_block_left	20.000000
 
 =====================================
 
-ADD_NEW_ENTITY	5951.000000	5710.000000
+ADD_NEW_ENTITY	5487.000000	6040.000000
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/tall_building_c18_corner_left.png
+texture_offset_x	-101.000000
+texture_offset_y	13.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+add_new_texture	data/textures/tall_building_c18_wall.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+add_new_texture	data/textures/tall_building_c18_corner_right.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/tall_building_c18_window..png
+texture_offset_x	-44.000000
+texture_offset_y	8.000000
+texture_offset_z	91.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+collision_up	119.000000
+collision_down	11.000000
+collision_right	97.000000
+collision_left	98.000000
+path_block_up	53.000000
+path_block_down	0.000000
+path_block_right	101.000000
+path_block_left	101.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	5663.000000	5223.000000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/green_garage.png
 texture_offset_x	-142.000000
@@ -328,13 +379,13 @@ ADD_NEW_SPRITE
 *shadow
 add_new_texture	data/textures/white_pixel.png
 texture_offset_x	116.000000
-texture_offset_y	-17.000000
+texture_offset_y	-15.000000
 texture_offset_z	0.000000
 texture_copies	1
 shadow_size_x	271.000000
 shadow_size_y	107.000000
-shadow_tall	189.000000
-shadow_bottom_tall	190.000000
+shadow_tall	132.000000
+shadow_bottom_tall	158.000000
 entity base attribute	Life	1000.000000
 entity bool attribute	Inmovable
 collision_up	73.000000
@@ -345,6 +396,63 @@ path_block_up	31.000000
 path_block_down	3.000000
 path_block_right	88.500000
 path_block_left	67.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	5775.000000	5573.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/beton_fence_horizontal.png
+texture_offset_x	-166.000000
+texture_offset_y	-5.000000
+texture_offset_z	0.000000
+texture_copies	3
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+collision_up	5.000000
+collision_down	0.000000
+collision_right	178.000000
+collision_left	166.500000
+path_block_up	1.500000
+path_block_down	0.000000
+path_block_right	160.500000
+path_block_left	135.500000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	5607.000000	5426.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/tall_building_c18_wall.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+entity base attribute	Life	1000.000000
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
 shadow_block_up	20.000000
 shadow_block_down	20.000000
 shadow_block_right	20.000000

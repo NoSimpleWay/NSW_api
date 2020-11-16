@@ -679,40 +679,68 @@ EWindowEditor::EWindowEditor()
 		bahc->tab_button_list.push_back(but);
 
 		but->data_id = i;
+		*but->target_value_for_int = i;
 		but->target_address_for_int = bahc->selected_tab;
-		but->action_on_left_click = &EBA::action_select_button_group_tab;
+		but->action_on_left_click = &EBA::action_set_constant_int_to_address;
 	}
 
 	button_array_vertical_collection* bavc = new button_array_vertical_collection;
 	*bavc->position_x = 5.0f;
 	*bavc->position_y = 5.0f;
 
-	for (int f = 0; f < 4; f++)
+	for (int f = 0; f < 1; f++)
 	{
 		///
 		button_array* ba = new button_array;
 
-		but = new EButton(0.0f, 100.0f, rand() % 500 + 10.0f, 25.0f);
-		but->master_window = this;
-		but->text = "Z" + std::to_string(f);
-		EButton::append_style(but, just_created_style);
-		ba->button_list.push_back(but);
-
-		but = new EButton(0.0f, 100.0f, rand() % 500 + 10.0f, 25.0f);
-		but->master_window = this;
-		but->text = "X" + std::to_string(f);
-		EButton::append_style(but, just_created_style);
-		ba->button_list.push_back(but);
-		but->bg_color->set_color(1.0f, 1.0f, 0.0f, 1.0f);
-
-		but = new EButton(0.0f, 100.0f, rand() % 500 + 10.0f, 25.0f);
-		but->master_window = this;
-		but->text = "Y" + std::to_string(f);
-		EButton::append_style(but, just_created_style);
-		ba->button_list.push_back(but);
-		but->bg_color->set_color(1.0f, 0.0f, 0.0f, 1.0f);
-
+		but = new EButton(0.0f, 100.0f, 200.0f , 10.0f);
+			but->master_window = this;
+			but->text = "Blur factor";
+			EButton::append_style(but, just_created_style);
+			but->is_slider = true;
+			but->slider_value_multiplier = 1.0f;
+			but->target_address_for_float = &EWindowTest::blur_factor;
+			but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+			ba->button_list.push_back(but);
 		bavc->button_array_list.push_back(ba);
+
+		ba = new button_array;
+		but = new EButton(0.0f, 100.0f, 200.0f , 10.0f);
+			but->master_window = this;
+			but->text = "Blur decay multiplier";
+			EButton::append_style(but, just_created_style);
+			but->is_slider = true;
+			but->slider_value_multiplier = 1.0f;
+			but->target_address_for_float = &EWindowTest::blur_decay_multiplier_factor;
+			but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+			ba->button_list.push_back(but);
+		bavc->button_array_list.push_back(ba);
+
+		ba = new button_array;
+		but = new EButton(0.0f, 100.0f, 200.0f , 10.0f);
+			but->master_window = this;
+			but->text = "Blur decay flat";
+			EButton::append_style(but, just_created_style);
+			but->is_slider = true;
+			but->slider_value_multiplier = 0.1f;
+			but->target_address_for_float = &EWindowTest::blur_decay_flat_factor;
+			but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+			ba->button_list.push_back(but);
+		bavc->button_array_list.push_back(ba);
+		
+		ba = new button_array;
+		but = new EButton(0.0f, 100.0f, 200.0f , 10.0f);
+			but->master_window = this;
+			but->text = "Add factor";
+			EButton::append_style(but, just_created_style);
+			but->is_slider = true;
+			but->slider_value_multiplier = 1.0f;
+			but->target_address_for_float = &EWindowTest::add_factor;
+			but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+			ba->button_list.push_back(but);
+		bavc->button_array_list.push_back(ba);
+
+		
 	}
 
 

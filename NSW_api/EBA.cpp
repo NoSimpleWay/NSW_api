@@ -924,9 +924,22 @@ void EBA::action_set_entity_bool_attribute(EButton* _b, float _d)
 	}
 }
 
-void EBA::action_select_button_group_tab(EButton* _b, float _d)
+void EBA::action_set_constant_int_to_address(EButton* _b, float _d)
 {
-	*_b->target_address_for_int = _b->data_id;
+	*_b->target_address_for_int = *_b->target_value_for_int;
+}
+
+void EBA::action_set_button_value_float_to_address(EButton* _b, float _d)
+{
+	if (_b->have_input_mode)
+	{
+		*_b->target_address_for_float = EMath::to_float(_b->text);
+	}
+
+	if (_b->is_slider)
+	{
+		*_b->target_address_for_float = _b->slider_value;
+	}
 }
 
 

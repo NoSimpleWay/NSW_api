@@ -723,9 +723,9 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 			frame_id = *_e->target_angle_id;
 
 			if (*_e->speed_x * *_e->speed_x > * _e->speed_y** _e->speed_y)
-			{if (*_e->speed_x > 0) { offset_y_begin = 5.0f; } else { offset_y_begin = -5.0f; }}
+			{if (*_e->speed_x > 0) { offset_y_begin = 0.0f; } else { offset_y_begin = -0.0f; }}
 			else
-			{if (*_e->speed_y > 0) { offset_x_begin = -15.0f; } else { offset_x_begin = 15.0f; }}
+			{if (*_e->speed_y > 0) { offset_x_begin = -0.0f; } else { offset_x_begin = 0.0f; }}
 
 			if ((EWindow::window_editor->is_active) & (sprite_id == EWindow::window_editor->selected_sprite_id)) { frame_id = EWindow::window_editor->selected_frame_id; }
 		}
@@ -966,6 +966,29 @@ void Entity::update_entity_attributes(Entity* _e)
 	*/
 
 
+}
+
+void Entity::draw_sprite_assembly(Entity* _e, Batcher* _b, float _d, bool _shadow_mode)
+{
+	int subsprite_id = 0;
+
+	//draw regular batch
+	if (!_shadow_mode)
+	for (sprite_assembly* sa : _e->sprite_assembly_list)
+	{
+		_b->draw_gabarite_shadowmap
+		(
+			*_e->position_x + *sa->subsprite_list.at(subsprite_id)->offset_x,//position_x
+			*_e->position_y + *sa->subsprite_list.at(subsprite_id)->offset_y,//position_y
+
+			0.0f,
+			sa->subsprite_list.at(subsprite_id)->texture->size_y,
+
+			sa->subsprite_list.at(subsprite_id)->texture,
+			sa->subsprite_list.at(subsprite_id)->supermap,
+			*sa->subsprite_list.at(subsprite_id)->offset_z
+		);
+	}
 }
 
 bool ECluster::collision_left(Entity* _a, Entity* _b)

@@ -16,7 +16,10 @@ public:
 	void default_update(float _d);
 	virtual void update(float _d);
 
-	float blur_factor = 0.12f;
+	static float blur_factor;
+	static float blur_decay_multiplier_factor;
+	static float blur_decay_flat_factor;
+	static float add_factor;
 
 	void default_draw(float _d);
 	void draw_shadows();

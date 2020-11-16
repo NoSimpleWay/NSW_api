@@ -9,6 +9,11 @@ std::string s;
 
 int maximum_alloy = 0;
 
+float EWindowTest::blur_factor = 0.12f;
+float EWindowTest::blur_decay_multiplier_factor = 0.99f;
+float EWindowTest::blur_decay_flat_factor = 0.0002f;
+float EWindowTest::add_factor = 1.0000f;
+
 void EWindowTest::test_of_values()
 {
 	float test_result = 0.0f;
@@ -1349,9 +1354,12 @@ void EWindowTest::draw_lightmap()
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 
 			GLint blur_loc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "blur");
-			glUniform1f(blur_loc, 0.8f);
+			GLint decay_mul = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "decay_mul");
+			GLint decay_flat = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "decay_flat");
+			glUniform1f(blur_loc, add_factor);
 
-			glBlendFunc(GL_ONE, GL_ONE);
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			//glBlendFunc(GL_ONE, GL_ONE);
 			for (int i = 0; i < 1; i++)
 			{
 				EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
@@ -1373,12 +1381,14 @@ void EWindowTest::draw_lightmap()
 			EGraphicCore::batch->setcolor_lum(EColor::COLOR_WHITE, 1.0f);
 		
 	//glBlendFunc(GL_ONE, GL_ZERO);
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 5; i++)
 	{
 
 
 			EGraphicCore::lightmap_blur->use();
-			glUniform1f(blur_loc, blur_factor);
+				glUniform1f(blur_loc, blur_factor);
+				glUniform1f(decay_mul, blur_decay_multiplier_factor);
+				glUniform1f(decay_flat, blur_decay_flat_factor);
 			transformLoc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "transform");
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO2, EWindow::lightmap_FBO);
@@ -1395,7 +1405,20 @@ void EWindowTest::draw_lightmap()
 			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
 			EGraphicCore::batch->force_draw_call();
 
+			
+			EGraphicCore::ourShader->use();
+			transformLoc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "transform");
+			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
+			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO2, EWindow::base_lightmap);
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
+			EGraphicCore::batch->force_draw_call();
+
+
 			EGraphicCore::lightmap_blur->use();
+				glUniform1f(blur_loc, blur_factor);
+				glUniform1f(decay_mul, blur_decay_multiplier_factor);
+				glUniform1f(decay_flat, blur_decay_flat_factor);
 			transformLoc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "transform");
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO, EWindow::lightmap_FBO2);
@@ -1403,12 +1426,21 @@ void EWindowTest::draw_lightmap()
 			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
 			EGraphicCore::batch->force_draw_call();
 
-			/*
+			
 			EGraphicCore::ourShader->use();//draw blockmap
 			glBlendFunc(GL_ZERO, GL_SRC_COLOR);
 			transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO, EWindow::base_blockmap);
+			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
+			EGraphicCore::batch->force_draw_call();
+
+			/*
+			EGraphicCore::ourShader->use();
+			transformLoc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "transform");
+			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
+			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO, EWindow::base_lightmap);
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
 			EGraphicCore::batch->force_draw_call();*/
 

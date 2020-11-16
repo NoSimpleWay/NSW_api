@@ -269,6 +269,40 @@ public:
 
 
 	static void update_entity_attributes(Entity* _e);
+
+	struct subsprite
+	{
+		EGabarite* texture;
+		EGabarite* supermap;
+
+		float* offset_x = new float(0.0f);
+		float* offset_y = new float(0.0f);
+		float* offset_z = new float(0.0f);
+	};
+
+	struct sprite_assembly
+	{
+		//std::vector<EGabarite*> texture;
+
+
+
+		bool* is_shadow_mode = new bool(false);
+		bool* is_movement_mode = new bool(false);
+		bool* is_target_mode = new bool(false);
+
+		std::vector <subsprite*> subsprite_list;
+
+		/*int* repeat_x = new int(0);
+		int* repeat_y = new int(0);*/
+	};
+
+	static void draw_sprite_assembly(Entity* _e, Batcher* _b, float _d, bool _shadow_mode);
+
+
+
+
+
+	std::vector <sprite_assembly*> sprite_assembly_list;
 };
 
 

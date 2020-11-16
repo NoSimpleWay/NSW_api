@@ -239,6 +239,10 @@ public:
 
 	
 	int * target_address_for_int;
+	int* target_value_for_int = new int(0);
+
+	float * target_address_for_float;
+	float * target_value_for_float;
 
 	static void static_click();
 	static void static_click2();
@@ -327,6 +331,7 @@ public:
 
 	bool is_slider = false;
 	float slider_value;
+	float slider_value_multiplier = 1.0f;
 
 	virtual void additional_draw(Batcher* _batch, float _d);
 	void default_draw(Batcher* _batch, float _d);

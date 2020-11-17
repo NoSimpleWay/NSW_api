@@ -947,6 +947,15 @@ void EBA::action_set_button_value_float_to_address(EButton* _b, float _d)
 	}
 }
 
+void EBA::action_add_new_texture_variant(EButton* _b, float _d)
+{
+	EButton* but = new EButton(0.0f, 0.0f, 100.0f, 100.0f);
+	but->master_window = _b->master_window;
+	but->action_on_right_click = &EBA::action_set_button_as_removed;
+
+	EWindow::window_editor->building_autogenerator_texture_variant_list_link->button_list.push_back(but);
+}
+
 
 
 /*

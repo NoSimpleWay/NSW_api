@@ -392,6 +392,36 @@ public:
 
 	ESprite();
 	~ESprite();
+
+
+	
+	struct autogen_element
+	{
+		std::vector<EGabarite*> texture_variants;
+
+		float* offset_x = new float(0.0f);
+		float* offset_y = new float(0.0f);
+
+		int* copies_x = new int(0);
+		int* copies_y = new int(0);
+	};
+
+	struct building_autogenerator_struct
+	{
+		//std::vector<texture_variants*> 
+		std::vector<autogen_element*> textures_list;
+
+		enum AutogenElementType
+		{
+			LEFT_WALL,
+			MID_WALL,
+			RIGHT_WALL,
+			WINDOW
+		};
+	};
+
+	//floors count
+	std::vector<building_autogenerator_struct*> build_autogen_floor_list;
 };
 
 class EItem

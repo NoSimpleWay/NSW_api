@@ -108,6 +108,8 @@ public:
 
 
 
+	button_array_collection_massive* world_configue_massive_link;
+	button_array* building_autogenerator_texture_variant_list_link;
 
 	/*
 	
@@ -123,6 +125,7 @@ public:
 	EButton* building_autogenerator_link_to_window_wall;
 
 	std::vector <EButton*> building_autogenerator_link_to_texture_variant;
+
 
 
 

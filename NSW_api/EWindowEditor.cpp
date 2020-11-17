@@ -393,151 +393,6 @@ EWindowEditor::EWindowEditor()
 	}
 
 
-	////////////////////////////////////////////////
-/////	shadow color red		////////////////
-///////////////////////////////////////////////
-	but = new EButton(10.0f, 50.0f, 100.0f, 20.0f);
-	but->master_window = this;
-	but->have_description = true;
-	but->have_icon = true;
-	but->have_rama = true;
-
-	but->bg_color->set_color(EColor::COLOR_RED);
-	but->data_id = 0;
-
-	but->master_position = Enums::PositionMaster::WINDOW;
-	but->position_mode_x = Enums::PositionMode::LEFT;
-	but->position_mode_y = Enums::PositionMode::DOWN;
-	but->text = "";
-	but->slider_value = EColor::COLOR_LAZURE_SHADOW->color_red;
-	but->is_slider = true;
-
-	but->action_on_slider_drag = &EBA::action_slider_shadow_color;
-
-	link_to_shadow_color_red = but;
-	button_list.push_back(but);
-
-	////////////////////////////////////////////////
-/////	shadow color green		////////////////
-///////////////////////////////////////////////
-	but = new EButton(10.0f, 25.0f, 100.0f, 20.0f);
-	but->master_window = this;
-	but->have_description = true;
-	but->have_icon = true;
-	but->have_rama = true;
-
-	but->bg_color->set_color(EColor::COLOR_GREEN);
-	but->data_id = 1;
-
-	but->master_position = Enums::PositionMaster::WINDOW;
-	but->position_mode_x = Enums::PositionMode::LEFT;
-	but->position_mode_y = Enums::PositionMode::DOWN;
-	but->text = "";
-	but->slider_value = EColor::COLOR_LAZURE_SHADOW->color_green;
-	but->is_slider = true;
-
-	but->action_on_slider_drag = &EBA::action_slider_shadow_color;
-
-	link_to_shadow_color_green = but;
-	button_list.push_back(but);
-
-	////////////////////////////////////////////////
-/////	shadow color blue		////////////////
-///////////////////////////////////////////////
-	but = new EButton(10.0f, 0.0f, 100.0f, 20.0f);
-	but->master_window = this;
-	but->have_description = true;
-	but->have_icon = true;
-	but->have_rama = true;
-
-	but->bg_color->set_color(EColor::COLOR_BLUE);
-	but->data_id = 2;
-
-	but->master_position = Enums::PositionMaster::WINDOW;
-	but->position_mode_x = Enums::PositionMode::LEFT;
-	but->position_mode_y = Enums::PositionMode::DOWN;
-	but->text = "";
-	but->slider_value = EColor::COLOR_LAZURE_SHADOW->color_blue;
-	but->is_slider = true;
-
-	but->action_on_slider_drag = &EBA::action_slider_shadow_color;
-
-	link_to_shadow_color_blue = but;
-	button_list.push_back(but);
-
-
-
-	////////////////////////////////////////////////
-/////	sky color red		////////////////
-///////////////////////////////////////////////
-	but = new EButton(120.0f, 00.0f, 100.0f, 20.0f);
-	but->master_window = this;
-	but->have_description = true;
-	but->have_icon = true;
-	but->have_rama = true;
-
-	but->bg_color->set_color(EColor::COLOR_RED);
-	but->data_id = 0;
-
-	but->master_position = Enums::PositionMaster::WINDOW;
-	but->position_mode_x = Enums::PositionMode::LEFT;
-	but->position_mode_y = Enums::PositionMode::DOWN;
-	but->text = "";
-	but->slider_value = EColor::COLOR_SKY_AMBIENT->color_red;
-	but->is_slider = true;
-
-	but->action_on_slider_drag = &EBA::action_slider_sky_color;
-
-	link_to_sky_color_red = but;
-	button_list.push_back(but);
-
-	////////////////////////////////////////////////
-/////	sky color green		////////////////
-///////////////////////////////////////////////
-	but = new EButton(120.0f, 25.0f, 100.0f, 20.0f);
-	but->master_window = this;
-	but->have_description = true;
-	but->have_icon = true;
-	but->have_rama = true;
-
-	but->bg_color->set_color(EColor::COLOR_GREEN);
-	but->data_id = 1;
-
-	but->master_position = Enums::PositionMaster::WINDOW;
-	but->position_mode_x = Enums::PositionMode::LEFT;
-	but->position_mode_y = Enums::PositionMode::DOWN;
-	but->text = "";
-	but->slider_value = EColor::COLOR_SKY_AMBIENT->color_green;
-	but->is_slider = true;
-
-	but->action_on_slider_drag = &EBA::action_slider_sky_color;
-
-	link_to_sky_color_green = but;
-	button_list.push_back(but);
-
-	////////////////////////////////////////////////
-/////	sky color blue		////////////////
-///////////////////////////////////////////////
-	but = new EButton(120.0f, 50.0f, 100.0f, 20.0f);
-	but->master_window = this;
-	but->have_description = true;
-	but->have_icon = true;
-	but->have_rama = true;
-
-	but->bg_color->set_color(EColor::COLOR_BLUE);
-	but->data_id = 2;
-
-	but->master_position = Enums::PositionMaster::WINDOW;
-	but->position_mode_x = Enums::PositionMode::LEFT;
-	but->position_mode_y = Enums::PositionMode::DOWN;
-	but->text = "";
-	but->slider_value = EColor::COLOR_SKY_AMBIENT->color_blue;
-	but->is_slider = true;
-
-	but->action_on_slider_drag = &EBA::action_slider_sky_color;
-
-	link_to_sky_color_blue = but;
-	button_list.push_back(but);
 
 	////////////////////////////////////////////////
 /////	lightsource color red		////////////////
@@ -658,7 +513,7 @@ EWindowEditor::EWindowEditor()
 
 	//button_list.push_back(but);
 
-	button_array_collection_massive* bacm = new button_array_collection_massive;
+	button_array_collection_massive* bacm = new button_array_collection_massive(this);
 	*bacm->size_x = 500.0f;
 	*bacm->size_y = 100.0f;
 	*bacm->position_x = 100.0f;
@@ -687,13 +542,14 @@ EWindowEditor::EWindowEditor()
 	button_array_vertical_collection* bavc = new button_array_vertical_collection;
 	*bavc->position_x = 5.0f;
 	*bavc->position_y = 5.0f;
+	*bavc->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
 
 	for (int f = 0; f < 1; f++)
 	{
 		///
 		button_array* ba = new button_array;
 
-		but = new EButton(0.0f, 100.0f, 200.0f , 10.0f);
+		but = new EButton(0.0, 0.0f, 200.0f , 10.0f);
 			but->master_window = this;
 			but->text = "Blur factor";
 			EButton::append_style(but, just_created_style);
@@ -705,7 +561,7 @@ EWindowEditor::EWindowEditor()
 		bavc->button_array_list.push_back(ba);
 
 		ba = new button_array;
-		but = new EButton(0.0f, 100.0f, 200.0f , 10.0f);
+		but = new EButton(0.0f, 15.0f, 200.0f , 10.0f);
 			but->master_window = this;
 			but->text = "Blur decay multiplier";
 			EButton::append_style(but, just_created_style);
@@ -717,7 +573,7 @@ EWindowEditor::EWindowEditor()
 		bavc->button_array_list.push_back(ba);
 
 		ba = new button_array;
-		but = new EButton(0.0f, 100.0f, 200.0f , 10.0f);
+		but = new EButton(0.0f, 30.0f, 200.0f , 10.0f);
 			but->master_window = this;
 			but->text = "Blur decay flat";
 			EButton::append_style(but, just_created_style);
@@ -729,7 +585,7 @@ EWindowEditor::EWindowEditor()
 		bavc->button_array_list.push_back(ba);
 		
 		ba = new button_array;
-		but = new EButton(0.0f, 100.0f, 200.0f , 10.0f);
+		but = new EButton(0.0f, 45.0f, 200.0f , 10.0f);
 			but->master_window = this;
 			but->text = "Add factor";
 			EButton::append_style(but, just_created_style);

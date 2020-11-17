@@ -929,6 +929,11 @@ void EBA::action_set_constant_int_to_address(EButton* _b, float _d)
 	*_b->target_address_for_int = *_b->target_value_for_int;
 }
 
+void EBA::action_set_constant_bool_to_address(EButton* _b, float _d)
+{
+	*_b->target_address_for_bool = *_b->target_value_for_bool;
+}
+
 void EBA::action_set_button_value_float_to_address(EButton* _b, float _d)
 {
 	if (_b->have_input_mode)

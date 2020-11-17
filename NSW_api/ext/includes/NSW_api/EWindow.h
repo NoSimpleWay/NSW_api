@@ -145,6 +145,8 @@ public:
 
 		float* size_x = new float(0.0f);
 		float* size_y = new float(0.0f);
+
+
 	};
 
 	struct button_array_vertical_collection
@@ -206,7 +208,9 @@ public:
 
 	struct button_array_collection_massive
 	{
+		button_array_collection_massive(EWindow* _w);
 
+		bool* is_active = new bool (true);
 
 		std::vector < button_array_horizontal_collection* > button_array_horizontal_collection_list;
 
@@ -215,6 +219,10 @@ public:
 		//-
 		float* size_x = new float(0.0f);
 		float* size_y = new float(0.0f);
+
+		std::vector<EButton*> service_button;
+
+		EButton* button_close = NULL;
 	};
 
 	std::vector<button_array_collection_massive*> button_array_collection_massive_list;
@@ -242,7 +250,10 @@ public:
 	int* target_value_for_int = new int(0);
 
 	float * target_address_for_float;
-	float * target_value_for_float;
+	float * target_value_for_float = new float (0.0f);
+
+	bool* target_address_for_bool;
+	bool* target_value_for_bool = new bool(false);
 
 	static void static_click();
 	static void static_click2();
@@ -251,6 +262,9 @@ public:
 
 	float button_x = 10;
 	float button_y = 200;
+
+	float button_base_x = 200;
+	float button_base_y = 200;
 
 	float button_size_x = 100;
 	float button_size_y = 25;

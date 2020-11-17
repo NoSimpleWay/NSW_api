@@ -107,4 +107,24 @@ public:
 
 
 
+
+
+	/*
+	
+	SECTION OF LINKS TO BUILDING AUTOGNERATOR
+	
+	*/
+
+
+	//left wall as selected
+	EButton* building_autogenerator_link_to_left_wall;
+	EButton* building_autogenerator_link_to_right_wall;
+	EButton* building_autogenerator_link_to_mid_wall;
+	EButton* building_autogenerator_link_to_window_wall;
+
+	std::vector <EButton*> building_autogenerator_link_to_texture_variant;
+
+
+
+
 };

@@ -1055,7 +1055,7 @@ void EWindowTest::draw_shadows()
 
 	//////redraw shadowmap for entities
 	ETextureAtlas::active_this_texture_atlas(EWindow::shadow_FBO, EWindow::default_texture_atlas);
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClearColor(EColor::COLOR_LAZURE_SHADOW->color_red, EColor::COLOR_LAZURE_SHADOW->color_green, EColor::COLOR_LAZURE_SHADOW->color_blue, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glEnable(GL_BLEND);

@@ -390,8 +390,8 @@ void recalculate_correction()
 	if ((EGraphicCore::SCR_WIDTH > 100) && (EGraphicCore::SCR_HEIGHT > 100))
 	{
 
-		EGraphicCore::correction_x = 1.0 / EGraphicCore::SCR_WIDTH * 2.0;
-		EGraphicCore::correction_y = 1.0 / EGraphicCore::SCR_HEIGHT * 2.0;
+		EGraphicCore::correction_x = 1.0f / EGraphicCore::SCR_WIDTH * 2.0f;
+		EGraphicCore::correction_y = 1.0f / EGraphicCore::SCR_HEIGHT * 2.0f;
 
 		//std::cout << "helper correction_x: " << correction_x << " correction_y: " << correction_y << std::endl;
 	}

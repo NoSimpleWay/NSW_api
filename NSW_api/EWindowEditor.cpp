@@ -601,7 +601,10 @@ EWindowEditor::EWindowEditor()
 	*a_massive->position_x = 200.0f;
 	*a_massive->position_y = 400.0f;
 
-	//add new texture variant button
+
+	//****************************************
+	//"add new texture" variant button
+	//****************************************
 	a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 30.0f);
 	a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
 
@@ -618,7 +621,9 @@ EWindowEditor::EWindowEditor()
 
 	a_array->button_list.push_back(but);
 
+	//****************************************
 	//texture variant button array
+	//****************************************
 	a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 150.0f);
 	a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
 
@@ -655,6 +660,67 @@ EWindowEditor::EWindowEditor()
 
 	//a_array->button_list.push_back(but);
 
+
+
+	//****************************************
+	//building autogenerator elements
+	//****************************************
+	a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 150.0f);
+	a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
+
+	//new vertical group for texture variant
+	a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 200.0f, 150.0f);
+	*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::FREE;
+	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
+
+
+	//texture variant button array
+	a_array = new button_array;
+	a_vertical->button_array_list.push_back(a_array);
+
+	for (int i = 0; i < 4; i++)
+	{
+		//left wall
+		if (i == 0)
+		{
+			but = new EButton(0.0f, 0.0f, 50.0f, 50.0f);
+			building_autogenerator_link_to_left_wall = but;
+			building_autogenerator_wall_button_link.push_back(but);
+		}
+
+		//mid wall
+		if (i == 1)
+		{
+			but = new EButton(55.0f, 0.0f, 50.0f, 50.0f);
+			building_autogenerator_link_to_mid_wall = but;
+			building_autogenerator_wall_button_link.push_back(but);
+		}
+
+		//right wall
+		if (i == 2)
+		{
+			but = new EButton(110.0f, 0.0f, 50.0f, 50.0f);
+			building_autogenerator_link_to_right_wall = but;
+			building_autogenerator_wall_button_link.push_back(but);
+		}
+
+		//window
+		if (i == 3)
+		{
+			but = new EButton(55.0f, 55.0f, 50.0f, 50.0f);
+			building_autogenerator_link_to_window_wall = but;
+			building_autogenerator_wall_button_link.push_back(but);
+		}
+
+		but->master_window = this;
+		but->have_icon = true;
+		but->have_rama = true;
+		but->data_id = i;
+
+		but->action_on_left_click = &EBA::action_select_building_autogenerator_wall_element;
+
+		a_array->button_list.push_back(but);
+	}
 
 
 

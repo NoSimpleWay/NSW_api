@@ -122,6 +122,9 @@ public:
 	EButton* building_autogenerator_link_to_mid_wall;
 	EButton* building_autogenerator_link_to_window_wall;
 
+	std::vector<EButton*> building_autogenerator_wall_button_link;
+	int selected_building_autogenerator_element;
+
 	std::vector <EButton*> building_autogenerator_link_to_texture_variant;
 
 	EButton* texture_variant_style_button;

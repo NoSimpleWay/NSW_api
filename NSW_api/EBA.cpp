@@ -968,6 +968,36 @@ void EBA::action_add_new_texture_variant_button(EButton* _b, float _d)
 	EWindow::window_editor->link_to_texture_variant_array->button_list.push_back(but);*/
 }
 
+void EBA::action_select_building_autogenerator_wall_element(EButton* _b, float _d)
+{
+	//int selected_id =
+	EWindow::window_editor->selected_building_autogenerator_element = _b->data_id;
+
+	for (int i = 0; i < EWindow::window_editor->building_autogenerator_wall_button_link.size(); i++)
+	{
+		EButton* sbut = EWindow::window_editor->building_autogenerator_wall_button_link.at(i);
+
+
+		//selected
+		if (i == EWindow::window_editor->selected_building_autogenerator_element)
+		{
+			sbut->rama_thikness = 3.0f;
+
+			sbut->rama_color->set_color(EColor::COLOR_YELLOW);
+			sbut->bg_color->set_color(EColor::COLOR_BLACK);
+		}
+		else
+		{
+			sbut->rama_thikness = 1.0f;
+
+			sbut->rama_color->set_color(EColor::COLOR_BLACK);
+			sbut->bg_color->set_color(EColor::COLOR_GRAY);
+		}
+
+		
+	}
+}
+
 
 
 /*

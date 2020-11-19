@@ -1034,8 +1034,8 @@ void EWindow::default_update(float _d)
 
 							if (*vertical->selected_distance_between_button_mode == button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::FREE)
 							{
-								b->button_x = b->button_base_x + *massive->position_x + *horizontal->position_x + *vertical->position_x;
-								b->button_y = b->button_base_y + *massive->position_y + *horizontal->position_y + *vertical->position_y;
+								b->button_x = b->button_base_x + *massive->position_x + *horizontal->position_x + *vertical->position_x + *array->position_x;
+								b->button_y = b->button_base_y + *massive->position_y + *horizontal->position_y + *vertical->position_y + *array->position_y;
 							}
 							else
 							{
@@ -1067,8 +1067,11 @@ void EWindow::default_update(float _d)
 							//b->button_size_x = maximum_button_size_x.at(array_id);
 							//if (*vertical->selected_distance_between_button_mode == button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::MAXIMUM_BUTTON_SIZE)
 							//{
+							if (!*vertical->selected_distance_between_button_mode == button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::FREE)
+							{
 								b->button_x += button_row_offset;
 								b->button_y += button_y_offset;
+							}
 							//}
 
 
@@ -1115,7 +1118,7 @@ void EWindow::default_update(float _d)
 				
 
 				
-				if (*horizontal->size_y + 30.0f > * massive->size_y) { *massive->size_y = *horizontal->size_y + 30.0f; }
+				if (*horizontal->position_y + *horizontal->size_y + 30.0f > * massive->size_y) { *massive->size_y = *horizontal->position_y + *horizontal->size_y + 30.0f; }
 				if (*horizontal->size_x + 10.0f > * massive->size_x) { *massive->size_x = *horizontal->size_x + 10.0f; }
 
 				maximum_horizontal_size = *horizontal->position_y + *horizontal->size_y;
@@ -1162,26 +1165,32 @@ void EWindow::default_draw(float _d)
 
 			EGraphicCore::batch->setcolor(EColor::COLOR_DARK_RED);
 			EGraphicCore::batch->draw_rama(*massive->position_x, *massive->position_y, *massive->size_x, *massive->size_y, 2.0f, EGraphicCore::gabarite_white_pixel);
-			total_rama_offset_x += *massive->position_x;
-			total_rama_offset_y += *massive->position_y;
+
 
 			for (button_array_horizontal_collection* horizontal : massive->button_array_horizontal_collection_list)
 			{
+				total_rama_offset_x = *massive->position_x;
+				total_rama_offset_y = *massive->position_y;
+
 				EGraphicCore::batch->setcolor(EColor::COLOR_DARK_GREEN);
 				EGraphicCore::batch->draw_rama(*horizontal->position_x + total_rama_offset_x, *horizontal->position_y + total_rama_offset_y, *horizontal->size_x, *horizontal->size_y, 2.0f, EGraphicCore::gabarite_white_pixel);
-				total_rama_offset_x += *horizontal->position_x;
-				total_rama_offset_y += *horizontal->position_y;
+
 
 				for (button_array_vertical_collection* vertical : horizontal->button_array_vertical_collection_list)
 					if (*horizontal->selected_tab == *vertical->tab_id)
 					{
+						total_rama_offset_x = *massive->position_x + *horizontal->position_x;
+						total_rama_offset_y = *massive->position_y + *horizontal->position_y;
+
 						EGraphicCore::batch->setcolor(EColor::COLOR_DARK_BLUE);
 						EGraphicCore::batch->draw_rama(*vertical->position_x + total_rama_offset_x, *vertical->position_y + total_rama_offset_y, *vertical->size_x, *vertical->size_y, 2.0f, EGraphicCore::gabarite_white_pixel);
-						total_rama_offset_x += *vertical->position_x;
-						total_rama_offset_y += *vertical->position_y;
+
 
 						for (button_array* array : vertical->button_array_list)
 						{
+							total_rama_offset_x = *massive->position_x + *horizontal->position_x + *vertical->position_x;
+							total_rama_offset_y = *massive->position_y + *horizontal->position_y + *vertical->position_y;
+
 							EGraphicCore::batch->setcolor(EColor::COLOR_BLACK);
 							EGraphicCore::batch->draw_rama(*array->position_x + total_rama_offset_x, *array->position_y + total_rama_offset_y, *array->size_x, *array->size_y, 2.0f, EGraphicCore::gabarite_white_pixel);
 						}

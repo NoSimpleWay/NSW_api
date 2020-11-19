@@ -108,7 +108,7 @@ void EBA::action_open_select_texture_window(EButton* _b, float _d)
 
 void EBA::action_set_button_as_removed(EButton* _b, float _d)
 {
-	_b->need_remove = true;
+	*_b->need_remove = true;
 }
 
 void EBA::action_close_window(EButton* _b, float _d)
@@ -945,6 +945,27 @@ void EBA::action_set_button_value_float_to_address(EButton* _b, float _d)
 	{
 		*_b->target_address_for_float = _b->slider_value;
 	}
+}
+
+void EBA::action_add_new_texture_variant_button(EButton* _b, float _d)
+{
+	EButton* but = new EButton(0.0f, 0.0f, 100.0f, 100.0f);
+	but->master_window = _b->master_window;
+	but->can_be_removed = true;
+	but->have_icon = true;
+
+	EWindow::window_editor->link_to_texture_variant_array->button_list.push_back(but);
+	/*
+	EButton* but = EButton::clone_button(EWindow::window_editor->texture_variant_style_button, 0.0f, 0.0f, 100.0f, 100.0f);
+	//EWindow::window_editor->texture_variant_style_button = but;
+
+	but->bg_color->red = (rand() % 100) / 100.0f;
+	but->bg_color->green = (rand() % 100) / 100.0f;
+	but->bg_color->blue = (rand() % 100) / 100.0f;
+
+	but->text = std::to_string(rand());
+
+	EWindow::window_editor->link_to_texture_variant_array->button_list.push_back(but);*/
 }
 
 

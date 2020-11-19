@@ -500,9 +500,7 @@ EWindowEditor::EWindowEditor()
 
 
 	//////////////////////////////////////////////////////////////////
-	EButton::button_style* just_created_style = new EButton::button_style;
 
-	just_created_style->style_color_bg->set_color(EColor::COLOR_GREEN);
 
 
 	//but->data_id = 2;
@@ -512,98 +510,154 @@ EWindowEditor::EWindowEditor()
 
 
 	//button_list.push_back(but);
+	button_array* a_array;
+	button_array_collection_massive* a_massive = new button_array_collection_massive(this);
+	*a_massive->size_x = 500.0f;
+	*a_massive->size_y = 100.0f;
+	*a_massive->position_x = 100.0f;
+	*a_massive->position_y = 120.0f;
 
-	button_array_collection_massive* bacm = new button_array_collection_massive(this);
-	*bacm->size_x = 500.0f;
-	*bacm->size_y = 100.0f;
-	*bacm->position_x = 100.0f;
-	*bacm->position_y = 120.0f;
-
-	button_array_horizontal_collection* bahc = new button_array_horizontal_collection;
-	*bahc->position_x = 5.0f;
-	*bahc->position_y = 5.0f;
-	*bahc->size_x = 200.0f;
-	*bahc->size_y = 150.0f;
+	button_array_horizontal_collection* a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 150.0f);
 
 	for (int i = 0; i < 5; i++)
 	{
 		but = new EButton(0.0f, 0.0f, 100.0f, 20.0f);
-		but->append_style(but, just_created_style);
 		but->text = "TAB #" + std::to_string(i);
 		but->master_window = this;
-		bahc->tab_button_list.push_back(but);
+		a_horizontal->tab_button_list.push_back(but);
 
 		but->data_id = i;
 		*but->target_value_for_int = i;
-		but->target_address_for_int = bahc->selected_tab;
+		but->target_address_for_int = a_horizontal->selected_tab;
 		but->action_on_left_click = &EBA::action_set_constant_int_to_address;
 	}
 
-	button_array_vertical_collection* bavc = new button_array_vertical_collection;
-	*bavc->position_x = 5.0f;
-	*bavc->position_y = 5.0f;
-	*bavc->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
+	button_array_vertical_collection* a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 0.0f, 0.0f);
+	*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
+
+
 
 	for (int f = 0; f < 1; f++)
 	{
 		///
-		button_array* ba = new button_array;
+		a_array = new button_array;
 
-		but = new EButton(0.0, 0.0f, 200.0f , 10.0f);
-			but->master_window = this;
-			but->text = "Blur factor";
-			EButton::append_style(but, just_created_style);
-			but->is_slider = true;
-			but->slider_value_multiplier = 1.0f;
-			but->target_address_for_float = &EWindowTest::blur_factor;
-			but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
-			ba->button_list.push_back(but);
-		bavc->button_array_list.push_back(ba);
+		but = new EButton(0.0, 0.0f, 200.0f, 10.0f);
+		but->bg_color->set_color(EColor::COLOR_GREEN);
+		but->master_window = this;
+		but->text = "Blur factor";
+		but->is_slider = true;
+		but->slider_value_multiplier = 1.0f;
+		but->target_address_for_float = &EWindowTest::blur_factor;
+		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+		a_array->button_list.push_back(but);
+		a_vertical->button_array_list.push_back(a_array);
 
-		ba = new button_array;
-		but = new EButton(0.0f, 15.0f, 200.0f , 10.0f);
-			but->master_window = this;
-			but->text = "Blur decay multiplier";
-			EButton::append_style(but, just_created_style);
-			but->is_slider = true;
-			but->slider_value_multiplier = 1.0f;
-			but->target_address_for_float = &EWindowTest::blur_decay_multiplier_factor;
-			but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
-			ba->button_list.push_back(but);
-		bavc->button_array_list.push_back(ba);
+		a_array = new button_array;
 
-		ba = new button_array;
-		but = new EButton(0.0f, 30.0f, 200.0f , 10.0f);
-			but->master_window = this;
-			but->text = "Blur decay flat";
-			EButton::append_style(but, just_created_style);
-			but->is_slider = true;
-			but->slider_value_multiplier = 0.1f;
-			but->target_address_for_float = &EWindowTest::blur_decay_flat_factor;
-			but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
-			ba->button_list.push_back(but);
-		bavc->button_array_list.push_back(ba);
-		
-		ba = new button_array;
-		but = new EButton(0.0f, 45.0f, 200.0f , 10.0f);
-			but->master_window = this;
-			but->text = "Add factor";
-			EButton::append_style(but, just_created_style);
-			but->is_slider = true;
-			but->slider_value_multiplier = 1.0f;
-			but->target_address_for_float = &EWindowTest::add_factor;
-			but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
-			ba->button_list.push_back(but);
-		bavc->button_array_list.push_back(ba);
+		but = EButton::clone_button(but, 0.0f, 0.0f, 100.0f, 15.0f);
+		but->text = "Blur decay multiplier";
+		but->target_address_for_float = &EWindowTest::blur_decay_multiplier_factor;
+		a_array->button_list.push_back(but);
+		a_vertical->button_array_list.push_back(a_array);
 
-		
+		a_array = new button_array;
+		but = EButton::clone_button(but, 0.0f, 0.0f, 100.0f, 15.0f);
+
+		but->text = "Blur decay flat";
+
+		but->slider_value_multiplier = 0.1f;
+		but->target_address_for_float = &EWindowTest::blur_decay_flat_factor;
+
+		a_array->button_list.push_back(but);
+		a_vertical->button_array_list.push_back(a_array);
+
+		a_array = new button_array;
+		but = new EButton(0.0f, 45.0f, 200.0f, 10.0f);
+		but->master_window = this;
+		but->text = "Add factor";
+		but->is_slider = true;
+		but->slider_value_multiplier = 1.0f;
+		but->target_address_for_float = &EWindowTest::add_factor;
+		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+		a_array->button_list.push_back(but);
+		a_vertical->button_array_list.push_back(a_array);
+
+
 	}
 
 
-	bahc->button_array_vertical_collection_list.push_back(bavc);
-	bacm->button_array_horizontal_collection_list.push_back(bahc);
+	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
+	a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
 
-	button_array_collection_massive_list.push_back(bacm);
+	button_array_collection_massive_list.push_back(a_massive);
+
+
+
+	a_massive = new button_array_collection_massive(this);
+	button_array_collection_massive_list.push_back(a_massive);
+	*a_massive->size_x = 500.0f;
+	*a_massive->size_y = 100.0f;
+	*a_massive->position_x = 200.0f;
+	*a_massive->position_y = 400.0f;
+
+	//add new texture variant button
+	a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 30.0f);
+	a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
+
+	a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 200.0f, 150.0f);
+	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
+
+
+	a_array = new button_array;
+	a_vertical->button_array_list.push_back(a_array);
+	but = new EButton(0.0f, 0.0f, 20.0f, 20.0f);
+	but->master_window = this;
+	but->text = "+";
+	but->action_on_left_click = &EBA::action_add_new_texture_variant_button;
+
+	a_array->button_list.push_back(but);
+
+	//texture variant button array
+	a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 150.0f);
+	a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
+
+	//new vertical group for texture variant
+	a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 200.0f, 150.0f);
+	*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
+	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
+
+
+	//texture variant button array
+	a_array = new button_array;
+	link_to_texture_variant_array = a_array;
+
+	//add array to vertical group
+	a_vertical->button_array_list.push_back(a_array);
+	
+
+	//generate new buttons
+	for (int i = 0; i < 10; i++)
+	{
+		but = new EButton(0.0f, 0.0f, 100.0f, 100.0f);
+		but->master_window = this;
+		but->text = "";
+
+		a_array->button_list.push_back(but);
+		//but->action_on_right_click = &EBA::action_set_button_as_removed;
+		but->can_be_removed = true;
+
+		//building_autogenerator_link_to_texture_variant.push_back(but);
+	}
+
+	//save button style for future
+	texture_variant_style_button = but;
+
+	//a_array->button_list.push_back(but);
+
+
+
+
 }
 
 EWindowEditor::~EWindowEditor()
@@ -870,7 +924,7 @@ void EWindowEditor::update(float _d)
 	{
 		//EWindow::window_editor->selected_frame_id = 0;
 
-		if (sprite_button_list.at(i)->need_remove)
+		if (*sprite_button_list.at(i)->need_remove)
 		{
 			//if (selected_sprite_id == i)
 			{
@@ -887,7 +941,7 @@ void EWindowEditor::update(float _d)
 			//EWindow::window_editor->selected_sprite_id = 0;
 
 			any_remove = true;
-			sprite_button_list.at(i)->need_remove = false;
+			*sprite_button_list.at(i)->need_remove = false;
 		}
 
 	}

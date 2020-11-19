@@ -124,6 +124,10 @@ public:
 
 	std::vector <EButton*> building_autogenerator_link_to_texture_variant;
 
+	EButton* texture_variant_style_button;
+
+	button_array* link_to_texture_variant_array;
+
 
 
 

@@ -151,6 +151,15 @@ public:
 
 	struct button_array_vertical_collection
 	{
+		button_array_vertical_collection(float _x, float _y, float _sx, float _sy)
+		{
+			*position_x = _x;
+			*position_y = _y;
+
+			*size_x = _sx;
+			*size_y = _sy;
+		}
+
 		int* tab_id = new int(0);
 		int* maximum_button_on_array = new int(0);
 
@@ -186,6 +195,15 @@ public:
 
 	struct button_array_horizontal_collection
 	{
+
+		button_array_horizontal_collection(float _x, float _y, float _sx, float _sy)
+		{
+			*position_x = _x;
+			*position_y = _y;
+
+			*size_x = _sx;
+			*size_y = _sy;
+		}
 
 		int* selected_tab = new int(0);
 		
@@ -371,7 +389,7 @@ public:
 	float flash_cooldown = 0.5f;
 
 	bool can_be_removed = false;
-	bool need_remove = false;
+	bool* need_remove = new bool(false);
 
 	bool have_rama = false;
 	int rama_thikness = 2;
@@ -432,22 +450,8 @@ public:
 	//bool& link_to_boolean;
 
 	
-	struct button_style
-	{
-		EColor* style_color_bg = new EColor(1.0f, 1.0f, 1.0f, 1.0f);
-		EColor* style_color_text = new EColor(0.0f, 0.0f, 0.0f, 1.0f);;
-		EColor* style_color_rama = new EColor(0.1f, 0.2f, 0.3f, 1.0f);;
 
-		bool style_have_description = true;
-		bool style_have_icon = false;
-		bool style_have_rama = true;
-
-		int style_master_position = Enums::PositionMaster::WINDOW;;
-		int style_position_mode_x = Enums::PositionMode::LEFT;
-		int style_position_mode_y = Enums::PositionMode::DOWN;
-	};
-
-	static void append_style(EButton* _b, button_style* _s);
+	static EButton* clone_button(EButton* _b, float _x, float _y, float _sx, float _sy);
 
 
 };

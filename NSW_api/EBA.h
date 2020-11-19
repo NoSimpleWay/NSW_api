@@ -76,6 +76,8 @@ public:
 
 	static void action_set_button_value_float_to_address(EButton* _b, float _d);
 
+	static void action_add_new_texture_variant_button(EButton* _b, float _d);
+
 
 
 	//hit action

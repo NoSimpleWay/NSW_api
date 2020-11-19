@@ -23,4 +23,6 @@ public:
 
 	enum SearchMode{ SEARCH_TEXTURE, SEARCH_ENTITY };
 
+	EButton* target_button;
+
 };

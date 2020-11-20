@@ -3,17 +3,17 @@
 class EGabarite
 {
 public:
-	float x = 0;
-	float y = 0;
+	float* x = new float (0.0f);
+	float* y = new float (0.0f);
 
-	float x2 = 0;
-	float y2 = 0;
+	float* x2 = new float(0.0f);
+	float* y2 = new float(0.0f);
 
-	float size_x = 0;
-	float size_y = 0;
+	float* size_x = new float(0.0f);
+	float* size_y = new float(0.0f);
 
-	float uv_size_x = 0;
-	float uv_size_y = 0;
+	float* uv_size_x = new float(0.0f);
+	float* uv_size_y = new float(0.0f);
 
 
 

@@ -605,60 +605,75 @@ EWindowEditor::EWindowEditor()
 	//****************************************
 	//"add new texture" variant button
 	//****************************************
-	a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 30.0f);
-	a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
+			a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 30.0f);
+			a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
 
-	a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 200.0f, 150.0f);
-	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
+			a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 200.0f, 150.0f);
+			*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
+			a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
 
 
-	a_array = new button_array;
-	a_vertical->button_array_list.push_back(a_array);
-	but = new EButton(0.0f, 0.0f, 20.0f, 20.0f);
-	but->master_window = this;
-	but->text = "+";
-	but->action_on_left_click = &EBA::action_add_new_texture_variant_button;
+			a_array = new button_array;
+			a_vertical->button_array_list.push_back(a_array);
 
-	a_array->button_list.push_back(but);
+			but = new EButton(0.0f, 0.0f, 20.0f, 20.0f);
+			but->master_window = this;
+			but->text = "+";
+			but->action_on_left_click = &EBA::action_add_new_texture_variant_button;
+
+			a_array->button_list.push_back(but);
+
+			but = new EButton(0.0f, 0.0f, 20.0f, 20.0f);
+			but->master_window = this;
+			but->text = "compile sprites";
+			but->action_on_left_click = &EBA::action_assembly_autobuilding;
+
+			a_array->button_list.push_back(but);
 
 	//****************************************
 	//texture variant button array
 	//****************************************
-	a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 150.0f);
-	a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
+			a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 150.0f);
+			a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
 
-	//new vertical group for texture variant
-	a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 200.0f, 150.0f);
-	*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
-	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
+			//new vertical group for texture variant
+			a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 200.0f, 150.0f);
+			*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
+			a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
 
 
-	//texture variant button array
-	a_array = new button_array;
-	link_to_texture_variant_array = a_array;
+			//texture variant button array
+			a_array = new button_array;
+			link_to_texture_variant_array = a_array;
 
-	//add array to vertical group
-	a_vertical->button_array_list.push_back(a_array);
+			//add array to vertical group
+			a_vertical->button_array_list.push_back(a_array);
 	
 
-	//generate new buttons
-	for (int i = 0; i < 10; i++)
-	{
-		but = new EButton(0.0f, 0.0f, 100.0f, 100.0f);
-		but->master_window = this;
-		but->text = "";
+			//generate new buttons
+			for (int i = 0; i < 10; i++)
+			{
+				but = new EButton(0.0f, 0.0f, 100.0f, 100.0f);
+				but->master_window = this;
+				but->text = "";
+				but->have_rama = true;
 
-		a_array->button_list.push_back(but);
-		//but->action_on_right_click = &EBA::action_set_button_as_removed;
-		but->can_be_removed = true;
+				a_array->button_list.push_back(but);
+				//but->action_on_right_click = &EBA::action_set_button_as_removed;
+				//but->can_be_removed = true;
+				but->action_on_right_click = &EBA::action_deactivate_texture_variant;
+				but->action_on_left_click = &EBA::action_open_select_texture_window;
+				but->have_icon = true;
 
-		//building_autogenerator_link_to_texture_variant.push_back(but);
-	}
+				but->data_id = i;
 
-	//save button style for future
-	texture_variant_style_button = but;
+				//building_autogenerator_link_to_texture_variant.push_back(but);
+			}
 
-	//a_array->button_list.push_back(but);
+			//save button style for future
+			texture_variant_style_button = but;
+
+			//a_array->button_list.push_back(but);
 
 
 
@@ -721,6 +736,73 @@ EWindowEditor::EWindowEditor()
 
 		a_array->button_list.push_back(but);
 	}
+
+
+	//****************************************
+	//"add new floor" button
+	//****************************************
+	a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 30.0f);
+	a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
+
+	a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 200.0f, 150.0f);
+	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
+
+
+	a_array = new button_array;
+	a_vertical->button_array_list.push_back(a_array);
+	but = new EButton(0.0f, 0.0f, 20.0f, 20.0f);
+	but->master_window = this;
+	but->text = "add new floor";
+	but->action_on_left_click = &EBA::action_add_new_floor;
+
+	a_array->button_list.push_back(but);
+
+
+
+	//****************************************
+	//floors button array
+	//****************************************
+	a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 150.0f);
+	a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
+
+	//new vertical group for texture variant
+	a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 200.0f, 150.0f);
+	*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
+	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
+
+
+	//texture variant button array
+	a_array = new button_array;
+	link_to_floors_array = a_array;
+
+	//add array to vertical group
+	a_vertical->button_array_list.push_back(a_array);
+
+
+	//generate new buttons
+	for (int i = 0; i < 10; i++)
+	{
+		but = new EButton(0.0f, 0.0f, 25.0f, 15.0f);
+		but->master_window = this;
+		but->text = "floor #" + std::to_string(i);
+		but->have_rama = true;
+
+		a_array->button_list.push_back(but);
+		//but->action_on_right_click = &EBA::action_set_button_as_removed;
+		//but->can_be_removed = true;
+		but->action_on_right_click = &EBA::action_deactivate_floors;
+		but->action_on_left_click = &EBA::action_select_floor;
+		but->have_icon = false;
+
+		but->data_id = i;
+
+		//building_autogenerator_link_to_texture_variant.push_back(but);
+	}
+
+	//save button style for future
+	texture_variant_style_button = but;
+
+	//a_array->button_list.push_back(but);
 
 
 
@@ -981,7 +1063,11 @@ void EWindowEditor::update(float _d)
 			selected_sprite_id = 0;
 			selected_frame_id = 0;
 		}
+
 		selected_entity = nearest_entity;
+		Entity::update_building_autogenerator_massive(selected_entity);
+
+
 		update_on_entity_select();
 		update_sprite_buttons();
 	}
@@ -1992,5 +2078,45 @@ void EWindowEditor::add_button_group_for_bool_data(int _data_id)
 		button_list.push_back(b);
 
 		button_group_start_y -= 25.0f;
+	}
+}
+
+void EWindowEditor::select_new_variant()
+{
+	for (EButton* b : link_to_texture_variant_array->button_list)
+	{
+		if (b->data_id == autobuilding_selected_texture_variant)
+		{
+			
+			b->bg_color->set_color(EColor::COLOR_WHITE);
+			b->rama_thikness = 3.0f;
+			b->rama_color->set_color(EColor::COLOR_YELLOW);
+		}
+		else
+		{
+			b->bg_color->set_color_alpha(EColor::COLOR_BLACK, 0.5f);
+			b->rama_thikness = 1.0f;
+			b->rama_color->set_color(EColor::COLOR_BLACK);
+		}
+	}
+}
+
+void EWindowEditor::select_new_floor()
+{
+	for (EButton* b : link_to_floors_array->button_list)
+	{
+		if (b->data_id == autobuilding_selected_floor)
+		{
+
+			b->bg_color->set_color(EColor::COLOR_WHITE);
+			b->rama_thikness = 3.0f;
+			b->rama_color->set_color(EColor::COLOR_YELLOW);
+		}
+		else
+		{
+			b->bg_color->set_color_alpha(EColor::COLOR_GRAY, 0.75f);
+			b->rama_thikness = 1.0f;
+			b->rama_color->set_color(EColor::COLOR_BLACK);
+		}
 	}
 }

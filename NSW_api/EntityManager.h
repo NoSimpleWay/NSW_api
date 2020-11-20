@@ -270,39 +270,59 @@ public:
 
 	static void update_entity_attributes(Entity* _e);
 
-	struct subsprite
+	struct wall_texture_variant
 	{
-		EGabarite* texture;
-		EGabarite* supermap;
+		EGabarite* texture = NULL;
+		EGabarite* supermap = NULL;
+
+		float* offset_x = new float(0.0f);
+		float* offset_y = new float(0.0f);
+		float* offset_z = new float(0.0f);
+
+		~wall_texture_variant()
+		{
+			delete offset_x;
+			delete offset_y;
+			delete offset_z;
+		}
+	};
+
+	struct wall_element
+	{
+		//std::vector<EGabarite*> texture;
+
+		std::vector <wall_texture_variant*> texture_variant_list;
+
+		int* repeat_x = new int(0);
+		int* repeat_y = new int(0);
 
 		float* offset_x = new float(0.0f);
 		float* offset_y = new float(0.0f);
 		float* offset_z = new float(0.0f);
 	};
 
-	struct sprite_assembly
+	struct building_autogen_massive
 	{
-		//std::vector<EGabarite*> texture;
-
-
-
-		bool* is_shadow_mode = new bool(false);
-		bool* is_movement_mode = new bool(false);
-		bool* is_target_mode = new bool(false);
-
-		std::vector <subsprite*> subsprite_list;
-
-		/*int* repeat_x = new int(0);
-		int* repeat_y = new int(0);*/
+		std::vector<wall_element*> wall_list = {new wall_element, new wall_element, new wall_element, new wall_element};
 	};
 
-	static void draw_sprite_assembly(Entity* _e, Batcher* _b, float _d, bool _shadow_mode);
+	std::vector<building_autogen_massive*> autobuilding_floor_list;
+
+	static void update_building_autogenerator_massive(Entity* _selected);
+
+	static void assembly_autobuilding_sprites(Entity* _e);
+
+	//static void draw_sprite_assembly(Entity* _e, Batcher* _b, float _d, bool _shadow_mode);
+
+	/*
+	struct building_autogenerator_wall
+	{
+		std::vector<
+	};*/
 
 
 
-
-
-	std::vector <sprite_assembly*> sprite_assembly_list;
+	//std::vector <sprite_assembly*> sprite_assembly_list;
 };
 
 

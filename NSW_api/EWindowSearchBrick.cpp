@@ -120,8 +120,8 @@ void EWindowSearchBrick::draw_interface(float _d)
 					if (*spr->sprite_struct_list.at(j)->offset_x < min_gabarite_x) { min_gabarite_x = *spr->sprite_struct_list.at(j)->offset_x; }
 					if (*spr->sprite_struct_list.at(j)->offset_y < min_gabarite_y) { min_gabarite_y = *spr->sprite_struct_list.at(j)->offset_y; }
 
-					if (*spr->sprite_struct_list.at(j)->offset_x + spr->sprite_struct_list.at(j)->gabarite->size_x > max_gabarite_x) { max_gabarite_x = *spr->sprite_struct_list.at(j)->offset_x + spr->sprite_struct_list.at(j)->gabarite->size_x; }
-					if (*spr->sprite_struct_list.at(j)->offset_y + spr->sprite_struct_list.at(j)->gabarite->size_y > max_gabarite_y) { max_gabarite_y = *spr->sprite_struct_list.at(j)->offset_y + spr->sprite_struct_list.at(j)->gabarite->size_y; }
+					if (*spr->sprite_struct_list.at(j)->offset_x + *spr->sprite_struct_list.at(j)->gabarite->size_x > max_gabarite_x) { max_gabarite_x = *spr->sprite_struct_list.at(j)->offset_x + *spr->sprite_struct_list.at(j)->gabarite->size_x; }
+					if (*spr->sprite_struct_list.at(j)->offset_y + *spr->sprite_struct_list.at(j)->gabarite->size_y > max_gabarite_y) { max_gabarite_y = *spr->sprite_struct_list.at(j)->offset_y + *spr->sprite_struct_list.at(j)->gabarite->size_y; }
 				}
 			}
 
@@ -153,8 +153,8 @@ void EWindowSearchBrick::draw_interface(float _d)
 					(
 						b->master_position_x + *spr->sprite_struct_list.at(0)->offset_x * resize + sprite_image_offset_x,
 						b->master_position_y + *spr->sprite_struct_list.at(0)->offset_y * resize - min_gabarite_y * resize,
-						spr->sprite_struct_list.at(0)->gabarite->size_x * resize,
-						spr->sprite_struct_list.at(0)->gabarite->size_y * resize,
+						*spr->sprite_struct_list.at(0)->gabarite->size_x * resize,
+						*spr->sprite_struct_list.at(0)->gabarite->size_y * resize,
 						spr->sprite_struct_list.at(0)->gabarite
 					);
 			}

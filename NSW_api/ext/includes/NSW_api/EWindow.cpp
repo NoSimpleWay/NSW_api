@@ -625,7 +625,7 @@ void EButton::default_draw(Batcher* _batch, float _d)
 
 
 
-	if (have_bg)
+	if ((have_bg)&(EGraphicCore::gabarite_wood_button_bg != NULL))
 	{
 		_batch->setcolor(bg_color);
 		_batch->draw_gabarite(master_position_x, master_position_y, button_size_x, button_size_y, EGraphicCore::gabarite_wood_button_bg);
@@ -636,7 +636,7 @@ void EButton::default_draw(Batcher* _batch, float _d)
 
 
 
-	if ((have_icon) && (gabarite != NULL))
+	if ((have_icon) & (gabarite != NULL))
 	{
 		if (icon_adaptation)
 		{
@@ -647,10 +647,10 @@ void EButton::default_draw(Batcher* _batch, float _d)
 			float mul_method_vertical = 0.0f;
 			float mul_method_horizontal = 0.0f;
 
-			if ((gabarite->size_x > button_size_x) || (gabarite->size_y > button_size_y))
+			if ((*gabarite->size_x > button_size_x) || (*gabarite->size_y > button_size_y))
 			{
-				mul_method_vertical = button_size_x / gabarite->size_x;
-				mul_method_horizontal = button_size_y / gabarite->size_y;
+				mul_method_vertical = button_size_x / *gabarite->size_x;
+				mul_method_horizontal = button_size_y / *gabarite->size_y;
 
 				if (mul_method_vertical < mul_method_horizontal)
 				{
@@ -665,7 +665,7 @@ void EButton::default_draw(Batcher* _batch, float _d)
 			}
 
 			_batch->setcolor(icon_color);
-			_batch->draw_gabarite(master_position_x + (button_size_x - gabarite->size_x * mul) / 2.0f, master_position_y, gabarite->size_x * mul, gabarite->size_y * mul, gabarite);
+			_batch->draw_gabarite(master_position_x + (button_size_x - *gabarite->size_x * mul) / 2.0f, master_position_y, *gabarite->size_x * mul, *gabarite->size_y * mul, gabarite);
 		}
 		else
 		{

@@ -1,4 +1,4 @@
-#shadow_skew	0.360971
+#shadow_skew	0.267375
 ADD_NEW_ENTITY	613.000000	306.000000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/white_pixel.png
@@ -313,46 +313,7 @@ shadow_block_left	20.000000
 
 =====================================
 
-ADD_NEW_ENTITY	6188.000000	5177.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/test_cube.png
-texture_offset_x	-24.000000
-texture_offset_y	-2.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	1.000000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	-25.000000
-texture_offset_y	-49.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	93.000000
-shadow_size_y	30.000000
-shadow_tall	456.000000
-shadow_bottom_tall	449.000000
-entity base attribute	Life	1000.000000
-collision_up	36.250000
-collision_down	2.500000
-collision_right	23.500000
-collision_left	23.500000
-path_block_up	20.000000
-path_block_down	20.000000
-path_block_right	20.000000
-path_block_left	20.000000
-shadow_block_up	20.000000
-shadow_block_down	20.000000
-shadow_block_right	20.000000
-shadow_block_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6001.526367	5154.094727
+ADD_NEW_ENTITY	6156.000000	5501.000000
 ADD_NEW_SPRITE
 *rotate_by_move
 add_new_texture	data/textures/letoon3.png
@@ -563,6 +524,45 @@ shadow_block_left	20.000000
 
 =====================================
 
+ADD_NEW_ENTITY	6283.000000	5249.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/test_cube.png
+texture_offset_x	-24.000000
+texture_offset_y	-2.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	23.000000
+texture_offset_y	-2.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	48.000000
+shadow_size_y	36.000000
+shadow_tall	1834.000000
+shadow_bottom_tall	1827.000000
+entity base attribute	Life	1000.000000
+collision_up	36.250000
+collision_down	2.500000
+collision_right	23.500000
+collision_left	23.500000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
 ADD_NEW_ENTITY	6370.000000	5555.000000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/Lamp_supernove.png
@@ -658,6 +658,17 @@ shadow_size_x	1.000000
 shadow_size_y	1.000000
 shadow_tall	87.000000
 shadow_bottom_tall	1.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	66.000000
+texture_offset_y	18.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	113.000000
+shadow_size_y	3.000000
+shadow_tall	173.000000
+shadow_bottom_tall	302.000000
 entity base attribute	Life	1000.000000
 entity bool attribute	Inmovable
 collision_up	402.000000

@@ -122,14 +122,29 @@ public:
 	EButton* building_autogenerator_link_to_mid_wall;
 	EButton* building_autogenerator_link_to_window_wall;
 
+	//left wall / mid wall / right wall / window
+	int autobuilding_selected_wall;
 	std::vector<EButton*> building_autogenerator_wall_button_link;
-	int selected_building_autogenerator_element;
-
+	
+	//texture variants of selected wall
+	int autobuilding_selected_texture_variant;
 	std::vector <EButton*> building_autogenerator_link_to_texture_variant;
+
+	//int autobuilding_selected_floor;
+	//selected floor
+	int autobuilding_selected_floor;
+	std::vector<EButton*> floor_button;
+
+	
 
 	EButton* texture_variant_style_button;
 
 	button_array* link_to_texture_variant_array;
+	button_array* link_to_floors_array;
+
+	void select_new_variant();
+	void select_new_floor();
+
 
 
 

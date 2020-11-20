@@ -280,8 +280,8 @@ void EFont::load_font(string _path)
 							size_y[font_array_id] = size_y[font_array_id] / 4096.0f;
 
 
-							x[font_array_id] = gabarite->x + x[font_array_id] / 4096.0f;
-							y[font_array_id] = gabarite->y + gabarite->uv_size_y - y[font_array_id] / 4096.0f;
+							x[font_array_id] = *gabarite->x + x[font_array_id] / 4096.0f;
+							y[font_array_id] = *gabarite->y + *gabarite->uv_size_y - y[font_array_id] / 4096.0f;
 
 						}
 
@@ -434,8 +434,8 @@ void EFont::load_font_littera(string _path)
 						size_x[font_array_id] = size_x[font_array_id] / 4096.0f;
 						size_y[font_array_id] = size_y[font_array_id] / 4096.0f;
 
-						x[font_array_id] = gabarite->x + x[font_array_id] / 4096.0f;
-						y[font_array_id] = gabarite->y + gabarite->uv_size_y - y[font_array_id] / 4096.0f;
+						x[font_array_id] = *gabarite->x + x[font_array_id] / 4096.0f;
+						y[font_array_id] = *gabarite->y + *gabarite->uv_size_y - y[font_array_id] / 4096.0f;
 					}
 
 

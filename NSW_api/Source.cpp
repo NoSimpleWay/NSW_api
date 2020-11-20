@@ -196,21 +196,21 @@ int main()
 	
 	EGraphicCore::gabarite_white_pixel = ETextureAtlas::put_texture_to_atlas("data/textures/white_pixel.png", EWindow::default_texture_atlas);
 
-	EGraphicCore::gabarite_white_pixel->x += 1 / 4096.0f;
-	EGraphicCore::gabarite_white_pixel->y += 1 / 4096.0f;
+	*EGraphicCore::gabarite_white_pixel->x += 1 / 4096.0f;
+	*EGraphicCore::gabarite_white_pixel->y += 1 / 4096.0f;
 
-	EGraphicCore::gabarite_white_pixel->x2 -= 1 / 4096.0f;
-	EGraphicCore::gabarite_white_pixel->y2 -= 1 / 4096.0f;
-
-
+	*EGraphicCore::gabarite_white_pixel->x2 -= 1 / 4096.0f;
+	*EGraphicCore::gabarite_white_pixel->y2 -= 1 / 4096.0f;
 
 
-	EGraphicCore::gabarite_wood_button_bg = ETextureAtlas::put_texture_to_atlas("data/textures/white_pixel.png", EWindow::default_texture_atlas);
-	EGraphicCore::gabarite_wood_button_bg->x += 1 / 4096.0f;
-	EGraphicCore::gabarite_wood_button_bg->y += 1 / 4096.0f;
 
-	EGraphicCore::gabarite_wood_button_bg->x2 -= 1 / 4096.0f;
-	EGraphicCore::gabarite_wood_button_bg->y2 -= 1 / 4096.0f;
+
+	EGraphicCore::gabarite_wood_button_bg = ETextureAtlas::put_texture_to_atlas("data/textures/button_bg.png", EWindow::default_texture_atlas);
+	*EGraphicCore::gabarite_wood_button_bg->x += 1 / 4096.0f;
+	*EGraphicCore::gabarite_wood_button_bg->y += 1 / 4096.0f;
+
+	*EGraphicCore::gabarite_wood_button_bg->x2 -= 1 / 4096.0f;
+	*EGraphicCore::gabarite_wood_button_bg->y2 -= 1 / 4096.0f;
 	
 	EFont* new_font = NULL;
 	EGabarite* font_gabarite = ETextureAtlas::put_texture_to_atlas("data/font/franklin_0.png", EWindow::default_texture_atlas);

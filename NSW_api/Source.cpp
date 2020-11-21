@@ -18,6 +18,8 @@
 #include "NSW_api/EFont.h"
 #include "EBA.h"   
 
+#include <windows.h>
+
 
  
 
@@ -205,12 +207,14 @@ int main()
 
 
 
-	EGraphicCore::gabarite_wood_button_bg = ETextureAtlas::put_texture_to_atlas("data/textures/button_bg.png", EWindow::default_texture_atlas);
-	*EGraphicCore::gabarite_wood_button_bg->x += 1 / 4096.0f;
-	*EGraphicCore::gabarite_wood_button_bg->y += 1 / 4096.0f;
+	EGraphicCore::gabarite_small_wood_button_bg = ETextureAtlas::put_texture_to_atlas("data/textures/button_bg.png", EWindow::default_texture_atlas);
+	*EGraphicCore::gabarite_small_wood_button_bg->x += 1 / 4096.0f;
+	*EGraphicCore::gabarite_small_wood_button_bg->y += 1 / 4096.0f;
 
-	*EGraphicCore::gabarite_wood_button_bg->x2 -= 1 / 4096.0f;
-	*EGraphicCore::gabarite_wood_button_bg->y2 -= 1 / 4096.0f;
+	*EGraphicCore::gabarite_small_wood_button_bg->x2 -= 1 / 4096.0f;
+	*EGraphicCore::gabarite_small_wood_button_bg->y2 -= 1 / 4096.0f;
+
+	EGraphicCore::gabarite_wood_button_bg = ETextureAtlas::put_texture_to_atlas("data/textures/wood_bg.png", EWindow::default_texture_atlas);
 	
 	EFont* new_font = NULL;
 	EGabarite* font_gabarite = ETextureAtlas::put_texture_to_atlas("data/font/franklin_0.png", EWindow::default_texture_atlas);
@@ -225,7 +229,7 @@ int main()
 
 	while (!glfwWindowShouldClose(EWindow::main_window))
 	{
-
+		glfwPollEvents();
 
 		//EWindow::time_process_name.clear();
 		//EWindow::time_process_value.clear();
@@ -256,9 +260,9 @@ int main()
 		EWindow::prev_mouse_x = cursorPos.x;
 		EWindow::prev_mouse_y = cursorPos.y;
 
-		EWindow::scroll = 0;
+		
 
-		glfwPollEvents();
+		
 
 
 
@@ -366,7 +370,8 @@ int main()
 
 		EWindow::last_inputed_char = NULL;
 
-
+		EWindow::scroll = 0;
+		//sleep(0.1);
 	}
 
 	return 0;
@@ -404,6 +409,7 @@ void recalculate_correction()
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
+	std::cout << "scroll: " << std::to_string(yoffset) << std::endl;
 	EWindow::scroll = yoffset;
 }
 

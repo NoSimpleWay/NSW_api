@@ -1,6 +1,7 @@
 #include "EWindow.h"
 #include "../../../EBA.h"
 
+
 GLFWwindow* EWindow::main_window = NULL;
 
 std::vector<EWindow*> EWindow::window_list;
@@ -383,6 +384,14 @@ void EButton::update(float _d)
 
 	if (is_click())
 	{
+
+		*double_click_started = true;
+
+
+
+
+
+		
 		//(*action_on_left_click)();
 		//if (master_block != NULL) { StaticData::window_filter_block->unsave_change = true; }
 
@@ -426,10 +435,22 @@ void EButton::update(float _d)
 
 
 		click_event();
-		if (action_on_left_click != NULL)
+		if ((action_on_left_click != NULL) & (*click_timer <= 0.0f))
 		{
 			action_on_left_click(this, _d);
 		}
+
+		if (*click_timer > 0.0f)
+		{
+			if (action_on_left_double_click != NULL)
+			{
+				action_on_left_double_click(this, _d);
+			}
+
+			*click_timer = -1.0f;
+		}
+
+		
 	}
 
 	if (!EWindow::LMB)
@@ -591,6 +612,16 @@ void EButton::update(float _d)
 		flash_line_active = !flash_line_active;
 	}
 
+	if ((*double_click_started) & (!EWindow::LMB))
+	{
+		*double_click_started = false;
+		*click_timer = 0.2f;
+	}
+
+	if (*click_timer >= 0.0f)
+	{
+		*click_timer -= _d;
+	}
 	update_additional(_d);
 
 }
@@ -625,10 +656,10 @@ void EButton::default_draw(Batcher* _batch, float _d)
 
 
 
-	if ((have_bg)&(EGraphicCore::gabarite_wood_button_bg != NULL))
+	if ((have_bg)&(EGraphicCore::gabarite_small_wood_button_bg != NULL))
 	{
 		_batch->setcolor(bg_color);
-		_batch->draw_gabarite(master_position_x, master_position_y, button_size_x, button_size_y, EGraphicCore::gabarite_wood_button_bg);
+		_batch->draw_gabarite(master_position_x, master_position_y, button_size_x, button_size_y, EGraphicCore::gabarite_small_wood_button_bg);
 	}
 
 	float temp_w = 0;
@@ -732,7 +763,7 @@ void EButton::default_draw(Batcher* _batch, float _d)
 	if (have_rama)
 	{
 		_batch->setcolor(rama_color);
-		_batch->draw_rama(master_position_x, master_position_y, button_size_x, button_size_y, rama_thikness, EGraphicCore::gabarite_wood_button_bg);
+		_batch->draw_rama(master_position_x, master_position_y, button_size_x, button_size_y, rama_thikness, EGraphicCore::gabarite_small_wood_button_bg);
 	}
 
 	if (is_slider)
@@ -963,7 +994,36 @@ void EWindow::default_update(float _d)
 	for (button_array_collection_massive* massive : button_array_collection_massive_list)
 	if (*massive->is_active)
 	{
-		
+		if
+			(
+				(mouse_x >= *massive->position_x)
+				&
+				(mouse_x <= *massive->position_x + *massive->size_x)
+				&
+				(mouse_y >= *massive->position_y + *massive->size_y)
+				&
+				(mouse_y >= *massive->position_y + *massive->size_y)
+				&
+				(mouse_y <= *massive->position_y + *massive->size_y + 20.0f)
+
+			)
+		{
+			*massive->head_catched = true;
+			*massive->catch_highlight = true;
+		}
+		else
+		{
+			//*massive->head_catched = false;
+			*massive->catch_highlight = false;
+		}
+
+		if ((*massive->head_catched) & ((LMB)))
+		{
+			*massive->position_x += mouse_speed_x;
+			*massive->position_y += mouse_speed_y;
+		}
+
+		if (!LMB) { *massive->head_catched = false; }
 
 		float maximum_horizontal_size = 0.0f;
 		for (button_array_horizontal_collection* horizontal : massive->button_array_horizontal_collection_list)
@@ -1124,13 +1184,15 @@ void EWindow::default_update(float _d)
 				maximum_horizontal_size = *horizontal->position_y + *horizontal->size_y;
 		}
 
+		massive->button_close->button_x = *massive->position_x + *massive->size_x - massive->button_close->button_size_x;
+		massive->button_close->button_y = *massive->position_y + *massive->size_y - massive->button_close->button_size_y;
+
 		for (EButton* b : massive->service_button)
 		{
 			b->update(_d);
 		}
 
-		massive->button_close->button_x = *massive->position_x + *massive->size_x;
-		massive->button_close->button_y =* massive->position_y + *massive->size_y;
+		
 	}
 }
 
@@ -1154,50 +1216,7 @@ void EWindow::default_draw(float _d)
 
 
 	
-	//draw graphic for button group
-	for (button_array_collection_massive* massive : button_array_collection_massive_list)
-	{
-		float total_rama_offset_x = 0.0f;
-		float total_rama_offset_y = 0.0f;
-
-		if (*massive->is_active)
-		{
-
-			EGraphicCore::batch->setcolor(EColor::COLOR_DARK_RED);
-			EGraphicCore::batch->draw_rama(*massive->position_x, *massive->position_y, *massive->size_x, *massive->size_y, 2.0f, EGraphicCore::gabarite_white_pixel);
-
-
-			for (button_array_horizontal_collection* horizontal : massive->button_array_horizontal_collection_list)
-			{
-				total_rama_offset_x = *massive->position_x;
-				total_rama_offset_y = *massive->position_y;
-
-				EGraphicCore::batch->setcolor(EColor::COLOR_DARK_GREEN);
-				EGraphicCore::batch->draw_rama(*horizontal->position_x + total_rama_offset_x, *horizontal->position_y + total_rama_offset_y, *horizontal->size_x, *horizontal->size_y, 2.0f, EGraphicCore::gabarite_white_pixel);
-
-
-				for (button_array_vertical_collection* vertical : horizontal->button_array_vertical_collection_list)
-					if (*horizontal->selected_tab == *vertical->tab_id)
-					{
-						total_rama_offset_x = *massive->position_x + *horizontal->position_x;
-						total_rama_offset_y = *massive->position_y + *horizontal->position_y;
-
-						EGraphicCore::batch->setcolor(EColor::COLOR_DARK_BLUE);
-						EGraphicCore::batch->draw_rama(*vertical->position_x + total_rama_offset_x, *vertical->position_y + total_rama_offset_y, *vertical->size_x, *vertical->size_y, 2.0f, EGraphicCore::gabarite_white_pixel);
-
-
-						for (button_array* array : vertical->button_array_list)
-						{
-							total_rama_offset_x = *massive->position_x + *horizontal->position_x + *vertical->position_x;
-							total_rama_offset_y = *massive->position_y + *horizontal->position_y + *vertical->position_y;
-
-							EGraphicCore::batch->setcolor(EColor::COLOR_BLACK);
-							EGraphicCore::batch->draw_rama(*array->position_x + total_rama_offset_x, *array->position_y + total_rama_offset_y, *array->size_x, *array->size_y, 2.0f, EGraphicCore::gabarite_white_pixel);
-						}
-					}
-			}
-		}
-	}
+	
 
 
 }
@@ -1246,6 +1265,88 @@ void EWindow::default_draw_interface(float _d)
 	//סבנמס באעקונא
 	EGraphicCore::batch->reset();
 
+	//draw graphic for button group
+	for (button_array_collection_massive* massive : button_array_collection_massive_list)
+	{
+		float total_rama_offset_x = 0.0f;
+		float total_rama_offset_y = 0.0f;
+
+		if (*massive->is_active)
+		{
+
+			//draw massive textures////////////////////////////////////////////////////////////////
+			/**/
+			/**/	if ((*massive->catch_highlight) || (*massive->head_catched))
+			/**/	{
+			/**/		EGraphicCore::batch->setcolor_alpha(EColor::COLOR_BLUE, 0.5f);
+			/**/		
+			/**/	}
+			/**/	else
+			/**/	{
+			/**/		EGraphicCore::batch->setcolor_alpha(EColor::COLOR_DARK_GRAY, 0.95f);
+			/**/	}
+			/**/
+			/**/	EGraphicCore::batch->draw_gabarite(*massive->position_x, *massive->position_y, *massive->size_x, *massive->size_y, EGraphicCore::gabarite_wood_button_bg);
+			/**/
+			/**/	EGraphicCore::batch->setcolor(EColor::COLOR_DARK_RED);
+			/**/	EGraphicCore::batch->draw_rama(*massive->position_x, *massive->position_y, *massive->size_x, *massive->size_y, 2.0f, EGraphicCore::gabarite_small_wood_button_bg);
+			/**/
+			///////////////////////////////////////////////////////////////////////////////////////
+
+			for (button_array_horizontal_collection* horizontal : massive->button_array_horizontal_collection_list)
+			{
+
+				total_rama_offset_x = *massive->position_x;
+				total_rama_offset_y = *massive->position_y;
+
+				EGraphicCore::batch->setcolor(EColor::COLOR_DARK_GREEN);
+				EGraphicCore::batch->draw_rama(*horizontal->position_x + total_rama_offset_x, *horizontal->position_y + total_rama_offset_y, *horizontal->size_x, *horizontal->size_y, 2.0f, EGraphicCore::gabarite_white_pixel);
+				
+				for (EButton* b : horizontal->tab_button_list)
+				{
+					b->default_draw(EGraphicCore::batch, _d);
+					b->additional_draw(EGraphicCore::batch, _d);
+				}
+
+				for (button_array_vertical_collection* vertical : horizontal->button_array_vertical_collection_list)
+					if (*horizontal->selected_tab == *vertical->tab_id)
+					{
+						total_rama_offset_x = *massive->position_x + *horizontal->position_x;
+						total_rama_offset_y = *massive->position_y + *horizontal->position_y;
+
+						EGraphicCore::batch->setcolor(EColor::COLOR_DARK_BLUE);
+						EGraphicCore::batch->draw_rama(*vertical->position_x + total_rama_offset_x, *vertical->position_y + total_rama_offset_y, *vertical->size_x, *vertical->size_y, 2.0f, EGraphicCore::gabarite_white_pixel);
+
+
+						for (button_array* array : vertical->button_array_list)
+						{
+							total_rama_offset_x = *massive->position_x + *horizontal->position_x + *vertical->position_x;
+							total_rama_offset_y = *massive->position_y + *horizontal->position_y + *vertical->position_y;
+
+							EGraphicCore::batch->setcolor(EColor::COLOR_BLACK);
+							EGraphicCore::batch->draw_rama(*array->position_x + total_rama_offset_x, *array->position_y + total_rama_offset_y, *array->size_x, *array->size_y, 2.0f, EGraphicCore::gabarite_white_pixel);
+							
+							for (EButton* b : array->button_list)
+							if (b->is_active)
+							{
+								//b->update(_d);
+								b->default_draw(EGraphicCore::batch, _d);
+								b->additional_draw(EGraphicCore::batch, _d);
+							}
+						}
+					}
+			}
+
+
+			for (EButton* b : massive->service_button)
+			{
+				b->default_draw(EGraphicCore::batch, _d);
+				b->additional_draw(EGraphicCore::batch, _d);
+			}
+		}
+	}
+
+
 	for (EButton* b : button_list)
 	{
 		if (b->is_active)
@@ -1280,35 +1381,23 @@ void EWindow::default_draw_interface(float _d)
 		}
 	}
 
+	/*
 	for (button_array_collection_massive* massive : button_array_collection_massive_list)
 	if (*massive->is_active)
 	{
 		for (button_array_horizontal_collection* horizontal : massive->button_array_horizontal_collection_list)
 		{
-			for (EButton* b : horizontal->tab_button_list)
-			{
-				b->default_draw(EGraphicCore::batch, _d);
-				b->additional_draw(EGraphicCore::batch, _d);
-			}
+
 
 			for (button_array_vertical_collection* vertical : horizontal->button_array_vertical_collection_list)
 				if (*horizontal->selected_tab == *vertical->tab_id)
 					for (button_array* array : vertical->button_array_list)
-						for (EButton* b : array->button_list)
-							if (b->is_active)
-							{
-								//b->update(_d);
-								b->default_draw(EGraphicCore::batch, _d);
-								b->additional_draw(EGraphicCore::batch, _d);
-							}
+						
+
 		}
 
-		for (EButton* b : massive->service_button)
-		{
-			b->default_draw(EGraphicCore::batch, _d);
-			b->additional_draw(EGraphicCore::batch, _d);
-		}
-	}
+
+	}*/
 
 	for (button_array_collection_massive* massive : button_array_collection_massive_list)
 	if (*massive->is_active)

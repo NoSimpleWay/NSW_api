@@ -103,19 +103,18 @@ void EBA::action_set_sprite_texture(EButton* _b, float _d)
 
 	EWindow::window_search_brick->is_active = false;
 
-
+	ed->editor_mode = EWindowEditor::EditMode::EditAutobuilding;
 }
 
 void EBA::action_open_select_texture_window(EButton* _b, float _d)
 {
-	EWindow::window_editor->autobuilding_selected_texture_variant = _b->data_id;
 
 	EWindow::window_search_brick->is_active = true;
 	EWindow::window_search_brick->search_mode = EWindowSearchBrick::SearchMode::SEARCH_TEXTURE;
 
 	EWindow::window_search_brick->update_search(EWindow::window_search_brick->link_to_input);
 
-	EWindow::window_editor->select_new_variant();
+
 
 	/*EWindow::window_search_brick->is_active = true;
 	EWindow::window_search_brick->search_mode = EWindowSearchBrick::SearchMode::SEARCH_TEXTURE;
@@ -164,46 +163,79 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 		if (*spr->rotate_by_target_gun) { w_string += "*target_gun\n"; }
 
 		order = 0;
-		for (ESprite::sprite_struct* str : spr->sprite_struct_list)
+		for (ESprite::sprite_struct* spr : spr->sprite_struct_list)
 		{
 			w_string += "add_new_texture\t";
-			w_string += str->gabarite->name;
+			w_string += spr->gabarite->name;
 			w_string += "\n";
 
 			w_string += "texture_offset_x\t";
-			w_string += std::to_string(*str->offset_x);
+			w_string += std::to_string(*spr->offset_x);
 			w_string += "\n";
 
 
 			w_string += "texture_offset_y\t";
-			w_string += std::to_string(*str->offset_y);
+			w_string += std::to_string(*spr->offset_y);
 			w_string += "\n";
 
 			w_string += "texture_offset_z\t";
-			w_string += std::to_string(*str->offset_z);
+			w_string += std::to_string(*spr->offset_z);
 			w_string += "\n";
 
 			w_string += "texture_copies\t";
-			w_string += std::to_string(*str->copies);
+			w_string += std::to_string(*spr->copies);
 			w_string += "\n";
 
 			w_string += "shadow_size_x\t";
-			w_string += std::to_string(*str->shadow_size_x);
+			w_string += std::to_string(*spr->shadow_size_x);
 			w_string += "\n";
 
 			w_string += "shadow_size_y\t";
-			w_string += std::to_string(*str->shadow_size_y);
+			w_string += std::to_string(*spr->shadow_size_y);
 			w_string += "\n";
 
 			w_string += "shadow_tall\t";
-			w_string += std::to_string(*str->shadow_tall);
+			w_string += std::to_string(*spr->shadow_tall);
 			w_string += "\n";
 
 			w_string += "shadow_bottom_tall\t";
-			w_string += std::to_string(*str->bottom_tall);
+			w_string += std::to_string(*spr->bottom_tall);
 			w_string += "\n";
 
+
+
 			order++;
+		}
+	}
+
+	for (Entity::building_autogen_floor* f : e->autobuilding_floor_list)
+	{
+		w_string += "add_new_autobuilding_floor\t";
+			w_string += std::to_string(*f->offset_x) + "\t";
+			w_string += std::to_string(*f->offset_y) + "\t";
+			w_string += std::to_string(*f->offset_z);
+		w_string += "\n";
+
+		for (Entity::wall_element* w : f->wall_list)
+		{
+			w_string += "add_new_wall_for_floor\t";
+				w_string += std::to_string(*w->offset_x) + "\t";
+				w_string += std::to_string(*w->offset_y) + "\t";
+				w_string += std::to_string(*w->offset_z) + "\t";
+				w_string += std::to_string(*w->repeat_x) + "\t";
+				w_string += std::to_string(*w->repeat_y);
+			w_string += "\n";
+
+			for (Entity::wall_texture_variant* t : w->texture_variant_list)
+			if ((t != NULL)&&(t->texture != NULL))
+			{
+				w_string += "add_new_texture_variant_for_wall\t";
+					w_string += t->texture->name + "\t";
+					w_string += std::to_string(*t->offset_x) + "\t";
+					w_string += std::to_string(*t->offset_y) + "\t";
+					w_string += std::to_string(*t->offset_z);
+				w_string += "\n";
+			}
 		}
 	}
 
@@ -409,6 +441,13 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 		EGabarite* just_created_gabarite = NULL;
 		ESprite::sprite_struct* just_create_sprite_struct = NULL;
 
+		Entity::building_autogen_floor* just_created_floor = NULL;
+		Entity::wall_element* just_created_wall = NULL;
+		Entity::wall_texture_variant* just_created_texture_variant = NULL;
+
+		int wall_id = 0;
+
+
 		while (getline(myfile, line))
 		{
 
@@ -430,6 +469,7 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 				}
 				if (EFile::data_array[i] == "ADD_NEW_ENTITY")
 				{
+					wall_id = 0;
 					just_created_entity = new Entity();
 					i++; *just_created_entity->position_x = std::stof(EFile::data_array[i]);
 					i++; *just_created_entity->position_y = std::stof(EFile::data_array[i]);
@@ -622,6 +662,46 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 				if (EFile::data_array[i] == "- PUT TO COLLECTION -")
 				{
 					Entity::entity_collection_list.push_back(just_created_entity);
+				}
+
+				if (EFile::data_array[i] == "add_new_autobuilding_floor")
+				{
+					just_created_floor = new Entity::building_autogen_floor;
+					just_created_entity->autobuilding_floor_list.push_back(just_created_floor);
+
+					i++;  *just_created_floor->offset_x = std::stof(EFile::data_array[i]);
+					i++;  *just_created_floor->offset_y = std::stof(EFile::data_array[i]);
+					i++;  *just_created_floor->offset_z = std::stof(EFile::data_array[i]);
+
+					wall_id = 0;
+				}
+				
+
+				if (EFile::data_array[i] == "add_new_wall_for_floor")
+				{
+					just_created_wall = just_created_floor->wall_list.at(wall_id);
+					//just_created_floor->wall_list.at(wall_id);
+					//just_created_floor->wall_list.push_back(just_created_wall);
+
+					i++;  *just_created_wall->offset_x = std::stof(EFile::data_array[i]);
+					i++;  *just_created_wall->offset_y = std::stof(EFile::data_array[i]);
+					i++;  *just_created_wall->offset_z = std::stof(EFile::data_array[i]);
+					i++;  *just_created_wall->repeat_x = std::stof(EFile::data_array[i]);
+					i++;  *just_created_wall->repeat_y = std::stof(EFile::data_array[i]);
+
+					wall_id++;
+				}
+				
+				if (EFile::data_array[i] == "add_new_texture_variant_for_wall")
+				{
+
+					just_created_texture_variant = new Entity::wall_texture_variant;
+					just_created_wall->texture_variant_list.push_back(just_created_texture_variant);
+
+					i++;  just_created_texture_variant->texture = ETextureAtlas::put_texture_to_atlas(EFile::data_array[i], EWindow::default_texture_atlas);
+					i++;  *just_created_texture_variant->offset_x = std::stof(EFile::data_array[i]);
+					i++;  *just_created_texture_variant->offset_y = std::stof(EFile::data_array[i]);
+					i++;  *just_created_texture_variant->offset_z = std::stof(EFile::data_array[i]);
 				}
 			}
 		}
@@ -1012,6 +1092,7 @@ void EBA::action_add_new_texture_variant_button(EButton* _b, float _d)
 
 void EBA::action_select_building_autogenerator_wall_element(EButton* _b, float _d)
 {
+	EWindow::window_editor->move_mode = EWindowEditor::MoveMode::MoveWall;
 	//int selected_id =
 	EWindow::window_editor->autobuilding_selected_wall = _b->data_id;
 
@@ -1127,7 +1208,7 @@ void EBA::action_add_new_floor(EButton* _b, float _d)
 
 	if (EWindow::window_editor->selected_entity != NULL)
 	{
-		EWindow::window_editor->selected_entity->autobuilding_floor_list.push_back(new Entity::building_autogen_massive);
+		EWindow::window_editor->selected_entity->autobuilding_floor_list.push_back(new Entity::building_autogen_floor);
 
 		Entity::update_building_autogenerator_massive(EWindow::window_editor->selected_entity);
 	}
@@ -1140,6 +1221,15 @@ void EBA::action_select_floor(EButton* _b, float _d)
 	EWindow::window_editor->select_new_floor();
 
 	Entity::update_building_autogenerator_massive(EWindow::window_editor->selected_entity);
+
+	EWindow::window_editor->move_mode = EWindowEditor::MoveMode::MoveFloor;
+}
+
+void EBA::action_select_texture_variant(EButton* _b, float _d)
+{
+	EWindow::window_editor->autobuilding_selected_texture_variant = _b->data_id;
+	EWindow::window_editor->select_new_variant();
+	EWindow::window_editor->move_mode = EWindowEditor::MoveMode::MoveTexture;
 }
 
 void EBA::action_assembly_autobuilding(EButton* _b, float _d)

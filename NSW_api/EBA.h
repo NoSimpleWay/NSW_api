@@ -77,13 +77,15 @@ public:
 	static void action_set_button_value_float_to_address(EButton* _b, float _d);
 
 	static void action_add_new_texture_variant_button(EButton* _b, float _d);
-	static void action_select_building_autogenerator_wall_element(EButton* _b, float _d);
+	
 
 	static void action_deactivate_texture_variant(EButton* _b, float _d);
 	static void action_deactivate_floors(EButton* _b, float _d);
 	static void action_add_new_floor(EButton* _b, float _d);
 
+	static void action_select_building_autogenerator_wall_element(EButton* _b, float _d);
 	static void action_select_floor(EButton* _b, float _d);
+	static void action_select_texture_variant(EButton* _b, float _d);
 
 	static void action_assembly_autobuilding(EButton* _b, float _d);
 

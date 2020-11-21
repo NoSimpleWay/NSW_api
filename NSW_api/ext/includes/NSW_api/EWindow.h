@@ -17,6 +17,9 @@
 #include "NSW_api/ETextureAtlas.h"
 
 #include "NSW_api/EUtils.h"
+#include <windows.h>
+
+//#include <WinUser.h>
 
 //#include "NSW_api/EWindowTest.h"
 
@@ -226,6 +229,8 @@ public:
 
 	struct button_array_collection_massive
 	{
+		bool* head_catched = new bool(false);
+		bool* catch_highlight = new bool(false);
 		button_array_collection_massive(EWindow* _w);
 
 		bool* is_active = new bool (true);
@@ -256,6 +261,10 @@ public:
 	typedef void (*BUTTON_ACTION)(EButton* _b, float _d);
 
 	BUTTON_ACTION action_on_left_click;
+
+	BUTTON_ACTION action_on_left_double_click;
+	float* click_timer = new float(0.0f);
+
 	BUTTON_ACTION action_on_right_click;
 
 	BUTTON_ACTION action_on_input;
@@ -452,6 +461,8 @@ public:
 	
 
 	static EButton* clone_button(EButton* _b, float _x, float _y, float _sx, float _sy);
+
+	bool* double_click_started = new bool (false);
 
 
 };

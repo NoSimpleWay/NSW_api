@@ -9,11 +9,13 @@ public:
 	EWindowEditor();
 	~EWindowEditor();
 
-	enum EditMode {SelectEntities, EditSprites};
+	enum EditMode {SelectEntities, EditSprites, EditAutobuilding};
+	enum MoveMode {MoveTexture, MoveWall, MoveFloor};
 	enum EntityGabariteMode {EntityGabariteCollision, EntityGabaritePathBlock, EntityGabariteShadowBlock};
 
 	int* entity_gabarite_mode_active = new int(EntityGabariteMode::EntityGabariteCollision);
 	int editor_mode = 0;
+	int move_mode = 0;
 
 	std::vector <EButton*> sprite_button_list;
 	Entity* selected_entity;
@@ -135,9 +137,9 @@ public:
 	int autobuilding_selected_floor;
 	std::vector<EButton*> floor_button;
 
-	
-
 	EButton* texture_variant_style_button;
+
+	button_array_collection_massive* autobuilding_massive_link;
 
 	button_array* link_to_texture_variant_array;
 	button_array* link_to_floors_array;

@@ -301,12 +301,16 @@ public:
 		float* offset_z = new float(0.0f);
 	};
 
-	struct building_autogen_massive
+	struct building_autogen_floor
 	{
+		float* offset_x = new float(0.0f);
+		float* offset_y = new float(0.0f);
+		float* offset_z = new float(0.0f);
+
 		std::vector<wall_element*> wall_list = {new wall_element, new wall_element, new wall_element, new wall_element};
 	};
 
-	std::vector<building_autogen_massive*> autobuilding_floor_list;
+	std::vector<building_autogen_floor*> autobuilding_floor_list;
 
 	static void update_building_autogenerator_massive(Entity* _selected);
 
@@ -382,6 +386,24 @@ public:
 
 		EGabarite* gabarite = NULL;
 		EGabarite* supermap = NULL;
+
+		~sprite_struct()
+		{
+			delete offset_x;
+			delete offset_y;
+			delete offset_z;
+
+			delete shadow_size_x;
+			delete shadow_size_y;
+
+			delete bottom_tall;
+			delete shadow_tall;
+			delete shadow_height;
+			delete copies;
+
+			gabarite = NULL;
+			supermap = NULL;
+		}
 	};
 
 	std::vector <sprite_struct*> sprite_struct_list;

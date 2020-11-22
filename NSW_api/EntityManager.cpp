@@ -1066,99 +1066,109 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 
 	for (Entity::building_autogen_floor* floor : _e->autobuilding_floor_list)
 	{
-		int random_select = 0;
+		bool non_empty_list = true;
 
-		//mid wall
-		selected_wall = floor->wall_list.at(0);
-		selected_variant = selected_wall->texture_variant_list.at(random_select);
-		selected_texture = selected_variant->texture;
-
-		for (int i = 0; i <= *floor->wall_list.at(1)->repeat_x; i++)
+		for (Entity::wall_element* w : floor->wall_list)
 		{
-			spr = new ESprite(); //m->wall_list.at(0)
+			if (w->texture_variant_list.empty()) { non_empty_list = false; }
+		}
+
+		if (non_empty_list)
+		{
+			int random_select = 0;
+
+			//mid wall
+			selected_wall = floor->wall_list.at(0);
+			selected_variant = selected_wall->texture_variant_list.at(random_select);
+			selected_texture = selected_variant->texture;
+
+			for (int i = 0; i <= *floor->wall_list.at(1)->repeat_x; i++)
+			{
+				spr = new ESprite(); //m->wall_list.at(0)
 
 
-			ox =
-			*floor->offset_x
+				ox =
+					*floor->offset_x
 
-			+
+					+
 
-			*floor->wall_list.at(1)->offset_x
-			+
-			*floor->wall_list.at(1)->texture_variant_list.at(random_select)->offset_x
-			+
-			*floor->wall_list.at(1)->texture_variant_list.at(random_select)->texture->size_x * i
+					*floor->wall_list.at(1)->offset_x
+					+
+					*floor->wall_list.at(1)->texture_variant_list.at(random_select)->offset_x
+					+
+					*floor->wall_list.at(1)->texture_variant_list.at(random_select)->texture->size_x * i
 
-			+
+					+
 
-			*floor->wall_list.at(0)->texture_variant_list.at(random_select)->texture->size_x;
-			
-			///////
+					*floor->wall_list.at(0)->texture_variant_list.at(random_select)->texture->size_x;
 
-			oy =
-				*floor->offset_y
+				///////
 
-				+
+				oy =
+					*floor->offset_y
 
-				*floor->wall_list.at(1)->offset_y
+					+
 
-				+
+					*floor->wall_list.at(1)->offset_y
 
-				*floor->wall_list.at(1)->texture_variant_list.at(random_select)->offset_y;
+					+
 
-			oz = *selected_wall->offset_z + *selected_variant->offset_z;
+					*floor->wall_list.at(1)->texture_variant_list.at(random_select)->offset_y;
+
+				oz = *selected_wall->offset_z + *selected_variant->offset_z;
 
 
-			spr->sprite_struct_list.at(0)->gabarite = floor->wall_list.at(1)->texture_variant_list.at(random_select)->texture;
+				spr->sprite_struct_list.at(0)->gabarite = floor->wall_list.at(1)->texture_variant_list.at(random_select)->texture;
+
+				*spr->sprite_struct_list.at(0)->offset_x = ox;
+				*spr->sprite_struct_list.at(0)->offset_y = oy;
+				*spr->sprite_struct_list.at(0)->offset_z = oz;
+
+				_e->sprite_list.push_back(spr);
+			}
+			//left wall
+			spr = new ESprite();
+			ox = *floor->offset_x + *selected_wall->offset_x + *selected_variant->offset_x;
+			oy = *floor->offset_y + *selected_wall->offset_y + *selected_variant->offset_y;
+			oz = *floor->offset_z + *selected_wall->offset_z + *selected_variant->offset_z;
+
+			spr->sprite_struct_list.at(0)->gabarite = floor->wall_list.at(0)->texture_variant_list.at(random_select)->texture;
 
 			*spr->sprite_struct_list.at(0)->offset_x = ox;
 			*spr->sprite_struct_list.at(0)->offset_y = oy;
 			*spr->sprite_struct_list.at(0)->offset_z = oz;
 
 			_e->sprite_list.push_back(spr);
+
+			//right wall
+			spr = new ESprite();
+
+			selected_wall = floor->wall_list.at(2);
+			selected_variant = selected_wall->texture_variant_list.at(random_select);
+			selected_texture = selected_variant->texture;
+
+			ox =
+				*floor->offset_x
+				+
+				*selected_wall->offset_x + *selected_variant->offset_x
+				+
+				*floor->wall_list.at(0)->texture_variant_list.at(random_select)->texture->size_x * (*floor->wall_list.at(0)->repeat_x + 1)
+				+
+				*floor->wall_list.at(1)->texture_variant_list.at(random_select)->texture->size_x * (*floor->wall_list.at(1)->repeat_x + 1);
+
+			oy = *floor->offset_y + *selected_wall->offset_y + *selected_variant->offset_y;
+			oz = *floor->offset_z + *selected_wall->offset_z + *selected_variant->offset_z;
+
+			spr->sprite_struct_list.at(0)->gabarite = floor->wall_list.at(2)->texture_variant_list.at(random_select)->texture;
+
+			*spr->sprite_struct_list.at(0)->offset_x = ox;
+			*spr->sprite_struct_list.at(0)->offset_y = oy;
+			*spr->sprite_struct_list.at(0)->offset_z = oz;
+
+			_e->sprite_list.push_back(spr);
+
+
 		}
-		//left wall
-		spr = new ESprite();
-		ox = *floor->offset_x + *selected_wall->offset_x + *selected_variant->offset_x;
-		oy = *floor->offset_y + *selected_wall->offset_y + *selected_variant->offset_y;
-		oz = *floor->offset_z + *selected_wall->offset_z + *selected_variant->offset_z;
-
-		spr->sprite_struct_list.at(0)->gabarite = floor->wall_list.at(0)->texture_variant_list.at(random_select)->texture;
-
-		*spr->sprite_struct_list.at(0)->offset_x = ox;
-		*spr->sprite_struct_list.at(0)->offset_y = oy;
-		*spr->sprite_struct_list.at(0)->offset_z = oz;
-
-		_e->sprite_list.push_back(spr);
-
-		//right wall
-		spr = new ESprite();
-
-		selected_wall = floor->wall_list.at(2);
-		selected_variant = selected_wall->texture_variant_list.at(random_select);
-		selected_texture = selected_variant->texture;
-
-		ox =
-			*floor->offset_x
-			+
-			*selected_wall->offset_x + *selected_variant->offset_x
-			+
-			*floor->wall_list.at(0)->texture_variant_list.at(random_select)->texture->size_x * (*floor->wall_list.at(0)->repeat_x + 1)
-			+
-			*floor->wall_list.at(1)->texture_variant_list.at(random_select)->texture->size_x * (*floor->wall_list.at(1)->repeat_x + 1);
-
-		oy = *floor->offset_y + *selected_wall->offset_y + *selected_variant->offset_y;
-		oz = *floor->offset_z + *selected_wall->offset_z + *selected_variant->offset_z;
-
-		spr->sprite_struct_list.at(0)->gabarite = floor->wall_list.at(2)->texture_variant_list.at(random_select)->texture;
-
-		*spr->sprite_struct_list.at(0)->offset_x = ox;
-		*spr->sprite_struct_list.at(0)->offset_y = oy;
-		*spr->sprite_struct_list.at(0)->offset_z = oz;
-
-		_e->sprite_list.push_back(spr);
-
-
 	}
 }
 

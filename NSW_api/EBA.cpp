@@ -1287,6 +1287,7 @@ void EBA::action_select_floor(EButton* _b, float _d)
 	//EWindow::window_editor->select_new_floor();
 	EWindow::window_editor->refresh_autobuilding();
 
+	Entity::assembly_autobuilding_sprites(EWindow::window_editor->selected_entity);
 	Entity::update_building_autogenerator_massive(EWindow::window_editor->selected_entity);
 
 	EWindow::window_editor->move_mode = EWindowEditor::MoveMode::MoveFloor;

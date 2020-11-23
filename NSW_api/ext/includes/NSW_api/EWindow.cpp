@@ -74,7 +74,7 @@ int EButton::top_window_id = -1;
 
 //void (*action_on_left_click)(EButton* _b, float _d);
 
-
+bool EButton::any_input = false;
 
 
 EButton::EButton()
@@ -424,7 +424,7 @@ void EButton::update(float _d)
 		std::cout << "try active input mode" << std::endl;
 		if ((have_input_mode) && (!is_input_mode_active))
 		{
-
+			any_input = true;
 			if (input_auto_clear_text) { text = ""; }
 			is_input_mode_active = true;
 		}
@@ -590,6 +590,7 @@ void EButton::update(float _d)
 				(glfwGetKey(EWindow::main_window, GLFW_KEY_KP_ENTER) == GLFW_PRESS)
 				)
 		{
+			any_input = false;
 			is_input_mode_active = false;
 
 			if ((input_only_numbers) && (text == ""))

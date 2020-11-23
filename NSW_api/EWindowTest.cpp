@@ -232,7 +232,7 @@ void EWindowTest::update(float _d)
 		if (EWindow::scroll < 0) game_camera->zoom *= 0.5f;
 	}
 
-	if (EWindow::window_editor->is_active)
+	if ((EWindow::window_editor->is_active) & (!EButton::any_input))
 	{
 		if (glfwGetKey(EWindow::main_window, GLFW_KEY_W) == GLFW_PRESS) { free_camera_y += 512.0f / game_camera->zoom * _d; }
 		if (glfwGetKey(EWindow::main_window, GLFW_KEY_S) == GLFW_PRESS) { free_camera_y -= 512.0f / game_camera->zoom * _d; }

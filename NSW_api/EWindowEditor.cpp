@@ -873,6 +873,9 @@ float EWindowEditor::get_move_multiplier(float _zoom)
 
 void EWindowEditor::update(float _d)
 {
+
+	
+
 	sprite_flash_cooldown -= _d* 2.0f;
 	if (sprite_flash_cooldown < 0)
 	{
@@ -905,7 +908,7 @@ void EWindowEditor::update(float _d)
 		}
 	}
 
-	if (glfwGetKey(EWindow::main_window, GLFW_KEY_SPACE) == GLFW_PRESS)
+	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_SPACE) == GLFW_PRESS) & (!EButton::any_input))
 	{
 		if (!rama_start_selection)
 		{
@@ -961,7 +964,7 @@ void EWindowEditor::update(float _d)
 		update_sprite_buttons();
 	}
 
-	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_COMMA) == GLFW_PRESS) & (!EWindow::button_main_group_pressed) & (editor_mode == EditMode::EditSprites))
+	if (((glfwGetKey(EWindow::main_window, GLFW_KEY_COMMA) == GLFW_PRESS) & (!EWindow::button_main_group_pressed) & (editor_mode == EditMode::EditSprites)) & (!EButton::any_input))
 	{
 		EWindow::button_main_group_pressed = true;
 
@@ -974,7 +977,7 @@ void EWindowEditor::update(float _d)
 		//selected_entity
 	}
 
-	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_COMMA) == GLFW_PRESS) & (!EWindow::button_main_group_pressed) & (editor_mode == EditMode::EditAutobuilding))
+	if (((glfwGetKey(EWindow::main_window, GLFW_KEY_COMMA) == GLFW_PRESS) & (!EWindow::button_main_group_pressed) & (editor_mode == EditMode::EditAutobuilding))&(!EButton::any_input))
 	{
 		EWindow::button_main_group_pressed = true;
 
@@ -986,7 +989,7 @@ void EWindowEditor::update(float _d)
 		Entity::assembly_autobuilding_sprites(selected_entity);
 	}
 
-	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_PERIOD) == GLFW_PRESS) & (!EWindow::button_main_group_pressed) & (editor_mode == EditMode::EditAutobuilding))
+	if (((glfwGetKey(EWindow::main_window, GLFW_KEY_PERIOD) == GLFW_PRESS) & (!EWindow::button_main_group_pressed) & (editor_mode == EditMode::EditAutobuilding)) & (!EButton::any_input))
 	{
 		EWindow::button_main_group_pressed = true;
 
@@ -1001,7 +1004,7 @@ void EWindowEditor::update(float _d)
 		Entity::assembly_autobuilding_sprites(selected_entity);
 	}
 
-	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_PERIOD) == GLFW_PRESS) & (!EWindow::button_main_group_pressed) & (editor_mode == EditMode::EditSprites))
+	if (((glfwGetKey(EWindow::main_window, GLFW_KEY_PERIOD) == GLFW_PRESS) & (!EWindow::button_main_group_pressed) & (editor_mode == EditMode::EditSprites))& (!EButton::any_input))
 	{
 		EWindow::button_main_group_pressed = true;
 
@@ -1029,6 +1032,8 @@ void EWindowEditor::update(float _d)
 		(!EWindow::button_main_group_pressed)
 		&
 		(selected_entity != NULL)
+		&
+		(!EButton::any_input)
 	)
 	{
 		editor_mode = EditMode::EditSprites;
@@ -1050,6 +1055,8 @@ void EWindowEditor::update(float _d)
 		(!EWindow::button_main_group_pressed)
 		&
 		(selected_entity != NULL)
+		&
+		(!EButton::any_input)
 	)
 	{
 		editor_mode = EditMode::EditAutobuilding;
@@ -1061,7 +1068,7 @@ void EWindowEditor::update(float _d)
 
 	}
 
-	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_DELETE) == GLFW_PRESS) & (!EWindow::button_main_group_pressed) & (selected_entity != NULL))
+	if (((glfwGetKey(EWindow::main_window, GLFW_KEY_DELETE) == GLFW_PRESS) & (!EWindow::button_main_group_pressed) & (selected_entity != NULL))&(!EButton::any_input))
 	{
 		EWindow::button_main_group_pressed = true;
 		*selected_entity->need_remove = true;
@@ -1069,7 +1076,7 @@ void EWindowEditor::update(float _d)
 
 	}
 
-	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_V) == GLFW_PRESS) & (!EWindow::button_main_group_pressed) & (selected_entity != NULL))
+	if (((glfwGetKey(EWindow::main_window, GLFW_KEY_V) == GLFW_PRESS) & (!EWindow::button_main_group_pressed) & (selected_entity != NULL))&(!EButton::any_input))
 	{
 		EWindow::button_main_group_pressed = true;
 		if
@@ -1247,7 +1254,7 @@ void EWindowEditor::update(float _d)
 			}
 		}*/
 
-		if (glfwGetKey(EWindow::main_window, GLFW_KEY_X) == GLFW_PRESS)
+		if ((glfwGetKey(EWindow::main_window, GLFW_KEY_X) == GLFW_PRESS)& (!EButton::any_input))
 		{
 			if (!started_sprite_move)
 			{
@@ -1274,7 +1281,7 @@ void EWindowEditor::update(float _d)
 						*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->texture_variant_list.at(autobuilding_selected_texture_variant)->offset_x += mouse_speed_x * mul;
 						*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->texture_variant_list.at(autobuilding_selected_texture_variant)->offset_y += mouse_speed_y * mul;
 
-						if (glfwGetKey(EWindow::main_window, GLFW_KEY_KP_0) == GLFW_PRESS)
+						if ((glfwGetKey(EWindow::main_window, GLFW_KEY_KP_0) == GLFW_PRESS)&(!EButton::any_input))
 						{
 							*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->texture_variant_list.at(autobuilding_selected_texture_variant)->offset_x = 0.0f;
 							*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->texture_variant_list.at(autobuilding_selected_texture_variant)->offset_y = 0.0f;
@@ -1287,7 +1294,7 @@ void EWindowEditor::update(float _d)
 						*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->offset_x += mouse_speed_x * mul;
 						*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->offset_y += mouse_speed_y * mul;
 						
-						if (glfwGetKey(EWindow::main_window, GLFW_KEY_KP_0) == GLFW_PRESS)
+						if ((glfwGetKey(EWindow::main_window, GLFW_KEY_KP_0) == GLFW_PRESS)&(!EButton::any_input))
 						{
 							*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->offset_x = 0.0f;
 							*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->offset_y = 0.0f;
@@ -1300,7 +1307,7 @@ void EWindowEditor::update(float _d)
 						*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->offset_x += mouse_speed_x * mul;
 						*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->offset_y += mouse_speed_y * mul;
 
-						if (glfwGetKey(EWindow::main_window, GLFW_KEY_KP_0) == GLFW_PRESS)
+						if ((glfwGetKey(EWindow::main_window, GLFW_KEY_KP_0) == GLFW_PRESS) & (!EButton::any_input))
 						{
 							*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->offset_x = 0.0f;
 							*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->offset_y = 0.0f;
@@ -1320,7 +1327,7 @@ void EWindowEditor::update(float _d)
 		}
 		else
 		{
-			if (glfwGetKey(EWindow::main_window, GLFW_KEY_KP_0) == GLFW_PRESS)
+			if ((glfwGetKey(EWindow::main_window, GLFW_KEY_KP_0) == GLFW_PRESS) & (!EButton::any_input))
 			{
 				*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->texture_variant_list.at(autobuilding_selected_texture_variant)->offset_x = 0.0f;
 				*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->texture_variant_list.at(autobuilding_selected_texture_variant)->offset_y = 0.0f;
@@ -1385,7 +1392,7 @@ void EWindowEditor::update(float _d)
 			started_sprite_move = false;
 		}
 
-		if (glfwGetKey(EWindow::main_window, GLFW_KEY_B) == GLFW_PRESS)
+		if ((glfwGetKey(EWindow::main_window, GLFW_KEY_B) == GLFW_PRESS) & (!EButton::any_input))
 		{
 			if (!started_shadow_resize)
 			{
@@ -1454,7 +1461,7 @@ void EWindowEditor::update(float _d)
 			started_shadow_resize = false;
 		}
 
-		if (glfwGetKey(EWindow::main_window, GLFW_KEY_N) == GLFW_PRESS)
+		if ((glfwGetKey(EWindow::main_window, GLFW_KEY_N) == GLFW_PRESS) & (!EButton::any_input))
 		{
 			if (!started_shadow_tall)
 			{
@@ -1486,7 +1493,7 @@ void EWindowEditor::update(float _d)
 			started_shadow_tall = false;
 		}
 
-		if (glfwGetKey(EWindow::main_window, GLFW_KEY_M) == GLFW_PRESS)
+		if ((glfwGetKey(EWindow::main_window, GLFW_KEY_M) == GLFW_PRESS)&(!EButton::any_input))
 		{
 			if (!started_shadow_bottom_tall)
 			{
@@ -1523,7 +1530,7 @@ void EWindowEditor::update(float _d)
 
 	if ((editor_mode == EditMode::EditSprites) & (selected_entity != NULL))
 	{
-		if (glfwGetKey(EWindow::main_window, GLFW_KEY_Z) == GLFW_PRESS)
+		if ((glfwGetKey(EWindow::main_window, GLFW_KEY_Z) == GLFW_PRESS)&(!EButton::any_input))
 		{
 			if (!started_z_move)
 			{
@@ -1703,7 +1710,7 @@ void EWindowEditor::update(float _d)
 		}
 	
 
-		if (glfwGetKey(EWindow::main_window, GLFW_KEY_X) == GLFW_PRESS)
+		if ((glfwGetKey(EWindow::main_window, GLFW_KEY_X) == GLFW_PRESS) & (!EButton::any_input))
 		{
 			Entity::update_path_block(selected_entity);
 
@@ -1787,7 +1794,7 @@ void EWindowEditor::update(float _d)
 		}
 	}
 
-	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_C) == GLFW_PRESS))
+	if ((glfwGetKey(EWindow::main_window, GLFW_KEY_C) == GLFW_PRESS) & (!EButton::any_input))
 	{
 		if (!started_entity_move)
 		{

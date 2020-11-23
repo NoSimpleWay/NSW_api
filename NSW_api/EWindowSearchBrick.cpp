@@ -20,6 +20,7 @@ EWindowSearchBrick::EWindowSearchBrick()
 	but->master_window = this;
 	but->input_auto_clear_text = true;
 	but->have_input_mode = true;
+	//but->any_input = true;
 	but->is_input_mode_active = true;
 	but->outclick_protection = true;
 

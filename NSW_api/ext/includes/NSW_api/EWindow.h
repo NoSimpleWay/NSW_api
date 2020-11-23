@@ -464,7 +464,7 @@ public:
 
 	bool* double_click_started = new bool (false);
 
-
+	static bool any_input;
 };
 
 class EButtonGroup

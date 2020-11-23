@@ -317,7 +317,9 @@ public:
 
 		WEI_BACK_LEFT_CORNER_ROOF,
 		WEI_BACK_MID_CORNER_ROOF,
-		WEI_BACK_RIGHT_CORNER_ROOF
+		WEI_BACK_RIGHT_CORNER_ROOF,
+
+		WEI_SHADOW
 	};
 
 	struct building_autogen_floor
@@ -340,7 +342,8 @@ public:
 			new wall_element,//9
 			new wall_element,//10
 			new wall_element,//11
-			new wall_element//12
+			new wall_element,//12
+			new wall_element//13
 		};
 	};
 

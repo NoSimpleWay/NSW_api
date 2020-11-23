@@ -8,7 +8,7 @@ EWindowEditor::EWindowEditor()
 
 
 	EButton* but;
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 20; i++)
 	{
 		but = new EButton(-300.0f, i * -85.0f - 10.0f, 200.0f, 60.0f);
 		but->master_window = this;
@@ -750,6 +750,19 @@ EWindowEditor::EWindowEditor()
 
 		a_array->button_list.push_back(but);
 	}
+
+	but = new EButton(200.0f, 0.0f, 50.0f, 50.0f);
+	//building_autogenerator_link_to_left_wall = but;
+	building_autogenerator_wall_button_link.push_back(but);
+
+	but->master_window = this;
+	but->have_icon = true;
+	but->have_rama = true;
+	but->data_id = 13;
+
+	but->action_on_left_click = &EBA::action_select_building_autogenerator_wall_element;
+
+	a_array->button_list.push_back(but);
 
 
 	//****************************************
@@ -2134,13 +2147,17 @@ void EWindowEditor::update_sprite_buttons()
 			//for all sprite button
 			for (int i = 0; i < selected_entity->sprite_list.size(); i++)
 			{
-				
+				std::cout << "you are retarded? " << std::to_string(i) << std::endl;
+
 				sprite_button_list.at(i)->button_y = yy;//align button
+				std::cout << "sprite_button_list.at(i)->button_y = yy;" << std::endl;
+
 				sprite_button_list.at(i)->is_active = true;//active by default
+				std::cout << "sprite_button_list.at(i)->is_active = true;" << std::endl;
 				//sprite_button_list.at(i)->gabarite = selected_entity->sprite_list.at(i)->gabarite.at(0);
 
 				yy -= sprite_button_list.at(i)->button_size_y + 10.0f;
-
+				std::cout << "yy -= sprite_button_list.at(i)->button_size_y + 10.0f;" << std::endl;
 
 
 				//currect button is selected
@@ -2188,13 +2205,14 @@ void EWindowEditor::update_sprite_buttons()
 			}
 
 			int frame_data_id = 0;
-			for (int i = 0; i < link_to_sprite_frame.size(); i++)
+			for (int zzz = 0; zzz < link_to_sprite_frame.size(); zzz++)
 			{
-				EButton* fr = link_to_sprite_frame.at(i);
+			
+				EButton* fr = link_to_sprite_frame.at(zzz);
 				//std::cout << "process:" << z << std::endl;
 
 				
-				if (i < selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.size())
+				if (zzz < selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.size())
 				{
 					fr->is_active = true;
 
@@ -2214,7 +2232,7 @@ void EWindowEditor::update_sprite_buttons()
 
 
 
-				if (i == selected_frame_id)
+				if (zzz == selected_frame_id)
 				{
 					fr->rama_thikness = 2.0f;
 					fr->rama_color->set_color(EColor::COLOR_ORANGE);

@@ -1096,17 +1096,15 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 		{
 			//mid wall
 
-
-			for (int i = 0; i < ceil(*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_x); i++)
+			for (int yy = 0;	yy	< ceil(*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y); yy++)
+			for (int i = 0;		i	< ceil(*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_x); i++)
 			{
 				spr = new ESprite(); //m->wall_list.at(0)
 
 
 				ox =
 					*floor->offset_x
-
 					+
-
 					*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->offset_x
 					+
 					*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->texture_variant_list.at(random_select)->offset_x;
@@ -1127,14 +1125,15 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 
 				oy =
 					*floor->offset_y
-
 					+
-
 					*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->offset_y
-
 					+
-
 					*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->texture_variant_list.at(random_select)->offset_y;
+
+				if (floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->texture_variant_list.at(random_select)->texture != NULL)
+				{
+					oy += *floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->texture_variant_list.at(random_select)->texture->size_y * yy;
+				}
 
 				oz=
 				*floor->offset_z
@@ -1151,13 +1150,14 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 				*spr->sprite_struct_list.at(0)->offset_z = oz;
 
 				*spr->sprite_struct_list.at(0)->fragment_x = min(*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_x - i, 1.0f);
-				*spr->sprite_struct_list.at(0)->fragment_y = min(*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y, 1.0f);
+				*spr->sprite_struct_list.at(0)->fragment_y = min(*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y - yy, 1.0f);
 
 				_e->sprite_list.push_back(spr);
 			}
 		}
 	
 		//left wall
+		for (int yy = 0; yy < ceil(*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y); yy++)
 		if (floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->texture_variant_list.size() > 0)
 		{
 			spr = new ESprite();
@@ -1176,6 +1176,11 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 				+
 				*floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->texture_variant_list.at(random_select)->offset_y;
 
+			if (floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->texture_variant_list.at(random_select)->texture != NULL)
+			{
+				oy += *floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->texture_variant_list.at(random_select)->texture->size_y * yy;
+			}
+
 
 			oz =
 				*floor->offset_z
@@ -1191,9 +1196,12 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 			*spr->sprite_struct_list.at(0)->offset_z = oz;
 
 			_e->sprite_list.push_back(spr);
+
+			*spr->sprite_struct_list.at(0)->fragment_y = min(*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y - yy, 1.0f);
 		}
 
 			//right wall
+			for (int yy = 0; yy < ceil(*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y); yy++)
 			if (floor->wall_list.at(Entity::WallElementIndex::WEI_RIGHT_WALL)->texture_variant_list.size() > 0)
 			{
 				spr = new ESprite();
@@ -1221,7 +1229,14 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 					ox += *floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->texture_variant_list.at(random_select)->texture->size_x* (*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_x);
 				}
 
+
 				oy = *floor->offset_y + *selected_wall->offset_y + *selected_variant->offset_y;
+
+				if (floor->wall_list.at(Entity::WallElementIndex::WEI_RIGHT_WALL)->texture_variant_list.at(random_select)->texture != NULL)
+				{
+					oy += *floor->wall_list.at(Entity::WallElementIndex::WEI_RIGHT_WALL)->texture_variant_list.at(random_select)->texture->size_y * yy;
+				}
+
 				oz = *floor->offset_z + *selected_wall->offset_z + *selected_variant->offset_z;
 
 				if (floor->wall_list.at(2)->texture_variant_list.size() > 0)
@@ -1234,7 +1249,23 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 				*spr->sprite_struct_list.at(0)->offset_z = oz;
 
 				_e->sprite_list.push_back(spr);
+				*spr->sprite_struct_list.at(0)->fragment_y = min(*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y - yy, 1.0f);
+
 			}
+
+			spr = new ESprite();
+			_e->sprite_list.push_back(spr);
+			spr->sprite_struct_list.at(0)->gabarite = EGraphicCore::gabarite_white_pixel;
+			*spr->is_shadow = true;
+			*spr->sprite_struct_list.at(0)->shadow_size_x = ox;
+			*spr->sprite_struct_list.at(0)->shadow_size_y = 100.0f;
+			*spr->sprite_struct_list.at(0)->bottom_tall = 100.0f;
+			*spr->sprite_struct_list.at(0)->shadow_tall = 100.0f;
+			*spr->sprite_struct_list.at(0)->shadow_height = 100.0f;
+
+			*spr->sprite_struct_list.at(0)->offset_x = ox;
+			*spr->sprite_struct_list.at(0)->offset_y = oy;
+			*spr->sprite_struct_list.at(0)->offset_z = oz;
 		}
 
 	

@@ -82,6 +82,7 @@ public:
 	static void action_deactivate_texture_variant(EButton* _b, float _d);
 	static void action_deactivate_floors(EButton* _b, float _d);
 	static void action_add_new_floor(EButton* _b, float _d);
+	static void action_move_floor_order(EButton* _b, float _d);
 
 	static void action_select_building_autogenerator_wall_element(EButton* _b, float _d);
 	static void action_select_floor(EButton* _b, float _d);

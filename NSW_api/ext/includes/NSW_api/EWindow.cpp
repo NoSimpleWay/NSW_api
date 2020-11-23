@@ -1005,7 +1005,6 @@ void EWindow::default_update(float _d)
 				(mouse_y >= *massive->position_y + *massive->size_y)
 				&
 				(mouse_y <= *massive->position_y + *massive->size_y + 20.0f)
-
 			)
 		{
 			*massive->head_catched = true;
@@ -1054,7 +1053,8 @@ void EWindow::default_update(float _d)
 					b->rama_thikness = 1.0f;
 				}
 
-				b->update(_d);
+				if (b->is_active)
+				{b->update(_d);}
 			}
 
 			
@@ -1152,7 +1152,8 @@ void EWindow::default_update(float _d)
 							if (button_row_offset > * vertical->size_x) { *vertical->size_x = button_row_offset; }
 							if (b->button_size_y > maximum_y_size_of_button) { maximum_y_size_of_button = b->button_size_y; }
 
-							b->update(_d);
+							if (b->is_active)
+							{b->update(_d);}
 						}
 
 						for (int i = 0; i < array->button_list.size(); i++)
@@ -1189,7 +1190,8 @@ void EWindow::default_update(float _d)
 
 		for (EButton* b : massive->service_button)
 		{
-			b->update(_d);
+			if (b->is_active)
+			{b->update(_d);}
 		}
 
 		

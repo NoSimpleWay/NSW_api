@@ -119,10 +119,11 @@ public:
 
 
 	//left wall as selected
+	/*
 	EButton* building_autogenerator_link_to_left_wall;
 	EButton* building_autogenerator_link_to_right_wall;
 	EButton* building_autogenerator_link_to_mid_wall;
-	EButton* building_autogenerator_link_to_window_wall;
+	EButton* building_autogenerator_link_to_window_wall;*/
 
 	//left wall / mid wall / right wall / window
 	int autobuilding_selected_wall;
@@ -144,8 +145,14 @@ public:
 	button_array* link_to_texture_variant_array;
 	button_array* link_to_floors_array;
 
+	void refresh_autobuilding();
+
 	void select_new_variant();
 	void select_new_floor();
+	void select_new_wall();
+
+	int count_of_variants;
+	int count_of_floors;
 
 
 

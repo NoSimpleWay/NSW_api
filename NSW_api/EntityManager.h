@@ -17,7 +17,7 @@ class EItemAttribute;
 class Entity
 {
 public:
-
+	static int dolboyob;
 	/////////////////////////////////////////////////////////
 	typedef void (*HIT_ACTION)(Entity* _a, Entity* _b, int _side);
 	enum Side { HIT_SIDE_NONE, HIT_SIDE_UP, HIT_SIDE_RIGHT, HIT_SIDE_DOWN, HIT_SIDE_LEFT };
@@ -293,12 +293,31 @@ public:
 
 		std::vector <wall_texture_variant*> texture_variant_list;
 
-		int* repeat_x = new int(0);
-		int* repeat_y = new int(0);
+		float* repeat_x = new float(1.0f);
+		float* repeat_y = new float(1.0f);
 
 		float* offset_x = new float(0.0f);
 		float* offset_y = new float(0.0f);
 		float* offset_z = new float(0.0f);
+	};
+
+	enum WallElementIndex
+	{
+		WEI_LEFT_WALL,
+		WEI_MID_WALL,
+		WEI_RIGHT_WALL,
+
+		WEI_FACE_LEFT_CORNER_ROOF,
+		WEI_FACE_MID_CORNER_ROOF,
+		WEI_FACE_RIGHT_CORNER_ROOF,
+
+		WEI_BODY_LEFT_CORNER_ROOF,
+		WEI_BODY_MID_CORNER_ROOF,
+		WEI_BODY_RIGHT_CORNER_ROOF,
+
+		WEI_BACK_LEFT_CORNER_ROOF,
+		WEI_BACK_MID_CORNER_ROOF,
+		WEI_BACK_RIGHT_CORNER_ROOF
 	};
 
 	struct building_autogen_floor
@@ -307,7 +326,22 @@ public:
 		float* offset_y = new float(0.0f);
 		float* offset_z = new float(0.0f);
 
-		std::vector<wall_element*> wall_list = {new wall_element, new wall_element, new wall_element, new wall_element};
+		std::vector<wall_element*> wall_list
+		=
+		{
+			new wall_element,//1	left wall
+			new wall_element,//2	mid wall
+			new wall_element,//3	right wall
+			new wall_element,//4	
+			new wall_element,//5
+			new wall_element,//6
+			new wall_element,//7
+			new wall_element,//8
+			new wall_element,//9
+			new wall_element,//10
+			new wall_element,//11
+			new wall_element//12
+		};
 	};
 
 	std::vector<building_autogen_floor*> autobuilding_floor_list;
@@ -384,6 +418,9 @@ public:
 
 		int* copies = new int(1);
 
+		float* fragment_x = new float(1.0f);
+		float* fragment_y = new float(1.0f);
+
 		EGabarite* gabarite = NULL;
 		EGabarite* supermap = NULL;
 
@@ -400,6 +437,8 @@ public:
 			delete shadow_tall;
 			delete shadow_height;
 			delete copies;
+			delete fragment_x;
+			delete fragment_y;
 
 			gabarite = NULL;
 			supermap = NULL;

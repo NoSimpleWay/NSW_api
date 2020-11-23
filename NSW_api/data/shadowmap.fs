@@ -59,7 +59,7 @@ void main()
 	bhr4 = texture(texture2, shadow_coord + vec2(blur_x_factor * -1.0f, 0.0f)).a;
 	bhr5 = texture(texture2, shadow_coord + vec2(blur_x_factor * -2.0f, 0.0f)).a;
 	
-	blur_result = (bhr1 + bhr2 + bhr3 + bhr4 + bhr5) /5.0f;
+	blur_result = (bhr1 + bhr2 + bhr3 + bhr4 + bhr5) / 5.0f;
 	
 	shadow_multiplier
 	=
@@ -69,17 +69,19 @@ void main()
 			texture(texture2, shadow_coord).a //0.21
 			//blur_result
 			-
-			texture(texture1, SuperMapCoord).g// 0.43
-			-
-			ShadowCoord.y / 255.0f
+			(texture(texture1, SuperMapCoord).g)// 0.43)
+			//-
+			//ShadowCoord.y / 255.0f
 		)
 		*
-		10.0f
+		100000.0f
 		,
 		0.0f
 		,
 		1.0f
-	)*blur_result;
+	)*1.0f;
+	
+	//blur_result
 	//*
 	//texture(texture2, shadow_coord).a
 	;

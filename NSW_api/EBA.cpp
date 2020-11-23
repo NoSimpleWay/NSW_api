@@ -104,6 +104,7 @@ void EBA::action_set_sprite_texture(EButton* _b, float _d)
 	EWindow::window_search_brick->is_active = false;
 
 	ed->editor_mode = EWindowEditor::EditMode::EditAutobuilding;
+	EWindow::window_editor->refresh_autobuilding();
 }
 
 void EBA::action_open_select_texture_window(EButton* _b, float _d)
@@ -200,6 +201,14 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 
 			w_string += "shadow_bottom_tall\t";
 			w_string += std::to_string(*spr->bottom_tall);
+			w_string += "\n";
+			
+			w_string += "fragment_x\t";
+			w_string += std::to_string(*spr->fragment_x);
+			w_string += "\n";
+			
+			w_string += "fragment_y\t";
+			w_string += std::to_string(*spr->fragment_y);
 			w_string += "\n";
 
 
@@ -567,6 +576,16 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 				if (EFile::data_array[i] == "shadow_bottom_tall")
 				{
 					i++; *just_create_sprite_struct->bottom_tall = std::stof(EFile::data_array[i]);
+				}
+
+				if (EFile::data_array[i] == "fragment_x")
+				{
+					i++; *just_create_sprite_struct->fragment_x = std::stof(EFile::data_array[i]);
+				}
+
+				if (EFile::data_array[i] == "fragment_y")
+				{
+					i++; *just_create_sprite_struct->fragment_y = std::stof(EFile::data_array[i]);
 				}
 
 				if (EFile::data_array[i] == "texture_copies")
@@ -1098,29 +1117,10 @@ void EBA::action_select_building_autogenerator_wall_element(EButton* _b, float _
 
 	std::cout << "selected wall = " + std::to_string(EWindow::window_editor->autobuilding_selected_wall) << std::endl;
 
-	Entity::update_building_autogenerator_massive(EWindow::window_editor->selected_entity);
+	//Entity::update_building_autogenerator_massive(EWindow::window_editor->selected_entity);
 
-	for (int i = 0; i < EWindow::window_editor->building_autogenerator_wall_button_link.size(); i++)
-	{
-		EButton* sbut = EWindow::window_editor->building_autogenerator_wall_button_link.at(i);
-
-
-		//selected
-		if (i == EWindow::window_editor->autobuilding_selected_wall)
-		{
-			sbut->rama_thikness = 3.0f;
-
-			sbut->rama_color->set_color(EColor::COLOR_YELLOW);
-			sbut->bg_color->set_color(EColor::COLOR_BLACK);
-		}
-		else
-		{
-			sbut->rama_thikness = 1.0f;
-
-			sbut->rama_color->set_color(EColor::COLOR_BLACK);
-			sbut->bg_color->set_color(EColor::COLOR_GRAY);
-		}
-	}
+	//EWindow::window_editor->select_new_wall();
+	EWindow::window_editor->refresh_autobuilding();
 
 	//Entity::update_building_autogenerator_massive(EWindow::window_editor->selected_entity);
 
@@ -1157,7 +1157,24 @@ void EBA::action_deactivate_texture_variant(EButton* _b, float _d)
 		EWindow::window_editor->link_to_texture_variant_array->button_list.at(i)->data_id = i;
 	}
 
-	EWindow::window_editor->select_new_variant();
+	EWindow::window_editor->count_of_variants--;
+
+	//EWindow::window_editor->select_new_variant();
+	EWindow::window_editor->
+	selected_entity->
+	autobuilding_floor_list.at(EWindow::window_editor->autobuilding_selected_floor)->
+	wall_list.at(EWindow::window_editor->autobuilding_selected_wall)->texture_variant_list.erase
+	(
+		EWindow::window_editor->
+		selected_entity->
+		autobuilding_floor_list.at(EWindow::window_editor->autobuilding_selected_floor)->
+		wall_list.at(EWindow::window_editor->autobuilding_selected_wall)->texture_variant_list.begin()
+		+
+		EWindow::window_editor->autobuilding_selected_texture_variant
+	);
+	EWindow::window_editor->autobuilding_selected_texture_variant = 0;
+
+	EWindow::window_editor->refresh_autobuilding();
 }
 
 void EBA::action_deactivate_floors(EButton* _b, float _d)
@@ -1190,7 +1207,16 @@ void EBA::action_deactivate_floors(EButton* _b, float _d)
 		EWindow::window_editor->link_to_floors_array->button_list.at(i)->data_id = i;
 	}
 
-	EWindow::window_editor->select_new_floor();
+	EWindow::window_editor->count_of_floors--;
+
+	
+
+	EWindow::window_editor->selected_entity->autobuilding_floor_list.erase
+	(
+		EWindow::window_editor->selected_entity->autobuilding_floor_list.begin() + _b->data_id
+	);
+
+	EWindow::window_editor->refresh_autobuilding();
 }
 
 void EBA::action_add_new_floor(EButton* _b, float _d)
@@ -1214,21 +1240,65 @@ void EBA::action_add_new_floor(EButton* _b, float _d)
 	}
 }
 
+void EBA::action_move_floor_order(EButton* _b, float _d)
+{
+	Entity::building_autogen_floor* swap;
+
+	//<<<
+	if ((_b->data_id == 0) & (EWindow::window_editor->autobuilding_selected_floor > 0))
+	{
+		swap = EWindow::window_editor->selected_entity->autobuilding_floor_list.at(EWindow::window_editor->autobuilding_selected_floor);
+
+		EWindow::window_editor->selected_entity->autobuilding_floor_list.at(EWindow::window_editor->autobuilding_selected_floor)
+		=
+		EWindow::window_editor->selected_entity->autobuilding_floor_list.at(EWindow::window_editor->autobuilding_selected_floor - 1);
+
+		EWindow::window_editor->selected_entity->autobuilding_floor_list.at(EWindow::window_editor->autobuilding_selected_floor - 1)
+		=
+		swap;
+		//EWindowEditor::link_to_floors_array
+
+		EWindow::window_editor->autobuilding_selected_floor--;
+	}
+
+	//>>>
+	if ((_b->data_id == 1) & (EWindow::window_editor->autobuilding_selected_floor < EWindow::window_editor->count_of_floors - 1))
+	{
+		swap = EWindow::window_editor->selected_entity->autobuilding_floor_list.at(EWindow::window_editor->autobuilding_selected_floor);
+
+		EWindow::window_editor->selected_entity->autobuilding_floor_list.at(EWindow::window_editor->autobuilding_selected_floor)
+			=
+			EWindow::window_editor->selected_entity->autobuilding_floor_list.at(EWindow::window_editor->autobuilding_selected_floor + 1);
+
+		EWindow::window_editor->selected_entity->autobuilding_floor_list.at(EWindow::window_editor->autobuilding_selected_floor + 1)
+			=
+			swap;
+		//EWindowEditor::link_to_floors_array
+		EWindow::window_editor->autobuilding_selected_floor++;
+	}
+
+	EWindow::window_editor->refresh_autobuilding();
+}
+
 void EBA::action_select_floor(EButton* _b, float _d)
 {
 	EWindow::window_editor->autobuilding_selected_floor = _b->data_id;
 
-	EWindow::window_editor->select_new_floor();
+	//EWindow::window_editor->select_new_floor();
+	EWindow::window_editor->refresh_autobuilding();
 
 	Entity::update_building_autogenerator_massive(EWindow::window_editor->selected_entity);
 
 	EWindow::window_editor->move_mode = EWindowEditor::MoveMode::MoveFloor;
+
+	std::cout << "floor count: " << std::to_string(EWindow::window_editor->count_of_floors) << std::endl;
 }
 
 void EBA::action_select_texture_variant(EButton* _b, float _d)
 {
 	EWindow::window_editor->autobuilding_selected_texture_variant = _b->data_id;
-	EWindow::window_editor->select_new_variant();
+	//EWindow::window_editor->select_new_variant();
+	EWindow::window_editor->refresh_autobuilding();
 	EWindow::window_editor->move_mode = EWindowEditor::MoveMode::MoveTexture;
 }
 

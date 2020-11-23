@@ -25,6 +25,7 @@ public:
 	void draw_gabarite_ark_shadow(float _x, float _y, EGabarite* _g);
 
 	void draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EGabarite* _g, EGabarite* _supermap, float _z);
+	void draw_gabarite_shadowmap_fragment(float _x, float _y, float _w, float _h, EGabarite* _g, EGabarite* _supermap, float _z, float _fx, float _fy);
 
 
 	void draw_gabarite_with_offset(float _x, float _y, float _w, float _h, float _offset_x, float _offset_y, float _offset_end_x, float _offset_end_y,  EGabarite* _g);

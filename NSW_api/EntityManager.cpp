@@ -18,6 +18,7 @@ bool Entity::is_collision_down;
 bool Entity::is_collision_left;
 bool Entity::is_collision_right;
 bool Entity::is_collision_up;
+int Entity::dolboyob = 0;
 
 std::vector <int> Entity::entity_attribute_id
 =
@@ -816,7 +817,7 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 
 			if (!_is_shadow_mode)
 			{
-				_b->draw_gabarite_shadowmap
+				_b->draw_gabarite_shadowmap_fragment
 				(
 					*_e->position_x + *spr->sprite_struct_list.at(frame_id)->offset_x + i * *spr->sprite_struct_list.at(frame_id)->gabarite->size_x + offset_x_begin,
 					*_e->position_y + *spr->sprite_struct_list.at(frame_id)->offset_y + offset_y_begin + *spr->sprite_struct_list.at(frame_id)->offset_z,
@@ -826,7 +827,9 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 
 					spr->sprite_struct_list.at(frame_id)->gabarite,
 					spr->sprite_struct_list.at(frame_id)->supermap,
-					*spr->sprite_struct_list.at(frame_id)->offset_z
+					*spr->sprite_struct_list.at(frame_id)->offset_z,
+					*spr->sprite_struct_list.at(frame_id)->fragment_x,
+					*spr->sprite_struct_list.at(frame_id)->fragment_y
 				);
 			}
 			else
@@ -968,16 +971,20 @@ void Entity::update_entity_attributes(Entity* _e)
 
 }
 
+
 void Entity::update_building_autogenerator_massive(Entity* _selected)
 {
 	EWindowEditor* ed = EWindow::window_editor;
-	int id = 0;
-
+	
+	dolboyob = 0;
 	if (_selected != NULL)
 	{
 		//ed->link_to_texture_variant_array->button_list.clear();
-
 		//for (subsprite* b:_selected->autobuilding_floor_list.at(ed->selected_building_autogenerator_floor)->wall_list.at(ed->selected_building_autogenerator_wall)->texture_variant_list)
+		
+		//reactivate floor button
+		
+
 		for (EButton* b: EWindow::window_editor->link_to_texture_variant_array->button_list)
 		{
 			if
@@ -988,32 +995,34 @@ void Entity::update_building_autogenerator_massive(Entity* _selected)
 				&&
 				(_selected->autobuilding_floor_list.at(ed->autobuilding_selected_floor)->wall_list.at(ed->autobuilding_selected_wall)->texture_variant_list.size() > 0)
 				&&
-				(id < _selected->autobuilding_floor_list.at(ed->autobuilding_selected_floor)->wall_list.at(ed->autobuilding_selected_wall)->texture_variant_list.size())
-				
-
-				//&&
+				(dolboyob < _selected->autobuilding_floor_list.at(ed->autobuilding_selected_floor)->wall_list.at(ed->autobuilding_selected_wall)->texture_variant_list.size())
 			)
 			{
-				EWindow::window_editor->link_to_texture_variant_array->button_list.at(id)->is_active = true;
-				EWindow::window_editor->link_to_texture_variant_array->button_list.at(id)->gabarite
+
+				EWindow::window_editor->link_to_texture_variant_array->button_list.at(dolboyob)->is_active = true;
+				EWindow::window_editor->link_to_texture_variant_array->button_list.at(dolboyob)->gabarite
 				=
 				_selected->autobuilding_floor_list.at(ed->autobuilding_selected_floor)->
 				wall_list.at(ed->autobuilding_selected_wall)->
-				texture_variant_list.at(id)->
+				texture_variant_list.at(dolboyob)->
 				texture;
 			}
 			else
 			{
-				EWindow::window_editor->link_to_texture_variant_array->button_list.at(id)->is_active = false;
+				EWindow::window_editor->link_to_texture_variant_array->button_list.at(dolboyob)->is_active = false;
+
+				EWindow::window_editor->link_to_texture_variant_array->button_list.at(dolboyob)->gabarite = NULL;
 			}
 
-			id++;
+			dolboyob++;
 		}
 
-		id = 0;
+		//EWindow::window_editor->count_of_floors = id;
+
+		dolboyob = 0;
 		for (EButton* b : ed->link_to_floors_array->button_list)
 		{
-			if (id < _selected->autobuilding_floor_list.size())
+			if (dolboyob < _selected->autobuilding_floor_list.size())
 			{
 				b->is_active = true;
 			}
@@ -1022,10 +1031,18 @@ void Entity::update_building_autogenerator_massive(Entity* _selected)
 				b->is_active = false;
 			}
 
-			id++;
+			dolboyob++;
 		}
+
+		std::cout << "floor list size" + std::to_string(_selected->autobuilding_floor_list.size()) << std::endl;
+		EWindow::window_editor->count_of_floors = _selected->autobuilding_floor_list.size();
 		//;
 	}
+
+
+
+	EWindow::window_editor->select_new_floor();
+	EWindow::window_editor->select_new_variant();
 }
 
 void Entity::assembly_autobuilding_sprites(Entity* _e)
@@ -1060,56 +1077,114 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 	float oz = 0.0f;
 
 	ESprite* spr = NULL;
-	Entity::wall_element* selected_wall;
-	Entity::wall_texture_variant* selected_variant;
-	EGabarite* selected_texture;
+	Entity::wall_element* selected_wall = NULL;
+	Entity::wall_texture_variant* selected_variant = NULL;
+	EGabarite* selected_texture = NULL;
 
-	for (Entity::building_autogen_floor* floor : _e->autobuilding_floor_list)
+	//Entity::WallElementIndex ewe;
+
+	for (int z=0; z<EWindow::window_editor->count_of_floors; z++)
+	//for (Entity::building_autogen_floor* floor : _e->autobuilding_floor_list)
 	{
+		Entity::building_autogen_floor* floor = _e->autobuilding_floor_list.at(z);
+
 		int random_select = 0;
 
-		//mid wall
-		selected_wall = floor->wall_list.at(0);
-		selected_variant = selected_wall->texture_variant_list.at(random_select);
-		selected_texture = selected_variant->texture;
 
-		for (int i = 0; i <= *floor->wall_list.at(1)->repeat_x; i++)
+
+		if (floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->texture_variant_list.size() > 0)
 		{
-			spr = new ESprite(); //m->wall_list.at(0)
+			//mid wall
 
+
+			for (int i = 0; i < ceil(*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_x); i++)
+			{
+				spr = new ESprite(); //m->wall_list.at(0)
+
+
+				ox =
+					*floor->offset_x
+
+					+
+
+					*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->offset_x
+					+
+					*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->texture_variant_list.at(random_select)->offset_x;
+					
+				if (floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->texture_variant_list.at(random_select)->texture != NULL)
+				{ox += *floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->texture_variant_list.at(random_select)->texture->size_x * i;}
+
+
+				if (floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->texture_variant_list.size() > 0)
+				{
+					if (floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->texture_variant_list.at(random_select)->texture != NULL)
+					{
+						ox += *floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->texture_variant_list.at(random_select)->texture->size_x;
+					}
+				}
+
+				///////
+
+				oy =
+					*floor->offset_y
+
+					+
+
+					*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->offset_y
+
+					+
+
+					*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->texture_variant_list.at(random_select)->offset_y;
+
+				oz=
+				*floor->offset_z
+				+
+				*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->offset_z
+				+
+				*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->texture_variant_list.at(random_select)->offset_z;
+
+
+				spr->sprite_struct_list.at(0)->gabarite = floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->texture_variant_list.at(random_select)->texture;
+
+				*spr->sprite_struct_list.at(0)->offset_x = ox;
+				*spr->sprite_struct_list.at(0)->offset_y = oy;
+				*spr->sprite_struct_list.at(0)->offset_z = oz;
+
+				*spr->sprite_struct_list.at(0)->fragment_x = min(*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_x - i, 1.0f);
+				*spr->sprite_struct_list.at(0)->fragment_y = min(*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y, 1.0f);
+
+				_e->sprite_list.push_back(spr);
+			}
+		}
+	
+		//left wall
+		if (floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->texture_variant_list.size() > 0)
+		{
+			spr = new ESprite();
 
 			ox =
-			*floor->offset_x
-
-			+
-
-			*floor->wall_list.at(1)->offset_x
-			+
-			*floor->wall_list.at(1)->texture_variant_list.at(random_select)->offset_x
-			+
-			*floor->wall_list.at(1)->texture_variant_list.at(random_select)->texture->size_x * i
-
-			+
-
-			*floor->wall_list.at(0)->texture_variant_list.at(random_select)->texture->size_x;
-			
-			///////
+				*floor->offset_x
+				+
+				*floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->offset_x
+				+
+				*floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->texture_variant_list.at(random_select)->offset_x;
 
 			oy =
 				*floor->offset_y
-
 				+
-
-				*floor->wall_list.at(1)->offset_y
-
+				*floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->offset_y
 				+
-
-				*floor->wall_list.at(1)->texture_variant_list.at(random_select)->offset_y;
-
-			oz = *selected_wall->offset_z + *selected_variant->offset_z;
+				*floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->texture_variant_list.at(random_select)->offset_y;
 
 
-			spr->sprite_struct_list.at(0)->gabarite = floor->wall_list.at(1)->texture_variant_list.at(random_select)->texture;
+			oz =
+				*floor->offset_z
+				+
+				*floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->offset_z
+				+
+				*floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->texture_variant_list.at(random_select)->offset_z;
+
+			spr->sprite_struct_list.at(0)->gabarite = floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->texture_variant_list.at(random_select)->texture;
 
 			*spr->sprite_struct_list.at(0)->offset_x = ox;
 			*spr->sprite_struct_list.at(0)->offset_y = oy;
@@ -1117,49 +1192,52 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 
 			_e->sprite_list.push_back(spr);
 		}
-		//left wall
-		spr = new ESprite();
-		ox = *floor->offset_x + *selected_wall->offset_x + *selected_variant->offset_x;
-		oy = *floor->offset_y + *selected_wall->offset_y + *selected_variant->offset_y;
-		oz = *floor->offset_z + *selected_wall->offset_z + *selected_variant->offset_z;
 
-		spr->sprite_struct_list.at(0)->gabarite = floor->wall_list.at(0)->texture_variant_list.at(random_select)->texture;
+			//right wall
+			if (floor->wall_list.at(Entity::WallElementIndex::WEI_RIGHT_WALL)->texture_variant_list.size() > 0)
+			{
+				spr = new ESprite();
 
-		*spr->sprite_struct_list.at(0)->offset_x = ox;
-		*spr->sprite_struct_list.at(0)->offset_y = oy;
-		*spr->sprite_struct_list.at(0)->offset_z = oz;
+				selected_wall = floor->wall_list.at(Entity::WallElementIndex::WEI_RIGHT_WALL);
+				selected_variant = selected_wall->texture_variant_list.at(random_select);
+				selected_texture = selected_variant->texture;
 
-		_e->sprite_list.push_back(spr);
+				ox =
+					*floor->offset_x
+					+
+					*selected_wall->offset_x + *selected_variant->offset_x;
+				
+				// + size of left wall
+				if (floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->texture_variant_list.size() > 0)
+				{
+					if (floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->texture_variant_list.at(random_select)->texture != NULL)
+					ox += *floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->texture_variant_list.at(random_select)->texture->size_x * (*floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->repeat_x);
+				}
 
-		//right wall
-		spr = new ESprite();
+				// + size of mid wall
+				if (floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->texture_variant_list.size() > 0)
+				{
+					if (floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->texture_variant_list.at(random_select)->texture != NULL)
+					ox += *floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->texture_variant_list.at(random_select)->texture->size_x* (*floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_x);
+				}
 
-		selected_wall = floor->wall_list.at(2);
-		selected_variant = selected_wall->texture_variant_list.at(random_select);
-		selected_texture = selected_variant->texture;
+				oy = *floor->offset_y + *selected_wall->offset_y + *selected_variant->offset_y;
+				oz = *floor->offset_z + *selected_wall->offset_z + *selected_variant->offset_z;
 
-		ox =
-			*floor->offset_x
-			+
-			*selected_wall->offset_x + *selected_variant->offset_x
-			+
-			*floor->wall_list.at(0)->texture_variant_list.at(random_select)->texture->size_x * (*floor->wall_list.at(0)->repeat_x + 1)
-			+
-			*floor->wall_list.at(1)->texture_variant_list.at(random_select)->texture->size_x * (*floor->wall_list.at(1)->repeat_x + 1);
+				if (floor->wall_list.at(2)->texture_variant_list.size() > 0)
+				{
+					spr->sprite_struct_list.at(0)->gabarite = floor->wall_list.at(2)->texture_variant_list.at(random_select)->texture;
+				}
 
-		oy = *floor->offset_y + *selected_wall->offset_y + *selected_variant->offset_y;
-		oz = *floor->offset_z + *selected_wall->offset_z + *selected_variant->offset_z;
+				*spr->sprite_struct_list.at(0)->offset_x = ox;
+				*spr->sprite_struct_list.at(0)->offset_y = oy;
+				*spr->sprite_struct_list.at(0)->offset_z = oz;
 
-		spr->sprite_struct_list.at(0)->gabarite = floor->wall_list.at(2)->texture_variant_list.at(random_select)->texture;
+				_e->sprite_list.push_back(spr);
+			}
+		}
 
-		*spr->sprite_struct_list.at(0)->offset_x = ox;
-		*spr->sprite_struct_list.at(0)->offset_y = oy;
-		*spr->sprite_struct_list.at(0)->offset_z = oz;
-
-		_e->sprite_list.push_back(spr);
-
-
-	}
+	
 }
 
 /*void Entity::draw_sprite_assembly(Entity* _e, Batcher* _b, float _d, bool _shadow_mode)

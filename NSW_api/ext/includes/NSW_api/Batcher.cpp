@@ -911,6 +911,126 @@ void Batcher::draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EG
 	}
 }
 
+void Batcher::draw_gabarite_shadowmap_fragment(float _x, float _y, float _w, float _h, EGabarite* _g, EGabarite* _supermap, float _z, float _fx, float _fy)
+{
+	//std::cout << "filled rect" << std::endl;
+
+	//.#
+	//..
+	vertices[id + 0] = (_x + *_g->size_x * _fx);
+	vertices[id + 1] = (_y + *_g->size_y * _fy);
+	//vertices[id + 2] = 0;
+
+	vertices[id + 2] = batch_color_r;
+	vertices[id + 3] = batch_color_g;
+	vertices[id + 4] = batch_color_b;
+	vertices[id + 5] = batch_color_a;
+
+	vertices[id + 6] = *_g->x + *_g->uv_size_x * _fx;
+	vertices[id + 7] = *_g->y + *_g->uv_size_y * _fy;
+
+	vertices[id + 8] = (_x + *_g->size_x) * zoom / screen_w;
+	vertices[id + 9] = _z;
+
+	vertices[id + 10] = *_supermap->x2;
+	vertices[id + 11] = *_supermap->y2;
+
+	vertices[id + 12] = (_x + *_g->size_x) / 12000.0f;
+	vertices[id + 13] = (_y - 4.0f) / 12000.0f;
+
+	vertices[id + 14] = (_y - _z + _h) * zoom / screen_h;
+
+
+
+
+
+	//..
+	//.#
+	vertices[id + 15] = (_x + *_g->size_x * _fx);
+	vertices[id + 16] = _y;
+	//vertices[id + 10] = 0;
+
+	vertices[id + 17] = batch_color_r;
+	vertices[id + 18] = batch_color_g;
+	vertices[id + 19] = batch_color_b;
+	vertices[id + 20] = batch_color_a;
+
+	vertices[id + 21] = *_g->x + *_g->uv_size_x * _fx;
+	vertices[id + 22] = *_g->y;
+
+	vertices[id + 23] = (_x + *_g->size_x) * zoom / screen_w;
+	vertices[id + 24] = _z;
+
+	vertices[id + 25] = *_supermap->x2;
+	vertices[id + 26] = *_supermap->y;
+
+	vertices[id + 27] = (_x + *_g->size_x) / 12000.0f;
+	vertices[id + 28] = (_y - 40.0f) / 12000.0f;
+
+	vertices[id + 29] = (_y + 0.0f - _z) * zoom / screen_h;
+
+
+
+	//..
+	//#.
+	vertices[id + 30] = _x;
+	vertices[id + 31] = _y;
+	//vertices[id + 18] = 0;
+
+	vertices[id + 32] = batch_color_r;
+	vertices[id + 33] = batch_color_g;
+	vertices[id + 34] = batch_color_b;
+	vertices[id + 35] = batch_color_a;
+
+	vertices[id + 36] = *_g->x;
+	vertices[id + 37] = *_g->y;
+
+	vertices[id + 38] = (_x)*zoom / screen_w;
+	vertices[id + 39] = _z;
+
+	vertices[id + 40] = *_supermap->x;
+	vertices[id + 41] = *_supermap->y;
+
+	vertices[id + 42] = (_x) / 12000.0f;
+	vertices[id + 43] = (_y - 40.0f) / 12000.0f;
+
+	vertices[id + 44] = (_y + 0.0f - _z) * zoom / screen_h;
+
+	//#.
+	//..
+	vertices[id + 45] = _x;
+	vertices[id + 46] = (_y + *_g->size_y * _fy);
+	//vertices[id + 26] = 0;
+
+	vertices[id + 47] = batch_color_r;
+	vertices[id + 48] = batch_color_g;
+	vertices[id + 49] = batch_color_b;
+	vertices[id + 50] = batch_color_a;
+
+	vertices[id + 51] = *_g->x;
+	vertices[id + 52] = *_g->y + *_g->uv_size_y * _fy;
+
+	vertices[id + 53] = (_x)*zoom / screen_w;
+	vertices[id + 54] = _z;
+
+	vertices[id + 55] = *_supermap->x;
+	vertices[id + 56] = *_supermap->y2;
+
+	vertices[id + 57] = (_x) / 12000.0f;
+	vertices[id + 58] = (_y - 4.0f) / 12000.0f;
+
+	vertices[id + 59] = (_y - _z + _h) * zoom / screen_h;
+
+	id += 60;
+
+	if (id > batch_force_draw_call)
+	{
+		reinit();
+		draw_call_shadowmap();
+		reset();
+	}
+}
+
 void Batcher::draw_gabarite_with_offset(float _x, float _y, float _w, float _h, float _offset_x, float _offset_y, float _offset_end_x, float _offset_end_y, EGabarite* _g)
 {
 	//std::cout << "filled rect" << std::endl;

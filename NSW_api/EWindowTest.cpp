@@ -9,9 +9,9 @@ std::string s;
 
 int maximum_alloy = 0;
 
-float EWindowTest::blur_factor = 0.12f;
-float EWindowTest::blur_decay_multiplier_factor = 0.99f;
-float EWindowTest::blur_decay_flat_factor = 0.0002f;
+float EWindowTest::blur_factor = 0.33333f;
+float EWindowTest::blur_decay_multiplier_factor = 1.0f;
+float EWindowTest::blur_decay_flat_factor = 0.002f;
 float EWindowTest::add_factor = 1.0000f;
 
 void EWindowTest::test_of_values()
@@ -155,33 +155,51 @@ void EWindowTest::update(float _d)
 
 	Batcher::skew_factor = EMath::clamp_value_float(day_time, 0.0f, 1.0f);
 
-	if (Batcher::skew_factor <= 0.1f)
-	{ EColor::get_interpolate_color(EColor::COLOR_SKY_TIME_SUNSET, EColor::COLOR_SKY_TIME_DAWN, Batcher::skew_factor * 10.0f, EColor::COLOR_SKY_AMBIENT); }
-	else if (Batcher::skew_factor <= 0.2f)
-	{ EColor::get_interpolate_color(EColor::COLOR_SKY_TIME_DAWN, EColor::COLOR_SKY_TIME_NOON, (Batcher::skew_factor - 0.1f) * 10.0f, EColor::COLOR_SKY_AMBIENT); }
-	else if (Batcher::skew_factor >= 0.8f)
-	{ EColor::get_interpolate_color(EColor::COLOR_SKY_TIME_NOON, EColor::COLOR_SKY_TIME_SUNSET, (Batcher::skew_factor - 0.8f) * 5.0f, EColor::COLOR_SKY_AMBIENT); }
-	else
+	if (!EWindow::window_editor->is_active)
 	{
-		EColor::apply_color(EColor::COLOR_SKY_AMBIENT, EColor::COLOR_SKY_TIME_NOON);
-	}
 
-	if (Batcher::skew_factor <= 0.1f)
-	{ EColor::get_interpolate_color(EColor::COLOR_SHADOW_TIME_SUNSET, EColor::COLOR_SHADOW_TIME_DAWN, Batcher::skew_factor * 10.0f, EColor::COLOR_LAZURE_SHADOW); }
-	else
-	if (Batcher::skew_factor <= 0.2f)
-	{ EColor::get_interpolate_color(EColor::COLOR_SHADOW_TIME_DAWN, EColor::COLOR_SHADOW_TIME_NOON, (Batcher::skew_factor - 0.1f) * 10.0f, EColor::COLOR_LAZURE_SHADOW); }
-	else
-	if (Batcher::skew_factor >= 0.8f)
-	{ EColor::get_interpolate_color(EColor::COLOR_SHADOW_TIME_NOON, EColor::COLOR_SHADOW_TIME_SUNSET, (Batcher::skew_factor - 0.8f) * 5.0f, EColor::COLOR_LAZURE_SHADOW); }
-	else
-	{
-		EColor::apply_color(EColor::COLOR_LAZURE_SHADOW, EColor::COLOR_SHADOW_TIME_NOON);
+		if (Batcher::skew_factor <= 0.1f)
+		{
+			EColor::get_interpolate_color(EColor::COLOR_SKY_TIME_SUNSET, EColor::COLOR_SKY_TIME_DAWN, Batcher::skew_factor * 10.0f, EColor::COLOR_SKY_AMBIENT);
+		}
+		else if (Batcher::skew_factor <= 0.2f)
+		{
+			EColor::get_interpolate_color(EColor::COLOR_SKY_TIME_DAWN, EColor::COLOR_SKY_TIME_NOON, (Batcher::skew_factor - 0.1f) * 10.0f, EColor::COLOR_SKY_AMBIENT);
+		}
+		else if (Batcher::skew_factor >= 0.8f)
+		{
+			EColor::get_interpolate_color(EColor::COLOR_SKY_TIME_NOON, EColor::COLOR_SKY_TIME_SUNSET, (Batcher::skew_factor - 0.8f) * 5.0f, EColor::COLOR_SKY_AMBIENT);
+		}
+		else
+		{
+			EColor::apply_color(EColor::COLOR_SKY_AMBIENT, EColor::COLOR_SKY_TIME_NOON);
+		}
+
+		if (Batcher::skew_factor <= 0.1f)
+		{
+			EColor::get_interpolate_color(EColor::COLOR_SHADOW_TIME_SUNSET, EColor::COLOR_SHADOW_TIME_DAWN, Batcher::skew_factor * 10.0f, EColor::COLOR_LAZURE_SHADOW);
+		}
+		else
+			if (Batcher::skew_factor <= 0.2f)
+			{
+				EColor::get_interpolate_color(EColor::COLOR_SHADOW_TIME_DAWN, EColor::COLOR_SHADOW_TIME_NOON, (Batcher::skew_factor - 0.1f) * 10.0f, EColor::COLOR_LAZURE_SHADOW);
+			}
+			else
+				if (Batcher::skew_factor >= 0.8f)
+				{
+					EColor::get_interpolate_color(EColor::COLOR_SHADOW_TIME_NOON, EColor::COLOR_SHADOW_TIME_SUNSET, (Batcher::skew_factor - 0.8f) * 5.0f, EColor::COLOR_LAZURE_SHADOW);
+				}
+				else
+				{
+					EColor::apply_color(EColor::COLOR_LAZURE_SHADOW, EColor::COLOR_SHADOW_TIME_NOON);
+				}
 	}
 	//glfwGetCursorPos(EWindow::main_window, &EWindow::mouse_x, &EWindow::mouse_y);
-
-
-
+	else
+	{
+		EColor::apply_color(EColor::COLOR_SKY_AMBIENT, EColor::COLOR_WHITE);
+		EColor::apply_color(EColor::COLOR_LAZURE_SHADOW, EColor::COLOR_LIGHT_GRAY);
+	}
 
 	//crosshair_pos_x = EMath::clamp_value_float(crosshair_pos_x, 0.0f, EGraphicCore::SCR_WIDTH - 1.0f);
 	//crosshair_pos_y = EMath::clamp_value_float(crosshair_pos_y, 0.0f, EGraphicCore::SCR_HEIGHT - 1.0f);

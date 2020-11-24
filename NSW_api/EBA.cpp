@@ -1097,7 +1097,7 @@ void EBA::action_add_new_texture_variant_button(EButton* _b, float _d)
 		}
 	}
 
-	if (EWindow::window_editor->selected_entity != NULL)
+	if ((EWindow::window_editor->selected_entity != NULL) & (EWindow::window_editor->selected_entity->autobuilding_floor_list.size() > 0))
 	{
 		EWindow::window_editor->
 		selected_entity->

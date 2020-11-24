@@ -1,39 +1,16 @@
-#shadow_skew	1.000000
+#shadow_skew	0.011053
 ADD_NEW_ENTITY	613.000000	306.000000
 ADD_NEW_SPRITE
-add_new_texture	data/textures/impulsa tower.png
-texture_offset_x	60.000000
-texture_offset_y	0.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	1.000000
-fragment_x	1.000000
-fragment_y	1.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/button_bg_old.png
+*shadow
+add_new_texture	data/textures/white_pixel.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
 texture_offset_z	0.000000
 texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
+shadow_size_x	0.000000
+shadow_size_y	100.000000
 shadow_tall	100.000000
-shadow_bottom_tall	1.000000
-fragment_x	1.000000
-fragment_y	1.000000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/extension_c18#supermap.png
-texture_offset_x	260.000000
-texture_offset_y	0.000000
-texture_offset_z	0.000000
-texture_copies	1
-shadow_size_x	1.000000
-shadow_size_y	1.000000
-shadow_tall	100.000000
-shadow_bottom_tall	1.000000
+shadow_bottom_tall	100.000000
 fragment_x	1.000000
 fragment_y	1.000000
 add_new_autobuilding_floor	0.000000	0.000000	0.000000
@@ -46,8 +23,11 @@ add_new_texture_variant_for_wall	data/textures/extension_c18#supermap.png	0.0000
 add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
 add_new_texture_variant_for_wall	data/textures/mech_shadow_for_left_right.png	0.000000	0.000000	0.000000
 add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_texture_variant_for_wall	data/textures/letoon1.png	0.000000	0.000000	0.000000
 add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_texture_variant_for_wall	data/textures/roof_001.aseprite.png	0.000000	0.000000	0.000000
 add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_texture_variant_for_wall	data/textures/roof.png	0.000000	0.000000	0.000000
 add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
 add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
 add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
@@ -266,12 +246,11 @@ shadow_block_left	20.000000
 
 =====================================
 
-ADD_NEW_ENTITY	5487.000000	6040.000000
+ADD_NEW_ENTITY	5415.000000	4656.000000
 ADD_NEW_SPRITE
-*wall_mode
-add_new_texture	data/textures/tall_building_c18_corner_left.png
-texture_offset_x	-101.000000
-texture_offset_y	13.000000
+add_new_texture	data/textures/wall2.png
+texture_offset_x	11.000000
+texture_offset_y	0.000000
 texture_offset_z	0.000000
 texture_copies	1
 shadow_size_x	1.000000
@@ -279,8 +258,9 @@ shadow_size_y	1.000000
 shadow_tall	100.000000
 shadow_bottom_tall	1.000000
 fragment_x	1.000000
-fragment_y	1.000000
-add_new_texture	data/textures/tall_building_c18_wall.png
+fragment_y	0.755001
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall2_corner_left.png
 texture_offset_x	0.000000
 texture_offset_y	0.000000
 texture_offset_z	0.000000
@@ -290,10 +270,23 @@ shadow_size_y	1.000000
 shadow_tall	100.000000
 shadow_bottom_tall	1.000000
 fragment_x	1.000000
-fragment_y	1.000000
-add_new_texture	data/textures/tall_building_c18_corner_right.png
-texture_offset_x	0.000000
+fragment_y	0.755001
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall2_corner_right.png
+texture_offset_x	129.000000
 texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	1.000000
+fragment_y	0.755001
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_002_back_mid.png
+texture_offset_x	0.000000
+texture_offset_y	299.667786
 texture_offset_z	0.000000
 texture_copies	1
 shadow_size_x	1.000000
@@ -303,41 +296,281 @@ shadow_bottom_tall	1.000000
 fragment_x	1.000000
 fragment_y	1.000000
 ADD_NEW_SPRITE
-add_new_texture	data/textures/tall_building_c18_window..png
-texture_offset_x	-44.000000
-texture_offset_y	8.000000
-texture_offset_z	91.000000
+add_new_texture	data/textures/roof_002_back_mid.png
+texture_offset_x	136.000000
+texture_offset_y	299.667786
+texture_offset_z	0.000000
 texture_copies	1
 shadow_size_x	1.000000
 shadow_size_y	1.000000
 shadow_tall	100.000000
 shadow_bottom_tall	1.000000
+fragment_x	0.010000
+fragment_y	1.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_002_back_left.png
+texture_offset_x	-5.000000
+texture_offset_y	299.667786
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	1.000000
+fragment_y	1.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_002_back_right.png
+texture_offset_x	137.360001
+texture_offset_y	299.667786
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	1.000000
+fragment_y	1.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_002_body_mid.png
+texture_offset_x	0.000000
+texture_offset_y	73.155083
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	1.000000
+fragment_y	1.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_002_body_mid.png
+texture_offset_x	0.000000
+texture_offset_y	161.155090
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	1.000000
+fragment_y	1.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_002_body_mid.png
+texture_offset_x	0.000000
+texture_offset_y	249.155090
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	1.000000
+fragment_y	0.574008
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_002_body_mid.png
+texture_offset_x	136.000000
+texture_offset_y	73.155083
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	0.010000
+fragment_y	1.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_002_body_mid.png
+texture_offset_x	136.000000
+texture_offset_y	161.155090
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	0.010000
+fragment_y	1.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_002_body_mid.png
+texture_offset_x	136.000000
+texture_offset_y	249.155090
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	0.010000
+fragment_y	0.574008
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_002_body_left_right.png
+texture_offset_x	-5.000000
+texture_offset_y	73.155083
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	1.000000
+fragment_y	1.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_002_body_left_right.png
+texture_offset_x	-5.000000
+texture_offset_y	161.155090
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	1.000000
+fragment_y	1.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_002_body_left_right.png
+texture_offset_x	-5.000000
+texture_offset_y	249.155090
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	1.000000
+fragment_y	0.537369
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_002_body_left_right.png
+texture_offset_x	137.360001
+texture_offset_y	73.155083
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	1.000000
+fragment_y	1.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_002_body_left_right.png
+texture_offset_x	137.360001
+texture_offset_y	161.155090
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	1.000000
+fragment_y	1.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_002_body_left_right.png
+texture_offset_x	137.360001
+texture_offset_y	249.155090
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	1.000000
+fragment_y	0.537369
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_002_face_mid.png
+texture_offset_x	0.000000
+texture_offset_y	61.155083
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	1.000000
+fragment_y	1.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_002_face_mid.png
+texture_offset_x	136.000000
+texture_offset_y	61.155083
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	0.010000
+fragment_y	1.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_002_face_left.png
+texture_offset_x	-5.000000
+texture_offset_y	61.155083
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	1.000000
+fragment_y	1.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/roof_002_face_right.png
+texture_offset_x	137.360001
+texture_offset_y	61.155083
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	1.000000
+fragment_y	1.000000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	137.360001
+texture_offset_y	61.155083
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	137.360001
+shadow_size_y	100.000000
+shadow_tall	100.000000
+shadow_bottom_tall	100.000000
 fragment_x	1.000000
 fragment_y	1.000000
 add_new_autobuilding_floor	0.000000	0.000000	0.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
 add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_texture_variant_for_wall	data/textures/wall2_corner_left.png	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	0.755001
+add_new_texture_variant_for_wall	data/textures/wall2.png	0.000000	0.000000	0.000000
 add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_texture_variant_for_wall	data/textures/wall2_corner_right.png	0.000000	0.000000	0.000000
 add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_texture_variant_for_wall	data/textures/roof_002_face_left.png	0.000000	0.000000	0.000000
 add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_texture_variant_for_wall	data/textures/roof_002_face_mid.png	0.000000	0.000000	0.000000
 add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_texture_variant_for_wall	data/textures/roof_002_face_right.png	0.000000	0.000000	0.000000
 add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_texture_variant_for_wall	data/textures/roof_002_body_left_right.png	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.010000	2.574008
+add_new_texture_variant_for_wall	data/textures/roof_002_body_mid.png	0.000000	0.000000	0.000000
 add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_texture_variant_for_wall	data/textures/roof_002_body_left_right.png	0.000000	0.000000	0.000000
 add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_texture_variant_for_wall	data/textures/roof_002_back_left.png	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_texture_variant_for_wall	data/textures/roof_002_back_mid.png	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_texture_variant_for_wall	data/textures/roof_002_back_right.png	0.000000	0.000000	0.000000
 add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
 entity base attribute	Life	1000.000000
-entity bool attribute	Inmovable
-collision_up	119.000000
-collision_down	11.000000
-collision_right	97.000000
-collision_left	98.000000
-path_block_up	53.000000
-path_block_down	0.000000
-path_block_right	101.000000
-path_block_left	101.000000
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
 shadow_block_up	20.000000
 shadow_block_down	20.000000
 shadow_block_right	20.000000
@@ -346,7 +579,7 @@ shadow_block_left	20.000000
 
 =====================================
 
-ADD_NEW_ENTITY	5673.942383	5311.500000
+ADD_NEW_ENTITY	5587.278809	5150.956055
 ADD_NEW_SPRITE
 *rotate_by_move
 add_new_texture	data/textures/letoon3.png
@@ -560,6 +793,86 @@ path_block_up	20.000000
 path_block_down	20.000000
 path_block_right	20.000000
 path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	5487.000000	6040.000000
+ADD_NEW_SPRITE
+*wall_mode
+add_new_texture	data/textures/tall_building_c18_corner_left.png
+texture_offset_x	-101.000000
+texture_offset_y	13.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	1.000000
+fragment_y	1.000000
+add_new_texture	data/textures/tall_building_c18_wall.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	1.000000
+fragment_y	1.000000
+add_new_texture	data/textures/tall_building_c18_corner_right.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	1.000000
+fragment_y	1.000000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/tall_building_c18_window..png
+texture_offset_x	-44.000000
+texture_offset_y	8.000000
+texture_offset_z	91.000000
+texture_copies	1
+shadow_size_x	1.000000
+shadow_size_y	1.000000
+shadow_tall	100.000000
+shadow_bottom_tall	1.000000
+fragment_x	1.000000
+fragment_y	1.000000
+add_new_autobuilding_floor	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+entity base attribute	Life	1000.000000
+entity bool attribute	Inmovable
+collision_up	119.000000
+collision_down	11.000000
+collision_right	97.000000
+collision_left	98.000000
+path_block_up	53.000000
+path_block_down	0.000000
+path_block_right	101.000000
+path_block_left	101.000000
 shadow_block_up	20.000000
 shadow_block_down	20.000000
 shadow_block_right	20.000000

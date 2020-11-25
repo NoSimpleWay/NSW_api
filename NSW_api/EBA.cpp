@@ -98,7 +98,22 @@ void EBA::action_set_sprite_texture(EButton* _b, float _d)
 
 	//_b->gabarite = EWindow::window_editor->selected_entity->autobuilding_floor_list.at(ed->autobuilding_selected_floor)->wall_list.at(ed->autobuilding_selected_wall)->texture_variant_list.at(ed->selected_building_autogenerator_texture_variant)->texture;
 	
-	ed->selected_entity->autobuilding_floor_list.at(ed->autobuilding_selected_floor)->wall_list.at(ed->autobuilding_selected_wall)->texture_variant_list.at(ed->autobuilding_selected_texture_variant)->texture = _b->gabarite;
+	ed->selected_entity->autobuilding_floor_list.at(ed->autobuilding_selected_floor)->
+	wall_list.at(ed->autobuilding_selected_wall)->
+	texture_variant_list.at(ed->autobuilding_selected_texture_variant)->
+	texture
+	=
+	_b->gabarite;
+
+	ed->selected_entity->autobuilding_floor_list.at(ed->autobuilding_selected_floor)->
+	wall_list.at(ed->autobuilding_selected_wall)->
+	texture_variant_list.at(ed->autobuilding_selected_texture_variant)->
+	supermap
+	=
+	ETextureAtlas::put_texture_to_atlas(_b->gabarite->name.substr(0, _b->gabarite->name.length() - 4) + "#supermap.png", EWindow::default_texture_atlas);;
+
+	
+
 	ed->link_to_texture_variant_array->button_list.at(ed->autobuilding_selected_texture_variant)->gabarite = _b->gabarite;
 
 	EWindow::window_search_brick->is_active = false;
@@ -222,7 +237,10 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 		w_string += "add_new_autobuilding_floor\t";
 			w_string += std::to_string(*f->offset_x) + "\t";
 			w_string += std::to_string(*f->offset_y) + "\t";
-			w_string += std::to_string(*f->offset_z);
+			w_string += std::to_string(*f->offset_z) + "\t";
+			w_string += std::to_string(*f->bottom_roof_offset_multiplier) + "\t";
+			w_string += std::to_string(*f->up_roof_offset_multiplier) + "\t";
+			w_string += std::to_string(*f->horizontal_roof_offset_multiplier);
 		w_string += "\n";
 
 		for (Entity::wall_element* w : f->wall_list)
@@ -688,9 +706,12 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 					just_created_floor = new Entity::building_autogen_floor;
 					just_created_entity->autobuilding_floor_list.push_back(just_created_floor);
 
-					i++;  *just_created_floor->offset_x = std::stof(EFile::data_array[i]);
-					i++;  *just_created_floor->offset_y = std::stof(EFile::data_array[i]);
-					i++;  *just_created_floor->offset_z = std::stof(EFile::data_array[i]);
+					i++;  *just_created_floor->offset_x																= std::stof(EFile::data_array[i]);
+					i++;  *just_created_floor->offset_y																= std::stof(EFile::data_array[i]);
+					i++;  *just_created_floor->offset_z																= std::stof(EFile::data_array[i]);
+					i++;  std::cout << "|" << EFile::data_array[i] << "|" << std::endl; if (EFile::data_array[i] != "")*just_created_floor->bottom_roof_offset_multiplier = std::stof(EFile::data_array[i]);
+					i++;  std::cout << "|" << EFile::data_array[i] << "|" << std::endl; if (EFile::data_array[i] != "")  *just_created_floor->up_roof_offset_multiplier = std::stof(EFile::data_array[i]);
+					i++;  std::cout << "|" << EFile::data_array[i] << "|" << std::endl; if (EFile::data_array[i] != "")  *just_created_floor->horizontal_roof_offset_multiplier	= std::stof(EFile::data_array[i]);
 
 					wall_id = 0;
 				}
@@ -1131,6 +1152,24 @@ void EBA::action_deactivate_texture_variant(EButton* _b, float _d)
 {
 	_b->is_active = false;
 
+		//EWindow::window_editor->select_new_variant();
+	EWindow::window_editor->
+	selected_entity->
+	autobuilding_floor_list.at(EWindow::window_editor->autobuilding_selected_floor)->
+	wall_list.at(EWindow::window_editor->autobuilding_selected_wall)->texture_variant_list.erase
+	(
+		EWindow::window_editor->
+		selected_entity->
+		autobuilding_floor_list.at(EWindow::window_editor->autobuilding_selected_floor)->
+		wall_list.at(EWindow::window_editor->autobuilding_selected_wall)->texture_variant_list.begin()
+		+
+		EWindow::window_editor->autobuilding_selected_texture_variant
+	);
+
+	EWindow::window_editor->autobuilding_selected_texture_variant = 0;
+
+
+
 	EButton* swap;
 
 	for (int i = 0; i < EWindow::window_editor->link_to_texture_variant_array->button_list.size() - 1; i++)
@@ -1159,20 +1198,7 @@ void EBA::action_deactivate_texture_variant(EButton* _b, float _d)
 
 	EWindow::window_editor->count_of_variants--;
 
-	//EWindow::window_editor->select_new_variant();
-	EWindow::window_editor->
-	selected_entity->
-	autobuilding_floor_list.at(EWindow::window_editor->autobuilding_selected_floor)->
-	wall_list.at(EWindow::window_editor->autobuilding_selected_wall)->texture_variant_list.erase
-	(
-		EWindow::window_editor->
-		selected_entity->
-		autobuilding_floor_list.at(EWindow::window_editor->autobuilding_selected_floor)->
-		wall_list.at(EWindow::window_editor->autobuilding_selected_wall)->texture_variant_list.begin()
-		+
-		EWindow::window_editor->autobuilding_selected_texture_variant
-	);
-	EWindow::window_editor->autobuilding_selected_texture_variant = 0;
+
 
 	EWindow::window_editor->refresh_autobuilding();
 }
@@ -1180,6 +1206,16 @@ void EBA::action_deactivate_texture_variant(EButton* _b, float _d)
 void EBA::action_deactivate_floors(EButton* _b, float _d)
 {
 	_b->is_active = false;
+
+	EWindow::window_editor->selected_entity->autobuilding_floor_list.erase
+	(
+		EWindow::window_editor->selected_entity->autobuilding_floor_list.begin() + _b->data_id
+	);
+
+	if (EWindow::window_editor->autobuilding_selected_floor >= EWindow::window_editor->selected_entity->autobuilding_floor_list.size())
+	{
+		EWindow::window_editor->autobuilding_selected_floor = EWindow::window_editor->selected_entity->autobuilding_floor_list.size() - 1;
+	}
 
 	EButton* swap;
 
@@ -1211,10 +1247,7 @@ void EBA::action_deactivate_floors(EButton* _b, float _d)
 
 	
 
-	EWindow::window_editor->selected_entity->autobuilding_floor_list.erase
-	(
-		EWindow::window_editor->selected_entity->autobuilding_floor_list.begin() + _b->data_id
-	);
+
 
 	EWindow::window_editor->refresh_autobuilding();
 }

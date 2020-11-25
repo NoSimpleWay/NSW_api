@@ -38,6 +38,7 @@ EGabarite* EGraphicCore::gabarite_white_pixel;
 EGabarite* EGraphicCore::gabarite_tileset;
 EGabarite* EGraphicCore::gabarite_small_wood_button_bg;
 EGabarite* EGraphicCore::gabarite_wood_button_bg;
+EGabarite* EGraphicCore::gabarite_ERROR;
 
 void EGraphicCore::load_texture(char const* _path, int _id)
 {
@@ -52,11 +53,14 @@ void EGraphicCore::load_texture(char const* _path, int _id)
 	// load image, create texture and generate mipmaps
 	stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
 
+	//ifstream (_path)
+
 	data1 = stbi_load(_path, &width, &height, &nrChannels, STBI_rgb_alpha);
 	if (data1)
 	{
+
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data1);
-		glGenerateMipmap(GL_TEXTURE_2D);
+		//glGenerateMipmap(GL_TEXTURE_2D);
 
 		//cout << "loaded texture W:" << width << " H:" << height << endl;
 
@@ -69,6 +73,13 @@ void EGraphicCore::load_texture(char const* _path, int _id)
 	}
 	else
 	{
+		data1 = stbi_load("data/textures/ERROR.png", &width, &height, &nrChannels, STBI_rgb_alpha);
+		if (data1)
+		{
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data1);
+			last_texture_h = height;
+			last_texture_w = width;
+		}
 		//cout << red << "Failed to load texture " << yellow << "(" << _path << ")" << green << endl;
 
 		//last_texture_h = 21;

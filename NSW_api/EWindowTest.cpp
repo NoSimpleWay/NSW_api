@@ -9,9 +9,9 @@ std::string s;
 
 int maximum_alloy = 0;
 
-float EWindowTest::blur_factor = 0.33333f;
-float EWindowTest::blur_decay_multiplier_factor = 1.0f;
-float EWindowTest::blur_decay_flat_factor = 0.002f;
+float EWindowTest::blur_factor = 0.525f;//0.33333
+float EWindowTest::blur_decay_multiplier_factor = 0.55f; //1.0f;
+float EWindowTest::blur_decay_flat_factor = 0.0017f;//0.002
 float EWindowTest::add_factor = 1.0000f;
 
 void EWindowTest::test_of_values()
@@ -155,7 +155,7 @@ void EWindowTest::update(float _d)
 
 	Batcher::skew_factor = EMath::clamp_value_float(day_time, 0.0f, 1.0f);
 
-	if (!EWindow::window_editor->is_active)
+	if ((!EWindow::window_editor->is_active)||(true))
 	{
 
 		if (Batcher::skew_factor <= 0.1f)
@@ -246,25 +246,7 @@ void EWindowTest::update(float _d)
 		_d = 0.0f;
 	}
 
-	if (link_to_player != NULL)
-		//if (!glfwGetKey(EWindow::main_window, GLFW_KEY_SPACE) == GLFW_PRESS)
-		{
-			if ((!EWindow::window_editor->is_active))
-			{
-				if (EWindow::RMB)
-				{
-					game_camera->position_x = *link_to_player->position_x * game_camera->zoom + (EWindow::mouse_x - EGraphicCore::SCR_WIDTH / 2.0f) * 0.5f;
-					game_camera->position_y = *link_to_player->position_y * game_camera->zoom + (EWindow::mouse_y - EGraphicCore::SCR_HEIGHT / 2.0f) * 0.5f;
-				}
-				else
-				{
-					game_camera->position_x = *link_to_player->position_x * game_camera->zoom + (EWindow::mouse_x - EGraphicCore::SCR_WIDTH / 2.0f) * 0.00f;
-					game_camera->position_y = *link_to_player->position_y * game_camera->zoom + (EWindow::mouse_y - EGraphicCore::SCR_HEIGHT / 2.0f) * 0.00f;
-				}
 
-			}
-
-		}
 
 
 
@@ -274,8 +256,6 @@ void EWindowTest::update(float _d)
 		game_camera->position_y = free_camera_y * game_camera->zoom;
 	}
 
-	game_camera->position_x = round(game_camera->position_x);
-	game_camera->position_y = round(game_camera->position_y);
 
 
 
@@ -334,27 +314,6 @@ void EWindowTest::update(float _d)
 	}
 
 
-	//----------------TERRAIN MATRIX GABARITES----------------
-	left_terrain_draw = (int)((game_camera->position_x / game_camera->zoom - EGraphicCore::SCR_WIDTH / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) - 0; if (left_terrain_draw < 0) { left_terrain_draw = 0; }
-	right_terrain_draw = (int)((game_camera->position_x / game_camera->zoom + EGraphicCore::SCR_WIDTH / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) + 0; if (right_terrain_draw >= EPath::PATH_DIM) { right_terrain_draw = EPath::PATH_DIM - 1; }
-
-	down_terrain_draw = (int)((game_camera->position_y / game_camera->zoom - EGraphicCore::SCR_HEIGHT / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) - 0; if (down_terrain_draw < 0) { down_terrain_draw = 0; }
-	up_terrain_draw = (int)((game_camera->position_y / game_camera->zoom + EGraphicCore::SCR_HEIGHT / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) + 0; if (up_terrain_draw >= EPath::PATH_DIM) { up_terrain_draw = EPath::PATH_DIM - 1; }
-
-
-	//----------------PATH MATRIX GABARITES----------------
-	left_path_draw = (int)((game_camera->position_x / game_camera->zoom - EGraphicCore::SCR_WIDTH / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) - 10; if (left_path_draw < 0) { left_path_draw = 0; }
-	right_path_draw = (int)((game_camera->position_x / game_camera->zoom + EGraphicCore::SCR_WIDTH / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) + 10; if (right_path_draw >= EPath::PATH_DIM) { right_path_draw = EPath::PATH_DIM - 1; }
-
-	down_path_draw = (int)((game_camera->position_y / game_camera->zoom - EGraphicCore::SCR_HEIGHT / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) - 10; if (down_path_draw < 0) { down_path_draw = 0; }
-	up_path_draw = (int)((game_camera->position_y / game_camera->zoom + EGraphicCore::SCR_HEIGHT / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) + 10; if (up_path_draw >= EPath::PATH_DIM) { up_path_draw = EPath::PATH_DIM - 1; }
-
-	//----------------DRAW BORDER GABARITES----------------
-	draw_border_left = (int)((game_camera->position_x - EGraphicCore::SCR_WIDTH / 2.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) - 1; if (draw_border_left < 0) { draw_border_left = 0; }
-	draw_border_right = (int)((game_camera->position_x + EGraphicCore::SCR_WIDTH / 2.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) + 1; if (draw_border_right >= ECluster::CLUSTER_DIM) { draw_border_right = ECluster::CLUSTER_DIM - 1;; }
-
-	draw_border_down = (int)((game_camera->position_y - EGraphicCore::SCR_HEIGHT / 2.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) - 1; if (draw_border_down < 0) { draw_border_down = 0; }
-	draw_border_up = (int)((game_camera->position_y + EGraphicCore::SCR_HEIGHT / 2.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) + 1; if (draw_border_up >= ECluster::CLUSTER_DIM) { draw_border_up = ECluster::CLUSTER_DIM - 1; }
 
 	//----------------UPDATE BORDER GABARITES----------------
 	update_border_left = (int)((game_camera->position_x - EGraphicCore::SCR_WIDTH / 2.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) - 3; if (update_border_left < 0) { update_border_left = 0; }
@@ -988,6 +947,51 @@ add_time_process("calculate path");
 
 	//add_time_process("entities_update");
 
+		if (link_to_player != NULL)
+			//if (!glfwGetKey(EWindow::main_window, GLFW_KEY_SPACE) == GLFW_PRESS)
+		{
+			if ((!EWindow::window_editor->is_active))
+			{
+				if (EWindow::RMB)
+				{
+					game_camera->position_x = *link_to_player->position_x * game_camera->zoom + (EWindow::mouse_x - EGraphicCore::SCR_WIDTH / 2.0f) * 0.5f;
+					game_camera->position_y = *link_to_player->position_y * game_camera->zoom + (EWindow::mouse_y - EGraphicCore::SCR_HEIGHT / 2.0f) * 0.5f;
+				}
+				else
+				{
+					game_camera->position_x = *link_to_player->position_x * game_camera->zoom + (EWindow::mouse_x - EGraphicCore::SCR_WIDTH / 2.0f) * 0.00f;
+					game_camera->position_y = *link_to_player->position_y * game_camera->zoom + (EWindow::mouse_y - EGraphicCore::SCR_HEIGHT / 2.0f) * 0.00f;
+				}
+
+			}
+
+		}
+		game_camera->position_x = round(game_camera->position_x);
+		game_camera->position_y = round(game_camera->position_y);
+
+		//----------------TERRAIN MATRIX GABARITES----------------
+		left_terrain_draw = (int)((game_camera->position_x / game_camera->zoom - EGraphicCore::SCR_WIDTH / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) - 0; if (left_terrain_draw < 0) { left_terrain_draw = 0; }
+		right_terrain_draw = (int)((game_camera->position_x / game_camera->zoom + EGraphicCore::SCR_WIDTH / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) + 0; if (right_terrain_draw >= EPath::PATH_DIM) { right_terrain_draw = EPath::PATH_DIM - 1; }
+
+		down_terrain_draw = (int)((game_camera->position_y / game_camera->zoom - EGraphicCore::SCR_HEIGHT / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) - 0; if (down_terrain_draw < 0) { down_terrain_draw = 0; }
+		up_terrain_draw = (int)((game_camera->position_y / game_camera->zoom + EGraphicCore::SCR_HEIGHT / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) + 0; if (up_terrain_draw >= EPath::PATH_DIM) { up_terrain_draw = EPath::PATH_DIM - 1; }
+
+
+		//----------------PATH MATRIX GABARITES----------------
+		left_path_draw = (int)((game_camera->position_x / game_camera->zoom - EGraphicCore::SCR_WIDTH / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) - 10; if (left_path_draw < 0) { left_path_draw = 0; }
+		right_path_draw = (int)((game_camera->position_x / game_camera->zoom + EGraphicCore::SCR_WIDTH / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) + 10; if (right_path_draw >= EPath::PATH_DIM) { right_path_draw = EPath::PATH_DIM - 1; }
+
+		down_path_draw = (int)((game_camera->position_y / game_camera->zoom - EGraphicCore::SCR_HEIGHT / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) - 10; if (down_path_draw < 0) { down_path_draw = 0; }
+		up_path_draw = (int)((game_camera->position_y / game_camera->zoom + EGraphicCore::SCR_HEIGHT / 2.0f / game_camera->zoom) / EPath::PATH_SIZE) + 10; if (up_path_draw >= EPath::PATH_DIM) { up_path_draw = EPath::PATH_DIM - 1; }
+
+		//----------------DRAW BORDER GABARITES----------------
+		draw_border_left = (int)((game_camera->position_x - EGraphicCore::SCR_WIDTH / 2.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) - 1; if (draw_border_left < 0) { draw_border_left = 0; }
+		draw_border_right = (int)((game_camera->position_x + EGraphicCore::SCR_WIDTH / 2.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) + 1; if (draw_border_right >= ECluster::CLUSTER_DIM) { draw_border_right = ECluster::CLUSTER_DIM - 1;; }
+
+		draw_border_down = (int)((game_camera->position_y - EGraphicCore::SCR_HEIGHT / 2.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) - 1; if (draw_border_down < 0) { draw_border_down = 0; }
+		draw_border_up = (int)((game_camera->position_y + EGraphicCore::SCR_HEIGHT / 2.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) + 1; if (draw_border_up >= ECluster::CLUSTER_DIM) { draw_border_up = ECluster::CLUSTER_DIM - 1; }
+
+
 }
 
 void EWindowTest::default_draw(float _d)
@@ -1087,7 +1091,7 @@ void EWindowTest::draw_shadows()
 	//set correct zoom
 	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
 	//EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3((EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1, (EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1, 0.0f));
-	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3((EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * cx - 1.0f, (EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y + 500.0f) * cy - 1.0f, 0.0f));
+	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3((round(EGraphicCore::SCR_WIDTH / 2.0f) - game_camera->position_x) * cx - 1.0f, (round(EGraphicCore::SCR_HEIGHT / 2.0f) - game_camera->position_y + 500.0f) * cy - 1.0f, 0.0f));
 	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(cx * game_camera->zoom, cy * game_camera->zoom, 1));
 
 	//use shader
@@ -1272,7 +1276,7 @@ void EWindowTest::draw_terrain()
 	//glUniform4f(ambient_loc, EColor::COLOR_SKY_AMBIENT->color_red * 0.0f, EColor::COLOR_SKY_AMBIENT->color_green, EColor::COLOR_SKY_AMBIENT->color_blue, 1.0f);
 
 	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(round(EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1.0f, round(EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1.0f, 0.0f));
+	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(((EGraphicCore::SCR_WIDTH / 2.0f) - game_camera->position_x) * EGraphicCore::correction_x - 1.0f, ((EGraphicCore::SCR_HEIGHT / 2.0f) - game_camera->position_y) * EGraphicCore::correction_y - 1.0f, 0.0f));
 	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x * game_camera->zoom, EGraphicCore::correction_y * game_camera->zoom, 1));
 	transformLoc = glGetUniformLocation(EGraphicCore::shader_terrain->ID, "transform");
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
@@ -1287,8 +1291,6 @@ void EWindowTest::draw_terrain()
 				(
 					j * ECluster::CLUSTER_SIZE,
 					i * ECluster::CLUSTER_SIZE,
-					ECluster::CLUSTER_SIZE,
-					ECluster::CLUSTER_SIZE,
 					terrain_200
 				);
 			}
@@ -1299,7 +1301,7 @@ void EWindowTest::draw_terrain()
 		for (int i = up_terrain_draw; i >= down_terrain_draw; i--)
 			for (int j = left_terrain_draw; j <= right_terrain_draw; j++)
 			{
-				EGraphicCore::batch_terrain->draw_terrain(j * EPath::PATH_SIZE - 0.0f, i * EPath::PATH_SIZE - 0.0f, EPath::PATH_SIZE + 0.0f, EPath::PATH_SIZE + 0.0f, terrain_textures_list.at(terrain[j][i]));
+				EGraphicCore::batch_terrain->draw_terrain(j * EPath::PATH_SIZE * 1.0f, i * EPath::PATH_SIZE * 1.0f, terrain_textures_list.at(terrain[j][i]));
 			}
 
 	EGraphicCore::batch_terrain->force_draw_call_terrain();
@@ -1365,9 +1367,9 @@ void EWindowTest::draw_lightmap()
 	EGraphicCore::batch->setcolor_lum(EColor::COLOR_WHITE, 1.0f);
 		//spread lightmap
 		//put lightmap
-	
+		
 			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO, EWindow::base_lightmap);
-			EGraphicCore::lightmap_blur->use();
+			EGraphicCore::ourShader->use();
 			transformLoc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "transform");
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 
@@ -1376,7 +1378,9 @@ void EWindowTest::draw_lightmap()
 			GLint decay_flat = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "decay_flat");
 			glUniform1f(blur_loc, add_factor);
 
+			glBlendEquation(GL_MAX);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			//glBlendFunc(GL_ONE, GL_ONE);
 			//glBlendFunc(GL_ONE, GL_ONE);
 			for (int i = 0; i < 1; i++)
 			{
@@ -1384,7 +1388,7 @@ void EWindowTest::draw_lightmap()
 				EGraphicCore::batch->force_draw_call();
 			}
 
-			
+			glBlendEquation(GL_FUNC_ADD);
 			EGraphicCore::batch->setcolor_lum(EColor::COLOR_WHITE, 1.0f);
 			EGraphicCore::ourShader->use();//draw blockmap
 			glBlendFunc(GL_ZERO, GL_SRC_COLOR);
@@ -1399,7 +1403,7 @@ void EWindowTest::draw_lightmap()
 			EGraphicCore::batch->setcolor_lum(EColor::COLOR_WHITE, 1.0f);
 		
 	//glBlendFunc(GL_ONE, GL_ZERO);
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 2; i++)
 	{
 
 
@@ -1424,13 +1428,7 @@ void EWindowTest::draw_lightmap()
 			EGraphicCore::batch->force_draw_call();
 
 			
-			EGraphicCore::ourShader->use();
-			transformLoc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "transform");
-			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
-			ETextureAtlas::active_this_texture_atlas(EWindow::lightmap_FBO2, EWindow::base_lightmap);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
-			EGraphicCore::batch->force_draw_call();
+
 
 
 			EGraphicCore::lightmap_blur->use();
@@ -1516,7 +1514,7 @@ void EWindowTest::draw(float _d)
 	glBindTexture(GL_TEXTURE_2D, EWindow::default_texture_atlas->colorbuffer);
 
 	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(round(EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1, round(EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1, 0.0f));
+	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3((round(EGraphicCore::SCR_WIDTH / 2.0f) - game_camera->position_x) * EGraphicCore::correction_x - 1, (round(EGraphicCore::SCR_HEIGHT / 2.0f) - game_camera->position_y) * EGraphicCore::correction_y - 1, 0.0f));
 	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x * game_camera->zoom, EGraphicCore::correction_y * game_camera->zoom, 1));
 
 	transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
@@ -1551,10 +1549,10 @@ void EWindowTest::draw(float _d)
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 
 	GLint loc_x = glGetUniformLocation(EGraphicCore::shadowmap->ID, "offset_x");
-	glUniform1f(loc_x, (EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) / EWindow::shadow_FBO->size_x);
+	glUniform1f(loc_x, (round(EGraphicCore::SCR_WIDTH / 2.0f) - game_camera->position_x) / EWindow::shadow_FBO->size_x);
 
 	GLint loc_y = glGetUniformLocation(EGraphicCore::shadowmap->ID, "offset_y");
-	glUniform1f(loc_y, (EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y + 500.0f) / EWindow::shadow_FBO->size_y);
+	glUniform1f(loc_y, (round(EGraphicCore::SCR_HEIGHT / 2.0f) - game_camera->position_y + 500.0f) / EWindow::shadow_FBO->size_y);
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, EWindow::default_texture_atlas->colorbuffer);
@@ -1644,7 +1642,7 @@ void EWindowTest::draw(float _d)
 	glBindTexture(GL_TEXTURE_2D, EWindow::default_texture_atlas->colorbuffer);
 
 	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(round(EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1, round(EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1, 0.0f));
+	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(round(EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1, (EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1, 0.0f));
 	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x * game_camera->zoom, EGraphicCore::correction_y * game_camera->zoom, 1));
 
 	transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");

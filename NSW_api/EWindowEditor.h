@@ -145,6 +145,10 @@ public:
 	button_array* link_to_texture_variant_array;
 	button_array* link_to_floors_array;
 
+	EButton* link_to_bottom_floor_slider;
+	EButton* link_to_up_floor_slider;
+	EButton* link_to_horizontal_floor_slider;
+
 	void refresh_autobuilding();
 
 	void select_new_variant();
@@ -153,6 +157,8 @@ public:
 
 	int count_of_variants;
 	int count_of_floors;
+
+
 
 
 

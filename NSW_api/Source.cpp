@@ -198,14 +198,13 @@ int main()
 	
 	EGraphicCore::gabarite_white_pixel = ETextureAtlas::put_texture_to_atlas("data/textures/white_pixel.png", EWindow::default_texture_atlas);
 
-	*EGraphicCore::gabarite_white_pixel->x += 1 / 4096.0f;
-	*EGraphicCore::gabarite_white_pixel->y += 1 / 4096.0f;
+	*EGraphicCore::gabarite_white_pixel->x += 1.0f / 4096.0f;
+	*EGraphicCore::gabarite_white_pixel->y += 1.0f / 4096.0f;
 
-	*EGraphicCore::gabarite_white_pixel->x2 -= 1 / 4096.0f;
-	*EGraphicCore::gabarite_white_pixel->y2 -= 1 / 4096.0f;
+	*EGraphicCore::gabarite_white_pixel->x2 -= 1.0f / 4096.0f;
+	*EGraphicCore::gabarite_white_pixel->y2 -= 1.0f / 4096.0f;
 
-
-
+	EGraphicCore::gabarite_ERROR = ETextureAtlas::put_texture_to_atlas("data/textures/ERROR.png", EWindow::default_texture_atlas);
 
 	EGraphicCore::gabarite_small_wood_button_bg = ETextureAtlas::put_texture_to_atlas("data/textures/button_bg.png", EWindow::default_texture_atlas);
 	*EGraphicCore::gabarite_small_wood_button_bg->x += 1 / 4096.0f;
@@ -381,11 +380,13 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {//
 	//width = round(width / 2.0f) * 2;
 	//height = round(height / 2.0f) * 2;
+	glfwSetWindowSize(EWindow::main_window, width, height);
 
 	glViewport(0, 0, width, height);
 	glfwGetWindowSize(window, &EGraphicCore::SCR_WIDTH, &EGraphicCore::SCR_HEIGHT);
 
-	std::cout << "Resize event width:" << width << " height: " << height << std::endl;
+
+	std::cout << "Resize event width:" << EGraphicCore::SCR_WIDTH << " height: " << EGraphicCore::SCR_HEIGHT << std::endl;
 
 	recalculate_correction();
 }

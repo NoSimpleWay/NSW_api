@@ -1,0 +1,74 @@
+﻿'NSW_api.exe' (Win32): Loaded 'E:\cpp\NSW_api\x64\Release\NSW_api.exe'. Symbols loaded.
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\ntdll.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\kernel32.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Program Files\AVAST Software\Avast\aswhook.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\KernelBase.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\user32.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\win32u.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\gdi32.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\gdi32full.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\msvcp_win.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\ucrtbase.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\shell32.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\cfgmgr32.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\SHCore.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\msvcrt.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\rpcrt4.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\combase.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\bcryptprimitives.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\windows.storage.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\sechost.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\advapi32.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\profapi.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\powrprof.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\umpdc.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\shlwapi.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\kernel.appcore.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\cryptsp.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\msvcp140.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\vcruntime140_1.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\vcruntime140.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\imm32.dll'. 
+The thread 0x47d0 has exited with code 0 (0x0).
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\uxtheme.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\winmm.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\winmmbase.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\dinput8.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\XInput1_4.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\devobj.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\dwmapi.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\InputHost.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\CoreMessaging.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\CoreUIComponents.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\propsys.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\oleaut32.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\WinTypes.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\ntmarta.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\msctf.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\hid.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\setupapi.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\bcrypt.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\wintrust.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\msasn1.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\crypt32.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\opengl32.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\glu32.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\DXCore.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\DriverStore\FileRepository\u0360732.inf_amd64_c7238d1e8b4aaa3b\B360768\atig6pxx.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\DriverStore\FileRepository\u0360732.inf_amd64_c7238d1e8b4aaa3b\B360768\atio6axx.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\ole32.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\version.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\dxva2.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\DriverStore\FileRepository\u0360732.inf_amd64_c7238d1e8b4aaa3b\B360768\atig6txx.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\atiadlxx.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\psapi.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\TextInputFramework.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Windows\System32\iertutil.dll'. 
+'NSW_api.exe' (Win32): Loaded 'C:\Program Files (x86)\Overwolf\0.158.1.1\OWExplorer.dll'. 
+The thread 0x2b18 has exited with code 0 (0x0).
+The thread 0x18f0 has exited with code 0 (0x0).
+The thread 0x384c has exited with code 0 (0x0).
+The thread 0x2510 has exited with code 0 (0x0).
+The thread 0x3d38 has exited with code 0 (0x0).
+The thread 0x5540 has exited with code 0 (0x0).
+The program '[19416] NSW_api.exe' has exited with code 0 (0x0).

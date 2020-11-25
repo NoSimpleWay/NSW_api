@@ -299,6 +299,8 @@ public:
 		float* offset_x = new float(0.0f);
 		float* offset_y = new float(0.0f);
 		float* offset_z = new float(0.0f);
+
+
 	};
 
 	enum WallElementIndex
@@ -312,14 +314,16 @@ public:
 		WEI_FACE_RIGHT_ROOF,
 
 		WEI_BODY_LEFT_ROOF,
-		WEI_BODY_MID_ROOF,
+		_WEI_MAIN_ROOF_,
 		WEI_BODY_RIGHT_ROOF,
 
 		WEI_BACK_LEFT_ROOF,
 		WEI_BACK_MID_ROOF,
 		WEI_BACK_RIGHT_ROOF,
 
-		WEI_SHADOW
+		WEI_SHADOW,
+
+		WEI_WINDOW
 	};
 
 	struct building_autogen_floor
@@ -328,22 +332,27 @@ public:
 		float* offset_y = new float(0.0f);
 		float* offset_z = new float(0.0f);
 
+		float* bottom_roof_offset_multiplier = new float(1.0f);
+		float* up_roof_offset_multiplier = new float(1.0f);
+		float* horizontal_roof_offset_multiplier = new float(1.0f);
+
 		std::vector<wall_element*> wall_list
 		=
 		{
 			new wall_element,//1	left wall
 			new wall_element,//2	mid wall
 			new wall_element,//3	right wall
-			new wall_element,//4	
-			new wall_element,//5
-			new wall_element,//6
-			new wall_element,//7
-			new wall_element,//8
-			new wall_element,//9
-			new wall_element,//10
-			new wall_element,//11
-			new wall_element,//12
-			new wall_element//13
+			new wall_element,//4	face left
+			new wall_element,//5	face mid
+			new wall_element,//6	face right
+			new wall_element,//7	body left
+			new wall_element,//8	body mid
+			new wall_element,//9	body right
+			new wall_element,//10	back left
+			new wall_element,//11	back mid
+			new wall_element,//12	back right
+			new wall_element,//13	shadow
+			new wall_element//14	window
 		};
 	};
 

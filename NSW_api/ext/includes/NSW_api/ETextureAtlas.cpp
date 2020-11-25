@@ -53,6 +53,7 @@ EGabarite* ETextureAtlas::put_texture_to_atlas(std::string _name, ETextureAtlas*
 	EGraphicCore::ourShader->setInt("texture1", 0);
 	EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
 
+
 	EGraphicCore::load_texture(_name.c_str(), 0);
 
 	

@@ -493,14 +493,14 @@ void Batcher::draw_gabarite(float _x, float _y, float _w, float _h, EGabarite* _
 	}
 }
 
-void Batcher::draw_terrain(float _x, float _y, float _w, float _h, EGabarite* _g)
+void Batcher::draw_terrain(float _x, float _y, EGabarite* _g)
 {
 	//std::cout << "filled rect" << std::endl;
 
 	//.#
 	//..
-	vertices[id + 0] = (_x + _w);
-	vertices[id + 1] = (_y + _h);
+	vertices[id + 0] = (_x + *_g->size_x);
+	vertices[id + 1] = (_y + *_g->size_y);
 	//vertices[id + 2] = 0;
 
 	vertices[id + 2] = *_g->x2;
@@ -512,8 +512,8 @@ void Batcher::draw_terrain(float _x, float _y, float _w, float _h, EGabarite* _g
 
 	//..
 	//.#
-	vertices[id + 4] = (_x + _w);
-	vertices[id + 5] = _y;
+	vertices[id + 4] = (_x + *_g->size_x);
+	vertices[id + 5] = (_y);
 	//vertices[id + 10] = 0;
 
 
@@ -525,8 +525,8 @@ void Batcher::draw_terrain(float _x, float _y, float _w, float _h, EGabarite* _g
 
 	//..
 	//#.
-	vertices[id + 8] = _x;
-	vertices[id + 9] = _y;
+	vertices[id + 8] = (_x);
+	vertices[id + 9] = (_y);
 	//vertices[id + 18] = 0;
 
 	vertices[id + 10] = *_g->x;
@@ -538,8 +538,8 @@ void Batcher::draw_terrain(float _x, float _y, float _w, float _h, EGabarite* _g
 
 	//#.
 	//..
-	vertices[id + 12] = _x;
-	vertices[id + 13] = (_y + _h);
+	vertices[id + 12] = (_x);
+	vertices[id + 13] = (_y + *_g->size_y);
 	//vertices[id + 26] = 0;
 
 	vertices[id + 14] = *_g->x;

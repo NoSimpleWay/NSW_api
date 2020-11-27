@@ -17,7 +17,7 @@ public:
 	virtual void update(float _d);
 
 	static float blur_factor;
-	static float blur_decay_multiplier_factor;
+	static float blur_blend;
 	static float blur_decay_flat_factor;
 	static float add_factor;
 

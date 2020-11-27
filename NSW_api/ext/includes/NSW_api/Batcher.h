@@ -18,6 +18,7 @@ public:
 	void draw_with_custom_uv(float _x, float _y, float _w, float _h, float _start_x, float _start_y, float _end_x, float _end_y);
 
 	void draw_gabarite(float _x, float _y, float _w, float _h, EGabarite* _g);
+	void draw_gabarite(float _x, float _y, EGabarite* _g);
 
 	void draw_terrain(float _x, float _y, EGabarite* _g);
 

@@ -422,6 +422,18 @@ void EBA::action_save_map(EButton* _b, float _d)
 	w_string += std::to_string(Batcher::skew_factor);
 	w_string += "\n";
 
+	w_string += "#lightmap_blur_factor\t";
+	w_string += std::to_string(EWindowTest::blur_factor);
+	w_string += "\n";
+
+	w_string += "#lightmap_modes_blend\t";
+	w_string += std::to_string(EWindowTest::blur_blend);
+	w_string += "\n";
+
+	w_string += "#blur_decay\t";
+	w_string += std::to_string(EWindowTest::blur_decay_flat_factor);
+	w_string += "\n";
+
 		for (int j=0; j<ECluster::CLUSTER_DIM; j++)
 		for (int i = 0; i < ECluster::CLUSTER_DIM; i++)
 		for (Entity* e : ECluster::clusters[j][i]->entity_list)
@@ -491,17 +503,23 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 				//std::cout << "=" << EFile::data_array[i] << "=" << std::endl;
 
 				if (EFile::data_array[i] == "#shadow_skew")
-				{
-					i++; Batcher::skew_factor = std::stof(EFile::data_array[i]);
-				}
+				{i++; Batcher::skew_factor = std::stof(EFile::data_array[i]);}
+
+				if (EFile::data_array[i] == "#lightmap_blur_factor")
+				{i++; EWindowTest::blur_factor = std::stof(EFile::data_array[i]);}
+
+				if (EFile::data_array[i] == "#lightmap_modes_blend")
+				{i++; EWindowTest::blur_blend = std::stof(EFile::data_array[i]);}
+
+				if (EFile::data_array[i] == "#blur_decay")
+				{i++; EWindowTest::blur_decay_flat_factor = std::stof(EFile::data_array[i]);}
+
 				if (EFile::data_array[i] == "ADD_NEW_ENTITY")
 				{
 					wall_id = 0;
 					just_created_entity = new Entity();
 					i++; *just_created_entity->position_x = std::stof(EFile::data_array[i]);
 					i++; *just_created_entity->position_y = std::stof(EFile::data_array[i]);
-
-
 				}
 
 				if ((EFile::data_array[i] == "*entity_controlled_by_player") && (just_created_entity != NULL))
@@ -1081,7 +1099,7 @@ void EBA::action_set_button_value_float_to_address(EButton* _b, float _d)
 		*_b->target_address_for_float = EMath::to_float(_b->text);
 	}
 
-	if (_b->is_slider)
+	if ((_b->is_slider)||(*_b->is_radial_button))
 	{
 		*_b->target_address_for_float = _b->slider_value;
 	}

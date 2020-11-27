@@ -50,7 +50,7 @@ void main()
 	
 	//shadow_coord = vec2(ShadowCoord.x, ShadowCoord.y * (1.0f - texture(texture1, SuperMapCoord).b) + FullShadowCoord * texture(texture1, SuperMapCoord).b - texture(texture1, SuperMapCoord).r * 0.161f) + vec2(offset_x, offset_y);
 	
-	shadow_coord = vec2(ShadowCoord.x, FullShadowCoord  - texture(texture1, SuperMapCoord).g * pixel_factor + texture(texture1, SuperMapCoord).b * pixel_factor) + vec2(offset_x, offset_y);
+	shadow_coord = vec2(ShadowCoord.x, FullShadowCoord  - texture(texture1, SuperMapCoord - ShadowCoord.y / 255.0f).g * pixel_factor + texture(texture1, SuperMapCoord).b * pixel_factor) + vec2(offset_x, offset_y);
 	//light_coord = vec2(LightMapCoord.x, FullShadowCoord  - texture(texture1, SuperMapCoord).g * 0.161f + texture(texture1, SuperMapCoord).b * 0.161f) + vec2(offset_x, offset_y);
 	
 	bhr1 = texture(texture2, shadow_coord + vec2(0.0f, 0.0f)).a;
@@ -74,7 +74,7 @@ void main()
 			//ShadowCoord.y / 255.0f
 		)
 		*
-		100000.0f
+		2.0f
 		,
 		0.0f
 		,

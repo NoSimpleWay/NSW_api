@@ -361,6 +361,8 @@ public:
 	static void update_building_autogenerator_massive(Entity* _selected);
 
 	static void assembly_autobuilding_sprites(Entity* _e);
+	static void prepare_sprite_list(Entity* _e);
+	static void delete_unused_sprites(Entity* _e);
 
 	//static void draw_sprite_assembly(Entity* _e, Batcher* _b, float _d, bool _shadow_mode);
 

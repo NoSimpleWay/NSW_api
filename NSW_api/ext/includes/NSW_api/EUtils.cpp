@@ -144,10 +144,17 @@ std::string EString::float_to_string(float _f)
 		if ((t.at(i) != '0') & (dot_is_found))
 		{
 			numbers_after_dot++;
+
+			if (numbers_after_dot >= 2)
+			{
+				return subdata;
+			}
 		}
 
 		if ((t.at(i) == '0') & (dot_is_found))
 		{
+
+
 			if (numbers_after_dot == 0)
 			{
 				if (numbers_before_dot <= 0)

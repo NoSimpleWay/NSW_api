@@ -493,6 +493,87 @@ void Batcher::draw_gabarite(float _x, float _y, float _w, float _h, EGabarite* _
 	}
 }
 
+void Batcher::draw_gabarite(float _x, float _y, EGabarite* _g)
+{
+	//std::cout << "filled rect" << std::endl;
+
+	//.#
+	//..
+	vertices[id + 0] = (_x + *_g->size_x);
+	vertices[id + 1] = (_y + *_g->size_y);
+	//vertices[id + 2] = 0;
+
+	vertices[id + 2] = batch_color_r;
+	vertices[id + 3] = batch_color_g;
+	vertices[id + 4] = batch_color_b;
+	vertices[id + 5] = batch_color_a;
+
+	vertices[id + 6] = *_g->x2;
+	vertices[id + 7] = *_g->y2;
+
+
+
+
+
+	//..
+	//.#
+	vertices[id + 8] = (_x + *_g->size_x);
+	vertices[id + 9] = _y;
+	//vertices[id + 10] = 0;
+
+	vertices[id + 10] = batch_color_r;
+	vertices[id + 11] = batch_color_g;
+	vertices[id + 12] = batch_color_b;
+	vertices[id + 13] = batch_color_a;
+
+	vertices[id + 14] = *_g->x2;
+	vertices[id + 15] = *_g->y;
+
+
+
+
+	//..
+	//#.
+	vertices[id + 16] = _x;
+	vertices[id + 17] = _y;
+	//vertices[id + 18] = 0;
+
+	vertices[id + 18] = batch_color_r;
+	vertices[id + 19] = batch_color_g;
+	vertices[id + 20] = batch_color_b;
+	vertices[id + 21] = batch_color_a;
+
+	vertices[id + 22] = *_g->x;
+	vertices[id + 23] = *_g->y;
+
+
+
+
+
+	//#.
+	//..
+	vertices[id + 24] = _x;
+	vertices[id + 25] = (_y + *_g->size_y);
+	//vertices[id + 26] = 0;
+
+	vertices[id + 26] = batch_color_r;
+	vertices[id + 27] = batch_color_g;
+	vertices[id + 28] = batch_color_b;
+	vertices[id + 29] = batch_color_a;
+
+	vertices[id + 30] = *_g->x;
+	vertices[id + 31] = *_g->y2;
+
+	id += 32;
+
+	if (id > batch_force_draw_call)
+	{
+		reinit();
+		draw_call();
+		reset();
+	}
+}
+
 void Batcher::draw_terrain(float _x, float _y, EGabarite* _g)
 {
 	//std::cout << "filled rect" << std::endl;

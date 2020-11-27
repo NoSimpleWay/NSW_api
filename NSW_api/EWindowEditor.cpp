@@ -8,7 +8,7 @@ EWindowEditor::EWindowEditor()
 
 
 	EButton* but;
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 200; i++)
 	{
 		but = new EButton(-300.0f, i * -85.0f - 10.0f, 200.0f, 60.0f);
 		but->master_window = this;
@@ -535,44 +535,63 @@ EWindowEditor::EWindowEditor()
 
 	button_array_vertical_collection* a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 0.0f, 0.0f);
 	*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
-
-
-
-	for (int f = 0; f < 1; f++)
-	{
+	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
+	//for (int f = 0; f < 1; f++)
+	//{
 		///
 		a_array = new button_array;
-
-		but = new EButton(0.0, 0.0f, 200.0f, 10.0f);
-		but->bg_color->set_color(EColor::COLOR_GREEN);
-		but->master_window = this;
-		but->text = "Blur factor";
-		but->is_slider = true;
-		but->slider_value_multiplier = 1.0f;
-		but->target_address_for_float = &EWindowTest::blur_factor;
-		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
-		a_array->button_list.push_back(but);
 		a_vertical->button_array_list.push_back(a_array);
+
+			but = new EButton(0.0, 0.0f, 36, 36.0f);
+				but->have_bg = false;
+				but->master_window = this;
+				*but->side_text = "Blur factor";
+				*but->is_radial_button = true;
+				but->text_color->set_color (EColor::COLOR_ORANGE);
+
+				//but->is_slider = true;
+				but->slider_value_multiplier = 1.0f;
+				but->target_address_for_float = &EWindowTest::blur_factor;
+				but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+				*but->is_consumable = true;
+				link_to_blur_button = but;
+				a_array->button_list.push_back(but);
+
+			
+
 
 		a_array = new button_array;
-
-		but = EButton::clone_button(but, 0.0f, 0.0f, 100.0f, 15.0f);
-		but->text = "Blur decay multiplier";
-		but->target_address_for_float = &EWindowTest::blur_decay_multiplier_factor;
-		a_array->button_list.push_back(but);
 		a_vertical->button_array_list.push_back(a_array);
+			but->have_bg = false;
+			but = new EButton(0.0, 0.0f, 36.0f, 36.0f);
+			but->text_color->set_color(EColor::COLOR_ORANGE);
+			but->master_window = this;
+			*but->side_text = "Blur blend";
+			*but->is_radial_button = true;
+			but->slider_value_multiplier = 1.0f;
+			but->target_address_for_float = &EWindowTest::blur_blend;
+			but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+			*but->is_consumable = true;
+			link_to_blend_button = but;
+			a_array->button_list.push_back(but);
+			
 
 		a_array = new button_array;
-		but = EButton::clone_button(but, 0.0f, 0.0f, 100.0f, 15.0f);
-
-		but->text = "Blur decay flat";
-
-		but->slider_value_multiplier = 0.1f;
-		but->target_address_for_float = &EWindowTest::blur_decay_flat_factor;
-
-		a_array->button_list.push_back(but);
 		a_vertical->button_array_list.push_back(a_array);
-
+			but->have_bg = false;
+			but = new EButton(0.0, 0.0f, 36.0f, 36.0f);
+			but->text_color->set_color(EColor::COLOR_ORANGE);
+			but->master_window = this;
+			*but->side_text = "Blur decay";
+			*but->is_radial_button = true;
+			but->slider_value_multiplier = 0.01f;
+			but->target_address_for_float = &EWindowTest::blur_decay_flat_factor;
+			but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+			*but->is_consumable = true;
+			link_to_blend_button = but;
+			a_array->button_list.push_back(but);
+		
+		/*
 		a_array = new button_array;
 		but = new EButton(0.0f, 45.0f, 200.0f, 10.0f);
 		but->master_window = this;
@@ -582,9 +601,82 @@ EWindowEditor::EWindowEditor()
 		but->target_address_for_float = &EWindowTest::add_factor;
 		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
 		a_array->button_list.push_back(but);
+		a_vertical->button_array_list.push_back(a_array);*/
+
+
+	//}
+
+	
+	
+
+	std::vector<float*> red_array
+	=
+	{ 
+		&EColor::COLOR_SKY_TIME_SUNSET->color_red,
+		&EColor::COLOR_SKY_TIME_DAWN->color_red,
+		&EColor::COLOR_SKY_TIME_NOON->color_red
+	};
+
+	std::vector<float*> green_array
+		=
+	{
+		&EColor::COLOR_SKY_TIME_SUNSET->color_green,
+		&EColor::COLOR_SKY_TIME_DAWN->color_green,
+		&EColor::COLOR_SKY_TIME_NOON->color_green
+	};
+
+	std::vector<float*> blue_array
+		=
+	{
+		&EColor::COLOR_SKY_TIME_SUNSET->color_blue,
+		&EColor::COLOR_SKY_TIME_DAWN->color_blue,
+		&EColor::COLOR_SKY_TIME_NOON->color_blue
+	};
+
+	for (int i = 0; i < 3; i++)
+	{
+		a_vertical = new button_array_vertical_collection(5.0f, 5.0f + i * 20.0f, 0.0f, 0.0f);
+		*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
+		
+		*a_vertical->tab_id = 1;
+
+		a_array = new button_array;
+
+		a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
 		a_vertical->button_array_list.push_back(a_array);
+		
+		but = new EButton(0.0, 0.0f, 200.0f, 10.0f);
+			but->bg_color->set_color(EColor::COLOR_RED);
+			but->master_window = this;
+			but->text = "sky color";
+			but->is_slider = true;
+			but->slider_value_multiplier = 1.0f;
+			but->target_address_for_float = red_array.at(i);
+			but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+			*but->is_consumable = true;
+			a_array->button_list.push_back(but);
 
+		but = new EButton(0.0, 0.0f, 200.0f, 10.0f);
+			but->bg_color->set_color(EColor::COLOR_GREEN);
+			but->master_window = this;
+			but->text = "sky color";
+			but->is_slider = true;
+			but->slider_value_multiplier = 1.0f;
+			but->target_address_for_float = green_array.at(i);
+			but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+			*but->is_consumable = true;
+			a_array->button_list.push_back(but);
 
+		but = new EButton(0.0, 0.0f, 200.0f, 10.0f);
+			but->bg_color->set_color(EColor::COLOR_BLUE);
+			but->master_window = this;
+			but->text = "sky color";
+			but->is_slider = true;
+			but->slider_value_multiplier = 1.0f;
+			but->target_address_for_float = blue_array.at(i);
+			but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+			*but->is_consumable = true;
+			a_array->button_list.push_back(but);
 	}
 
 
@@ -916,6 +1008,9 @@ EWindowEditor::~EWindowEditor()
 {
 }
 
+EButton* EWindowEditor::link_to_blur_button;
+EButton* EWindowEditor::link_to_blend_button;
+EButton* EWindowEditor::link_to_decay_button;
 
 float EWindowEditor::get_move_multiplier(float _zoom)
 {
@@ -1018,11 +1113,15 @@ void EWindowEditor::update(float _d)
 		}
 	}
 
+
 	if (glfwGetKey(EWindow::main_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 	{
+		update_sprite_buttons();
+		if (editor_mode == EditMode::EditSprites) { update_sprite_buttons(); }
+		if (editor_mode == EditMode::EditAutobuilding) { *autobuilding_massive_link->is_active = false; Entity::delete_unused_sprites(selected_entity);  }
+
 		editor_mode = EditMode::SelectEntities;
 		EWindow::button_main_group_pressed = true;
-		update_sprite_buttons();
 	}
 
 	if (((glfwGetKey(EWindow::main_window, GLFW_KEY_COMMA) == GLFW_PRESS) & (!EWindow::button_main_group_pressed) & (editor_mode == EditMode::EditSprites)) & (!EButton::any_input))
@@ -1122,9 +1221,12 @@ void EWindowEditor::update(float _d)
 		(!EButton::any_input)
 	)
 	{
+
 		editor_mode = EditMode::EditAutobuilding;
 		EWindow::button_main_group_pressed = true;
 		*autobuilding_massive_link->is_active = true;
+
+		Entity::prepare_sprite_list(selected_entity);
 		//refresh_autobuilding();
 		//EWindow::window_editor->select_new_floor();
 		//EWindow::window_editor->select_new_variant();
@@ -2237,7 +2339,7 @@ void EWindowEditor::update_sprite_buttons()
 
 	for (EButton* b : link_to_sprite_editor_group)
 	{
-		{b->is_active = editor_mode == EditMode::EditSprites;}
+		{b->is_active = (editor_mode == EditMode::EditSprites);}
 	}
 
 	EString::out_debug("1");
@@ -2267,17 +2369,17 @@ void EWindowEditor::update_sprite_buttons()
 			for (int i = 0; i < selected_entity->sprite_list.size(); i++)
 			if (i < sprite_button_list.size())
 			{
-				std::cout << "you are retarded? " << std::to_string(i) << std::endl;
+				//std::cout << "you are retarded? " << std::to_string(i) << std::endl;
 
 				sprite_button_list.at(i)->button_y = yy;//align button
-				std::cout << "sprite_button_list.at(i)->button_y = yy;" << std::endl;
+				//std::cout << "sprite_button_list.at(i)->button_y = yy;" << std::endl;
 
 				sprite_button_list.at(i)->is_active = true;//active by default
-				std::cout << "sprite_button_list.at(i)->is_active = true;" << std::endl;
+				//std::cout << "sprite_button_list.at(i)->is_active = true;" << std::endl;
 				//sprite_button_list.at(i)->gabarite = selected_entity->sprite_list.at(i)->gabarite.at(0);
 
 				yy -= sprite_button_list.at(i)->button_size_y + 10.0f;
-				std::cout << "yy -= sprite_button_list.at(i)->button_size_y + 10.0f;" << std::endl;
+				//std::cout << "yy -= sprite_button_list.at(i)->button_size_y + 10.0f;" << std::endl;
 
 
 				//currect button is selected

@@ -1,5 +1,5 @@
 #pragma once
-
+#define logger(_a_) std::cout << _a_ << std::endl
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -465,6 +465,9 @@ public:
 	bool* double_click_started = new bool (false);
 
 	static bool any_input;
+
+	bool* is_consumable = new bool(false);
+	bool* is_radial_button = new bool(false);
 };
 
 class EButtonGroup
@@ -472,5 +475,23 @@ class EButtonGroup
 public:
 
 	
+};
+
+class EDataWatcher
+{
+public:
+
+	struct data_watch_float
+	{
+		float* data_value = new float(0.0f);
+		std::string name;
+	};
+
+	struct data_watch_int
+	{
+		int* data_value = new int(0);
+		std::string name;
+	};
+
 };
 

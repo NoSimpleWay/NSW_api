@@ -198,13 +198,15 @@ int main()
 	
 	EGraphicCore::gabarite_white_pixel = ETextureAtlas::put_texture_to_atlas("data/textures/white_pixel.png", EWindow::default_texture_atlas);
 
-	*EGraphicCore::gabarite_white_pixel->x += 1.0f / 4096.0f;
-	*EGraphicCore::gabarite_white_pixel->y += 1.0f / 4096.0f;
+	*EGraphicCore::gabarite_white_pixel->x += 1.0f / 4096.0f / 2.0f;
+	*EGraphicCore::gabarite_white_pixel->y += 1.0f / 4096.0f / 2.0f;
 
-	*EGraphicCore::gabarite_white_pixel->x2 -= 1.0f / 4096.0f;
-	*EGraphicCore::gabarite_white_pixel->y2 -= 1.0f / 4096.0f;
+	*EGraphicCore::gabarite_white_pixel->x2 -= 1.0f / 4096.0f / 2.0f;
+	*EGraphicCore::gabarite_white_pixel->y2 -= 1.0f / 4096.0f / 2.0f;
 
 	EGraphicCore::gabarite_ERROR = ETextureAtlas::put_texture_to_atlas("data/textures/ERROR.png", EWindow::default_texture_atlas);
+	EGraphicCore::gabarite_radial_button = ETextureAtlas::put_texture_to_atlas("data/textures/radial_button.png", EWindow::default_texture_atlas);
+	EGraphicCore::gabarite_radial_button_dot = ETextureAtlas::put_texture_to_atlas("data/textures/radial_button_dot.png", EWindow::default_texture_atlas);
 
 	EGraphicCore::gabarite_small_wood_button_bg = ETextureAtlas::put_texture_to_atlas("data/textures/button_bg.png", EWindow::default_texture_atlas);
 	*EGraphicCore::gabarite_small_wood_button_bg->x += 1 / 4096.0f;

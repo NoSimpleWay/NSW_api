@@ -51,6 +51,8 @@ public:
 	static EGabarite* gabarite_small_wood_button_bg;
 	static EGabarite* gabarite_wood_button_bg;
 	static EGabarite* gabarite_ERROR;
+	static EGabarite* gabarite_radial_button;
+	static EGabarite* gabarite_radial_button_dot;
 
 	EGraphicCore();
 	~EGraphicCore();

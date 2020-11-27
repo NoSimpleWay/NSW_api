@@ -10,7 +10,7 @@ std::string s;
 int maximum_alloy = 0;
 
 float EWindowTest::blur_factor = 0.525f;//0.33333
-float EWindowTest::blur_decay_multiplier_factor = 0.55f; //1.0f;
+float EWindowTest::blur_blend = 0.55f; //1.0f;
 float EWindowTest::blur_decay_flat_factor = 0.0017f;//0.002
 float EWindowTest::add_factor = 1.0000f;
 
@@ -1403,13 +1403,13 @@ void EWindowTest::draw_lightmap()
 			EGraphicCore::batch->setcolor_lum(EColor::COLOR_WHITE, 1.0f);
 		
 	//glBlendFunc(GL_ONE, GL_ZERO);
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 4; i++)
 	{
 
 
 			EGraphicCore::lightmap_blur->use();
 				glUniform1f(blur_loc, blur_factor);
-				glUniform1f(decay_mul, blur_decay_multiplier_factor);
+				glUniform1f(decay_mul, blur_blend);
 				glUniform1f(decay_flat, blur_decay_flat_factor);
 			transformLoc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "transform");
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
@@ -1433,7 +1433,7 @@ void EWindowTest::draw_lightmap()
 
 			EGraphicCore::lightmap_blur->use();
 				glUniform1f(blur_loc, blur_factor);
-				glUniform1f(decay_mul, blur_decay_multiplier_factor);
+				glUniform1f(decay_mul, blur_blend);
 				glUniform1f(decay_flat, blur_decay_flat_factor);
 			transformLoc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "transform");
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
@@ -1766,15 +1766,23 @@ void EWindowTest::draw_interface(float _d)
 	EGraphicCore::batch->setcolor(EColor::COLOR_LIGHT_GRAY);
 	EFont::active_font->draw(EGraphicCore::batch, std::to_string(round(1.0f / _d)), 7.0f, 7.0f);
 
+	/*
 	EGraphicCore::batch->setcolor(EColor::COLOR_DARK_GRAY);
 	EGraphicCore::batch->draw_gabarite(250.0f, 5.0f, 200.0f, 20.0f, EGraphicCore::gabarite_white_pixel);
 	EGraphicCore::batch->setcolor(EColor::COLOR_LIGHT_GRAY);
-	EFont::active_font->draw(EGraphicCore::batch, std::to_string(round(*link_to_player->speed_x * 0.144f) ), 257.0f, 7.0f);
+	EFont::active_font->draw(EGraphicCore::batch, std::to_string(round(*link_to_player->speed_x * 0.04f * 3.6f) ), 257.0f, 7.0f);
 
 	EGraphicCore::batch->setcolor(EColor::COLOR_DARK_GRAY);
 	EGraphicCore::batch->draw_gabarite(450.0f, 5.0f, 200.0f, 20.0f, EGraphicCore::gabarite_white_pixel);
 	EGraphicCore::batch->setcolor(EColor::COLOR_LIGHT_GRAY);
-	EFont::active_font->draw(EGraphicCore::batch, std::to_string(round(*link_to_player->speed_y * 0.144f)), 457.0f, 7.0f);
+	EFont::active_font->draw(EGraphicCore::batch, std::to_string(round(*link_to_player->speed_y * 0.04 * 3.6f)), 457.0f, 7.0f);*/
+
+	/*
+	if (selected_entity)
+	EGraphicCore::batch->setcolor(EColor::COLOR_DARK_GRAY);
+	EGraphicCore::batch->draw_gabarite(450.0f, 5.0f, 200.0f, 20.0f, EGraphicCore::gabarite_white_pixel);
+	EGraphicCore::batch->setcolor(EColor::COLOR_LIGHT_GRAY);
+	EFont::active_font->draw(EGraphicCore::batch, std::to_string(round(*link_to_player->speed_y * 0.04 * 3.6f)), 457.0f, 7.0f);*/
 
 	if (time_process_active)
 	{

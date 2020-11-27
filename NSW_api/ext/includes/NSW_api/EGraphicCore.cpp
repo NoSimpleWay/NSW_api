@@ -39,6 +39,8 @@ EGabarite* EGraphicCore::gabarite_tileset;
 EGabarite* EGraphicCore::gabarite_small_wood_button_bg;
 EGabarite* EGraphicCore::gabarite_wood_button_bg;
 EGabarite* EGraphicCore::gabarite_ERROR;
+EGabarite* EGraphicCore::gabarite_radial_button;
+EGabarite* EGraphicCore::gabarite_radial_button_dot;
 
 void EGraphicCore::load_texture(char const* _path, int _id)
 {

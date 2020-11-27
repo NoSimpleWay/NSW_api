@@ -220,6 +220,23 @@ bool EButton::is_right_click()
 void EButton::update(float _d)
 {
 
+	if (*is_consumable)
+	{
+		if
+		(
+			(
+				(is_slider)
+				||
+				(*is_radial_button)
+			)
+			&
+			(target_address_for_float != NULL)
+		)
+		{
+			slider_value = *target_address_for_float;
+		}
+	}
+
 	if ((is_overlap()) & (have_input_mode) & (input_only_numbers) & (text != "") & (EWindow::scroll != 0))
 	{
 		text = EString::float_to_string(EMath::to_float(text) + EWindow::scroll);
@@ -431,7 +448,7 @@ void EButton::update(float _d)
 
 
 
-		if (is_slider) { slider_activate = true; }
+		if ((is_slider)|| (*is_radial_button)) { slider_activate = true; }
 
 
 		click_event();
@@ -458,7 +475,7 @@ void EButton::update(float _d)
 		slider_activate = false;
 	}
 
-	if ((is_slider) && (slider_activate) && (slider_is_horizontal))
+	if (((is_slider) || (*is_radial_button)) && (slider_activate) && (slider_is_horizontal))
 	{
 		//slider_value = (EWindow::mouse_x - master_position_x) / button_size_x;
 		//slider_value = EMath::clamp_value_float(slider_value, 0.0f, 1.0f) * slider_value_multiplier;
@@ -484,7 +501,7 @@ void EButton::update(float _d)
 		//if (master_block != NULL) { StaticData::window_filter_block->unsave_change = true; }
 	}
 
-	if ((is_slider) && (slider_activate) && (!slider_is_horizontal))
+	if (((is_slider) || (*is_radial_button)) && (slider_activate) && (!slider_is_horizontal))
 	{
 		slider_value = 1.0f - (EWindow::mouse_y - master_position_y) / button_size_y;
 		slider_value = EMath::clamp_value_float(slider_value, 0.0f, 1.0f);
@@ -624,6 +641,7 @@ void EButton::update(float _d)
 		*click_timer -= _d;
 	}
 	update_additional(_d);
+
 
 }
 
@@ -797,6 +815,20 @@ void EButton::default_draw(Batcher* _batch, float _d)
 		_batch->draw_gabarite(master_position_x - 3.0f, master_position_y - 3.0f, button_size_x + 6.0f, button_size_y + 6.0f, EGraphicCore::gabarite_white_pixel);
 	}
 
+	if (*is_radial_button)
+	{
+		_batch->setcolor(bg_color);
+		_batch->draw_gabarite(master_position_x, master_position_y, EGraphicCore::gabarite_radial_button);
+		
+		_batch->setcolor_lum(EColor::COLOR_WHITE, 0.12f);
+		_batch->draw_gabarite(master_position_x + 40.0f, master_position_y, 100.0f, 20.0f,  EGraphicCore::gabarite_white_pixel);
+
+		_batch->setcolor(text_color);
+		target_font->draw(_batch, EString::float_to_string (round(slider_value * 1000.0f)/10.0f) + "%", master_position_x + 45.0f, master_position_y + 5.0f);
+
+		_batch->setcolor(EColor::COLOR_WHITE);
+		_batch->draw_gabarite(master_position_x + cos(3.14f * (1.0f - slider_value)) * 13.0f + 13.0f, master_position_y + sin(3.14f * (1.0f - slider_value)) * 13.0f + 13.0f, EGraphicCore::gabarite_radial_button_dot);
+	}
 }
 
 void EButton::additional_draw(Batcher* _batch, float _d)

@@ -19,6 +19,7 @@ public:
 
 	static EGabarite* put_texture_to_atlas(std::string _name, ETextureAtlas* _ta);
 	static void active_this_texture_atlas(ETextureAtlas* _ta, ETextureAtlas* _ta2);
+	static void active_this_texture_atlas(ETextureAtlas* _ta, ETextureAtlas* _ta2, ETextureAtlas* _ta3);
 	static void return_to_this_texture_atlas(ETextureAtlas* _ta);
 
 	ETextureAtlas(int _x, int _y);

@@ -935,11 +935,11 @@ void Entity::spread_path_block(Entity* _e)
 					for (Entity* e : ECluster::clusters[cj][ci]->entity_list)
 						if ((*e->inmovable) & (!*e->no_path_block) & (!*e->is_ghost))
 						{
-							int block_start_x = (EMath::clamp_value_int((int)((*e->position_x - *e->path_block_gabarite_left + 15.0f * 0.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
-							int block_end_x = (EMath::clamp_value_int((int)((*e->position_x + *e->path_block_gabarite_right - 15.0f * 0.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+							int block_start_x = (EMath::clamp_value_int((round)((*e->position_x - *e->path_block_gabarite_left + 15.0f * 0.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+							int block_end_x = (EMath::clamp_value_int((int)((*e->position_x + *e->path_block_gabarite_right - 30.0f * 0.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
 
-							int block_start_y = (EMath::clamp_value_int((int)((*e->position_y - *e->path_block_gabarite_down + 15.0f * 0.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
-							int block_end_y = (EMath::clamp_value_int((int)((*e->position_y + *e->path_block_gabarite_up - 15.0f * 0.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+							int block_start_y = (EMath::clamp_value_int((round)((*e->position_y - *e->path_block_gabarite_down + 15.0f * 0.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+							int block_end_y = (EMath::clamp_value_int((int)((*e->position_y + *e->path_block_gabarite_up - 30.0f * 0.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
 
 							for (int j = block_start_x; j <= block_end_x; j++)
 								for (int i = block_start_y; i <= block_end_y; i++)

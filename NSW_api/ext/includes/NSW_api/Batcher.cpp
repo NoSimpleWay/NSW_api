@@ -1010,16 +1010,16 @@ void Batcher::draw_gabarite_shadowmap_fragment(float _x, float _y, float _w, flo
 	vertices[id + 6] = *_g->x + *_g->uv_size_x * _fx;
 	vertices[id + 7] = *_g->y + *_g->uv_size_y * _fy;
 
-	vertices[id + 8] = (_x + *_g->size_x) * zoom / screen_w;
+	vertices[id + 8] = (_x + *_g->size_x * _fx) * zoom / screen_w;
 	vertices[id + 9] = _z;
 
-	vertices[id + 10] = *_supermap->x2;
-	vertices[id + 11] = *_supermap->y2;
+	vertices[id + 10] = *_supermap->x + *_g->uv_size_x * _fx;
+	vertices[id + 11] = *_supermap->y + *_g->uv_size_y * _fy;
 
 	vertices[id + 12] = (_x + *_g->size_x) / 12000.0f;
-	vertices[id + 13] = (_y - 4.0f) / 12000.0f;
+	vertices[id + 13] = (_y - 40.0f) / 12000.0f;
 
-	vertices[id + 14] = (_y - _z + _h) * zoom / screen_h;
+	vertices[id + 14] = (_y - _z + _h * _fy) * zoom / screen_h;
 
 
 
@@ -1039,10 +1039,10 @@ void Batcher::draw_gabarite_shadowmap_fragment(float _x, float _y, float _w, flo
 	vertices[id + 21] = *_g->x + *_g->uv_size_x * _fx;
 	vertices[id + 22] = *_g->y;
 
-	vertices[id + 23] = (_x + *_g->size_x) * zoom / screen_w;
+	vertices[id + 23] = (_x + *_g->size_x * _fx) * zoom / screen_w ;
 	vertices[id + 24] = _z;
 
-	vertices[id + 25] = *_supermap->x2;
+	vertices[id + 25] = *_supermap->x + *_g->uv_size_x * _fx;
 	vertices[id + 26] = *_supermap->y;
 
 	vertices[id + 27] = (_x + *_g->size_x) / 12000.0f;
@@ -1095,12 +1095,12 @@ void Batcher::draw_gabarite_shadowmap_fragment(float _x, float _y, float _w, flo
 	vertices[id + 54] = _z;
 
 	vertices[id + 55] = *_supermap->x;
-	vertices[id + 56] = *_supermap->y2;
+	vertices[id + 56] = *_supermap->y + *_g->uv_size_y * _fy;
 
 	vertices[id + 57] = (_x) / 12000.0f;
-	vertices[id + 58] = (_y - 4.0f) / 12000.0f;
+	vertices[id + 58] = (_y - 40.0f) / 12000.0f;
 
-	vertices[id + 59] = (_y - _z + _h) * zoom / screen_h;
+	vertices[id + 59] = (_y - _z + _h * _fy) * zoom / screen_h;
 
 	id += 60;
 

@@ -50,14 +50,14 @@ void main()
 	
 	//shadow_coord = vec2(ShadowCoord.x, ShadowCoord.y * (1.0f - texture(texture1, SuperMapCoord).b) + FullShadowCoord * texture(texture1, SuperMapCoord).b - texture(texture1, SuperMapCoord).r * 0.161f) + vec2(offset_x, offset_y);
 	
-	shadow_coord = vec2(ShadowCoord.x, FullShadowCoord  - texture(texture1, SuperMapCoord - ShadowCoord.y / 255.0f).g * pixel_factor + texture(texture1, SuperMapCoord).b * pixel_factor) + vec2(offset_x, offset_y);
+	shadow_coord = vec2(ShadowCoord.x, FullShadowCoord  - texture(texture1, SuperMapCoord).g * pixel_factor + texture(texture1, SuperMapCoord).b * pixel_factor + (ShadowCoord.y / 256.0f  * pixel_factor)) + vec2(offset_x, offset_y);
 	//light_coord = vec2(LightMapCoord.x, FullShadowCoord  - texture(texture1, SuperMapCoord).g * 0.161f + texture(texture1, SuperMapCoord).b * 0.161f) + vec2(offset_x, offset_y);
 	
 	bhr1 = texture(texture2, shadow_coord + vec2(0.0f, 0.0f)).a;
-	bhr2 = texture(texture2, shadow_coord + vec2(blur_x_factor, 0.0f)).a;
-	bhr3 = texture(texture2, shadow_coord + vec2(blur_x_factor * 2.0f, 0.0f)).a;
-	bhr4 = texture(texture2, shadow_coord + vec2(blur_x_factor * -1.0f, 0.0f)).a;
-	bhr5 = texture(texture2, shadow_coord + vec2(blur_x_factor * -2.0f, 0.0f)).a;
+	bhr2 = texture(texture2, shadow_coord + vec2(blur_x_factor * 2.0f, 0.0f)).a;
+	bhr3 = texture(texture2, shadow_coord + vec2(blur_x_factor * 4.0f, 0.0f)).a;
+	bhr4 = texture(texture2, shadow_coord + vec2(blur_x_factor * -2.0f, 0.0f)).a;
+	bhr5 = texture(texture2, shadow_coord + vec2(blur_x_factor * -4.0f, 0.0f)).a;
 	
 	blur_result = (bhr1 + bhr2 + bhr3 + bhr4 + bhr5) / 5.0f;
 	
@@ -101,7 +101,7 @@ void main()
 			(1.0f - shadow_multiplier) * ourColor.rgb
 		)
 		+
-		(texture(texture3, LightMapCoord).rgb * (1.0f - texture(texture1, SuperMapCoord).g) * (1.0f - texture(texture1, SuperMapCoord).g))
+		(texture(texture3, LightMapCoord - vec2(0.0f, ShadowCoord.y / 12000.0f)).rgb * clamp(1.0f - (texture(texture1, SuperMapCoord).g + ShadowCoord.y / 255.0f), 0.0f, 1.0f))
 	)
 
 	;

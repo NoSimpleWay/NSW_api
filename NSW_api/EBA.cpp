@@ -260,7 +260,12 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 					w_string += t->texture->name + "\t";
 					w_string += std::to_string(*t->offset_x) + "\t";
 					w_string += std::to_string(*t->offset_y) + "\t";
-					w_string += std::to_string(*t->offset_z);
+					w_string += std::to_string(*t->offset_z) + "\t";
+
+					w_string += std::to_string(*t->shadow_size_x) + "\t";
+					w_string += std::to_string(*t->shadow_size_y) + "\t";
+					w_string += std::to_string(*t->tall_bottom) + "\t";
+					w_string += std::to_string(*t->tall_up);
 				w_string += "\n";
 			}
 		}
@@ -1099,7 +1104,7 @@ void EBA::action_set_button_value_float_to_address(EButton* _b, float _d)
 		*_b->target_address_for_float = EMath::to_float(_b->text);
 	}
 
-	if ((_b->is_slider)||(*_b->is_radial_button))
+	if (((_b->is_slider)||(*_b->is_radial_button)) &(_b->target_address_for_float != NULL))
 	{
 		*_b->target_address_for_float = _b->slider_value;
 	}

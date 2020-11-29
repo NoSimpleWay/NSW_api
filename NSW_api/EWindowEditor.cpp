@@ -542,7 +542,7 @@ EWindowEditor::EWindowEditor()
 		a_array = new button_array;
 		a_vertical->button_array_list.push_back(a_array);
 
-			but = new EButton(0.0, 0.0f, 36, 36.0f);
+			but = new EButton(0.0, 0.0f, 150.0f, 36.0f);
 				but->have_bg = false;
 				but->master_window = this;
 				*but->side_text = "Blur factor";
@@ -563,7 +563,7 @@ EWindowEditor::EWindowEditor()
 		a_array = new button_array;
 		a_vertical->button_array_list.push_back(a_array);
 			but->have_bg = false;
-			but = new EButton(0.0, 0.0f, 36.0f, 36.0f);
+			but = new EButton(0.0, 0.0f, 150.0f, 36.0f);
 			but->text_color->set_color(EColor::COLOR_ORANGE);
 			but->master_window = this;
 			*but->side_text = "Blur blend";
@@ -579,7 +579,7 @@ EWindowEditor::EWindowEditor()
 		a_array = new button_array;
 		a_vertical->button_array_list.push_back(a_array);
 			but->have_bg = false;
-			but = new EButton(0.0, 0.0f, 36.0f, 36.0f);
+			but = new EButton(0.0, 0.0f, 150.0f, 36.0f);
 			but->text_color->set_color(EColor::COLOR_ORANGE);
 			but->master_window = this;
 			*but->side_text = "Blur decay";
@@ -857,6 +857,34 @@ EWindowEditor::EWindowEditor()
 
 	a_array->button_list.push_back(but);
 
+	but = new EButton(260.0f, 0.0f, 150.0f, 50.0f);
+	//building_autogenerator_link_to_left_wall = but;
+		link_to_bottom_tall_button = but;
+
+		but->master_window = this;
+		but->have_icon = true;
+		*but->is_radial_button = true;
+		but->have_rama = true;
+		but->data_id = -1;
+
+		but->action_on_left_click = &EBA::action_set_button_value_float_to_address;
+
+		a_array->button_list.push_back(but);
+
+	but = new EButton(420.0f, 0.0f, 150.0f, 50.0f);
+		//building_autogenerator_link_to_left_wall = but;
+		link_to_upper_tall_button = but;
+
+		but->master_window = this;
+		but->have_icon = true;
+		*but->is_radial_button = true;
+		but->have_rama = true;
+		but->data_id = -1;
+
+		but->action_on_left_click = &EBA::action_set_button_value_float_to_address;
+
+		a_array->button_list.push_back(but);
+
 
 	//****************************************
 	//"add new floor" button
@@ -1011,6 +1039,9 @@ EWindowEditor::~EWindowEditor()
 EButton* EWindowEditor::link_to_blur_button;
 EButton* EWindowEditor::link_to_blend_button;
 EButton* EWindowEditor::link_to_decay_button;
+
+EButton* EWindowEditor::link_to_bottom_tall_button;
+EButton* EWindowEditor::link_to_upper_tall_button;
 
 float EWindowEditor::get_move_multiplier(float _zoom)
 {
@@ -1600,16 +1631,35 @@ void EWindowEditor::update(float _d)
 
 				if (editor_mode == EditMode::EditAutobuilding)
 				{
-					*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->repeat_x += mouse_speed_x * 0.01f * mul;
-					*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->repeat_y += mouse_speed_y * 0.01f * mul;
 
-					*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->repeat_x
-					=
-					max(*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->repeat_x, 0.0f);
+					if (autobuilding_selected_wall == Entity::WallElementIndex::WEI_SHADOW)
+					{
+						*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->texture_variant_list.at(autobuilding_selected_texture_variant)->shadow_size_x += mouse_speed_x * 1.0f * mul;
+						*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->texture_variant_list.at(autobuilding_selected_texture_variant)->shadow_size_y += mouse_speed_y * 1.0f * mul;
 
-					*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->repeat_y
-					=
-					max(*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->repeat_y, 0.0f);
+						*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->texture_variant_list.at(autobuilding_selected_texture_variant)->shadow_size_x
+						=
+						max(*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->texture_variant_list.at(autobuilding_selected_texture_variant)->shadow_size_x, 0.0f);
+
+						*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->texture_variant_list.at(autobuilding_selected_texture_variant)->shadow_size_y
+						=
+						max(*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->texture_variant_list.at(autobuilding_selected_texture_variant)->shadow_size_y, 0.0f);
+					}
+
+					else
+					
+					{
+						*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->repeat_x += mouse_speed_x * 0.01f * mul;
+						*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->repeat_y += mouse_speed_y * 0.01f * mul;
+
+						*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->repeat_x
+							=
+							max(*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->repeat_x, 0.0f);
+
+						*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->repeat_y
+							=
+							max(*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->repeat_y, 0.0f);
+					}
 
 					//Entity::assembly_autobuilding_sprites(selected_entity);
 				}
@@ -2588,7 +2638,13 @@ void EWindowEditor::refresh_autobuilding()
 
 void EWindowEditor::select_new_variant()
 {
-	if (count_of_variants > 0)
+	if
+	(
+		selected_entity->
+		autobuilding_floor_list.at(autobuilding_selected_floor)->
+		wall_list.at(autobuilding_selected_wall)->
+		texture_variant_list.size() > 0
+	)
 	{
 		for (EButton* b : link_to_texture_variant_array->button_list)
 		{
@@ -2612,6 +2668,40 @@ void EWindowEditor::select_new_variant()
 		}
 
 		EWindow::window_editor->editor_mode = EWindowEditor::EditMode::EditAutobuilding;
+
+		if (autobuilding_selected_wall == Entity::WallElementIndex::WEI_SHADOW)
+		{
+			link_to_upper_tall_button->target_address_for_float
+			=
+			selected_entity->
+			autobuilding_floor_list.at(autobuilding_selected_floor)->
+			wall_list.at(autobuilding_selected_wall)->
+			texture_variant_list.at(autobuilding_selected_texture_variant)->tall_up;
+
+			link_to_bottom_tall_button->target_address_for_float
+			=
+			selected_entity->
+			autobuilding_floor_list.at(autobuilding_selected_floor)->
+			wall_list.at(autobuilding_selected_wall)->
+			texture_variant_list.at(autobuilding_selected_texture_variant)->tall_bottom;
+
+			link_to_upper_tall_button->bg_color->set_color(EColor::COLOR_WHITE);
+			link_to_upper_tall_button->text_color->set_color(EColor::COLOR_PINK);
+
+			link_to_bottom_tall_button->bg_color->set_color(EColor::COLOR_WHITE);
+			link_to_bottom_tall_button->text_color->set_color(EColor::COLOR_PINK);
+		}
+		else
+		{
+			link_to_upper_tall_button->target_address_for_float = NULL;
+			link_to_upper_tall_button->bg_color->set_color(EColor::COLOR_DARK_GRAY);
+			link_to_upper_tall_button->text_color->set_color(EColor::COLOR_DARK_GRAY);
+
+			///
+			link_to_bottom_tall_button->target_address_for_float = NULL;
+			link_to_bottom_tall_button->bg_color->set_color(EColor::COLOR_DARK_GRAY);
+			link_to_bottom_tall_button->text_color->set_color(EColor::COLOR_DARK_GRAY);
+		}
 	}
 }
 

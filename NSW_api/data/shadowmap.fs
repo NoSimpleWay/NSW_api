@@ -29,7 +29,7 @@ float pixel_factor
 /
 1580.0f//height of shadowmap
 *
-256.0f;//gradation of green color
+255.0f;//gradation of green color
 
 float blur_x_factor = 1.0f / 1920.0f * 1.0f;
 float blur_y_factor = 1.0f / 1580.0f;
@@ -50,7 +50,7 @@ void main()
 	
 	//shadow_coord = vec2(ShadowCoord.x, ShadowCoord.y * (1.0f - texture(texture1, SuperMapCoord).b) + FullShadowCoord * texture(texture1, SuperMapCoord).b - texture(texture1, SuperMapCoord).r * 0.161f) + vec2(offset_x, offset_y);
 	
-	shadow_coord = vec2(ShadowCoord.x, FullShadowCoord  - texture(texture1, SuperMapCoord).g * pixel_factor + texture(texture1, SuperMapCoord).b * pixel_factor + (ShadowCoord.y / 256.0f  * pixel_factor)) + vec2(offset_x, offset_y);
+	shadow_coord = vec2(ShadowCoord.x, FullShadowCoord  - texture(texture1, SuperMapCoord).g * pixel_factor + texture(texture1, SuperMapCoord).b * pixel_factor + (ShadowCoord.y / 255.0f  * pixel_factor)) + vec2(offset_x, offset_y);
 	//light_coord = vec2(LightMapCoord.x, FullShadowCoord  - texture(texture1, SuperMapCoord).g * 0.161f + texture(texture1, SuperMapCoord).b * 0.161f) + vec2(offset_x, offset_y);
 	
 	bhr1 = texture(texture2, shadow_coord + vec2(0.0f, 0.0f)).a;
@@ -74,7 +74,7 @@ void main()
 			//ShadowCoord.y / 255.0f
 		)
 		*
-		2.0f
+		20.0f
 		,
 		0.0f
 		,

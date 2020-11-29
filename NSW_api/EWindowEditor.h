@@ -162,6 +162,9 @@ public:
 	static EButton* link_to_blend_button;
 	static EButton* link_to_decay_button;
 
+	static EButton* link_to_bottom_tall_button;
+	static EButton* link_to_upper_tall_button;
+
 
 
 

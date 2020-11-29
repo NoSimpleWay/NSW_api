@@ -279,11 +279,21 @@ public:
 		float* offset_y = new float(0.0f);
 		float* offset_z = new float(0.0f);
 
+
+		float* shadow_size_x = new float(0.0f);
+		float* shadow_size_y = new float(0.0f);
+
+		float* tall_bottom = new float(0.0f);
+		float* tall_up = new float(0.0f);
+
 		~wall_texture_variant()
 		{
 			delete offset_x;
 			delete offset_y;
 			delete offset_z;
+
+			delete shadow_size_x;
+			delete shadow_size_y;
 		}
 	};
 
@@ -425,7 +435,7 @@ public:
 		float* shadow_size_x = new float(1.0f);
 		float* shadow_size_y = new float(1.0f);
 
-		float* bottom_tall = new float(1.0f);
+		float* bottom_tall = new float(100.0f);
 
 		float* shadow_tall = new float(100.0f);
 		float* shadow_height = new float(100.0f);

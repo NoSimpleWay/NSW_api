@@ -468,6 +468,10 @@ public:
 
 	bool* is_consumable = new bool(false);
 	bool* is_radial_button = new bool(false);
+	float* maximum_value = new float (1.0f);
+
+	bool* is_checkbox = new bool(false);
+	bool* is_checked = new bool(false);
 };
 
 class EButtonGroup

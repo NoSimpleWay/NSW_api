@@ -633,6 +633,34 @@ EWindowEditor::EWindowEditor()
 		&EColor::COLOR_SKY_TIME_NOON->color_blue
 	};
 
+	/// <summary>
+	/// ///
+	/// </summary>
+	/// 
+	std::vector<float*> shadow_red_array
+		=
+	{
+		&EColor::COLOR_SHADOW_TIME_SUNSET->color_red,
+		&EColor::COLOR_SHADOW_TIME_DAWN->color_red,
+		&EColor::COLOR_SHADOW_TIME_NOON->color_red
+	};
+
+	std::vector<float*> shadow_green_array
+		=
+	{
+		&EColor::COLOR_SHADOW_TIME_SUNSET->color_green,
+		&EColor::COLOR_SHADOW_TIME_DAWN->color_green,
+		&EColor::COLOR_SHADOW_TIME_NOON->color_green
+	};
+
+	std::vector<float*> shadow_blue_array
+		=
+	{
+		&EColor::COLOR_SHADOW_TIME_SUNSET->color_blue,
+		&EColor::COLOR_SHADOW_TIME_DAWN->color_blue,
+		&EColor::COLOR_SHADOW_TIME_NOON->color_blue
+	};
+
 	for (int i = 0; i < 3; i++)
 	{
 		a_vertical = new button_array_vertical_collection(5.0f, 5.0f + i * 20.0f, 0.0f, 0.0f);
@@ -677,10 +705,58 @@ EWindowEditor::EWindowEditor()
 			but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
 			*but->is_consumable = true;
 			a_array->button_list.push_back(but);
+
+			//a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
+	}
+	
+	for (int i = 0; i < 3; i++)
+	{
+		a_vertical = new button_array_vertical_collection(5.0f, 5.0f + i * 20.0f, 0.0f, 0.0f);
+		*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
+
+		*a_vertical->tab_id = 2;
+
+		a_array = new button_array;
+
+		a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
+		a_vertical->button_array_list.push_back(a_array);
+
+		but = new EButton(0.0, 0.0f, 200.0f, 10.0f);
+		but->bg_color->set_color(EColor::COLOR_RED);
+		but->master_window = this;
+		but->text = "shadow color";
+		but->is_slider = true;
+		but->slider_value_multiplier = 1.0f;
+		but->target_address_for_float = shadow_red_array.at(i);
+		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+		*but->is_consumable = true;
+		a_array->button_list.push_back(but);
+
+		but = new EButton(0.0, 0.0f, 200.0f, 10.0f);
+		but->bg_color->set_color(EColor::COLOR_GREEN);
+		but->master_window = this;
+		but->text = "shadow color";
+		but->is_slider = true;
+		but->slider_value_multiplier = 1.0f;
+		but->target_address_for_float = shadow_green_array.at(i);
+		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+		*but->is_consumable = true;
+		a_array->button_list.push_back(but);
+
+		but = new EButton(0.0, 0.0f, 200.0f, 10.0f);
+		but->bg_color->set_color(EColor::COLOR_BLUE);
+		but->master_window = this;
+		but->text = "shadow color";
+		but->is_slider = true;
+		but->slider_value_multiplier = 1.0f;
+		but->target_address_for_float = shadow_blue_array.at(i);
+		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+		*but->is_consumable = true;
+		a_array->button_list.push_back(but);
+
+		//a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
 	}
 
-
-	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
 	a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
 
 	button_array_collection_massive_list.push_back(a_massive);
@@ -716,17 +792,25 @@ EWindowEditor::EWindowEditor()
 			a_vertical->button_array_list.push_back(a_array);
 
 			but = new EButton(0.0f, 0.0f, 20.0f, 20.0f);
-			but->master_window = this;
-			but->text = "+";
-			but->action_on_left_click = &EBA::action_add_new_texture_variant_button;
-
+				but->master_window = this;
+				but->text = "+";
+				but->action_on_left_click = &EBA::action_add_new_texture_variant_button;
 			a_array->button_list.push_back(but);
 
 			but = new EButton(0.0f, 0.0f, 20.0f, 20.0f);
-			but->master_window = this;
-			but->text = "compile sprites";
-			but->action_on_left_click = &EBA::action_assembly_autobuilding;
+				but->master_window = this;
+				but->text = "compile sprites";
+				but->action_on_left_click = &EBA::action_assembly_autobuilding;
+			a_array->button_list.push_back(but);
 
+			but = new EButton(0.0f, 0.0f, 100.0f, 20.0f);
+			link_to_mirror_button = but;
+				*but->is_consumable = true;
+				but->have_rama = true;
+				but->master_window = this;
+				*but->is_checkbox = true;
+				but->text = "mirrored";
+				but->action_on_left_click = &EBA::action_set_button_value_bool_to_address;
 			a_array->button_list.push_back(but);
 
 	//****************************************
@@ -860,14 +944,15 @@ EWindowEditor::EWindowEditor()
 	but = new EButton(260.0f, 0.0f, 150.0f, 50.0f);
 	//building_autogenerator_link_to_left_wall = but;
 		link_to_bottom_tall_button = but;
-
+		*but->is_consumable = true;
 		but->master_window = this;
 		but->have_icon = true;
 		*but->is_radial_button = true;
 		but->have_rama = true;
 		but->data_id = -1;
 
-		but->action_on_left_click = &EBA::action_set_button_value_float_to_address;
+		*but->maximum_value = 1024.0f;
+		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
 
 		a_array->button_list.push_back(but);
 
@@ -875,13 +960,15 @@ EWindowEditor::EWindowEditor()
 		//building_autogenerator_link_to_left_wall = but;
 		link_to_upper_tall_button = but;
 
+		*but->is_consumable = true;
+		*but->maximum_value = 1024.0f;
 		but->master_window = this;
 		but->have_icon = true;
 		*but->is_radial_button = true;
 		but->have_rama = true;
 		but->data_id = -1;
 
-		but->action_on_left_click = &EBA::action_set_button_value_float_to_address;
+		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
 
 		a_array->button_list.push_back(but);
 
@@ -1042,6 +1129,7 @@ EButton* EWindowEditor::link_to_decay_button;
 
 EButton* EWindowEditor::link_to_bottom_tall_button;
 EButton* EWindowEditor::link_to_upper_tall_button;
+EButton* EWindowEditor::link_to_mirror_button;
 
 float EWindowEditor::get_move_multiplier(float _zoom)
 {
@@ -1271,6 +1359,8 @@ void EWindowEditor::update(float _d)
 		EWindow::window_editor->select_new_wall();
 		EWindow::window_editor->select_new_variant();
 
+		Entity::assembly_autobuilding_sprites(selected_entity);
+
 	}
 
 	if (((glfwGetKey(EWindow::main_window, GLFW_KEY_DELETE) == GLFW_PRESS) & (!EWindow::button_main_group_pressed) & (selected_entity != NULL))&(!EButton::any_input))
@@ -1393,9 +1483,9 @@ void EWindowEditor::update(float _d)
 			autobuilding_selected_wall = 0;
 			autobuilding_selected_texture_variant = 0;
 
-			count_of_floors = selected_entity->autobuilding_floor_list.size();
+			//count_of_floors = selected_entity->autobuilding_floor_list.size();
 
-			if (count_of_floors > 0)
+			if (selected_entity->autobuilding_floor_list.size() > 0)
 			{
 				count_of_variants
 					=
@@ -2097,6 +2187,9 @@ void EWindowEditor::update(float _d)
 
 	if ((editor_mode == EditMode::EditAutobuilding) & (selected_entity != NULL))
 	{
+		select_new_floor();
+		select_new_wall();
+		select_new_variant();
 		Entity::assembly_autobuilding_sprites(selected_entity);
 	}
 
@@ -2638,6 +2731,29 @@ void EWindowEditor::refresh_autobuilding()
 
 void EWindowEditor::select_new_variant()
 {
+	
+
+	if
+	(
+		autobuilding_selected_texture_variant
+		>=
+		selected_entity->
+		autobuilding_floor_list.at(autobuilding_selected_floor)->
+		wall_list.at(autobuilding_selected_wall)->
+		texture_variant_list.size()
+	)
+	{
+		autobuilding_selected_texture_variant
+		=
+		selected_entity->
+		autobuilding_floor_list.at(autobuilding_selected_floor)->
+		wall_list.at(autobuilding_selected_wall)->
+		texture_variant_list.size() - 1;
+	}
+
+	if (autobuilding_selected_texture_variant < 0)
+	{autobuilding_selected_texture_variant = 0;}
+
 	if
 	(
 		selected_entity->
@@ -2707,12 +2823,38 @@ void EWindowEditor::select_new_variant()
 
 void EWindowEditor::select_new_floor()
 {
-	if (count_of_floors > 0)
+	if
+		(
+			autobuilding_selected_floor
+			>=
+			selected_entity->autobuilding_floor_list.size()
+		)
 	{
-		if (autobuilding_selected_floor >= count_of_floors)
-		{
-			autobuilding_selected_floor = count_of_floors - 1;
-		}
+		autobuilding_selected_floor
+		=
+		selected_entity->autobuilding_floor_list.size() - 1;
+	}
+
+	if
+		(
+			autobuilding_selected_floor
+			<
+			0
+			)
+	{
+		autobuilding_selected_floor = 0;
+	}
+
+	if (selected_entity->autobuilding_floor_list.size() <= 0)
+	{
+		Entity::building_autogen_floor* new_floor = new Entity::building_autogen_floor;
+		selected_entity->autobuilding_floor_list.push_back(new_floor);
+
+		link_to_floors_array->button_list.at(0)->is_active = true;
+	}
+
+	if (selected_entity->autobuilding_floor_list.size() > 0)
+	{
 
 		int id = 0;
 		for (EButton* b : link_to_floors_array->button_list)
@@ -2771,6 +2913,12 @@ void EWindowEditor::select_new_floor()
 
 void EWindowEditor::select_new_wall()
 {
+	link_to_mirror_button->target_address_for_bool
+	=
+	selected_entity->
+	autobuilding_floor_list.at(autobuilding_selected_floor)->
+	wall_list.at(autobuilding_selected_wall)->is_mirrored;
+
 	for (int i = 0; i < EWindow::window_editor->building_autogenerator_wall_button_link.size(); i++)
 	{
 		EButton* sbut = EWindow::window_editor->building_autogenerator_wall_button_link.at(i);

@@ -737,39 +737,9 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 
 		if (!spr->sprite_struct_list.empty())//if non empty sprite list
 		if (spr->sprite_struct_list.at(frame_id)->gabarite != NULL)
-		for (int f=0; f<end_frame; f++)
-		for (int i=0; i < *spr->sprite_struct_list.at(frame_id)->copies; i++)
+		//for (int f=0; f<end_frame; f++)
+		//for (int i=0; i < *spr->sprite_struct_list.at(frame_id)->copies; i++)
 		{
-
-			if (*spr->wall_mode)
-			{
-				if (f == 0)//wall
-				{
-					frame_id = 1;
-					offset_x_begin = *spr->sprite_struct_list.at(0)->gabarite->size_x * *spr->sprite_struct_list.at(0)->copies + *spr->sprite_struct_list.at(0)->offset_x;
-					offset_y_begin = *spr->sprite_struct_list.at(0)->offset_y;
-				}
-				else
-				if (f == 1)//left corner
-				{
-					frame_id = 0;
-					offset_x_begin = 0.0f;
-					offset_y_begin = 0.0f;
-				}
-				else//right corner
-				{
-					frame_id = 2;
-
-					offset_x_begin
-					=
-					*spr->sprite_struct_list.at(0)->gabarite->size_x * *spr->sprite_struct_list.at(0)->copies + *spr->sprite_struct_list.at(0)->offset_x
-					+
-					*spr->sprite_struct_list.at(1)->gabarite ->size_x * *spr->sprite_struct_list.at(1)->copies + *spr->sprite_struct_list.at(1)->offset_x;
-
-					offset_y_begin = *spr->sprite_struct_list.at(0)->offset_y + *spr->sprite_struct_list.at(2)->offset_y;
-				}
-				//frame_id = f;
-			}
 
 			if
 				(
@@ -805,7 +775,7 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 				if (_is_shadow_mode)
 				{
 					if (_transparent_is_height)
-					{_b->setcolor_alpha(EColor::COLOR_LAZURE_SHADOW, (*spr->sprite_struct_list.at(frame_id)->shadow_tall + *spr->sprite_struct_list.at(frame_id)->offset_z) / 512.0f);}
+					{_b->setcolor_alpha(EColor::COLOR_LAZURE_SHADOW, (*spr->sprite_struct_list.at(frame_id)->shadow_tall + *spr->sprite_struct_list.at(frame_id)->offset_z) / 1024.0f);}
 					else
 					{_b->setcolor(EColor::COLOR_LAZURE_SHADOW);}
 
@@ -817,27 +787,47 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 
 			if (!_is_shadow_mode)
 			{
-				_b->draw_gabarite_shadowmap_fragment
-				(
-					round(*_e->position_x) + *spr->sprite_struct_list.at(frame_id)->offset_x + i * *spr->sprite_struct_list.at(frame_id)->gabarite->size_x + offset_x_begin,
-					round(*_e->position_y) + *spr->sprite_struct_list.at(frame_id)->offset_y + offset_y_begin + *spr->sprite_struct_list.at(frame_id)->offset_z,
+				if (*spr->is_mirrored)
+				{
+					_b->draw_gabarite_shadowmap_fragment_mirrored
+					(
+						round(*_e->position_x) + *spr->sprite_struct_list.at(frame_id)->offset_x + offset_x_begin,
+						round(*_e->position_y) + *spr->sprite_struct_list.at(frame_id)->offset_y + offset_y_begin + *spr->sprite_struct_list.at(frame_id)->offset_z,
 
-					0.0f,
-					*spr->sprite_struct_list.at(frame_id)->gabarite->size_y,
+						0.0f,
+						*spr->sprite_struct_list.at(frame_id)->gabarite->size_y,
 
-					spr->sprite_struct_list.at(frame_id)->gabarite,
-					spr->sprite_struct_list.at(frame_id)->supermap,
-					*spr->sprite_struct_list.at(frame_id)->offset_z,
-					*spr->sprite_struct_list.at(frame_id)->fragment_x,
-					*spr->sprite_struct_list.at(frame_id)->fragment_y
-				);
+						spr->sprite_struct_list.at(frame_id)->gabarite,
+						spr->sprite_struct_list.at(frame_id)->supermap,
+						*spr->sprite_struct_list.at(frame_id)->offset_z,
+						*spr->sprite_struct_list.at(frame_id)->fragment_x,
+						*spr->sprite_struct_list.at(frame_id)->fragment_y
+					);
+				}
+				else
+				{
+					_b->draw_gabarite_shadowmap_fragment
+					(
+						round(*_e->position_x) + *spr->sprite_struct_list.at(frame_id)->offset_x + offset_x_begin,
+						round(*_e->position_y) + *spr->sprite_struct_list.at(frame_id)->offset_y + offset_y_begin + *spr->sprite_struct_list.at(frame_id)->offset_z,
+
+						0.0f,
+						*spr->sprite_struct_list.at(frame_id)->gabarite->size_y,
+
+						spr->sprite_struct_list.at(frame_id)->gabarite,
+						spr->sprite_struct_list.at(frame_id)->supermap,
+						*spr->sprite_struct_list.at(frame_id)->offset_z,
+						*spr->sprite_struct_list.at(frame_id)->fragment_x,
+						*spr->sprite_struct_list.at(frame_id)->fragment_y
+					);
+				}
 			}
 			else
 			{
 				_b->draw_gabarite_skew
 				(
-					*_e->position_x + *spr->sprite_struct_list.at(frame_id)->offset_x + i * *spr->sprite_struct_list.at(frame_id)->gabarite->size_x + offset_x_begin,
-					*_e->position_y + *spr->sprite_struct_list.at(frame_id)->offset_y + offset_y_begin + *spr->sprite_struct_list.at(frame_id)->offset_y,
+					*_e->position_x + *spr->sprite_struct_list.at(frame_id)->offset_x + offset_x_begin,
+					*_e->position_y + *spr->sprite_struct_list.at(frame_id)->offset_y + offset_y_begin,
 
 					*spr->sprite_struct_list.at(frame_id)->shadow_size_x,
 					*spr->sprite_struct_list.at(frame_id)->shadow_size_y,
@@ -1008,6 +998,10 @@ void Entity::update_building_autogenerator_massive(Entity* _selected)
 				texture_variant_list.at(dolboyob)->
 				texture;
 
+				
+
+
+
 			}
 			else
 			{
@@ -1018,6 +1012,8 @@ void Entity::update_building_autogenerator_massive(Entity* _selected)
 
 			dolboyob++;
 		}
+
+
 
 		//EWindow::window_editor->count_of_floors = id;
 
@@ -1036,14 +1032,38 @@ void Entity::update_building_autogenerator_massive(Entity* _selected)
 			dolboyob++;
 		}
 
-		std::cout << "floor list size" + std::to_string(_selected->autobuilding_floor_list.size()) << std::endl;
-		EWindow::window_editor->count_of_floors = _selected->autobuilding_floor_list.size();
+		//get #supermap
+		for (int i = 0; i < _selected->autobuilding_floor_list.size(); i++)
+		{
+			building_autogen_floor* fl = _selected->autobuilding_floor_list.at(i);
+
+			for (int j = 0; j < fl->wall_list.size(); j++)
+			{
+				wall_element* we = fl->wall_list.at(j);
+
+				for (int k = 0; k < we->texture_variant_list.size(); k++)
+				{
+					wall_texture_variant* va = we->texture_variant_list.at(k);
+					if (va->texture != NULL)
+					{
+
+						//EWindow::window_editor->
+						va->supermap = ETextureAtlas::put_texture_to_atlas(va->texture->name.substr(0, va->texture->name.length() - 4) + "#supermap.png", EWindow::default_texture_atlas);
+					}
+
+				}
+			}
+		}
+
+		//std::cout << "floor list size" + std::to_string(_selected->autobuilding_floor_list.size()) << std::endl;
+		//EWindow::window_editor->count_of_floors = EWindow::window_editor->selected_entity->autobuilding_floor_list.size();
 		//;
 	}
 
 
 
 	EWindow::window_editor->select_new_floor();
+	EWindow::window_editor->select_new_wall();
 	EWindow::window_editor->select_new_variant();
 }
 
@@ -1066,6 +1086,7 @@ if (spr->sprite_struct_list.at(_at_)->supermap == NULL){spr->sprite_struct_list.
 *spr->sprite_struct_list.at(_at_)->offset_z = oz;\
 *spr->sprite_struct_list.at(_at_)->fragment_x = 1.0f;\
 *spr->sprite_struct_list.at(_at_)->fragment_y = 1.0f;\
+*spr->is_mirrored = *floor->wall_list.at(Entity::WallElementIndex::_wei_)->is_mirrored;\
 sprite_order++;\
 if (sprite_order >= _e->sprite_list.size()) {spr = new ESprite(); _e->sprite_list.push_back(spr);}
 
@@ -1131,9 +1152,12 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 		*spr->sprite_struct_list.at(0)->fragment_x = 1.0f;
 		*spr->sprite_struct_list.at(0)->fragment_y = 1.0f;
 		spr->sprite_struct_list.at(0)->gabarite = NULL;
+		*spr->is_shadow = false;
+		*spr->is_mirrored = false;
 	}
 
-	for (int z=0; z<EWindow::window_editor->count_of_floors; z++)
+	int floor_id = 0;
+	for (int z=0; z< EWindow::window_editor->selected_entity->autobuilding_floor_list.size(); z++)
 	//for (Entity::building_autogen_floor* floor : _e->autobuilding_floor_list)
 	{
 		Entity::building_autogen_floor* floor = _e->autobuilding_floor_list.at(z);
@@ -1635,34 +1659,34 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 		}
 		
 		//shadow
-		
+		//logger("roof: " + std::to_string(floor_id) + " [size of shadows tvl: " + std::to_string(floor->wall_list.at(Entity::WallElementIndex::WEI_SHADOW)->texture_variant_list.size()));
 		if (AB_MACRO_is_valid(WEI_SHADOW, random_select))
-		for (int i = 0; i < floor->wall_list.at(Entity::WallElementIndex::WEI_SHADOW)->texture_variant_list.size(); i++)
+		for (int shad = 0; shad < floor->wall_list.at(Entity::WallElementIndex::WEI_SHADOW)->texture_variant_list.size(); shad++)
 		{
-
-
+			
+			logger("create shade sprite");
 			spr = _e->sprite_list.at(sprite_order);
 
-			ox = AB_MACRO_get_texture_offset(WEI_SHADOW, random_select, offset_x);
-			oy = AB_MACRO_get_texture_offset(WEI_SHADOW, random_select, offset_y);
-			oz = AB_MACRO_get_texture_offset(WEI_SHADOW, random_select, offset_z);
+			ox = AB_MACRO_get_texture_offset(WEI_SHADOW, shad, offset_x);
+			oy = AB_MACRO_get_texture_offset(WEI_SHADOW, shad, offset_y);
+			oz = AB_MACRO_get_texture_offset(WEI_SHADOW, shad, offset_z);
 
-			if (i >= spr->sprite_struct_list.size())
+			/*if (i >= spr->sprite_struct_list.size())
 			{
 				ESprite::sprite_struct* s_struct = new ESprite::sprite_struct;
 				spr->sprite_struct_list.push_back(s_struct);
-			}
+			}*/
 
-			AB_MACRO_append_sprite_data(WEI_SHADOW, random_select, i);
+			AB_MACRO_append_sprite_data(WEI_SHADOW, random_select, 0);
 
 
 
 			*spr->is_shadow = true;
-			*spr->sprite_struct_list.at(i)->shadow_size_x = *floor->wall_list.at(Entity::WallElementIndex::WEI_SHADOW)->texture_variant_list.at(i)->shadow_size_x;
-			*spr->sprite_struct_list.at(i)->shadow_size_y = *floor->wall_list.at(Entity::WallElementIndex::WEI_SHADOW)->texture_variant_list.at(i)->shadow_size_y;
+			*spr->sprite_struct_list.at(0)->shadow_size_x = *floor->wall_list.at(Entity::WallElementIndex::WEI_SHADOW)->texture_variant_list.at(shad)->shadow_size_x;
+			*spr->sprite_struct_list.at(0)->shadow_size_y = *floor->wall_list.at(Entity::WallElementIndex::WEI_SHADOW)->texture_variant_list.at(shad)->shadow_size_y;
 
-			*spr->sprite_struct_list.at(i)->bottom_tall = *floor->wall_list.at(Entity::WallElementIndex::WEI_SHADOW)->texture_variant_list.at(i)->tall_bottom;
-			*spr->sprite_struct_list.at(i)->shadow_tall = *floor->wall_list.at(Entity::WallElementIndex::WEI_SHADOW)->texture_variant_list.at(i)->tall_up;
+			*spr->sprite_struct_list.at(0)->bottom_tall = *floor->wall_list.at(Entity::WallElementIndex::WEI_SHADOW)->texture_variant_list.at(shad)->tall_bottom;
+			*spr->sprite_struct_list.at(0)->shadow_tall = *floor->wall_list.at(Entity::WallElementIndex::WEI_SHADOW)->texture_variant_list.at(shad)->tall_up;
 
 		}
 
@@ -1681,6 +1705,8 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 			*spr->sprite_struct_list.at(0)->offset_x = 0;
 			*spr->sprite_struct_list.at(0)->offset_y = 0;
 			*spr->sprite_struct_list.at(0)->offset_z = 0;*/
+
+		floor_id++;
 		}
 
 	
@@ -2075,6 +2101,7 @@ ESprite::~ESprite()
 	delete wall_mode;
 	delete is_shadow;
 	delete rotate_by_target_gun;
+	delete is_mirrored;
 }
 
 EItem::EItem()

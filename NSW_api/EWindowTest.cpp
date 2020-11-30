@@ -146,7 +146,7 @@ void EWindowTest::update(float _d)
 	}
 	add_time_process("UPDATE BEGIN");
 
-	day_time += _d/1000.0f;
+	day_time += _d/10000.0f;
 
 	if (day_time > 2.0f)
 	{
@@ -234,11 +234,11 @@ void EWindowTest::update(float _d)
 
 	if ((EWindow::window_editor->is_active) & (!EButton::any_input))
 	{
-		if (glfwGetKey(EWindow::main_window, GLFW_KEY_W) == GLFW_PRESS) { free_camera_y += 512.0f / game_camera->zoom * _d; }
-		if (glfwGetKey(EWindow::main_window, GLFW_KEY_S) == GLFW_PRESS) { free_camera_y -= 512.0f / game_camera->zoom * _d; }
+		if (glfwGetKey(EWindow::main_window, GLFW_KEY_W) == GLFW_PRESS) { free_camera_y += 1024.0f / game_camera->zoom * _d; }
+		if (glfwGetKey(EWindow::main_window, GLFW_KEY_S) == GLFW_PRESS) { free_camera_y -= 1024.0f / game_camera->zoom * _d; }
 																								 
-		if (glfwGetKey(EWindow::main_window, GLFW_KEY_A) == GLFW_PRESS) { free_camera_x -= 512.0f / game_camera->zoom * _d; }
-		if (glfwGetKey(EWindow::main_window, GLFW_KEY_D) == GLFW_PRESS) { free_camera_x += 512.0f / game_camera->zoom * _d; }
+		if (glfwGetKey(EWindow::main_window, GLFW_KEY_A) == GLFW_PRESS) { free_camera_x -= 1024.0f / game_camera->zoom * _d; }
+		if (glfwGetKey(EWindow::main_window, GLFW_KEY_D) == GLFW_PRESS) { free_camera_x += 1024.0f / game_camera->zoom * _d; }
 	}
 
 	if (EWindow::window_editor->is_active)
@@ -1559,8 +1559,8 @@ void EWindowTest::draw(float _d)
 	EGraphicCore::shadowmap->use();
 	EGraphicCore::batch_shadowmap->setcolor(EColor::COLOR_WHITE);
 
-	EGraphicCore::batch_shadowmap->screen_w = EWindow::shadow_FBO->size_x;
-	EGraphicCore::batch_shadowmap->screen_h = EWindow::shadow_FBO->size_y;
+	EGraphicCore::batch_shadowmap->shadow_FBO_w = EWindow::shadow_FBO->size_x;
+	EGraphicCore::batch_shadowmap->shadow_FBO_h = EWindow::shadow_FBO->size_y;
 	EGraphicCore::batch_shadowmap->zoom = game_camera->zoom;
 
 	transformLoc = glGetUniformLocation(EGraphicCore::shadowmap->ID, "transform");
@@ -1572,16 +1572,25 @@ void EWindowTest::draw(float _d)
 	GLint loc_y = glGetUniformLocation(EGraphicCore::shadowmap->ID, "offset_y");
 	glUniform1f(loc_y, (round(EGraphicCore::SCR_HEIGHT / 2.0f) - game_camera->position_y + 500.0f) / EWindow::shadow_FBO->size_y);
 
+	GLint ssx = glGetUniformLocation(EGraphicCore::shadowmap->ID, "screen_size_x");
+	glUniform1f(ssx, (EGraphicCore::SCR_WIDTH));
+
+	GLint ssy = glGetUniformLocation(EGraphicCore::shadowmap->ID, "screen_size_y");
+	glUniform1f(ssy, (EGraphicCore::SCR_HEIGHT));
+
+	GLint GLzoom = glGetUniformLocation(EGraphicCore::shadowmap->ID, "zoom");
+	glUniform1f(GLzoom, game_camera->zoom);
+
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, EWindow::default_texture_atlas->colorbuffer);
 	EGraphicCore::shadowmap->setInt("texture1", 0);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);//texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);//texture filtering
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);//
 
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, EWindow::shadow_FBO->colorbuffer);
 	EGraphicCore::shadowmap->setInt("texture2", 1);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);//texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);//texture filtering
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);//
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);

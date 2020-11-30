@@ -310,6 +310,8 @@ public:
 		float* offset_y = new float(0.0f);
 		float* offset_z = new float(0.0f);
 
+		bool* is_mirrored = new bool(false);
+
 
 	};
 
@@ -448,6 +450,8 @@ public:
 		EGabarite* gabarite = NULL;
 		EGabarite* supermap = NULL;
 
+		
+
 		~sprite_struct()
 		{
 			delete offset_x;
@@ -466,6 +470,8 @@ public:
 
 			gabarite = NULL;
 			supermap = NULL;
+
+			
 		}
 	};
 
@@ -487,7 +493,7 @@ public:
 	bool* wall_mode = new bool(false);
 	bool* is_shadow = new bool(false);
 	bool* rotate_by_target_gun = new bool(false);
-
+	bool* is_mirrored = new bool(false);
 	
 
 	static void clear_default_data(ESprite* _sprite);

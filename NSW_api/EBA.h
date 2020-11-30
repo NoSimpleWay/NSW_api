@@ -72,7 +72,9 @@ public:
 
 
 	static void action_set_constant_int_to_address(EButton* _b, float _d);
+
 	static void action_set_constant_bool_to_address(EButton* _b, float _d);
+	static void action_set_button_value_bool_to_address(EButton* _b, float _d);
 
 	static void action_set_button_value_float_to_address(EButton* _b, float _d);
 

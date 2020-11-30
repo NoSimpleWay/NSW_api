@@ -156,7 +156,7 @@ public:
 	void select_new_wall();
 
 	int count_of_variants;
-	int count_of_floors;
+	//int count_of_floors;
 
 	static EButton* link_to_blur_button;
 	static EButton* link_to_blend_button;
@@ -164,6 +164,7 @@ public:
 
 	static EButton* link_to_bottom_tall_button;
 	static EButton* link_to_upper_tall_button;
+	static EButton* link_to_mirror_button;
 
 
 

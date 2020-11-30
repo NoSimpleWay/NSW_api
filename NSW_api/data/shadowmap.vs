@@ -14,6 +14,9 @@ out vec2 SuperMapCoord;
 out vec2 LightMapCoord;
 out float FullShadowCoord;
 
+out float camera_x;
+out float camera_y;
+
 uniform mat4 transform;
 
 void main()
@@ -27,4 +30,8 @@ void main()
 	SuperMapCoord = vec2(aSuperMapCoord.x, aSuperMapCoord.y);
 	LightMapCoord = vec2(aLightmapCoord.x, aLightmapCoord.y);
 	FullShadowCoord = aFullShadowCoord;
+	
+	camera_x = gl_Position.x;
+	camera_y = gl_Position.y;
+	
 }

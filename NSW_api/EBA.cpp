@@ -98,7 +98,7 @@ void EBA::action_set_sprite_texture(EButton* _b, float _d)
 
 	//_b->gabarite = EWindow::window_editor->selected_entity->autobuilding_floor_list.at(ed->autobuilding_selected_floor)->wall_list.at(ed->autobuilding_selected_wall)->texture_variant_list.at(ed->selected_building_autogenerator_texture_variant)->texture;
 	
-	ed->selected_entity->autobuilding_floor_list.at(ed->autobuilding_selected_floor)->
+		ed->selected_entity->autobuilding_floor_list.at(ed->autobuilding_selected_floor)->
 	wall_list.at(ed->autobuilding_selected_wall)->
 	texture_variant_list.at(ed->autobuilding_selected_texture_variant)->
 	texture
@@ -177,6 +177,8 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 		if (*spr->is_shadow) { w_string += "*shadow\n"; }
 		if (*spr->wall_mode) { w_string += "*wall_mode\n"; }
 		if (*spr->rotate_by_target_gun) { w_string += "*target_gun\n"; }
+		if (*spr->is_mirrored) { w_string += "*texture_mirrored\n";}
+
 
 		order = 0;
 		for (ESprite::sprite_struct* spr : spr->sprite_struct_list)
@@ -225,6 +227,7 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 			w_string += "fragment_y\t";
 			w_string += std::to_string(*spr->fragment_y);
 			w_string += "\n";
+		
 
 
 
@@ -252,6 +255,9 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 				w_string += std::to_string(*w->repeat_x) + "\t";
 				w_string += std::to_string(*w->repeat_y);
 			w_string += "\n";
+
+			if (*w->is_mirrored)
+			{ w_string += "*wall_is_mirrored\t"; }
 
 			for (Entity::wall_texture_variant* t : w->texture_variant_list)
 			if ((t != NULL)&&(t->texture != NULL))
@@ -411,6 +417,11 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 
 void EBA::action_save_map(EButton* _b, float _d)
 {
+
+	if (EWindow::window_editor->selected_entity != NULL)
+	{
+		Entity::delete_unused_sprites(EWindow::window_editor->selected_entity);
+	}
 	//Entity* just_created_entity = NULL;
 	std::cout << "save" << std::endl;
 
@@ -635,6 +646,7 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 				}
 
 				//Controlled by Player
+				if (EFile::data_array[i] == "*texture_mirrored") { *just_created_sprite->is_mirrored = true; }
 				if (EFile::data_array[i] == "*rotate_by_move") { *just_created_sprite->rotate_by_move = true; }
 				if (EFile::data_array[i] == "*shadow") { *just_created_sprite->is_shadow = true; }
 				if (EFile::data_array[i] == "*wall_mode") { *just_created_sprite->wall_mode = true; }
@@ -732,13 +744,15 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 					i++;  *just_created_floor->offset_x																= std::stof(EFile::data_array[i]);
 					i++;  *just_created_floor->offset_y																= std::stof(EFile::data_array[i]);
 					i++;  *just_created_floor->offset_z																= std::stof(EFile::data_array[i]);
-					i++;  std::cout << "|" << EFile::data_array[i] << "|" << std::endl; if (EFile::data_array[i] != "")*just_created_floor->bottom_roof_offset_multiplier = std::stof(EFile::data_array[i]);
-					i++;  std::cout << "|" << EFile::data_array[i] << "|" << std::endl; if (EFile::data_array[i] != "")  *just_created_floor->up_roof_offset_multiplier = std::stof(EFile::data_array[i]);
-					i++;  std::cout << "|" << EFile::data_array[i] << "|" << std::endl; if (EFile::data_array[i] != "")  *just_created_floor->horizontal_roof_offset_multiplier	= std::stof(EFile::data_array[i]);
+					//i++;  std::cout << "|" << EFile::data_array[i] << "|" << std::endl; if (EFile::data_array[i] != "")*just_created_floor->bottom_roof_offset_multiplier = std::stof(EFile::data_array[i]);
+					//i++;  std::cout << "|" << EFile::data_array[i] << "|" << std::endl; if (EFile::data_array[i] != "")  *just_created_floor->up_roof_offset_multiplier = std::stof(EFile::data_array[i]);
+					//i++;  std::cout << "|" << EFile::data_array[i] << "|" << std::endl; if (EFile::data_array[i] != "")  *just_created_floor->horizontal_roof_offset_multiplier	= std::stof(EFile::data_array[i]);
 
 					wall_id = 0;
 				}
 				
+				if ((EFile::data_array[i] == "*wall_is_mirrored")&(just_created_wall != NULL))
+				{*just_created_wall->is_mirrored = true;}
 
 				if (EFile::data_array[i] == "add_new_wall_for_floor")
 				{
@@ -765,6 +779,11 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 					i++;  *just_created_texture_variant->offset_x = std::stof(EFile::data_array[i]);
 					i++;  *just_created_texture_variant->offset_y = std::stof(EFile::data_array[i]);
 					i++;  *just_created_texture_variant->offset_z = std::stof(EFile::data_array[i]);
+
+					i++;  *just_created_texture_variant->shadow_size_x = std::stof(EFile::data_array[i]);
+					i++;  *just_created_texture_variant->shadow_size_y = std::stof(EFile::data_array[i]);
+					i++;  *just_created_texture_variant->tall_bottom = std::stof(EFile::data_array[i]);
+					i++;  *just_created_texture_variant->tall_up = std::stof(EFile::data_array[i]);
 				}
 			}
 		}
@@ -1097,8 +1116,17 @@ void EBA::action_set_constant_bool_to_address(EButton* _b, float _d)
 	*_b->target_address_for_bool = *_b->target_value_for_bool;
 }
 
+void EBA::action_set_button_value_bool_to_address(EButton* _b, float _d)
+{
+	if ((_b->target_address_for_bool != NULL) & (*_b->is_checkbox))
+	{
+		*_b->target_address_for_bool = *_b->is_checked;
+	}
+}
+
 void EBA::action_set_button_value_float_to_address(EButton* _b, float _d)
 {
+	//logger("OWO");
 	if (_b->have_input_mode)
 	{
 		*_b->target_address_for_float = EMath::to_float(_b->text);
@@ -1143,13 +1171,17 @@ void EBA::action_add_new_texture_variant_button(EButton* _b, float _d)
 
 	if ((EWindow::window_editor->selected_entity != NULL) & (EWindow::window_editor->selected_entity->autobuilding_floor_list.size() > 0))
 	{
+		Entity::wall_texture_variant* tv = new Entity::wall_texture_variant;
+
 		EWindow::window_editor->
 		selected_entity->
 		autobuilding_floor_list.at
 		(EWindow::window_editor->autobuilding_selected_floor)->
 		wall_list.at
 		(EWindow::window_editor->autobuilding_selected_wall)->
-		texture_variant_list.push_back(new Entity::wall_texture_variant);
+		texture_variant_list.push_back(tv);
+
+		if (EWindow::window_editor->autobuilding_selected_wall == Entity::WallElementIndex::WEI_SHADOW) { tv->texture = EGraphicCore::gabarite_white_pixel; }
 	}
 }
 
@@ -1266,7 +1298,7 @@ void EBA::action_deactivate_floors(EButton* _b, float _d)
 		EWindow::window_editor->link_to_floors_array->button_list.at(i)->data_id = i;
 	}
 
-	EWindow::window_editor->count_of_floors--;
+	//EWindow::window_editor->count_of_floors--;
 
 	
 
@@ -1318,7 +1350,7 @@ void EBA::action_move_floor_order(EButton* _b, float _d)
 	}
 
 	//>>>
-	if ((_b->data_id == 1) & (EWindow::window_editor->autobuilding_selected_floor < EWindow::window_editor->count_of_floors - 1))
+	if ((_b->data_id == 1) & (EWindow::window_editor->autobuilding_selected_floor < EWindow::window_editor->selected_entity->autobuilding_floor_list.size() - 1))
 	{
 		swap = EWindow::window_editor->selected_entity->autobuilding_floor_list.at(EWindow::window_editor->autobuilding_selected_floor);
 
@@ -1348,7 +1380,7 @@ void EBA::action_select_floor(EButton* _b, float _d)
 
 	EWindow::window_editor->move_mode = EWindowEditor::MoveMode::MoveFloor;
 
-	std::cout << "floor count: " << std::to_string(EWindow::window_editor->count_of_floors) << std::endl;
+	//std::cout << "floor count: " << std::to_string(EWindow::window_editor->count_of_floors) << std::endl;
 }
 
 void EBA::action_select_texture_variant(EButton* _b, float _d)

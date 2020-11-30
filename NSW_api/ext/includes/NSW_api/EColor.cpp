@@ -30,6 +30,8 @@ EColorCollection* EColor::COLOR_SHADOW_TIME_DAWN	= new EColorCollection(0.03f, 0
 EColorCollection* EColor::COLOR_SHADOW_TIME_NOON	= new EColorCollection(0.5f, 0.55f, 0.6f, 1.0);
 EColorCollection* EColor::COLOR_SHADOW_TIME_SUNSET	= new EColorCollection(0.0f, 0.05f, 0.1f, 1.0);
 
+EColorCollection* EColor::COLOR_LIME				= new EColorCollection(0.6f, 1.0f, 0.5f, 1.0);
+
 
 
 EColor::EColor(float _r, float _g, float _b, float _a)

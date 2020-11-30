@@ -235,6 +235,11 @@ void EButton::update(float _d)
 		{
 			slider_value = *target_address_for_float;
 		}
+
+		if ((*is_checkbox) & (target_address_for_bool != NULL))
+		{
+			*is_checked = *target_address_for_bool;
+		}
 	}
 
 	if ((is_overlap()) & (have_input_mode) & (input_only_numbers) & (text != "") & (EWindow::scroll != 0))
@@ -452,6 +457,9 @@ void EButton::update(float _d)
 
 
 		click_event();
+
+		if (*is_checkbox) {*is_checked = !*is_checked;}
+
 		if ((action_on_left_click != NULL) & (*click_timer <= 0.0f))
 		{
 			action_on_left_click(this, _d);
@@ -467,6 +475,7 @@ void EButton::update(float _d)
 			*click_timer = -1.0f;
 		}
 
+		
 		
 	}
 
@@ -490,7 +499,8 @@ void EButton::update(float _d)
 		{
 			shift_value *= 0.1f;
 		}
-		slider_value = EMath::clamp_value_float(slider_value + EWindow::mouse_speed_x * shift_value * slider_value_multiplier, 0.0f, 1.0f);
+
+		slider_value = EMath::clamp_value_float(slider_value + EWindow::mouse_speed_x * shift_value * slider_value_multiplier * *maximum_value, 0.0f, *maximum_value);
 
 		slider_drag_event();
 
@@ -504,7 +514,7 @@ void EButton::update(float _d)
 	if (((is_slider) || (*is_radial_button)) && (slider_activate) && (!slider_is_horizontal))
 	{
 		slider_value = 1.0f - (EWindow::mouse_y - master_position_y) / button_size_y;
-		slider_value = EMath::clamp_value_float(slider_value, 0.0f, 1.0f);
+		slider_value = EMath::clamp_value_float(slider_value, 0.0f, *maximum_value);
 
 		slider_drag_event();
 
@@ -790,18 +800,18 @@ void EButton::default_draw(Batcher* _batch, float _d)
 		if (slider_is_horizontal)
 		{
 			_batch->setcolor(EColor::COLOR_WHITE);
-			_batch->draw_gabarite(master_position_x + (button_size_x - 3.0f) * slider_value - 1, master_position_y - 1, 5, button_size_y + 2, EGraphicCore::gabarite_white_pixel);
+			_batch->draw_gabarite(master_position_x + (button_size_x - 3.0f) * slider_value / *maximum_value - 1, master_position_y - 1, 5, button_size_y + 2, EGraphicCore::gabarite_white_pixel);
 
 			_batch->setcolor(EColor::COLOR_BLACK);
-			_batch->draw_gabarite(master_position_x + (button_size_x - 3.0f) * slider_value, master_position_y, 3, button_size_y, EGraphicCore::gabarite_white_pixel);
+			_batch->draw_gabarite(master_position_x + (button_size_x - 3.0f) * slider_value / *maximum_value, master_position_y, 3, button_size_y, EGraphicCore::gabarite_white_pixel);
 		}
 		else
 		{
 			_batch->setcolor(EColor::COLOR_WHITE);
-			_batch->draw_gabarite(master_position_x - 1, master_position_y - 31.0f + button_size_y - (button_size_y - 32.0f) * slider_value, button_size_x + 2, 32.0f, EGraphicCore::gabarite_white_pixel);
+			_batch->draw_gabarite(master_position_x - 1, master_position_y - 31.0f + button_size_y - (button_size_y - 32.0f) * slider_value / *maximum_value, button_size_x + 2, 32.0f, EGraphicCore::gabarite_white_pixel);
 
 			_batch->setcolor(EColor::COLOR_BLACK);
-			_batch->draw_gabarite(master_position_x, master_position_y - 30.0f + button_size_y - (button_size_y - 32.0f) * slider_value, button_size_x, 32.0f, EGraphicCore::gabarite_white_pixel);
+			_batch->draw_gabarite(master_position_x, master_position_y - 30.0f + button_size_y - (button_size_y - 32.0f) * slider_value / *maximum_value, button_size_x, 32.0f, EGraphicCore::gabarite_white_pixel);
 		}
 
 
@@ -824,10 +834,39 @@ void EButton::default_draw(Batcher* _batch, float _d)
 		_batch->draw_gabarite(master_position_x + 40.0f, master_position_y, 100.0f, 20.0f,  EGraphicCore::gabarite_white_pixel);
 
 		_batch->setcolor(text_color);
-		target_font->draw(_batch, EString::float_to_string (round(slider_value * 1000.0f)/10.0f) + "%", master_position_x + 45.0f, master_position_y + 5.0f);
+		target_font->draw(_batch, EString::float_to_string (round(slider_value / *maximum_value * 1000.0f)/10.0f) + "%", master_position_x + 45.0f, master_position_y + 5.0f);
 
 		_batch->setcolor(EColor::COLOR_WHITE);
-		_batch->draw_gabarite(master_position_x + cos(3.14f * (1.0f - slider_value)) * 13.0f + 13.0f, master_position_y + sin(3.14f * (1.0f - slider_value)) * 13.0f + 13.0f, EGraphicCore::gabarite_radial_button_dot);
+		_batch->draw_gabarite(master_position_x + cos(3.14f * (1.0f - slider_value / *maximum_value)) * 13.0f + 13.0f, master_position_y + sin(3.14f * (1.0f - slider_value / *maximum_value)) * 13.0f + 13.0f, EGraphicCore::gabarite_radial_button_dot);
+	}
+
+	if (*is_checkbox)
+	{
+		if (*is_checked)
+		{
+			_batch->setcolor(EColor::COLOR_GREEN);
+			_batch->draw_rama(master_position_x + button_size_x + 2.0f - button_size_y, master_position_y + 2.0f, button_size_y - 4.0f, button_size_y - 4.0f, 2.0f, EGraphicCore::gabarite_white_pixel);
+
+			_batch->setcolor(EColor::COLOR_DARK_GREEN);
+			_batch->draw_gabarite(master_position_x + button_size_x + 4.0f - button_size_y, master_position_y + 4.0f, button_size_y - 8.0f, button_size_y -8.0f, EGraphicCore::gabarite_white_pixel);
+
+			rama_color->set_color(EColor::COLOR_WHITE);
+			bg_color->set_color(EColor::COLOR_LIME);
+			text_color->set_color(EColor::COLOR_BLACK);
+		}
+		else
+		{
+			_batch->setcolor(EColor::COLOR_RED);
+			_batch->draw_rama(master_position_x + button_size_x + 2.0f - button_size_y, master_position_y + 2.0f, button_size_y - 4.0f, button_size_y - 4.0f, 2.0f, EGraphicCore::gabarite_white_pixel);
+
+			_batch->setcolor(EColor::COLOR_BLACK);
+			_batch->draw_gabarite(master_position_x + button_size_x + 4.0f - button_size_y, master_position_y + 4.0f, button_size_y - 8.0f, button_size_y - 8.0f, EGraphicCore::gabarite_white_pixel);
+
+			rama_color->set_color(EColor::COLOR_RED);
+			bg_color->set_color(EColor::COLOR_RED);
+			text_color->set_color(EColor::COLOR_WHITE);
+		}
+
 	}
 }
 
@@ -931,7 +970,7 @@ void EButton::text_pass(Batcher* _batch)
 		_batch->draw_gabarite(EWindow::mouse_x + 10.0f, EWindow::mouse_y - 20.0f - th, EFont::get_width(target_font, std::to_string(slider_value * slider_value_multiplier)) + 8, th, EGraphicCore::gabarite_white_pixel);
 
 		_batch->setcolor(EColor::COLOR_BLACK);
-		target_font->draw(_batch, std::to_string(slider_value * slider_value_multiplier), EWindow::mouse_x + 15.0f, EWindow::mouse_y - 34.0f);
+		target_font->draw(_batch, std::to_string(slider_value * slider_value_multiplier / *maximum_value), EWindow::mouse_x + 15.0f, EWindow::mouse_y - 34.0f);
 	}
 }
 

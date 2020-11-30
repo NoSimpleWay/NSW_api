@@ -7,8 +7,8 @@
 #include "EGabarite.h"
 
 
-float Batcher::screen_w;
-float Batcher::screen_h;
+float Batcher::shadow_FBO_w;
+float Batcher::shadow_FBO_h;
 float Batcher::zoom;
 
 float Batcher::skew_factor;
@@ -649,7 +649,7 @@ void Batcher::draw_gabarite_skew(float _x, float _y, float _collision_x, float _
 	vertices[id + 2] = batch_color_r;
 	vertices[id + 3] = batch_color_g;
 	vertices[id + 4] = batch_color_b;
-	vertices[id + 5] = batch_color_a * 0.1f;
+	vertices[id + 5] = batch_color_a / (1.0f + _tall / 100.0f) * 0.0f;
 
 	vertices[id + 6] = *_g->x2;
 	vertices[id + 7] = *_g->y2;
@@ -664,7 +664,7 @@ void Batcher::draw_gabarite_skew(float _x, float _y, float _collision_x, float _
 	vertices[id + 10] = batch_color_r;
 	vertices[id + 11] = batch_color_g;
 	vertices[id + 12] = batch_color_b;
-	vertices[id + 13] = batch_color_a * 0.1f;
+	vertices[id + 13] = batch_color_a / (1.0f + _bottom_tall / 100.0f) * 0.0f;
 
 	vertices[id + 14] = *_g->x2;
 	vertices[id + 15] = *_g->y;
@@ -719,7 +719,7 @@ void Batcher::draw_gabarite_skew(float _x, float _y, float _collision_x, float _
 	vertices[id + 2] = batch_color_r;
 	vertices[id + 3] = batch_color_g;
 	vertices[id + 4] = batch_color_b;
-	vertices[id + 5] = batch_color_a * 0.1f;
+	vertices[id + 5] = batch_color_a / (1.0f + _tall / 100.0f) * 0.0f;
 
 	vertices[id + 6] = *_g->x2;
 	vertices[id + 7] = *_g->y2;
@@ -769,7 +769,7 @@ void Batcher::draw_gabarite_skew(float _x, float _y, float _collision_x, float _
 	vertices[id + 26] = batch_color_r;
 	vertices[id + 27] = batch_color_g;
 	vertices[id + 28] = batch_color_b;
-	vertices[id + 29] = batch_color_a * 0.1f;
+	vertices[id + 29] = batch_color_a / (1.0f + _bottom_tall / 100.0f) * 0.0f;
 
 	vertices[id + 30] = *_g->x;
 	vertices[id + 31] = *_g->y2;
@@ -890,7 +890,7 @@ void Batcher::draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EG
 	vertices[id + 6] = *_g->x2;
 	vertices[id + 7] = *_g->y2;
 
-	vertices[id + 8] = (_x + *_g->size_x) * zoom / screen_w;
+	vertices[id + 8] = (_x + *_g->size_x) * zoom / shadow_FBO_w;
 	vertices[id + 9] = _z;
 
 	vertices[id + 10] = *_supermap->x2;
@@ -899,7 +899,7 @@ void Batcher::draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EG
 	vertices[id + 12] = (_x + *_g->size_x) / 12000.0f;
 	vertices[id + 13] = (_y - 4.0f) / 12000.0f;
 
-	vertices[id + 14] = (_y - _z + _h) * zoom / screen_h;
+	vertices[id + 14] = (_y - _z + _h) * zoom / shadow_FBO_h;
 
 
 
@@ -919,7 +919,7 @@ void Batcher::draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EG
 	vertices[id + 21] = *_g->x2;
 	vertices[id + 22] = *_g->y;
 
-	vertices[id + 23] = (_x + *_g->size_x) * zoom / screen_w;
+	vertices[id + 23] = (_x + *_g->size_x) * zoom / shadow_FBO_w;
 	vertices[id + 24] = _z;
 
 	vertices[id + 25] = *_supermap->x2;
@@ -928,7 +928,7 @@ void Batcher::draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EG
 	vertices[id + 27] = (_x + *_g->size_x) / 12000.0f;
 	vertices[id + 28] = (_y - 40.0f) / 12000.0f;
 
-	vertices[id + 29] = (_y + 0.0f - _z) * zoom / screen_h;
+	vertices[id + 29] = (_y + 0.0f - _z) * zoom / shadow_FBO_h;
 
 
 
@@ -946,7 +946,7 @@ void Batcher::draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EG
 	vertices[id + 36] = *_g->x;
 	vertices[id + 37] = *_g->y;
 
-	vertices[id + 38] = (_x)*zoom / screen_w;
+	vertices[id + 38] = (_x)*zoom / shadow_FBO_w;
 	vertices[id + 39] = _z;
 
 	vertices[id + 40] = *_supermap->x;
@@ -955,7 +955,7 @@ void Batcher::draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EG
 	vertices[id + 42] = (_x) / 12000.0f;
 	vertices[id + 43] = (_y - 40.0f) / 12000.0f;
 
-	vertices[id + 44] = (_y + 0.0f - _z) * zoom / screen_h;
+	vertices[id + 44] = (_y + 0.0f - _z) * zoom / shadow_FBO_h;
 
 	//#.
 	//..
@@ -971,7 +971,7 @@ void Batcher::draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EG
 	vertices[id + 51] = *_g->x;
 	vertices[id + 52] = *_g->y2;
 
-	vertices[id + 53] = (_x)*zoom / screen_w;
+	vertices[id + 53] = (_x)*zoom / shadow_FBO_w;
 	vertices[id + 54] = _z;
 
 	vertices[id + 55] = *_supermap->x;
@@ -980,7 +980,7 @@ void Batcher::draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EG
 	vertices[id + 57] = (_x) / 12000.0f;
 	vertices[id + 58] = (_y - 4.0f) / 12000.0f;
 
-	vertices[id + 59] = (_y - _z + _h) * zoom / screen_h;
+	vertices[id + 59] = (_y - _z + _h) * zoom / shadow_FBO_h;
 
 	id += 60;
 
@@ -994,32 +994,42 @@ void Batcher::draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EG
 
 void Batcher::draw_gabarite_shadowmap_fragment(float _x, float _y, float _w, float _h, EGabarite* _g, EGabarite* _supermap, float _z, float _fx, float _fy)
 {
+
+	//_fx = 0.5f;
+	//_fy = 0.5f;
 	//std::cout << "filled rect" << std::endl;
 
 	//.#
 	//..
+
+	//COORD	[0]
 	vertices[id + 0] = (_x + *_g->size_x * _fx);
 	vertices[id + 1] = (_y + *_g->size_y * _fy);
-	//vertices[id + 2] = 0;
 
+	//COLOR	[1]
 	vertices[id + 2] = batch_color_r;
 	vertices[id + 3] = batch_color_g;
 	vertices[id + 4] = batch_color_b;
 	vertices[id + 5] = batch_color_a;
 
+	//MAIN TEXTURE UV COORD	[2]
 	vertices[id + 6] = *_g->x + *_g->uv_size_x * _fx;
 	vertices[id + 7] = *_g->y + *_g->uv_size_y * _fy;
 
-	vertices[id + 8] = (_x + *_g->size_x * _fx) * zoom / screen_w;
-	vertices[id + 9] = _z;
+	//HALT COORD	[3]
+	vertices[id + 8] = (_x + *_g->size_x * _fx) * zoom / shadow_FBO_w;
+	vertices[id + 9] = *_g->size_y * _fy + _z;
 
-	vertices[id + 10] = *_supermap->x + *_g->uv_size_x * _fx;
-	vertices[id + 11] = *_supermap->y + *_g->uv_size_y * _fy;
+	//SUPERMAP TEXTURE UV COORD	[4]
+	vertices[id + 10] = *_supermap->x + *_supermap->uv_size_x * _fx;
+	vertices[id + 11] = *_supermap->y + *_supermap->uv_size_y * _fy;
 
+	//LIGHTMAP UV COORD	[5]
 	vertices[id + 12] = (_x + *_g->size_x) / 12000.0f;
-	vertices[id + 13] = (_y - 40.0f) / 12000.0f;
+	vertices[id + 13] = (_y + *_g->size_y * 0.0f) / 12000.0f;
 
-	vertices[id + 14] = (_y - _z + _h * _fy) * zoom / screen_h;
+	//SHADOW BASELINE	[6]
+	vertices[id + 14] = (_y - _z) * zoom / shadow_FBO_h;
 
 
 
@@ -1027,80 +1037,257 @@ void Batcher::draw_gabarite_shadowmap_fragment(float _x, float _y, float _w, flo
 
 	//..
 	//.#
+
+	//COORD
 	vertices[id + 15] = (_x + *_g->size_x * _fx);
 	vertices[id + 16] = _y;
 	//vertices[id + 10] = 0;
 
+	//COLOR
 	vertices[id + 17] = batch_color_r;
 	vertices[id + 18] = batch_color_g;
 	vertices[id + 19] = batch_color_b;
 	vertices[id + 20] = batch_color_a;
 
+	//MAIN TEXTURE UV COORD
 	vertices[id + 21] = *_g->x + *_g->uv_size_x * _fx;
 	vertices[id + 22] = *_g->y;
 
-	vertices[id + 23] = (_x + *_g->size_x * _fx) * zoom / screen_w ;
+	//HALT COORD
+	vertices[id + 23] = (_x + *_g->size_x * _fx) * zoom / shadow_FBO_w ;
 	vertices[id + 24] = _z;
 
-	vertices[id + 25] = *_supermap->x + *_g->uv_size_x * _fx;
+	//SUPERMAP TEXTURE UV COORD
+	vertices[id + 25] = *_supermap->x + *_supermap->uv_size_x * _fx;
 	vertices[id + 26] = *_supermap->y;
 
+	//LIGHTMAP UV COORD
 	vertices[id + 27] = (_x + *_g->size_x) / 12000.0f;
-	vertices[id + 28] = (_y - 40.0f) / 12000.0f;
+	vertices[id + 28] = (_y - 00.0f) / 12000.0f;
 
-	vertices[id + 29] = (_y + 0.0f - _z) * zoom / screen_h;
+	//SHADOW BASELINE
+	vertices[id + 29] = (_y - _z) * zoom / shadow_FBO_h;
 
 
 
 	//..
 	//#.
+
+	//COORD
 	vertices[id + 30] = _x;
 	vertices[id + 31] = _y;
 	//vertices[id + 18] = 0;
 
+	//COLOR
 	vertices[id + 32] = batch_color_r;
 	vertices[id + 33] = batch_color_g;
 	vertices[id + 34] = batch_color_b;
 	vertices[id + 35] = batch_color_a;
 
+	//MAIN TEXTURE UV COORD
 	vertices[id + 36] = *_g->x;
 	vertices[id + 37] = *_g->y;
 
-	vertices[id + 38] = (_x)*zoom / screen_w;
+	//HALT COORD
+	vertices[id + 38] = _x	*	zoom / shadow_FBO_w;
 	vertices[id + 39] = _z;
 
+	//SUPERMAP TEXTURE UV COORD
 	vertices[id + 40] = *_supermap->x;
 	vertices[id + 41] = *_supermap->y;
 
+	//LIGHTMAP UV COORD
 	vertices[id + 42] = (_x) / 12000.0f;
-	vertices[id + 43] = (_y - 40.0f) / 12000.0f;
+	vertices[id + 43] = (_y - 00.0f) / 12000.0f;
 
-	vertices[id + 44] = (_y + 0.0f - _z) * zoom / screen_h;
+	//SHADOW BASELINE
+	vertices[id + 44] = (_y - _z) * zoom / shadow_FBO_h;
 
 	//#.
 	//..
+
+	//COORD
 	vertices[id + 45] = _x;
 	vertices[id + 46] = (_y + *_g->size_y * _fy);
 	//vertices[id + 26] = 0;
 
+	//COLOR
 	vertices[id + 47] = batch_color_r;
 	vertices[id + 48] = batch_color_g;
 	vertices[id + 49] = batch_color_b;
 	vertices[id + 50] = batch_color_a;
 
+	//MAIN TEXTURE UV COORD
 	vertices[id + 51] = *_g->x;
 	vertices[id + 52] = *_g->y + *_g->uv_size_y * _fy;
 
-	vertices[id + 53] = (_x)*zoom / screen_w;
-	vertices[id + 54] = _z;
+	//HALT COORD
+	vertices[id + 53] = (_x) * zoom / shadow_FBO_w;
+	vertices[id + 54] = *_g->size_y * _fy + _z;
 
+	//SUPERMAP TEXTURE UV COORD
 	vertices[id + 55] = *_supermap->x;
-	vertices[id + 56] = *_supermap->y + *_g->uv_size_y * _fy;
+	vertices[id + 56] = *_supermap->y + *_supermap->uv_size_y * _fy;
 
+	//LIGHTMAP UV COORD
 	vertices[id + 57] = (_x) / 12000.0f;
-	vertices[id + 58] = (_y - 40.0f) / 12000.0f;
+	vertices[id + 58] = (_y + *_g->size_y * 0.0f - 00.0f) / 12000.0f;
 
-	vertices[id + 59] = (_y - _z + _h * _fy) * zoom / screen_h;
+	//SHADOW BASELINE
+	vertices[id + 59] = (_y - _z) * zoom / shadow_FBO_h;
+
+	id += 60;
+
+	if (id > batch_force_draw_call)
+	{
+		reinit();
+		draw_call_shadowmap();
+		reset();
+	}
+}
+
+void Batcher::draw_gabarite_shadowmap_fragment_mirrored(float _x, float _y, float _w, float _h, EGabarite* _g, EGabarite* _supermap, float _z, float _fx, float _fy)
+{
+	//_fx = 0.5f;
+	//_fy = 0.5f;
+	//std::cout << "filled rect" << std::endl;
+
+	//.#
+	//..
+
+	//COORD	[0]
+	vertices[id + 0] = _x;
+	vertices[id + 1] = (_y + *_g->size_y * _fy);
+
+	//COLOR	[1]
+	vertices[id + 2] = batch_color_r;
+	vertices[id + 3] = batch_color_g;
+	vertices[id + 4] = batch_color_b;
+	vertices[id + 5] = batch_color_a;
+
+	//MAIN TEXTURE UV COORD	[2]
+	vertices[id + 6] = *_g->x + *_g->uv_size_x * _fx;
+	vertices[id + 7] = *_g->y + *_g->uv_size_y * _fy;
+
+	//HALT COORD	[3]
+	vertices[id + 8] = (_x)*zoom / shadow_FBO_w;
+	vertices[id + 9] = *_g->size_y * _fy + _z;
+
+	//SUPERMAP TEXTURE UV COORD	[4]
+	vertices[id + 10] = *_supermap->x + *_supermap->uv_size_x * _fx;
+	vertices[id + 11] = *_supermap->y + *_supermap->uv_size_y * _fy;
+
+	//LIGHTMAP UV COORD	[5]
+	vertices[id + 12] = (_x) / 12000.0f;
+	vertices[id + 13] = (_y + *_g->size_y * 0.0f) / 12000.0f;
+
+	//SHADOW BASELINE	[6]
+	vertices[id + 14] = (_y - _z) * zoom / shadow_FBO_h;
+
+
+
+
+
+	//..
+	//.#
+
+	//COORD
+	vertices[id + 15] = _x;
+	vertices[id + 16] = _y;
+	//vertices[id + 10] = 0;
+
+	//COLOR
+	vertices[id + 17] = batch_color_r;
+	vertices[id + 18] = batch_color_g;
+	vertices[id + 19] = batch_color_b;
+	vertices[id + 20] = batch_color_a;
+
+	//MAIN TEXTURE UV COORD
+	vertices[id + 21] = *_g->x + *_g->uv_size_x * _fx;
+	vertices[id + 22] = *_g->y;
+
+	//HALT COORD
+	vertices[id + 23] = _x * zoom / shadow_FBO_w;
+	vertices[id + 24] = _z;
+
+	//SUPERMAP TEXTURE UV COORD
+	vertices[id + 25] = *_supermap->x + *_supermap->uv_size_x * _fx;
+	vertices[id + 26] = *_supermap->y;
+
+	//LIGHTMAP UV COORD
+	vertices[id + 27] = (_x) / 12000.0f;
+	vertices[id + 28] = (_y - 00.0f) / 12000.0f;
+
+	//SHADOW BASELINE
+	vertices[id + 29] = (_y - _z) * zoom / shadow_FBO_h;
+
+
+
+	//..
+	//#.
+
+	//COORD
+	vertices[id + 30] = (_x + *_g->size_x * _fx);
+	vertices[id + 31] = _y;
+	//vertices[id + 18] = 0;
+
+	//COLOR
+	vertices[id + 32] = batch_color_r;
+	vertices[id + 33] = batch_color_g;
+	vertices[id + 34] = batch_color_b;
+	vertices[id + 35] = batch_color_a;
+
+	//MAIN TEXTURE UV COORD
+	vertices[id + 36] = *_g->x;
+	vertices[id + 37] = *_g->y;
+
+	//HALT COORD
+	vertices[id + 38] = (_x + *_g->size_x * _fx) * zoom / shadow_FBO_w; 
+	vertices[id + 39] = _z;
+
+	//SUPERMAP TEXTURE UV COORD
+	vertices[id + 40] = *_supermap->x;
+	vertices[id + 41] = *_supermap->y;
+
+	//LIGHTMAP UV COORD
+	vertices[id + 42] = (_x + *_g->size_x) / 12000.0f; 
+	vertices[id + 43] = (_y - 00.0f) / 12000.0f;
+
+	//SHADOW BASELINE
+	vertices[id + 44] = (_y - _z) * zoom / shadow_FBO_h;
+
+	//#.
+	//..
+
+	//COORD
+	vertices[id + 45] = (_x + *_g->size_x * _fx); 
+	vertices[id + 46] = (_y + *_g->size_y * _fy);
+	//vertices[id + 26] = 0;
+
+	//COLOR
+	vertices[id + 47] = batch_color_r;
+	vertices[id + 48] = batch_color_g;
+	vertices[id + 49] = batch_color_b;
+	vertices[id + 50] = batch_color_a;
+
+	//MAIN TEXTURE UV COORD
+	vertices[id + 51] = *_g->x;
+	vertices[id + 52] = *_g->y + *_g->uv_size_y * _fy;
+
+	//HALT COORD
+	vertices[id + 53] = (_x + *_g->size_x * _fx) * zoom / shadow_FBO_w; 
+	vertices[id + 54] = *_g->size_y * _fy + _z;
+
+	//SUPERMAP TEXTURE UV COORD
+	vertices[id + 55] = *_supermap->x;
+	vertices[id + 56] = *_supermap->y + *_supermap->uv_size_y * _fy;
+
+	//LIGHTMAP UV COORD
+	vertices[id + 57] = (_x + *_g->size_x) / 12000.0f; 
+	vertices[id + 58] = (_y + *_g->size_y * 0.0f - 00.0f) / 12000.0f;
+
+	//SHADOW BASELINE
+	vertices[id + 59] = (_y - _z) * zoom / shadow_FBO_h;
 
 	id += 60;
 

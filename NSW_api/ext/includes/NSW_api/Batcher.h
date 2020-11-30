@@ -27,6 +27,7 @@ public:
 
 	void draw_gabarite_shadowmap(float _x, float _y, float _w, float _h, EGabarite* _g, EGabarite* _supermap, float _z);
 	void draw_gabarite_shadowmap_fragment(float _x, float _y, float _w, float _h, EGabarite* _g, EGabarite* _supermap, float _z, float _fx, float _fy);
+	void draw_gabarite_shadowmap_fragment_mirrored(float _x, float _y, float _w, float _h, EGabarite* _g, EGabarite* _supermap, float _z, float _fx, float _fy);
 
 
 	void draw_gabarite_with_offset(float _x, float _y, float _w, float _h, float _offset_x, float _offset_y, float _offset_end_x, float _offset_end_y,  EGabarite* _g);
@@ -76,8 +77,8 @@ public:
 	void force_draw_call_terrain();
 	void force_draw_call_shadowmap();
 
-	static float screen_w;
-	static float screen_h;
+	static float shadow_FBO_w;
+	static float shadow_FBO_h;
 	static float zoom;
 
 	static float skew_factor;

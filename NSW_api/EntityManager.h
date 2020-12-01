@@ -348,6 +348,9 @@ public:
 		float* up_roof_offset_multiplier = new float(1.0f);
 		float* horizontal_roof_offset_multiplier = new float(1.0f);
 
+		float* window_distance_x = new float(5.0f);
+		float* window_distance_y = new float(5.0f);
+
 		std::vector<wall_element*> wall_list
 		=
 		{

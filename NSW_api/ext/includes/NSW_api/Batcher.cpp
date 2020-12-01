@@ -1026,7 +1026,7 @@ void Batcher::draw_gabarite_shadowmap_fragment(float _x, float _y, float _w, flo
 
 	//LIGHTMAP UV COORD	[5]
 	vertices[id + 12] = (_x + *_g->size_x) / 12000.0f;
-	vertices[id + 13] = (_y + *_g->size_y * 0.0f) / 12000.0f;
+	vertices[id + 13] = (_y + *_g->size_y * 0.0f - _z) / 12000.0f;
 
 	//SHADOW BASELINE	[6]
 	vertices[id + 14] = (_y - _z) * zoom / shadow_FBO_h;
@@ -1063,7 +1063,7 @@ void Batcher::draw_gabarite_shadowmap_fragment(float _x, float _y, float _w, flo
 
 	//LIGHTMAP UV COORD
 	vertices[id + 27] = (_x + *_g->size_x) / 12000.0f;
-	vertices[id + 28] = (_y - 00.0f) / 12000.0f;
+	vertices[id + 28] = (_y - 00.0f - _z) / 12000.0f;
 
 	//SHADOW BASELINE
 	vertices[id + 29] = (_y - _z) * zoom / shadow_FBO_h;
@@ -1098,7 +1098,7 @@ void Batcher::draw_gabarite_shadowmap_fragment(float _x, float _y, float _w, flo
 
 	//LIGHTMAP UV COORD
 	vertices[id + 42] = (_x) / 12000.0f;
-	vertices[id + 43] = (_y - 00.0f) / 12000.0f;
+	vertices[id + 43] = (_y - 00.0f - _z) / 12000.0f;
 
 	//SHADOW BASELINE
 	vertices[id + 44] = (_y - _z) * zoom / shadow_FBO_h;
@@ -1131,7 +1131,7 @@ void Batcher::draw_gabarite_shadowmap_fragment(float _x, float _y, float _w, flo
 
 	//LIGHTMAP UV COORD
 	vertices[id + 57] = (_x) / 12000.0f;
-	vertices[id + 58] = (_y + *_g->size_y * 0.0f - 00.0f) / 12000.0f;
+	vertices[id + 58] = (_y + *_g->size_y * 0.0f - 00.0f - _z) / 12000.0f;
 
 	//SHADOW BASELINE
 	vertices[id + 59] = (_y - _z) * zoom / shadow_FBO_h;
@@ -1179,7 +1179,7 @@ void Batcher::draw_gabarite_shadowmap_fragment_mirrored(float _x, float _y, floa
 
 	//LIGHTMAP UV COORD	[5]
 	vertices[id + 12] = (_x) / 12000.0f;
-	vertices[id + 13] = (_y + *_g->size_y * 0.0f) / 12000.0f;
+	vertices[id + 13] = (_y + *_g->size_y * 0.0f - _z) / 12000.0f;
 
 	//SHADOW BASELINE	[6]
 	vertices[id + 14] = (_y - _z) * zoom / shadow_FBO_h;
@@ -1216,7 +1216,7 @@ void Batcher::draw_gabarite_shadowmap_fragment_mirrored(float _x, float _y, floa
 
 	//LIGHTMAP UV COORD
 	vertices[id + 27] = (_x) / 12000.0f;
-	vertices[id + 28] = (_y - 00.0f) / 12000.0f;
+	vertices[id + 28] = (_y - 00.0f - _z) / 12000.0f;
 
 	//SHADOW BASELINE
 	vertices[id + 29] = (_y - _z) * zoom / shadow_FBO_h;
@@ -1251,7 +1251,7 @@ void Batcher::draw_gabarite_shadowmap_fragment_mirrored(float _x, float _y, floa
 
 	//LIGHTMAP UV COORD
 	vertices[id + 42] = (_x + *_g->size_x) / 12000.0f; 
-	vertices[id + 43] = (_y - 00.0f) / 12000.0f;
+	vertices[id + 43] = (_y - 00.0f - _z) / 12000.0f;
 
 	//SHADOW BASELINE
 	vertices[id + 44] = (_y - _z) * zoom / shadow_FBO_h;
@@ -1284,7 +1284,7 @@ void Batcher::draw_gabarite_shadowmap_fragment_mirrored(float _x, float _y, floa
 
 	//LIGHTMAP UV COORD
 	vertices[id + 57] = (_x + *_g->size_x) / 12000.0f; 
-	vertices[id + 58] = (_y + *_g->size_y * 0.0f - 00.0f) / 12000.0f;
+	vertices[id + 58] = (_y + *_g->size_y * 0.0f - 00.0f - _z) / 12000.0f;
 
 	//SHADOW BASELINE
 	vertices[id + 59] = (_y - _z) * zoom / shadow_FBO_h;

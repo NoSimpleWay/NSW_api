@@ -3,9 +3,11 @@
 #define _CRT_SECURE_NO_WARNINGS
 #define STB_IMAGE_IMPLEMENTATION
 
+
 #include <ctime>
 
 #include "NSW_api/EWindow.h"
+
 #include "EWindowTest.h"
 #include "EWindowEditor.h"
 #include "EWindowSearchBrick.h"
@@ -21,7 +23,6 @@
 #include <windows.h>
 
 
- 
 
 
 
@@ -216,6 +217,7 @@ int main()
 	*EGraphicCore::gabarite_small_wood_button_bg->y2 -= 1 / 4096.0f;
 
 	EGraphicCore::gabarite_wood_button_bg = ETextureAtlas::put_texture_to_atlas("data/textures/wood_bg.png", EWindow::default_texture_atlas);
+	EGraphicCore::gabarite_supermap_placeholder = ETextureAtlas::put_texture_to_atlas("data/textures/supermap_placeholder.png", EWindow::default_texture_atlas);
 	
 	EFont* new_font = NULL;
 	EGabarite* font_gabarite = ETextureAtlas::put_texture_to_atlas("data/font/franklin_0.png", EWindow::default_texture_atlas);

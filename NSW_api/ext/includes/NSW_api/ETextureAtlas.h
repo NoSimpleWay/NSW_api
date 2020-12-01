@@ -24,4 +24,6 @@ public:
 
 	ETextureAtlas(int _x, int _y);
 	~ETextureAtlas();
+
+	static EGabarite* get_supermap_from_regular_texture_path(std::string _s, ETextureAtlas* _a);
 };

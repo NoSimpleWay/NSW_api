@@ -110,7 +110,8 @@ void EBA::action_set_sprite_texture(EButton* _b, float _d)
 	texture_variant_list.at(ed->autobuilding_selected_texture_variant)->
 	supermap
 	=
-	ETextureAtlas::put_texture_to_atlas(_b->gabarite->name.substr(0, _b->gabarite->name.length() - 4) + "#supermap.png", EWindow::default_texture_atlas);;
+	ETextureAtlas::get_supermap_from_regular_texture_path(_b->gabarite->name, EWindow::default_texture_atlas);
+	//ETextureAtlas::put_texture_to_atlas(_b->gabarite->name.substr(0, _b->gabarite->name.length() - 4) + "#supermap.png", EWindow::default_texture_atlas);;
 
 	
 
@@ -241,17 +242,26 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 			w_string += std::to_string(*f->offset_x) + "\t";
 			w_string += std::to_string(*f->offset_y) + "\t";
 			w_string += std::to_string(*f->offset_z) + "\t";
+
 			w_string += std::to_string(*f->bottom_roof_offset_multiplier) + "\t";
 			w_string += std::to_string(*f->up_roof_offset_multiplier) + "\t";
 			w_string += std::to_string(*f->horizontal_roof_offset_multiplier);
 		w_string += "\n";
 
+		w_string += "floor_additional_distance_between_window_x\t";
+		w_string += std::to_string(*f->window_distance_x);
+		w_string += "\n";
+
+		w_string += "floor_additional_distance_between_window_y\t";
+		w_string += std::to_string(*f->window_distance_y);
+		w_string += "\n";
 		for (Entity::wall_element* w : f->wall_list)
 		{
 			w_string += "add_new_wall_for_floor\t";
 				w_string += std::to_string(*w->offset_x) + "\t";
 				w_string += std::to_string(*w->offset_y) + "\t";
 				w_string += std::to_string(*w->offset_z) + "\t";
+
 				w_string += std::to_string(*w->repeat_x) + "\t";
 				w_string += std::to_string(*w->repeat_y);
 			w_string += "\n";
@@ -644,6 +654,15 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 				{
 					i++; *just_create_sprite_struct->copies = std::stoi(EFile::data_array[i]);
 				}
+				
+				if (just_created_floor != NULL)
+				{ 
+					if (EFile::data_array[i] == "floor_additional_distance_between_window_x")
+					{i++; *just_created_floor->window_distance_x = std::stof(EFile::data_array[i]);}
+				
+					if (EFile::data_array[i] == "floor_additional_distance_between_window_y")
+					{i++; *just_created_floor->window_distance_y = std::stof(EFile::data_array[i]);}
+				}
 
 				//Controlled by Player
 				if (EFile::data_array[i] == "*texture_mirrored") { *just_created_sprite->is_mirrored = true; }
@@ -744,9 +763,9 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 					i++;  *just_created_floor->offset_x																= std::stof(EFile::data_array[i]);
 					i++;  *just_created_floor->offset_y																= std::stof(EFile::data_array[i]);
 					i++;  *just_created_floor->offset_z																= std::stof(EFile::data_array[i]);
-					//i++;  std::cout << "|" << EFile::data_array[i] << "|" << std::endl; if (EFile::data_array[i] != "")*just_created_floor->bottom_roof_offset_multiplier = std::stof(EFile::data_array[i]);
-					//i++;  std::cout << "|" << EFile::data_array[i] << "|" << std::endl; if (EFile::data_array[i] != "")  *just_created_floor->up_roof_offset_multiplier = std::stof(EFile::data_array[i]);
-					//i++;  std::cout << "|" << EFile::data_array[i] << "|" << std::endl; if (EFile::data_array[i] != "")  *just_created_floor->horizontal_roof_offset_multiplier	= std::stof(EFile::data_array[i]);
+					i++;  std::cout << "|" << EFile::data_array[i] << "|" << std::endl; if (EFile::data_array[i] != "")		*just_created_floor->bottom_roof_offset_multiplier = std::stof(EFile::data_array[i]);
+					i++;  std::cout << "|" << EFile::data_array[i] << "|" << std::endl; if (EFile::data_array[i] != "")		*just_created_floor->up_roof_offset_multiplier = std::stof(EFile::data_array[i]);
+					i++;  std::cout << "|" << EFile::data_array[i] << "|" << std::endl; if (EFile::data_array[i] != "")		*just_created_floor->horizontal_roof_offset_multiplier	= std::stof(EFile::data_array[i]);
 
 					wall_id = 0;
 				}

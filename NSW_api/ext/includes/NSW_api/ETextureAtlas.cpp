@@ -1,4 +1,5 @@
 #include "ETextureAtlas.h"
+#include <NSW_api\EUtils.h>
 
 bool ETextureAtlas::can_place_here(int _x, int _y, int _w, int _h)
 {
@@ -281,4 +282,25 @@ ETextureAtlas::ETextureAtlas(int _x, int _y)
 
 ETextureAtlas::~ETextureAtlas()
 {
+}
+
+EGabarite* ETextureAtlas::get_supermap_from_regular_texture_path(std::string _s, ETextureAtlas* _a)
+{
+	FILE* file;
+	errno_t err;
+	//								name			".png" is 4 char
+	std::string path_to_supermap = _s.substr(0, _s.length() - 4) + "#supermap.png";
+
+	if (err = fopen_s(&file, path_to_supermap.c_str(), "r") == 0)
+	{
+		err = fclose(file);
+
+		logger(path_to_supermap + " exist");
+		return ETextureAtlas::put_texture_to_atlas(path_to_supermap, _a);
+	}
+	else
+	{
+		logger(path_to_supermap + " not exist");
+		return EGraphicCore::gabarite_supermap_placeholder;
+	}
 }

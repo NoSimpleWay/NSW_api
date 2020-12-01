@@ -1,6 +1,5 @@
 #pragma once
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -10,7 +9,7 @@
 
 #include <stb_image.h>
 #include <learnopengl/shader_s.h>
-#include "Batcher.h"
+#include "NSW_api/Batcher.h"
 #include "EGabarite.h"
 #include <vector>
 
@@ -53,6 +52,7 @@ public:
 	static EGabarite* gabarite_ERROR;
 	static EGabarite* gabarite_radial_button;
 	static EGabarite* gabarite_radial_button_dot;
+	static EGabarite* gabarite_supermap_placeholder;
 
 	EGraphicCore();
 	~EGraphicCore();

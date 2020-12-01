@@ -1,8 +1,13 @@
 #pragma once
-#define logger(_a_) std::cout << _a_ << std::endl
+
+
+
+
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+
+
 //glm::mat4 matrix_transform;
 
 #include "NSW_api/Batcher.h"

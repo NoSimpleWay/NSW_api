@@ -1,5 +1,9 @@
 #pragma once
 #include <string>
+
+#define logger(_a_) std::cout << _a_ << std::endl
+#define logger_param(_a_, _b_) std::cout << "[" << _a_ << "]: " << std::to_string(_b_) << std::endl
+
 class EMath
 {
 public:

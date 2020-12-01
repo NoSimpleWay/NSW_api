@@ -111,6 +111,7 @@ public:
 
 
 
+
 	/*
 	
 	SECTION OF LINKS TO BUILDING AUTOGNERATOR
@@ -165,6 +166,12 @@ public:
 	static EButton* link_to_bottom_tall_button;
 	static EButton* link_to_upper_tall_button;
 	static EButton* link_to_mirror_button;
+	static EButton* link_to_window_offset_x;
+	static EButton* link_to_window_offset_y;
+
+	static Entity::building_autogen_floor*		object_floor;
+	static Entity::wall_element*				object_wall;
+	static Entity::wall_texture_variant*		object_variant;
 
 
 

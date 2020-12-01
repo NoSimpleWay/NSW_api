@@ -1097,10 +1097,23 @@ if (sprite_order >= _e->sprite_list.size()) {spr = new ESprite(); _e->sprite_lis
 
 #define AB_MACRO_is_valid(_wei_, _id_)  (_id_ < AB_floor->wall_list.at(Entity::WallElementIndex::_wei_)->texture_variant_list.size()) && (_id_ >= 0) && (AB_macro_is_texture_not_null(_wei_, _id_))
 
+//#define AB_MACRO_random_select(_wei_) if (AB_floor->wall_list.at(Entity::WallElementIndex::_wei_)->texture_variant_list.size() > 2) {random_select = rand % AB_floor->wall_list.at(Entity::WallElementIndex::_wei_)->texture_variant_list.size()} else 
+
+/*inline*/ int get_random_variant(Entity::building_autogen_floor* _f, int _id)
+{
+	if (_f->wall_list.at(_id)->texture_variant_list.size() >= 2)
+	{
+		return rand() % _f->wall_list.at(_id)->texture_variant_list.size();
+	}
+	else
+	{
+		return 0;
+	}
+}
 
 void Entity::assembly_autobuilding_sprites(Entity* _e)
 {
-	
+
 	//max(0, 0);
 	/*for (building_autogen_massive* m : _e->autobuilding_floor_list)
 	{
@@ -1118,8 +1131,8 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 	}
 	//_e->sprite_list*/
 
-	
-	
+
+
 
 	float ox = 0.0f;
 	float oy = 0.0f;
@@ -1144,6 +1157,26 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 
 	float cop = 1.0f;
 
+	//int r_select[25][25][25];
+
+	/*for (int i = 0; i < EWindow::window_editor->selected_entity->autobuilding_floor_list.size(); i++)
+	{
+		Entity::building_autogen_floor* flr = _e->autobuilding_floor_list.at(i);
+
+		for (int j = 0; j < flr->wall_list.size(); j++)
+		{
+			int variants_count = flr->wall_list.at(j)->texture_variant_list.size();
+
+			if (variants_count > 1)
+			{
+				r_select[i][j] = rand() % variants_count;
+			}
+			else
+			{
+				r_select[i][j] = 0;
+			}
+		}
+	}*/
 
 	//Entity::WallElementIndex ewe;
 	int sprite_order = 0;
@@ -1172,6 +1205,8 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 			for (int yy = 0; yy < ceil(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y); yy++)
 				for (int i = 0; i < ceil(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_x); i++)
 				{
+					random_select = get_random_variant(AB_floor, WEI_MID_WALL);
+					//random_select = AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->texture_variant_list.size() - 1;
 					spr = _e->sprite_list.at(sprite_order); //m->wall_list.at(0)
 
 
@@ -1186,7 +1221,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 						*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->offset_y
 						+
 						*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->texture_variant_list.at(random_select)->offset_y;
-
+						
 
 
 					oz =
@@ -1206,6 +1241,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 
 					//_e->sprite_list.push_back(spr);
 				}
+			random_select = 0;
 
 			//calculate base y-position of roof
 			if (spr != NULL)
@@ -1219,7 +1255,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 				}
 			}
 		}
-	
+
 		//left wall
 		if (AB_MACRO_is_valid(WEI_LEFT_WALL, random_select))
 		{

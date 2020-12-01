@@ -1885,6 +1885,11 @@ void EWindowEditor::update(float _d)
 			{
 				float mul = get_move_multiplier(1.0f / EWindow::window_test->game_camera->zoom);
 
+				if (editor_mode == EditMode::SelectEntities)
+				{
+					*selected_entity->position_z += mouse_speed_y * mul;
+					if (*selected_entity->position_z < 0.0f) { *selected_entity->position_z = 0.0f; }
+				}
 
 				if ((editor_mode == EditMode::EditSprites) & (!selected_entity->sprite_list.empty()))
 				{
@@ -1911,6 +1916,10 @@ void EWindowEditor::update(float _d)
 						if (*object_floor->offset_z < 0.0f) { *object_floor->offset_z = 0.0f; }
 					}
 
+					if (editor_mode == EditMode::SelectEntities)
+					{
+						*selected_entity->position_z = round(*selected_entity->position_z);
+					}
 					
 					//max(*object_wall->offset_z, 0.0f);
 				}

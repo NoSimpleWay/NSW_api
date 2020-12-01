@@ -133,6 +133,7 @@ void EBA::action_open_select_texture_window(EButton* _b, float _d)
 
 
 
+
 	/*EWindow::window_search_brick->is_active = true;
 	EWindow::window_search_brick->search_mode = EWindowSearchBrick::SearchMode::SEARCH_TEXTURE;
 
@@ -167,6 +168,9 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 	w_string += "\t";
 	w_string += std::to_string(*e->position_y);
 
+	w_string += "\t";
+	w_string += std::to_string(*e->position_z);
+
 	w_string += "\n";
 
 	for (ESprite* spr : e->sprite_list)
@@ -184,9 +188,12 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 		order = 0;
 		for (ESprite::sprite_struct* spr : spr->sprite_struct_list)
 		{
-			w_string += "add_new_texture\t";
-			w_string += spr->gabarite->name;
-			w_string += "\n";
+			if (spr->gabarite != NULL)
+			{
+				w_string += "add_new_texture\t";
+				w_string += spr->gabarite->name;
+				w_string += "\n";
+			}
 
 			w_string += "texture_offset_x\t";
 			w_string += std::to_string(*spr->offset_x);
@@ -1177,15 +1184,24 @@ void EBA::action_add_new_texture_variant_button(EButton* _b, float _d)
 
 	EWindow::window_editor->link_to_texture_variant_array->button_list.push_back(but);*/
 
+	int id = 0;
 	for (EButton* b : EWindow::window_editor->link_to_texture_variant_array->button_list)
 	{
 		if (!b->is_active)
 		{
 			b->is_active = true;
-			b->gabarite = NULL;
+			b->gabarite = EGraphicCore::gabarite_ERROR;
+
+			/*if (EWindowEditor::object_variant != NULL)
+			{
+				EWindowEditor::object_variant->texture = EGraphicCore::gabarite_ERROR;
+				EWindowEditor::object_variant->supermap = EGraphicCore::gabarite_supermap_placeholder;
+			}*/
 
 			break;
 		}
+
+		id++;
 	}
 
 	if ((EWindow::window_editor->selected_entity != NULL) & (EWindow::window_editor->selected_entity->autobuilding_floor_list.size() > 0))
@@ -1200,7 +1216,13 @@ void EBA::action_add_new_texture_variant_button(EButton* _b, float _d)
 		(EWindow::window_editor->autobuilding_selected_wall)->
 		texture_variant_list.push_back(tv);
 
-		if (EWindow::window_editor->autobuilding_selected_wall == Entity::WallElementIndex::WEI_SHADOW) { tv->texture = EGraphicCore::gabarite_white_pixel; }
+		if (EWindow::window_editor->autobuilding_selected_wall == Entity::WallElementIndex::WEI_SHADOW)
+		{ tv->texture = EGraphicCore::gabarite_white_pixel; }
+		else
+		{
+			tv->texture = EGraphicCore::gabarite_ERROR;
+			tv->supermap = EGraphicCore::gabarite_supermap_placeholder;
+		}
 	}
 }
 

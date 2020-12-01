@@ -43,6 +43,7 @@ public:
 
 	float* position_x = new float();
 	float* position_y = new float();
+	float* position_z = new float();
 
 	float* speed_x = new float();
 	float* speed_y = new float();

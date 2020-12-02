@@ -113,32 +113,32 @@ void main()
 	bhr5 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * -2.0f	, 0.0f)).a * 200.0f, 0.0f, 1.0f);
 	blur_result1 = (bhr1 + bhr2 + bhr3 + bhr4 + bhr5) / 5.0f;
 	
-	bhr1 = clamp (texture(texture2, shadow_coord + vec2(0.0f,						blur_y_factor * -1.0f)).a * 2.0f, 0.0f, 1.0f);
-	bhr2 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * 1.0f,		blur_y_factor * -1.0f)).a * 2.0f, 0.0f, 1.0f);
-	bhr3 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * 2.0f,		blur_y_factor * -1.0f)).a * 2.0f, 0.0f, 1.0f);
-	bhr4 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * -1.0f,		blur_y_factor * -1.0f)).a * 2.0f, 0.0f, 1.0f);
-	bhr5 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * -2.0f,		blur_y_factor * -1.0f)).a * 2.0f, 0.0f, 1.0f);
+	bhr1 = clamp (texture(texture2, shadow_coord + vec2(0.0f,						blur_y_factor * -1.0f)).a * 20.0f, 0.0f, 1.0f);
+	bhr2 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * 1.0f,		blur_y_factor * -1.0f)).a * 20.0f, 0.0f, 1.0f);
+	bhr3 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * 2.0f,		blur_y_factor * -1.0f)).a * 20.0f, 0.0f, 1.0f);
+	bhr4 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * -1.0f,		blur_y_factor * -1.0f)).a * 20.0f, 0.0f, 1.0f);
+	bhr5 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * -2.0f,		blur_y_factor * -1.0f)).a * 20.0f, 0.0f, 1.0f);
 	blur_result2 = (bhr1 + bhr2 + bhr3 + bhr4 + bhr5) / 5.0f;
 	
-	bhr1 = clamp (texture(texture2, shadow_coord + vec2(0.0f,						blur_y_factor * -2.0f)).a * 2.0f, 0.0f, 1.0f);
-	bhr2 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * 1.0f,		blur_y_factor * -2.0f)).a * 2.0f, 0.0f, 1.0f);
-	bhr3 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * 2.0f,		blur_y_factor * -2.0f)).a * 2.0f, 0.0f, 1.0f);
-	bhr4 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * -1.0f,		blur_y_factor * -2.0f)).a * 2.0f, 0.0f, 1.0f);
-	bhr5 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * -2.0f,		blur_y_factor * -2.0f)).a * 2.0f, 0.0f, 1.0f);
+	bhr1 = clamp (texture(texture2, shadow_coord + vec2(0.0f,						blur_y_factor * -2.0f)).a * 20.0f, 0.0f, 1.0f);
+	bhr2 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * 1.0f,		blur_y_factor * -2.0f)).a * 20.0f, 0.0f, 1.0f);
+	bhr3 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * 2.0f,		blur_y_factor * -2.0f)).a * 20.0f, 0.0f, 1.0f);
+	bhr4 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * -1.0f,		blur_y_factor * -2.0f)).a * 20.0f, 0.0f, 1.0f);
+	bhr5 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * -2.0f,		blur_y_factor * -2.0f)).a * 20.0f, 0.0f, 1.0f);
 	blur_result3 = (bhr1 + bhr2 + bhr3 + bhr4 + bhr5) / 5.0f;
 	
-	bhr1 = clamp (texture(texture2, shadow_coord + vec2(0.0f,						blur_y_factor * 1.0f)).a * 2.0f, 0.0f, 1.0f);
-	bhr2 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * 1.0f,		blur_y_factor * 1.0f)).a * 2.0f, 0.0f, 1.0f);
-	bhr3 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * 2.0f,		blur_y_factor * 1.0f)).a * 2.0f, 0.0f, 1.0f);
-	bhr4 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * -1.0f,		blur_y_factor * 1.0f)).a * 2.0f, 0.0f, 1.0f);
-	bhr5 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * -2.0f,		blur_y_factor * 1.0f)).a * 2.0f, 0.0f, 1.0f);
+	bhr1 = clamp (texture(texture2, shadow_coord + vec2(0.0f,						blur_y_factor * 1.0f)).a * 20.0f, 0.0f, 1.0f);
+	bhr2 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * 1.0f,		blur_y_factor * 1.0f)).a * 20.0f, 0.0f, 1.0f);
+	bhr3 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * 2.0f,		blur_y_factor * 1.0f)).a * 20.0f, 0.0f, 1.0f);
+	bhr4 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * -1.0f,		blur_y_factor * 1.0f)).a * 20.0f, 0.0f, 1.0f);
+	bhr5 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * -2.0f,		blur_y_factor * 1.0f)).a * 20.0f, 0.0f, 1.0f);
 	blur_result4 = (bhr1 + bhr2 + bhr3 + bhr4 + bhr5) / 5.0f;
 	
-	bhr1 = clamp (texture(texture2, shadow_coord + vec2(0.0f,						blur_y_factor * 2.0f)).a * 2.0f, 0.0f, 1.0f);
-	bhr2 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * 1.0f,		blur_y_factor * 2.0f)).a * 2.0f, 0.0f, 1.0f);
-	bhr3 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * 2.0f,		blur_y_factor * 2.0f)).a * 2.0f, 0.0f, 1.0f);
-	bhr4 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * -1.0f,		blur_y_factor * 2.0f)).a * 2.0f, 0.0f, 1.0f);
-	bhr5 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * -2.0f,		blur_y_factor * 2.0f)).a * 2.0f, 0.0f, 1.0f);
+	bhr1 = clamp (texture(texture2, shadow_coord + vec2(0.0f,						blur_y_factor * 2.0f)).a * 20.0f, 0.0f, 1.0f);
+	bhr2 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * 1.0f,		blur_y_factor * 2.0f)).a * 20.0f, 0.0f, 1.0f);
+	bhr3 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * 2.0f,		blur_y_factor * 2.0f)).a * 20.0f, 0.0f, 1.0f);
+	bhr4 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * -1.0f,		blur_y_factor * 2.0f)).a * 20.0f, 0.0f, 1.0f);
+	bhr5 = clamp (texture(texture2, shadow_coord + vec2(blur_x_factor * -2.0f,		blur_y_factor * 2.0f)).a * 20.0f, 0.0f, 1.0f);
 	blur_result5 = (bhr1 + bhr2 + bhr3 + bhr4 + bhr5) / 5.0f;
 	
 	blur_total = (blur_result1 + blur_result2 + blur_result3 + blur_result4 + blur_result5) / 5.0f;
@@ -146,7 +146,8 @@ void main()
 	//									0.7803						0.23
 	//halt = texture(texture1,SuperMapCoord).g * 1.0f * zoom * 1.0f/screen_size_y * 255.0f * 1.0f;
 	//halt = ShadowCoord.y / screen_size_y;
-	halt = ShadowCoord.y / screen_size_y - texture(texture1,SuperMapCoord).g * 1.0f * zoom * 1.0f/screen_size_y * 255.0f * 1.0f;
+	
+	halt = ShadowCoord.y / screen_size_y - texture(texture1,SuperMapCoord).g * zoom * 1.0f/screen_size_y * 255.0f;
 	
 	//halt = 1.0f;
 	
@@ -157,14 +158,11 @@ void main()
 	clamp
 	(
 		(
-			//texture(texture2, shadow_coord).a //0.21
-			texture(texture2, shadow_coord).a * 4.0f
-			//blur_total
+		
+			texture(texture2, shadow_coord).a
 			-
-			//((texture(texture1, SuperMapCoord).g ) + ShadowCoord.y / 512.0f) // 0.43)
-			halt
-			//-
-			//ShadowCoord.y / 255.0f
+			halt * 1.0f
+	
 		)
 		*
 		64.0f

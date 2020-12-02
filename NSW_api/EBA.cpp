@@ -600,11 +600,14 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 					just_created_gabarite = ETextureAtlas::put_texture_to_atlas(EFile::data_array[i], EWindow::default_texture_atlas);
 					just_create_sprite_struct->gabarite = just_created_gabarite;
 
-					just_created_gabarite = ETextureAtlas::put_texture_to_atlas
+					/*just_created_gabarite = ETextureAtlas::put_texture_to_atlas
 					(
 						EFile::data_array[i].substr(0, EFile::data_array[i].length() - 4) + "#supermap.png",
 						EWindow::default_texture_atlas
-					);
+					);*/
+
+					just_created_gabarite = ETextureAtlas::get_supermap_from_regular_texture_path(EFile::data_array[i], EWindow::default_texture_atlas);
+
 
 					just_create_sprite_struct->supermap = just_created_gabarite;
 				}

@@ -1471,6 +1471,14 @@ void Batcher::setcolor_alpha(EColorCollection* _color, float _a)
 	batch_color_a = _a;
 }
 
+void Batcher::setcolor_lumalpha(EColorCollection* _color, float _lum, float _a)
+{
+	batch_color_r = _color->color_red * _lum;
+	batch_color_g = _color->color_green * _lum;
+	batch_color_b = _color->color_blue * _lum;
+	batch_color_a = _a;
+}
+
 void Batcher::draw_rama(float _x, float _y, float _sx, float _sy, float _t, EGabarite* _g)
 {
 	draw_gabarite(_x - _t, _y - _t, _t, _sy + _t * 2.0f, _g);//left

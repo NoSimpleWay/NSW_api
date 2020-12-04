@@ -61,6 +61,8 @@ int main()
 {
 
 
+	//EDataWatcher::data_watcher_struct* just_created_float_struct = new EDataWatcher::data_watcher_struct;
+
 	srand(time(NULL));
 
 	glfwInit();

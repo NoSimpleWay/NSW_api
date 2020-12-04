@@ -154,6 +154,7 @@ public:
 
 	void select_new_variant();
 	void select_new_floor();
+	void change_drop_button_container();
 	void select_new_wall();
 
 	int count_of_variants;
@@ -172,6 +173,8 @@ public:
 	static Entity::building_autogen_floor*		object_floor;
 	static Entity::wall_element*				object_wall;
 	static Entity::wall_texture_variant*		object_variant;
+
+	static std::vector<EButton*> stencil_button_list;
 
 
 

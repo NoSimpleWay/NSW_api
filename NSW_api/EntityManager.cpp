@@ -20,6 +20,9 @@ bool Entity::is_collision_right;
 bool Entity::is_collision_up;
 int Entity::dolboyob = 0;
 
+float Entity::stage_offset_x = 0.0f;
+float Entity::stage_offset_y = 0.0f;
+
 std::vector <int> Entity::entity_attribute_id
 =
 {
@@ -650,6 +653,12 @@ Entity::Entity()
 	light_source_green									= &eattr_TOTAL.at(EAttr::ENTITY_ATTRIBUTE_LIGHT_SOURCE_GREEN);
 	light_source_blue									= &eattr_TOTAL.at(EAttr::ENTITY_ATTRIBUTE_LIGHT_SOURCE_BLUE);
 
+	//EDataWatcher::data_watcher_struct* just_created_float_watcher = new EDataWatcher::data_watcher_struct;
+	//float_data_list.push_back(just_created_float_watcher);
+	//just_created_float_watcher->name = "";
+	//std::to_string
+	//sprite_watcher_struct::
+
 	//inmovable_pointer									= &eattr_bool.at(EntityBoolAttributes::ENTITY_BOOL_ATTRIBUTE_INMOVABLE);
 	/*
 	*max_hp_pointer = 4500.0f;
@@ -1138,8 +1147,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 	float oy = 0.0f;
 	float oz = 0.0f;
 
-	float stage_offset_x = 0.0f;
-	float stage_offset_y = 0.0f;
+
 
 	float left_corner_offset_y = 0.0f;
 	float right_corner_offset_y = 0.0f;
@@ -1156,6 +1164,10 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 	float scale_factor_y = 1.0f;
 
 	float cop = 1.0f;
+
+	float floor_order_offset_x = 0.0f;
+	float floor_order_offset_y = 0.0f;
+
 
 	//int r_select[25][25][25];
 
@@ -1191,15 +1203,23 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 	}
 
 	int floor_id = 0;
-	for (int z=0; z< EWindow::window_editor->selected_entity->autobuilding_floor_list.size(); z++)
+	//for (int z=0; z< EWindow::window_editor->selected_entity->autobuilding_floor_list.size(); z++)
+
+
+	for (int z=0; z < EWindow::window_editor->stencil_button_list.size(); z++)
+	if (_e->autobuilding_floor_order.at(z) > 0)
 	//for (Entity::building_autogen_floor* floor : _e->autobuilding_floor_list)
 	{
-		Entity::building_autogen_floor* AB_floor = _e->autobuilding_floor_list.at(z);
+		//Entity::building_autogen_floor* AB_floor = _e->autobuilding_floor_list.at(z);
+		
+		Entity::building_autogen_floor* AB_floor = _e->autobuilding_floor_list.at(_e->autobuilding_floor_order.at(z) - 1);
 
 		int random_select = 0;
 
-
+		
 		//mid wall
+		logger_param("stage_offset_x after [" + std::to_string(z) + "]", stage_offset_x);
+
 		if (AB_MACRO_is_valid(WEI_MID_WALL, random_select))
 		{
 			for (int yy = 0; yy < ceil(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y); yy++)
@@ -1210,7 +1230,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 					spr = _e->sprite_list.at(sprite_order); //m->wall_list.at(0)
 
 
-					ox = AB_MACRO_get_texture_offset(WEI_MID_WALL, random_select, offset_x);
+					ox = AB_MACRO_get_texture_offset(WEI_MID_WALL, random_select, offset_x) + stage_offset_x;
 					ox += AB_MACRO_get_texture_variant_size_x(WEI_MID_WALL, random_select) * i;
 
 					///////
@@ -1233,7 +1253,10 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 
 					oz += *AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->texture_variant_list.at(random_select)->texture->size_y * yy;
 
-					AB_MACRO_append_sprite_data(WEI_MID_WALL, random_select, 0);
+					if (AB_floor->wall_list.at(WEI_MID_WALL)->otebis[i])
+					{AB_MACRO_append_sprite_data(WEI_MID_WALL, random_select, 0);}
+					else
+					{sprite_order++; }
 
 
 					*spr->sprite_struct_list.at(0)->fragment_x = min(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_x - i, 1.0f);
@@ -1253,6 +1276,14 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 				{
 					stage_offset_y += AB_MACRO_get_texture_variant_size_y(WEI_FACE_MID_ROOF, random_select) * *AB_floor->bottom_roof_offset_multiplier;
 				}
+
+				floor_order_offset_x = AB_MACRO_get_texture_variant_size_x(WEI_MID_WALL, random_select) * *AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_x;
+				logger_param("floor_order_offset_x", floor_order_offset_x);
+				//if (z != 0) { floor_order_offset_x -= *AB_floor->offset_x; }
+				/*if (AB_MACRO_is_valid(WEI_RIGHT_WALL, random_select))
+				{
+					stage_offset_x += AB_MACRO_get_texture_variant_size_x(WEI_RIGHT_WALL, random_select);
+				}*/
 			}
 		}
 
@@ -1270,7 +1301,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 				spr = _e->sprite_list.at(sprite_order);
 				
 
-				ox = AB_MACRO_get_texture_offset(WEI_LEFT_WALL, random_select, offset_x);
+				ox = AB_MACRO_get_texture_offset(WEI_LEFT_WALL, random_select, offset_x) + stage_offset_x;
 				//ox -= AB_MACRO_get_texture_variant_size_x(WEI_LEFT_WALL, random_select);
 
 				oy = AB_MACRO_get_texture_offset(WEI_LEFT_WALL, random_select, offset_y);
@@ -1317,7 +1348,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 				selected_variant = selected_wall->texture_variant_list.at(random_select);
 				selected_texture = selected_variant->texture;
 
-				ox = AB_MACRO_get_texture_offset(WEI_RIGHT_WALL, random_select, offset_x);
+				ox = AB_MACRO_get_texture_offset(WEI_RIGHT_WALL, random_select, offset_x) + stage_offset_x;
 				oy = AB_MACRO_get_texture_offset(WEI_RIGHT_WALL, random_select, offset_y);
 				oz = AB_MACRO_get_texture_offset(WEI_RIGHT_WALL, random_select, offset_z);
 				
@@ -1327,7 +1358,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 					ox -= AB_MACRO_get_texture_variant_size_x(WEI_RIGHT_WALL, random_select);
 				}
 
-				oy += *AB_floor->wall_list.at(Entity::WallElementIndex::WEI_RIGHT_WALL)->texture_variant_list.at(random_select)->texture->size_y * yy;
+				oz += *AB_floor->wall_list.at(Entity::WallElementIndex::WEI_RIGHT_WALL)->texture_variant_list.at(random_select)->texture->size_y * yy;
 
 				AB_MACRO_append_sprite_data(WEI_RIGHT_WALL, random_select, 0);
 
@@ -1634,7 +1665,8 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 				spr = _e->sprite_list.at(sprite_order);
 				
 				ox = AB_MACRO_get_texture_offset(WEI_FACE_MID_ROOF, random_select, offset_x)
-					+ AB_MACRO_get_texture_variant_size_x(WEI_FACE_MID_ROOF, random_select) * xx;
+					+ AB_MACRO_get_texture_variant_size_x(WEI_FACE_MID_ROOF, random_select) * xx
+					+ stage_offset_x;
 
 				oy = AB_MACRO_get_texture_offset(WEI_FACE_MID_ROOF, random_select, offset_y);
 				oy -= AB_MACRO_get_texture_variant_size_y(WEI_FACE_MID_ROOF, random_select) * 1.0f * (*AB_floor->bottom_roof_offset_multiplier);
@@ -1720,7 +1752,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 			//logger("create shade sprite");
 			spr = _e->sprite_list.at(sprite_order);
 
-			ox = AB_MACRO_get_texture_offset(WEI_SHADOW, shad, offset_x);
+			ox = AB_MACRO_get_texture_offset(WEI_SHADOW, shad, offset_x) + stage_offset_x;
 			oy = AB_MACRO_get_texture_offset(WEI_SHADOW, shad, offset_y);
 			oz = AB_MACRO_get_texture_offset(WEI_SHADOW, shad, offset_z);
 
@@ -1827,7 +1859,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 				{
 					spr = _e->sprite_list.at(sprite_order);
 
-					ox = AB_MACRO_get_texture_offset(WEI_WINDOW, random_select, offset_x);
+					ox = AB_MACRO_get_texture_offset(WEI_WINDOW, random_select, offset_x) + stage_offset_x;
 					oy = AB_MACRO_get_texture_offset(WEI_WINDOW, random_select, offset_y);
 					oz = AB_MACRO_get_texture_offset(WEI_WINDOW, random_select, offset_z);
 
@@ -1848,6 +1880,10 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 
 		}
 
+		stage_offset_x += floor_order_offset_x;
+		floor_order_offset_x = 0.0f;
+
+		logger_param("stage_offset_x before", stage_offset_x);
 			/*spr = new ESprite();
 			_e->sprite_list.push_back(spr);
 			spr->sprite_struct_list.at(0)->gabarite = EGraphicCore::gabarite_white_pixel;
@@ -1861,11 +1897,12 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 			*spr->sprite_struct_list.at(0)->offset_x = 0;
 			*spr->sprite_struct_list.at(0)->offset_y = 0;
 			*spr->sprite_struct_list.at(0)->offset_z = 0;*/
-
+		
 		floor_id++;
 		}
 
-	
+		stage_offset_x = 0.0f;
+		stage_offset_y = 0.0f;
 }
 
 void Entity::prepare_sprite_list(Entity* _e)
@@ -2232,7 +2269,7 @@ void ESprite::clear_default_data(ESprite* _sprite)
 void ESprite::set_default_data(ESprite* _sprite)
 {
 	EGabarite* g = EGraphicCore::gabarite_white_pixel;
-	sprite_struct* ss = new sprite_struct;
+	sprite_struct* ss = new sprite_struct();
 
 	ss->gabarite =  ETextureAtlas::put_texture_to_atlas("data/textures/white_pixel.png", EWindow::default_texture_atlas);
 	ss->supermap =  ETextureAtlas::put_texture_to_atlas("data/textures/white_pixel.png", EWindow::default_texture_atlas);
@@ -2243,9 +2280,14 @@ void ESprite::set_default_data(ESprite* _sprite)
 
 ESprite::ESprite()
 {
-	sprite_struct_list.push_back(new sprite_struct);
+	sprite_struct_list.push_back(new sprite_struct());
 	sprite_struct_list.at(0)->gabarite = ETextureAtlas::put_texture_to_atlas("data/textures/white_pixel.png", EWindow::default_texture_atlas);
 	sprite_struct_list.at(0)->supermap = ETextureAtlas::put_texture_to_atlas("data/textures/white_pixel.png", EWindow::default_texture_atlas);
+
+	//std::string name = "ololo";
+	//EDataWatcher::data_watcher_struct < std::string > * jcdw = new EDataWatcher::data_watcher_struct<std::string>("gabarite", &sprite_struct_list.at(0)->gabarite->name);
+	//jcdw->data = sprite_struct_list.at(0);
+	//gabarite_names_watcher_list
 }
 
 ESprite::~ESprite()
@@ -2328,4 +2370,70 @@ EItemAttribute::EItemAttribute()
 
 EItemAttribute::~EItemAttribute()
 {
+}
+
+/*
+ESprite::sprite_struct::sprite_struct()
+{
+	//EDataWatcher::data_watcher_struct < float* >* jcdw = new EDataWatcher::data_watcher_struct<float*>("texture_offset_x", offset_x);
+	//data_watcher_float_list.push_back(jcdw);
+
+	//EDataWatcher::data_watcher_struct < float* >* jcdw = new EDataWatcher::data_watcher_struct<float*>("texture_offset_y", offset_y);
+	//data_watcher_float_list.push_back(jcdw);
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_offset_x", &offset_x));
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_offset_y", &offset_y));
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_offset_z", &offset_y));
+
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_shadow_size_x", &shadow_size_x));
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_shadow_size_y", &shadow_size_y));
+
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_shadow_bottom_tall", &bottom_tall));
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_shadow_upper_tall", &shadow_tall));
+
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_fragment_x", &fragment_x));
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_fragment_y", &fragment_y));
+
+	gabarite = EGraphicCore::gabarite_white_pixel;
+	supermap = EGraphicCore::gabarite_supermap_placeholder;
+
+	//data_watcher_string_list.push_back(new EDataWatcher::data_watcher_struct<std::string>("texture_name", &gabarite->name));
+	//data_watcher_string_list.push_back(new EDataWatcher::data_watcher_struct<std::string>("texture_supermap_name", &supermap->name));
+
+
+}*/
+
+ESprite::sprite_struct::sprite_struct()
+{
+	
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_offset_x", offset_x));
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_offset_y", offset_y));
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_offset_z", offset_z));
+
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_shadow_size_x", shadow_size_x));
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_shadow_size_y", shadow_size_y));
+
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_shadow_bottom_tall", bottom_tall));
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_shadow_upper_tall", shadow_tall));
+
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_fragment_x", fragment_x));
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_fragment_y", fragment_y));
+
+	gabarite = EGraphicCore::gabarite_white_pixel;
+	supermap = EGraphicCore::gabarite_supermap_placeholder;
+
+	data_watcher_string_list.push_back(new EDataWatcher::data_watcher_struct<std::string*>("texture_name", &gabarite->name));
+	data_watcher_string_list.push_back(new EDataWatcher::data_watcher_struct<std::string*>("supermap_name", &supermap->name));
+	//jcws->name = "texture_offset_x";
+	//jcws->watcher_address.push_back(&offset_x);
+
+	//data_watcher_float_list.push_back(jcws);
+}
+
+Entity::wall_element::wall_element()
+{
+	for (int i = 0; i < 50; i++)
+	{
+		otebis[i] = true;
+	}
+
 }

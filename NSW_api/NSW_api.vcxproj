@@ -145,6 +145,7 @@
     <ClCompile Include="ext\includes\NSW_api\Batcher.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EColor.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EColorCollection.cpp" />
+    <ClCompile Include="ext\includes\NSW_api\EDataWatcher.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EFont.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EGabarite.cpp" />
     <ClCompile Include="ext\includes\NSW_api\EGraphicCore.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="ext\includes\NSW_api\Batcher.h" />
     <ClInclude Include="ext\includes\NSW_api\EColor.h" />
     <ClInclude Include="ext\includes\NSW_api\EColorCollection.h" />
+    <ClInclude Include="ext\includes\NSW_api\EDataWatcher.h" />
     <ClInclude Include="ext\includes\NSW_api\EFont.h" />
     <ClInclude Include="ext\includes\NSW_api\EGabarite.h" />
     <ClInclude Include="ext\includes\NSW_api\EGraphicCore.h" />

@@ -173,9 +173,13 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 
 	w_string += "\n";
 
+	//EDataWatcher::vectorizator(e->sprite_list, );
+
 	for (ESprite* spr : e->sprite_list)
 	{
+		
 		w_string += "ADD_NEW_SPRITE\n";
+
 
 
 		if (*spr->rotate_by_move) { w_string += "*rotate_by_move\n"; }
@@ -185,61 +189,36 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 		if (*spr->is_mirrored) { w_string += "*texture_mirrored\n";}
 
 
-		order = 0;
-		for (ESprite::sprite_struct* spr : spr->sprite_struct_list)
+		//order = 0;
+		for (ESprite::sprite_struct* str : spr->sprite_struct_list)
 		{
-			if (spr->gabarite != NULL)
+			
+
+			if (str->gabarite != NULL)
 			{
 				w_string += "add_new_texture\t";
-				w_string += spr->gabarite->name;
+				w_string += str->gabarite->name;
 				w_string += "\n";
 			}
 
-			w_string += "texture_offset_x\t";
-			w_string += std::to_string(*spr->offset_x);
-			w_string += "\n";
+			for (EDataWatcher::data_watcher_struct<float*>* dws : str->data_watcher_float_list)
+			{
+				w_string += dws->name;
 
 
-			w_string += "texture_offset_y\t";
-			w_string += std::to_string(*spr->offset_y);
-			w_string += "\n";
+				for (float* f : dws->watcher_address)
+				{
+					w_string += "\t";
+					w_string += std::to_string(*f);
+				}
 
-			w_string += "texture_offset_z\t";
-			w_string += std::to_string(*spr->offset_z);
-			w_string += "\n";
-
-			w_string += "texture_copies\t";
-			w_string += std::to_string(*spr->copies);
-			w_string += "\n";
-
-			w_string += "shadow_size_x\t";
-			w_string += std::to_string(*spr->shadow_size_x);
-			w_string += "\n";
-
-			w_string += "shadow_size_y\t";
-			w_string += std::to_string(*spr->shadow_size_y);
-			w_string += "\n";
-
-			w_string += "shadow_tall\t";
-			w_string += std::to_string(*spr->shadow_tall);
-			w_string += "\n";
-
-			w_string += "shadow_bottom_tall\t";
-			w_string += std::to_string(*spr->bottom_tall);
-			w_string += "\n";
-			
-			w_string += "fragment_x\t";
-			w_string += std::to_string(*spr->fragment_x);
-			w_string += "\n";
-			
-			w_string += "fragment_y\t";
-			w_string += std::to_string(*spr->fragment_y);
-			w_string += "\n";
+				w_string += "\n";
+			}
 		
 
 
 
-			order++;
+			//order++;
 		}
 	}
 
@@ -628,34 +607,34 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 					i++; *just_create_sprite_struct->offset_z = std::stof(EFile::data_array[i]);
 				}
 
-				if (EFile::data_array[i] == "shadow_size_x")
+				if (EFile::data_array[i] == "texture_shadow_size_x")
 				{
 					i++; *just_create_sprite_struct->shadow_size_x = std::stof(EFile::data_array[i]);
 				}
 
-				if (EFile::data_array[i] == "shadow_size_y")
+				if (EFile::data_array[i] == "texture_shadow_size_y")
 				{
 					i++; *just_create_sprite_struct->shadow_size_y = std::stof(EFile::data_array[i]);
 				}
 
-				if (EFile::data_array[i] == "shadow_tall")
+				if (EFile::data_array[i] == "texture_shadow_upper_tall")
 				{
 					i++; *just_create_sprite_struct->shadow_tall = std::stof(EFile::data_array[i]);
 					//*just_create_sprite_struct->bottom_tall = std::stof(EFile::data_array[i]);
 				}
 
 				
-				if (EFile::data_array[i] == "shadow_bottom_tall")
+				if (EFile::data_array[i] == "texture_shadow_bottom_tall")
 				{
 					i++; *just_create_sprite_struct->bottom_tall = std::stof(EFile::data_array[i]);
 				}
 
-				if (EFile::data_array[i] == "fragment_x")
+				if (EFile::data_array[i] == "texture_fragment_x")
 				{
 					i++; *just_create_sprite_struct->fragment_x = std::stof(EFile::data_array[i]);
 				}
 
-				if (EFile::data_array[i] == "fragment_y")
+				if (EFile::data_array[i] == "texture_fragment_y")
 				{
 					i++; *just_create_sprite_struct->fragment_y = std::stof(EFile::data_array[i]);
 				}
@@ -1153,6 +1132,27 @@ void EBA::action_set_button_value_bool_to_address(EButton* _b, float _d)
 	}
 }
 
+void EBA::action_set_button_value_short_to_address(EButton* _b, float _d)
+{
+	if ((_b->target_address_for_short != NULL) & (*_b->is_checkbox))
+	{
+		*_b->target_address_for_short = short(*_b->is_checked);
+	}
+}
+
+void EBA::action_set_button_value_int_to_address(EButton* _b, float _d)
+{
+	if (((_b->is_slider) || (*_b->is_radial_button)) & (_b->target_address_for_int != NULL))
+	{
+		*_b->target_address_for_int = (int)_b->slider_value;
+	}
+
+	if ((_b->target_address_for_int != NULL) & (_b->is_drop_list))
+	{
+		*_b->target_address_for_int = _b->selected_element;
+	}
+}
+
 void EBA::action_set_button_value_float_to_address(EButton* _b, float _d)
 {
 	//logger("OWO");
@@ -1349,6 +1349,8 @@ void EBA::action_deactivate_floors(EButton* _b, float _d)
 
 
 	EWindow::window_editor->refresh_autobuilding();
+
+	EWindow::window_editor->change_drop_button_container();
 }
 
 void EBA::action_add_new_floor(EButton* _b, float _d)
@@ -1368,8 +1370,10 @@ void EBA::action_add_new_floor(EButton* _b, float _d)
 	{
 		EWindow::window_editor->selected_entity->autobuilding_floor_list.push_back(new Entity::building_autogen_floor);
 
-		Entity::update_building_autogenerator_massive(EWindow::window_editor->selected_entity);
+		//Entity::update_building_autogenerator_massive(EWindow::window_editor->selected_entity);
 	}
+
+	EWindow::window_editor->change_drop_button_container();
 }
 
 void EBA::action_move_floor_order(EButton* _b, float _d)
@@ -1410,6 +1414,8 @@ void EBA::action_move_floor_order(EButton* _b, float _d)
 	}
 
 	EWindow::window_editor->refresh_autobuilding();
+
+	EWindow::window_editor->change_drop_button_container();
 }
 
 void EBA::action_select_floor(EButton* _b, float _d)
@@ -1438,6 +1444,11 @@ void EBA::action_select_texture_variant(EButton* _b, float _d)
 void EBA::action_assembly_autobuilding(EButton* _b, float _d)
 {
 	Entity::assembly_autobuilding_sprites(EWindow::window_editor->selected_entity);
+}
+
+void EBA::action_start_input(EButton* _b, float _d)
+{
+	_b->is_input_mode_active = true;
 }
 
 

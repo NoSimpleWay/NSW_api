@@ -81,6 +81,9 @@
     <ClCompile Include="EBA.cpp">
       <Filter>External\ButtonActions</Filter>
     </ClCompile>
+    <ClCompile Include="ext\includes\NSW_api\EDataWatcher.cpp">
+      <Filter>NSW_api</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ext\includes\NSW_api\Batcher.h">
@@ -136,6 +139,9 @@
     </ClInclude>
     <ClInclude Include="EBA.h">
       <Filter>External\ButtonActions</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\includes\NSW_api\EDataWatcher.h">
+      <Filter>NSW_api</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

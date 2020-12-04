@@ -4,6 +4,7 @@
 #include "NSW_api/EGabarite.h"
 #include "NSW_api/Batcher.h"
 #include "EPath.h"
+#include "NSW_api/EDataWatcher.h"
 
 #include <map>
 
@@ -148,6 +149,16 @@ public:
 
 	int* saved_eb_x = new int(-1);
 	int* saved_eb_y = new int(-1);
+
+	std::vector<EDataWatcher::data_watcher_struct<float*>*> float_watcher_list;
+	
+
+	/*static struct sprite_watcher_struct
+	{
+		std::vector <ESprite*> target_sprite_list;
+		std::string data_name;
+	};*/
+
 
 
 	/*-------attribute section-------*/
@@ -300,6 +311,7 @@ public:
 
 	struct wall_element
 	{
+		wall_element();
 		//std::vector<EGabarite*> texture;
 
 		std::vector <wall_texture_variant*> texture_variant_list;
@@ -313,8 +325,20 @@ public:
 
 		bool* is_mirrored = new bool(false);
 
+		//int size = 50;
+		int *foo;
+		int arr[5];
+
+		bool* otebis = new bool[50];
+
+
+		//std::fill_n(otebis, 50, true);
+
+		
 
 	};
+	std::vector<int> autobuilding_floor_order = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
 
 	enum WallElementIndex
 	{
@@ -355,20 +379,20 @@ public:
 		std::vector<wall_element*> wall_list
 		=
 		{
-			new wall_element,//1	left wall
-			new wall_element,//2	mid wall
-			new wall_element,//3	right wall
-			new wall_element,//4	face left
-			new wall_element,//5	face mid
-			new wall_element,//6	face right
-			new wall_element,//7	body left
-			new wall_element,//8	body mid
-			new wall_element,//9	body right
-			new wall_element,//10	back left
-			new wall_element,//11	back mid
-			new wall_element,//12	back right
-			new wall_element,//13	shadow
-			new wall_element//14	window
+			new wall_element(),//1	left wall
+			new wall_element(),//2	mid wall
+			new wall_element(),//3	right wall
+			new wall_element(),//4	face left
+			new wall_element(),//5	face mid
+			new wall_element(),//6	face right
+			new wall_element(),//7	body left
+			new wall_element(),//8	body mid
+			new wall_element(),//9	body right
+			new wall_element(),//10	back left
+			new wall_element(),//11	back mid
+			new wall_element(),//12	back right
+			new wall_element(),//13	shadow
+			new wall_element()//14	window
 		};
 	};
 
@@ -391,6 +415,9 @@ public:
 
 
 	//std::vector <sprite_assembly*> sprite_assembly_list;
+
+	static float stage_offset_x; 
+	static float stage_offset_y;
 };
 
 
@@ -426,6 +453,8 @@ public:
 	int static cluster_on_mouse_y;
 
 	void static get_cluster_on_mouse_coords();
+
+	
 };
 
 class ESprite
@@ -434,6 +463,14 @@ public:
 
 	struct sprite_struct
 	{
+		sprite_struct();
+
+		std::vector<EDataWatcher::data_watcher_struct<std::string*>*> data_watcher_string_list;
+
+		std::vector<EDataWatcher::data_watcher_struct<float*>*> data_watcher_float_list;
+
+		
+
 		float* offset_x = new float(0.0f);
 		float* offset_y = new float(0.0f);
 		float* offset_z = new float(0.0f);
@@ -507,6 +544,8 @@ public:
 
 	ESprite();
 	~ESprite();
+
+	//std::vector < EDataWatcher::data_watcher_struct < std::string > * > gabarite_names_watcher_list;
 };
 
 class EItem

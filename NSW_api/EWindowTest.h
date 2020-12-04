@@ -23,7 +23,7 @@ public:
 
 	void default_draw(float _d);
 	void draw_shadows();
-	void draw_debug_draw_path();
+	void draw_debug_draw_path(float _opacity);
 	void draw_debug_collision();
 	void draw_debug_entity_position();
 	void draw_debug_cluster_border();

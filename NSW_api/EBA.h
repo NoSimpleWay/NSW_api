@@ -1,12 +1,15 @@
 #pragma once
 #include "EntityManager.h"
 #include "NSW_api/EWindow.h"
+#include "NSW_api/EDataWatcher.h"
+#include <vector>
 
 class EBA
 {
 public:
 	EBA();
 	~EBA();
+
 
 
 	static void set_method(void (*function)());
@@ -75,6 +78,8 @@ public:
 
 	static void action_set_constant_bool_to_address(EButton* _b, float _d);
 	static void action_set_button_value_bool_to_address(EButton* _b, float _d);
+	static void action_set_button_value_short_to_address(EButton* _b, float _d);
+	static void action_set_button_value_int_to_address(EButton* _b, float _d);
 
 	static void action_set_button_value_float_to_address(EButton* _b, float _d);
 
@@ -91,6 +96,8 @@ public:
 	static void action_select_texture_variant(EButton* _b, float _d);
 
 	static void action_assembly_autobuilding(EButton* _b, float _d);
+
+	static void action_start_input(EButton* _b, float _d);
 
 
 

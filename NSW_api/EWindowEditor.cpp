@@ -515,7 +515,7 @@ EWindowEditor::EWindowEditor()
 	button_array_collection_massive* a_massive = new button_array_collection_massive(this);
 	*a_massive->size_x = 500.0f;
 	*a_massive->size_y = 100.0f;
-	*a_massive->position_x = 100.0f;
+	*a_massive->position_x = 500.0f;
 	*a_massive->position_y = 120.0f;
 
 	button_array_horizontal_collection* a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 150.0f);
@@ -816,11 +816,11 @@ EWindowEditor::EWindowEditor()
 	//****************************************
 	//texture variant button array
 	//****************************************
-			a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 150.0f);
+			a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 60.0f);
 			a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
 
 			//new vertical group for texture variant
-			a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 200.0f, 150.0f);
+			a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 200.0f, 60.0f);
 			*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
 			a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
 
@@ -860,15 +860,40 @@ EWindowEditor::EWindowEditor()
 			//a_array->button_list.push_back(but);
 
 
+	//****************************************
+	//wall block stencil button
+	//****************************************
 
+			a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 60.0f);
+			a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
+
+			//new vertical group for texture variant
+			a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 200.0f, 60.0f);
+			*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
+			a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
+			a_array = new button_array;
+			a_vertical->button_array_list.push_back(a_array);
+
+			for (int i = 0; i < 10; i++)
+			{
+				but = new EButton(0.0f, 0.0f, 70.0f, 20.0f);
+				stencil_button_list.push_back(but);
+				but->master_window = this;
+				*but->is_consumable = true;
+				a_array->button_list.push_back(but);
+				but->is_drop_list = true;
+
+				but->action_on_drop_list_select_element = &EBA::action_set_button_value_int_to_address;
+				but->data_id = i;
+			}
 	//****************************************
 	//building autogenerator elements
 	//****************************************
-	a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 235.0f);
+	a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 580.0f, 230.0f);
 	a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
 
 	//new vertical group for texture variant
-	a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 200.0f, 230.0f);
+	a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 580.0f, 230.0f);
 	*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::FREE;
 	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
 
@@ -928,6 +953,8 @@ EWindowEditor::EWindowEditor()
 		a_array->button_list.push_back(but);
 	}
 
+
+	//////////WALL SHADOW///////////////////////////
 	but = new EButton(200.0f, 0.0f, 50.0f, 50.0f);
 		//building_autogenerator_link_to_left_wall = but;
 		building_autogenerator_wall_button_link.push_back(but);
@@ -975,7 +1002,7 @@ EWindowEditor::EWindowEditor()
 
 
 
-	//////////WINDOW///////////////////////////
+	//////////WALL WINDOW///////////////////////////
 	but = new EButton(200.0f, 60.0f, 50.0f, 50.0f);
 		building_autogenerator_wall_button_link.push_back(but);
 		but->master_window = this;
@@ -1080,6 +1107,7 @@ EWindowEditor::EWindowEditor()
 		//but->can_be_removed = true;
 		but->action_on_right_click = &EBA::action_deactivate_floors;
 		but->action_on_left_click = &EBA::action_select_floor;
+		but->action_on_left_double_click = &EBA::action_start_input;
 		but->have_icon = false;
 
 		but->data_id = i;
@@ -1173,6 +1201,8 @@ EButton* EWindowEditor::link_to_window_offset_y;
 Entity::building_autogen_floor*				EWindowEditor::object_floor;
 Entity::wall_element*						EWindowEditor::object_wall;
 Entity::wall_texture_variant*				EWindowEditor::object_variant;
+
+std::vector<EButton*> EWindowEditor::stencil_button_list;
 
 float EWindowEditor::get_move_multiplier(float _zoom)
 {
@@ -1392,7 +1422,9 @@ void EWindowEditor::update(float _d)
 		//refresh_autobuilding();
 		//EWindow::window_editor->select_new_floor();
 		//EWindow::window_editor->select_new_variant();
+		
 		Entity::update_building_autogenerator_massive(selected_entity);
+
 
 		autobuilding_selected_floor = 0;
 		autobuilding_selected_wall = 0;
@@ -1401,6 +1433,8 @@ void EWindowEditor::update(float _d)
 		EWindow::window_editor->select_new_floor();
 		EWindow::window_editor->select_new_wall();
 		EWindow::window_editor->select_new_variant();
+
+		change_drop_button_container();
 
 		Entity::assembly_autobuilding_sprites(selected_entity);
 
@@ -1621,13 +1655,16 @@ void EWindowEditor::update(float _d)
 
 					if (move_mode == MoveMode::MoveFloor)
 					{
-						*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->offset_x += mouse_speed_x * mul;
-						*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->offset_y += mouse_speed_y * mul;
+						for (Entity::building_autogen_floor* fl: selected_entity->autobuilding_floor_list)
+						{ 
+							*fl->offset_x += mouse_speed_x * mul;
+							*fl->offset_y += mouse_speed_y * mul;
 
-						if ((glfwGetKey(EWindow::main_window, GLFW_KEY_KP_0) == GLFW_PRESS) & (!EButton::any_input))
-						{
-							*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->offset_x = 0.0f;
-							*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->offset_y = 0.0f;
+							if ((glfwGetKey(EWindow::main_window, GLFW_KEY_KP_0) == GLFW_PRESS) & (!EButton::any_input))
+							{
+								*fl->offset_x = 0.0f;
+								*fl->offset_y = 0.0f;
+							}
 						}
 					}
 					//*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->offset_y += mouse_speed_y * mul;
@@ -1695,13 +1732,16 @@ void EWindowEditor::update(float _d)
 
 					if (move_mode == MoveMode::MoveFloor)
 					{
-						*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->offset_x
-							=
-							round(*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->offset_x);
+						for (Entity::building_autogen_floor* fl : selected_entity->autobuilding_floor_list)
+						{
+							*fl->offset_x
+								=
+								round(*fl->offset_x);
 
-						*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->offset_y
-							=
-							round(*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->offset_y);
+							*fl->offset_y
+								=
+								round(*fl->offset_y);
+						}
 					}
 					//Entity::assembly_autobuilding_sprites(selected_entity);
 				}
@@ -2898,6 +2938,9 @@ void EWindowEditor::select_new_variant()
 
 void EWindowEditor::select_new_floor()
 {
+
+
+
 	//autobuilding_selected_wall = 0;
 	//autobuilding_selected_texture_variant = 0;
 
@@ -2984,13 +3027,57 @@ void EWindowEditor::select_new_floor()
 
 }
 
+void EWindowEditor::change_drop_button_container()
+{
+	
+	for (int i = 0; i < stencil_button_list.size(); i++)
+	{
+		EButton* b = stencil_button_list.at(i);
+		//logger("0?");
+		b->drop_elements = 1;
+		//logger("1?");
+		b->drop_text.clear();
+		b->drop_text.push_back("-X-");
+		//logger("2?");
+		b->target_address_for_int = &selected_entity->autobuilding_floor_order.at(i);
+
+		for (int j = 0; j < link_to_floors_array->button_list.size(); j++)
+		if (link_to_floors_array->button_list.at(j)->is_active)
+		{
+			//logger("3?");
+				b->drop_elements++;
+				//logger("4?");
+				b->drop_text.push_back(link_to_floors_array->button_list.at(j)->text);
+				
+				//b->text = floor_button.at(j)->text;
+
+				
+		}
+		//logger("5?");
+		if (b->selected_element >= b->drop_text.size())
+		{
+			b->selected_element = b->drop_text.size() - 1;
+		}
+
+		b->text = b->drop_text.at(selected_entity->autobuilding_floor_order.at(i));
+	}
+}
+
 void EWindowEditor::select_new_wall()
 {
 
-
+	bool *ptr;
 	object_wall = selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall);
 	
 	link_to_mirror_button->target_address_for_bool = object_wall->is_mirrored;
+
+	for (int i = 0; i < stencil_button_list.size(); i++)
+	{
+		//ptr = &object_wall->stencil[i];
+		//stencil_button_list.at(i)->target_address_for_bool = &object_wall->otebis[i];
+		//logger(std::to_string(object_wall->otebis[i]));
+		//stencil_button_list.at(i)->description_text = std::to_string(object_wall->otebis[i]);
+	}
 
 	for (int i = 0; i < EWindow::window_editor->building_autogenerator_wall_button_link.size(); i++)
 	{

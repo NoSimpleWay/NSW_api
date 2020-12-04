@@ -1120,7 +1120,7 @@ void EWindowTest::draw_shadows()
 
 }
 
-void EWindowTest::draw_debug_draw_path()
+void EWindowTest::draw_debug_draw_path(float _opacity)
 {
 	if (glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS)
 		for (int i = up_path_draw; i >= down_path_draw; i--)
@@ -1128,15 +1128,15 @@ void EWindowTest::draw_debug_draw_path()
 			{
 				if (EPath::block[j][i])
 				{
-					EGraphicCore::batch->setcolor(EColor::COLOR_ORANGE);
+					EGraphicCore::batch->setcolor_alpha(EColor::COLOR_ORANGE, _opacity);
 				}
 				else
 				{
-					EGraphicCore::batch->setcolor_lum(EColor::COLOR_WHITE, (1.0f - EMath::clamp_value_float(EPath::path[j][i][EPath::active_buffer] / 200.0f, 0.0f, 1.0f)) * 0.9f + 0.1f);
+					EGraphicCore::batch->setcolor_lumalpha(EColor::COLOR_WHITE, (1.0f - EMath::clamp_value_float(EPath::path[j][i][EPath::active_buffer] / 200.0f, 0.0f, 1.0f)) * 0.9f + 0.1f, _opacity);
 
 					if (EPath::path[j][i][EPath::active_buffer] < 5)
 					{
-						EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
+						EGraphicCore::batch->setcolor_alpha(EColor::COLOR_GREEN, _opacity);
 					}
 				}
 
@@ -1544,7 +1544,7 @@ void EWindowTest::draw(float _d)
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	//----------------DRAW PATH MATRIX----------------
-	draw_debug_draw_path();
+	draw_debug_draw_path(1.0f);
 	draw_debug_cluster_border();
 	draw_debug_cluster_rama();
 
@@ -1780,6 +1780,8 @@ void EWindowTest::draw(float _d)
 	}
 	/*EGraphicCore::batch->setcolor(EColor::COLOR_BLACK);
 	EGraphicCore::batch->draw_gabarite(100.0f + rand() % 10, 200.0f, 512.0f, 64.0f, EGraphicCore::gabarite_white_pixel);*/
+
+	draw_debug_draw_path(0.5f);
 }
 
 void EWindowTest::draw_interface(float _d)

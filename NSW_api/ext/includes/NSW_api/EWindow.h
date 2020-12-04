@@ -276,6 +276,7 @@ public:
 	BUTTON_ACTION action_on_input_finish;
 
 	BUTTON_ACTION action_on_slider_drag;
+	BUTTON_ACTION action_on_drop_list_select_element;
 
 	
 	int * target_address_for_int;
@@ -286,6 +287,9 @@ public:
 
 	bool* target_address_for_bool;
 	bool* target_value_for_bool = new bool(false);
+
+	short* target_address_for_short;
+	short* target_value_for_short = new short(1);
 
 	static void static_click();
 	static void static_click2();
@@ -486,6 +490,7 @@ public:
 	
 };
 
+/*
 class EDataWatcher
 {
 public:
@@ -502,5 +507,5 @@ public:
 		std::string name;
 	};
 
-};
+};*/
 

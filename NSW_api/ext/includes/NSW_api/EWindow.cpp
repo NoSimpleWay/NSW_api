@@ -240,6 +240,16 @@ void EButton::update(float _d)
 		{
 			*is_checked = *target_address_for_bool;
 		}
+
+		if ((*is_checkbox) & (target_address_for_short != NULL))
+		{
+			*is_checked = bool(*target_address_for_short);
+		}
+
+		if ((is_drop_list) &(target_address_for_int != NULL))
+		{
+			selected_element = *target_address_for_int;
+		}
 	}
 
 	if ((is_overlap()) & (have_input_mode) & (input_only_numbers) & (text != "") & (EWindow::scroll != 0))
@@ -336,7 +346,7 @@ void EButton::update(float _d)
 			is_expanded = false;
 		}
 
-		if ((have_input_mode) && (is_input_mode_active))
+		if (is_input_mode_active)
 		{
 			is_input_mode_active = false;
 			input_finish_event();
@@ -404,6 +414,16 @@ void EButton::update(float _d)
 		}
 	}
 
+	if ((is_overlap()) & (is_drop_list) & (is_expanded))
+	{
+		selected_element = (int)((master_position_y - EWindow::mouse_y) / 22.0f);
+
+		if (action_on_drop_list_select_element != NULL)
+		{
+			action_on_drop_list_select_element(this, _d);
+		}
+	}
+
 	if (is_click())
 	{
 
@@ -429,7 +449,7 @@ void EButton::update(float _d)
 		{
 			if (is_expanded)
 			{
-				selected_element = (int)((master_position_y - EWindow::mouse_y) / 22.0f);
+				
 
 				if (selected_element < 0) { selected_element = 0; }
 				if (selected_element > drop_elements) { selected_element = drop_elements; }
@@ -1172,7 +1192,7 @@ void EWindow::default_update(float _d)
 							else
 							{
 								b->button_x = *massive->position_x + *horizontal->position_x + *vertical->position_x;
-								b->button_y = *massive->position_y + *horizontal->position_y + *vertical->position_y;
+								b->button_y = *massive->position_y + *horizontal->position_y + *vertical->position_y + b->bound_size_down;
 							}
 
 							
@@ -1222,7 +1242,7 @@ void EWindow::default_update(float _d)
 							array_id++;
 
 							if (button_row_offset > * vertical->size_x) { *vertical->size_x = button_row_offset; }
-							if (b->button_size_y > maximum_y_size_of_button) { maximum_y_size_of_button = b->button_size_y; }
+							if (b->button_size_y + b->bound_size_down > maximum_y_size_of_button) { maximum_y_size_of_button = b->button_size_y + b->bound_size_down; }
 
 							if (b->is_active)
 							{b->update(_d);}

@@ -339,6 +339,64 @@ public:
 	};
 	std::vector<int> autobuilding_floor_order = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
+	std::vector<bool*> autobuilding_left_border
+	=
+	{
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true)
+	};
+
+	std::vector<bool*> autobuilding_right_border =
+	{
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true)
+	};
+
+	std::vector<bool*> autobuilding_generate_offset_x =
+	{
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true)
+	};
+
+	std::vector<bool*> autobuilding_generate_offset_y =
+	{
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true),
+		new bool(true)
+	};
+
+
 
 	enum WallElementIndex
 	{
@@ -418,6 +476,8 @@ public:
 
 	static float stage_offset_x; 
 	static float stage_offset_y;
+
+	std::vector<EDataWatcher::data_watcher_struct<int*>*> data_watcher_int_list;
 };
 
 
@@ -468,6 +528,7 @@ public:
 		std::vector<EDataWatcher::data_watcher_struct<std::string*>*> data_watcher_string_list;
 
 		std::vector<EDataWatcher::data_watcher_struct<float*>*> data_watcher_float_list;
+		
 
 		
 

@@ -98,6 +98,7 @@ public:
 	static void action_assembly_autobuilding(EButton* _b, float _d);
 
 	static void action_start_input(EButton* _b, float _d);
+	static void action_refresh_drop_autobuilding_list(EButton* _b, float _d);
 
 
 

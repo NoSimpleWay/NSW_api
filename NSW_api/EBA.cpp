@@ -159,20 +159,73 @@ void EBA::action_close_window(EButton* _b, float _d)
 void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_collection)
 {
 	w_string += "ADD_NEW_ENTITY";
+		w_string += "\t";
+		w_string += std::to_string(*e->position_x);
 
-	//just_created_entity = new Entity();
+		w_string += "\t";
+		w_string += std::to_string(*e->position_y);
 
-	w_string += "\t";
-	w_string += std::to_string(*e->position_x);
-
-	w_string += "\t";
-	w_string += std::to_string(*e->position_y);
-
-	w_string += "\t";
-	w_string += std::to_string(*e->position_z);
-
+		w_string += "\t";
+		w_string += std::to_string(*e->position_z);
 	w_string += "\n";
 
+
+	
+	for (int i = 0; i < e->autobuilding_floor_order.size(); i++)
+	{
+		w_string += "floor_order\t";
+		w_string += std::to_string(e->autobuilding_floor_order.at(i));
+		w_string += "\n";
+	}
+
+	for (int i = 0; i < e->autobuilding_floor_order.size(); i++)
+	{
+		w_string += "floor_left_border\t";
+
+		if (*e->autobuilding_left_border.at(i))
+		{w_string += "true";}
+		else
+		{w_string += "false";}
+
+		w_string += "\n";
+	}
+
+	for (int i = 0; i < e->autobuilding_floor_order.size(); i++)
+	{
+		w_string += "floor_right_border\t";
+
+		if (*e->autobuilding_right_border.at(i))
+		{w_string += "true";}
+		else
+		{w_string += "false";}
+
+		w_string += "\n";
+	}
+
+	for (int i = 0; i < e->autobuilding_floor_order.size(); i++)
+	{
+		w_string += "floor_generate_offset_x\t";
+
+		if (*e->autobuilding_generate_offset_x.at(i))
+		{w_string += "true";}
+		else
+		{w_string += "false";}
+
+		w_string += "\n";
+	}
+
+	for (int i = 0; i < e->autobuilding_floor_order.size(); i++)
+	{
+		w_string += "floor_generate_offset_y\t";
+
+		if (*e->autobuilding_generate_offset_y.at(i))
+		{w_string += "true";}
+		else
+		{w_string += "false";}
+
+		w_string += "\n";
+	}
+	
 	//EDataWatcher::vectorizator(e->sprite_list, );
 
 	for (ESprite* spr : e->sprite_list)
@@ -222,6 +275,7 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 		}
 	}
 
+	int id = 0;
 	for (Entity::building_autogen_floor* f : e->autobuilding_floor_list)
 	{
 		w_string += "add_new_autobuilding_floor\t";
@@ -233,6 +287,13 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 			w_string += std::to_string(*f->up_roof_offset_multiplier) + "\t";
 			w_string += std::to_string(*f->horizontal_roof_offset_multiplier);
 		w_string += "\n";
+
+
+		w_string += "floor_name\t";
+			w_string += std::to_string(EWindow::window_editor->link_to_floors_array->button_list.at(id)->text);
+		w_string += "\n";
+
+
 
 		w_string += "floor_additional_distance_between_window_x\t";
 		w_string += std::to_string(*f->window_distance_x);
@@ -271,6 +332,8 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 				w_string += "\n";
 			}
 		}
+
+		id++;
 	}
 
 
@@ -498,7 +561,7 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 
 		int wall_id = 0;
 
-
+		int floor_id = 0;
 		while (getline(myfile, line))
 		{
 
@@ -529,9 +592,17 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 				if (EFile::data_array[i] == "ADD_NEW_ENTITY")
 				{
 					wall_id = 0;
+					floor_id = 0;
 					just_created_entity = new Entity();
 					i++; *just_created_entity->position_x = std::stof(EFile::data_array[i]);
 					i++; *just_created_entity->position_y = std::stof(EFile::data_array[i]);
+
+					just_created_entity->autobuilding_floor_order.clear();
+					just_created_entity->autobuilding_left_border.clear();
+					just_created_entity->autobuilding_right_border.clear();
+					just_created_entity->autobuilding_generate_offset_x.clear();
+					just_created_entity->autobuilding_generate_offset_y.clear();
+
 				}
 
 				if ((EFile::data_array[i] == "*entity_controlled_by_player") && (just_created_entity != NULL))
@@ -539,6 +610,49 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 					*just_created_entity->controlled_by_player = true;
 					//EWindow::window_test->link_to_player = just_created_entity;
 					//EWindow::window_editor->selected_entity = just_created_entity;
+				}
+
+				if ((EFile::data_array[i] == "floor_order") && (just_created_entity != NULL))
+				{i++; just_created_entity->autobuilding_floor_order.push_back(std::stoi(EFile::data_array[i]));}
+
+				if ((EFile::data_array[i] == "floor_left_border") && (just_created_entity != NULL))
+				{
+					i++;
+					if (EFile::data_array[i] == "true")
+					{just_created_entity->autobuilding_left_border.push_back(new bool(true));}
+
+					if (EFile::data_array[i] == "false")
+					{just_created_entity->autobuilding_left_border.push_back(new bool(false));}
+				}
+
+				if ((EFile::data_array[i] == "floor_right_border") && (just_created_entity != NULL))
+				{
+					i++;
+					if (EFile::data_array[i] == "true")
+					{just_created_entity->autobuilding_right_border.push_back(new bool(true));}
+
+					if (EFile::data_array[i] == "false")
+					{just_created_entity->autobuilding_right_border.push_back(new bool(false));}
+				}
+
+				if ((EFile::data_array[i] == "floor_generate_offset_x") && (just_created_entity != NULL))
+				{
+					i++;
+					if (EFile::data_array[i] == "true")
+					{just_created_entity->autobuilding_generate_offset_x.push_back(new bool(true));}
+
+					if (EFile::data_array[i] == "false")
+					{just_created_entity->autobuilding_generate_offset_x.push_back(new bool(false));}
+				}
+
+				if ((EFile::data_array[i] == "floor_generate_offset_y") && (just_created_entity != NULL))
+				{
+					i++;
+					if (EFile::data_array[i] == "true")
+					{just_created_entity->autobuilding_generate_offset_y.push_back(new bool(true));}
+
+					if (EFile::data_array[i] == "false")
+					{just_created_entity->autobuilding_generate_offset_y.push_back(new bool(false));}
 				}
 
 				if ((EFile::data_array[i] == "*entity_controlled_by_ai") && (just_created_entity != NULL))
@@ -747,6 +861,7 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 				if (EFile::data_array[i] == "add_new_autobuilding_floor")
 				{
 					just_created_floor = new Entity::building_autogen_floor;
+					
 					just_created_entity->autobuilding_floor_list.push_back(just_created_floor);
 
 					i++;  *just_created_floor->offset_x																= std::stof(EFile::data_array[i]);
@@ -757,6 +872,12 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 					i++;  std::cout << "|" << EFile::data_array[i] << "|" << std::endl; if (EFile::data_array[i] != "")		*just_created_floor->horizontal_roof_offset_multiplier	= std::stof(EFile::data_array[i]);
 
 					wall_id = 0;
+				}
+
+				if (EFile::data_array[i] == "floor_name")
+				{
+					i++; EWindow::window_editor->link_to_floors_array->button_list.at(floor_id)->text = EFile::data_array[i];
+					floor_id++;
 				}
 				
 				if ((EFile::data_array[i] == "*wall_is_mirrored")&(just_created_wall != NULL))
@@ -1449,6 +1570,11 @@ void EBA::action_assembly_autobuilding(EButton* _b, float _d)
 void EBA::action_start_input(EButton* _b, float _d)
 {
 	_b->is_input_mode_active = true;
+}
+
+void EBA::action_refresh_drop_autobuilding_list(EButton* _b, float _d)
+{
+EWindow::window_editor->change_drop_button_container();
 }
 
 

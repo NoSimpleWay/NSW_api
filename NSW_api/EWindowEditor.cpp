@@ -861,7 +861,7 @@ EWindowEditor::EWindowEditor()
 
 
 	//****************************************
-	//wall block stencil button
+	//floor order button
 	//****************************************
 
 			a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 60.0f);
@@ -869,7 +869,7 @@ EWindowEditor::EWindowEditor()
 
 			//new vertical group for texture variant
 			a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 200.0f, 60.0f);
-			*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
+			*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::MAXIMUM_BUTTON_SIZE;
 			a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
 			a_array = new button_array;
 			a_vertical->button_array_list.push_back(a_array);
@@ -885,6 +885,74 @@ EWindowEditor::EWindowEditor()
 
 				but->action_on_drop_list_select_element = &EBA::action_set_button_value_int_to_address;
 				but->data_id = i;
+			}
+
+			a_array = new button_array;
+			a_vertical->button_array_list.push_back(a_array);
+			for (int i = 0; i < 10; i++)
+			{
+				but = new EButton(0.0f, 0.0f, 50.0f, 20.0f);
+				but->text = "Left";
+				but->description_text = "Activate/deactivate left border for this segment";
+				link_to_left_border_button.push_back(but);
+				but->master_window = this;
+				*but->is_checkbox = true;
+				*but->is_consumable = true;
+				but->action_on_left_click = &EBA::action_set_button_value_bool_to_address;
+				but->data_id = i;
+				a_array->button_list.push_back(but);
+
+			}
+
+			a_array = new button_array;
+			a_vertical->button_array_list.push_back(a_array);
+			for (int i = 0; i < 10; i++)
+			{
+				but = new EButton(0.0f, 0.0f, 50.0f, 20.0f);
+				but->text = "Right";
+				but->description_text = "Activate/deactivate right border for this segment";
+				link_to_right_border_button.push_back(but);
+				but->master_window = this;
+				*but->is_checkbox = true;
+				*but->is_consumable = true;
+				but->action_on_left_click = &EBA::action_set_button_value_bool_to_address;
+				but->data_id = i;
+				a_array->button_list.push_back(but);
+
+			}
+
+			a_array = new button_array;
+			a_vertical->button_array_list.push_back(a_array);
+			for (int i = 0; i < 10; i++)
+			{
+				but = new EButton(0.0f, 0.0f, 50.0f, 20.0f);
+				but->text = "O[y]";
+				but->description_text = "Offset y";
+				link_to_generate_offset_y.push_back(but);
+				but->master_window = this;
+				*but->is_checkbox = true;
+				*but->is_consumable = true;
+				but->action_on_left_click = &EBA::action_set_button_value_bool_to_address;
+				but->data_id = i;
+				a_array->button_list.push_back(but);
+
+			}
+
+			a_array = new button_array;
+			a_vertical->button_array_list.push_back(a_array);
+			for (int i = 0; i < 10; i++)
+			{
+				but = new EButton(0.0f, 0.0f, 50.0f, 20.0f);
+				but->text = "O[x]";
+				but->description_text = "Offset x";
+				link_to_generate_offset_x.push_back(but);
+				but->master_window = this;
+				*but->is_checkbox = true;
+				*but->is_consumable = true;
+				but->action_on_left_click = &EBA::action_set_button_value_bool_to_address;
+				but->data_id = i;
+				a_array->button_list.push_back(but);
+
 			}
 	//****************************************
 	//building autogenerator elements
@@ -1108,6 +1176,7 @@ EWindowEditor::EWindowEditor()
 		but->action_on_right_click = &EBA::action_deactivate_floors;
 		but->action_on_left_click = &EBA::action_select_floor;
 		but->action_on_left_double_click = &EBA::action_start_input;
+		but->action_on_input = &EBA::action_refresh_drop_autobuilding_list;
 		but->have_icon = false;
 
 		but->data_id = i;
@@ -1197,6 +1266,12 @@ EButton* EWindowEditor::link_to_upper_tall_button;
 EButton* EWindowEditor::link_to_mirror_button;
 EButton* EWindowEditor::link_to_window_offset_x;
 EButton* EWindowEditor::link_to_window_offset_y;
+
+std::vector<EButton*>  EWindowEditor::link_to_left_border_button;
+std::vector<EButton*>  EWindowEditor::link_to_right_border_button;
+
+std::vector<EButton*>  EWindowEditor::link_to_generate_offset_x;
+std::vector<EButton*>  EWindowEditor::link_to_generate_offset_y;
 
 Entity::building_autogen_floor*				EWindowEditor::object_floor;
 Entity::wall_element*						EWindowEditor::object_wall;
@@ -1655,17 +1730,29 @@ void EWindowEditor::update(float _d)
 
 					if (move_mode == MoveMode::MoveFloor)
 					{
-						for (Entity::building_autogen_floor* fl: selected_entity->autobuilding_floor_list)
-						{ 
-							*fl->offset_x += mouse_speed_x * mul;
-							*fl->offset_y += mouse_speed_y * mul;
-
-							if ((glfwGetKey(EWindow::main_window, GLFW_KEY_KP_0) == GLFW_PRESS) & (!EButton::any_input))
+						if (glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS)
+						{
+							for (Entity::building_autogen_floor* fl : selected_entity->autobuilding_floor_list)
 							{
-								*fl->offset_x = 0.0f;
-								*fl->offset_y = 0.0f;
+								*fl->offset_x += mouse_speed_x * mul;
+								*fl->offset_y += mouse_speed_y * mul;
+
+								if ((glfwGetKey(EWindow::main_window, GLFW_KEY_KP_0) == GLFW_PRESS) & (!EButton::any_input))
+								{
+									*fl->offset_x = 0.0f;
+									*fl->offset_y = 0.0f;
+								}
 							}
 						}
+						else
+						{
+							if (object_floor != NULL)
+							{
+								*object_floor->offset_x += mouse_speed_x * mul;
+								*object_floor->offset_y += mouse_speed_y * mul;
+							}
+						}
+
 					}
 					//*selected_entity->sprite_list.at(selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->offset_y += mouse_speed_y * mul;
 
@@ -1732,15 +1819,27 @@ void EWindowEditor::update(float _d)
 
 					if (move_mode == MoveMode::MoveFloor)
 					{
-						for (Entity::building_autogen_floor* fl : selected_entity->autobuilding_floor_list)
+						if (glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS)
 						{
-							*fl->offset_x
-								=
-								round(*fl->offset_x);
+							for (Entity::building_autogen_floor* fl : selected_entity->autobuilding_floor_list)
+							{
+								*fl->offset_x
+									=
+									round(*fl->offset_x);
 
-							*fl->offset_y
-								=
-								round(*fl->offset_y);
+								*fl->offset_y
+									=
+									round(*fl->offset_y);
+							}
+						}
+						else
+						{
+							if (object_floor != NULL)
+							{
+								*object_floor->offset_x = round(*object_floor->offset_x);
+								*object_floor->offset_y = round(*object_floor->offset_y);
+							}
+
 						}
 					}
 					//Entity::assembly_autobuilding_sprites(selected_entity);

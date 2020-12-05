@@ -176,7 +176,11 @@ public:
 
 	static std::vector<EButton*> stencil_button_list;
 
+	static std::vector<EButton*> link_to_left_border_button;
+	static std::vector<EButton*> link_to_right_border_button;
 
+	static std::vector<EButton*> link_to_generate_offset_x;
+	static std::vector<EButton*> link_to_generate_offset_y;
 
 
 

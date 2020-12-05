@@ -653,6 +653,11 @@ Entity::Entity()
 	light_source_green									= &eattr_TOTAL.at(EAttr::ENTITY_ATTRIBUTE_LIGHT_SOURCE_GREEN);
 	light_source_blue									= &eattr_TOTAL.at(EAttr::ENTITY_ATTRIBUTE_LIGHT_SOURCE_BLUE);
 
+	//for (int i = 0; i < autobuilding_floor_order.size(); i++)
+	//{
+	//	data_watcher_int_list.push_back(new EDataWatcher::data_watcher_struct<int*>("floor_order", &autobuilding_floor_order));
+	//}
+
 	//EDataWatcher::data_watcher_struct* just_created_float_watcher = new EDataWatcher::data_watcher_struct;
 	//float_data_list.push_back(just_created_float_watcher);
 	//just_created_float_watcher->name = "";
@@ -1071,6 +1076,17 @@ void Entity::update_building_autogenerator_massive(Entity* _selected)
 	}
 
 
+	for (EButton* b : EWindow::window_editor->link_to_left_border_button)
+	{b->target_address_for_bool = _selected->autobuilding_left_border.at(b->data_id);}
+
+	for (EButton* b : EWindow::window_editor->link_to_right_border_button)
+	{b->target_address_for_bool = _selected->autobuilding_right_border.at(b->data_id);}
+
+	for (EButton* b : EWindow::window_editor->link_to_generate_offset_x)
+	{b->target_address_for_bool = _selected->autobuilding_generate_offset_x.at(b->data_id);}
+
+	for (EButton* b : EWindow::window_editor->link_to_generate_offset_y)
+	{b->target_address_for_bool = _selected->autobuilding_generate_offset_y.at(b->data_id);}
 
 	EWindow::window_editor->select_new_floor();
 	EWindow::window_editor->select_new_wall();
@@ -1277,8 +1293,11 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 					stage_offset_y += AB_MACRO_get_texture_variant_size_y(WEI_FACE_MID_ROOF, random_select) * *AB_floor->bottom_roof_offset_multiplier;
 				}
 
-				floor_order_offset_x = AB_MACRO_get_texture_variant_size_x(WEI_MID_WALL, random_select) * *AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_x;
-				logger_param("floor_order_offset_x", floor_order_offset_x);
+				if (*_e->autobuilding_generate_offset_x.at(z))
+				{
+					floor_order_offset_x = AB_MACRO_get_texture_variant_size_x(WEI_MID_WALL, random_select) * *AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_x;
+				}
+				//logger_param("floor_order_offset_x", floor_order_offset_x);
 				//if (z != 0) { floor_order_offset_x -= *AB_floor->offset_x; }
 				/*if (AB_MACRO_is_valid(WEI_RIGHT_WALL, random_select))
 				{
@@ -1288,7 +1307,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 		}
 
 		//left wall
-		if (AB_MACRO_is_valid(WEI_LEFT_WALL, random_select))
+		if ((AB_MACRO_is_valid(WEI_LEFT_WALL, random_select)) & (*_e->autobuilding_left_border.at(z)))
 		{
 			if (AB_MACRO_is_valid(WEI_MID_WALL, random_select))
 			{scale_factor_y = AB_MACRO_get_scale_y(WEI_LEFT_WALL, random_select, WEI_MID_WALL, random_select);}
@@ -1330,7 +1349,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 		}
 		
 		//right wall
-		if (AB_MACRO_is_valid(WEI_RIGHT_WALL, random_select))
+		if ((AB_MACRO_is_valid(WEI_RIGHT_WALL, random_select)) &(*_e->autobuilding_right_border.at(z)))
 		{
 			if (AB_MACRO_is_valid(WEI_MID_WALL, random_select))
 			{
@@ -1381,10 +1400,10 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 		float roof_corrected_offset_right_corner = 0.0f;
 		//float roof_corrected_scale_left_corner = 1.0f;
 
-		if (AB_MACRO_is_valid(WEI_BODY_LEFT_ROOF, random_select))
+		if ((AB_MACRO_is_valid(WEI_BODY_LEFT_ROOF, random_select)) &(*_e->autobuilding_left_border.at(z)))
 		{roof_corrected_offset_left = AB_MACRO_get_texture_variant_size_x(WEI_BODY_LEFT_ROOF, random_select) * (1.0f - *AB_floor->horizontal_roof_offset_multiplier); }
 
-		if (AB_MACRO_is_valid(WEI_BODY_RIGHT_ROOF, random_select))
+		if ((AB_MACRO_is_valid(WEI_BODY_RIGHT_ROOF, random_select)) &(*_e->autobuilding_right_border.at(z)))
 		{roof_corrected_offset_right = AB_MACRO_get_texture_variant_size_x(WEI_BODY_RIGHT_ROOF, random_select) * (1.0f - *AB_floor->horizontal_roof_offset_multiplier); }
 
 		if (AB_MACRO_is_valid(WEI_BACK_MID_ROOF, random_select))
@@ -1393,10 +1412,10 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 		if (AB_MACRO_is_valid(WEI_FACE_MID_ROOF, random_select))
 		{roof_corrected_offset_down = AB_MACRO_get_texture_variant_size_y(WEI_FACE_MID_ROOF, random_select) * (1.0f - *AB_floor->bottom_roof_offset_multiplier); }
 		
-		if (AB_MACRO_is_valid(WEI_FACE_LEFT_ROOF, random_select))
+		if ((AB_MACRO_is_valid(WEI_FACE_LEFT_ROOF, random_select)) & (*_e->autobuilding_left_border.at(z)))
 		{roof_corrected_offset_left_corner = AB_MACRO_get_texture_variant_size_y(WEI_FACE_LEFT_ROOF, random_select) * (1.0f - *AB_floor->bottom_roof_offset_multiplier); }
 		
-		if (AB_MACRO_is_valid(WEI_FACE_RIGHT_ROOF, random_select))
+		if ((AB_MACRO_is_valid(WEI_FACE_RIGHT_ROOF, random_select)) & (*_e->autobuilding_right_border.at(z)))
 		{roof_corrected_offset_right_corner = AB_MACRO_get_texture_variant_size_y(WEI_FACE_RIGHT_ROOF, random_select) * (1.0f - *AB_floor->bottom_roof_offset_multiplier); }
 		
 		roof_copies_x = *AB_floor->wall_list.at(Entity::WallElementIndex::_WEI_MAIN_ROOF_)->repeat_x;
@@ -1424,10 +1443,11 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 			max(rsize_y , 0.0f);*/
 			
 			float rsize_x = roof_size_x;
-			if (AB_MACRO_is_valid(WEI_FACE_LEFT_ROOF, random_select))
+
+			if ((AB_MACRO_is_valid(WEI_FACE_LEFT_ROOF, random_select)) &(*_e->autobuilding_left_border.at(z)))
 			{ rsize_x -= AB_MACRO_get_texture_variant_size_x(WEI_FACE_LEFT_ROOF, random_select) * (1.0f - *AB_floor->horizontal_roof_offset_multiplier);}
 
-			if (AB_MACRO_is_valid(WEI_FACE_RIGHT_ROOF, random_select))
+			if ((AB_MACRO_is_valid(WEI_FACE_RIGHT_ROOF, random_select)) &(*_e->autobuilding_right_border.at(z)))
 			{ rsize_x -= AB_MACRO_get_texture_variant_size_x(WEI_FACE_RIGHT_ROOF, random_select) * (1.0f - *AB_floor->horizontal_roof_offset_multiplier);}
 
 			rsize_x = rsize_x / roof_size_x;
@@ -1448,7 +1468,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 				ox += AB_MACRO_get_texture_variant_size_x(_WEI_MAIN_ROOF_, random_select) * xx;
 				oy += AB_MACRO_get_texture_variant_size_y(_WEI_MAIN_ROOF_, random_select) * yy;
 
-				if (AB_MACRO_is_valid(WEI_FACE_LEFT_ROOF, random_select))
+				if ((AB_MACRO_is_valid(WEI_FACE_LEFT_ROOF, random_select)) &(*_e->autobuilding_left_border.at(z)))
 				{ox += AB_MACRO_get_texture_variant_size_x(WEI_FACE_LEFT_ROOF, random_select) * (1.0f - *AB_floor->horizontal_roof_offset_multiplier);}
 
 
@@ -1474,7 +1494,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 
 			float rsize = roof_size_x;
 
-			if (AB_MACRO_is_valid(WEI_BACK_LEFT_ROOF, random_select))
+			if ((AB_MACRO_is_valid(WEI_BACK_LEFT_ROOF, random_select)) & (*_e->autobuilding_left_border.at(z)))
 			{ rsize -= AB_MACRO_get_texture_variant_size_x(WEI_BACK_LEFT_ROOF, random_select) * (1.0f - *AB_floor->horizontal_roof_offset_multiplier);}
 
 
@@ -1510,7 +1530,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 		}
 		
 		//BACK left roof
-		if(AB_MACRO_is_valid(WEI_BACK_LEFT_ROOF, random_select))
+		if((AB_MACRO_is_valid(WEI_BACK_LEFT_ROOF, random_select))&(*_e->autobuilding_left_border.at(z)))
 		{
 
 			spr = _e->sprite_list.at(sprite_order);
@@ -1532,7 +1552,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 		}
 		
 		//BACK right roof
-		if (AB_MACRO_is_valid(WEI_BACK_RIGHT_ROOF, random_select))
+		if ((AB_MACRO_is_valid(WEI_BACK_RIGHT_ROOF, random_select)) &(*_e->autobuilding_right_border.at(z)))
 		{
 			spr = _e->sprite_list.at(sprite_order);
 			
@@ -1563,7 +1583,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 
 
 		//BODY left roof
-		if (AB_MACRO_is_valid(WEI_BODY_LEFT_ROOF, random_select))
+		if ((AB_MACRO_is_valid(WEI_BODY_LEFT_ROOF, random_select)) &(*_e->autobuilding_left_border.at(z)))
 		{
 			if (AB_MACRO_is_valid(_WEI_MAIN_ROOF_, random_select))
 			{scale_factor_y = AB_MACRO_get_scale_y(WEI_BODY_LEFT_ROOF, random_select, _WEI_MAIN_ROOF_, random_select);}
@@ -1603,7 +1623,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 		}
 		
 		//BODY right roof
-		if (AB_MACRO_is_valid(WEI_BODY_RIGHT_ROOF, random_select))
+		if ((AB_MACRO_is_valid(WEI_BODY_RIGHT_ROOF, random_select)) &(*_e->autobuilding_right_border.at(z)))
 		{
 			if (AB_MACRO_is_valid(_WEI_MAIN_ROOF_, random_select))
 			{ scale_factor_y = AB_MACRO_get_scale_y(WEI_BODY_RIGHT_ROOF, random_select, _WEI_MAIN_ROOF_, random_select);}
@@ -1681,12 +1701,8 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 		
 
 		//FACE left roof
-		if (AB_MACRO_is_valid(WEI_FACE_LEFT_ROOF, random_select))
+		if ((AB_MACRO_is_valid(WEI_FACE_LEFT_ROOF, random_select)) & (*_e->autobuilding_left_border.at(z)))
 		{
-
-
-			//spr = new ESprite();
-			//for (int yy = 0; yy < ceil(*floor->wall_list.at(Entity::WallElementIndex::_WEI_MAIN_ROOF_)->repeat_y * scale_factor_y); yy++)
 			{
 				spr = _e->sprite_list.at(sprite_order);
 				
@@ -1710,7 +1726,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 		
 
 		//FACE right roof
-		if (AB_MACRO_is_valid(WEI_FACE_RIGHT_ROOF, random_select))
+		if ((AB_MACRO_is_valid(WEI_FACE_RIGHT_ROOF, random_select)) &(*_e->autobuilding_right_border.at(z)))
 		{
 			//logger("00");
 			if ((AB_MACRO_is_variant_list_not_empty(_WEI_MAIN_ROOF_))&&(AB_macro_is_texture_not_null(_WEI_MAIN_ROOF_, random_select)))
@@ -1853,10 +1869,13 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 
 			for (int xx = 0; xx < w_copies_x; xx++)
 			{
+				
+
 				result_offset_y = 0.0f;
 
 				for (int yy = 0; yy < w_copies_y; yy++)
 				{
+					random_select = get_random_variant(AB_floor, WEI_WINDOW);
 					spr = _e->sprite_list.at(sprite_order);
 
 					ox = AB_MACRO_get_texture_offset(WEI_WINDOW, random_select, offset_x) + stage_offset_x;
@@ -2423,6 +2442,9 @@ ESprite::sprite_struct::sprite_struct()
 
 	data_watcher_string_list.push_back(new EDataWatcher::data_watcher_struct<std::string*>("texture_name", &gabarite->name));
 	data_watcher_string_list.push_back(new EDataWatcher::data_watcher_struct<std::string*>("supermap_name", &supermap->name));
+
+
+	
 	//jcws->name = "texture_offset_x";
 	//jcws->watcher_address.push_back(&offset_x);
 

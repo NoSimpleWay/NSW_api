@@ -339,6 +339,19 @@ public:
 	};
 	std::vector<int> autobuilding_floor_order = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
+	//std::autobuilding_params
+
+	struct autobuilding_parameters
+	{
+		bool* left_border = new bool (true);
+		bool* right_border = new bool (true);
+
+		bool* offset_x = new bool(true);
+		bool* offset_y = new bool(true);
+	};
+
+	std::vector< autobuilding_parameters*> ab_param_list;
+
 	std::vector<bool*> autobuilding_left_border
 	=
 	{

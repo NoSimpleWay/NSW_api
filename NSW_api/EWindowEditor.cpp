@@ -2925,6 +2925,8 @@ void EWindowEditor::refresh_autobuilding()
 	select_new_floor();
 	select_new_wall();
 	select_new_variant();
+
+	//if (speed > max_speed) { speed = max_speed; }
 }
 
 void EWindowEditor::select_new_variant()

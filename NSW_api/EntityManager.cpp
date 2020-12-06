@@ -1234,7 +1234,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 
 		
 		//mid wall
-		logger_param("stage_offset_x after [" + std::to_string(z) + "]", stage_offset_x);
+		//logger_param("stage_offset_x after [" + std::to_string(z) + "]", stage_offset_x);
 
 		if (AB_MACRO_is_valid(WEI_MID_WALL, random_select))
 		{
@@ -1902,7 +1902,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 		stage_offset_x += floor_order_offset_x;
 		floor_order_offset_x = 0.0f;
 
-		logger_param("stage_offset_x before", stage_offset_x);
+		//logger_param("stage_offset_x before", stage_offset_x);
 			/*spr = new ESprite();
 			_e->sprite_list.push_back(spr);
 			spr->sprite_struct_list.at(0)->gabarite = EGraphicCore::gabarite_white_pixel;

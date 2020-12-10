@@ -795,7 +795,12 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 
 				}
 				else
-				{_b->setcolor(EColor::COLOR_SKY_AMBIENT);}
+				{
+					GLint myLoc = glGetUniformLocation(EGraphicCore::shadowmap->ID,"ambient_light_color");
+					glUniform4f(myLoc, EColor::COLOR_SKY_AMBIENT->color_red, EColor::COLOR_SKY_AMBIENT->color_green, EColor::COLOR_SKY_AMBIENT->color_blue, 1.0f);
+					//_b->setcolor(EColor::COLOR_SKY_AMBIENT);
+					_b->setcolor(EColor::COLOR_WHITE);
+				}
 			}
 
 

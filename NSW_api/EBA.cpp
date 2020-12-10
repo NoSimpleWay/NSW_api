@@ -117,7 +117,7 @@ void EBA::action_set_sprite_texture(EButton* _b, float _d)
 
 	ed->link_to_texture_variant_array->button_list.at(ed->autobuilding_selected_texture_variant)->gabarite = _b->gabarite;
 
-	EWindow::window_search_brick->is_active = false;
+	//EWindow::window_search_brick->is_active = false;
 
 	ed->editor_mode = EWindowEditor::EditMode::EditAutobuilding;
 	EWindow::window_editor->refresh_autobuilding();
@@ -848,7 +848,7 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 				if (EFile::data_array[i] == "- PUT TO MAP -")
 				{
 					Entity::update_entity_attributes(just_created_entity);
-
+					if (*just_created_entity->mass_pointer <= 0) { *just_created_entity->mass_pointer = 0.1f; }
 					ECluster::put_entity(just_created_entity, *just_created_entity->position_x, *just_created_entity->position_y);
 
 				}

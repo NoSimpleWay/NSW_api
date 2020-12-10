@@ -21,6 +21,8 @@ uniform float offset_y;
 uniform float screen_size_x;
 uniform float screen_size_y;
 
+uniform vec4 ambient_light_color;
+
 uniform float zoom;
 
 float shadow_multiplier;
@@ -189,7 +191,7 @@ void main()
 		)
 		+
 		(
-			(1.0f - shadow_multiplier) * ourColor.rgb
+			(1.0f - shadow_multiplier) * ambient_light_color.rgb * ourColor.rgb
 		)
 		+
 		(texture(texture3, light_coord).rgb / (1.0f + halt * 1.0f))

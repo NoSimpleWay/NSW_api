@@ -1825,14 +1825,26 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 			wall_size_x = AB_MACRO_get_texture_variant_size_x(WEI_MID_WALL, random_select) * *AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_x;
 			wall_size_y = AB_MACRO_get_texture_variant_size_y(WEI_MID_WALL, random_select) * *AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y;
 
-			w_copies_x = floor(wall_size_x / AB_MACRO_get_texture_variant_size_x(WEI_WINDOW, random_select));
+			w_copies_x = floor(wall_size_x / (AB_MACRO_get_texture_variant_size_x(WEI_WINDOW, random_select) + distance_between_windows_x)) + 0;
 			w_copies_x = min(w_copies_x, 50);
-			w_copies_y = floor(wall_size_y / AB_MACRO_get_texture_variant_size_y(WEI_WINDOW, random_select));
+			w_copies_y = floor(wall_size_y / (AB_MACRO_get_texture_variant_size_y(WEI_WINDOW, random_select) + distance_between_windows_y)) + 0;
 			w_copies_y = min(w_copies_y, 50);
 
-			if (w_copies_x * w_copies_y > 0)
+			if (AB_MACRO_get_texture_variant_size_x(WEI_WINDOW, random_select) * (w_copies_x + 1.0f) + distance_between_windows_x * w_copies_x <= wall_size_x)
+			{w_copies_x++; dbw_factor_x = (w_copies_x - 1.0f) / w_copies_x;}
+
+			if (AB_MACRO_get_texture_variant_size_y(WEI_WINDOW, random_select) * (w_copies_y + 1.0f) + distance_between_windows_y * w_copies_y  <= wall_size_y)
+			{w_copies_y++; dbw_factor_y = (w_copies_y - 1.0f) / w_copies_y; }
+			//if (w_copies_x > 0)
+				//w_copies_x = floor(wall_size_x / (AB_MACRO_get_texture_variant_size_x(WEI_WINDOW, random_select) + distance_between_windows_x * (w_copies_x - 2)));
+			//{
+			//	w_copies_x = floor(wall_size_x / (AB_MACRO_get_texture_variant_size_x(WEI_WINDOW, random_select) + distance_between_windows_x * ((w_copies_x - 1) / w_copies_x)));
+			//}
+
+
+			if ((w_copies_x * w_copies_y > 0) & (false))
 			{
-				dbw_factor_x = (w_copies_x - 1.0f) / w_copies_x;
+				dbw_factor_x = (w_copies_x - 1.0f) / w_copies_x; 
 
 				w_copies_x
 				=
@@ -1850,17 +1862,17 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 				w_copies_x = min(w_copies_x, 50);
 
 				
-				dbw_factor_y = (w_copies_y - 1.0f) / w_copies_y;
+				dbw_factor_y = (w_copies_y - 1.0f) / w_copies_y;// 9/10 = 0.9
 				w_copies_y
 				=
 				floor
 				(
-					wall_size_y
+					wall_size_y	//	715.0
 					/
 					(
-						AB_MACRO_get_texture_variant_size_y(WEI_WINDOW, random_select)
+						AB_MACRO_get_texture_variant_size_y(WEI_WINDOW, random_select)	//100
 						+
-						distance_between_windows_y * dbw_factor_y
+						distance_between_windows_y * dbw_factor_y // 400 * 0.9 = 360
 					)
 				);
 
@@ -1869,8 +1881,13 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 
 			dbw_factor_x = (w_copies_x - 1.0f) / w_copies_x;
 			dbw_factor_y = (w_copies_y - 1.0f) / w_copies_y;
-			w_offset_x = (wall_size_x - (AB_MACRO_get_texture_variant_size_x(WEI_WINDOW, random_select) + distance_between_windows_x * dbw_factor_x) * w_copies_x) / 2.0f;
-			w_offset_y = (wall_size_y - (AB_MACRO_get_texture_variant_size_y(WEI_WINDOW, random_select) + distance_between_windows_y * dbw_factor_y) * w_copies_y) / 2.0f;
+			w_offset_x
+			=
+			(
+				wall_size_x - (AB_MACRO_get_texture_variant_size_x(WEI_WINDOW, random_select) * w_copies_x + distance_between_windows_x * (w_copies_x - 1))
+			) / 2.0f;
+
+			w_offset_y = (wall_size_y - (AB_MACRO_get_texture_variant_size_y(WEI_WINDOW, random_select) * w_copies_y + distance_between_windows_y * (w_copies_y - 1))) / 2.0f;
 
 			for (int xx = 0; xx < w_copies_x; xx++)
 			{

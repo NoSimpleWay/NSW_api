@@ -194,7 +194,7 @@ void main()
 			(1.0f - shadow_multiplier) * ambient_light_color.rgb * ourColor.rgb
 		)
 		+
-		(texture(texture3, light_coord).rgb / (1.0f + halt * 1.0f))
+		(texture(texture3, light_coord).rgb / (1.0f + halt * halt * 32.0f))
 	)
 	;
 	

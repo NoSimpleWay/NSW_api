@@ -1403,14 +1403,15 @@ void EWindowTest::draw_lightmap()
 			GLint decay_flat = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "decay_flat");
 			glUniform1f(blur_loc, add_factor);
 	//glBlendFunc(GL_ONE, GL_ZERO);
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 6; i++)
 	{
+
 
 
 			EGraphicCore::lightmap_blur->use();
 				glUniform1f(blur_loc, blur_factor);
 				glUniform1f(decay_mul, blur_blend);
-				glUniform1f(decay_flat, blur_decay_flat_factor);
+				glUniform1f(decay_flat, blur_decay_flat_factor / 2.0f);
 			transformLoc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "transform");
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 
@@ -1420,8 +1421,8 @@ void EWindowTest::draw_lightmap()
 			glActiveTexture(GL_TEXTURE1);
 			glBindTexture(GL_TEXTURE_2D, EWindow::base_blockmap->colorbuffer);
 			EGraphicCore::lightmap_blur->setInt("texture2", 1);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);//texture filtering
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);//
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);//texture filtering
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);//
 
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);
@@ -1443,7 +1444,7 @@ void EWindowTest::draw_lightmap()
 			EGraphicCore::lightmap_blur->use();
 				glUniform1f(blur_loc, blur_factor);
 				glUniform1f(decay_mul, blur_blend);
-				glUniform1f(decay_flat, blur_decay_flat_factor);
+				glUniform1f(decay_flat, blur_decay_flat_factor * 2.0f);
 			transformLoc = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "transform");
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 
@@ -1453,8 +1454,8 @@ void EWindowTest::draw_lightmap()
 			glActiveTexture(GL_TEXTURE1);
 			glBindTexture(GL_TEXTURE_2D, EWindow::base_blockmap->colorbuffer);
 			EGraphicCore::lightmap_blur->setInt("texture2", 1);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);//texture filtering
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);//
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);//texture filtering
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);//
 
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			EGraphicCore::batch->draw_rect(0.0f, 0.0f, 300.0f, 300.0f);

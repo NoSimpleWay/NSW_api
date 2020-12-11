@@ -854,7 +854,7 @@ void EButton::default_draw(Batcher* _batch, float _d)
 		_batch->draw_gabarite(master_position_x + 40.0f, master_position_y, 100.0f, 20.0f,  EGraphicCore::gabarite_white_pixel);
 
 		_batch->setcolor(text_color);
-		target_font->draw(_batch, EString::float_to_string (round(slider_value / *maximum_value * 1000.0f)/10.0f) + "%", master_position_x + 45.0f, master_position_y + 5.0f);
+		target_font->draw(_batch, EString::float_to_string (round(slider_value  * 100.0f)/100.0f) + "", master_position_x + 45.0f, master_position_y + 5.0f);
 
 		_batch->setcolor(EColor::COLOR_WHITE);
 		_batch->draw_gabarite(master_position_x + cos(3.14f * (1.0f - slider_value / *maximum_value)) * 13.0f + 13.0f, master_position_y + sin(3.14f * (1.0f - slider_value / *maximum_value)) * 13.0f + 13.0f, EGraphicCore::gabarite_radial_button_dot);

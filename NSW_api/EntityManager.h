@@ -409,6 +409,7 @@ public:
 		new bool(true)
 	};
 
+	
 
 
 	enum WallElementIndex
@@ -447,6 +448,8 @@ public:
 		float* window_distance_x = new float(5.0f);
 		float* window_distance_y = new float(5.0f);
 
+		bool* wall_window_is_stretched = new bool(false);
+
 		std::vector<wall_element*> wall_list
 		=
 		{
@@ -465,6 +468,8 @@ public:
 			new wall_element(),//13	shadow
 			new wall_element()//14	window
 		};
+
+		std::string* name = new std::string("floor");
 	};
 
 	std::vector<building_autogen_floor*> autobuilding_floor_list;

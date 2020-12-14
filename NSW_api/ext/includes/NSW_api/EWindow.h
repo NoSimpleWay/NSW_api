@@ -291,6 +291,9 @@ public:
 	short* target_address_for_short;
 	short* target_value_for_short = new short(1);
 
+	std::string* target_address_for_string;
+	std::string* target_value_for_string = new std::string("");
+
 	static void static_click();
 	static void static_click2();
 

@@ -26,8 +26,11 @@ void main()
 		ambient_color.rgb * (1.0f - texture(texture3, TexCoordShadowmap * vec2(screen_size_x, screen_size_y)).a)//direct light
 		+
 		texture(texture3, TexCoordShadowmap * vec2(screen_size_x, screen_size_y)).rgb * texture(texture3, TexCoordShadowmap * vec2(screen_size_x, screen_size_y)).a//shadow ambient
-	);
+	)
+	*
+	vec3(0.9f,0.95f,1.0f);
 	
+
 	//FragColor.r = TexCoordShadowmap.x;
 	//FragColor.g = TexCoordShadowmap.y;
 	//FragColor.b = 0.0f;

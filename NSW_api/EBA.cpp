@@ -97,13 +97,16 @@ void EBA::action_set_sprite_texture(EButton* _b, float _d)
 	EWindowEditor* ed = EWindow::window_editor;
 
 	//_b->gabarite = EWindow::window_editor->selected_entity->autobuilding_floor_list.at(ed->autobuilding_selected_floor)->wall_list.at(ed->autobuilding_selected_wall)->texture_variant_list.at(ed->selected_building_autogenerator_texture_variant)->texture;
+	if (EWindow::window_editor->object_variant != NULL)
+	{
+		EWindow::window_editor->object_variant->texture = _b->gabarite;
+		_b->description_text = _b->gabarite->name;
+	}
+
 	
-		ed->selected_entity->autobuilding_floor_list.at(ed->autobuilding_selected_floor)->
-	wall_list.at(ed->autobuilding_selected_wall)->
-	texture_variant_list.at(ed->autobuilding_selected_texture_variant)->
-	texture
-	=
-	_b->gabarite;
+	//{
+	//	
+	//}
 
 	ed->selected_entity->autobuilding_floor_list.at(ed->autobuilding_selected_floor)->
 	wall_list.at(ed->autobuilding_selected_wall)->
@@ -290,10 +293,15 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 
 
 		w_string += "floor_name\t";
-			w_string += std::to_string(EWindow::window_editor->link_to_floors_array->button_list.at(id)->text);
+			//w_string += std::to_string(EWindow::window_editor->link_to_floors_array->button_list.at(id)->text);
+			w_string += *f->name;
 		w_string += "\n";
 
-
+		if (*f->wall_window_is_stretched)
+		{
+			w_string += "window_is_stretched";
+			w_string += "\n";
+		}
 
 		w_string += "floor_additional_distance_between_window_x\t";
 		w_string += std::to_string(*f->window_distance_x);
@@ -876,9 +884,14 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 
 				if (EFile::data_array[i] == "floor_name")
 				{
-					i++; EWindow::window_editor->link_to_floors_array->button_list.at(floor_id)->text = EFile::data_array[i];
+					//i++; EWindow::window_editor->link_to_floors_array->button_list.at(floor_id)->text = EFile::data_array[i];
+					i++; *just_created_floor->name = EFile::data_array[i];
+
 					floor_id++;
 				}
+
+				if ((EFile::data_array[i] == "window_is_stretched") & (just_created_floor != NULL))
+				{*just_created_floor->wall_window_is_stretched = true;}
 				
 				if ((EFile::data_array[i] == "*wall_is_mirrored")&(just_created_wall != NULL))
 				{*just_created_wall->is_mirrored = true;}
@@ -1476,6 +1489,16 @@ void EBA::action_deactivate_floors(EButton* _b, float _d)
 
 void EBA::action_add_new_floor(EButton* _b, float _d)
 {
+	Entity::building_autogen_floor* jcf = new Entity::building_autogen_floor;
+
+	if (EWindow::window_editor->selected_entity != NULL)
+	{
+		EWindow::window_editor->selected_entity->autobuilding_floor_list.push_back(jcf);
+		*jcf->name = "floor";
+
+		//Entity::update_building_autogenerator_massive(EWindow::window_editor->selected_entity);
+	}
+
 	for (EButton* b : EWindow::window_editor->link_to_floors_array->button_list)
 	{
 		if (!b->is_active)
@@ -1483,15 +1506,11 @@ void EBA::action_add_new_floor(EButton* _b, float _d)
 			b->is_active = true;
 			b->gabarite = NULL;
 
+			b->text = *jcf->name;
+			b->target_address_for_string = jcf->name;
+
 			break;
 		}
-	}
-
-	if (EWindow::window_editor->selected_entity != NULL)
-	{
-		EWindow::window_editor->selected_entity->autobuilding_floor_list.push_back(new Entity::building_autogen_floor);
-
-		//Entity::update_building_autogenerator_massive(EWindow::window_editor->selected_entity);
 	}
 
 	EWindow::window_editor->change_drop_button_container();
@@ -1574,7 +1593,12 @@ void EBA::action_start_input(EButton* _b, float _d)
 
 void EBA::action_refresh_drop_autobuilding_list(EButton* _b, float _d)
 {
-EWindow::window_editor->change_drop_button_container();
+	EWindow::window_editor->change_drop_button_container();
+
+	if (_b->target_address_for_string != NULL)
+	{
+		*_b->target_address_for_string = _b->text;
+	}
 }
 
 

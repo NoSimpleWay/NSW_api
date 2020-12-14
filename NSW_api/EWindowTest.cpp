@@ -988,7 +988,7 @@ add_time_process("calculate path");
 		draw_border_left = (int)((game_camera->position_x - EGraphicCore::SCR_WIDTH / 2.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) - 1; if (draw_border_left < 0) { draw_border_left = 0; }
 		draw_border_right = (int)((game_camera->position_x + EGraphicCore::SCR_WIDTH / 2.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) + 1; if (draw_border_right >= ECluster::CLUSTER_DIM) { draw_border_right = ECluster::CLUSTER_DIM - 1;; }
 
-		draw_border_down = (int)((game_camera->position_y - EGraphicCore::SCR_HEIGHT / 2.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) - 1; if (draw_border_down < 0) { draw_border_down = 0; }
+		draw_border_down = (int)((game_camera->position_y - EGraphicCore::SCR_HEIGHT / 2.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) - 4; if (draw_border_down < 0) { draw_border_down = 0; }
 		draw_border_up = (int)((game_camera->position_y + EGraphicCore::SCR_HEIGHT / 2.0f) / game_camera->zoom / ECluster::CLUSTER_SIZE) + 1; if (draw_border_up >= ECluster::CLUSTER_DIM) { draw_border_up = ECluster::CLUSTER_DIM - 1; }
 
 
@@ -1282,6 +1282,7 @@ void EWindowTest::draw_terrain()
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
 
 	EGraphicCore::batch_terrain->setcolor(EColor::COLOR_WHITE);
+	EGraphicCore::batch_terrain->setcolor(0.60f, 0.7f, 0.8f, 1.0f);
 
 	if (false)
 		for (int i = draw_border_up; i >= draw_border_down; i--)
@@ -1304,6 +1305,8 @@ void EWindowTest::draw_terrain()
 				EGraphicCore::batch_terrain->draw_terrain(j * EPath::PATH_SIZE * 1.0f, i * EPath::PATH_SIZE * 1.0f, terrain_textures_list.at(terrain[j][i]));
 			}
 
+	//EGraphicCore::batch_terrain->draw_terrain(0.0f, 0.0f, EGraphicCore::gabarite_full_atlas);
+	//EGraphicCore::batch_terrain->draw_terrain(0.0f, 0.0f, EGraphicCore::gabarite_full_atlas);
 	EGraphicCore::batch_terrain->force_draw_call_terrain();
 }
 
@@ -1337,7 +1340,11 @@ void EWindowTest::draw_lightmap()
 						if (*e->is_bullet)
 						{EGraphicCore::batch->draw_gabarite(round(*e->position_x / 40.0f) - 0.0f, round(*e->position_y / 40.0f) - 0.0f, 1.0f, 1.0f, EGraphicCore::gabarite_white_pixel);}
 						else
-						{EGraphicCore::batch->draw_gabarite(round(*e->position_x / 40.0f) - 1.0f, round(*e->position_y / 40.0f) - 1.0f, 3.0f, 3.0f, EGraphicCore::gabarite_white_pixel);}
+						{
+							//EGraphicCore::batch->draw_gabarite(round(*e->position_x / 40.0f) - 1.0f, round(*e->position_y / 40.0f) - 1.0f, 3.0f, 3.0f, EGraphicCore::gabarite_white_pixel);
+							EGraphicCore::batch->draw_gabarite(round(*e->position_x / 40.0f) - 1.0f, round(*e->position_y / 40.0f) - 0.0f, 3.0f, 1.0f, EGraphicCore::gabarite_white_pixel);
+							EGraphicCore::batch->draw_gabarite(round(*e->position_x / 40.0f) - 0.0f, round(*e->position_y / 40.0f) - 1.0f, 1.0f, 3.0f, EGraphicCore::gabarite_white_pixel);
+						}
 
 					}
 
@@ -1403,7 +1410,7 @@ void EWindowTest::draw_lightmap()
 			GLint decay_flat = glGetUniformLocation(EGraphicCore::lightmap_blur->ID, "decay_flat");
 			glUniform1f(blur_loc, add_factor);
 	//glBlendFunc(GL_ONE, GL_ZERO);
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 3; i++)
 	{
 
 
@@ -1500,6 +1507,8 @@ void EWindowTest::draw(float _d)
 	draw_shadows();	add_time_process("draw shadows");
 
 	draw_terrain(); add_time_process("draw terrain");
+
+
 
 	
 	
@@ -1787,8 +1796,12 @@ void EWindowTest::draw(float _d)
 
 void EWindowTest::draw_interface(float _d)
 {
-	
-
+	if (glfwGetKey(EWindow::main_window, GLFW_KEY_HOME) == GLFW_PRESS)
+	{
+		EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
+		EGraphicCore::batch->draw_gabarite(0.0f, 0.0f, 512.0f, 512.0f, EGraphicCore::gabarite_white_pixel);
+		EGraphicCore::batch->draw_gabarite(0.0f, 0.0f, 512.0f, 512.0f, EGraphicCore::gabarite_full_atlas);
+	}
 
 	EGraphicCore::batch->setcolor(EColor::COLOR_DARK_GRAY);
 	EGraphicCore::batch->draw_gabarite(5.0f, 5.0f, 200.0f, 20.0f, EGraphicCore::gabarite_white_pixel);

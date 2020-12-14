@@ -20,5 +20,6 @@ public:
 	std::string name;
 
 	EGabarite(std::string _name, float _x, float _y, float _size_x, float _size_y);
+	EGabarite(std::string _name);
 	~EGabarite();
 };

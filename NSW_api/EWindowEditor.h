@@ -182,6 +182,8 @@ public:
 	static std::vector<EButton*> link_to_generate_offset_x;
 	static std::vector<EButton*> link_to_generate_offset_y;
 
+	static EButton* link_to_wall_window_mode;
+
 
 
 

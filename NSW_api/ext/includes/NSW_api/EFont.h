@@ -8,6 +8,12 @@ using namespace std;
 class EFont
 {
 public:
+	enum FONT_ENUM
+	{
+		FE_DEFAULT,
+		FE_DOT
+	};
+
 	float x[512];
 	float y[512];
 

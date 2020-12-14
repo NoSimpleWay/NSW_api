@@ -19,11 +19,11 @@ float max_color_r;
 float max_color_g;
 float max_color_b;
 
-float left_side_light		= 0.0f;
-float right_side_light		= 0.0f;
-float up_side_light			= 0.0f;
-float down_side_light		= 0.0f;
-float mid_light				= 0.0f;
+float left_side_light		= 1.0f;
+float right_side_light		= 1.0f;
+float up_side_light			= 1.0f;
+float down_side_light		= 1.0f;
+float mid_light				= 1.0f;
 
 float light_summ			= 0.0f;
 
@@ -47,6 +47,8 @@ void main()
 	
 	up_side_light = texture(texture2, TexCoord + vec2(0.0f, 0.003333f)).r;
 	down_side_light = texture(texture2, TexCoord + vec2(0.0f, -0.003333f)).r;
+	
+	
 	
 	mid_light = texture(texture2, TexCoord).r;
 	///////////////////////////////////////////////////////////////
@@ -118,35 +120,40 @@ void main()
 	=
 	clamp 
 	(
-	(
 		(
 			(
-				vec4 (max_color_r * 0.95f * mid_light, max_color_g * 0.95f * mid_light, max_color_b * 0.95f * mid_light, 1.0f) * decay_mul
+				(
+					vec4 (max_color_r * 0.95f * mid_light, max_color_g * 0.95f * mid_light, max_color_b * 0.95f * mid_light, 1.0f) * decay_mul
+					+
+					texture(texture1, TexCoord) * reverse
+				)
+				* blur
 				+
-				texture(texture1, TexCoord) * reverse
+				(
+					texture(texture1, TexCoord + vec2(0.003333f, 0.0f)) * right_mul
+					+
+					texture(texture1, TexCoord + vec2(-0.003333f, 0.0f)) * left_mul
+					+
+					texture(texture1, TexCoord + vec2(0.0f, 0.003333f)) * up_mul
+					+
+					texture(texture1, TexCoord + vec2(0.0f, -0.003333f)) * down_mul
+				)
+				* blur2
 			)
-			* blur
-			+
-			(
-				texture(texture1, TexCoord + vec2(0.003333f, 0.0f)) * right_mul
-				+
-				texture(texture1, TexCoord + vec2(-0.003333f, 0.0f)) * left_mul
-				+
-				texture(texture1, TexCoord + vec2(0.0f, 0.003333f)) * up_mul
-				+
-				texture(texture1, TexCoord + vec2(0.0f, -0.003333f)) * down_mul
-			)
-			* blur2
 		)
-	)
 	*
 	ourColor
 	//* vec4(decay_mul,decay_mul,decay_mul,1.0f)
 	- vec4(decay_flat,decay_flat,decay_flat,0.0f)
 	, 0.0f
 	, 100.0f
-	) * 1.0f * vec4((mid_light + 0.1) / 1.1f, (mid_light + 0.1) / 1.1f, (mid_light + 0.1) / 1.1f, 1.0f);
+	) * 1.0f
+	* vec4((mid_light + 0.1) / 1.1f, (mid_light + 0.1) / 1.1f, (mid_light + 0.1) / 1.1f, 1.0f);
 	
+	/*FragColor.r = (FragColor.g + FragColor.b)/2.0f;
+	FragColor.g = FragColor.b;
+	FragColor.b = FragColor.r;*/
+	//FragColor.r = pow(FragColor.r, 2.0f);
 	
 	//FragColor
 	//= vec4(mid_light, mid_light, mid_light, 1.0f);

@@ -250,6 +250,11 @@ void EButton::update(float _d)
 		{
 			selected_element = *target_address_for_int;
 		}
+
+		if ((have_text) & (target_address_for_string != NULL))
+		{
+			text = *target_address_for_string;
+		}
 	}
 
 	if ((is_overlap()) & (have_input_mode) & (input_only_numbers) & (text != "") & (EWindow::scroll != 0))
@@ -466,7 +471,7 @@ void EButton::update(float _d)
 		std::cout << "try active input mode" << std::endl;
 		if ((have_input_mode) && (!is_input_mode_active))
 		{
-			any_input = true;
+			//any_input = true;
 			if (input_auto_clear_text) { text = ""; }
 			is_input_mode_active = true;
 		}
@@ -637,7 +642,7 @@ void EButton::update(float _d)
 				(glfwGetKey(EWindow::main_window, GLFW_KEY_KP_ENTER) == GLFW_PRESS)
 				)
 		{
-			any_input = false;
+			//any_input = false;
 			is_input_mode_active = false;
 
 			if ((input_only_numbers) && (text == ""))
@@ -672,7 +677,18 @@ void EButton::update(float _d)
 	}
 	update_additional(_d);
 
-
+	if
+	(
+		(is_input_mode_active)
+	)
+	{
+		//text = "+";
+		EButton::any_input = true;
+	}
+	else
+	{
+		//text = "-";
+	}
 }
 
 void EButton::update_additional(float _d)
@@ -854,7 +870,7 @@ void EButton::default_draw(Batcher* _batch, float _d)
 		_batch->draw_gabarite(master_position_x + 40.0f, master_position_y, 100.0f, 20.0f,  EGraphicCore::gabarite_white_pixel);
 
 		_batch->setcolor(text_color);
-		target_font->draw(_batch, EString::float_to_string (round(slider_value  * 100.0f)/100.0f) + "", master_position_x + 45.0f, master_position_y + 5.0f);
+		EFont::font_list.at(EFont::FONT_ENUM::FE_DOT)->draw(_batch, EString::float_to_string (round(slider_value  * 100.0f)/100.0f) + "", master_position_x + 45.0f, master_position_y + 2.0f);
 
 		_batch->setcolor(EColor::COLOR_WHITE);
 		_batch->draw_gabarite(master_position_x + cos(3.14f * (1.0f - slider_value / *maximum_value)) * 13.0f + 13.0f, master_position_y + sin(3.14f * (1.0f - slider_value / *maximum_value)) * 13.0f + 13.0f, EGraphicCore::gabarite_radial_button_dot);
@@ -1065,10 +1081,7 @@ void EWindow::default_update(float _d)
 
 	for (EButton* b : default_button_list)
 	{
-		if (b->is_active)
-		{
-			b->update(_d);
-		}
+		if (b->is_active) {b->update(_d);}
 	}
 
 	/*for (EButton::button_array_collection* z : button_array_collection_list)

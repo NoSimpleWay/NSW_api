@@ -547,10 +547,11 @@ EWindowEditor::EWindowEditor()
 				but->master_window = this;
 				*but->side_text = "Blur factor";
 				*but->is_radial_button = true;
+				//but->slider_value_multiplier = 0.2f;
 				but->text_color->set_color (EColor::COLOR_ORANGE);
 
 				//but->is_slider = true;
-				but->slider_value_multiplier = 1.0f;
+				but->slider_value_multiplier = 0.2f;
 				but->target_address_for_float = &EWindowTest::blur_factor;
 				but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
 				*but->is_consumable = true;
@@ -568,7 +569,7 @@ EWindowEditor::EWindowEditor()
 			but->master_window = this;
 			*but->side_text = "Blur blend";
 			*but->is_radial_button = true;
-			but->slider_value_multiplier = 1.0f;
+			but->slider_value_multiplier = 0.2f;
 			but->target_address_for_float = &EWindowTest::blur_blend;
 			but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
 			*but->is_consumable = true;
@@ -1087,6 +1088,7 @@ EWindowEditor::EWindowEditor()
 		but->master_window = this;
 		but->have_icon = true;
 		*but->is_radial_button = true;
+		but->slider_value_multiplier = 0.1f;
 		but->have_rama = true;
 		but->data_id = -1;
 		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
@@ -1099,9 +1101,23 @@ EWindowEditor::EWindowEditor()
 		but->master_window = this;
 		but->have_icon = true;
 		*but->is_radial_button = true;
+		but->slider_value_multiplier = 0.1f;
 		but->have_rama = true;
 		but->data_id = -1;
 		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+	a_array->button_list.push_back(but);
+
+	but = new EButton(420.0f, 115.0f, 150.0f, 25.0f);
+		but->text = "Stretched";
+		link_to_wall_window_mode = but;
+		*but->is_consumable = true;
+		but->master_window = this;
+		but->have_icon = false;
+		*but->is_checkbox = true;
+		but->have_rama = true;
+		but->data_id = -1;
+		but->action_on_left_click = &EBA::action_set_button_value_bool_to_address;
+
 	a_array->button_list.push_back(but);
 
 
@@ -1165,7 +1181,8 @@ EWindowEditor::EWindowEditor()
 	//generate new buttons
 	for (int i = 0; i < 10; i++)
 	{
-		but = new EButton(0.0f, 0.0f, 25.0f, 15.0f);
+		but = new EButton(0.0f, 0.0f, 30.0f, 25.0f);
+		*but->is_consumable = true;
 		but->master_window = this;
 		but->text = "floor #" + std::to_string(i);
 		but->have_rama = true;
@@ -1177,6 +1194,7 @@ EWindowEditor::EWindowEditor()
 		but->action_on_left_click = &EBA::action_select_floor;
 		but->action_on_left_double_click = &EBA::action_start_input;
 		but->action_on_input = &EBA::action_refresh_drop_autobuilding_list;
+		//but->action_on_ = &EBA::action_refresh_drop_autobuilding_list;
 		but->have_icon = false;
 
 		but->data_id = i;
@@ -1273,6 +1291,8 @@ std::vector<EButton*>  EWindowEditor::link_to_right_border_button;
 std::vector<EButton*>  EWindowEditor::link_to_generate_offset_x;
 std::vector<EButton*>  EWindowEditor::link_to_generate_offset_y;
 
+EButton* EWindowEditor::link_to_wall_window_mode;
+
 Entity::building_autogen_floor*				EWindowEditor::object_floor;
 Entity::wall_element*						EWindowEditor::object_wall;
 Entity::wall_texture_variant*				EWindowEditor::object_variant;
@@ -1368,7 +1388,10 @@ void EWindowEditor::update(float _d)
 			}
 		}
 
-
+		//if (selected_entity_list.empty())
+		//{
+			*autobuilding_massive_link->is_active = false;
+		//}
 	}
 	else
 	{
@@ -3048,9 +3071,7 @@ void EWindowEditor::select_new_floor()
 	if (autobuilding_selected_floor >= selected_entity->autobuilding_floor_list.size())
 	{autobuilding_selected_floor = selected_entity->autobuilding_floor_list.size() - 1;}
 
-	if
-		(autobuilding_selected_floor < 0)
-	{autobuilding_selected_floor = 0;}
+	if (autobuilding_selected_floor < 0) {autobuilding_selected_floor = 0;}
 
 	if (selected_entity->autobuilding_floor_list.size() > 0)
 	{object_floor = selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor);}
@@ -3122,8 +3143,10 @@ void EWindowEditor::select_new_floor()
 
 	if (object_floor != NULL)
 	{
-		link_to_window_offset_x->target_address_for_float = object_floor->window_distance_x;
-		link_to_window_offset_y->target_address_for_float = object_floor->window_distance_y;
+		link_to_window_offset_x->target_address_for_float	= object_floor->window_distance_x;
+		link_to_window_offset_y->target_address_for_float	= object_floor->window_distance_y;
+
+		link_to_wall_window_mode->target_address_for_bool	= object_floor->wall_window_is_stretched;
 	}
 
 }
@@ -3214,15 +3237,24 @@ void EWindowEditor::select_new_wall()
 				sbut->rama_color->set_color(EColor::COLOR_BLACK);
 				sbut->bg_color->set_color(EColor::COLOR_GRAY);
 
-
 			}
 		}
 		else
 		{
+			if (i == EWindow::window_editor->autobuilding_selected_wall)
+			{
+				sbut->rama_thikness = 1.0f;
+
+				sbut->rama_color->set_color(EColor::COLOR_DARK_RED);
+				sbut->bg_color->set_color(EColor::COLOR_GRAY);
+			}
+			else
+			{
 				sbut->rama_thikness = 1.0f;
 
 				sbut->rama_color->set_color(EColor::COLOR_GRAY);
 				sbut->bg_color->set_color(EColor::COLOR_BLACK);
+			}
 		}
 	}
 

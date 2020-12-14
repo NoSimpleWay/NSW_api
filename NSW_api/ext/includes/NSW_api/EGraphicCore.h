@@ -53,6 +53,7 @@ public:
 	static EGabarite* gabarite_radial_button;
 	static EGabarite* gabarite_radial_button_dot;
 	static EGabarite* gabarite_supermap_placeholder;
+	static EGabarite* gabarite_full_atlas;
 
 	EGraphicCore();
 	~EGraphicCore();

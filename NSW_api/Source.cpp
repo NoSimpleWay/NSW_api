@@ -207,6 +207,22 @@ int main()
 	*EGraphicCore::gabarite_white_pixel->x2 -= 1.0f / 4096.0f / 2.0f;
 	*EGraphicCore::gabarite_white_pixel->y2 -= 1.0f / 4096.0f / 2.0f;
 
+	//EGraphicCore::gabarite_full_atlas = //ETextureAtlas::put_texture_to_atlas("data/textures/white_pixel.png", EWindow::default_texture_atlas);
+	EGabarite* gab = new EGabarite("full atlas");
+		*gab->x = 0.0f;
+		*gab->y = 0.0f;
+		*gab->x2 = 1.0f;
+		*gab->y2 = 1.0f;
+		*gab->uv_size_x = 1.0f;
+		*gab->uv_size_y = 1.0f;
+		*gab->size_x = 4096.0f;
+		*gab->size_y = 4096.0f;
+	EGraphicCore::gabarite_list.push_back(gab);
+	EGraphicCore::gabarite_full_atlas = gab;
+
+
+	*EGraphicCore::gabarite_white_pixel->y2 -= 1.0f / 4096.0f / 2.0f;
+
 	EGraphicCore::gabarite_ERROR = ETextureAtlas::put_texture_to_atlas("data/textures/ERROR.png", EWindow::default_texture_atlas);
 	EGraphicCore::gabarite_radial_button = ETextureAtlas::put_texture_to_atlas("data/textures/radial_button.png", EWindow::default_texture_atlas);
 	EGraphicCore::gabarite_radial_button_dot = ETextureAtlas::put_texture_to_atlas("data/textures/radial_button_dot.png", EWindow::default_texture_atlas);
@@ -223,9 +239,15 @@ int main()
 	
 	EFont* new_font = NULL;
 	EGabarite* font_gabarite = ETextureAtlas::put_texture_to_atlas("data/font/franklin_0.png", EWindow::default_texture_atlas);
-	new_font = new EFont("franklin", font_gabarite, false);
-	EFont::active_font = new_font;
-	EFont::font_list.push_back(new_font);
+
+		new_font = new EFont("franklin", font_gabarite, false);
+		EFont::active_font = new_font;
+		EFont::font_list.push_back(new_font);
+
+	font_gabarite = ETextureAtlas::put_texture_to_atlas("data/font/dot_0.png", EWindow::default_texture_atlas);
+		new_font = new EFont("dot", font_gabarite, false);
+		//EFont::active_font = new_font;
+		EFont::font_list.push_back(new_font);
 
 	//EGabarite* zzz = ETextureAtlas::put_texture_to_atlas("data/font/franklin_0.png", EWindow::shadow_FBO);
 
@@ -339,19 +361,13 @@ int main()
 		}
 
 				//update windows
-		for (EWindow* w : EWindow::window_list)
-		if (w->is_active)
-		{
-			w->default_update(delta_time);
-			w->update(delta_time);
+		EButton::any_input = false;
 
-			/*for (EButton* b : w->button_list)
-			if (b->is_active)
-			{
-				b->update(delta_time);
-				b->update_additional(delta_time);
-			}*/
-		}
+		for (EWindow* w : EWindow::window_list)
+		if (w->is_active) {	w->default_update(delta_time);	}
+
+		for (EWindow* w : EWindow::window_list)
+		if (w->is_active) {	w->update(delta_time);	}
 
 		for (EWindow* w : EWindow::window_list)
 		if (w->is_active)
@@ -366,6 +382,15 @@ int main()
 
 		EGraphicCore::batch->reinit();
 		EGraphicCore::batch->draw_call();
+
+
+
+
+		/*EGraphicCore::batch->reset();
+			EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
+			EGraphicCore::batch->draw_gabarite(0.0f, 0.0f, EGraphicCore::gabarite_full_atlas);
+		EGraphicCore::batch->reinit();
+		EGraphicCore::batch->draw_call();*/
 
 		glfwSwapBuffers(EWindow::main_window);
 
@@ -457,7 +482,21 @@ void mouse_position_callback(GLFWwindow* window, double _x, double _y)
 
 void char_input_callback(GLFWwindow* window, unsigned int _char)
 {
-	EWindow::last_inputed_char = _char;
+
+	int inputed_c = (int)_char;
+
+
+	if (inputed_c == 1025) { inputed_c = 168; }
+	else
+	if (inputed_c == 1105) { inputed_c = 184; }
+	else
+	if (inputed_c > 255) { inputed_c -= 848; }
+
+	cout << "input character: " << inputed_c <<"|"<<(int)_char << "[  " << (char)inputed_c << " ]" << " ("<< _char <<")" <<endl;
+
+	EWindow::last_inputed_char = (char)inputed_c;
+
+	//EWindow::last_inputed_char = _char;
 }
 
 void processInput(GLFWwindow* window)

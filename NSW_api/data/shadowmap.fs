@@ -66,6 +66,8 @@ float blur_total = 0.0f;
 float halt = 0.0f;
 float light_halt = 0.0f;
 
+float normal_y = 0.0f;
+
 in float camera_x;
 in float camera_y;
 
@@ -150,7 +152,7 @@ void main()
 	//halt = ShadowCoord.y / screen_size_y;
 	
 	halt = ShadowCoord.y / screen_size_y - texture(texture1,SuperMapCoord).g * zoom * 1.0f/screen_size_y * 255.0f;
-	
+	//normal_y = texture(texture1,SuperMapCoord).g - texture(texture1,SuperMapCoord - vec2(0.0f, 0,00024414.0f).g
 	//halt = 1.0f;
 	
 	//light_halt = LightMapCoord.y;

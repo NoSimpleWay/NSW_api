@@ -189,15 +189,13 @@ void main()
 	*
 	(
 		(
-			shadow_multiplier * texture(texture2, shadow_coord).rgb
-		)
-		+
-		(
-			(1.0f - shadow_multiplier) * ambient_light_color.rgb * ourColor.rgb
-		)
+			(shadow_multiplier * texture(texture2, shadow_coord).rgb)
+			+
+			((1.0f - shadow_multiplier) * ambient_light_color.rgb)
+		) * ourColor.rgb * vec3(2.0f, 2.0f, 2.0f)
 		+
 		(texture(texture3, light_coord).rgb / (1.0f + halt * halt * 32.0f))
-	)
+	) 
 	;
 	
 

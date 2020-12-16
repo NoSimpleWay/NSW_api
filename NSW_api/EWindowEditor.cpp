@@ -519,6 +519,9 @@ EWindowEditor::EWindowEditor()
 	*a_massive->position_y = 120.0f;
 
 	button_array_horizontal_collection* a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 150.0f);
+	button_array_vertical_collection* a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 0.0f, 0.0f);
+	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
+	*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -533,9 +536,9 @@ EWindowEditor::EWindowEditor()
 		but->action_on_left_click = &EBA::action_set_constant_int_to_address;
 	}
 
-	button_array_vertical_collection* a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 0.0f, 0.0f);
-	*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
-	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
+	
+	
+	
 	//for (int f = 0; f < 1; f++)
 	//{
 		///
@@ -666,9 +669,7 @@ EWindowEditor::EWindowEditor()
 	{
 		a_vertical = new button_array_vertical_collection(5.0f, 5.0f + i * 20.0f, 0.0f, 0.0f);
 		*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
-		
 		*a_vertical->tab_id = 1;
-
 		a_array = new button_array;
 
 		a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
@@ -787,7 +788,6 @@ EWindowEditor::EWindowEditor()
 			a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 200.0f, 150.0f);
 			*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
 			a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
-
 
 			a_array = new button_array;
 			a_vertical->button_array_list.push_back(a_array);
@@ -1269,6 +1269,104 @@ EWindowEditor::EWindowEditor()
 
 
 
+	/// <summary>
+	/// _______FLOOR COLOR_______
+	/// </summary>
+	/// 
+	a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 100.0f, 30.0f);
+	*a_horizontal->push_method = ARRAY_PUSH_METHOD::APM_PUSH_X;
+	a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
+
+	a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 100.0f, 150.0f);
+	*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
+	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
+
+	but = new EButton(0.0f, 0.0f, 100.0f, 15.0f);
+		a_array = new button_array;
+		a_vertical->button_array_list.push_back(a_array);
+		but->master_window = this;
+		but->text = "= blue =";
+		but->bg_color->set_color(EColor::COLOR_BLUE);
+		but->is_slider = true;
+		link_to_wall_color_blue = but;
+		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+		*but->is_consumable = true;
+	a_array->button_list.push_back(but);
+
+	but = new EButton(0.0f, 0.0f, 100.0f, 15.0f);
+		a_array = new button_array;
+		a_vertical->button_array_list.push_back(a_array);
+		but->master_window = this;
+		but->text = "= green =";
+		but->bg_color->set_color(EColor::COLOR_GREEN);
+		but->is_slider = true;
+		link_to_wall_color_green = but;
+		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+		*but->is_consumable = true;
+	a_array->button_list.push_back(but);
+		
+	but = new EButton(0.0f, 0.0f, 100.0f, 15.0f);
+		a_array = new button_array;
+		a_vertical->button_array_list.push_back(a_array);
+		but->master_window = this;
+		but->text = "= red =";
+		but->bg_color->set_color(EColor::COLOR_RED);
+		but->is_slider = true;
+		link_to_wall_color_red = but;
+		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+		*but->is_consumable = true;
+	a_array->button_list.push_back(but);
+		
+	but = new EButton(0.0f, 0.0f, 100.0f, 15.0f);
+		a_array = new button_array;
+		a_vertical->button_array_list.push_back(a_array);
+		but->master_window = this;
+		but->text = "= RANDOM =";
+		but->bg_color->set_color(EColor::COLOR_WHITE);
+		but->action_on_left_click = &EBA::action_wall_color_noise;
+	a_array->button_list.push_back(but);
+		
+	but = new EButton(0.0f, 0.0f, 100.0f, 15.0f);
+		a_array = new button_array;
+		a_vertical->button_array_list.push_back(a_array);
+		but->master_window = this;
+		but->text = "= BLUR =";
+		but->bg_color->set_color(EColor::COLOR_WHITE);
+		but->action_on_left_click = &EBA::action_wall_color_blur;
+	a_array->button_list.push_back(but);
+		///////
+
+
+	a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 100.0f, 30.0f);
+	*a_horizontal->push_method = ARRAY_PUSH_METHOD::APM_PUSH_Y;
+	a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
+
+	a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 100.0f, 150.0f);
+	*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
+	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
+
+	for (int i = 0; i < 20; i++)
+	{
+		but = new EButton(0.0f, 0.0f, 100.0f, 15.0f);
+			a_array = new button_array;
+			a_vertical->button_array_list.push_back(a_array);
+			but->master_window = this;
+			but->text = "floor color";
+			but->have_rama = true;
+
+			but->action_on_left_click = &EBA::action_set_constant_int_to_address;
+			but->target_address_for_int = &autobuilding_selected_color_matrix;
+			*but->target_value_for_int = i;
+
+			but->data_id = i;
+
+			link_to_wall_color_matrix.push_back(but);
+		a_array->button_list.push_back(but);
+	}
+	
+
+
+
 }
 
 EWindowEditor::~EWindowEditor()
@@ -1291,13 +1389,24 @@ std::vector<EButton*>  EWindowEditor::link_to_right_border_button;
 std::vector<EButton*>  EWindowEditor::link_to_generate_offset_x;
 std::vector<EButton*>  EWindowEditor::link_to_generate_offset_y;
 
+
 EButton* EWindowEditor::link_to_wall_window_mode;
+
+EButton* EWindowEditor::link_to_wall_color_red;
+EButton* EWindowEditor::link_to_wall_color_green;
+EButton* EWindowEditor::link_to_wall_color_blue;
 
 Entity::building_autogen_floor*				EWindowEditor::object_floor;
 Entity::wall_element*						EWindowEditor::object_wall;
 Entity::wall_texture_variant*				EWindowEditor::object_variant;
+EColor*										EWindowEditor::object_wall_color;;
 
 std::vector<EButton*> EWindowEditor::stencil_button_list;
+
+std::vector<EButton*>  EWindowEditor::link_to_wall_color_matrix;
+
+//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**
+EWindow::button_array_collection_massive* EWindowEditor::terrain_editor_link;
 
 float EWindowEditor::get_move_multiplier(float _zoom)
 {
@@ -1531,6 +1640,8 @@ void EWindowEditor::update(float _d)
 		EWindow::window_editor->select_new_floor();
 		EWindow::window_editor->select_new_wall();
 		EWindow::window_editor->select_new_variant();
+		EWindow::window_editor->select_new_wall_color();
+
 
 		change_drop_button_container();
 
@@ -2410,6 +2521,7 @@ void EWindowEditor::update(float _d)
 		select_new_floor();
 		select_new_wall();
 		select_new_variant();
+		select_new_wall_color();
 
 		Entity::assembly_autobuilding_sprites(selected_entity);
 	}
@@ -3259,4 +3371,65 @@ void EWindowEditor::select_new_wall()
 	}
 
 
+}
+
+void EWindowEditor::select_new_wall_color()
+{
+	
+	if (autobuilding_selected_color_matrix >= link_to_wall_color_matrix.size()) { autobuilding_selected_color_matrix = link_to_wall_color_matrix.size() - 1; }
+	if (autobuilding_selected_color_matrix < 0) { autobuilding_selected_color_matrix = 0; }
+
+	object_wall_color = NULL;
+	int id = 0;
+
+	for (EButton* b : link_to_wall_color_matrix)
+	{
+		if (object_floor != NULL)
+		{
+			
+			if
+			(
+				(object_floor != NULL)
+				&&
+				(id <= floor (*object_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y))
+			)
+			{
+				if (autobuilding_selected_color_matrix == id)
+				{
+					object_wall_color = object_floor->color_matrix.at(id);
+
+					b->bg_color->set_color(object_wall_color);
+					b->rama_thikness = 3.0f;
+					b->rama_color->set_color(EColor::COLOR_WHITE);
+
+					b->button_size_y = 40.0f;
+
+					link_to_wall_color_red->target_address_for_float = &object_wall_color->red;
+					link_to_wall_color_green->target_address_for_float = &object_wall_color->green;
+					link_to_wall_color_blue->target_address_for_float = &object_wall_color->blue;
+				}
+				else
+				{
+					b->bg_color->set_color(object_floor->color_matrix.at(id));
+					b->rama_thikness = 1.0f;
+					b->rama_color->set_color(EColor::COLOR_BLACK);
+
+					b->button_size_y = 20.0f;
+				}
+			}
+			else
+			{
+				b->bg_color->set_color_alpha(EColor::COLOR_GRAY, 0.2f);
+				b->rama_thikness = 1.0f;
+				b->rama_color->set_color(EColor::COLOR_GRAY);
+			}
+		}
+		else
+		{
+			b->bg_color->set_color_alpha(EColor::COLOR_GRAY, 0.2f);
+			b->rama_thikness = 1.0f;
+			b->rama_color->set_color(EColor::COLOR_GRAY);
+		}
+		id++;
+	}
 }

@@ -636,13 +636,75 @@ void Batcher::draw_terrain(float _x, float _y, EGabarite* _g)
 	}
 }
 
+void Batcher::draw_terrain_with_offset(float _x, float _y, float _left, float _right, float _up, float _down, EGabarite* _g)
+{
+	//std::cout << "filled rect" << std::endl;
+
+	//.#
+	//..
+	vertices[id + 0] = (_x + *_g->size_x - (_right + _left) * 4096.0f);
+	vertices[id + 1] = (_y + *_g->size_y - (_up + _down) * 4096.0f);
+	//vertices[id + 2] = 0;
+
+	vertices[id + 2] = *_g->x2 - _right;
+	vertices[id + 3] = *_g->y2 - _up;
+
+
+
+
+
+	//..
+	//.#
+	vertices[id + 4] = (_x + *_g->size_x - (_right + _left) * 4096.0f);
+	vertices[id + 5] = (_y);
+	//vertices[id + 10] = 0;
+
+
+	vertices[id + 6] = *_g->x2 - _right;
+	vertices[id + 7] = *_g->y + _down;
+
+
+
+
+	//..
+	//#.
+	vertices[id + 8] = (_x);
+	vertices[id + 9] = (_y);
+	//vertices[id + 18] = 0;
+
+	vertices[id + 10] = *_g->x + _left;
+	vertices[id + 11] = *_g->y + _down;
+
+
+
+
+
+	//#.
+	//..
+	vertices[id + 12] = (_x);
+	vertices[id + 13] = (_y + *_g->size_y - (_up + _down) * 4096.0f);
+	//vertices[id + 26] = 0;
+
+	vertices[id + 14] = *_g->x + _left;
+	vertices[id + 15] = *_g->y2 - _up;
+
+	id += 16;
+
+	if (id > 16000)
+	{
+		reinit();
+		draw_call_terrain();
+		reset();
+	}
+}
+
 void Batcher::draw_gabarite_skew(float _x, float _y, float _collision_x, float _collision_y, float _tall, EGabarite* _g, float _bottom_tall)
 {
 	//std::cout << "filled rect" << std::endl;
 
 	//.#
 	//..
-	vertices[id + 0] = (_x + _tall * (1.0f - skew_factor));
+	vertices[id + 0] = (_x + _tall * (1.0f - skew_factor) * 1.35f);
 	vertices[id + 1] = (_y + _collision_y + _bottom_tall * skew_factor);
 	//vertices[id + 2] = 0;
 
@@ -657,7 +719,7 @@ void Batcher::draw_gabarite_skew(float _x, float _y, float _collision_x, float _
 
 	//..
 	//.#
-	vertices[id + 8] = (_x + _bottom_tall * (1.0f - skew_factor));
+	vertices[id + 8] = (_x + _bottom_tall * (1.0f - skew_factor) * 1.35f);
 	vertices[id + 9] = _y + _bottom_tall * skew_factor;
 	//vertices[id + 10] = 0;
 
@@ -712,7 +774,7 @@ void Batcher::draw_gabarite_skew(float _x, float _y, float _collision_x, float _
 
 	//.#
 	//..
-	vertices[id + 0] = _x + (_tall) * (1.0f - skew_factor);
+	vertices[id + 0] = _x + (_tall) * (1.0f - skew_factor) * 1.35f;
 	vertices[id + 1] = _y + _collision_y + _bottom_tall * skew_factor;
 	//vertices[id + 2] = 0;
 
@@ -762,7 +824,7 @@ void Batcher::draw_gabarite_skew(float _x, float _y, float _collision_x, float _
 
 	//#.
 	//..
-	vertices[id + 24] = _x - _collision_x + (_bottom_tall) * (1.0f - skew_factor);
+	vertices[id + 24] = _x - _collision_x + (_bottom_tall) * (1.0f - skew_factor) * 1.35f;
 	vertices[id + 25] = (_y + _collision_y + _bottom_tall * skew_factor);
 	//vertices[id + 26] = 0;
 

@@ -1098,6 +1098,9 @@ void EWindow::default_update(float _d)
 	float maximum_size_of_vertical = 0.0f;
 	float maximum_size_of_array = 0.0f;
 
+	float h_base_offset_x = 0.0f;
+
+
 
 
 	for (button_array_collection_massive* massive : button_array_collection_massive_list)
@@ -1134,40 +1137,36 @@ void EWindow::default_update(float _d)
 
 		if (!LMB) { *massive->head_catched = false; }
 
-		float maximum_horizontal_size = 0.0f;
+		float maximum_horizontal_size_x = 0.0f;
+		float maximum_horizontal_size_y = 0.0f;
+
 		for (button_array_horizontal_collection* horizontal : massive->button_array_horizontal_collection_list)
 		{
 			*horizontal->size_y *= 0.95f;
 			*horizontal->position_y = 0.95f;
-			if (maximum_horizontal_size > * horizontal->position_y)
+
+			*horizontal->position_x = 0.95f;
+
+			if ((*horizontal->push_method == ARRAY_PUSH_METHOD::APM_PUSH_X) & (maximum_horizontal_size_x > * horizontal->position_x))
 			{
-				*horizontal->position_y = maximum_horizontal_size + 5.0f;
+				*horizontal->position_x = maximum_horizontal_size_x + 5.0f;
+				
+				h_base_offset_x = maximum_horizontal_size_x + (*horizontal->size_x + 5.0f) * 0.0f;
+				maximum_horizontal_size_y = 0.0f;
 			}
+			else
+			{
+				*horizontal->position_x += h_base_offset_x;
+			}
+
+			
+
+			if ((*horizontal->push_method == ARRAY_PUSH_METHOD::APM_PUSH_Y) & (maximum_horizontal_size_y > * horizontal->position_y))
+			{*horizontal->position_y = maximum_horizontal_size_y + 5.0f;}
 
 			float tab_button_w = 0.0f;
 
-			//TAB BUTTONS
-			for (EButton* b : horizontal->tab_button_list)
-			{
-				b->button_x = *massive->position_x + *horizontal->position_x + tab_button_w;
-				b->button_y = *massive->position_y + *horizontal->position_y + *horizontal->size_y + b->button_size_y * 0.0f + 2.0f;
 
-				tab_button_w += b->button_size_x + 5.0f;
-
-				if (b->data_id == *horizontal->selected_tab)
-				{
-					b->bg_color->set_color(EColor::COLOR_WHITE);
-					b->rama_thikness = 3.0f;
-				}
-				else
-				{
-					b->bg_color->set_color(EColor::COLOR_DARK_GRAY);
-					b->rama_thikness = 1.0f;
-				}
-
-				if (b->is_active)
-				{b->update(_d);}
-			}
 
 			
 				maximum_size_of_vertical = 0.0f;
@@ -1333,9 +1332,38 @@ void EWindow::default_update(float _d)
 
 				
 				if (*horizontal->position_y + *horizontal->size_y + 30.0f > * massive->size_y) { *massive->size_y = *horizontal->position_y + *horizontal->size_y + 30.0f; }
-				if (*horizontal->size_x + 10.0f > * massive->size_x) { *massive->size_x = *horizontal->size_x + 10.0f; }
+				if (*horizontal->position_x + *horizontal->size_x + 10.0f > * massive->size_x) { *massive->size_x = *horizontal->size_x + *horizontal->position_x + 10.0f; }
 
-				maximum_horizontal_size = *horizontal->position_y + *horizontal->size_y;
+				if (*horizontal->position_x + *horizontal->size_x > maximum_horizontal_size_x)
+				maximum_horizontal_size_x = *horizontal->position_x + *horizontal->size_x;
+
+				if (*horizontal->position_y + *horizontal->size_y > maximum_horizontal_size_y)
+				{ maximum_horizontal_size_y = *horizontal->position_y + *horizontal->size_y; }
+
+				//TAB BUTTONS
+				for (EButton* b : horizontal->tab_button_list)
+				{
+					b->button_x = *massive->position_x + *horizontal->position_x + tab_button_w;
+					b->button_y = *massive->position_y + *horizontal->position_y + *horizontal->size_y + b->button_size_y * 0.0f + 2.0f;
+
+					tab_button_w += b->button_size_x + 5.0f;
+
+					if (b->data_id == *horizontal->selected_tab)
+					{
+						b->bg_color->set_color(EColor::COLOR_WHITE);
+						b->rama_thikness = 3.0f;
+					}
+					else
+					{
+						b->bg_color->set_color(EColor::COLOR_DARK_GRAY);
+						b->rama_thikness = 1.0f;
+					}
+
+					if (b->is_active)
+					{
+						b->update(_d);
+					}
+				}
 		}
 
 		massive->button_close->button_x = *massive->position_x + *massive->size_x - massive->button_close->button_size_x;

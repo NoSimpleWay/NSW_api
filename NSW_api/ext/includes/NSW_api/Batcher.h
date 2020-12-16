@@ -21,6 +21,7 @@ public:
 	void draw_gabarite(float _x, float _y, EGabarite* _g);
 
 	void draw_terrain(float _x, float _y, EGabarite* _g);
+	void draw_terrain_with_offset(float _x, float _y, float _left, float _right, float _up, float _down, EGabarite* _g);
 
 	void draw_gabarite_skew(float _x, float _y, float _collision_x, float _collision_y, float _tall, EGabarite* _g, float _bottom_skew);
 	void draw_gabarite_ark_shadow(float _x, float _y, EGabarite* _g);

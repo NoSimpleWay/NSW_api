@@ -469,6 +469,31 @@ public:
 			new wall_element()//14	window
 		};
 
+		std::vector<EColor*> color_matrix
+		=
+		{
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f),
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f),
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f),
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f),
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f),
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f),
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f),
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f),
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f),
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f),
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f),
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f),
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f),
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f),
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f),
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f),
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f),
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f),
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f),
+			new EColor(0.5f, 0.5f, 0.5f, 1.0f)
+		};
+
 		std::string* name = new std::string("floor");
 	};
 
@@ -569,6 +594,8 @@ public:
 
 		EGabarite* gabarite = NULL;
 		EGabarite* supermap = NULL;
+
+		EColor* sprite_color = new EColor(0.5f, 0.5f, 0.5f, 1.0f);
 
 		
 

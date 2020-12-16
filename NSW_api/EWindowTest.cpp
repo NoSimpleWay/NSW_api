@@ -82,6 +82,12 @@ EWindowTest::EWindowTest():EWindow()
 		(ETextureAtlas::put_texture_to_atlas("data/textures/terrain_c18_pavement_" + std::to_string(i) + ".png", EWindow::default_texture_atlas));
 	}
 
+	for (int i = 1; i <= 4; i++)
+	{
+		terrain_textures_list.push_back
+		(ETextureAtlas::put_texture_to_atlas("data/textures/terrain_asphalt_001_v" + std::to_string(i) + ".png", EWindow::default_texture_atlas));
+	}
+
 	generate_terrain();
 
 	Entity::HIT_ACTIONS_LIST.push_back(Entity::test_hit_action_destroy_touch);
@@ -1276,7 +1282,7 @@ void EWindowTest::draw_terrain()
 	//glUniform4f(ambient_loc, EColor::COLOR_SKY_AMBIENT->color_red * 0.0f, EColor::COLOR_SKY_AMBIENT->color_green, EColor::COLOR_SKY_AMBIENT->color_blue, 1.0f);
 
 	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(((EGraphicCore::SCR_WIDTH / 2.0f) - game_camera->position_x) * EGraphicCore::correction_x - 1.0f, ((EGraphicCore::SCR_HEIGHT / 2.0f) - game_camera->position_y) * EGraphicCore::correction_y - 1.0f, 0.0f));
+	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3((round(EGraphicCore::SCR_WIDTH / 2.0f) - game_camera->position_x) * EGraphicCore::correction_x - 1.0f, (round(EGraphicCore::SCR_HEIGHT / 2.0f) - game_camera->position_y) * EGraphicCore::correction_y - 1.0f, 0.0f));
 	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x * game_camera->zoom, EGraphicCore::correction_y * game_camera->zoom, 1));
 	transformLoc = glGetUniformLocation(EGraphicCore::shader_terrain->ID, "transform");
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
@@ -1299,10 +1305,21 @@ void EWindowTest::draw_terrain()
 
 
 	if (true)
+		for (int k=0; k<3; k++)
 		for (int i = up_terrain_draw; i >= down_terrain_draw; i--)
 			for (int j = left_terrain_draw; j <= right_terrain_draw; j++)
+			if (terrain_layer[j][i] == k)
 			{
-				EGraphicCore::batch_terrain->draw_terrain(j * EPath::PATH_SIZE * 1.0f, i * EPath::PATH_SIZE * 1.0f, terrain_textures_list.at(terrain[j][i]));
+				EGraphicCore::batch_terrain->draw_terrain_with_offset
+				(
+					j * EPath::PATH_SIZE * 1.0f + terrain_border_offset_x[j][i],
+					i * EPath::PATH_SIZE * 1.0f + terrain_border_offset_y[j][i],
+					terrain_border_offset_left[j][i],
+					terrain_border_offset_right[j][i],
+					terrain_border_offset_up[j][i],
+					terrain_border_offset_down[j][i],
+					terrain_textures_list.at(terrain[j][i])
+				);
 			}
 
 	//EGraphicCore::batch_terrain->draw_terrain(0.0f, 0.0f, EGraphicCore::gabarite_full_atlas);
@@ -1916,9 +1933,67 @@ void EWindowTest::draw_interface(float _d)
 
 void EWindowTest::generate_terrain()
 {
+	int random_point = 100;
 	for (int j=0; j<EPath::PATH_DIM; j++)
 	for (int i=0; i<EPath::PATH_DIM; i++)
 	{
 		terrain[j][i] = rand() % 5;
 	}
+
+	for (int j = 0; j < EPath::PATH_DIM; j++)
+	for (int i = 0; i < 10; i++)
+	{
+
+		if (rand() % 100 == 0) { random_point = (rand() % 95) + 5; }
+
+		if (rand() % 100 < random_point)
+		{
+		
+			terrain[j][i] = 5 +  rand() % 4;
+			terrain_layer[j][i] = 1;
+
+			terrain_border_offset_down[j][i] = 5.0f / 4096.0f;
+			terrain_border_offset_up[j][i] = 5.0f / 4096.0f;
+
+			terrain_border_offset_left[j][i] = 5.0f / 4096.0f;
+			terrain_border_offset_right[j][i] = 5.0f / 4096.0f;
+		}
+	}
+
+	for (int j=1; j<EPath::PATH_DIM - 1; j++)
+	for (int i=1; i<EPath::PATH_DIM - 1; i++)
+	{
+		//terrain[j][i] = rand() % 5;
+
+		if (terrain_layer[j][i] == 1)
+		{
+			if (terrain_layer[j - 1][i] != 1)
+			{
+				terrain_border_offset_left[j][i] = 0.0f;
+				terrain_border_offset_x[j][i] = -5.0f;
+			}
+
+			if (terrain_layer[j + 1][i] != 1)
+			{
+				terrain_border_offset_right[j][i] = 0.0f;
+			}
+
+			if (terrain_layer[j][i - 1] != 1)
+			{
+				terrain_border_offset_down[j][i] = 0.0f;
+				terrain_border_offset_y[j][i] = -5.0f;
+			}
+
+			if (terrain_layer[j][i + 1] != 1)
+			{
+				terrain_border_offset_up[j][i] = 0.0f;
+			}
+
+
+
+
+		}
+	}
+
+
 }

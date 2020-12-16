@@ -139,6 +139,8 @@ public:
 	int autobuilding_selected_floor;
 	std::vector<EButton*> floor_button;
 
+	int autobuilding_selected_color_matrix;
+
 	EButton* texture_variant_style_button;
 
 	button_array_collection_massive* autobuilding_massive_link;
@@ -156,6 +158,7 @@ public:
 	void select_new_floor();
 	void change_drop_button_container();
 	void select_new_wall();
+	void select_new_wall_color();
 
 	int count_of_variants;
 	//int count_of_floors;
@@ -173,6 +176,7 @@ public:
 	static Entity::building_autogen_floor*		object_floor;
 	static Entity::wall_element*				object_wall;
 	static Entity::wall_texture_variant*		object_variant;
+	static EColor*								object_wall_color;
 
 	static std::vector<EButton*> stencil_button_list;
 
@@ -184,7 +188,17 @@ public:
 
 	static EButton* link_to_wall_window_mode;
 
+	static EButton* link_to_wall_color_red;
+	static EButton* link_to_wall_color_green;
+	static EButton* link_to_wall_color_blue;
 
+	static std::vector<EButton*> link_to_wall_color_matrix;
+
+
+
+
+	//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**
+	static button_array_collection_massive* terrain_editor_link;
 
 
 

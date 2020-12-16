@@ -292,10 +292,28 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 		w_string += "\n";
 
 
+
 		w_string += "floor_name\t";
 			//w_string += std::to_string(EWindow::window_editor->link_to_floors_array->button_list.at(id)->text);
 			w_string += *f->name;
 		w_string += "\n";
+
+		id = 0;
+		for (EColor* c : f->color_matrix)
+		{
+			
+			w_string += "wall_color\t";
+				
+				//w_string += std::to_string(id)	+ "\t";
+				w_string += std::to_string(c->red)		+ "\t";
+				w_string += std::to_string(c->green)	+ "\t";
+				w_string += std::to_string(c->blue)		+ "\t";
+
+				w_string += std::to_string(c->alpha);
+			w_string += "\n";
+
+			id++;
+		}
 
 		if (*f->wall_window_is_stretched)
 		{
@@ -568,6 +586,7 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 		Entity::wall_texture_variant* just_created_texture_variant = NULL;
 
 		int wall_id = 0;
+		int wall_color_id = 0;
 
 		int floor_id = 0;
 		while (getline(myfile, line))
@@ -713,58 +732,12 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 					just_create_sprite_struct->supermap = just_created_gabarite;
 				}
 
-				if (EFile::data_array[i] == "texture_offset_x")
+				if (just_create_sprite_struct != NULL)
+				for (EDataWatcher::data_watcher_struct<float*>* dws : just_create_sprite_struct->data_watcher_float_list)
 				{
-					i++; *just_create_sprite_struct->offset_x = std::stof(EFile::data_array[i]);
+					if (dws->name == EFile::data_array[i]) { i++; *dws->watcher_address.at(0) = std::stof(EFile::data_array[i]); }
 				}
 
-				if (EFile::data_array[i] == "texture_offset_y")
-				{
-					i++; *just_create_sprite_struct->offset_y = std::stof(EFile::data_array[i]);
-					//just_created_sprite->offset_z.push_back(0.0f);
-				}
-
-				if (EFile::data_array[i] == "texture_offset_z")
-				{
-					i++; *just_create_sprite_struct->offset_z = std::stof(EFile::data_array[i]);
-				}
-
-				if (EFile::data_array[i] == "texture_shadow_size_x")
-				{
-					i++; *just_create_sprite_struct->shadow_size_x = std::stof(EFile::data_array[i]);
-				}
-
-				if (EFile::data_array[i] == "texture_shadow_size_y")
-				{
-					i++; *just_create_sprite_struct->shadow_size_y = std::stof(EFile::data_array[i]);
-				}
-
-				if (EFile::data_array[i] == "texture_shadow_upper_tall")
-				{
-					i++; *just_create_sprite_struct->shadow_tall = std::stof(EFile::data_array[i]);
-					//*just_create_sprite_struct->bottom_tall = std::stof(EFile::data_array[i]);
-				}
-
-				
-				if (EFile::data_array[i] == "texture_shadow_bottom_tall")
-				{
-					i++; *just_create_sprite_struct->bottom_tall = std::stof(EFile::data_array[i]);
-				}
-
-				if (EFile::data_array[i] == "texture_fragment_x")
-				{
-					i++; *just_create_sprite_struct->fragment_x = std::stof(EFile::data_array[i]);
-				}
-
-				if (EFile::data_array[i] == "texture_fragment_y")
-				{
-					i++; *just_create_sprite_struct->fragment_y = std::stof(EFile::data_array[i]);
-				}
-
-				if (EFile::data_array[i] == "texture_copies")
-				{
-					i++; *just_create_sprite_struct->copies = std::stoi(EFile::data_array[i]);
-				}
 				
 				if (just_created_floor != NULL)
 				{ 
@@ -872,6 +845,7 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 					
 					just_created_entity->autobuilding_floor_list.push_back(just_created_floor);
 
+
 					i++;  *just_created_floor->offset_x																= std::stof(EFile::data_array[i]);
 					i++;  *just_created_floor->offset_y																= std::stof(EFile::data_array[i]);
 					i++;  *just_created_floor->offset_z																= std::stof(EFile::data_array[i]);
@@ -880,6 +854,17 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 					i++;  std::cout << "|" << EFile::data_array[i] << "|" << std::endl; if (EFile::data_array[i] != "")		*just_created_floor->horizontal_roof_offset_multiplier	= std::stof(EFile::data_array[i]);
 
 					wall_id = 0;
+					wall_color_id = 0;
+				}
+
+				
+				if ((EFile::data_array[i] == "wall_color") & (just_created_floor != NULL))
+				{
+					i++;  just_created_floor->color_matrix.at(wall_color_id)->red = std::stof(EFile::data_array[i]);
+					i++;  just_created_floor->color_matrix.at(wall_color_id)->green = std::stof(EFile::data_array[i]);
+					i++;  just_created_floor->color_matrix.at(wall_color_id)->blue = std::stof(EFile::data_array[i]);
+
+					wall_color_id++;
 				}
 
 				if (EFile::data_array[i] == "floor_name")
@@ -1598,6 +1583,36 @@ void EBA::action_refresh_drop_autobuilding_list(EButton* _b, float _d)
 	if (_b->target_address_for_string != NULL)
 	{
 		*_b->target_address_for_string = _b->text;
+	}
+}
+
+void EBA::action_wall_color_noise(EButton* _b, float _d)
+{
+	//if (EWindow::window_editor->object_wall_color != NULL)
+	//if (EWindow::window_editor->selected_entity != NULL)
+	if (EWindow::window_editor->object_floor != NULL)
+	{
+		for (EColor* c : EWindow::window_editor->object_floor->color_matrix)
+		{
+			c->red += ((rand() % 1001 / 1000.0f) - 0.5f) / 20.0f;
+			c->green += ((rand() % 1001 / 1000.0f) - 0.5f) / 20.0f;
+			c->blue += ((rand() % 1001 / 1000.0f) - 0.5f) / 20.0f;
+		}
+	}
+}
+
+void EBA::action_wall_color_blur(EButton* _b, float _d)
+{
+	if (EWindow::window_editor->object_floor != NULL)
+	{
+		//for (EColor* c : EWindow::window_editor->object_floor->color_matrix)
+		for (int i=0; i < EWindow::window_editor->object_floor->color_matrix.size() - 1; i++)
+		{
+			//EColor::get_interpolate_color(EWindow::window_editor->object_floor->color_matrix.at(i), 0.2f, EWindow::window_editor->object_floor->color_matrix.at(i))
+			EWindow::window_editor->object_floor->color_matrix.at(i)->red = EWindow::window_editor->object_floor->color_matrix.at(i)->red * 0.8f + EWindow::window_editor->object_floor->color_matrix.at(i + 1)->red * 0.2f;
+			EWindow::window_editor->object_floor->color_matrix.at(i)->green = EWindow::window_editor->object_floor->color_matrix.at(i)->green * 0.8f + EWindow::window_editor->object_floor->color_matrix.at(i + 1)->green * 0.2f;
+			EWindow::window_editor->object_floor->color_matrix.at(i)->blue = EWindow::window_editor->object_floor->color_matrix.at(i)->blue * 0.8f + EWindow::window_editor->object_floor->color_matrix.at(i + 1)->blue * 0.2f;
+		}
 	}
 }
 

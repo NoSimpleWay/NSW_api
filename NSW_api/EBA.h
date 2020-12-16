@@ -99,6 +99,8 @@ public:
 
 	static void action_start_input(EButton* _b, float _d);
 	static void action_refresh_drop_autobuilding_list(EButton* _b, float _d);
+	static void action_wall_color_noise(EButton* _b, float _d);
+	static void action_wall_color_blur(EButton* _b, float _d);
 
 
 

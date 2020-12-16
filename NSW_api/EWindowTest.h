@@ -78,6 +78,16 @@ public:
 	std::vector <EGabarite*> terrain_textures_list;
 
 	short terrain[EPath::PATH_DIM][EPath::PATH_DIM];
+	short terrain_layer[EPath::PATH_DIM][EPath::PATH_DIM];
+
+	float terrain_border_offset_up		[EPath::PATH_DIM][EPath::PATH_DIM];
+	float terrain_border_offset_down	[EPath::PATH_DIM][EPath::PATH_DIM];
+	float terrain_border_offset_left	[EPath::PATH_DIM][EPath::PATH_DIM];
+	float terrain_border_offset_right	[EPath::PATH_DIM][EPath::PATH_DIM];
+
+	float terrain_border_offset_x		[EPath::PATH_DIM][EPath::PATH_DIM];
+	float terrain_border_offset_y		[EPath::PATH_DIM][EPath::PATH_DIM];
+	//short terrain_layer[EPath::PATH_DIM][EPath::PATH_DIM];
 	
 	void generate_terrain();
 

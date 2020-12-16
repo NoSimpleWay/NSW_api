@@ -750,139 +750,148 @@ void Entity::draw_sprite(Entity* _e, Batcher* _b, float _d, bool _is_shadow_mode
 		//spr->sprite_struct_list.at(0)->copies = 1;
 
 		if (!spr->sprite_struct_list.empty())//if non empty sprite list
-		if (spr->sprite_struct_list.at(frame_id)->gabarite != NULL)
-		//for (int f=0; f<end_frame; f++)
-		//for (int i=0; i < *spr->sprite_struct_list.at(frame_id)->copies; i++)
 		{
+			ESprite::sprite_struct* SSL = spr->sprite_struct_list.at(frame_id);
+			if (SSL->gabarite != NULL)
+				//for (int f=0; f<end_frame; f++)
+				//for (int i=0; i < *spr->sprite_struct_list.at(frame_id)->copies; i++)
+			{
 
-			if
-				(
-					(!_is_shadow_mode)
-					&
-					(EWindow::window_editor->is_active)
-					&&
-					(EWindow::window_editor->sprite_flash_cooldown < 0.5f)
-					&
+				if
 					(
-					(EWindow::window_editor->selected_entity == _e)
-					||
-					(find(EWindow::window_editor->selected_entity_list.begin(), EWindow::window_editor->selected_entity_list.end(), _e) != EWindow::window_editor->selected_entity_list.end())
-				)
-				&
-				(
-					(
-						(EWindow::window_editor->selected_sprite_id == sprite_id)
+						(!_is_shadow_mode)
 						&
-						(EWindow::window_editor->selected_frame_id == frame_id)
+						(EWindow::window_editor->is_active)
+						&&
+						(EWindow::window_editor->sprite_flash_cooldown < 0.5f)
 						&
-						(EWindow::window_editor->editor_mode == EWindowEditor::EditMode::EditSprites)
-					)
-					||
-					(EWindow::window_editor->editor_mode == EWindowEditor::EditMode::SelectEntities)
-				)
-			)
-			{
-				_b->setcolor_alpha(EColor::COLOR_GRAY,0.8f);
-			}
-			else
-			{
-				if (_is_shadow_mode)
+						(
+							(EWindow::window_editor->selected_entity == _e)
+							||
+							(find(EWindow::window_editor->selected_entity_list.begin(), EWindow::window_editor->selected_entity_list.end(), _e) != EWindow::window_editor->selected_entity_list.end())
+							)
+						&
+						(
+							(
+								(EWindow::window_editor->selected_sprite_id == sprite_id)
+								&
+								(EWindow::window_editor->selected_frame_id == frame_id)
+								&
+								(EWindow::window_editor->editor_mode == EWindowEditor::EditMode::EditSprites)
+								)
+							||
+							(EWindow::window_editor->editor_mode == EWindowEditor::EditMode::SelectEntities)
+							)
+						)
 				{
-					if (_transparent_is_height)
-					{_b->setcolor_alpha(EColor::COLOR_LAZURE_SHADOW, (*spr->sprite_struct_list.at(frame_id)->shadow_tall + *spr->sprite_struct_list.at(frame_id)->offset_z) / 1024.0f);}
+					_b->setcolor_alpha(EColor::COLOR_GRAY, 0.8f);
+				}
+				else
+				{
+					if (_is_shadow_mode)
+					{
+						if (_transparent_is_height)
+						{
+							_b->setcolor_alpha(EColor::COLOR_LAZURE_SHADOW, (*SSL->shadow_tall + *SSL->offset_z) / 1024.0f);
+						}
+						else
+						{
+							_b->setcolor(EColor::COLOR_LAZURE_SHADOW);
+						}
+
+					}
 					else
-					{_b->setcolor(EColor::COLOR_LAZURE_SHADOW);}
+					{
+						GLint myLoc = glGetUniformLocation(EGraphicCore::shadowmap->ID, "ambient_light_color");
+						glUniform4f(myLoc, EColor::COLOR_SKY_AMBIENT->color_red, EColor::COLOR_SKY_AMBIENT->color_green, EColor::COLOR_SKY_AMBIENT->color_blue, 1.0f);
+						//_b->setcolor(EColor::COLOR_SKY_AMBIENT);
 
+					}
+				}
+
+				
+				if (!_is_shadow_mode)
+				{
+					//SSL->sprite_color->set_color(EColor::COLOR_GRAY);
+					_b->setcolor(SSL->sprite_color);
+
+					if (*spr->is_mirrored)
+					{
+						_b->draw_gabarite_shadowmap_fragment_mirrored
+						(
+							round(*_e->position_x) + *SSL->offset_x + offset_x_begin,
+							round(*_e->position_y) + *SSL->offset_y + offset_y_begin + *SSL->offset_z,
+
+							0.0f,
+							*SSL->gabarite->size_y,
+
+							SSL->gabarite,
+							SSL->supermap,
+							*SSL->offset_z,
+							*SSL->fragment_x,
+							*SSL->fragment_y
+						);
+					}
+					else
+					{
+						_b->draw_gabarite_shadowmap_fragment
+						(
+							round(*_e->position_x) + *SSL->offset_x + offset_x_begin,
+							round(*_e->position_y) + *SSL->offset_y + offset_y_begin + *SSL->offset_z,
+
+							0.0f,
+							*SSL->gabarite->size_y,
+
+							SSL->gabarite,
+							SSL->supermap,
+							*SSL->offset_z,
+							*SSL->fragment_x,
+							*SSL->fragment_y
+						);
+					}
 				}
 				else
 				{
-					GLint myLoc = glGetUniformLocation(EGraphicCore::shadowmap->ID,"ambient_light_color");
-					glUniform4f(myLoc, EColor::COLOR_SKY_AMBIENT->color_red, EColor::COLOR_SKY_AMBIENT->color_green, EColor::COLOR_SKY_AMBIENT->color_blue, 1.0f);
-					//_b->setcolor(EColor::COLOR_SKY_AMBIENT);
-					_b->setcolor(EColor::COLOR_WHITE);
-				}
-			}
-
-
-			if (!_is_shadow_mode)
-			{
-				if (*spr->is_mirrored)
-				{
-					_b->draw_gabarite_shadowmap_fragment_mirrored
+					_b->draw_gabarite_skew
 					(
-						round(*_e->position_x) + *spr->sprite_struct_list.at(frame_id)->offset_x + offset_x_begin,
-						round(*_e->position_y) + *spr->sprite_struct_list.at(frame_id)->offset_y + offset_y_begin + *spr->sprite_struct_list.at(frame_id)->offset_z,
+						*_e->position_x + *SSL->offset_x + offset_x_begin,
+						*_e->position_y + *SSL->offset_y + offset_y_begin,
 
-						0.0f,
-						*spr->sprite_struct_list.at(frame_id)->gabarite->size_y,
+						*SSL->shadow_size_x,
+						*SSL->shadow_size_y,
+						*SSL->shadow_tall,
 
-						spr->sprite_struct_list.at(frame_id)->gabarite,
-						spr->sprite_struct_list.at(frame_id)->supermap,
-						*spr->sprite_struct_list.at(frame_id)->offset_z,
-						*spr->sprite_struct_list.at(frame_id)->fragment_x,
-						*spr->sprite_struct_list.at(frame_id)->fragment_y
+						SSL->gabarite,
+						*SSL->bottom_tall
 					);
 				}
-				else
+
+				/*
+				if (i + 1>= spr->copies.at(frame_id))
 				{
-					_b->draw_gabarite_shadowmap_fragment
+					offset_x_begin += spr->gabarite.at(frame_id)->size_x * spr->copies.at(frame_id) + spr->offset_x.at(frame_id);
+					offset_y_begin += spr->offset_y.at(frame_id);
+				}*/
+
+				if ((EWindow::window_editor->editor_mode == EWindowEditor::EditMode::EditSprites) & (true))
+				{
+					EGraphicCore::batch->setcolor(EColor::COLOR_RED);
+					EGraphicCore::batch->draw_gabarite
 					(
-						round(*_e->position_x) + *spr->sprite_struct_list.at(frame_id)->offset_x + offset_x_begin,
-						round(*_e->position_y) + *spr->sprite_struct_list.at(frame_id)->offset_y + offset_y_begin + *spr->sprite_struct_list.at(frame_id)->offset_z,
+						*_e->position_x + *SSL->offset_x - 1.0f,
+						*_e->position_y + *SSL->offset_y - 1.0f,
 
-						0.0f,
-						*spr->sprite_struct_list.at(frame_id)->gabarite->size_y,
+						3.0f,
+						3.0f,
 
-						spr->sprite_struct_list.at(frame_id)->gabarite,
-						spr->sprite_struct_list.at(frame_id)->supermap,
-						*spr->sprite_struct_list.at(frame_id)->offset_z,
-						*spr->sprite_struct_list.at(frame_id)->fragment_x,
-						*spr->sprite_struct_list.at(frame_id)->fragment_y
+						EGraphicCore::gabarite_white_pixel
 					);
+
+
+
 				}
-			}
-			else
-			{
-				_b->draw_gabarite_skew
-				(
-					*_e->position_x + *spr->sprite_struct_list.at(frame_id)->offset_x + offset_x_begin,
-					*_e->position_y + *spr->sprite_struct_list.at(frame_id)->offset_y + offset_y_begin,
-
-					*spr->sprite_struct_list.at(frame_id)->shadow_size_x,
-					*spr->sprite_struct_list.at(frame_id)->shadow_size_y,
-					*spr->sprite_struct_list.at(frame_id)->shadow_tall,
-
-					spr->sprite_struct_list.at(frame_id)->gabarite,
-					*spr->sprite_struct_list.at(frame_id)->bottom_tall
-				);
-			}
-
-			/*
-			if (i + 1>= spr->copies.at(frame_id))
-			{
-				offset_x_begin += spr->gabarite.at(frame_id)->size_x * spr->copies.at(frame_id) + spr->offset_x.at(frame_id);
-				offset_y_begin += spr->offset_y.at(frame_id);
-			}*/
-
-			if ((EWindow::window_editor->editor_mode == EWindowEditor::EditMode::EditSprites)&(true))
-			{
-				EGraphicCore::batch->setcolor(EColor::COLOR_RED);
-				EGraphicCore::batch->draw_gabarite
-				(
-					*_e->position_x + *spr->sprite_struct_list.at(frame_id)->offset_x - 1.0f,
-					*_e->position_y + *spr->sprite_struct_list.at(frame_id)->offset_y - 1.0f,
-
-					3.0f,
-					3.0f,
-
-					EGraphicCore::gabarite_white_pixel
-				);
-
-
-
 			}
 		}
-
 		sprite_id++;
 	}
 	else
@@ -1230,6 +1239,11 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 		spr->sprite_struct_list.at(0)->gabarite = NULL;
 		*spr->is_shadow = false;
 		*spr->is_mirrored = false;
+
+		for (ESprite::sprite_struct* ss : spr->sprite_struct_list)
+		{
+			ss->sprite_color->set_color(EColor::COLOR_GRAY);
+		}
 	}
 
 	int floor_id = 0;
@@ -1291,7 +1305,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 
 					*spr->sprite_struct_list.at(0)->fragment_x = min(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_x - i, 1.0f) + 0.00f;
 					*spr->sprite_struct_list.at(0)->fragment_y = min(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y - yy, 1.0f) + 0.00f;
-
+					if (yy < AB_floor->color_matrix.size()) { spr->sprite_struct_list.at(0)->sprite_color->set_color(AB_floor->color_matrix.at(yy)); }
 					//_e->sprite_list.push_back(spr);
 				}
 			random_select = 0;
@@ -2502,6 +2516,10 @@ ESprite::sprite_struct::sprite_struct()
 
 	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_fragment_x", fragment_x));
 	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("texture_fragment_y", fragment_y));
+
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("sprite_color_red", &sprite_color->red));
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("sprite_color_green", &sprite_color->green));
+	data_watcher_float_list.push_back(new EDataWatcher::data_watcher_struct<float*>("sprite_color_blue", &sprite_color->blue));
 
 	gabarite = EGraphicCore::gabarite_white_pixel;
 	supermap = EGraphicCore::gabarite_supermap_placeholder;

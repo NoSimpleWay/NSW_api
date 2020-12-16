@@ -229,7 +229,16 @@ public:
 		std::vector < button_array_vertical_collection*> button_array_vertical_collection_list;
 
 		std::vector <EButton*> tab_button_list;
+
+		int* push_method = new int(ARRAY_PUSH_METHOD::APM_PUSH_Y);
 		
+	};
+
+	enum ARRAY_PUSH_METHOD
+	{
+		APM_NONE,
+		APM_PUSH_X,
+		APM_PUSH_Y
 	};
 
 	struct button_array_collection_massive

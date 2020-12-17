@@ -25,6 +25,10 @@ uniform vec4 ambient_light_color;
 
 uniform float zoom;
 
+uniform float gamma_factor = 0.1f;
+uniform float gamma_offset = 1.0f;
+uniform float gamma_border = 4.0f;
+
 float shadow_multiplier;
 
 vec2 shadow_coord;
@@ -71,7 +75,17 @@ float normal_y = 0.0f;
 in float camera_x;
 in float camera_y;
 
+vec3 texture_pixel;
+vec3 shadow_pixel;
+vec3 ambient_pixel;
+vec3 recolor;
+vec3 lightmap_pixel;
 //vec4 temp_color;
+vec3 result_pixel;
+
+float gamma_R = 1.0;
+float gamma_G = 1.0;
+float gamma_B = 1.0;
 
 void main()
 {
@@ -182,23 +196,24 @@ void main()
 	;
 	
 	
+	texture_pixel = texture(texture1, TexCoord).rgb;
+	shadow_pixel = shadow_multiplier * texture(texture2, shadow_coord).rgb;
+	ambient_pixel = (1.0f - shadow_multiplier) * ambient_light_color.rgb;
+	recolor = ourColor.rgb * vec3(2.0f, 2.0f, 2.0f);
+	lightmap_pixel = texture(texture3, light_coord).rgb / (1.0f + halt * halt * 32.0f);
 	
-	FragColor.rgb
-	=
-	texture(texture1, TexCoord).rgb
-	*
-	(
-		(
-			(shadow_multiplier * texture(texture2, shadow_coord).rgb)
-			+
-			((1.0f - shadow_multiplier) * ambient_light_color.rgb)
-		) * ourColor.rgb * vec3(2.0f, 2.0f, 2.0f)
-		+
-		(texture(texture3, light_coord).rgb / (1.0f + halt * halt * 32.0f))
-	) 
-	;
+	result_pixel = texture_pixel * ((shadow_pixel + ambient_pixel) * recolor + lightmap_pixel);
 	
+	gamma_R = sin((pow(result_pixel.r, gamma_offset) * gamma_border - gamma_border / 2.0f) * 1.5705f) * gamma_factor + 1.0f;
+	gamma_G = sin((pow(result_pixel.g, gamma_offset) * gamma_border - gamma_border / 2.0f) * 1.5705f) * gamma_factor + 1.0f;
+	gamma_B = sin((pow(result_pixel.b, gamma_offset) * gamma_border - gamma_border / 2.0f) * 1.5705f) * gamma_factor + 1.0f;
+	
+	FragColor.rgb =	clamp(result_pixel * vec3(gamma_R, gamma_G, gamma_B), vec3(0.0f), vec3(1.0f));//vec3 (( sin (() * 4.0f - 2.0f) * 1.5705f) / 10.0f + 1.0f);
+	//FragColor.rgb = vec3(pow(result_pixel, vec3(pow(0.5f + result_pixel, vec3(-gamma_factor)))));
+		
+	//FragColor.rgb = 
 
+	//FragColor.rgb =	vec3(pow(result_pixel, 1.1f));
 	
 	/*FragColor.r = halt;
 	FragColor.g = 0.0f;

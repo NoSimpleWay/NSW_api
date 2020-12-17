@@ -61,6 +61,7 @@ int main()
 {
 
 
+
 	//EDataWatcher::data_watcher_struct* just_created_float_struct = new EDataWatcher::data_watcher_struct;
 
 	srand(time(NULL));
@@ -101,6 +102,11 @@ int main()
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		return -1;
 	}
+
+	GLint max_tex_size;
+	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &max_tex_size);
+
+	logger_param("max_texture_size:", max_tex_size);
 
 	EGraphicCore::ourShader = new Shader("data/5.1.transform.vs", "data/5.1.transform.fs");
 	EGraphicCore::shadowmap = new Shader("data/shadowmap.vs", "data/shadowmap.fs");
@@ -147,7 +153,10 @@ int main()
 	glViewport(0, 0, EGraphicCore::SCR_WIDTH, EGraphicCore::SCR_HEIGHT);
 
 	EWindow::default_texture_atlas = new ETextureAtlas(4096, 4096);
+
 	EWindow::shadow_FBO = new ETextureAtlas(1920, 1580);
+	EWindow::screen_FBO = new ETextureAtlas(1920, 1080);
+
 	EWindow::shadow_ground_FBO = new ETextureAtlas(1920, 1080);
 	EWindow::lightmap_FBO = new ETextureAtlas(300, 300);
 	EWindow::lightmap_FBO2 = new ETextureAtlas(300, 300);

@@ -81,7 +81,7 @@ EGabarite* ETextureAtlas::put_texture_to_atlas(std::string _name, ETextureAtlas*
 		for (int x = 0; x < 1024; x++)
 		for (int y = 0; y < 1024; y++)
 		{
-			if (_ta->can_place_here(x, y, (int)(EGraphicCore::last_texture_w / 4.0f), (int)(EGraphicCore::last_texture_h / 4.0f)))
+			if (_ta->can_place_here(x, y, ceil(EGraphicCore::last_texture_w / 4.0f), ceil(EGraphicCore::last_texture_h / 4.0f)))
 			{
 				place_x = x * 4;
 				place_y = y * 4;
@@ -91,9 +91,9 @@ EGabarite* ETextureAtlas::put_texture_to_atlas(std::string _name, ETextureAtlas*
 			}
 		}
 
-		for (int x = (int)(place_x / 4.0f); x < (int)((place_x + EGraphicCore::last_texture_w) / 4.0f) + 1; x++)
-		for (int y = (int)(place_y / 4.0f); y < (int)((place_y + EGraphicCore::last_texture_h) / 4.0f) + 1; y++)
-		if ((x < 1024) && (y < 1024))
+		for (int x = (ceil)(place_x / 4.0f) - 2; x < (ceil)((place_x + EGraphicCore::last_texture_w) / 4.0f) + 2; x++)
+		for (int y = (ceil)(place_y / 4.0f) - 2; y < (ceil)((place_y + EGraphicCore::last_texture_h) / 4.0f) + 2; y++)
+		if ((x < 1024) & (y < 1024) & (x >= 0) & (y >= 0))
 		{
 			_ta->free_space[x][y] = false;
 		}
@@ -124,12 +124,32 @@ EGabarite* ETextureAtlas::put_texture_to_atlas(std::string _name, ETextureAtlas*
 		EGraphicCore::batch->reset();*/
 
 		EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
-		glBlendEquation(GL_MAX);
-		EGraphicCore::batch->draw_rect(place_x, place_y, EGraphicCore::last_texture_w, EGraphicCore::last_texture_h);
+			glBlendEquation(GL_MAX);
+				EGraphicCore::batch->draw_rect(place_x - 1.0f, place_y, EGraphicCore::last_texture_w, EGraphicCore::last_texture_h);
+				EGraphicCore::batch->draw_rect(place_x + 1.0f, place_y, EGraphicCore::last_texture_w, EGraphicCore::last_texture_h);
+				EGraphicCore::batch->draw_rect(place_x, place_y - 1.0f, EGraphicCore::last_texture_w, EGraphicCore::last_texture_h);
+				EGraphicCore::batch->draw_rect(place_x, place_y + 1.0f, EGraphicCore::last_texture_w, EGraphicCore::last_texture_h);
+			EGraphicCore::batch->reinit();
+			EGraphicCore::batch->draw_call();
+			EGraphicCore::batch->reset();
 
+		glBlendEquation(GL_MIN);
+			EGraphicCore::batch->setcolor_alpha (EColor::COLOR_BLACK, 0.0f);
+			EGraphicCore::batch->draw_rect(place_x, place_y, EGraphicCore::last_texture_w, EGraphicCore::last_texture_h);
 		EGraphicCore::batch->reinit();
 		EGraphicCore::batch->draw_call();
 		EGraphicCore::batch->reset();
+
+		glBlendEquation(GL_MAX);
+		EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
+			EGraphicCore::batch->draw_rect(place_x, place_y, EGraphicCore::last_texture_w, EGraphicCore::last_texture_h);
+		EGraphicCore::batch->reinit();
+		EGraphicCore::batch->draw_call();
+		EGraphicCore::batch->reset();
+
+
+
+
 
 		//std::cout << "draw to x=" << place_x << " y=" << place_y << std::endl;
 

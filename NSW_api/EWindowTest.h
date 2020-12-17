@@ -20,6 +20,9 @@ public:
 	static float blur_blend;
 	static float blur_decay_flat_factor;
 	static float add_factor;
+	static float gamma_factor;
+	static float gamma_offset;
+	static float gamma_border;
 
 	void default_draw(float _d);
 	void draw_shadows();

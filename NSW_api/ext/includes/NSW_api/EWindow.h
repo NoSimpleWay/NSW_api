@@ -120,6 +120,8 @@ public:
 	static ETextureAtlas* base_lightmap;
 	static ETextureAtlas* base_blockmap;
 
+	static ETextureAtlas* screen_FBO;
+
 	static bool button_pressed;
 
 	static bool button_main_group_pressed;

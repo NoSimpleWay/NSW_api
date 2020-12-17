@@ -759,6 +759,56 @@ EWindowEditor::EWindowEditor()
 		//a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
 	}
 
+	a_vertical = new button_array_vertical_collection(5.0f, 5.0f + 0.0f, 0.0f, 0.0f);
+	*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
+	*a_vertical->tab_id = 3;
+	a_array = new button_array;
+
+	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
+	a_vertical->button_array_list.push_back(a_array);
+
+	but = new EButton(0.0, 0.0f, 200.0f, 30.0f);
+		*but->is_radial_button = true;
+		but->bg_color->set_color(EColor::COLOR_WHITE);
+		but->text_color->set_color(EColor::COLOR_GREEN);
+		but->master_window = this;
+		but->text = "Gamma factor";
+		but->is_slider = false;
+		but->slider_value_multiplier = 0.1f;
+		*but->maximum_value = 8.0f;
+		but->target_address_for_float = &EWindowTest::gamma_factor;
+		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+		*but->is_consumable = true;
+	a_array->button_list.push_back(but);
+
+	but = new EButton(0.0, 0.0f, 200.0f, 30.0f);
+		*but->is_radial_button = true;
+		but->bg_color->set_color(EColor::COLOR_WHITE);
+		but->text_color->set_color(EColor::COLOR_GREEN);
+		but->master_window = this;
+		but->text = "Gamma offset";
+		but->is_slider = false;
+		but->slider_value_multiplier = 0.5f;
+		*but->maximum_value = 2.0f;
+		but->target_address_for_float = &EWindowTest::gamma_offset;
+		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+		*but->is_consumable = true;
+	a_array->button_list.push_back(but);
+
+	but = new EButton(0.0, 0.0f, 200.0f, 30.0f);
+		*but->is_radial_button = true;
+		but->bg_color->set_color(EColor::COLOR_WHITE);
+		but->text_color->set_color(EColor::COLOR_GREEN);
+		but->master_window = this;
+		but->text = "Gamma border";
+		but->is_slider = false;
+		but->slider_value_multiplier = 0.5f;
+		*but->maximum_value = 8.0f;
+		but->target_address_for_float = &EWindowTest::gamma_border;
+		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+		*but->is_consumable = true;
+	a_array->button_list.push_back(but);
+
 	a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
 
 	button_array_collection_massive_list.push_back(a_massive);
@@ -1083,6 +1133,7 @@ EWindowEditor::EWindowEditor()
 
 	but = new EButton(260.0f, 60.0f, 150.0f, 50.0f);
 		link_to_window_offset_x = but;
+		but->text_color->set_color(EColor::COLOR_YELLOW);
 		*but->is_consumable = true;
 		*but->maximum_value = 512.0f;
 		but->master_window = this;
@@ -1096,6 +1147,7 @@ EWindowEditor::EWindowEditor()
 
 	but = new EButton(420.0f, 60.0f, 150.0f, 50.0f);
 		link_to_window_offset_y = but;
+		but->text_color->set_color(EColor::COLOR_YELLOW);
 		*but->is_consumable = true;
 		*but->maximum_value = 512.0f;
 		but->master_window = this;

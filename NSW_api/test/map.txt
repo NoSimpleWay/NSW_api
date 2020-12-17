@@ -1,7 +1,7 @@
-#shadow_skew	0.370378
-#lightmap_blur_factor	0.251999
-#lightmap_modes_blend	0.246000
-#blur_decay	0.002214
+#shadow_skew	0.692310
+#lightmap_blur_factor	0.308000
+#lightmap_modes_blend	0.302667
+#blur_decay	0.001160
 ADD_NEW_ENTITY	613.000000	306.000000	0.000000
 floor_order	0
 floor_order	0
@@ -6118,334 +6118,6 @@ shadow_block_left	20.000000
 
 =====================================
 
-ADD_NEW_ENTITY	3984.577637	4289.279785	0.000000
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-ADD_NEW_SPRITE
-*rotate_by_move
-add_new_texture	data/textures/letoon3.png
-texture_offset_x	-15.000000
-texture_offset_y	1.000000
-texture_offset_z	6.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-add_new_texture	data/textures/letoon2.png
-texture_offset_x	-15.000000
-texture_offset_y	0.000000
-texture_offset_z	3.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	1.000000
-sprite_color_green	1.000000
-sprite_color_blue	1.000000
-add_new_texture	data/textures/letoon1.png
-texture_offset_x	-15.000000
-texture_offset_y	0.000000
-texture_offset_z	6.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-add_new_texture	data/textures/letoon4.png
-texture_offset_x	-15.000000
-texture_offset_y	0.000000
-texture_offset_z	5.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	1.000000
-sprite_color_green	1.000000
-sprite_color_blue	1.000000
-ADD_NEW_SPRITE
-*target_gun
-add_new_texture	data/textures/head_gun_mech_violet_1.png
-texture_offset_x	-4.000000
-texture_offset_y	1.000000
-texture_offset_z	49.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-add_new_texture	data/textures/head_gun_mech_violet_2.png
-texture_offset_x	-4.875000
-texture_offset_y	1.875000
-texture_offset_z	45.250000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	1.000000
-sprite_color_green	1.000000
-sprite_color_blue	1.000000
-add_new_texture	data/textures/head_gun_mech_violet_3.png
-texture_offset_x	-4.375000
-texture_offset_y	1.125000
-texture_offset_z	49.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	1.000000
-sprite_color_green	1.000000
-sprite_color_blue	1.000000
-add_new_texture	data/textures/head_gun_mech_violet_4.png
-texture_offset_x	-6.250000
-texture_offset_y	0.625000
-texture_offset_z	36.500000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-add_new_texture	data/textures/head_gun_mech_violet_5.png
-texture_offset_x	-8.125000
-texture_offset_y	-17.375000
-texture_offset_z	51.875000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-add_new_texture	data/textures/head_gun_mech_violet_6.png
-texture_offset_x	-15.375000
-texture_offset_y	1.000000
-texture_offset_z	36.250000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-add_new_texture	data/textures/head_gun_mech_violet_7.png
-texture_offset_x	-27.500000
-texture_offset_y	0.875000
-texture_offset_z	49.250000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-add_new_texture	data/textures/head_gun_mech_violet_8.png
-texture_offset_x	-15.000000
-texture_offset_y	41.750000
-texture_offset_z	5.375000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-*shadow
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	15.000000
-texture_offset_y	2.000000
-texture_offset_z	3.000000
-texture_shadow_size_x	25.000000
-texture_shadow_size_y	15.000000
-texture_shadow_bottom_tall	113.000000
-texture_shadow_upper_tall	118.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	1.000000
-sprite_color_green	1.000000
-sprite_color_blue	1.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	29.549992
-texture_offset_y	-8.249985
-texture_offset_z	0.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	1.000000
-sprite_color_green	1.000000
-sprite_color_blue	1.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	29.350006
-texture_offset_y	-6.999996
-texture_offset_z	0.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	1.000000
-sprite_color_green	1.000000
-sprite_color_blue	1.000000
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	28.324989
-texture_offset_y	-8.450001
-texture_offset_z	0.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	1.000000
-sprite_color_green	1.000000
-sprite_color_blue	1.000000
-add_new_autobuilding_floor	0.000000	0.000000	1.000000	1.000000	1.000000	1.000000
-floor_name	main
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-floor_additional_distance_between_window_x	5.000000
-floor_additional_distance_between_window_y	5.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-*camera_target
-entity base attribute	Life	1000.000000
-entity base attribute	Mass	100.000000
-entity base attribute	Shadow tall	72.000000
-entity base attribute	Lightsoucre red	1.000000
-entity base attribute	Lightsoucre green	1.000000
-entity base attribute	Lightsoucre blue	1.000000
-entity bool attribute	Controlled by Player
-entity bool attribute	Light Source
-collision_up	21.000000
-collision_down	15.500000
-collision_right	13.250000
-collision_left	14.750000
-path_block_up	20.000000
-path_block_down	20.000000
-path_block_right	20.000000
-path_block_left	20.000000
-shadow_block_up	20.000000
-shadow_block_down	20.000000
-shadow_block_right	20.000000
-shadow_block_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
 ADD_NEW_ENTITY	3994.000000	4787.000000	0.000000
 floor_order	0
 floor_order	0
@@ -6571,7 +6243,7 @@ shadow_block_left	20.000000
 
 =====================================
 
-ADD_NEW_ENTITY	4209.000000	3996.000000	0.000000
+ADD_NEW_ENTITY	4219.000000	3982.000000	0.000000
 floor_order	2
 floor_order	1
 floor_order	0
@@ -9811,7 +9483,7 @@ shadow_block_left	20.000000
 
 =====================================
 
-ADD_NEW_ENTITY	4881.000000	4382.000000	0.000000
+ADD_NEW_ENTITY	4916.000000	4381.000000	0.000000
 floor_order	2
 floor_order	1
 floor_order	0
@@ -14350,14 +14022,15 @@ add_new_wall_for_floor	0.000000	0.000000	0.000000	0.700000	0.980000
 add_new_texture_variant_for_wall	data/textures/window_tiled_blue_gray_001_v1.png	0.000000	0.000000	0.000000	0.000000	0.000000	0.000000	0.000000
 entity base attribute	Life	1000.000000
 entity bool attribute	Inmovable
+entity bool attribute	No path block
 collision_up	218.500000
 collision_down	0.000000
 collision_right	338.000000
 collision_left	298.000000
 path_block_up	213.000000
-path_block_down	0.000000
-path_block_right	315.500000
-path_block_left	261.500000
+path_block_down	5.000000
+path_block_right	286.500000
+path_block_left	282.500000
 shadow_block_up	20.000000
 shadow_block_down	20.000000
 shadow_block_right	20.000000
@@ -14479,6 +14152,334 @@ collision_up	20.000000
 collision_down	20.000000
 collision_right	20.000000
 collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	5389.000000	4208.000000	0.000000
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+ADD_NEW_SPRITE
+*rotate_by_move
+add_new_texture	data/textures/letoon3.png
+texture_offset_x	-15.000000
+texture_offset_y	1.000000
+texture_offset_z	6.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+add_new_texture	data/textures/letoon2.png
+texture_offset_x	-15.000000
+texture_offset_y	0.000000
+texture_offset_z	3.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	1.000000
+sprite_color_green	1.000000
+sprite_color_blue	1.000000
+add_new_texture	data/textures/letoon1.png
+texture_offset_x	-15.000000
+texture_offset_y	0.000000
+texture_offset_z	6.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+add_new_texture	data/textures/letoon4.png
+texture_offset_x	-15.000000
+texture_offset_y	0.000000
+texture_offset_z	5.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	1.000000
+sprite_color_green	1.000000
+sprite_color_blue	1.000000
+ADD_NEW_SPRITE
+*target_gun
+add_new_texture	data/textures/head_gun_mech_violet_1.png
+texture_offset_x	-4.000000
+texture_offset_y	1.000000
+texture_offset_z	49.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+add_new_texture	data/textures/head_gun_mech_violet_2.png
+texture_offset_x	-4.875000
+texture_offset_y	1.875000
+texture_offset_z	45.250000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	1.000000
+sprite_color_green	1.000000
+sprite_color_blue	1.000000
+add_new_texture	data/textures/head_gun_mech_violet_3.png
+texture_offset_x	-4.375000
+texture_offset_y	1.125000
+texture_offset_z	49.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	1.000000
+sprite_color_green	1.000000
+sprite_color_blue	1.000000
+add_new_texture	data/textures/head_gun_mech_violet_4.png
+texture_offset_x	-6.250000
+texture_offset_y	0.625000
+texture_offset_z	36.500000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+add_new_texture	data/textures/head_gun_mech_violet_5.png
+texture_offset_x	-8.125000
+texture_offset_y	-17.375000
+texture_offset_z	51.875000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+add_new_texture	data/textures/head_gun_mech_violet_6.png
+texture_offset_x	-15.375000
+texture_offset_y	1.000000
+texture_offset_z	36.250000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+add_new_texture	data/textures/head_gun_mech_violet_7.png
+texture_offset_x	-27.500000
+texture_offset_y	0.875000
+texture_offset_z	49.250000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+add_new_texture	data/textures/head_gun_mech_violet_8.png
+texture_offset_x	-15.000000
+texture_offset_y	41.750000
+texture_offset_z	5.375000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+*shadow
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	15.000000
+texture_offset_y	2.000000
+texture_offset_z	3.000000
+texture_shadow_size_x	25.000000
+texture_shadow_size_y	15.000000
+texture_shadow_bottom_tall	113.000000
+texture_shadow_upper_tall	118.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	1.000000
+sprite_color_green	1.000000
+sprite_color_blue	1.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.549992
+texture_offset_y	-8.249985
+texture_offset_z	0.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	1.000000
+sprite_color_green	1.000000
+sprite_color_blue	1.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	29.350006
+texture_offset_y	-6.999996
+texture_offset_z	0.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	1.000000
+sprite_color_green	1.000000
+sprite_color_blue	1.000000
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	28.324989
+texture_offset_y	-8.450001
+texture_offset_z	0.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	1.000000
+sprite_color_green	1.000000
+sprite_color_blue	1.000000
+add_new_autobuilding_floor	0.000000	0.000000	1.000000	1.000000	1.000000	1.000000
+floor_name	main
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+floor_additional_distance_between_window_x	5.000000
+floor_additional_distance_between_window_y	5.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+*camera_target
+entity base attribute	Life	1000.000000
+entity base attribute	Mass	100.000000
+entity base attribute	Shadow tall	72.000000
+entity base attribute	Lightsoucre red	1.000000
+entity base attribute	Lightsoucre green	1.000000
+entity base attribute	Lightsoucre blue	1.000000
+entity bool attribute	Controlled by Player
+entity bool attribute	Light Source
+collision_up	21.000000
+collision_down	15.500000
+collision_right	13.250000
+collision_left	14.750000
 path_block_up	20.000000
 path_block_down	20.000000
 path_block_right	20.000000
@@ -14868,7 +14869,666 @@ shadow_block_left	20.000000
 
 =====================================
 
-ADD_NEW_ENTITY	5782.000000	4846.000000	0.000000
+ADD_NEW_ENTITY	6153.000000	3520.000000	0.000000
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall_lamp.png
+texture_offset_x	-16.000000
+texture_offset_y	-16.000000
+texture_offset_z	0.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+entity base attribute	Life	1000.000000
+entity base attribute	Lightsoucre red	1.000000
+entity bool attribute	Inmovable
+entity bool attribute	Light Source
+entity bool attribute	Ghost
+entity bool attribute	No path block
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6345.000000	6258.000000	0.000000
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+ADD_NEW_SPRITE
+add_new_texture	data/textures/white_pixel.png
+texture_offset_x	0.000000
+texture_offset_y	0.000000
+texture_offset_z	0.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	1.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+add_new_autobuilding_floor	0.000000	0.000000	1.000000	1.000000	1.000000	1.000000
+floor_name	main
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+floor_additional_distance_between_window_x	5.000000
+floor_additional_distance_between_window_y	5.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Lightsoucre red	1.000000
+entity base attribute	Lightsoucre green	1.000000
+entity base attribute	Lightsoucre blue	1.000000
+entity bool attribute	Inmovable
+entity bool attribute	Light Source
+entity bool attribute	Ghost
+entity bool attribute	No path block
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	6556.000000	3711.000000	0.000000
+floor_order	1
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall_lamp.png
+texture_offset_x	-15.000000
+texture_offset_y	-10.000000
+texture_offset_z	0.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+add_new_autobuilding_floor	-15.000000	-10.000000	0.000000	1.000000	1.000000	1.000000
+floor_name	floor
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+floor_additional_distance_between_window_x	5.000000
+floor_additional_distance_between_window_y	5.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_texture_variant_for_wall	data/textures/wall_lamp.png	0.000000	0.000000	0.000000	0.000000	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Lightsoucre green	1.000000
+entity bool attribute	Inmovable
+entity bool attribute	Light Source
+entity bool attribute	Ghost
+entity bool attribute	No path block
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	7056.074707	3542.748779	0.000000
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+add_new_autobuilding_floor	0.000000	0.000000	1.000000	1.000000	1.000000	1.000000
+floor_name	main
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+floor_additional_distance_between_window_x	5.000000
+floor_additional_distance_between_window_y	5.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+entity base attribute	Life	1000.000000
+collision_up	36.250000
+collision_down	2.500000
+collision_right	23.500000
+collision_left	23.500000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	7070.000000	3905.000000	0.000000
+floor_order	1
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall_lamp.png
+texture_offset_x	-16.000000
+texture_offset_y	-16.000000
+texture_offset_z	0.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+add_new_autobuilding_floor	0.000000	0.000000	0.000000	1.000000	1.000000	1.000000
+floor_name	main
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+wall_color	0.500000	0.500000	0.500000	1.000000
+floor_additional_distance_between_window_x	5.000000
+floor_additional_distance_between_window_y	5.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	-16.000000	-16.000000	0.000000	1.000000	1.000000
+add_new_texture_variant_for_wall	data/textures/wall_lamp.png	0.000000	0.000000	0.000000	0.000000	0.000000	0.000000	0.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
+entity base attribute	Life	1000.000000
+entity base attribute	Lightsoucre red	1.000000
+entity bool attribute	Inmovable
+entity bool attribute	Light Source
+entity bool attribute	Ghost
+entity bool attribute	No path block
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	7127.000000	4016.000000	0.000000
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall_lamp.png
+texture_offset_x	-16.000000
+texture_offset_y	-16.000000
+texture_offset_z	0.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+entity base attribute	Life	1000.000000
+entity base attribute	Lightsoucre blue	1.000000
+entity bool attribute	Inmovable
+entity bool attribute	Light Source
+entity bool attribute	Ghost
+entity bool attribute	No path block
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	7041.000000	4128.000000	0.000000
 floor_order	1
 floor_order	2
 floor_order	3
@@ -18399,752 +19059,6 @@ shadow_block_left	20.000000
 
 =====================================
 
-ADD_NEW_ENTITY	5908.000000	3629.000000	0.000000
-floor_order	1
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-ADD_NEW_SPRITE
-add_new_texture	data/textures/wall_lamp.png
-texture_offset_x	-15.000000
-texture_offset_y	-10.000000
-texture_offset_z	0.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-add_new_autobuilding_floor	-15.000000	-10.000000	0.000000	1.000000	1.000000	1.000000
-floor_name	floor
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-floor_additional_distance_between_window_x	5.000000
-floor_additional_distance_between_window_y	5.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_texture_variant_for_wall	data/textures/wall_lamp.png	0.000000	0.000000	0.000000	0.000000	0.000000	0.000000	0.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-entity base attribute	Life	1000.000000
-entity base attribute	Lightsoucre green	1.000000
-entity bool attribute	Inmovable
-entity bool attribute	Light Source
-entity bool attribute	Ghost
-entity bool attribute	No path block
-collision_up	20.000000
-collision_down	20.000000
-collision_right	20.000000
-collision_left	20.000000
-path_block_up	20.000000
-path_block_down	20.000000
-path_block_right	20.000000
-path_block_left	20.000000
-shadow_block_up	20.000000
-shadow_block_down	20.000000
-shadow_block_right	20.000000
-shadow_block_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6153.000000	3520.000000	0.000000
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-ADD_NEW_SPRITE
-add_new_texture	data/textures/wall_lamp.png
-texture_offset_x	-16.000000
-texture_offset_y	-16.000000
-texture_offset_z	0.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-entity base attribute	Life	1000.000000
-entity base attribute	Lightsoucre red	1.000000
-entity bool attribute	Inmovable
-entity bool attribute	Light Source
-entity bool attribute	Ghost
-entity bool attribute	No path block
-collision_up	20.000000
-collision_down	20.000000
-collision_right	20.000000
-collision_left	20.000000
-path_block_up	20.000000
-path_block_down	20.000000
-path_block_right	20.000000
-path_block_left	20.000000
-shadow_block_up	20.000000
-shadow_block_down	20.000000
-shadow_block_right	20.000000
-shadow_block_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6345.000000	6258.000000	0.000000
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-ADD_NEW_SPRITE
-add_new_texture	data/textures/white_pixel.png
-texture_offset_x	0.000000
-texture_offset_y	0.000000
-texture_offset_z	0.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	1.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-add_new_autobuilding_floor	0.000000	0.000000	1.000000	1.000000	1.000000	1.000000
-floor_name	main
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-floor_additional_distance_between_window_x	5.000000
-floor_additional_distance_between_window_y	5.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-entity base attribute	Life	1000.000000
-entity base attribute	Lightsoucre red	1.000000
-entity base attribute	Lightsoucre green	1.000000
-entity base attribute	Lightsoucre blue	1.000000
-entity bool attribute	Inmovable
-entity bool attribute	Light Source
-entity bool attribute	Ghost
-entity bool attribute	No path block
-collision_up	20.000000
-collision_down	20.000000
-collision_right	20.000000
-collision_left	20.000000
-path_block_up	20.000000
-path_block_down	20.000000
-path_block_right	20.000000
-path_block_left	20.000000
-shadow_block_up	20.000000
-shadow_block_down	20.000000
-shadow_block_right	20.000000
-shadow_block_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	6979.000000	4020.000000	0.000000
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-ADD_NEW_SPRITE
-add_new_texture	data/textures/wall_lamp.png
-texture_offset_x	-15.000000
-texture_offset_y	-10.000000
-texture_offset_z	0.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-entity base attribute	Life	1000.000000
-entity base attribute	Lightsoucre green	1.000000
-entity bool attribute	Inmovable
-entity bool attribute	Light Source
-entity bool attribute	Ghost
-entity bool attribute	No path block
-collision_up	20.000000
-collision_down	20.000000
-collision_right	20.000000
-collision_left	20.000000
-path_block_up	20.000000
-path_block_down	20.000000
-path_block_right	20.000000
-path_block_left	20.000000
-shadow_block_up	20.000000
-shadow_block_down	20.000000
-shadow_block_right	20.000000
-shadow_block_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	7056.074707	3542.748779	0.000000
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-add_new_autobuilding_floor	0.000000	0.000000	1.000000	1.000000	1.000000	1.000000
-floor_name	main
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-floor_additional_distance_between_window_x	5.000000
-floor_additional_distance_between_window_y	5.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	0.000000	0.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-entity base attribute	Life	1000.000000
-collision_up	36.250000
-collision_down	2.500000
-collision_right	23.500000
-collision_left	23.500000
-path_block_up	20.000000
-path_block_down	20.000000
-path_block_right	20.000000
-path_block_left	20.000000
-shadow_block_up	20.000000
-shadow_block_down	20.000000
-shadow_block_right	20.000000
-shadow_block_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	7070.000000	3905.000000	0.000000
-floor_order	1
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-ADD_NEW_SPRITE
-add_new_texture	data/textures/wall_lamp.png
-texture_offset_x	-16.000000
-texture_offset_y	-16.000000
-texture_offset_z	0.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-add_new_autobuilding_floor	0.000000	0.000000	0.000000	1.000000	1.000000	1.000000
-floor_name	main
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-wall_color	0.500000	0.500000	0.500000	1.000000
-floor_additional_distance_between_window_x	5.000000
-floor_additional_distance_between_window_y	5.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	-16.000000	-16.000000	0.000000	1.000000	1.000000
-add_new_texture_variant_for_wall	data/textures/wall_lamp.png	0.000000	0.000000	0.000000	0.000000	0.000000	0.000000	0.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-add_new_wall_for_floor	0.000000	0.000000	0.000000	1.000000	1.000000
-entity base attribute	Life	1000.000000
-entity base attribute	Lightsoucre red	1.000000
-entity bool attribute	Inmovable
-entity bool attribute	Light Source
-entity bool attribute	Ghost
-entity bool attribute	No path block
-collision_up	20.000000
-collision_down	20.000000
-collision_right	20.000000
-collision_left	20.000000
-path_block_up	20.000000
-path_block_down	20.000000
-path_block_right	20.000000
-path_block_left	20.000000
-shadow_block_up	20.000000
-shadow_block_down	20.000000
-shadow_block_right	20.000000
-shadow_block_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
-ADD_NEW_ENTITY	7127.000000	4016.000000	0.000000
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_order	0
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_left_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_right_border	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_x	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-floor_generate_offset_y	true
-ADD_NEW_SPRITE
-add_new_texture	data/textures/wall_lamp.png
-texture_offset_x	-16.000000
-texture_offset_y	-16.000000
-texture_offset_z	0.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-entity base attribute	Life	1000.000000
-entity base attribute	Lightsoucre blue	1.000000
-entity bool attribute	Inmovable
-entity bool attribute	Light Source
-entity bool attribute	Ghost
-entity bool attribute	No path block
-collision_up	20.000000
-collision_down	20.000000
-collision_right	20.000000
-collision_left	20.000000
-path_block_up	20.000000
-path_block_down	20.000000
-path_block_right	20.000000
-path_block_left	20.000000
-shadow_block_up	20.000000
-shadow_block_down	20.000000
-shadow_block_right	20.000000
-shadow_block_left	20.000000
-- PUT TO MAP -
-
-=====================================
-
 ADD_NEW_ENTITY	7393.272949	4056.000000	0.000000
 floor_order	0
 floor_order	0
@@ -19672,7 +19586,94 @@ shadow_block_left	20.000000
 
 =====================================
 
-ADD_NEW_ENTITY	8424.000000	4144.000000	0.000000
+ADD_NEW_ENTITY	7909.000000	3826.000000	0.000000
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_order	0
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_left_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_right_border	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_x	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+floor_generate_offset_y	true
+ADD_NEW_SPRITE
+add_new_texture	data/textures/wall_lamp.png
+texture_offset_x	-15.000000
+texture_offset_y	-10.000000
+texture_offset_z	0.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+entity base attribute	Life	1000.000000
+entity base attribute	Lightsoucre green	1.000000
+entity bool attribute	Inmovable
+entity bool attribute	Light Source
+entity bool attribute	Ghost
+entity bool attribute	No path block
+collision_up	20.000000
+collision_down	20.000000
+collision_right	20.000000
+collision_left	20.000000
+path_block_up	20.000000
+path_block_down	20.000000
+path_block_right	20.000000
+path_block_left	20.000000
+shadow_block_up	20.000000
+shadow_block_down	20.000000
+shadow_block_right	20.000000
+shadow_block_left	20.000000
+- PUT TO MAP -
+
+=====================================
+
+ADD_NEW_ENTITY	8390.000000	4144.000000	0.000000
 floor_order	1
 floor_order	2
 floor_order	3

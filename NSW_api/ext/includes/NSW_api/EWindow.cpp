@@ -14,6 +14,8 @@ ETextureAtlas* EWindow::lightmap_FBO2;
 ETextureAtlas* EWindow::base_lightmap;
 ETextureAtlas* EWindow::base_blockmap;
 
+ETextureAtlas* EWindow::screen_FBO;
+
 
 
 
@@ -680,6 +682,10 @@ void EButton::update(float _d)
 	if
 	(
 		(is_input_mode_active)
+		||
+		(slider_activate)
+		||
+		(is_expanded)
 	)
 	{
 		//text = "+";
@@ -1106,36 +1112,9 @@ void EWindow::default_update(float _d)
 	for (button_array_collection_massive* massive : button_array_collection_massive_list)
 	if (*massive->is_active)
 	{
+		
 		*massive->size_y *= 0.95f;
-		if
-			(
-				(mouse_x >= *massive->position_x)
-				&
-				(mouse_x <= *massive->position_x + *massive->size_x)
-				&
-				(mouse_y >= *massive->position_y + *massive->size_y)
-				&
-				(mouse_y >= *massive->position_y + *massive->size_y)
-				&
-				(mouse_y <= *massive->position_y + *massive->size_y + 20.0f)
-			)
-		{
-			*massive->head_catched = true;
-			*massive->catch_highlight = true;
-		}
-		else
-		{
-			//*massive->head_catched = false;
-			*massive->catch_highlight = false;
-		}
-
-		if ((*massive->head_catched) & ((LMB)))
-		{
-			*massive->position_x += mouse_speed_x;
-			*massive->position_y += mouse_speed_y;
-		}
-
-		if (!LMB) { *massive->head_catched = false; }
+		
 
 		float maximum_horizontal_size_x = 0.0f;
 		float maximum_horizontal_size_y = 0.0f;
@@ -1375,7 +1354,35 @@ void EWindow::default_update(float _d)
 			{b->update(_d);}
 		}
 
-		
+		if
+			(
+				(mouse_x >= *massive->position_x)
+				&
+				(mouse_x <= *massive->position_x + *massive->size_x)
+				&
+				(mouse_y >= *massive->position_y + *massive->size_y - 5.0f)
+				&
+				(mouse_y <= *massive->position_y + *massive->size_y + 30.0f)
+				&
+				(!EButton::any_input)
+				)
+		{
+			*massive->head_catched = true;
+			*massive->catch_highlight = true;
+		}
+		else
+		{
+			//*massive->head_catched = false;
+			*massive->catch_highlight = false;
+		}
+
+		if ((*massive->head_catched) & ((LMB)))
+		{
+			*massive->position_x += mouse_speed_x;
+			*massive->position_y += mouse_speed_y;
+		}
+
+		if (!LMB) { *massive->head_catched = false; }	
 	}
 }
 

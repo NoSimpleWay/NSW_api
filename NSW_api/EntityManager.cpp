@@ -1132,9 +1132,6 @@ if (spr->sprite_struct_list.at(_at_)->supermap == NULL){spr->sprite_struct_list.
 *spr->sprite_struct_list.at(_at_)->offset_z = oz;\
 *spr->sprite_struct_list.at(_at_)->fragment_x = 1.0f;\
 *spr->sprite_struct_list.at(_at_)->fragment_y = 1.0f;\
-*spr->sprite_struct_list.at(_at_)->offset_x = round(*spr->sprite_struct_list.at(_at_)->offset_x);\
-*spr->sprite_struct_list.at(_at_)->offset_y = round(*spr->sprite_struct_list.at(_at_)->offset_y);\
-*spr->sprite_struct_list.at(_at_)->offset_z = round(*spr->sprite_struct_list.at(_at_)->offset_z);\
 *spr->is_mirrored = *AB_floor->wall_list.at(Entity::WallElementIndex::_wei_)->is_mirrored;\
 sprite_order++;\
 if (sprite_order >= _e->sprite_list.size()) {spr = new ESprite(); _e->sprite_list.push_back(spr);}

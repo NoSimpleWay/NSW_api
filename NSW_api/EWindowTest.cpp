@@ -13,6 +13,9 @@ float EWindowTest::blur_factor = 0.525f;//0.33333
 float EWindowTest::blur_blend = 0.55f; //1.0f;
 float EWindowTest::blur_decay_flat_factor = 0.0017f;//0.002
 float EWindowTest::add_factor = 1.0000f;
+float EWindowTest::gamma_factor = 0.1000f;
+float EWindowTest::gamma_offset = 1.0000f;
+float EWindowTest::gamma_border = 4.0000f;
 
 void EWindowTest::test_of_values()
 {
@@ -1271,6 +1274,15 @@ void EWindowTest::draw_terrain()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);//texture filtering
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);//
 
+	GLint g_f = glGetUniformLocation(EGraphicCore::shader_terrain->ID, "gamma_factor");
+	glUniform1f(g_f, gamma_factor);
+
+	GLint g_o = glGetUniformLocation(EGraphicCore::shader_terrain->ID, "gamma_offset");
+	glUniform1f(g_o, gamma_offset);
+
+	GLint g_b = glGetUniformLocation(EGraphicCore::shader_terrain->ID, "gamma_border");
+	glUniform1f(g_b, gamma_border);
+
 	GLint loc_x = glGetUniformLocation(EGraphicCore::shader_terrain->ID, "screen_size_x");
 	glUniform1f(loc_x, EGraphicCore::SCR_WIDTH  / EWindow::shadow_ground_FBO->size_x);
 
@@ -1580,7 +1592,7 @@ void EWindowTest::draw(float _d)
 
 
 
-
+	
 
 	//draw entities to shadow receiver batcher
 	EGraphicCore::shadowmap->use();
@@ -1608,11 +1620,20 @@ void EWindowTest::draw(float _d)
 	GLint GLzoom = glGetUniformLocation(EGraphicCore::shadowmap->ID, "zoom");
 	glUniform1f(GLzoom, game_camera->zoom);
 
+	GLint g_f = glGetUniformLocation(EGraphicCore::shadowmap->ID, "gamma_factor");
+	glUniform1f(g_f, gamma_factor);
+
+	GLint g_o = glGetUniformLocation(EGraphicCore::shadowmap->ID, "gamma_offset");
+	glUniform1f(g_o, gamma_offset);
+
+	GLint g_b = glGetUniformLocation(EGraphicCore::shadowmap->ID, "gamma_border");
+	glUniform1f(g_b, gamma_border);
+
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, EWindow::default_texture_atlas->colorbuffer);
 	EGraphicCore::shadowmap->setInt("texture1", 0);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);//texture filtering
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);//
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);//
 
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, EWindow::shadow_FBO->colorbuffer);
@@ -1636,6 +1657,7 @@ void EWindowTest::draw(float _d)
 	std::vector<Entity*> draw_sort_buffer;
 	//y-sort
 
+	//glClear(GL_COLOR_BUFFER_BIT);
 	add_time_process("DRAW BUFFER BEGIN");
 	for (int i = draw_border_up; i >= draw_border_down; i--)
 	{
@@ -1680,7 +1702,7 @@ void EWindowTest::draw(float _d)
 		for (Entity* dsb : draw_sort_buffer)
 		{
 			int sprite_id = 0;
-			EGraphicCore::batch_shadowmap->setcolor(EColor::COLOR_WHITE);
+			//EGraphicCore::batch_shadowmap->setcolor(EColor::COLOR_WHITE);
 
 			Entity::draw_sprite(dsb, EGraphicCore::batch_shadowmap, _d, false, false);
 		}
@@ -1690,27 +1712,48 @@ void EWindowTest::draw(float _d)
 	add_time_process("draw buffer");
 	EGraphicCore::batch_shadowmap->force_draw_call_shadowmap();
 
-
 	////////////////return to normal texture draw mode/////////////////
-	ETextureAtlas::return_to_this_texture_atlas(EWindow::default_texture_atlas);
-	glBindTexture(GL_TEXTURE_2D, EWindow::default_texture_atlas->colorbuffer);
+	EGraphicCore::ourShader->use();
+
+	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x - 1.0f, EGraphicCore::correction_y - 1.0f, 0.0f));
+	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x, EGraphicCore::correction_y, 1));
+
+
+
+	unsigned int transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	/////////////////////////////////////////////////////////////////
+
+	ETextureAtlas::return_to_this_texture_atlas(EWindow::screen_FBO);
+	glBindTexture(GL_TEXTURE_2D, EWindow::screen_FBO->colorbuffer);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);//texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);//
+
+	//EGraphicCore::batch->reset();
+	//	EGraphicCore::batch->setcolor(EColor::COLOR_WHITE);
+	//	EGraphicCore::batch->draw_rect(0.0f, 0.0f, EGraphicCore::SCR_WIDTH, EGraphicCore::SCR_HEIGHT);
+	//EGraphicCore::batch->force_draw_call();
 
 	EGraphicCore::matrix_transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
 	EGraphicCore::matrix_transform = glm::translate(EGraphicCore::matrix_transform, glm::vec3(round(EGraphicCore::SCR_WIDTH / 2.0f - game_camera->position_x) * EGraphicCore::correction_x - 1, (EGraphicCore::SCR_HEIGHT / 2.0f - game_camera->position_y) * EGraphicCore::correction_y - 1, 0.0f));
 	EGraphicCore::matrix_transform = glm::scale(EGraphicCore::matrix_transform, glm::vec3(EGraphicCore::correction_x * game_camera->zoom, EGraphicCore::correction_y * game_camera->zoom, 1));
 
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);//texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);//
+
 	transformLoc = glGetUniformLocation(EGraphicCore::ourShader->ID, "transform");
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(EGraphicCore::matrix_transform));
-	/////////////////////////////////////////////////////////////////
 
 
-
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 
 	add_time_process("draw call buffer");
 
-
+	ETextureAtlas::return_to_this_texture_atlas(EWindow::default_texture_atlas);
+	glBindTexture(GL_TEXTURE_2D, EWindow::default_texture_atlas->colorbuffer);
 	draw_debug_collision();
 	draw_debug_entity_position();
 

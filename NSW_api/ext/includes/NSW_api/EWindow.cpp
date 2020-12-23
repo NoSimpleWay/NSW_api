@@ -434,7 +434,8 @@ void EButton::update(float _d)
 	if (is_click())
 	{
 
-		*double_click_started = true;
+		if (*is_double_click)
+		{*double_click_started = true;}
 
 
 
@@ -869,14 +870,20 @@ void EButton::default_draw(Batcher* _batch, float _d)
 
 	if (*is_radial_button)
 	{
+		float tsx = EFont::get_width(EFont::font_list.at(EFont::FONT_ENUM::FE_DOT), EString::float_to_string(round(slider_value * 100.0f) / 100.0f));
+		//float tx
+		float tsy = *EGraphicCore::gabarite_radial_button->size_y + 3.0f;
+
+		float tx = (*EGraphicCore::gabarite_radial_button->size_x - tsx) / 2.0f;
+
 		_batch->setcolor(bg_color);
 		_batch->draw_gabarite(master_position_x, master_position_y, EGraphicCore::gabarite_radial_button);
 		
 		_batch->setcolor_lum(EColor::COLOR_WHITE, 0.12f);
-		_batch->draw_gabarite(master_position_x + 40.0f, master_position_y, 100.0f, 20.0f,  EGraphicCore::gabarite_white_pixel);
+		_batch->draw_gabarite(master_position_x + tx, master_position_y + tsy, tsx, 20.0f,  EGraphicCore::gabarite_white_pixel);
 
 		_batch->setcolor(text_color);
-		EFont::font_list.at(EFont::FONT_ENUM::FE_DOT)->draw(_batch, EString::float_to_string (round(slider_value  * 100.0f)/100.0f) + "", master_position_x + 45.0f, master_position_y + 2.0f);
+		EFont::font_list.at(EFont::FONT_ENUM::FE_DOT)->draw(_batch, EString::float_to_string (round(slider_value  * 100.0f)/100.0f) + "", master_position_x + tx, master_position_y + tsy);
 
 		_batch->setcolor(EColor::COLOR_WHITE);
 		_batch->draw_gabarite(master_position_x + cos(3.14f * (1.0f - slider_value / *maximum_value)) * 13.0f + 13.0f, master_position_y + sin(3.14f * (1.0f - slider_value / *maximum_value)) * 13.0f + 13.0f, EGraphicCore::gabarite_radial_button_dot);

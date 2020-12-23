@@ -1,6 +1,6 @@
-#shadow_skew	0.692310
+#shadow_skew	0.207190
 #lightmap_blur_factor	0.308000
-#lightmap_modes_blend	0.302667
+#lightmap_modes_blend	0.309334
 #blur_decay	0.001160
 ADD_NEW_ENTITY	613.000000	306.000000	0.000000
 floor_order	0
@@ -9622,7 +9622,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/window_tiled_blue_gray_001_v1.png
 texture_offset_x	-295.000000
 texture_offset_y	1.000000
-texture_offset_z	20.000000
+texture_offset_z	19.893959
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9636,7 +9636,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/window_tiled_blue_gray_001_v1.png
 texture_offset_x	-177.000000
 texture_offset_y	1.000000
-texture_offset_z	20.000000
+texture_offset_z	19.893959
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9650,7 +9650,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/window_tiled_blue_gray_001_v1.png
 texture_offset_x	-59.000000
 texture_offset_y	1.000000
-texture_offset_z	20.000000
+texture_offset_z	19.893959
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9664,7 +9664,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/window_tiled_blue_gray_001_v1.png
 texture_offset_x	59.000000
 texture_offset_y	1.000000
-texture_offset_z	20.000000
+texture_offset_z	19.893959
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9678,7 +9678,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/window_tiled_blue_gray_001_v1.png
 texture_offset_x	177.000000
 texture_offset_y	1.000000
-texture_offset_z	20.000000
+texture_offset_z	19.893959
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9692,7 +9692,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/window_tiled_blue_gray_001_v1.png
 texture_offset_x	295.000000
 texture_offset_y	1.000000
-texture_offset_z	20.000000
+texture_offset_z	19.893959
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9719,7 +9719,7 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/wall2_corner_left.png
-texture_offset_x	309.000000
+texture_offset_x	308.779297
 texture_offset_y	1.000000
 texture_offset_z	0.000000
 texture_shadow_size_x	1.000000
@@ -9733,9 +9733,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
-texture_offset_x	-294.000000
+texture_offset_x	-294.149994
 texture_offset_y	1.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9747,9 +9747,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
-texture_offset_x	-294.000000
+texture_offset_x	-294.149994
 texture_offset_y	89.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9761,9 +9761,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
-texture_offset_x	-294.000000
+texture_offset_x	-294.149994
 texture_offset_y	177.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9775,9 +9775,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
-texture_offset_x	-158.000000
+texture_offset_x	-158.149994
 texture_offset_y	1.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9789,9 +9789,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
-texture_offset_x	-158.000000
+texture_offset_x	-158.149994
 texture_offset_y	89.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9803,9 +9803,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
-texture_offset_x	-158.000000
+texture_offset_x	-158.149994
 texture_offset_y	177.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9817,9 +9817,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
-texture_offset_x	-22.000000
+texture_offset_x	-22.150000
 texture_offset_y	1.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9831,9 +9831,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
-texture_offset_x	-22.000000
+texture_offset_x	-22.150000
 texture_offset_y	89.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9845,9 +9845,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
-texture_offset_x	-22.000000
+texture_offset_x	-22.150000
 texture_offset_y	177.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9859,9 +9859,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
-texture_offset_x	114.000000
+texture_offset_x	113.849998
 texture_offset_y	1.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9873,9 +9873,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
-texture_offset_x	114.000000
+texture_offset_x	113.849998
 texture_offset_y	89.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9887,9 +9887,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
-texture_offset_x	114.000000
+texture_offset_x	113.849998
 texture_offset_y	177.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9901,9 +9901,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
-texture_offset_x	250.000000
+texture_offset_x	249.850006
 texture_offset_y	1.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9915,9 +9915,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
-texture_offset_x	250.000000
+texture_offset_x	249.850006
 texture_offset_y	89.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9929,9 +9929,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
-texture_offset_x	250.000000
+texture_offset_x	249.850006
 texture_offset_y	177.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9943,9 +9943,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_back_mid_001.png
-texture_offset_x	-294.000000
-texture_offset_y	247.000000
-texture_offset_z	77.000000
+texture_offset_x	-294.149994
+texture_offset_y	247.047211
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9957,9 +9957,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_back_mid_001.png
-texture_offset_x	-158.000000
-texture_offset_y	247.000000
-texture_offset_z	77.000000
+texture_offset_x	-158.149994
+texture_offset_y	247.047211
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9971,9 +9971,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_back_mid_001.png
-texture_offset_x	-22.000000
-texture_offset_y	247.000000
-texture_offset_z	77.000000
+texture_offset_x	-22.150000
+texture_offset_y	247.047211
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9985,9 +9985,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_back_mid_001.png
-texture_offset_x	114.000000
-texture_offset_y	247.000000
-texture_offset_z	77.000000
+texture_offset_x	113.849998
+texture_offset_y	247.047211
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -9999,9 +9999,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_back_mid_001.png
-texture_offset_x	250.000000
-texture_offset_y	247.000000
-texture_offset_z	77.000000
+texture_offset_x	249.850006
+texture_offset_y	247.047211
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -10013,9 +10013,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_back_corner_001.png
-texture_offset_x	-299.000000
-texture_offset_y	247.000000
-texture_offset_z	77.000000
+texture_offset_x	-299.149994
+texture_offset_y	247.047211
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -10028,9 +10028,9 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/violet_roof_back_corner_001.png
-texture_offset_x	341.000000
-texture_offset_y	247.000000
-texture_offset_z	77.000000
+texture_offset_x	341.211090
+texture_offset_y	247.047211
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -10042,9 +10042,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/roof_violet_body_mid_v1.png
-texture_offset_x	-299.000000
+texture_offset_x	-299.149994
 texture_offset_y	13.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -10056,9 +10056,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/roof_violet_body_mid_v1.png
-texture_offset_x	-299.000000
+texture_offset_x	-299.149994
 texture_offset_y	109.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -10070,9 +10070,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/roof_violet_body_mid_v1.png
-texture_offset_x	-299.000000
+texture_offset_x	-299.149994
 texture_offset_y	205.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -10084,9 +10084,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/roof_violet_body_mid_v1.png
-texture_offset_x	341.000000
+texture_offset_x	341.211090
 texture_offset_y	13.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -10098,9 +10098,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/roof_violet_body_mid_v1.png
-texture_offset_x	341.000000
+texture_offset_x	341.211090
 texture_offset_y	109.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -10112,9 +10112,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/roof_violet_body_mid_v1.png
-texture_offset_x	341.000000
+texture_offset_x	341.211090
 texture_offset_y	205.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -10128,7 +10128,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_face_mid_001.png
 texture_offset_x	-295.000000
 texture_offset_y	1.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -10142,7 +10142,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_face_mid_001.png
 texture_offset_x	-159.000000
 texture_offset_y	1.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -10156,7 +10156,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_face_mid_001.png
 texture_offset_x	-23.000000
 texture_offset_y	1.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -10170,7 +10170,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_face_mid_001.png
 texture_offset_x	113.000000
 texture_offset_y	1.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -10184,7 +10184,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_face_mid_001.png
 texture_offset_x	249.000000
 texture_offset_y	1.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -10196,9 +10196,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/hrusch_roof_face_corner001.png
-texture_offset_x	-299.000000
+texture_offset_x	-299.149994
 texture_offset_y	1.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -10211,9 +10211,9 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/hrusch_roof_face_corner001.png
-texture_offset_x	341.000000
+texture_offset_x	341.211090
 texture_offset_y	1.000000
-texture_offset_z	77.000000
+texture_offset_z	76.787918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -10239,947 +10239,849 @@ sprite_color_red	0.500000
 sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	-294.000000
-texture_offset_y	6.000000
-texture_offset_z	86.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.469277
-sprite_color_green	0.447276
-sprite_color_blue	0.442003
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	-230.000000
-texture_offset_y	6.000000
-texture_offset_z	86.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.469277
-sprite_color_green	0.447276
-sprite_color_blue	0.442003
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
-texture_offset_x	-166.000000
-texture_offset_y	6.000000
-texture_offset_z	86.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.469277
-sprite_color_green	0.447276
-sprite_color_blue	0.442003
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
-texture_offset_x	-102.000000
-texture_offset_y	6.000000
-texture_offset_z	86.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.469277
-sprite_color_green	0.447276
-sprite_color_blue	0.442003
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
-texture_offset_x	-38.000000
-texture_offset_y	6.000000
-texture_offset_z	86.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.469277
-sprite_color_green	0.447276
-sprite_color_blue	0.442003
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
-texture_offset_x	26.000000
-texture_offset_y	6.000000
-texture_offset_z	86.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.469277
-sprite_color_green	0.447276
-sprite_color_blue	0.442003
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
-texture_offset_x	90.000000
-texture_offset_y	6.000000
-texture_offset_z	86.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.469277
-sprite_color_green	0.447276
-sprite_color_blue	0.442003
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
-texture_offset_x	154.000000
-texture_offset_y	6.000000
-texture_offset_z	86.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.469277
-sprite_color_green	0.447276
-sprite_color_blue	0.442003
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
-texture_offset_x	218.000000
-texture_offset_y	6.000000
-texture_offset_z	86.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.469277
-sprite_color_green	0.447276
-sprite_color_blue	0.442003
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
-texture_offset_x	282.000000
-texture_offset_y	6.000000
-texture_offset_z	86.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	0.003032
-texture_fragment_y	1.000000
-sprite_color_red	0.469277
-sprite_color_green	0.447276
-sprite_color_blue	0.442003
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
-texture_offset_x	-294.000000
-texture_offset_y	6.000000
-texture_offset_z	150.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.466783
-sprite_color_green	0.430861
-sprite_color_blue	0.464325
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
-texture_offset_x	-230.000000
-texture_offset_y	6.000000
-texture_offset_z	150.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.466783
-sprite_color_green	0.430861
-sprite_color_blue	0.464325
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	-166.000000
-texture_offset_y	6.000000
-texture_offset_z	150.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.466783
-sprite_color_green	0.430861
-sprite_color_blue	0.464325
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
-texture_offset_x	-102.000000
-texture_offset_y	6.000000
-texture_offset_z	150.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.466783
-sprite_color_green	0.430861
-sprite_color_blue	0.464325
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
-texture_offset_x	-38.000000
-texture_offset_y	6.000000
-texture_offset_z	150.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.466783
-sprite_color_green	0.430861
-sprite_color_blue	0.464325
-ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v4.png
-texture_offset_x	26.000000
+texture_offset_x	-294.000000
 texture_offset_y	6.000000
-texture_offset_z	150.000000
+texture_offset_z	86.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.466783
-sprite_color_green	0.430861
-sprite_color_blue	0.464325
+sprite_color_red	0.526951
+sprite_color_green	0.530720
+sprite_color_blue	0.493015
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+texture_offset_x	-230.000000
+texture_offset_y	6.000000
+texture_offset_z	86.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.526951
+sprite_color_green	0.530720
+sprite_color_blue	0.493015
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+texture_offset_x	-166.000000
+texture_offset_y	6.000000
+texture_offset_z	86.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.526951
+sprite_color_green	0.530720
+sprite_color_blue	0.493015
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
+texture_offset_x	-102.000000
+texture_offset_y	6.000000
+texture_offset_z	86.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.526951
+sprite_color_green	0.530720
+sprite_color_blue	0.493015
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+texture_offset_x	-38.000000
+texture_offset_y	6.000000
+texture_offset_z	86.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.526951
+sprite_color_green	0.530720
+sprite_color_blue	0.493015
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+texture_offset_x	26.000000
+texture_offset_y	6.000000
+texture_offset_z	86.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.526951
+sprite_color_green	0.530720
+sprite_color_blue	0.493015
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
 texture_offset_x	90.000000
 texture_offset_y	6.000000
-texture_offset_z	150.000000
+texture_offset_z	86.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.466783
-sprite_color_green	0.430861
-sprite_color_blue	0.464325
+sprite_color_red	0.526951
+sprite_color_green	0.530720
+sprite_color_blue	0.493015
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
 texture_offset_x	154.000000
 texture_offset_y	6.000000
-texture_offset_z	150.000000
+texture_offset_z	86.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.466783
-sprite_color_green	0.430861
-sprite_color_blue	0.464325
+sprite_color_red	0.526951
+sprite_color_green	0.530720
+sprite_color_blue	0.493015
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
 texture_offset_x	218.000000
 texture_offset_y	6.000000
-texture_offset_z	150.000000
+texture_offset_z	86.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.466783
-sprite_color_green	0.430861
-sprite_color_blue	0.464325
+sprite_color_red	0.526951
+sprite_color_green	0.530720
+sprite_color_blue	0.493015
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
 texture_offset_x	282.000000
 texture_offset_y	6.000000
-texture_offset_z	150.000000
+texture_offset_z	86.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	0.003032
 texture_fragment_y	1.000000
-sprite_color_red	0.466783
-sprite_color_green	0.430861
-sprite_color_blue	0.464325
+sprite_color_red	0.526951
+sprite_color_green	0.530720
+sprite_color_blue	0.493015
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
 texture_offset_x	-294.000000
 texture_offset_y	6.000000
-texture_offset_z	214.000000
+texture_offset_z	150.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.443255
-sprite_color_green	0.421554
-sprite_color_blue	0.465798
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	-230.000000
-texture_offset_y	6.000000
-texture_offset_z	214.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.443255
-sprite_color_green	0.421554
-sprite_color_blue	0.465798
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	-166.000000
-texture_offset_y	6.000000
-texture_offset_z	214.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.443255
-sprite_color_green	0.421554
-sprite_color_blue	0.465798
+sprite_color_red	0.516907
+sprite_color_green	0.546722
+sprite_color_blue	0.488723
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
-texture_offset_x	-102.000000
+texture_offset_x	-230.000000
 texture_offset_y	6.000000
-texture_offset_z	214.000000
+texture_offset_z	150.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.443255
-sprite_color_green	0.421554
-sprite_color_blue	0.465798
+sprite_color_red	0.516907
+sprite_color_green	0.546722
+sprite_color_blue	0.488723
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	-38.000000
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+texture_offset_x	-166.000000
 texture_offset_y	6.000000
-texture_offset_z	214.000000
+texture_offset_z	150.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.443255
-sprite_color_green	0.421554
-sprite_color_blue	0.465798
+sprite_color_red	0.516907
+sprite_color_green	0.546722
+sprite_color_blue	0.488723
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
+texture_offset_x	-102.000000
+texture_offset_y	6.000000
+texture_offset_z	150.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.516907
+sprite_color_green	0.546722
+sprite_color_blue	0.488723
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
+texture_offset_x	-38.000000
+texture_offset_y	6.000000
+texture_offset_z	150.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.516907
+sprite_color_green	0.546722
+sprite_color_blue	0.488723
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
 texture_offset_x	26.000000
 texture_offset_y	6.000000
-texture_offset_z	214.000000
+texture_offset_z	150.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.443255
-sprite_color_green	0.421554
-sprite_color_blue	0.465798
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	90.000000
-texture_offset_y	6.000000
-texture_offset_z	214.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.443255
-sprite_color_green	0.421554
-sprite_color_blue	0.465798
+sprite_color_red	0.516907
+sprite_color_green	0.546722
+sprite_color_blue	0.488723
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
-texture_offset_x	154.000000
+texture_offset_x	90.000000
 texture_offset_y	6.000000
-texture_offset_z	214.000000
+texture_offset_z	150.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.443255
-sprite_color_green	0.421554
-sprite_color_blue	0.465798
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
-texture_offset_x	218.000000
-texture_offset_y	6.000000
-texture_offset_z	214.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.443255
-sprite_color_green	0.421554
-sprite_color_blue	0.465798
+sprite_color_red	0.516907
+sprite_color_green	0.546722
+sprite_color_blue	0.488723
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+texture_offset_x	154.000000
+texture_offset_y	6.000000
+texture_offset_z	150.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.516907
+sprite_color_green	0.546722
+sprite_color_blue	0.488723
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+texture_offset_x	218.000000
+texture_offset_y	6.000000
+texture_offset_z	150.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.516907
+sprite_color_green	0.546722
+sprite_color_blue	0.488723
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
 texture_offset_x	282.000000
 texture_offset_y	6.000000
-texture_offset_z	214.000000
+texture_offset_z	150.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	0.003032
 texture_fragment_y	1.000000
-sprite_color_red	0.443255
-sprite_color_green	0.421554
-sprite_color_blue	0.465798
+sprite_color_red	0.516907
+sprite_color_green	0.546722
+sprite_color_blue	0.488723
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
 texture_offset_x	-294.000000
 texture_offset_y	6.000000
-texture_offset_z	278.000000
+texture_offset_z	214.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.484694
-sprite_color_green	0.450771
-sprite_color_blue	0.452168
+sprite_color_red	0.497319
+sprite_color_green	0.556812
+sprite_color_blue	0.483736
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
 texture_offset_x	-230.000000
 texture_offset_y	6.000000
-texture_offset_z	278.000000
+texture_offset_z	214.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.484694
-sprite_color_green	0.450771
-sprite_color_blue	0.452168
+sprite_color_red	0.497319
+sprite_color_green	0.556812
+sprite_color_blue	0.483736
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
 texture_offset_x	-166.000000
 texture_offset_y	6.000000
-texture_offset_z	278.000000
+texture_offset_z	214.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.484694
-sprite_color_green	0.450771
-sprite_color_blue	0.452168
+sprite_color_red	0.497319
+sprite_color_green	0.556812
+sprite_color_blue	0.483736
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
 texture_offset_x	-102.000000
 texture_offset_y	6.000000
-texture_offset_z	278.000000
+texture_offset_z	214.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.484694
-sprite_color_green	0.450771
-sprite_color_blue	0.452168
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	-38.000000
-texture_offset_y	6.000000
-texture_offset_z	278.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.484694
-sprite_color_green	0.450771
-sprite_color_blue	0.452168
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	26.000000
-texture_offset_y	6.000000
-texture_offset_z	278.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.484694
-sprite_color_green	0.450771
-sprite_color_blue	0.452168
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
-texture_offset_x	90.000000
-texture_offset_y	6.000000
-texture_offset_z	278.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.484694
-sprite_color_green	0.450771
-sprite_color_blue	0.452168
+sprite_color_red	0.497319
+sprite_color_green	0.556812
+sprite_color_blue	0.483736
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
+texture_offset_x	-38.000000
+texture_offset_y	6.000000
+texture_offset_z	214.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.497319
+sprite_color_green	0.556812
+sprite_color_blue	0.483736
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+texture_offset_x	26.000000
+texture_offset_y	6.000000
+texture_offset_z	214.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.497319
+sprite_color_green	0.556812
+sprite_color_blue	0.483736
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+texture_offset_x	90.000000
+texture_offset_y	6.000000
+texture_offset_z	214.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.497319
+sprite_color_green	0.556812
+sprite_color_blue	0.483736
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
 texture_offset_x	154.000000
 texture_offset_y	6.000000
-texture_offset_z	278.000000
+texture_offset_z	214.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.484694
-sprite_color_green	0.450771
-sprite_color_blue	0.452168
+sprite_color_red	0.497319
+sprite_color_green	0.556812
+sprite_color_blue	0.483736
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v4.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
 texture_offset_x	218.000000
 texture_offset_y	6.000000
-texture_offset_z	278.000000
+texture_offset_z	214.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.484694
-sprite_color_green	0.450771
-sprite_color_blue	0.452168
+sprite_color_red	0.497319
+sprite_color_green	0.556812
+sprite_color_blue	0.483736
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
 texture_offset_x	282.000000
 texture_offset_y	6.000000
-texture_offset_z	278.000000
+texture_offset_z	214.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	0.003032
 texture_fragment_y	1.000000
-sprite_color_red	0.484694
-sprite_color_green	0.450771
-sprite_color_blue	0.452168
+sprite_color_red	0.497319
+sprite_color_green	0.556812
+sprite_color_blue	0.483736
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
 texture_offset_x	-294.000000
 texture_offset_y	6.000000
-texture_offset_z	342.000000
+texture_offset_z	278.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.462738
-sprite_color_green	0.459008
-sprite_color_blue	0.470218
+sprite_color_red	0.471501
+sprite_color_green	0.561468
+sprite_color_blue	0.487355
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
 texture_offset_x	-230.000000
 texture_offset_y	6.000000
-texture_offset_z	342.000000
+texture_offset_z	278.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.462738
-sprite_color_green	0.459008
-sprite_color_blue	0.470218
+sprite_color_red	0.471501
+sprite_color_green	0.561468
+sprite_color_blue	0.487355
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v4.png
 texture_offset_x	-166.000000
 texture_offset_y	6.000000
-texture_offset_z	342.000000
+texture_offset_z	278.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.462738
-sprite_color_green	0.459008
-sprite_color_blue	0.470218
+sprite_color_red	0.471501
+sprite_color_green	0.561468
+sprite_color_blue	0.487355
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
 texture_offset_x	-102.000000
 texture_offset_y	6.000000
-texture_offset_z	342.000000
+texture_offset_z	278.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.462738
-sprite_color_green	0.459008
-sprite_color_blue	0.470218
+sprite_color_red	0.471501
+sprite_color_green	0.561468
+sprite_color_blue	0.487355
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
 texture_offset_x	-38.000000
 texture_offset_y	6.000000
-texture_offset_z	342.000000
+texture_offset_z	278.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.462738
-sprite_color_green	0.459008
-sprite_color_blue	0.470218
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
-texture_offset_x	26.000000
-texture_offset_y	6.000000
-texture_offset_z	342.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.462738
-sprite_color_green	0.459008
-sprite_color_blue	0.470218
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
-texture_offset_x	90.000000
-texture_offset_y	6.000000
-texture_offset_z	342.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.462738
-sprite_color_green	0.459008
-sprite_color_blue	0.470218
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
-texture_offset_x	154.000000
-texture_offset_y	6.000000
-texture_offset_z	342.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.462738
-sprite_color_green	0.459008
-sprite_color_blue	0.470218
+sprite_color_red	0.471501
+sprite_color_green	0.561468
+sprite_color_blue	0.487355
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
-texture_offset_x	218.000000
+texture_offset_x	26.000000
 texture_offset_y	6.000000
-texture_offset_z	342.000000
+texture_offset_z	278.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.462738
-sprite_color_green	0.459008
-sprite_color_blue	0.470218
+sprite_color_red	0.471501
+sprite_color_green	0.561468
+sprite_color_blue	0.487355
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+texture_offset_x	90.000000
+texture_offset_y	6.000000
+texture_offset_z	278.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.471501
+sprite_color_green	0.561468
+sprite_color_blue	0.487355
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
+texture_offset_x	154.000000
+texture_offset_y	6.000000
+texture_offset_z	278.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.471501
+sprite_color_green	0.561468
+sprite_color_blue	0.487355
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+texture_offset_x	218.000000
+texture_offset_y	6.000000
+texture_offset_z	278.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.471501
+sprite_color_green	0.561468
+sprite_color_blue	0.487355
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
 texture_offset_x	282.000000
 texture_offset_y	6.000000
-texture_offset_z	342.000000
+texture_offset_z	278.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	0.003032
 texture_fragment_y	1.000000
-sprite_color_red	0.462738
-sprite_color_green	0.459008
-sprite_color_blue	0.470218
+sprite_color_red	0.471501
+sprite_color_green	0.561468
+sprite_color_blue	0.487355
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
 texture_offset_x	-294.000000
 texture_offset_y	6.000000
-texture_offset_z	406.000000
+texture_offset_z	342.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.459184
-sprite_color_green	0.489749
-sprite_color_blue	0.427183
+sprite_color_red	0.443297
+sprite_color_green	0.557719
+sprite_color_blue	0.505041
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
 texture_offset_x	-230.000000
 texture_offset_y	6.000000
-texture_offset_z	406.000000
+texture_offset_z	342.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.459184
-sprite_color_green	0.489749
-sprite_color_blue	0.427183
+sprite_color_red	0.443297
+sprite_color_green	0.557719
+sprite_color_blue	0.505041
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
 texture_offset_x	-166.000000
 texture_offset_y	6.000000
-texture_offset_z	406.000000
+texture_offset_z	342.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.459184
-sprite_color_green	0.489749
-sprite_color_blue	0.427183
+sprite_color_red	0.443297
+sprite_color_green	0.557719
+sprite_color_blue	0.505041
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
 texture_offset_x	-102.000000
 texture_offset_y	6.000000
-texture_offset_z	406.000000
+texture_offset_z	342.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.459184
-sprite_color_green	0.489749
-sprite_color_blue	0.427183
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
-texture_offset_x	-38.000000
-texture_offset_y	6.000000
-texture_offset_z	406.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.459184
-sprite_color_green	0.489749
-sprite_color_blue	0.427183
+sprite_color_red	0.443297
+sprite_color_green	0.557719
+sprite_color_blue	0.505041
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
-texture_offset_x	26.000000
+texture_offset_x	-38.000000
 texture_offset_y	6.000000
-texture_offset_z	406.000000
+texture_offset_z	342.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.459184
-sprite_color_green	0.489749
-sprite_color_blue	0.427183
+sprite_color_red	0.443297
+sprite_color_green	0.557719
+sprite_color_blue	0.505041
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+texture_offset_x	26.000000
+texture_offset_y	6.000000
+texture_offset_z	342.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.443297
+sprite_color_green	0.557719
+sprite_color_blue	0.505041
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
 texture_offset_x	90.000000
 texture_offset_y	6.000000
-texture_offset_z	406.000000
+texture_offset_z	342.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.459184
-sprite_color_green	0.489749
-sprite_color_blue	0.427183
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	154.000000
-texture_offset_y	6.000000
-texture_offset_z	406.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.459184
-sprite_color_green	0.489749
-sprite_color_blue	0.427183
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
-texture_offset_x	218.000000
-texture_offset_y	6.000000
-texture_offset_z	406.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.459184
-sprite_color_green	0.489749
-sprite_color_blue	0.427183
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	282.000000
-texture_offset_y	6.000000
-texture_offset_z	406.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	0.003032
-texture_fragment_y	1.000000
-sprite_color_red	0.459184
-sprite_color_green	0.489749
-sprite_color_blue	0.427183
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
-texture_offset_x	-294.000000
-texture_offset_y	6.000000
-texture_offset_z	470.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.418182
-sprite_color_green	0.502374
-sprite_color_blue	0.422891
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	-230.000000
-texture_offset_y	6.000000
-texture_offset_z	470.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.418182
-sprite_color_green	0.502374
-sprite_color_blue	0.422891
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
-texture_offset_x	-166.000000
-texture_offset_y	6.000000
-texture_offset_z	470.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.418182
-sprite_color_green	0.502374
-sprite_color_blue	0.422891
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v4.png
-texture_offset_x	-102.000000
-texture_offset_y	6.000000
-texture_offset_z	470.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.418182
-sprite_color_green	0.502374
-sprite_color_blue	0.422891
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
-texture_offset_x	-38.000000
-texture_offset_y	6.000000
-texture_offset_z	470.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.418182
-sprite_color_green	0.502374
-sprite_color_blue	0.422891
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v4.png
-texture_offset_x	26.000000
-texture_offset_y	6.000000
-texture_offset_z	470.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.418182
-sprite_color_green	0.502374
-sprite_color_blue	0.422891
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
-texture_offset_x	90.000000
-texture_offset_y	6.000000
-texture_offset_z	470.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.418182
-sprite_color_green	0.502374
-sprite_color_blue	0.422891
+sprite_color_red	0.443297
+sprite_color_green	0.557719
+sprite_color_blue	0.505041
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v4.png
 texture_offset_x	154.000000
 texture_offset_y	6.000000
+texture_offset_z	342.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.443297
+sprite_color_green	0.557719
+sprite_color_blue	0.505041
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+texture_offset_x	218.000000
+texture_offset_y	6.000000
+texture_offset_z	342.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.443297
+sprite_color_green	0.557719
+sprite_color_blue	0.505041
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+texture_offset_x	282.000000
+texture_offset_y	6.000000
+texture_offset_z	342.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	0.003032
+texture_fragment_y	1.000000
+sprite_color_red	0.443297
+sprite_color_green	0.557719
+sprite_color_blue	0.505041
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+texture_offset_x	-294.000000
+texture_offset_y	6.000000
+texture_offset_z	406.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.414641
+sprite_color_green	0.544162
+sprite_color_blue	0.533949
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+texture_offset_x	-230.000000
+texture_offset_y	6.000000
+texture_offset_z	406.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.414641
+sprite_color_green	0.544162
+sprite_color_blue	0.533949
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
+texture_offset_x	-166.000000
+texture_offset_y	6.000000
+texture_offset_z	406.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.414641
+sprite_color_green	0.544162
+sprite_color_blue	0.533949
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+texture_offset_x	-102.000000
+texture_offset_y	6.000000
+texture_offset_z	406.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.414641
+sprite_color_green	0.544162
+sprite_color_blue	0.533949
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+texture_offset_x	-38.000000
+texture_offset_y	6.000000
+texture_offset_z	406.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.414641
+sprite_color_green	0.544162
+sprite_color_blue	0.533949
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+texture_offset_x	26.000000
+texture_offset_y	6.000000
+texture_offset_z	406.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.414641
+sprite_color_green	0.544162
+sprite_color_blue	0.533949
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
+texture_offset_x	90.000000
+texture_offset_y	6.000000
+texture_offset_z	406.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.414641
+sprite_color_green	0.544162
+sprite_color_blue	0.533949
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+texture_offset_x	154.000000
+texture_offset_y	6.000000
+texture_offset_z	406.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.414641
+sprite_color_green	0.544162
+sprite_color_blue	0.533949
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+texture_offset_x	218.000000
+texture_offset_y	6.000000
+texture_offset_z	406.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.414641
+sprite_color_green	0.544162
+sprite_color_blue	0.533949
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
+texture_offset_x	282.000000
+texture_offset_y	6.000000
+texture_offset_z	406.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	0.003032
+texture_fragment_y	1.000000
+sprite_color_red	0.414641
+sprite_color_green	0.544162
+sprite_color_blue	0.533949
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+texture_offset_x	-294.000000
+texture_offset_y	6.000000
 texture_offset_z	470.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
@@ -11187,11 +11089,109 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.418182
-sprite_color_green	0.502374
-sprite_color_blue	0.422891
+sprite_color_red	0.385997
+sprite_color_green	0.524986
+sprite_color_blue	0.564633
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+texture_offset_x	-230.000000
+texture_offset_y	6.000000
+texture_offset_z	470.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.385997
+sprite_color_green	0.524986
+sprite_color_blue	0.564633
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+texture_offset_x	-166.000000
+texture_offset_y	6.000000
+texture_offset_z	470.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.385997
+sprite_color_green	0.524986
+sprite_color_blue	0.564633
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+texture_offset_x	-102.000000
+texture_offset_y	6.000000
+texture_offset_z	470.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.385997
+sprite_color_green	0.524986
+sprite_color_blue	0.564633
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
+texture_offset_x	-38.000000
+texture_offset_y	6.000000
+texture_offset_z	470.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.385997
+sprite_color_green	0.524986
+sprite_color_blue	0.564633
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
+texture_offset_x	26.000000
+texture_offset_y	6.000000
+texture_offset_z	470.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.385997
+sprite_color_green	0.524986
+sprite_color_blue	0.564633
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+texture_offset_x	90.000000
+texture_offset_y	6.000000
+texture_offset_z	470.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.385997
+sprite_color_green	0.524986
+sprite_color_blue	0.564633
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+texture_offset_x	154.000000
+texture_offset_y	6.000000
+texture_offset_z	470.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.385997
+sprite_color_green	0.524986
+sprite_color_blue	0.564633
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v4.png
 texture_offset_x	218.000000
 texture_offset_y	6.000000
 texture_offset_z	470.000000
@@ -11201,11 +11201,11 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.418182
-sprite_color_green	0.502374
-sprite_color_blue	0.422891
+sprite_color_red	0.385997
+sprite_color_green	0.524986
+sprite_color_blue	0.564633
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
 texture_offset_x	282.000000
 texture_offset_y	6.000000
 texture_offset_z	470.000000
@@ -11215,11 +11215,11 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	0.003032
 texture_fragment_y	1.000000
-sprite_color_red	0.418182
-sprite_color_green	0.502374
-sprite_color_blue	0.422891
+sprite_color_red	0.385997
+sprite_color_green	0.524986
+sprite_color_blue	0.564633
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
 texture_offset_x	-294.000000
 texture_offset_y	6.000000
 texture_offset_z	534.000000
@@ -11229,11 +11229,11 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.390951
-sprite_color_green	0.462127
-sprite_color_blue	0.458351
+sprite_color_red	0.358269
+sprite_color_green	0.507460
+sprite_color_blue	0.587405
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
 texture_offset_x	-230.000000
 texture_offset_y	6.000000
 texture_offset_z	534.000000
@@ -11243,11 +11243,11 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.390951
-sprite_color_green	0.462127
-sprite_color_blue	0.458351
+sprite_color_red	0.358269
+sprite_color_green	0.507460
+sprite_color_blue	0.587405
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v4.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
 texture_offset_x	-166.000000
 texture_offset_y	6.000000
 texture_offset_z	534.000000
@@ -11257,615 +11257,531 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.390951
-sprite_color_green	0.462127
-sprite_color_blue	0.458351
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
-texture_offset_x	-102.000000
-texture_offset_y	6.000000
-texture_offset_z	534.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.390951
-sprite_color_green	0.462127
-sprite_color_blue	0.458351
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
-texture_offset_x	-38.000000
-texture_offset_y	6.000000
-texture_offset_z	534.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.390951
-sprite_color_green	0.462127
-sprite_color_blue	0.458351
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
-texture_offset_x	26.000000
-texture_offset_y	6.000000
-texture_offset_z	534.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.390951
-sprite_color_green	0.462127
-sprite_color_blue	0.458351
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
-texture_offset_x	90.000000
-texture_offset_y	6.000000
-texture_offset_z	534.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.390951
-sprite_color_green	0.462127
-sprite_color_blue	0.458351
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
-texture_offset_x	154.000000
-texture_offset_y	6.000000
-texture_offset_z	534.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.390951
-sprite_color_green	0.462127
-sprite_color_blue	0.458351
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
-texture_offset_x	218.000000
-texture_offset_y	6.000000
-texture_offset_z	534.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.390951
-sprite_color_green	0.462127
-sprite_color_blue	0.458351
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	282.000000
-texture_offset_y	6.000000
-texture_offset_z	534.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	0.003032
-texture_fragment_y	1.000000
-sprite_color_red	0.390951
-sprite_color_green	0.462127
-sprite_color_blue	0.458351
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
-texture_offset_x	-294.000000
-texture_offset_y	6.000000
-texture_offset_z	598.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.413359
-sprite_color_green	0.476163
-sprite_color_blue	0.487352
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	-230.000000
-texture_offset_y	6.000000
-texture_offset_z	598.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.413359
-sprite_color_green	0.476163
-sprite_color_blue	0.487352
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
-texture_offset_x	-166.000000
-texture_offset_y	6.000000
-texture_offset_z	598.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.413359
-sprite_color_green	0.476163
-sprite_color_blue	0.487352
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
-texture_offset_x	-102.000000
-texture_offset_y	6.000000
-texture_offset_z	598.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.413359
-sprite_color_green	0.476163
-sprite_color_blue	0.487352
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
-texture_offset_x	-38.000000
-texture_offset_y	6.000000
-texture_offset_z	598.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.413359
-sprite_color_green	0.476163
-sprite_color_blue	0.487352
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
-texture_offset_x	26.000000
-texture_offset_y	6.000000
-texture_offset_z	598.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.413359
-sprite_color_green	0.476163
-sprite_color_blue	0.487352
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	90.000000
-texture_offset_y	6.000000
-texture_offset_z	598.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.413359
-sprite_color_green	0.476163
-sprite_color_blue	0.487352
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
-texture_offset_x	154.000000
-texture_offset_y	6.000000
-texture_offset_z	598.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.413359
-sprite_color_green	0.476163
-sprite_color_blue	0.487352
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
-texture_offset_x	218.000000
-texture_offset_y	6.000000
-texture_offset_z	598.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.413359
-sprite_color_green	0.476163
-sprite_color_blue	0.487352
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	282.000000
-texture_offset_y	6.000000
-texture_offset_z	598.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	0.003032
-texture_fragment_y	1.000000
-sprite_color_red	0.413359
-sprite_color_green	0.476163
-sprite_color_blue	0.487352
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	-294.000000
-texture_offset_y	6.000000
-texture_offset_z	662.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.443349
-sprite_color_green	0.520590
-sprite_color_blue	0.494237
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
-texture_offset_x	-230.000000
-texture_offset_y	6.000000
-texture_offset_z	662.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.443349
-sprite_color_green	0.520590
-sprite_color_blue	0.494237
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	-166.000000
-texture_offset_y	6.000000
-texture_offset_z	662.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.443349
-sprite_color_green	0.520590
-sprite_color_blue	0.494237
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
-texture_offset_x	-102.000000
-texture_offset_y	6.000000
-texture_offset_z	662.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.443349
-sprite_color_green	0.520590
-sprite_color_blue	0.494237
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
-texture_offset_x	-38.000000
-texture_offset_y	6.000000
-texture_offset_z	662.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.443349
-sprite_color_green	0.520590
-sprite_color_blue	0.494237
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
-texture_offset_x	26.000000
-texture_offset_y	6.000000
-texture_offset_z	662.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.443349
-sprite_color_green	0.520590
-sprite_color_blue	0.494237
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
-texture_offset_x	90.000000
-texture_offset_y	6.000000
-texture_offset_z	662.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.443349
-sprite_color_green	0.520590
-sprite_color_blue	0.494237
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
-texture_offset_x	154.000000
-texture_offset_y	6.000000
-texture_offset_z	662.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.443349
-sprite_color_green	0.520590
-sprite_color_blue	0.494237
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
-texture_offset_x	218.000000
-texture_offset_y	6.000000
-texture_offset_z	662.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.443349
-sprite_color_green	0.520590
-sprite_color_blue	0.494237
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
-texture_offset_x	282.000000
-texture_offset_y	6.000000
-texture_offset_z	662.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	0.003032
-texture_fragment_y	1.000000
-sprite_color_red	0.443349
-sprite_color_green	0.520590
-sprite_color_blue	0.494237
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
-texture_offset_x	-294.000000
-texture_offset_y	6.000000
-texture_offset_z	726.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.439100
-sprite_color_green	0.480991
-sprite_color_blue	0.483131
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	-230.000000
-texture_offset_y	6.000000
-texture_offset_z	726.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.439100
-sprite_color_green	0.480991
-sprite_color_blue	0.483131
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
-texture_offset_x	-166.000000
-texture_offset_y	6.000000
-texture_offset_z	726.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.439100
-sprite_color_green	0.480991
-sprite_color_blue	0.483131
+sprite_color_red	0.358269
+sprite_color_green	0.507460
+sprite_color_blue	0.587405
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v4.png
 texture_offset_x	-102.000000
 texture_offset_y	6.000000
-texture_offset_z	726.000000
+texture_offset_z	534.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.439100
-sprite_color_green	0.480991
-sprite_color_blue	0.483131
+sprite_color_red	0.358269
+sprite_color_green	0.507460
+sprite_color_blue	0.587405
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
 texture_offset_x	-38.000000
 texture_offset_y	6.000000
-texture_offset_z	726.000000
+texture_offset_z	534.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.439100
-sprite_color_green	0.480991
-sprite_color_blue	0.483131
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
-texture_offset_x	26.000000
-texture_offset_y	6.000000
-texture_offset_z	726.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.439100
-sprite_color_green	0.480991
-sprite_color_blue	0.483131
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
-texture_offset_x	90.000000
-texture_offset_y	6.000000
-texture_offset_z	726.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.439100
-sprite_color_green	0.480991
-sprite_color_blue	0.483131
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
-texture_offset_x	154.000000
-texture_offset_y	6.000000
-texture_offset_z	726.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.439100
-sprite_color_green	0.480991
-sprite_color_blue	0.483131
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
-texture_offset_x	218.000000
-texture_offset_y	6.000000
-texture_offset_z	726.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.439100
-sprite_color_green	0.480991
-sprite_color_blue	0.483131
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
-texture_offset_x	282.000000
-texture_offset_y	6.000000
-texture_offset_z	726.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	0.003032
-texture_fragment_y	1.000000
-sprite_color_red	0.439100
-sprite_color_green	0.480991
-sprite_color_blue	0.483131
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	-294.000000
-texture_offset_y	6.000000
-texture_offset_z	790.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.404595
-sprite_color_green	0.466421
-sprite_color_blue	0.504528
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	-230.000000
-texture_offset_y	6.000000
-texture_offset_z	790.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.404595
-sprite_color_green	0.466421
-sprite_color_blue	0.504528
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
-texture_offset_x	-166.000000
-texture_offset_y	6.000000
-texture_offset_z	790.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.404595
-sprite_color_green	0.466421
-sprite_color_blue	0.504528
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
-texture_offset_x	-102.000000
-texture_offset_y	6.000000
-texture_offset_z	790.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.404595
-sprite_color_green	0.466421
-sprite_color_blue	0.504528
-ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
-texture_offset_x	-38.000000
-texture_offset_y	6.000000
-texture_offset_z	790.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.404595
-sprite_color_green	0.466421
-sprite_color_blue	0.504528
+sprite_color_red	0.358269
+sprite_color_green	0.507460
+sprite_color_blue	0.587405
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
 texture_offset_x	26.000000
 texture_offset_y	6.000000
-texture_offset_z	790.000000
+texture_offset_z	534.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.404595
-sprite_color_green	0.466421
-sprite_color_blue	0.504528
+sprite_color_red	0.358269
+sprite_color_green	0.507460
+sprite_color_blue	0.587405
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v4.png
 texture_offset_x	90.000000
 texture_offset_y	6.000000
+texture_offset_z	534.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.358269
+sprite_color_green	0.507460
+sprite_color_blue	0.587405
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+texture_offset_x	154.000000
+texture_offset_y	6.000000
+texture_offset_z	534.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.358269
+sprite_color_green	0.507460
+sprite_color_blue	0.587405
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+texture_offset_x	218.000000
+texture_offset_y	6.000000
+texture_offset_z	534.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.358269
+sprite_color_green	0.507460
+sprite_color_blue	0.587405
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+texture_offset_x	282.000000
+texture_offset_y	6.000000
+texture_offset_z	534.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	0.003032
+texture_fragment_y	1.000000
+sprite_color_red	0.358269
+sprite_color_green	0.507460
+sprite_color_blue	0.587405
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+texture_offset_x	-294.000000
+texture_offset_y	6.000000
+texture_offset_z	598.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.333377
+sprite_color_green	0.496556
+sprite_color_blue	0.597254
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
+texture_offset_x	-230.000000
+texture_offset_y	6.000000
+texture_offset_z	598.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.333377
+sprite_color_green	0.496556
+sprite_color_blue	0.597254
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v4.png
+texture_offset_x	-166.000000
+texture_offset_y	6.000000
+texture_offset_z	598.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.333377
+sprite_color_green	0.496556
+sprite_color_blue	0.597254
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+texture_offset_x	-102.000000
+texture_offset_y	6.000000
+texture_offset_z	598.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.333377
+sprite_color_green	0.496556
+sprite_color_blue	0.597254
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
+texture_offset_x	-38.000000
+texture_offset_y	6.000000
+texture_offset_z	598.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.333377
+sprite_color_green	0.496556
+sprite_color_blue	0.597254
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+texture_offset_x	26.000000
+texture_offset_y	6.000000
+texture_offset_z	598.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.333377
+sprite_color_green	0.496556
+sprite_color_blue	0.597254
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v4.png
+texture_offset_x	90.000000
+texture_offset_y	6.000000
+texture_offset_z	598.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.333377
+sprite_color_green	0.496556
+sprite_color_blue	0.597254
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+texture_offset_x	154.000000
+texture_offset_y	6.000000
+texture_offset_z	598.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.333377
+sprite_color_green	0.496556
+sprite_color_blue	0.597254
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+texture_offset_x	218.000000
+texture_offset_y	6.000000
+texture_offset_z	598.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.333377
+sprite_color_green	0.496556
+sprite_color_blue	0.597254
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
+texture_offset_x	282.000000
+texture_offset_y	6.000000
+texture_offset_z	598.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	0.003032
+texture_fragment_y	1.000000
+sprite_color_red	0.333377
+sprite_color_green	0.496556
+sprite_color_blue	0.597254
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+texture_offset_x	-294.000000
+texture_offset_y	6.000000
+texture_offset_z	662.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.313538
+sprite_color_green	0.492747
+sprite_color_blue	0.593936
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+texture_offset_x	-230.000000
+texture_offset_y	6.000000
+texture_offset_z	662.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.313538
+sprite_color_green	0.492747
+sprite_color_blue	0.593936
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
+texture_offset_x	-166.000000
+texture_offset_y	6.000000
+texture_offset_z	662.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.313538
+sprite_color_green	0.492747
+sprite_color_blue	0.593936
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+texture_offset_x	-102.000000
+texture_offset_y	6.000000
+texture_offset_z	662.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.313538
+sprite_color_green	0.492747
+sprite_color_blue	0.593936
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+texture_offset_x	-38.000000
+texture_offset_y	6.000000
+texture_offset_z	662.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.313538
+sprite_color_green	0.492747
+sprite_color_blue	0.593936
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+texture_offset_x	26.000000
+texture_offset_y	6.000000
+texture_offset_z	662.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.313538
+sprite_color_green	0.492747
+sprite_color_blue	0.593936
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
+texture_offset_x	90.000000
+texture_offset_y	6.000000
+texture_offset_z	662.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.313538
+sprite_color_green	0.492747
+sprite_color_blue	0.593936
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+texture_offset_x	154.000000
+texture_offset_y	6.000000
+texture_offset_z	662.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.313538
+sprite_color_green	0.492747
+sprite_color_blue	0.593936
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+texture_offset_x	218.000000
+texture_offset_y	6.000000
+texture_offset_z	662.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.313538
+sprite_color_green	0.492747
+sprite_color_blue	0.593936
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+texture_offset_x	282.000000
+texture_offset_y	6.000000
+texture_offset_z	662.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	0.003032
+texture_fragment_y	1.000000
+sprite_color_red	0.313538
+sprite_color_green	0.492747
+sprite_color_blue	0.593936
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+texture_offset_x	-294.000000
+texture_offset_y	6.000000
+texture_offset_z	726.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.300077
+sprite_color_green	0.493805
+sprite_color_blue	0.580155
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+texture_offset_x	-230.000000
+texture_offset_y	6.000000
+texture_offset_z	726.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.300077
+sprite_color_green	0.493805
+sprite_color_blue	0.580155
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+texture_offset_x	-166.000000
+texture_offset_y	6.000000
+texture_offset_z	726.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.300077
+sprite_color_green	0.493805
+sprite_color_blue	0.580155
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
+texture_offset_x	-102.000000
+texture_offset_y	6.000000
+texture_offset_z	726.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.300077
+sprite_color_green	0.493805
+sprite_color_blue	0.580155
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+texture_offset_x	-38.000000
+texture_offset_y	6.000000
+texture_offset_z	726.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.300077
+sprite_color_green	0.493805
+sprite_color_blue	0.580155
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+texture_offset_x	26.000000
+texture_offset_y	6.000000
+texture_offset_z	726.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.300077
+sprite_color_green	0.493805
+sprite_color_blue	0.580155
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
+texture_offset_x	90.000000
+texture_offset_y	6.000000
+texture_offset_z	726.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.300077
+sprite_color_green	0.493805
+sprite_color_blue	0.580155
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
+texture_offset_x	154.000000
+texture_offset_y	6.000000
+texture_offset_z	726.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.300077
+sprite_color_green	0.493805
+sprite_color_blue	0.580155
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+texture_offset_x	218.000000
+texture_offset_y	6.000000
+texture_offset_z	726.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.300077
+sprite_color_green	0.493805
+sprite_color_blue	0.580155
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+texture_offset_x	282.000000
+texture_offset_y	6.000000
+texture_offset_z	726.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	0.003032
+texture_fragment_y	1.000000
+sprite_color_red	0.300077
+sprite_color_green	0.493805
+sprite_color_blue	0.580155
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+texture_offset_x	-294.000000
+texture_offset_y	6.000000
 texture_offset_z	790.000000
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
@@ -11873,11 +11789,95 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.404595
-sprite_color_green	0.466421
-sprite_color_blue	0.504528
+sprite_color_red	0.291368
+sprite_color_green	0.497427
+sprite_color_blue	0.560990
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+texture_offset_x	-230.000000
+texture_offset_y	6.000000
+texture_offset_z	790.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.291368
+sprite_color_green	0.497427
+sprite_color_blue	0.560990
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+texture_offset_x	-166.000000
+texture_offset_y	6.000000
+texture_offset_z	790.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.291368
+sprite_color_green	0.497427
+sprite_color_blue	0.560990
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
+texture_offset_x	-102.000000
+texture_offset_y	6.000000
+texture_offset_z	790.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.291368
+sprite_color_green	0.497427
+sprite_color_blue	0.560990
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
+texture_offset_x	-38.000000
+texture_offset_y	6.000000
+texture_offset_z	790.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.291368
+sprite_color_green	0.497427
+sprite_color_blue	0.560990
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+texture_offset_x	26.000000
+texture_offset_y	6.000000
+texture_offset_z	790.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.291368
+sprite_color_green	0.497427
+sprite_color_blue	0.560990
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+texture_offset_x	90.000000
+texture_offset_y	6.000000
+texture_offset_z	790.000000
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.291368
+sprite_color_green	0.497427
+sprite_color_blue	0.560990
+ADD_NEW_SPRITE
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
 texture_offset_x	154.000000
 texture_offset_y	6.000000
 texture_offset_z	790.000000
@@ -11887,9 +11887,9 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.404595
-sprite_color_green	0.466421
-sprite_color_blue	0.504528
+sprite_color_red	0.291368
+sprite_color_green	0.497427
+sprite_color_blue	0.560990
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
 texture_offset_x	218.000000
@@ -11901,11 +11901,11 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	1.000000
-sprite_color_red	0.404595
-sprite_color_green	0.466421
-sprite_color_blue	0.504528
+sprite_color_red	0.291368
+sprite_color_green	0.497427
+sprite_color_blue	0.560990
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
 texture_offset_x	282.000000
 texture_offset_y	6.000000
 texture_offset_z	790.000000
@@ -11915,11 +11915,11 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	0.003032
 texture_fragment_y	1.000000
-sprite_color_red	0.404595
-sprite_color_green	0.466421
-sprite_color_blue	0.504528
+sprite_color_red	0.291368
+sprite_color_green	0.497427
+sprite_color_blue	0.560990
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
 texture_offset_x	-294.000000
 texture_offset_y	6.000000
 texture_offset_z	854.000000
@@ -11929,11 +11929,11 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	0.998381
-sprite_color_red	0.384867
-sprite_color_green	0.470914
-sprite_color_blue	0.570243
+sprite_color_red	0.282055
+sprite_color_green	0.502062
+sprite_color_blue	0.542873
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
 texture_offset_x	-230.000000
 texture_offset_y	6.000000
 texture_offset_z	854.000000
@@ -11943,11 +11943,11 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	0.998381
-sprite_color_red	0.384867
-sprite_color_green	0.470914
-sprite_color_blue	0.570243
+sprite_color_red	0.282055
+sprite_color_green	0.502062
+sprite_color_blue	0.542873
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
 texture_offset_x	-166.000000
 texture_offset_y	6.000000
 texture_offset_z	854.000000
@@ -11957,11 +11957,11 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	0.998381
-sprite_color_red	0.384867
-sprite_color_green	0.470914
-sprite_color_blue	0.570243
+sprite_color_red	0.282055
+sprite_color_green	0.502062
+sprite_color_blue	0.542873
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
 texture_offset_x	-102.000000
 texture_offset_y	6.000000
 texture_offset_z	854.000000
@@ -11971,11 +11971,11 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	0.998381
-sprite_color_red	0.384867
-sprite_color_green	0.470914
-sprite_color_blue	0.570243
+sprite_color_red	0.282055
+sprite_color_green	0.502062
+sprite_color_blue	0.542873
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v2.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
 texture_offset_x	-38.000000
 texture_offset_y	6.000000
 texture_offset_z	854.000000
@@ -11985,11 +11985,11 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	0.998381
-sprite_color_red	0.384867
-sprite_color_green	0.470914
-sprite_color_blue	0.570243
+sprite_color_red	0.282055
+sprite_color_green	0.502062
+sprite_color_blue	0.542873
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
 texture_offset_x	26.000000
 texture_offset_y	6.000000
 texture_offset_z	854.000000
@@ -11999,9 +11999,9 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	0.998381
-sprite_color_red	0.384867
-sprite_color_green	0.470914
-sprite_color_blue	0.570243
+sprite_color_red	0.282055
+sprite_color_green	0.502062
+sprite_color_blue	0.542873
 ADD_NEW_SPRITE
 add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
 texture_offset_x	90.000000
@@ -12013,11 +12013,11 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	0.998381
-sprite_color_red	0.384867
-sprite_color_green	0.470914
-sprite_color_blue	0.570243
+sprite_color_red	0.282055
+sprite_color_green	0.502062
+sprite_color_blue	0.542873
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v1.png
+add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
 texture_offset_x	154.000000
 texture_offset_y	6.000000
 texture_offset_z	854.000000
@@ -12027,11 +12027,11 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	0.998381
-sprite_color_red	0.384867
-sprite_color_green	0.470914
-sprite_color_blue	0.570243
+sprite_color_red	0.282055
+sprite_color_green	0.502062
+sprite_color_blue	0.542873
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_001_v1.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
 texture_offset_x	218.000000
 texture_offset_y	6.000000
 texture_offset_z	854.000000
@@ -12041,11 +12041,11 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	1.000000
 texture_fragment_y	0.998381
-sprite_color_red	0.384867
-sprite_color_green	0.470914
-sprite_color_blue	0.570243
+sprite_color_red	0.282055
+sprite_color_green	0.502062
+sprite_color_blue	0.542873
 ADD_NEW_SPRITE
-add_new_texture	data/textures/brown_rama_beton_wall_002_v3.png
+add_new_texture	data/textures/brown_rama_beton_wall_002_v5.png
 texture_offset_x	282.000000
 texture_offset_y	6.000000
 texture_offset_z	854.000000
@@ -12055,14 +12055,70 @@ texture_shadow_bottom_tall	100.000000
 texture_shadow_upper_tall	100.000000
 texture_fragment_x	0.003032
 texture_fragment_y	0.998381
-sprite_color_red	0.384867
-sprite_color_green	0.470914
-sprite_color_blue	0.570243
+sprite_color_red	0.282055
+sprite_color_green	0.502062
+sprite_color_blue	0.542873
 ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v8.png
-texture_offset_x	-282.000000
+add_new_texture	data/textures/window_005_v4.png
+texture_offset_x	-282.397675
 texture_offset_y	6.000000
-texture_offset_z	122.000000
+texture_offset_z	122.010986
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v6.png
+texture_offset_x	-282.397675
+texture_offset_y	6.000000
+texture_offset_z	186.090469
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v5.png
+texture_offset_x	-282.397675
+texture_offset_y	6.000000
+texture_offset_z	250.169952
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v7.png
+texture_offset_x	-282.397675
+texture_offset_y	6.000000
+texture_offset_z	314.249451
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v3.png
+texture_offset_x	-282.397675
+texture_offset_y	6.000000
+texture_offset_z	378.328918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12074,9 +12130,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/window_005_v4.png
-texture_offset_x	-282.000000
+texture_offset_x	-282.397675
 texture_offset_y	6.000000
-texture_offset_z	186.000000
+texture_offset_z	442.408417
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12087,10 +12143,10 @@ sprite_color_red	0.500000
 sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v7.png
-texture_offset_x	-282.000000
+add_new_texture	data/textures/window_005_v3.png
+texture_offset_x	-282.397675
 texture_offset_y	6.000000
-texture_offset_z	250.000000
+texture_offset_z	506.487915
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12102,65 +12158,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/window_005_v4.png
-texture_offset_x	-282.000000
+texture_offset_x	-282.397675
 texture_offset_y	6.000000
-texture_offset_z	314.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v6.png
-texture_offset_x	-282.000000
-texture_offset_y	6.000000
-texture_offset_z	378.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v7.png
-texture_offset_x	-282.000000
-texture_offset_y	6.000000
-texture_offset_z	442.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v3.png
-texture_offset_x	-282.000000
-texture_offset_y	6.000000
-texture_offset_z	506.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v1.png
-texture_offset_x	-282.000000
-texture_offset_y	6.000000
-texture_offset_z	571.000000
+texture_offset_z	570.567383
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12172,9 +12172,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/window_005_v8.png
-texture_offset_x	-282.000000
+texture_offset_x	-282.397675
 texture_offset_y	6.000000
-texture_offset_z	635.000000
+texture_offset_z	634.646851
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12186,219 +12186,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/window_005_v1.png
-texture_offset_x	-282.000000
+texture_offset_x	-282.397675
 texture_offset_y	6.000000
-texture_offset_z	699.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v3.png
-texture_offset_x	-282.000000
-texture_offset_y	6.000000
-texture_offset_z	763.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v7.png
-texture_offset_x	-282.000000
-texture_offset_y	6.000000
-texture_offset_z	827.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v6.png
-texture_offset_x	-170.000000
-texture_offset_y	6.000000
-texture_offset_z	122.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v5.png
-texture_offset_x	-170.000000
-texture_offset_y	6.000000
-texture_offset_z	186.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v5.png
-texture_offset_x	-170.000000
-texture_offset_y	6.000000
-texture_offset_z	250.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v2.png
-texture_offset_x	-170.000000
-texture_offset_y	6.000000
-texture_offset_z	314.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v7.png
-texture_offset_x	-170.000000
-texture_offset_y	6.000000
-texture_offset_z	378.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v3.png
-texture_offset_x	-170.000000
-texture_offset_y	6.000000
-texture_offset_z	442.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v5.png
-texture_offset_x	-170.000000
-texture_offset_y	6.000000
-texture_offset_z	506.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v2.png
-texture_offset_x	-170.000000
-texture_offset_y	6.000000
-texture_offset_z	571.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v2.png
-texture_offset_x	-170.000000
-texture_offset_y	6.000000
-texture_offset_z	635.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v1.png
-texture_offset_x	-170.000000
-texture_offset_y	6.000000
-texture_offset_z	699.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v3.png
-texture_offset_x	-170.000000
-texture_offset_y	6.000000
-texture_offset_z	763.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v2.png
-texture_offset_x	-170.000000
-texture_offset_y	6.000000
-texture_offset_z	827.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v6.png
-texture_offset_x	-58.000000
-texture_offset_y	6.000000
-texture_offset_z	122.000000
+texture_offset_z	698.726379
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12410,9 +12200,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/window_005_v4.png
-texture_offset_x	-58.000000
+texture_offset_x	-282.397675
 texture_offset_y	6.000000
-texture_offset_z	186.000000
+texture_offset_z	762.805847
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12423,10 +12213,38 @@ sprite_color_red	0.500000
 sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v6.png
-texture_offset_x	-58.000000
+add_new_texture	data/textures/window_005_v1.png
+texture_offset_x	-282.397675
 texture_offset_y	6.000000
-texture_offset_z	250.000000
+texture_offset_z	826.885315
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v1.png
+texture_offset_x	-170.400330
+texture_offset_y	6.000000
+texture_offset_z	122.010986
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v7.png
+texture_offset_x	-170.400330
+texture_offset_y	6.000000
+texture_offset_z	186.090469
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12438,9 +12256,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/window_005_v4.png
-texture_offset_x	-58.000000
+texture_offset_x	-170.400330
 texture_offset_y	6.000000
-texture_offset_z	314.000000
+texture_offset_z	250.169952
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12451,10 +12269,10 @@ sprite_color_red	0.500000
 sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v5.png
-texture_offset_x	-58.000000
+add_new_texture	data/textures/window_005_v2.png
+texture_offset_x	-170.400330
 texture_offset_y	6.000000
-texture_offset_z	378.000000
+texture_offset_z	314.249451
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12466,9 +12284,65 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/window_005_v7.png
-texture_offset_x	-58.000000
+texture_offset_x	-170.400330
 texture_offset_y	6.000000
-texture_offset_z	442.000000
+texture_offset_z	378.328918
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v4.png
+texture_offset_x	-170.400330
+texture_offset_y	6.000000
+texture_offset_z	442.408417
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v1.png
+texture_offset_x	-170.400330
+texture_offset_y	6.000000
+texture_offset_z	506.487915
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v4.png
+texture_offset_x	-170.400330
+texture_offset_y	6.000000
+texture_offset_z	570.567383
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v2.png
+texture_offset_x	-170.400330
+texture_offset_y	6.000000
+texture_offset_z	634.646851
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12480,9 +12354,37 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/window_005_v8.png
-texture_offset_x	-58.000000
+texture_offset_x	-170.400330
 texture_offset_y	6.000000
-texture_offset_z	506.000000
+texture_offset_z	698.726379
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v6.png
+texture_offset_x	-170.400330
+texture_offset_y	6.000000
+texture_offset_z	762.805847
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v2.png
+texture_offset_x	-170.400330
+texture_offset_y	6.000000
+texture_offset_z	826.885315
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12494,9 +12396,51 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/window_005_v3.png
-texture_offset_x	-58.000000
+texture_offset_x	-58.403000
 texture_offset_y	6.000000
-texture_offset_z	571.000000
+texture_offset_z	122.010986
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v5.png
+texture_offset_x	-58.403000
+texture_offset_y	6.000000
+texture_offset_z	186.090469
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v5.png
+texture_offset_x	-58.403000
+texture_offset_y	6.000000
+texture_offset_z	250.169952
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v5.png
+texture_offset_x	-58.403000
+texture_offset_y	6.000000
+texture_offset_z	314.249451
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12508,9 +12452,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/window_005_v6.png
-texture_offset_x	-58.000000
+texture_offset_x	-58.403000
 texture_offset_y	6.000000
-texture_offset_z	635.000000
+texture_offset_z	378.328918
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12522,37 +12466,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/window_005_v2.png
-texture_offset_x	-58.000000
+texture_offset_x	-58.403000
 texture_offset_y	6.000000
-texture_offset_z	699.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v2.png
-texture_offset_x	-58.000000
-texture_offset_y	6.000000
-texture_offset_z	763.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v1.png
-texture_offset_x	-58.000000
-texture_offset_y	6.000000
-texture_offset_z	827.000000
+texture_offset_z	442.408417
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12564,9 +12480,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/window_005_v3.png
-texture_offset_x	54.000000
+texture_offset_x	-58.403000
 texture_offset_y	6.000000
-texture_offset_z	122.000000
+texture_offset_z	506.487915
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12577,38 +12493,10 @@ sprite_color_red	0.500000
 sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v7.png
-texture_offset_x	54.000000
+add_new_texture	data/textures/window_005_v3.png
+texture_offset_x	-58.403000
 texture_offset_y	6.000000
-texture_offset_z	186.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v2.png
-texture_offset_x	54.000000
-texture_offset_y	6.000000
-texture_offset_z	250.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v2.png
-texture_offset_x	54.000000
-texture_offset_y	6.000000
-texture_offset_z	314.000000
+texture_offset_z	570.567383
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12620,9 +12508,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/window_005_v8.png
-texture_offset_x	54.000000
+texture_offset_x	-58.403000
 texture_offset_y	6.000000
-texture_offset_z	378.000000
+texture_offset_z	634.646851
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12634,37 +12522,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/window_005_v1.png
-texture_offset_x	54.000000
+texture_offset_x	-58.403000
 texture_offset_y	6.000000
-texture_offset_z	442.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v1.png
-texture_offset_x	54.000000
-texture_offset_y	6.000000
-texture_offset_z	506.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v8.png
-texture_offset_x	54.000000
-texture_offset_y	6.000000
-texture_offset_z	571.000000
+texture_offset_z	698.726379
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12676,9 +12536,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/window_005_v6.png
-texture_offset_x	54.000000
+texture_offset_x	-58.403000
 texture_offset_y	6.000000
-texture_offset_z	635.000000
+texture_offset_z	762.805847
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12689,108 +12549,10 @@ sprite_color_red	0.500000
 sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v6.png
-texture_offset_x	54.000000
+add_new_texture	data/textures/window_005_v3.png
+texture_offset_x	-58.403000
 texture_offset_y	6.000000
-texture_offset_z	699.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v2.png
-texture_offset_x	54.000000
-texture_offset_y	6.000000
-texture_offset_z	763.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v8.png
-texture_offset_x	54.000000
-texture_offset_y	6.000000
-texture_offset_z	827.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v6.png
-texture_offset_x	166.000000
-texture_offset_y	6.000000
-texture_offset_z	122.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v7.png
-texture_offset_x	166.000000
-texture_offset_y	6.000000
-texture_offset_z	186.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v8.png
-texture_offset_x	166.000000
-texture_offset_y	6.000000
-texture_offset_z	250.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v6.png
-texture_offset_x	166.000000
-texture_offset_y	6.000000
-texture_offset_z	314.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v1.png
-texture_offset_x	166.000000
-texture_offset_y	6.000000
-texture_offset_z	378.000000
+texture_offset_z	826.885315
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12802,9 +12564,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/window_005_v5.png
-texture_offset_x	166.000000
+texture_offset_x	53.594330
 texture_offset_y	6.000000
-texture_offset_z	442.000000
+texture_offset_z	122.010986
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12815,10 +12577,10 @@ sprite_color_red	0.500000
 sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v7.png
-texture_offset_x	166.000000
+add_new_texture	data/textures/window_005_v2.png
+texture_offset_x	53.594330
 texture_offset_y	6.000000
-texture_offset_z	506.000000
+texture_offset_z	186.090469
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12829,10 +12591,10 @@ sprite_color_red	0.500000
 sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v5.png
-texture_offset_x	166.000000
+add_new_texture	data/textures/window_005_v2.png
+texture_offset_x	53.594330
 texture_offset_y	6.000000
-texture_offset_z	571.000000
+texture_offset_z	250.169952
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12844,23 +12606,9 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/window_005_v8.png
-texture_offset_x	166.000000
+texture_offset_x	53.594330
 texture_offset_y	6.000000
-texture_offset_z	635.000000
-texture_shadow_size_x	1.000000
-texture_shadow_size_y	1.000000
-texture_shadow_bottom_tall	100.000000
-texture_shadow_upper_tall	100.000000
-texture_fragment_x	1.000000
-texture_fragment_y	1.000000
-sprite_color_red	0.500000
-sprite_color_green	0.500000
-sprite_color_blue	0.500000
-ADD_NEW_SPRITE
-add_new_texture	data/textures/window_005_v6.png
-texture_offset_x	166.000000
-texture_offset_y	6.000000
-texture_offset_z	699.000000
+texture_offset_z	314.249451
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12872,9 +12620,65 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/window_005_v5.png
-texture_offset_x	166.000000
+texture_offset_x	53.594330
 texture_offset_y	6.000000
-texture_offset_z	763.000000
+texture_offset_z	378.328918
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v7.png
+texture_offset_x	53.594330
+texture_offset_y	6.000000
+texture_offset_z	442.408417
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v5.png
+texture_offset_x	53.594330
+texture_offset_y	6.000000
+texture_offset_z	506.487915
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v4.png
+texture_offset_x	53.594330
+texture_offset_y	6.000000
+texture_offset_z	570.567383
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v7.png
+texture_offset_x	53.594330
+texture_offset_y	6.000000
+texture_offset_z	634.646851
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -12886,9 +12690,205 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/window_005_v1.png
-texture_offset_x	166.000000
+texture_offset_x	53.594330
 texture_offset_y	6.000000
-texture_offset_z	827.000000
+texture_offset_z	698.726379
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v8.png
+texture_offset_x	53.594330
+texture_offset_y	6.000000
+texture_offset_z	762.805847
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v7.png
+texture_offset_x	53.594330
+texture_offset_y	6.000000
+texture_offset_z	826.885315
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v7.png
+texture_offset_x	165.591675
+texture_offset_y	6.000000
+texture_offset_z	122.010986
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v2.png
+texture_offset_x	165.591675
+texture_offset_y	6.000000
+texture_offset_z	186.090469
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v7.png
+texture_offset_x	165.591675
+texture_offset_y	6.000000
+texture_offset_z	250.169952
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v8.png
+texture_offset_x	165.591675
+texture_offset_y	6.000000
+texture_offset_z	314.249451
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v4.png
+texture_offset_x	165.591675
+texture_offset_y	6.000000
+texture_offset_z	378.328918
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v5.png
+texture_offset_x	165.591675
+texture_offset_y	6.000000
+texture_offset_z	442.408417
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v3.png
+texture_offset_x	165.591675
+texture_offset_y	6.000000
+texture_offset_z	506.487915
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v3.png
+texture_offset_x	165.591675
+texture_offset_y	6.000000
+texture_offset_z	570.567383
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v5.png
+texture_offset_x	165.591675
+texture_offset_y	6.000000
+texture_offset_z	634.646851
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v3.png
+texture_offset_x	165.591675
+texture_offset_y	6.000000
+texture_offset_z	698.726379
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v5.png
+texture_offset_x	165.591675
+texture_offset_y	6.000000
+texture_offset_z	762.805847
+texture_shadow_size_x	1.000000
+texture_shadow_size_y	1.000000
+texture_shadow_bottom_tall	100.000000
+texture_shadow_upper_tall	100.000000
+texture_fragment_x	1.000000
+texture_fragment_y	1.000000
+sprite_color_red	0.500000
+sprite_color_green	0.500000
+sprite_color_blue	0.500000
+ADD_NEW_SPRITE
+add_new_texture	data/textures/window_005_v4.png
+texture_offset_x	165.591675
+texture_offset_y	6.000000
+texture_offset_z	826.885315
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13097,7 +13097,7 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/brown_rama_beton_wall_corner_v2.png
-texture_offset_x	273.000000
+texture_offset_x	273.194031
 texture_offset_y	6.000000
 texture_offset_z	86.000000
 texture_shadow_size_x	1.000000
@@ -13112,7 +13112,7 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/brown_rama_beton_wall_corner_v2.png
-texture_offset_x	273.000000
+texture_offset_x	273.194031
 texture_offset_y	6.000000
 texture_offset_z	147.000000
 texture_shadow_size_x	1.000000
@@ -13127,7 +13127,7 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/brown_rama_beton_wall_corner_v2.png
-texture_offset_x	273.000000
+texture_offset_x	273.194031
 texture_offset_y	6.000000
 texture_offset_z	208.000000
 texture_shadow_size_x	1.000000
@@ -13142,7 +13142,7 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/brown_rama_beton_wall_corner_v2.png
-texture_offset_x	273.000000
+texture_offset_x	273.194031
 texture_offset_y	6.000000
 texture_offset_z	269.000000
 texture_shadow_size_x	1.000000
@@ -13157,7 +13157,7 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/brown_rama_beton_wall_corner_v2.png
-texture_offset_x	273.000000
+texture_offset_x	273.194031
 texture_offset_y	6.000000
 texture_offset_z	330.000000
 texture_shadow_size_x	1.000000
@@ -13172,7 +13172,7 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/brown_rama_beton_wall_corner_v2.png
-texture_offset_x	273.000000
+texture_offset_x	273.194031
 texture_offset_y	6.000000
 texture_offset_z	391.000000
 texture_shadow_size_x	1.000000
@@ -13187,7 +13187,7 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/brown_rama_beton_wall_corner_v2.png
-texture_offset_x	273.000000
+texture_offset_x	273.194031
 texture_offset_y	6.000000
 texture_offset_z	452.000000
 texture_shadow_size_x	1.000000
@@ -13202,7 +13202,7 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/brown_rama_beton_wall_corner_v2.png
-texture_offset_x	273.000000
+texture_offset_x	273.194031
 texture_offset_y	6.000000
 texture_offset_z	513.000000
 texture_shadow_size_x	1.000000
@@ -13217,7 +13217,7 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/brown_rama_beton_wall_corner_v2.png
-texture_offset_x	273.000000
+texture_offset_x	273.194031
 texture_offset_y	6.000000
 texture_offset_z	574.000000
 texture_shadow_size_x	1.000000
@@ -13232,7 +13232,7 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/brown_rama_beton_wall_corner_v2.png
-texture_offset_x	273.000000
+texture_offset_x	273.194031
 texture_offset_y	6.000000
 texture_offset_z	635.000000
 texture_shadow_size_x	1.000000
@@ -13247,7 +13247,7 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/brown_rama_beton_wall_corner_v2.png
-texture_offset_x	273.000000
+texture_offset_x	273.194031
 texture_offset_y	6.000000
 texture_offset_z	696.000000
 texture_shadow_size_x	1.000000
@@ -13262,7 +13262,7 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/brown_rama_beton_wall_corner_v2.png
-texture_offset_x	273.000000
+texture_offset_x	273.194031
 texture_offset_y	6.000000
 texture_offset_z	757.000000
 texture_shadow_size_x	1.000000
@@ -13277,7 +13277,7 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/brown_rama_beton_wall_corner_v2.png
-texture_offset_x	273.000000
+texture_offset_x	273.194031
 texture_offset_y	6.000000
 texture_offset_z	818.000000
 texture_shadow_size_x	1.000000
@@ -13292,7 +13292,7 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/brown_rama_beton_wall_corner_v2.png
-texture_offset_x	273.000000
+texture_offset_x	273.194031
 texture_offset_y	6.000000
 texture_offset_z	879.000000
 texture_shadow_size_x	1.000000
@@ -13308,7 +13308,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	-294.000000
 texture_offset_y	6.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13322,7 +13322,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	-294.000000
 texture_offset_y	94.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13336,7 +13336,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	-294.000000
 texture_offset_y	182.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13350,7 +13350,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	-294.000000
 texture_offset_y	270.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13364,7 +13364,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	-158.000000
 texture_offset_y	6.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13378,7 +13378,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	-158.000000
 texture_offset_y	94.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13392,7 +13392,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	-158.000000
 texture_offset_y	182.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13406,7 +13406,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	-158.000000
 texture_offset_y	270.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13420,7 +13420,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	-22.000000
 texture_offset_y	6.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13434,7 +13434,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	-22.000000
 texture_offset_y	94.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13448,7 +13448,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	-22.000000
 texture_offset_y	182.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13462,7 +13462,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	-22.000000
 texture_offset_y	270.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13476,7 +13476,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	114.000000
 texture_offset_y	6.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13490,7 +13490,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	114.000000
 texture_offset_y	94.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13504,7 +13504,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	114.000000
 texture_offset_y	182.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13518,7 +13518,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	114.000000
 texture_offset_y	270.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13532,7 +13532,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	250.000000
 texture_offset_y	6.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13546,7 +13546,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	250.000000
 texture_offset_y	94.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13560,7 +13560,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	250.000000
 texture_offset_y	182.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13574,7 +13574,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_001_body_mid.png
 texture_offset_x	250.000000
 texture_offset_y	270.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13587,8 +13587,8 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_back_mid_001.png
 texture_offset_x	-294.000000
-texture_offset_y	305.000000
-texture_offset_z	918.000000
+texture_offset_y	304.803741
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13601,8 +13601,8 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_back_mid_001.png
 texture_offset_x	-158.000000
-texture_offset_y	305.000000
-texture_offset_z	918.000000
+texture_offset_y	304.803741
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13615,8 +13615,8 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_back_mid_001.png
 texture_offset_x	-22.000000
-texture_offset_y	305.000000
-texture_offset_z	918.000000
+texture_offset_y	304.803741
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13629,8 +13629,8 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_back_mid_001.png
 texture_offset_x	114.000000
-texture_offset_y	305.000000
-texture_offset_z	918.000000
+texture_offset_y	304.803741
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13643,8 +13643,8 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_back_mid_001.png
 texture_offset_x	250.000000
-texture_offset_y	305.000000
-texture_offset_z	918.000000
+texture_offset_y	304.803741
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13657,8 +13657,8 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_back_corner_001.png
 texture_offset_x	-299.000000
-texture_offset_y	305.000000
-texture_offset_z	918.000000
+texture_offset_y	304.803741
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13671,9 +13671,9 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/violet_roof_back_corner_001.png
-texture_offset_x	282.000000
-texture_offset_y	305.000000
-texture_offset_z	918.000000
+texture_offset_x	281.891968
+texture_offset_y	304.803741
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13687,7 +13687,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/roof_violet_body_mid_v1.png
 texture_offset_x	-299.000000
 texture_offset_y	18.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13701,7 +13701,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/roof_violet_body_mid_v1.png
 texture_offset_x	-299.000000
 texture_offset_y	114.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13715,7 +13715,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/roof_violet_body_mid_v1.png
 texture_offset_x	-299.000000
 texture_offset_y	210.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13728,9 +13728,9 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/roof_violet_body_mid_v1.png
-texture_offset_x	282.000000
+texture_offset_x	281.891968
 texture_offset_y	18.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13743,9 +13743,9 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/roof_violet_body_mid_v1.png
-texture_offset_x	282.000000
+texture_offset_x	281.891968
 texture_offset_y	114.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13758,9 +13758,9 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/roof_violet_body_mid_v1.png
-texture_offset_x	282.000000
+texture_offset_x	281.891968
 texture_offset_y	210.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13773,9 +13773,9 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/roof_violet_body_mid_v1.png
-texture_offset_x	282.000000
+texture_offset_x	281.891968
 texture_offset_y	306.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13789,7 +13789,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_face_mid_001.png
 texture_offset_x	-294.000000
 texture_offset_y	6.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13803,7 +13803,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_face_mid_001.png
 texture_offset_x	-158.000000
 texture_offset_y	6.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13817,7 +13817,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_face_mid_001.png
 texture_offset_x	-22.000000
 texture_offset_y	6.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13831,7 +13831,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_face_mid_001.png
 texture_offset_x	114.000000
 texture_offset_y	6.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13845,7 +13845,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/violet_roof_face_mid_001.png
 texture_offset_x	250.000000
 texture_offset_y	6.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13859,7 +13859,7 @@ ADD_NEW_SPRITE
 add_new_texture	data/textures/hrusch_roof_face_corner001.png
 texture_offset_x	-299.000000
 texture_offset_y	6.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13872,9 +13872,9 @@ sprite_color_blue	0.500000
 ADD_NEW_SPRITE
 *texture_mirrored
 add_new_texture	data/textures/hrusch_roof_face_corner001.png
-texture_offset_x	282.000000
+texture_offset_x	281.891968
 texture_offset_y	6.000000
-texture_offset_z	918.000000
+texture_offset_z	917.896362
 texture_shadow_size_x	1.000000
 texture_shadow_size_y	1.000000
 texture_shadow_bottom_tall	100.000000
@@ -13901,26 +13901,26 @@ sprite_color_green	0.500000
 sprite_color_blue	0.500000
 add_new_autobuilding_floor	-294.000000	6.000000	86.000000	0.000000	0.000000	1.000000
 floor_name	main
-wall_color	0.469277	0.447276	0.442003	1.000000
-wall_color	0.466783	0.430861	0.464325	1.000000
-wall_color	0.443255	0.421554	0.465798	1.000000
-wall_color	0.484694	0.450771	0.452168	1.000000
-wall_color	0.462738	0.459008	0.470218	1.000000
-wall_color	0.459184	0.489749	0.427183	1.000000
-wall_color	0.418182	0.502374	0.422891	1.000000
-wall_color	0.390951	0.462127	0.458351	1.000000
-wall_color	0.413359	0.476163	0.487352	1.000000
-wall_color	0.443349	0.520590	0.494237	1.000000
-wall_color	0.439100	0.480991	0.483131	1.000000
-wall_color	0.404595	0.466421	0.504528	1.000000
-wall_color	0.384867	0.470914	0.570243	1.000000
-wall_color	0.411594	0.472373	0.606173	1.000000
-wall_color	0.411423	0.474979	0.615077	1.000000
-wall_color	0.395750	0.522264	0.586836	1.000000
-wall_color	0.415880	0.548360	0.599050	1.000000
-wall_color	0.411352	0.538817	0.586020	1.000000
-wall_color	0.390732	0.521742	0.580622	1.000000
-wall_color	0.326550	0.550650	0.593350	1.000000
+wall_color	0.526951	0.530720	0.493015	1.000000
+wall_color	0.516907	0.546722	0.488723	1.000000
+wall_color	0.497319	0.556812	0.483736	1.000000
+wall_color	0.471501	0.561468	0.487355	1.000000
+wall_color	0.443297	0.557719	0.505041	1.000000
+wall_color	0.414641	0.544162	0.533949	1.000000
+wall_color	0.385997	0.524986	0.564633	1.000000
+wall_color	0.358269	0.507460	0.587405	1.000000
+wall_color	0.333377	0.496556	0.597254	1.000000
+wall_color	0.313538	0.492747	0.593936	1.000000
+wall_color	0.300077	0.493805	0.580155	1.000000
+wall_color	0.291368	0.497427	0.560990	1.000000
+wall_color	0.282055	0.502062	0.542873	1.000000
+wall_color	0.266929	0.506174	0.530352	1.000000
+wall_color	0.246551	0.508122	0.523775	1.000000
+wall_color	0.227227	0.507444	0.520842	1.000000
+wall_color	0.214687	0.505476	0.519560	1.000000
+wall_color	0.209348	0.503921	0.519071	1.000000
+wall_color	0.208002	0.503304	0.518959	1.000000
+wall_color	0.207850	0.503200	0.518950	1.000000
 floor_additional_distance_between_window_x	6.997338
 floor_additional_distance_between_window_y	9.079487
 add_new_wall_for_floor	0.000000	0.000000	0.000000	1.058001	1.000000

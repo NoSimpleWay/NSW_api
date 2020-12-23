@@ -88,25 +88,14 @@ void EBA::action_select_sprite(EButton* _b, float _d)
 
 void EBA::action_set_sprite_texture(EButton* _b, float _d)
 {
-	/*
-	EWindow::window_editor->selected_entity->sprite_list.at(EWindow::window_editor->selected_sprite_id)->sprite_struct_list.at(EWindow::window_editor->selected_frame_id)->gabarite = _b->gabarite;
-
-	EWindow::window_editor->update_sprite_buttons();
-
-	EWindow::window_search_brick->is_active = false;*/
 	EWindowEditor* ed = EWindow::window_editor;
 
-	//_b->gabarite = EWindow::window_editor->selected_entity->autobuilding_floor_list.at(ed->autobuilding_selected_floor)->wall_list.at(ed->autobuilding_selected_wall)->texture_variant_list.at(ed->selected_building_autogenerator_texture_variant)->texture;
 	if (EWindow::window_editor->object_variant != NULL)
 	{
 		EWindow::window_editor->object_variant->texture = _b->gabarite;
 		_b->description_text = _b->gabarite->name;
 	}
 
-	
-	//{
-	//	
-	//}
 
 	ed->selected_entity->autobuilding_floor_list.at(ed->autobuilding_selected_floor)->
 	wall_list.at(ed->autobuilding_selected_wall)->
@@ -114,16 +103,10 @@ void EBA::action_set_sprite_texture(EButton* _b, float _d)
 	supermap
 	=
 	ETextureAtlas::get_supermap_from_regular_texture_path(_b->gabarite->name, EWindow::default_texture_atlas);
-	//ETextureAtlas::put_texture_to_atlas(_b->gabarite->name.substr(0, _b->gabarite->name.length() - 4) + "#supermap.png", EWindow::default_texture_atlas);;
 
-	
 
 	ed->link_to_texture_variant_array->button_list.at(ed->autobuilding_selected_texture_variant)->gabarite = _b->gabarite;
 
-	//EWindow::window_search_brick->is_active = false;
-
-	ed->editor_mode = EWindowEditor::EditMode::EditAutobuilding;
-	EWindow::window_editor->refresh_autobuilding();
 }
 
 void EBA::action_open_select_texture_window(EButton* _b, float _d)
@@ -134,6 +117,8 @@ void EBA::action_open_select_texture_window(EButton* _b, float _d)
 
 	EWindow::window_search_brick->update_search(EWindow::window_search_brick->link_to_input);
 
+	for (EButton* b : EWindow::window_search_brick->brick_button)
+	{b->action_on_left_click = &EBA::action_set_sprite_texture;}
 
 
 
@@ -1286,6 +1271,14 @@ void EBA::action_set_button_value_float_to_address(EButton* _b, float _d)
 	}
 }
 
+void EBA::action_set_button_value_gabarite_to_address(EButton* _b, float _d)
+{
+	if (_b->target_address_for_gabarite != NULL)
+	{
+		*_b->target_address_for_gabarite = _b->gabarite;
+	}
+}
+
 void EBA::action_add_new_texture_variant_button(EButton* _b, float _d)
 {
 	/*EButton* but = new EButton(0.0f, 0.0f, 100.0f, 100.0f);
@@ -1564,6 +1557,10 @@ void EBA::action_select_texture_variant(EButton* _b, float _d)
 	//EWindow::window_editor->select_new_variant();
 	EWindow::window_editor->refresh_autobuilding();
 	EWindow::window_editor->move_mode = EWindowEditor::MoveMode::MoveTexture;
+	//(*_b->target_address_for_gabarite)->name = "x";
+	logger_param("texture link:", (*_b->target_address_for_gabarite)->name);
+
+	//*_b->target_address_for_gabarite = EGraphicCore::gabarite_radial_button;
 }
 
 void EBA::action_assembly_autobuilding(EButton* _b, float _d)
@@ -1614,6 +1611,11 @@ void EBA::action_wall_color_blur(EButton* _b, float _d)
 			EWindow::window_editor->object_floor->color_matrix.at(i)->blue = EWindow::window_editor->object_floor->color_matrix.at(i)->blue * 0.8f + EWindow::window_editor->object_floor->color_matrix.at(i + 1)->blue * 0.2f;
 		}
 	}
+}
+
+void EBA::action_set_terrain_texture(EButton* _b, float _d)
+{
+
 }
 
 

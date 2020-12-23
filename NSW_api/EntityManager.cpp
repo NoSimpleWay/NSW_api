@@ -1028,7 +1028,10 @@ void Entity::update_building_autogenerator_massive(Entity* _selected)
 
 				b->description_text = b->gabarite->name;
 
-				
+				b->target_address_for_gabarite = &_selected->autobuilding_floor_list.at(ed->autobuilding_selected_floor)->
+					wall_list.at(ed->autobuilding_selected_wall)->
+					texture_variant_list.at(dolboyob)->
+					texture;
 
 
 
@@ -1078,6 +1081,7 @@ void Entity::update_building_autogenerator_massive(Entity* _selected)
 				for (int k = 0; k < we->texture_variant_list.size(); k++)
 				{
 					wall_texture_variant* va = we->texture_variant_list.at(k);
+
 					if (va->texture != NULL)
 					{
 

@@ -302,6 +302,8 @@ public:
 	short* target_address_for_short;
 	short* target_value_for_short = new short(1);
 
+	EGabarite** target_address_for_gabarite;
+
 	std::string* target_address_for_string;
 	std::string* target_value_for_string = new std::string("");
 
@@ -486,6 +488,7 @@ public:
 	static EButton* clone_button(EButton* _b, float _x, float _y, float _sx, float _sy);
 
 	bool* double_click_started = new bool (false);
+	bool* is_double_click = new bool (false);
 
 	static bool any_input;
 

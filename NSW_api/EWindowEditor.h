@@ -198,8 +198,10 @@ public:
 
 
 	//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**
-	static button_array_collection_massive* terrain_editor_link;
+	static button_array_collection_massive* terrain_editor_massive_link;
 
+	static std::vector<EButton*> terrain_texture_button_link;
+	static std::vector<EButton*> terrain_texture_variant_button_link;
 
 
 };

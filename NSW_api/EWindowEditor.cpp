@@ -545,8 +545,9 @@ EWindowEditor::EWindowEditor()
 		a_array = new button_array;
 		a_vertical->button_array_list.push_back(a_array);
 
-			but = new EButton(0.0, 0.0f, 150.0f, 36.0f);
+			but = new EButton(0.0, 0.0f, 42.0f, 56.0f);
 				but->have_bg = false;
+				but->have_rama = false;
 				but->master_window = this;
 				*but->side_text = "Blur factor";
 				*but->is_radial_button = true;
@@ -566,8 +567,9 @@ EWindowEditor::EWindowEditor()
 
 		a_array = new button_array;
 		a_vertical->button_array_list.push_back(a_array);
+			but = new EButton(0.0, 0.0f, 42.0f, 56.0f);
 			but->have_bg = false;
-			but = new EButton(0.0, 0.0f, 150.0f, 36.0f);
+			but->have_rama = false;
 			but->text_color->set_color(EColor::COLOR_ORANGE);
 			but->master_window = this;
 			*but->side_text = "Blur blend";
@@ -582,8 +584,9 @@ EWindowEditor::EWindowEditor()
 
 		a_array = new button_array;
 		a_vertical->button_array_list.push_back(a_array);
+			but = new EButton(0.0, 0.0f, 42.0f, 56.0f);
 			but->have_bg = false;
-			but = new EButton(0.0, 0.0f, 150.0f, 36.0f);
+			but->have_rama = false;
 			but->text_color->set_color(EColor::COLOR_ORANGE);
 			but->master_window = this;
 			*but->side_text = "Blur decay";
@@ -766,8 +769,9 @@ EWindowEditor::EWindowEditor()
 
 	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
 	a_vertical->button_array_list.push_back(a_array);
-
-	but = new EButton(0.0, 0.0f, 200.0f, 30.0f);
+	but = new EButton(0.0, 0.0f, 42.0f, 56.0f);
+		but->have_bg = false;
+		but->have_rama = false;
 		*but->is_radial_button = true;
 		but->bg_color->set_color(EColor::COLOR_WHITE);
 		but->text_color->set_color(EColor::COLOR_GREEN);
@@ -781,7 +785,9 @@ EWindowEditor::EWindowEditor()
 		*but->is_consumable = true;
 	a_array->button_list.push_back(but);
 
-	but = new EButton(0.0, 0.0f, 200.0f, 30.0f);
+	but = new EButton(0.0, 0.0f, 42.0f, 56.0f);
+		but->have_bg = false;
+		but->have_rama = false;
 		*but->is_radial_button = true;
 		but->bg_color->set_color(EColor::COLOR_WHITE);
 		but->text_color->set_color(EColor::COLOR_GREEN);
@@ -795,7 +801,9 @@ EWindowEditor::EWindowEditor()
 		*but->is_consumable = true;
 	a_array->button_list.push_back(but);
 
-	but = new EButton(0.0, 0.0f, 200.0f, 30.0f);
+	but = new EButton(0.0, 0.0f, 42.0f, 56.0f);
+		but->have_bg = false;
+		but->have_rama = false;
 		*but->is_radial_button = true;
 		but->bg_color->set_color(EColor::COLOR_WHITE);
 		but->text_color->set_color(EColor::COLOR_GREEN);
@@ -898,6 +906,8 @@ EWindowEditor::EWindowEditor()
 				but->action_on_right_click = &EBA::action_deactivate_texture_variant;
 				but->action_on_left_click = &EBA::action_select_texture_variant;
 				but->action_on_left_double_click = &EBA::action_open_select_texture_window;
+				*but->is_double_click = true;
+				*but->is_double_click = true;
 				but->have_icon = true;
 
 				but->data_id = i;
@@ -1088,8 +1098,8 @@ EWindowEditor::EWindowEditor()
 
 
 	
-
-	but = new EButton(260.0f, 0.0f, 150.0f, 50.0f);
+	//*//
+	but = new EButton(280.0f, 0.0f, 42.0f, 56.0f);
 	//building_autogenerator_link_to_left_wall = but;
 		link_to_bottom_tall_button = but;
 		*but->is_consumable = true;
@@ -1104,7 +1114,8 @@ EWindowEditor::EWindowEditor()
 
 	a_array->button_list.push_back(but);
 
-	but = new EButton(420.0f, 0.0f, 150.0f, 50.0f);
+	//*//
+	but = new EButton(360.0f, 0.0f, 42.0f, 56.0f);
 		//building_autogenerator_link_to_left_wall = but;
 		link_to_upper_tall_button = but;
 
@@ -1131,7 +1142,7 @@ EWindowEditor::EWindowEditor()
 		but->action_on_left_click = &EBA::action_select_building_autogenerator_wall_element;
 	a_array->button_list.push_back(but);
 
-	but = new EButton(260.0f, 60.0f, 150.0f, 50.0f);
+	but = new EButton(280.0f, 60.0f, 42.0f, 56.0f);
 		link_to_window_offset_x = but;
 		but->text_color->set_color(EColor::COLOR_YELLOW);
 		*but->is_consumable = true;
@@ -1145,7 +1156,7 @@ EWindowEditor::EWindowEditor()
 		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
 	a_array->button_list.push_back(but);
 
-	but = new EButton(420.0f, 60.0f, 150.0f, 50.0f);
+	but = new EButton(360.0f, 60.0f, 42.0f, 56.0f);
 		link_to_window_offset_y = but;
 		but->text_color->set_color(EColor::COLOR_YELLOW);
 		*but->is_consumable = true;
@@ -1159,8 +1170,8 @@ EWindowEditor::EWindowEditor()
 		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
 	a_array->button_list.push_back(but);
 
-	but = new EButton(420.0f, 115.0f, 150.0f, 25.0f);
-		but->text = "Stretched";
+	but = new EButton(360.0f, 115.0f, 50.0f, 25.0f);
+		but->text = "Str.";
 		link_to_wall_window_mode = but;
 		*but->is_consumable = true;
 		but->master_window = this;
@@ -1246,6 +1257,7 @@ EWindowEditor::EWindowEditor()
 		but->action_on_left_click = &EBA::action_select_floor;
 		but->action_on_left_double_click = &EBA::action_start_input;
 		but->action_on_input = &EBA::action_refresh_drop_autobuilding_list;
+		*but->is_double_click = true;
 		//but->action_on_ = &EBA::action_refresh_drop_autobuilding_list;
 		but->have_icon = false;
 
@@ -1415,6 +1427,76 @@ EWindowEditor::EWindowEditor()
 			link_to_wall_color_matrix.push_back(but);
 		a_array->button_list.push_back(but);
 	}
+
+
+
+
+
+
+/// <summary>
+/// TERRAIN MASSIVE
+/// </summary>
+	a_massive = new button_array_collection_massive(this);
+	*a_massive->is_active = true;
+	button_array_collection_massive_list.push_back(a_massive);
+	terrain_editor_massive_link = a_massive;
+	*a_massive->size_x = 600.0f;
+	*a_massive->size_y = 100.0f;
+	*a_massive->position_x = 0;
+	*a_massive->position_y = 0;
+
+
+
+	//****************************************
+	//"add new texture" variant button
+	//****************************************
+	a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 200.0f, 30.0f);
+	a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
+
+
+
+	a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 200.0f, 150.0f);
+	*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
+	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
+
+
+		a_array = new button_array;
+		a_vertical->button_array_list.push_back(a_array);
+		for (int j = 0; j < 10; j++)
+		{
+			but = new EButton(0.0f, 0.0f, 50.0f, 50.0f);
+			terrain_texture_button_link.push_back(but);
+
+			but->master_window = this;
+			but->text = "v";
+			a_array->button_list.push_back(but);
+		}
+
+
+
+	a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 200.0f, 150.0f);
+	*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
+	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
+
+	for (int i = 0; i < 3; i++)
+	{
+		a_array = new button_array;
+		a_vertical->button_array_list.push_back(a_array);
+		for (int j = 0; j < 10; j++)
+		{
+			but = new EButton(0.0f, 0.0f, 50.0f, 50.0f);
+			terrain_texture_variant_button_link.push_back(but);
+			but->master_window = this;
+			but->text = "t";
+			a_array->button_list.push_back(but);
+		}
+	}
+	/*
+	but = new EButton(0.0f, 0.0f, 20.0f, 20.0f);
+	but->master_window = this;
+	but->text = "+";
+	but->action_on_left_click = &EBA::action_add_new_texture_variant_button;
+	a_array->button_list.push_back(but);*/
 	
 
 
@@ -1458,7 +1540,10 @@ std::vector<EButton*> EWindowEditor::stencil_button_list;
 std::vector<EButton*>  EWindowEditor::link_to_wall_color_matrix;
 
 //**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**
-EWindow::button_array_collection_massive* EWindowEditor::terrain_editor_link;
+EWindow::button_array_collection_massive* EWindowEditor::terrain_editor_massive_link;
+
+std::vector<EButton*>  EWindowEditor::terrain_texture_button_link;
+std::vector<EButton*>  EWindowEditor::terrain_texture_variant_button_link;
 
 float EWindowEditor::get_move_multiplier(float _zoom)
 {
@@ -3175,8 +3260,10 @@ void EWindowEditor::select_new_variant()
 				b->rama_color->set_color(EColor::COLOR_YELLOW);
 
 				EWindow::window_editor->building_autogenerator_wall_button_link.at(autobuilding_selected_wall)->gabarite
-					=
-					b->gabarite;
+				=
+				b->gabarite;
+
+				
 			}
 			else
 			{

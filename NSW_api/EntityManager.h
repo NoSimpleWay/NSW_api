@@ -331,6 +331,8 @@ public:
 
 		bool* otebis = new bool[50];
 
+		EColor* element_color = new EColor(0.5f, 0.5f, 0.5f, 1.0f);
+		float* element_color_multiplier = new float(1.0f);
 
 		//std::fill_n(otebis, 50, true);
 

@@ -1307,7 +1307,10 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 					*spr->sprite_struct_list.at(0)->fragment_x = min(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_x - i, 1.0f) + 0.00f;
 					*spr->sprite_struct_list.at(0)->fragment_y = min(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y - yy, 1.0f) + 0.00f;
 					if (yy < AB_floor->color_matrix.size()) { spr->sprite_struct_list.at(0)->sprite_color->set_color(AB_floor->color_matrix.at(yy)); }
-					//_e->sprite_list.push_back(spr);
+
+					spr->sprite_struct_list.at(0)->sprite_color->red	*= AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->element_color->red	* 2.0f * *AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->element_color_multiplier;
+					spr->sprite_struct_list.at(0)->sprite_color->green	*= AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->element_color->green	* 2.0f * *AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->element_color_multiplier;
+					spr->sprite_struct_list.at(0)->sprite_color->blue	*= AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->element_color->blue	* 2.0f * *AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->element_color_multiplier;					//_e->sprite_list.push_back(spr);
 				}
 			random_select = 0;
 
@@ -1381,7 +1384,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 				w_copies_x = ceil(w_fragment);
 				w_copies_x = min(w_copies_x, 50);
 
-				logger_param("window copies x:", w_copies_x);
+				//logger_param("window copies x:", w_copies_x);
 
 				if (w_fragment > 1.0f)
 				{
@@ -1475,7 +1478,9 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 
 
 					AB_MACRO_append_sprite_data(WEI_WINDOW, random_select, 0);
-
+					spr->sprite_struct_list.at(0)->sprite_color->red	*= AB_floor->wall_list.at(Entity::WallElementIndex::WEI_WINDOW)->element_color->red		* 2.0f * *AB_floor->wall_list.at(Entity::WallElementIndex::WEI_WINDOW)->element_color_multiplier;
+					spr->sprite_struct_list.at(0)->sprite_color->green	*= AB_floor->wall_list.at(Entity::WallElementIndex::WEI_WINDOW)->element_color->green	* 2.0f * *AB_floor->wall_list.at(Entity::WallElementIndex::WEI_WINDOW)->element_color_multiplier;
+					spr->sprite_struct_list.at(0)->sprite_color->blue	*= AB_floor->wall_list.at(Entity::WallElementIndex::WEI_WINDOW)->element_color->blue	* 2.0f * *AB_floor->wall_list.at(Entity::WallElementIndex::WEI_WINDOW)->element_color_multiplier;
 
 					
 
@@ -1489,7 +1494,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 				if ((xx <= w_copies_x - 1) & (!*AB_floor->wall_window_is_stretched)) { result_offset_x += distance_between_windows_x; }
 			}
 
-
+			
 		}
 		random_select = 0;
 
@@ -1676,19 +1681,29 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 		{
 			//middle_multiplier = roof_size_x -
 			if (AB_MACRO_is_valid(_WEI_MAIN_ROOF_, random_select))
-			{scale_factor_x = AB_MACRO_get_scale_x(WEI_BACK_MID_ROOF, random_select, _WEI_MAIN_ROOF_, random_select);}
-			else { scale_factor_x = 1.0f;}
+			{
+				scale_factor_x = AB_MACRO_get_scale_x(WEI_BACK_MID_ROOF, random_select, _WEI_MAIN_ROOF_, random_select);}
+			else
+			{ 
+				scale_factor_x = 1.0f;
+			}
 
 			float rsize = roof_size_x;
 
 			if ((AB_MACRO_is_valid(WEI_BACK_LEFT_ROOF, random_select)) & (*_e->autobuilding_left_border.at(z)))
 			{ rsize -= AB_MACRO_get_texture_variant_size_x(WEI_BACK_LEFT_ROOF, random_select) * (1.0f - *AB_floor->horizontal_roof_offset_multiplier);}
 
+			if (AB_MACRO_is_valid(_WEI_MAIN_ROOF_, random_select))
+			{
+				rsize = rsize / roof_size_x;
+				max(rsize, 0.0f);
 
-			rsize = rsize / roof_size_x;
-			max(rsize , 0.0f);
-
-			scale_factor_x *= rsize;
+				scale_factor_x *= rsize;
+			}
+			else
+			{
+				scale_factor_x = 1.0f;
+			}
 
 			for (int xx = 0; xx < ceil(*AB_floor->wall_list.at(Entity::WallElementIndex::_WEI_MAIN_ROOF_)->repeat_x * scale_factor_x); xx++)
 			{
@@ -1751,6 +1766,14 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 			{
 				ox += AB_MACRO_get_texture_variant_size_x(_WEI_MAIN_ROOF_, random_select) * roof_copies_x;
 				oy += AB_MACRO_get_texture_variant_size_y(_WEI_MAIN_ROOF_, random_select) * roof_copies_y;
+			}
+			else
+			{
+				if (AB_MACRO_is_valid(WEI_BACK_MID_ROOF, random_select))
+				{
+					ox += AB_MACRO_get_texture_variant_size_x(WEI_BACK_MID_ROOF, random_select) * roof_copies_x;
+					//oy += AB_MACRO_get_texture_variant_size_y(WEI_BACK_MID_ROOF, random_select);
+				}
 			}
 
 			ox -= AB_MACRO_get_texture_variant_size_x(WEI_BACK_RIGHT_ROOF, random_select) * (1.0f - *AB_floor->horizontal_roof_offset_multiplier);
@@ -1927,9 +1950,14 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 			ox = AB_MACRO_get_texture_offset(WEI_FACE_RIGHT_ROOF, random_select, offset_x) + stage_offset_x;
 			oy = AB_MACRO_get_texture_offset(WEI_FACE_RIGHT_ROOF, random_select, offset_y);
 			
-			//logger("03");
-			if (AB_macro_is_texture_not_null(_WEI_MAIN_ROOF_, random_select))
+			//if have middle main roof, offset corner by roof size
+			if (AB_MACRO_is_valid(_WEI_MAIN_ROOF_, random_select))
 			{ox += AB_MACRO_get_texture_variant_size_x(_WEI_MAIN_ROOF_, random_select) * roof_copies_x;}
+			else
+			//else if face mid roof exist, offset by face mid roof size
+			{	if (AB_MACRO_is_valid(WEI_FACE_MID_ROOF, random_select))
+				{ox += AB_MACRO_get_texture_variant_size_x(WEI_FACE_MID_ROOF, random_select) * roof_copies_x;}
+			}
 			//logger("04");
 
 			if (AB_MACRO_is_valid(WEI_FACE_LEFT_ROOF, random_select))

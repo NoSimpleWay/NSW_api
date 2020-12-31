@@ -188,13 +188,16 @@ public:
 
 	static EButton* link_to_wall_window_mode;
 
-	static EButton* link_to_wall_color_red;
-	static EButton* link_to_wall_color_green;
-	static EButton* link_to_wall_color_blue;
+	static EButton* link_to_wall_floor_color_red;
+	static EButton* link_to_wall_floor_color_green;
+	static EButton* link_to_wall_floor_color_blue;
 
 	static std::vector<EButton*> link_to_wall_color_matrix;
 
-
+	static EButton* link_to_wall_element_color_red;
+	static EButton* link_to_wall_element_color_green;
+	static EButton* link_to_wall_element_color_blue;
+	static EButton* link_to_wall_element_color_multiplier;
 
 
 	//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**

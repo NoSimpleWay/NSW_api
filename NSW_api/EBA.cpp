@@ -313,6 +313,7 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 		w_string += "floor_additional_distance_between_window_y\t";
 		w_string += std::to_string(*f->window_distance_y);
 		w_string += "\n";
+
 		for (Entity::wall_element* w : f->wall_list)
 		{
 			w_string += "add_new_wall_for_floor\t";
@@ -342,6 +343,13 @@ void EBA::save_to_file(std::string& w_string, Entity* e, int& order, bool _to_co
 					w_string += std::to_string(*t->tall_up);
 				w_string += "\n";
 			}
+
+			w_string += "wall_element_color\t";
+				w_string += std::to_string(w->element_color->red)			+ "\t";
+				w_string += std::to_string(w->element_color->green)			+ "\t";
+				w_string += std::to_string(w->element_color->blue)			+ "\t";
+				w_string += std::to_string(*w->element_color_multiplier);
+			w_string += "\n";
 		}
 
 		id++;
@@ -896,6 +904,15 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 					i++;  *just_created_texture_variant->shadow_size_y = std::stof(EFile::data_array[i]);
 					i++;  *just_created_texture_variant->tall_bottom = std::stof(EFile::data_array[i]);
 					i++;  *just_created_texture_variant->tall_up = std::stof(EFile::data_array[i]);
+				}
+
+				if (EFile::data_array[i] == "wall_element_color")
+				{
+					i++;  just_created_wall->element_color->red				= std::stof(EFile::data_array[i]);
+					i++;  just_created_wall->element_color->green			= std::stof(EFile::data_array[i]);
+					i++;  just_created_wall->element_color->blue			= std::stof(EFile::data_array[i]);
+					
+					i++;  *just_created_wall->element_color_multiplier		= std::stof(EFile::data_array[i]);
 				}
 			}
 		}
@@ -1600,15 +1617,75 @@ void EBA::action_wall_color_noise(EButton* _b, float _d)
 
 void EBA::action_wall_color_blur(EButton* _b, float _d)
 {
+	int color_count = 0;
+	float color_summ = 0.0f;
+
 	if (EWindow::window_editor->object_floor != NULL)
 	{
 		//for (EColor* c : EWindow::window_editor->object_floor->color_matrix)
-		for (int i=0; i < EWindow::window_editor->object_floor->color_matrix.size() - 1; i++)
+
+
+		for (int i=0; i <= EWindow::window_editor->autobuilding_selected_color_matrix; i++)
 		{
 			//EColor::get_interpolate_color(EWindow::window_editor->object_floor->color_matrix.at(i), 0.2f, EWindow::window_editor->object_floor->color_matrix.at(i))
-			EWindow::window_editor->object_floor->color_matrix.at(i)->red = EWindow::window_editor->object_floor->color_matrix.at(i)->red * 0.8f + EWindow::window_editor->object_floor->color_matrix.at(i + 1)->red * 0.2f;
-			EWindow::window_editor->object_floor->color_matrix.at(i)->green = EWindow::window_editor->object_floor->color_matrix.at(i)->green * 0.8f + EWindow::window_editor->object_floor->color_matrix.at(i + 1)->green * 0.2f;
-			EWindow::window_editor->object_floor->color_matrix.at(i)->blue = EWindow::window_editor->object_floor->color_matrix.at(i)->blue * 0.8f + EWindow::window_editor->object_floor->color_matrix.at(i + 1)->blue * 0.2f;
+			color_count = 0;
+			color_summ = 0.0f;
+
+			//up red
+				if (i < EWindow::window_editor->autobuilding_selected_color_matrix)
+				{color_summ += EWindow::window_editor->object_floor->color_matrix.at(i + 1)->red; color_count++;}
+
+			//mid red
+				color_summ += EWindow::window_editor->object_floor->color_matrix.at(i)->red; color_count++;
+
+			//down red
+			if (i > 0)
+				{color_summ += EWindow::window_editor->object_floor->color_matrix.at(i - 1)->red; color_count++;}
+
+				EWindow::window_editor->object_floor->color_matrix.at(i)->red = color_summ / (float)color_count;
+
+
+
+			color_count = 0;
+			color_summ = 0.0f;
+
+				//up green
+				if (i < EWindow::window_editor->autobuilding_selected_color_matrix)
+				{
+					color_summ += EWindow::window_editor->object_floor->color_matrix.at(i + 1)->green; color_count++;
+				}
+
+				//mid green
+				color_summ += EWindow::window_editor->object_floor->color_matrix.at(i)->green; color_count++;
+
+				//down green
+				if (i > 0)
+				{
+					color_summ += EWindow::window_editor->object_floor->color_matrix.at(i - 1)->green; color_count++;
+				}
+
+				EWindow::window_editor->object_floor->color_matrix.at(i)->green = color_summ / (float)color_count;
+
+
+				color_count = 0;
+				color_summ = 0.0f;
+
+				//up blue
+				if (i < EWindow::window_editor->autobuilding_selected_color_matrix)
+				{
+					color_summ += EWindow::window_editor->object_floor->color_matrix.at(i + 1)->blue; color_count++;
+				}
+
+				//mid blue
+				color_summ += EWindow::window_editor->object_floor->color_matrix.at(i)->blue; color_count++;
+
+				//down blue
+				if (i > 0)
+				{
+					color_summ += EWindow::window_editor->object_floor->color_matrix.at(i - 1)->blue; color_count++;
+				}
+
+				EWindow::window_editor->object_floor->color_matrix.at(i)->blue = color_summ / (float)color_count;
 		}
 	}
 }
@@ -1616,6 +1693,25 @@ void EBA::action_wall_color_blur(EButton* _b, float _d)
 void EBA::action_set_terrain_texture(EButton* _b, float _d)
 {
 
+}
+
+void EBA::action_reset_floor_wall_color(EButton* _b, float _d)
+{
+	if
+	(
+		(EWindow::window_editor->selected_entity != NULL)
+		&&
+		(EWindow::window_editor->object_floor != NULL)
+		&&
+		(_b->data_id >= 0)
+		&&
+		(_b->data_id < EWindow::window_editor->object_floor->color_matrix.size())
+	)
+	{
+		EWindow::window_editor->object_floor->color_matrix.at(_b->data_id)->red		= 0.5f;
+		EWindow::window_editor->object_floor->color_matrix.at(_b->data_id)->green	= 0.5f;
+		EWindow::window_editor->object_floor->color_matrix.at(_b->data_id)->blue	= 0.5f;
+	}
 }
 
 

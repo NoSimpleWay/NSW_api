@@ -1352,7 +1352,7 @@ EWindowEditor::EWindowEditor()
 		but->text = "= blue =";
 		but->bg_color->set_color(EColor::COLOR_BLUE);
 		but->is_slider = true;
-		link_to_wall_color_blue = but;
+		link_to_wall_floor_color_blue = but;
 		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
 		*but->is_consumable = true;
 	a_array->button_list.push_back(but);
@@ -1364,7 +1364,7 @@ EWindowEditor::EWindowEditor()
 		but->text = "= green =";
 		but->bg_color->set_color(EColor::COLOR_GREEN);
 		but->is_slider = true;
-		link_to_wall_color_green = but;
+		link_to_wall_floor_color_green = but;
 		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
 		*but->is_consumable = true;
 	a_array->button_list.push_back(but);
@@ -1376,7 +1376,7 @@ EWindowEditor::EWindowEditor()
 		but->text = "= red =";
 		but->bg_color->set_color(EColor::COLOR_RED);
 		but->is_slider = true;
-		link_to_wall_color_red = but;
+		link_to_wall_floor_color_red = but;
 		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
 		*but->is_consumable = true;
 	a_array->button_list.push_back(but);
@@ -1415,10 +1415,11 @@ EWindowEditor::EWindowEditor()
 			a_array = new button_array;
 			a_vertical->button_array_list.push_back(a_array);
 			but->master_window = this;
-			but->text = "floor color";
+			but->text = "floor color[" + std::to_string(i) + "]";
 			but->have_rama = true;
 
 			but->action_on_left_click = &EBA::action_set_constant_int_to_address;
+			but->action_on_right_click = &EBA::action_reset_floor_wall_color;
 			but->target_address_for_int = &autobuilding_selected_color_matrix;
 			*but->target_value_for_int = i;
 
@@ -1429,8 +1430,66 @@ EWindowEditor::EWindowEditor()
 	}
 
 
+	/// <summary>
+	/// _______WALL ELEMENT COLOR_______
+	/// </summary>
+	/// 
+	a_horizontal = new button_array_horizontal_collection(5.0f, 5.0f, 100.0f, 30.0f);
+	*a_horizontal->push_method = ARRAY_PUSH_METHOD::APM_PUSH_X;
+	a_massive->button_array_horizontal_collection_list.push_back(a_horizontal);
 
+	a_vertical = new button_array_vertical_collection(5.0f, 5.0f, 100.0f, 150.0f);
+	*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
+	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
 
+	but = new EButton(0.0f, 0.0f, 100.0f, 20.0f);
+		a_array = new button_array;
+		a_vertical->button_array_list.push_back(a_array);
+		but->master_window = this;
+		but->text = "= blue =";
+		but->bg_color->set_color(EColor::COLOR_BLUE);
+		but->is_slider = true;
+		link_to_wall_element_color_blue = but;
+		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+		*but->is_consumable = true;
+		a_array->button_list.push_back(but);
+
+	but = new EButton(0.0f, 0.0f, 100.0f, 20.0f);
+		a_array = new button_array;
+		a_vertical->button_array_list.push_back(a_array);
+		but->master_window = this;
+		but->text = "= green =";
+		but->bg_color->set_color(EColor::COLOR_GREEN);
+		but->is_slider = true;
+		link_to_wall_element_color_green = but;
+		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+		*but->is_consumable = true;
+		a_array->button_list.push_back(but);
+
+	but = new EButton(0.0f, 0.0f, 100.0f, 20.0f);
+		a_array = new button_array;
+		a_vertical->button_array_list.push_back(a_array);
+		but->master_window = this;
+		but->text = "= red =";
+		but->bg_color->set_color(EColor::COLOR_RED);
+		but->is_slider = true;
+		link_to_wall_element_color_red = but;
+		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+		*but->is_consumable = true;
+		a_array->button_list.push_back(but);
+
+	but = new EButton(0.0f, 0.0f, 100.0f, 20.0f);
+		a_array = new button_array;
+		a_vertical->button_array_list.push_back(a_array);
+		but->master_window = this;
+		but->text = "= MUL =";
+		but->bg_color->set_color(EColor::COLOR_WHITE);
+		but->is_slider = true;
+		*but->maximum_value = 2.0f;
+		link_to_wall_element_color_multiplier = but;
+		but->action_on_slider_drag = &EBA::action_set_button_value_float_to_address;
+		*but->is_consumable = true;
+		a_array->button_list.push_back(but);
 
 
 /// <summary>
@@ -1526,9 +1585,14 @@ std::vector<EButton*>  EWindowEditor::link_to_generate_offset_y;
 
 EButton* EWindowEditor::link_to_wall_window_mode;
 
-EButton* EWindowEditor::link_to_wall_color_red;
-EButton* EWindowEditor::link_to_wall_color_green;
-EButton* EWindowEditor::link_to_wall_color_blue;
+EButton* EWindowEditor::link_to_wall_floor_color_red;
+EButton* EWindowEditor::link_to_wall_floor_color_green;
+EButton* EWindowEditor::link_to_wall_floor_color_blue;
+
+EButton* EWindowEditor::link_to_wall_element_color_red;
+EButton* EWindowEditor::link_to_wall_element_color_green;
+EButton* EWindowEditor::link_to_wall_element_color_blue;
+EButton* EWindowEditor::link_to_wall_element_color_multiplier;
 
 Entity::building_autogen_floor*				EWindowEditor::object_floor;
 Entity::wall_element*						EWindowEditor::object_wall;
@@ -1879,14 +1943,19 @@ void EWindowEditor::update(float _d)
 		for (Entity* e:ECluster::clusters[j][i]->entity_list)
 		{
 
-			float dst_x = (ECamera::get_world_position_x(EWindow::window_test->game_camera)) - *e->position_x;
-			float dst_y = (ECamera::get_world_position_y(EWindow::window_test->game_camera)) - *e->position_y;
+			//float dst_x = (ECamera::get_world_position_x(EWindow::window_test->game_camera)) - *e->position_x;
+			//float dst_y = (ECamera::get_world_position_y(EWindow::window_test->game_camera)) - *e->position_y;
 
-			if (dst_x * dst_x + dst_y * dst_y < min_dst)
+			float dst_left = (*e->position_x - *e->collision_left) - ECamera::get_world_position_x(EWindow::window_test->game_camera);
+			float dst_right = ECamera::get_world_position_x(EWindow::window_test->game_camera) - (*e->position_x + *e->collision_right);
+
+			float dst_up = ECamera::get_world_position_y(EWindow::window_test->game_camera) - (*e->position_y + *e->collision_up);
+			float dst_down = (*e->position_x - *e->collision_left) - ECamera::get_world_position_x(EWindow::window_test->game_camera);
+			/*if (dst_x * dst_x + dst_y * dst_y < min_dst)
 			{
 				nearest_entity = e;
 				min_dst = dst_x * dst_x + dst_y * dst_y;
-			}
+			}*/
 
 
 
@@ -2520,13 +2589,13 @@ void EWindowEditor::update(float _d)
 				if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabariteCollision)
 				{
 					*selected_entity->collision_down -= EWindow::mouse_speed_y * mul;
-					*selected_entity->collision_down = EMath::clamp_value_float(*selected_entity->collision_down, 0.0f, 512.0f);
+					*selected_entity->collision_down = EMath::clamp_value_float(*selected_entity->collision_down, -512.0f, 512.0f);
 				}
 
 				if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabaritePathBlock)
 				{
 					*selected_entity->path_block_gabarite_down -= EWindow::mouse_speed_y * mul;
-					*selected_entity->path_block_gabarite_down = EMath::clamp_value_float(*selected_entity->path_block_gabarite_down, 0.0f, 512.0f);
+					*selected_entity->path_block_gabarite_down = EMath::clamp_value_float(*selected_entity->path_block_gabarite_down, -512.0f, 512.0f);
 				}
 			}
 
@@ -2541,7 +2610,7 @@ void EWindowEditor::update(float _d)
 				if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabaritePathBlock)
 				{
 					*selected_entity->path_block_gabarite_up += EWindow::mouse_speed_y * mul;
-					*selected_entity->path_block_gabarite_up = EMath::clamp_value_float(*selected_entity->path_block_gabarite_up, 0.0f, 512.0f);
+					*selected_entity->path_block_gabarite_up = EMath::clamp_value_float(*selected_entity->path_block_gabarite_up, -512.0f, 512.0f);
 				}
 			}
 
@@ -2550,7 +2619,7 @@ void EWindowEditor::update(float _d)
 				if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabariteCollision)
 				{
 					*selected_entity->collision_left -= EWindow::mouse_speed_x * mul;
-					*selected_entity->collision_left = EMath::clamp_value_float(*selected_entity->collision_left, 0.0f, 512.0f);
+					*selected_entity->collision_left = EMath::clamp_value_float(*selected_entity->collision_left, -512.0f, 512.0f);
 				}
 
 				if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabaritePathBlock)
@@ -3509,6 +3578,14 @@ void EWindowEditor::select_new_wall()
 		}
 	}
 
+	if (object_wall != NULL)
+	{
+		link_to_wall_element_color_red->target_address_for_float = &object_wall->element_color->red;
+		link_to_wall_element_color_green->target_address_for_float = &object_wall->element_color->green;
+		link_to_wall_element_color_blue->target_address_for_float = &object_wall->element_color->blue;
+
+		link_to_wall_element_color_multiplier->target_address_for_float = object_wall->element_color_multiplier;
+	}
 
 }
 
@@ -3543,9 +3620,9 @@ void EWindowEditor::select_new_wall_color()
 
 					b->button_size_y = 40.0f;
 
-					link_to_wall_color_red->target_address_for_float = &object_wall_color->red;
-					link_to_wall_color_green->target_address_for_float = &object_wall_color->green;
-					link_to_wall_color_blue->target_address_for_float = &object_wall_color->blue;
+					link_to_wall_floor_color_red->target_address_for_float = &object_wall_color->red;
+					link_to_wall_floor_color_green->target_address_for_float = &object_wall_color->green;
+					link_to_wall_floor_color_blue->target_address_for_float = &object_wall_color->blue;
 				}
 				else
 				{

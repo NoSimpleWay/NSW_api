@@ -107,7 +107,7 @@ public:
 
 	EGabarite* terrain_200;
 
-	float day_time = 0.0f;
+	float day_time = 0.7f;
 
 
 

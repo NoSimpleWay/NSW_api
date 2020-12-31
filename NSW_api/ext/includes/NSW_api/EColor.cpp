@@ -23,7 +23,7 @@ EColorCollection* EColor::COLOR_LAZURE_SHADOW		= new EColorCollection(0.5f,	 0.5
 EColorCollection* EColor::COLOR_SKY_AMBIENT			= new EColorCollection(1.0f,	 0.9f,	0.8f,	1.0);
 
 EColorCollection* EColor::COLOR_SKY_TIME_DAWN		= new EColorCollection(0.1f, 0.025f, 0.0f, 1.0);
-EColorCollection* EColor::COLOR_SKY_TIME_NOON		= new EColorCollection(1.0f, 0.9f, 0.8f, 1.0);
+EColorCollection* EColor::COLOR_SKY_TIME_NOON		= new EColorCollection(1.0f, 1.0f, 1.0f, 1.0);
 EColorCollection* EColor::COLOR_SKY_TIME_SUNSET		= new EColorCollection(0.0f, 0.05f, 0.1f, 1.0);
 
 EColorCollection* EColor::COLOR_SHADOW_TIME_DAWN	= new EColorCollection(0.03f, 0.01f, 0.05f, 1.0);

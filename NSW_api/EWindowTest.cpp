@@ -13,9 +13,9 @@ float EWindowTest::blur_factor = 0.525f;//0.33333
 float EWindowTest::blur_blend = 0.55f; //1.0f;
 float EWindowTest::blur_decay_flat_factor = 0.0017f;//0.002
 float EWindowTest::add_factor = 1.0000f;
-float EWindowTest::gamma_factor = 0.1000f;
-float EWindowTest::gamma_offset = 1.0000f;
-float EWindowTest::gamma_border = 4.0000f;
+float EWindowTest::gamma_factor = 0.2222f;
+float EWindowTest::gamma_offset = 0.9000f;
+float EWindowTest::gamma_border = 2.0000f;
 
 void EWindowTest::test_of_values()
 {

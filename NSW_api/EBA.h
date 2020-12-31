@@ -107,6 +107,8 @@ public:
 
 	static void action_set_terrain_texture(EButton* _b, float _d);
 
+	static void action_reset_floor_wall_color(EButton* _b, float _d);
+
 
 	//hit action
 

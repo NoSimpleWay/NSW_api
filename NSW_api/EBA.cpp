@@ -86,7 +86,7 @@ void EBA::action_select_sprite(EButton* _b, float _d)
 	EWindow::window_editor->update_sprite_buttons();
 }
 
-void EBA::action_set_sprite_texture(EButton* _b, float _d)
+void EBA::action_set_sprite_texture_for_autobuilding(EButton* _b, float _d)
 {
 	EWindowEditor* ed = EWindow::window_editor;
 
@@ -107,6 +107,11 @@ void EBA::action_set_sprite_texture(EButton* _b, float _d)
 
 	ed->link_to_texture_variant_array->button_list.at(ed->autobuilding_selected_texture_variant)->gabarite = _b->gabarite;
 
+	if (!glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+	{
+		EWindow::window_search_brick->is_active = false;
+	}
+
 }
 
 void EBA::action_open_select_texture_window(EButton* _b, float _d)
@@ -118,7 +123,7 @@ void EBA::action_open_select_texture_window(EButton* _b, float _d)
 	EWindow::window_search_brick->update_search(EWindow::window_search_brick->link_to_input);
 
 	for (EButton* b : EWindow::window_search_brick->brick_button)
-	{b->action_on_left_click = &EBA::action_set_sprite_texture;}
+	{b->action_on_left_click = &EBA::action_set_sprite_texture_for_autobuilding;}
 
 
 
@@ -528,6 +533,31 @@ void EBA::action_save_map(EButton* _b, float _d)
 	w_string += std::to_string(EWindowTest::blur_decay_flat_factor);
 	w_string += "\n";
 
+	for (EWindowEditor::terrain_element_struct* tes : EWindowEditor::terrain_element_list)
+	{
+		w_string += "#terrain_element";
+		w_string += "\n";
+
+		for (int i = 0; i < tes->terrain_variant.size(); i++)
+		{
+			w_string += "#terrain_element_texture\t";
+
+			if (tes->terrain_variant.at(i) != NULL)
+			{
+				w_string += tes->terrain_variant.at(i)->name;
+			}
+			else
+			{
+				w_string += "NULL";
+			}
+
+			w_string += "\t";
+
+			w_string += std::to_string(tes->id.at(i));
+			w_string += "\n";
+		}
+	}
+
 		for (int j=0; j<ECluster::CLUSTER_DIM; j++)
 		for (int i = 0; i < ECluster::CLUSTER_DIM; i++)
 		for (Entity* e : ECluster::clusters[j][i]->entity_list)
@@ -536,6 +566,13 @@ void EBA::action_save_map(EButton* _b, float _d)
 			EBA::save_to_file(w_string, e, order, false);
 		}
 
+	writer << w_string;
+	writer.close();
+
+
+	//writer;
+	writer.open("test/map_terrain.txt");
+		w_string = "";
 	writer << w_string;
 	writer.close();
 }
@@ -1712,6 +1749,110 @@ void EBA::action_reset_floor_wall_color(EButton* _b, float _d)
 		EWindow::window_editor->object_floor->color_matrix.at(_b->data_id)->green	= 0.5f;
 		EWindow::window_editor->object_floor->color_matrix.at(_b->data_id)->blue	= 0.5f;
 	}
+}
+
+void EBA::action_select_new_terrain_variant(EButton* _b, float _d)
+{
+	EWindowEditor::object_terrain_variant = _b;
+	EWindowEditor::select_new_terrain_variant();
+}
+
+void EBA::action_select_new_terrain(EButton* _b, float _d)
+{
+	EWindowEditor::object_terrain = _b;
+	EWindowEditor::select_new_terrain();
+}
+
+void EBA::action_add_new_terrain_variant_button(EButton* _b, float _d)
+{
+	for (EButton* b : EWindowEditor::terrain_texture_variant_button_link)
+	{
+		if (!b->is_active)
+		{
+			b->is_active = true;
+			break;
+		}
+	}
+}
+
+void EBA::action_add_new_terrain_button(EButton* _b, float _d)
+{
+	for (EButton* b : EWindowEditor::terrain_texture_button_link)
+	{
+		if (!b->is_active)
+		{
+			b->is_active = true;
+			break;
+		}
+	}
+}
+
+void EBA::action_open_select_terrain_window(EButton* _b, float _d)
+{
+
+	logger("try open brick window");
+	EWindow::window_search_brick->is_active = true;
+	EWindow::window_search_brick->search_mode = EWindowSearchBrick::SearchMode::SEARCH_TEXTURE;
+
+	EWindow::window_search_brick->update_search(EWindow::window_search_brick->link_to_input);
+
+	for (EButton* b : EWindow::window_search_brick->brick_button)
+	{
+		b->action_on_left_click = &EBA::action_set_sprite_texture_for_terrain;
+	}
+}
+
+void EBA::action_set_sprite_texture_for_terrain(EButton* _b, float _d)
+{
+	if (EWindowEditor::object_terrain_variant != NULL)
+	{
+		EWindowEditor::object_terrain_variant->gabarite = _b->gabarite;
+
+		if (EWindowEditor::object_terrain_variant != NULL)
+		{
+			EWindowEditor::terrain_element_list.at(EWindowEditor::object_terrain->data_id)->
+			terrain_variant.at(EWindowEditor::object_terrain_variant->data_id)
+			=
+			_b->gabarite;
+		}
+	}
+
+	if (!glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+	{
+		EWindow::window_search_brick->is_active = false;
+	}
+
+	EWindowEditor::reinit_terrain_matrix();
+}
+
+void EBA::action_destroy_terrain_texture(EButton* _b, float _d)
+{
+	_b->gabarite = NULL;
+
+	for (EButton* b : EWindowEditor::terrain_texture_variant_button_link)
+	{
+		b->is_active = false;
+	}
+
+	for (int i=0; i<EWindowEditor::terrain_element_list.at(_b->data_id)->terrain_variant.size(); i++)
+	{
+		EWindowEditor::terrain_element_list.at(_b->data_id)->terrain_variant.at(i) = NULL;
+	}
+
+	EWindowEditor::reinit_terrain_matrix();
+	
+}
+
+void EBA::action_destroy_terrain_texture_variant(EButton* _b, float _d)
+{
+	if (EWindowEditor::object_terrain != NULL)
+	{
+		EWindowEditor::terrain_element_list.at(EWindowEditor::object_terrain->data_id)->terrain_variant.at(_b->data_id);
+	}
+
+	_b->gabarite = NULL;
+
+	EWindowEditor::reinit_terrain_matrix();
 }
 
 

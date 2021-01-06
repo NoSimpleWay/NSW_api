@@ -1119,7 +1119,7 @@ void EWindow::default_update(float _d)
 	for (button_array_collection_massive* massive : button_array_collection_massive_list)
 	if (*massive->is_active)
 	{
-		
+		h_base_offset_x = 0.0f;
 		*massive->size_y *= 0.95f;
 		
 
@@ -1186,26 +1186,28 @@ void EWindow::default_update(float _d)
 						array_id = 0;
 						for (EButton* b : array->button_list)
 						{
-							if (b->button_size_x > maximum_button_size_x.at(array_id)) { maximum_button_size_x.at(array_id) = b->button_size_x; }
-							//if (b->button_size_y > * array->size_y) { *array->size_y = b->button_size_y; }
-							//logger("");
-							if (*vertical->selected_distance_between_button_mode == button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::FREE)
+							if (b->is_active)
 							{
-								b->button_x = b->button_base_x + *massive->position_x + *horizontal->position_x + *vertical->position_x + *array->position_x + 2.0f;
-								b->button_y = b->button_base_y + *massive->position_y + *horizontal->position_y + *vertical->position_y + *array->position_y + 2.0f;
-								
-								//logger_param("base y", b->button_base_y);
+								if (b->button_size_x > maximum_button_size_x.at(array_id)) { maximum_button_size_x.at(array_id) = b->button_size_x; }
+								//if (b->button_size_y > * array->size_y) { *array->size_y = b->button_size_y; }
+								//logger("");
+								if (*vertical->selected_distance_between_button_mode == button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::FREE)
+								{
+									b->button_x = b->button_base_x + *massive->position_x + *horizontal->position_x + *vertical->position_x + *array->position_x + 2.0f;
+									b->button_y = b->button_base_y + *massive->position_y + *horizontal->position_y + *vertical->position_y + *array->position_y + 2.0f;
+
+									//logger_param("base y", b->button_base_y);
+								}
+								else
+								{
+									b->button_x = *massive->position_x + *horizontal->position_x + *vertical->position_x + *array->position_x + 2.0f;
+									b->button_y = *massive->position_y + *horizontal->position_y + *vertical->position_y + *array->position_y + b->bound_size_down + 2.0f;
+
+
+								}
+
+								/*if (b->button_base_y + b->button_size_y + *array->position_y > * array->size_y)*/
 							}
-							else
-							{
-								b->button_x = *massive->position_x + *horizontal->position_x + *vertical->position_x + *array->position_x + 2.0f;
-								b->button_y = *massive->position_y + *horizontal->position_y + *vertical->position_y + *array->position_y + b->bound_size_down + 2.0f;
-
-								
-							}
-
-							/*if (b->button_base_y + b->button_size_y + *array->position_y > * array->size_y)*/
-
 							 
 							
 
@@ -1235,13 +1237,13 @@ void EWindow::default_update(float _d)
 
 						
 						for (EButton* b : z_array->button_list)
+						if (b->is_active)
 						{
 							
 
 							if (!*vertical->selected_distance_between_button_mode == button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::FREE)
 							{
 								b->button_x += button_row_offset;
-								
 
 								b->button_y += button_y_offset;
 

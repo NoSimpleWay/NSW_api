@@ -18,7 +18,7 @@ public:
 
 	static void action_add_new_sprite(EButton* _b, float _d);
 	static void action_select_sprite(EButton* _b, float _d);
-	static void action_set_sprite_texture(EButton* _b, float _d);
+	static void action_set_sprite_texture_for_autobuilding(EButton* _b, float _d);
 	static void action_open_select_texture_window(EButton* _b, float _d);
 
 	static void action_set_button_as_removed(EButton* _b, float _d);
@@ -108,6 +108,17 @@ public:
 	static void action_set_terrain_texture(EButton* _b, float _d);
 
 	static void action_reset_floor_wall_color(EButton* _b, float _d);
+
+	static void action_select_new_terrain_variant(EButton* _b, float _d);
+	static void action_select_new_terrain(EButton* _b, float _d);
+	static void action_add_new_terrain_variant_button(EButton* _b, float _d);
+	static void action_add_new_terrain_button(EButton* _b, float _d);
+
+	static void action_open_select_terrain_window(EButton* _b, float _d);
+	static void action_set_sprite_texture_for_terrain(EButton* _b, float _d);
+
+	static void action_destroy_terrain_texture(EButton* _b, float _d);
+	static void action_destroy_terrain_texture_variant(EButton* _b, float _d);
 
 
 	//hit action

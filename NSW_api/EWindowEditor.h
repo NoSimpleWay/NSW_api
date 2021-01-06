@@ -9,7 +9,7 @@ public:
 	EWindowEditor();
 	~EWindowEditor();
 
-	enum EditMode {SelectEntities, EditSprites, EditAutobuilding};
+	enum EditMode {SelectEntities, EditSprites, EditAutobuilding, EditTerrain};
 	enum MoveMode {MoveTexture, MoveWall, MoveFloor};
 	enum EntityGabariteMode {EntityGabariteCollision, EntityGabaritePathBlock, EntityGabariteShadowBlock};
 
@@ -206,5 +206,39 @@ public:
 	static std::vector<EButton*> terrain_texture_button_link;
 	static std::vector<EButton*> terrain_texture_variant_button_link;
 
+	static EButton* object_terrain;
+	static EButton* object_terrain_variant;
+
+	/*struct terrain_variant_struct
+	{
+		EGabarite* texture;
+		int id = 0;
+	};*/
+
+	struct terrain_element_struct
+	{
+		terrain_element_struct();
+		std::vector<EGabarite*>	terrain_variant;
+		std::vector<int>		id;
+	};
+
+	static std::vector<terrain_element_struct*> terrain_element_list;
+
+	static void select_new_terrain_variant();
+	static void select_new_terrain();
+	static void change_terrain_variant();
+	static void reinit_terrain_matrix();
+	//static void regenerate_terrain();
+
+	static int terrain_rama_start_x;
+	static int terrain_rama_end_x;
+
+	static int terrain_rama_start_y;
+	static int terrain_rama_end_y;
+
+	static int terrain_rama_size_x;
+	static int terrain_rama_size_y;
+
+	static bool terrain_rama_start_stretch;
 
 };

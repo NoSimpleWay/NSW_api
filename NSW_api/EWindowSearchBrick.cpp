@@ -61,7 +61,7 @@ EWindowSearchBrick::EWindowSearchBrick()
 		but->description_text = p.path().filename().u8string();
 
 		//but->button_action_press = new EButtonActionSetSpriteTexture();
-		but->action_on_left_click = &EBA::action_set_sprite_texture;
+		//but->action_on_left_click = &EBA::action_set_sprite_texture_for_autobuilding;
 
 		brick_button.push_back(but);
 		button_list.push_back(but);
@@ -181,7 +181,7 @@ void EWindowSearchBrick::update_search(EButton* _b)
 			brick_button.at(i)->description_text = brick_button.at(i)->gabarite->name;
 			brick_button.at(i)->data_string = list_of_textures_names.at(i);
 
-			brick_button.at(i)->action_on_left_click = &EBA::action_set_sprite_texture;
+			//brick_button.at(i)->action_on_left_click = &EBA::action_set_sprite_texture_for_autobuilding;
 		}
 	}
 
@@ -191,7 +191,7 @@ void EWindowSearchBrick::update_search(EButton* _b)
 		{
 			brick_button.at(i)->have_icon = false;
 
-			brick_button.at(i)->action_on_left_click = &EBA::action_add_new_entity_from_collection;
+			//brick_button.at(i)->action_on_left_click = &EBA::action_add_new_entity_from_collection;
 		}
 	}
 

@@ -906,8 +906,9 @@ EWindowEditor::EWindowEditor()
 				but->action_on_right_click = &EBA::action_deactivate_texture_variant;
 				but->action_on_left_click = &EBA::action_select_texture_variant;
 				but->action_on_left_double_click = &EBA::action_open_select_texture_window;
+
 				*but->is_double_click = true;
-				*but->is_double_click = true;
+				//*but->is_double_click = true;
 				but->have_icon = true;
 
 				but->data_id = i;
@@ -1257,6 +1258,7 @@ EWindowEditor::EWindowEditor()
 		but->action_on_left_click = &EBA::action_select_floor;
 		but->action_on_left_double_click = &EBA::action_start_input;
 		but->action_on_input = &EBA::action_refresh_drop_autobuilding_list;
+
 		*but->is_double_click = true;
 		//but->action_on_ = &EBA::action_refresh_drop_autobuilding_list;
 		but->have_icon = false;
@@ -1518,16 +1520,37 @@ EWindowEditor::EWindowEditor()
 	*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
 	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
 
+		//add new terrain variant button
+		a_array = new button_array;
+		a_vertical->button_array_list.push_back(a_array);
+		but = new EButton(0.0f, 0.0f, 20.0f, 20.0f);
+			but->master_window = this;
+			but->text = "+";
+			but->action_on_left_click = &EBA::action_add_new_terrain_variant_button;
+		a_array->button_list.push_back(but);
 
 		a_array = new button_array;
 		a_vertical->button_array_list.push_back(a_array);
 		for (int j = 0; j < 10; j++)
 		{
 			but = new EButton(0.0f, 0.0f, 50.0f, 50.0f);
-			terrain_texture_button_link.push_back(but);
+			but->is_active = false;
+			terrain_texture_variant_button_link.push_back(but);
+			but->have_rama = true;
+			but->have_icon = true;
+
+			but->action_on_left_click			=	&EBA::action_select_new_terrain_variant;
+			//but->action_on_right_click			=	&EBA::action_set_constant_bool_to_address;
+			but->action_on_right_click			=	&EBA::action_destroy_terrain_texture_variant;
+			but->action_on_left_double_click	=	&EBA::action_open_select_terrain_window;
+			*but->is_double_click = true;
+
+			//*but->target_value_for_bool = false;
+			//but->target_address_for_bool = &but->is_active;
 
 			but->master_window = this;
 			but->text = "v";
+			but->data_id = j;
 			a_array->button_list.push_back(but);
 		}
 
@@ -1537,19 +1560,36 @@ EWindowEditor::EWindowEditor()
 	*a_vertical->selected_distance_between_button_mode = button_array_vertical_collection::BUTTON_DISTANCE_ALIGN_RULE::BUTTON_SIZE;
 	a_horizontal->button_array_vertical_collection_list.push_back(a_vertical);
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		a_array = new button_array;
 		a_vertical->button_array_list.push_back(a_array);
 		for (int j = 0; j < 10; j++)
 		{
 			but = new EButton(0.0f, 0.0f, 50.0f, 50.0f);
-			terrain_texture_variant_button_link.push_back(but);
+			terrain_texture_button_link.push_back(but);
 			but->master_window = this;
-			but->text = "t";
+
+			but->action_on_left_click		=	&EBA::action_select_new_terrain;
+			but->action_on_right_click		=	&EBA::action_destroy_terrain_texture;
+			//but->action_on_right_click		=	&EBA::action_set_constant_bool_to_address;
+			//but->target_address_for_bool	=	&but->is_active;
+			//*but->target_value_for_bool		=	false;
+			but->data_id = j;//terrain_element_list
+
+			but->text = "T[" + std::to_string(j) + "]";
 			a_array->button_list.push_back(but);
 		}
 	}
+
+	//add new terrain button
+	a_array = new button_array;
+	a_vertical->button_array_list.push_back(a_array);
+		but = new EButton(0.0f, 0.0f, 20.0f, 20.0f);
+		but->master_window = this;
+		but->text = "+";
+		but->action_on_left_click = &EBA::action_add_new_terrain_button;
+	a_array->button_list.push_back(but);
 	/*
 	but = new EButton(0.0f, 0.0f, 20.0f, 20.0f);
 	but->master_window = this;
@@ -1558,6 +1598,21 @@ EWindowEditor::EWindowEditor()
 	a_array->button_list.push_back(but);*/
 	
 
+
+	select_new_terrain_variant();
+
+	for (EButton* b : terrain_texture_button_link)
+	{
+		terrain_element_struct* te = new terrain_element_struct();
+
+		for (EButton* b2 : terrain_texture_variant_button_link)
+		{
+			te->terrain_variant.push_back(NULL);
+			te->id.push_back(-1);
+		}
+
+		terrain_element_list.push_back(te);
+	}
 
 
 }
@@ -1608,6 +1663,9 @@ EWindow::button_array_collection_massive* EWindowEditor::terrain_editor_massive_
 
 std::vector<EButton*>  EWindowEditor::terrain_texture_button_link;
 std::vector<EButton*>  EWindowEditor::terrain_texture_variant_button_link;
+EButton* EWindowEditor::object_terrain;
+EButton* EWindowEditor::object_terrain_variant;
+
 
 float EWindowEditor::get_move_multiplier(float _zoom)
 {
@@ -1781,6 +1839,20 @@ void EWindowEditor::update(float _d)
 
 	if
 	(
+		(glfwGetKey(EWindow::main_window, GLFW_KEY_T) == GLFW_PRESS)
+		&
+		(!EWindow::button_main_group_pressed)
+	)
+	{
+		editor_mode = EditMode::EditTerrain;
+		EWindow::button_main_group_pressed		= true;
+		*autobuilding_massive_link->is_active	= false;
+		*terrain_editor_massive_link->is_active	= true;
+	}
+	//terrain_texture_variant_button_link
+
+	if
+	(
 		(glfwGetKey(EWindow::main_window, GLFW_KEY_E) == GLFW_PRESS)
 		&
 		(
@@ -1938,19 +2010,61 @@ void EWindowEditor::update(float _d)
 
 		float min_dst = 9999999.0f;
 
+		float cur_x = 0.0f;
+		float cur_y = 0.0f;
+		
+
 		for (int j = 0; j < ECluster::CLUSTER_DIM; j++)
 		for (int i = 0; i < ECluster::CLUSTER_DIM; i++)
 		for (Entity* e:ECluster::clusters[j][i]->entity_list)
 		{
+			cur_x = ECamera::get_world_position_x(EWindow::window_test->game_camera);
+			cur_y = ECamera::get_world_position_y(EWindow::window_test->game_camera);
 
+			float min_side_dst = 999999.0f;
 			//float dst_x = (ECamera::get_world_position_x(EWindow::window_test->game_camera)) - *e->position_x;
 			//float dst_y = (ECamera::get_world_position_y(EWindow::window_test->game_camera)) - *e->position_y;
+			//float min_dst = 999999.0f;
 
-			float dst_left = (*e->position_x - *e->collision_left) - ECamera::get_world_position_x(EWindow::window_test->game_camera);
-			float dst_right = ECamera::get_world_position_x(EWindow::window_test->game_camera) - (*e->position_x + *e->collision_right);
+			/*float dst_left	= (*e->position_x - *e->collision_left) - cur_x;
+			//dst_left = max(dst_left, 0.0f);
 
-			float dst_up = ECamera::get_world_position_y(EWindow::window_test->game_camera) - (*e->position_y + *e->collision_up);
-			float dst_down = (*e->position_x - *e->collision_left) - ECamera::get_world_position_x(EWindow::window_test->game_camera);
+			float dst_right = cur_x - (*e->position_x + *e->collision_right);
+			//dst_right = max(dst_right, 0.0f);
+
+			float dst_up	= cur_y - (*e->position_y + *e->collision_up);
+			//dst_up = max(dst_up, 0.0f);
+
+			float dst_down	= (*e->position_y - *e->collision_down) - cur_y;
+			//dst_down = max(dst_down, 0.0f);
+
+			if ((dst_left < min_side_dst) & (cur_x < *e->position_x))		{ min_side_dst = dst_left;}
+			if (dst_right < min_side_dst) & 		{ min_side_dst = dst_right;}
+			if (dst_up < min_side_dst)			{ min_side_dst = dst_up;}
+			if (dst_down < min_side_dst)		{ min_side_dst = dst_down;}
+
+			if (min_side_dst < min_dst)
+			{
+				nearest_entity = e;
+				min_dst = min_side_dst;
+			}*/
+
+			if
+			(
+				(cur_x >= *e->position_x - *e->collision_left)
+				&
+				(cur_x <= *e->position_x + *e->collision_right)
+				&
+				(cur_y >= *e->position_y - *e->collision_down)
+				&
+				(cur_y <= *e->position_y + *e->collision_up)
+			)
+			{
+				nearest_entity = e;
+			}
+
+			//logger_param("dst", min_side_dst);
+
 			/*if (dst_x * dst_x + dst_y * dst_y < min_dst)
 			{
 				nearest_entity = e;
@@ -2732,6 +2846,139 @@ void EWindowEditor::update(float _d)
 		Entity::assembly_autobuilding_sprites(selected_entity);
 	}
 
+
+	if (editor_mode == EditMode::EditTerrain)
+	{
+		if (EWindow::LMB)
+		{
+			if (!terrain_rama_start_stretch)
+			{
+				terrain_rama_start_stretch = true;
+
+				terrain_rama_start_x = round(ECamera::get_world_position_x(EWindow::window_test->game_camera) / EPath::PATH_SIZE);
+				terrain_rama_start_y = round(ECamera::get_world_position_y(EWindow::window_test->game_camera) / EPath::PATH_SIZE);
+			}
+			else
+			{
+				terrain_rama_end_x = round(ECamera::get_world_position_x(EWindow::window_test->game_camera) / EPath::PATH_SIZE);
+				terrain_rama_end_y = round(ECamera::get_world_position_y(EWindow::window_test->game_camera) / EPath::PATH_SIZE);
+			}
+
+			int swap = 0;
+
+			/*if (terrain_rama_start_x > terrain_rama_end_x)
+			{
+				swap = terrain_rama_start_x;
+				terrain_rama_start_x = terrain_rama_end_x;
+				terrain_rama_end_x = swap;
+			}
+
+			if (terrain_rama_start_y > terrain_rama_end_y)
+			{
+				swap = terrain_rama_start_y;
+				terrain_rama_start_y = terrain_rama_end_y;
+				terrain_rama_end_y = swap;
+			}*/
+
+			terrain_rama_size_x = terrain_rama_end_x - terrain_rama_start_x;
+			terrain_rama_size_y = terrain_rama_end_y - terrain_rama_start_y;
+
+			logger_param("retard_x:", terrain_rama_size_x);
+			logger_param("retard_y:", terrain_rama_size_y);
+			logger("rrr", terrain_rama_size_y);
+		}
+		else
+		{
+
+			int f_sx = 0;
+			int f_sy = 0;
+			int f_ex = 0;
+			int f_ey = 0;
+
+			if (terrain_rama_start_stretch)
+			{
+				if (terrain_rama_start_x < terrain_rama_end_x)
+				{
+					f_sx = terrain_rama_start_x;	f_ex = terrain_rama_end_x;
+				}
+				else
+				{
+					f_sx = terrain_rama_end_x;	f_ex = terrain_rama_start_x;
+				}
+
+				f_sx = min(EPath::PATH_DIM - 1, f_sx);
+				f_sx = max(0, f_sx);
+
+				f_ex = min(EPath::PATH_DIM - 1, f_ex);
+				f_ex = max(0, f_ex);
+
+				if (terrain_rama_start_y < terrain_rama_end_y)
+				{
+					f_sy = terrain_rama_start_y;	f_ey = terrain_rama_end_y;
+				}
+				else
+				{
+					f_sy = terrain_rama_end_y;	f_ey = terrain_rama_start_y;
+				}
+
+				f_sy = min(EPath::PATH_DIM - 1, f_sy);
+				f_sy = max(0, f_sy);
+
+				f_ey = min(EPath::PATH_DIM - 1, f_ey);
+				f_ey = max(0, f_ey);
+
+				std::vector<int> available_tiles;
+				available_tiles.clear();
+				int available_tiles_count = 0;
+
+				if ((object_terrain != NULL) && (terrain_element_list.at(object_terrain->data_id)->id.size() > 0))
+				{
+					for (int g : terrain_element_list.at(object_terrain->data_id)->id)
+					{
+						if (g != -1)
+						{
+							available_tiles_count++;
+							available_tiles.push_back(g);
+
+							//logger_param("a_tile_count:", available_tiles_count);
+							//logger_param("a_tile_size:", available_tiles.size());
+							//logger_param("value::", g);
+							//logger("<><><><><><><>");
+
+						}
+					}
+
+					int random_proc = 0;
+
+					if (available_tiles_count > 0)
+					for (int j = f_sx; j < f_ex; j++)
+						for (int i = f_sy; i < f_ey; i++)
+						{
+							random_proc = rand() % available_tiles_count;
+
+							//logger_param("random_proc:", random_proc);
+							//logger_param("a_t:", available_tiles.at(random_proc));
+						
+
+							EWindow::window_test->terrain_layer[j][i] = object_terrain->data_id;
+							EWindow::window_test->terrain[j][i] = available_tiles.at(random_proc);
+							
+							//logger_param("terrain ID:", EWindow::window_test->terrain[j][i]);
+						}
+				}
+
+				terrain_rama_start_stretch = false;
+
+				terrain_rama_size_x = 0.0f;
+				terrain_rama_size_y = 0.0f;
+
+				EWindow::window_test->generate_terrain();
+			}
+
+
+		}
+
+	}
 }
 
 void EWindowEditor::clone_entity(Entity* _e)
@@ -2963,31 +3210,19 @@ void EWindowEditor::draw(float _d)
 		EGraphicCore::batch->draw_rama(rama_selector_start_x, rama_selector_start_y, rama_selector_end_x - rama_selector_start_x, rama_selector_end_y - rama_selector_start_y, 2.0f / EWindow::window_test->game_camera->zoom, EGraphicCore::gabarite_white_pixel);
 	}
 
-	/*
-	if
-	(
-		(glfwGetKey(EWindow::main_window, GLFW_KEY_B) == GLFW_PRESS)
-		&
-		(!EButton::any_input)
-		&
-		(editor_mode == EditMode::EditAutobuilding)
-	)
+	if (editor_mode == EditMode::EditTerrain)
 	{
-		EGraphicCore::batch->setcolor(EColor::COLOR_PINK);
-		EGraphicCore::batch->draw_rama
+		EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
+
+		EGraphicCore::batch->draw_gabarite
 		(
-			*selected_entity->position_x
-			+
-			*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->offset_x
-			+
-			*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->offset_x
-			+
-			*selected_entity->autobuilding_floor_list.at(autobuilding_selected_floor)->wall_list.at(autobuilding_selected_wall)->texture_variant_list.at(autobuilding_selected_texture_variant)->offset_x
-			, 
-			
-			
-			rama_selector_start_y, rama_selector_end_x - rama_selector_start_x, rama_selector_end_y - rama_selector_start_y, 2.0f / EWindow::window_test->game_camera->zoom, EGraphicCore::gabarite_white_pixel);
-	}*/
+			terrain_rama_start_x * EPath::PATH_SIZE,
+			terrain_rama_start_y * EPath::PATH_SIZE,
+			terrain_rama_size_x * EPath::PATH_SIZE,
+			terrain_rama_size_y * EPath::PATH_SIZE,
+			EGraphicCore::gabarite_white_pixel
+		);
+	}
 }
 
 void EWindowEditor::draw_interface(float _d)
@@ -3648,4 +3883,119 @@ void EWindowEditor::select_new_wall_color()
 		}
 		id++;
 	}
+}
+std::vector<EWindowEditor::terrain_element_struct*> EWindowEditor::terrain_element_list;
+
+int EWindowEditor::terrain_rama_start_x				= -1;
+int EWindowEditor::terrain_rama_end_x				= -1;
+
+int EWindowEditor::terrain_rama_start_y				= -1;
+int EWindowEditor::terrain_rama_end_y				= -1;
+
+int EWindowEditor::terrain_rama_size_x				= 0;
+int EWindowEditor::terrain_rama_size_y				= 0;
+
+bool EWindowEditor::terrain_rama_start_stretch		= false;
+
+void EWindowEditor::select_new_terrain_variant()
+{
+	for (EButton* b : EWindowEditor::terrain_texture_variant_button_link)
+	{
+		b->bg_color->set_color(EColor::COLOR_GRAY);
+		b->rama_thikness = 1.0f;
+		b->rama_color->set_color(EColor::COLOR_BLACK);
+	}
+
+	if (EWindowEditor::object_terrain_variant != NULL)
+	{
+		EWindowEditor::object_terrain_variant->bg_color->set_color(EColor::COLOR_BLACK);
+		EWindowEditor::object_terrain_variant->rama_thikness = 3.0f;
+		EWindowEditor::object_terrain_variant->rama_color->set_color(EColor::COLOR_YELLOW);
+	}
+}
+
+void EWindowEditor::select_new_terrain()
+{
+	for (EButton* b : EWindowEditor::terrain_texture_button_link)
+	{
+		b->bg_color->set_color(EColor::COLOR_GRAY);
+		b->rama_thikness = 1.0f;
+		b->rama_color->set_color(EColor::COLOR_BLACK);
+	}
+
+	if (EWindowEditor::object_terrain != NULL)
+	{
+		EWindowEditor::object_terrain->bg_color->set_color(EColor::COLOR_BLACK);
+		EWindowEditor::object_terrain->rama_thikness = 3.0f;
+		EWindowEditor::object_terrain->rama_color->set_color(EColor::COLOR_YELLOW);
+	}
+
+	if (EWindowEditor::object_terrain != NULL)
+	{
+		for (int i = 0; i < EWindowEditor::terrain_texture_button_link.size(); i++)
+		{
+			
+
+			if (EWindowEditor::terrain_element_list.at(EWindowEditor::object_terrain->data_id)->terrain_variant.at(i) != NULL)
+			{
+				logger_param("silicon bastard:", EWindowEditor::terrain_element_list.at(EWindowEditor::object_terrain->data_id)->terrain_variant.at(i)->name);
+
+				EWindowEditor::terrain_texture_variant_button_link.at(i)->gabarite
+				=
+				EWindowEditor::terrain_element_list.at(EWindowEditor::object_terrain->data_id)->terrain_variant.at(i);
+
+				EWindowEditor::terrain_texture_variant_button_link.at(i)->is_active = true;
+			}
+			else
+			{
+				logger("silicon bastard: NULL");
+				EWindowEditor::terrain_texture_variant_button_link.at(i)->gabarite = NULL;
+				EWindowEditor::terrain_texture_variant_button_link.at(i)->is_active = false;
+			}
+		}
+	}
+}
+
+void EWindowEditor::reinit_terrain_matrix()
+{
+	int terrain_id = 0;
+
+	EWindow::window_test->terrain_textures_list.clear();
+
+	for (terrain_element_struct* te : EWindowEditor::terrain_element_list)
+	{
+		for (EGabarite* g : te->terrain_variant)
+		{
+			if (g != NULL)
+			{EWindow::window_test->terrain_textures_list.push_back(g);}
+
+			if (terrain_id < 5)
+			{
+				//logger("- - -");
+				//logger_param("terrain_id:", terrain_id);
+
+				//if (g != NULL)
+				//{logger_param("terrain_name:", g->name);}
+				//else
+				//{logger("terrain_name: NULL");}
+			}
+			
+		}
+
+		for (int i = 0; i < te->id.size(); i++)
+		{
+			if (te->terrain_variant.at(i) != NULL)
+			{
+				te->id.at(i) = terrain_id;
+
+				terrain_id++;
+			}
+		}
+		//te
+		
+	}
+}
+
+EWindowEditor::terrain_element_struct::terrain_element_struct()
+{
 }

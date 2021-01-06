@@ -1234,14 +1234,27 @@ void EWindowTest::draw_debug_cluster_border()
 
 void EWindowTest::draw_debug_cluster_rama()
 {
+	EGraphicCore::batch->setcolor(EColor::COLOR_BLACK);
 	//if (glfwGetKey(EWindow::main_window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS)
 	if (EWindow::window_editor->is_active)
 		for (int i = draw_border_up; i >= draw_border_down; i--)
 			for (int j = draw_border_left; j <= draw_border_right; j++)
 			{
-				EGraphicCore::batch->setcolor(EColor::COLOR_BLACK);
+				
 				EGraphicCore::batch->draw_rama(j * ECluster::CLUSTER_SIZE, i * ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, ECluster::CLUSTER_SIZE, 1.0f / game_camera->zoom, EGraphicCore::gabarite_white_pixel);
+
+
 			}
+
+	if (EWindow::window_editor->is_active)
+	{
+		EGraphicCore::batch->setcolor_alpha(EColor::COLOR_DARK_RED, 0.5f);
+		for (int i = up_terrain_draw; i >= down_terrain_draw; i--)
+		for (int j = left_terrain_draw; j <= right_terrain_draw; j++)
+		{
+			EGraphicCore::batch->draw_rama(j * EPath::PATH_SIZE, i * EPath::PATH_SIZE, EPath::PATH_SIZE, EPath::PATH_SIZE, 1.0f / game_camera->zoom, EGraphicCore::gabarite_white_pixel);
+		}
+	}
 }
 
 void EWindowTest::draw_terrain()
@@ -1320,7 +1333,16 @@ void EWindowTest::draw_terrain()
 		for (int k=0; k<3; k++)
 		for (int i = up_terrain_draw; i >= down_terrain_draw; i--)
 			for (int j = left_terrain_draw; j <= right_terrain_draw; j++)
-			if (terrain_layer[j][i] == k)
+			if
+				(
+					(terrain_layer[j][i] == k)
+					&&
+					(terrain[j][i] >= 0)
+					&&
+					(terrain[j][i] < terrain_textures_list.size())
+					&&
+					(terrain_textures_list.at(terrain[j][i]) != NULL)
+				)
 			{
 				EGraphicCore::batch_terrain->draw_terrain_with_offset
 				(
@@ -1977,6 +1999,8 @@ void EWindowTest::draw_interface(float _d)
 void EWindowTest::generate_terrain()
 {
 	int random_point = 100;
+
+	/*
 	for (int j=0; j<EPath::PATH_DIM; j++)
 	for (int i=0; i<EPath::PATH_DIM; i++)
 	{
@@ -2001,40 +2025,56 @@ void EWindowTest::generate_terrain()
 			terrain_border_offset_left[j][i] = 5.0f / 4096.0f;
 			terrain_border_offset_right[j][i] = 5.0f / 4096.0f;
 		}
-	}
+	}*/
 
 	for (int j=1; j<EPath::PATH_DIM - 1; j++)
 	for (int i=1; i<EPath::PATH_DIM - 1; i++)
 	{
 		//terrain[j][i] = rand() % 5;
 
-		if (terrain_layer[j][i] == 1)
+		if (terrain_layer[j][i] > 0)
 		{
-			if (terrain_layer[j - 1][i] != 1)
+			//terrain_border_offset_y[j][i] = -5.0f;
+			terrain_border_offset_down[j][i] = 5.0f / 4096.0f;
+			terrain_border_offset_up[j][i] = 5.0f / 4096.0f;
+
+			terrain_border_offset_left[j][i] = 5.0f / 4096.0f;
+			terrain_border_offset_right[j][i] = 5.0f / 4096.0f;
+
+			terrain_border_offset_x[j][i] = 0.0f;
+			terrain_border_offset_y[j][i] = 0.0f;
+
+			if (terrain_layer[j - 1][i] != terrain_layer[j][i])
 			{
 				terrain_border_offset_left[j][i] = 0.0f;
 				terrain_border_offset_x[j][i] = -5.0f;
 			}
 
-			if (terrain_layer[j + 1][i] != 1)
+			if (terrain_layer[j + 1][i] != terrain_layer[j][i])
 			{
 				terrain_border_offset_right[j][i] = 0.0f;
 			}
 
-			if (terrain_layer[j][i - 1] != 1)
+			if (terrain_layer[j][i - 1] != terrain_layer[j][i])
 			{
 				terrain_border_offset_down[j][i] = 0.0f;
 				terrain_border_offset_y[j][i] = -5.0f;
 			}
 
-			if (terrain_layer[j][i + 1] != 1)
+			if (terrain_layer[j][i + 1] != terrain_layer[j][i])
 			{
 				terrain_border_offset_up[j][i] = 0.0f;
 			}
+		}
+		else
+		{
+			terrain_border_offset_left[j][i]	= 0.0f;
+			terrain_border_offset_right[j][i]	= 0.0f;
+			terrain_border_offset_up[j][i]		= 0.0f;
+			terrain_border_offset_down[j][i]	= 0.0f;
 
-
-
-
+			terrain_border_offset_x[j][i]		= 0.0f;
+			terrain_border_offset_y[j][i]		= 0.0f;
 		}
 	}
 

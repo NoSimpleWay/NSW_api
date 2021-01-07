@@ -315,12 +315,12 @@ EGabarite* ETextureAtlas::get_supermap_from_regular_texture_path(std::string _s,
 	{
 		err = fclose(file);
 
-		logger(path_to_supermap + " exist");
+		//logger(path_to_supermap + " exist");
 		return ETextureAtlas::put_texture_to_atlas(path_to_supermap, _a);
 	}
 	else
 	{
-		logger(path_to_supermap + " not exist");
+		//logger(path_to_supermap + " not exist");
 		return EGraphicCore::gabarite_supermap_placeholder;
 	}
 }

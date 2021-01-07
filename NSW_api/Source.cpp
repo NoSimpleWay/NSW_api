@@ -371,6 +371,7 @@ int main()
 
 				//update windows
 		EButton::any_input = false;
+		EButton::any_overlap = false;
 
 		for (EWindow* w : EWindow::window_list)
 		if (w->is_active) {	w->default_update(delta_time);	}

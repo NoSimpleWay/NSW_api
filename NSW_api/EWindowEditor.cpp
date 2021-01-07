@@ -209,7 +209,7 @@ EWindowEditor::EWindowEditor()
 	but->position_mode_x = Enums::PositionMode::LEFT;
 	but->position_mode_y = Enums::PositionMode::UP;
 	but->action_on_left_click = &EBA::action_load_map;
-	but->data_string = "test/map.txt";
+	but->data_string = "test/map";
 
 	//add new entity from collection (open brick search window)
 	but = new EButton(165.0f, -10.0f, 150.0f, 16.0f);
@@ -1590,6 +1590,21 @@ EWindowEditor::EWindowEditor()
 		but->text = "+";
 		but->action_on_left_click = &EBA::action_add_new_terrain_button;
 	a_array->button_list.push_back(but);
+
+	//terrain grid
+	a_array = new button_array;
+	a_vertical->button_array_list.push_back(a_array);
+		but = new EButton(0.0f, 0.0f, 50.0f, 20.0f);
+			but->master_window = this;
+			*but->is_checkbox = true;
+
+			but->action_on_left_click = &EBA::action_set_button_value_bool_to_address;
+			but->target_address_for_bool = &EWindowTest::show_terrain_grid;
+			*but->is_consumable = true;
+
+			but->text = "grid";
+			//but->action_on_left_click = &EBA::action_add_new_terrain_button;
+	a_array->button_list.push_back(but);
 	/*
 	but = new EButton(0.0f, 0.0f, 20.0f, 20.0f);
 	but->master_window = this;
@@ -2849,7 +2864,7 @@ void EWindowEditor::update(float _d)
 
 	if (editor_mode == EditMode::EditTerrain)
 	{
-		if (EWindow::LMB)
+		if ((EWindow::LMB) & (!EButton::any_overlap) & (!EButton::any_input))
 		{
 			if (!terrain_rama_start_stretch)
 			{
@@ -3212,7 +3227,7 @@ void EWindowEditor::draw(float _d)
 
 	if (editor_mode == EditMode::EditTerrain)
 	{
-		EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);
+		EGraphicCore::batch->setcolor_alpha(EColor::COLOR_GREEN, 0.2f);
 
 		EGraphicCore::batch->draw_gabarite
 		(
@@ -3916,6 +3931,11 @@ void EWindowEditor::select_new_terrain_variant()
 
 void EWindowEditor::select_new_terrain()
 {
+	int bid = -1;
+	
+	if (object_terrain != NULL)
+	{bid = object_terrain->data_id;}
+
 	for (EButton* b : EWindowEditor::terrain_texture_button_link)
 	{
 		b->bg_color->set_color(EColor::COLOR_GRAY);
@@ -3923,20 +3943,25 @@ void EWindowEditor::select_new_terrain()
 		b->rama_color->set_color(EColor::COLOR_BLACK);
 	}
 
-	if (EWindowEditor::object_terrain != NULL)
+	if (bid != -1)
 	{
 		EWindowEditor::object_terrain->bg_color->set_color(EColor::COLOR_BLACK);
 		EWindowEditor::object_terrain->rama_thikness = 3.0f;
 		EWindowEditor::object_terrain->rama_color->set_color(EColor::COLOR_YELLOW);
 	}
 
-	if (EWindowEditor::object_terrain != NULL)
+	if (bid != -1)
 	{
+
+		//terrain variant button list
 		for (int i = 0; i < EWindowEditor::terrain_texture_button_link.size(); i++)
 		{
-			
-
-			if (EWindowEditor::terrain_element_list.at(EWindowEditor::object_terrain->data_id)->terrain_variant.at(i) != NULL)
+			if
+			(
+				(terrain_element_list.at(bid)->terrain_variant.size() > 0)
+				&&
+				(terrain_element_list.at(bid)->terrain_variant.at(i) != NULL)
+			)
 			{
 				logger_param("silicon bastard:", EWindowEditor::terrain_element_list.at(EWindowEditor::object_terrain->data_id)->terrain_variant.at(i)->name);
 

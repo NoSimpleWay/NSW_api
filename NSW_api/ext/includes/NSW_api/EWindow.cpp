@@ -77,6 +77,8 @@ int EButton::top_window_id = -1;
 //void (*action_on_left_click)(EButton* _b, float _d);
 
 bool EButton::any_input = false;
+bool EButton::any_overlap = false;
+
 
 
 EButton::EButton()
@@ -695,6 +697,11 @@ void EButton::update(float _d)
 	else
 	{
 		//text = "-";
+	}
+
+	if (is_overlap())
+	{
+		any_overlap = true;
 	}
 }
 
@@ -1393,6 +1400,8 @@ void EWindow::default_update(float _d)
 
 		if (!LMB) { *massive->head_catched = false; }	
 	}
+
+
 }
 
 /*EWindow::button_array_collection_massive()

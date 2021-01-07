@@ -17,6 +17,8 @@ float EWindowTest::gamma_factor = 0.2222f;
 float EWindowTest::gamma_offset = 0.9000f;
 float EWindowTest::gamma_border = 2.0000f;
 
+bool EWindowTest::show_terrain_grid = true;
+
 void EWindowTest::test_of_values()
 {
 	float test_result = 0.0f;
@@ -1246,13 +1248,22 @@ void EWindowTest::draw_debug_cluster_rama()
 
 			}
 
-	if (EWindow::window_editor->is_active)
+	if ((EWindow::window_editor->is_active) & (show_terrain_grid))
 	{
 		EGraphicCore::batch->setcolor_alpha(EColor::COLOR_DARK_RED, 0.5f);
 		for (int i = up_terrain_draw; i >= down_terrain_draw; i--)
 		for (int j = left_terrain_draw; j <= right_terrain_draw; j++)
 		{
 			EGraphicCore::batch->draw_rama(j * EPath::PATH_SIZE, i * EPath::PATH_SIZE, EPath::PATH_SIZE, EPath::PATH_SIZE, 1.0f / game_camera->zoom, EGraphicCore::gabarite_white_pixel);
+			EFont::active_font->draw_with_background
+			(
+				std::to_string(terrain_layer[j][i]),
+				EGraphicCore::batch,
+				j * EPath::PATH_SIZE + 10.0f,
+				i * EPath::PATH_SIZE + 10.0f,
+				EColor::COLOR_LIGHT_GRAY,
+				EColor::COLOR_DARK_GRAY
+			);
 		}
 	}
 }

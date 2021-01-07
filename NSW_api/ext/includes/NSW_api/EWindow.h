@@ -491,6 +491,7 @@ public:
 	bool* is_double_click = new bool (false);
 
 	static bool any_input;
+	static bool any_overlap;
 
 	bool* is_consumable = new bool(false);
 	bool* is_radial_button = new bool(false);

@@ -1,0 +1,2474 @@
+^begin_alphabet^
+#shadow_skew	0.393636
+	#lightmap_blur_factor	0.308000
+	#lightmap_modes_blend	0.233333
+	#blur_decay	0.001160
+	#terrain_element
+	#terrain_element_texture	data/textures/terrain_c18_pavement_1.png	0
+	data/textures/terrain_c18_pavement_2.png	1
+	data/textures/terrain_c18_pavement_3.png	2
+	NULL	-1
+	data/textures/terrain_asphalt_001_v1.png	3
+	data/textures/terrain_asphalt_001_v2.png	4
+	data/textures/terrain_asphalt_001_v3.png	5
+	data/textures/terrain_asphalt_001_v4.png	6
+	data/textures/terrain_asphalt_002_v1.png	7
+	ADD_NEW_ENTITY	613.000000	306.000000	0.000000
+	floor_order	floor_left_border	true
+	floor_right_border	floor_generate_offset_x	floor_generate_offset_y	ADD_NEW_SPRITE
+	*shadow
+	add_new_texture	data/textures/white_pixel.png
+	texture_offset_x	texture_offset_y	texture_offset_z	texture_shadow_size_x	texture_shadow_size_y	100.000000
+	texture_shadow_bottom_tall	texture_shadow_upper_tall	texture_fragment_x	1.000000
+	texture_fragment_y	sprite_color_red	sprite_color_green	sprite_color_blue	add_new_autobuilding_floor	0.000000	1.000000	floor_name	main
+	wall_color	0.500000	floor_additional_distance_between_window_x	5.000000
+	floor_additional_distance_between_window_y	add_new_wall_for_floor	add_new_texture_variant_for_wall	data/textures/button_bg_old.png	wall_element_color	data/textures/impulsa tower.png	data/textures/extension_c18#supermap.png	data/textures/mech_shadow_for_left_right.png	data/textures/letoon1.png	data/textures/roof_001.aseprite.png	data/textures/roof.png	entity base attribute	Life	1000.000000
+	Lightsoucre red	Lightsoucre green	Lightsoucre blue	entity bool attribute	Light Source
+	collision_up	20.000000
+	collision_down	collision_right	collision_left	path_block_up	path_block_down	path_block_right	path_block_left	shadow_block_up	shadow_block_down	shadow_block_right	shadow_block_left	- PUT TO MAP -
+	
+	=====================================
+	2144.000000	5220.000000	data/textures/letoon1.png
+	0.500000
+	3592.000000	2870.000000	data/textures/wall_yellow_sand.png
+	-9.000000
+	-3.000000
+	0.872998
+	111.000000
+	231.000000
+	351.000000
+	0.128748
+	data/textures/wall_yellow_sand_left.png
+	52.000000
+	103.000000
+	0.122583
+	data/textures/wall_yellow_sand_right.png
+	336.000000
+	data/textures/roof_yellow_sand_body_mid.png
+	25.000000
+	116.000000
+	0.857301
+	67.000000
+	137.000000
+	207.000000
+	0.056502
+	data/textures/roof_yellow_sand_back_left.png
+	-13.000000
+	211.000000
+	data/textures/roof_yellow_sand_back_right.png
+	333.000000
+	data/textures/roof_yellow_sand_body_left.png
+	12.000000
+	27.000000
+	42.000000
+	57.000000
+	72.000000
+	87.000000
+	102.000000
+	117.000000
+	132.000000
+	147.000000
+	162.000000
+	177.000000
+	192.000000
+	0.327834
+	data/textures/roof_yellow_sand_body_right.png
+	0.263676
+	data/textures/roof_yellow_sand_front_mid.png
+	-10.000000
+	0.043501
+	data/textures/roof_yellow_sand_face_left.png
+	-69.000000
+	data/textures/roof_yellow_sand_face_right.png
+	-9.000000	-3.000000	0.118000
+	1.115000	0.170000
+	data/textures/wall_yellow_sand_left.png	3.128748	data/textures/wall_yellow_sand.png	data/textures/wall_yellow_sand_right.png	data/textures/roof_yellow_sand_face_left.png	data/textures/roof_yellow_sand_front_mid.png	data/textures/roof_yellow_sand_face_right.png	0.991500	1.004498
+	data/textures/roof_yellow_sand_body_left.png	1.043501	3.056502
+	data/textures/roof_yellow_sand_body_mid.png	0.985000	0.815000
+	data/textures/roof_yellow_sand_body_right.png	data/textures/roof_yellow_sand_back_left.png	data/textures/roof_yellow_sand_back_right.png	3633.116943	3887.000000	data/textures/tall_building_c18_wall.png
+	0.975999
+	119.000000
+	239.000000
+	359.000000
+	-0.000000
+	0.984998
+	data/textures/tall_building_c18_corner_left.png
+	*texture_mirrored
+	438.199768
+	data/textures/tall_building_c18_corner_left.png	3.984998	data/textures/tall_building_c18_wall.png	*wall_is_mirrored	data/textures/white_pixel.png	3729.000000	4381.000000	data/textures/human.png
+	-7.000000
+	-2.000000
+	Inmovable
+	Ghost
+	No path block
+	16.500000
+	14.500000
+	15.500000
+	12.750000
+	6.500000
+	18.500000
+	9.500000
+	15.000000
+	3994.000000	4787.000000	data/textures/wall_lamp.png
+	-12.000000
+	55.000000
+	4347.000000	3844.000000	false
+	data/textures/wall_brick_001_v1.png
+	-315.000000
+	-235.000000
+	-155.000000
+	-75.000000
+	85.000000
+	165.000000
+	245.000000
+	0.835503
+	40.000000
+	0.608002
+	data/textures/window_001.png
+	-289.233215
+	23.160038
+	-188.171875
+	-87.110535
+	13.950806
+	115.012146
+	216.073486
+	data/textures/hrusch_wall_corner_001.png
+	0.804001
+	301.840271
+	data/textures/roof_metal_body_v3.png
+	82.320076
+	60.000000
+	122.000000
+	184.000000
+	246.000000
+	0.007000
+	-225.000000
+	-135.000000
+	-45.000000
+	45.000000
+	135.000000
+	225.000000
+	0.995997
+	^end_alphabet^
+	
+																																																																																																			 !         "#!"!"!"!"!"!"!"!"!"$"#"#"#"#"#"#"#"#"#"%"$"$"$"$"$"$"$"$"$"&"%"%"%"%"%"%"%"%"%"'()*+,-./01/2/34536373839:9;::3<=>?>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3@AB@C9999DE999999F>>>3B9999CG999999E>>>3B9999CH999999E>>>3B9999CI999999E>>>3B999:3CJ999999E>>>3B999:3CK999999E>>>3B999:3CL999999E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3MNOLP3LQ3LR3STUVWUXUYUZU[U\U]U^U_U`UaUbcdbef          !"!"!"!"!"!"!"!"!"!"#"#"#"#"#"#"#"#"#"#"$"$"$"$"$"$"$"$"$"$"%"%"%"%"%"%"%"%"%"%"&(g*+,-3.30/1/23435h6g7g8999::3;<=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3?@A@B999:3E>>>3B999:3CI999999E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3LMNTUVUWUXUYUZU[U\U]U^U_U`Uabcbij          !"!"!"!"!"!"!"!"!"!"#"#"#"#"#"#"#"#"#"#"$"$"$"$"$"$"$"$"$"$"%"%"%"%"%"%"%"%"%"%"&(k*l+m,3-3.30/1/234n5g6g7g&(j*o+l,3-3.30/1/234m5g6g7g&(j*p+l,3-3.30/1/234m5g6g7g&(j*q+l,3-3.30/1/2r4m5g6g7g&(s*k+l,3-3.30/1/23435g6g7g&(r*k+l,t-3.30/1/23435g6g7g&(r*k+l,u-3.30/1/234v5g6g7g&(w*x+l,3-3.30/1/23435g6g7g&(v*w+l,s-3.30/1/23435g6g7g&(v*w+l,t-3.30/1/234u5g6g7g&(y*z+l,{-3.30/1/2|435g6g7g&(x*y+},z-3.30/1/2{435g6g7g&(x*y+~,z-3.30/1/2{435g6g7g&(x*y+,z-3.30/1/2{4€5g6g7g&(*‚+ƒ,z-3.30/1/23435g6g7g&(„*…+‚,z-3.30/1/23435g6g7g&(†*+l,z-3.30/1/23435g6g7g&(…*+‡,z-3.30/1/23435g6g7g&(…*+ˆ,z-3.30/1/23435g6g7g&(…*+‰,z-3.30/1/23435g6g7g&(…*+Š,z-3.30/1/23435g6g7g&(…*+‹,z-3.30/1/23435g6g7g&(…*+Œ,z-3.30/1/23435g6g7g&(…*+,z-3.30/1/23435g6g7g&(…*+,z-3.30/1/23435g6g7g&(…*+,z-3.30/1/23435g6g7g&(…*+,z-3.30/1/23435g6g7g&(…*+‘,z-3.30/1/23435g6g7g&(…*+’,z-3.30/1/23435g6g7g&(…*+“,z-3.30/1/23435g6g7g&(…*+~,z-3.30/1/234”5g6g7g&(•*„+l,z-3.30/1/23435g6g7g&(”*„+†,z-3.30/1/23435g6g7g&(”*„+‡,z-3.30/1/23435g6g7g&(”*„+ˆ,z-3.30/1/23435g6g7g&(”*„+‰,z-3.30/1/23435g6g7g&(”*„+Š,z-3.30/1/23435g6g7g&(”*„+‹,z-3.30/1/23435g6g7g&(”*„+Œ,z-3.30/1/23435g6g7g&(”*„+,z-3.30/1/23435g6g7g&(”*„+,z-3.30/1/23435g6g7g&(”*„+,z-3.30/1/23435g6g7g&(”*„+,z-3.30/1/23435g6g7g&(”*„+‘,z-3.30/1/23435g6g7g&(”*„+’,z-3.30/1/23435g6g7g&(”*„+~,z-3.30/1/234–5g6g7g&(—*k+˜,z-3.30/1/23435g6g7g&(–*p+—,z-3.30/1/2™435g6g7g&(š*+›,z-3.30/1/23435g6g7g&(œ*„+š,z-3.30/1/23435g6g7g8:::Ÿ;<=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3?@A@B999 ¡C¢999999E>>>3B999£mC¤999999E>>>3B999:3C¥999999E>>>3B999:3C¦999999E>>>3B999:3C§999999E>>>3B999:3C¨999999E>>>3B999©ªC«999999E>>>3B999¬­C®999999E>>>3B999¯°C±999999E>>>3B999:3C²999999E>>>3B999:3E>>>3B999:3C³999999E>>>3B999:3E>>>3B999:3E>>>3LMNTUVUWUXUYUZU[U\U]U^U_U`Uabcb´µ          !"!"!"!"!"!"!"!"!"!"#"#"#"#"#"#"#"#"#"#"$"$"$"$"$"$"$"$"$"$"%"%"%"%"%"%"%"%"%"%"&(¶*+,-3.30/1/234·5g6g7g&(µ*¸+,-3.30/1/234¶5g6g7g&(µ*¹+,-3.30/1/234¶5g6g7g&(µ*º+»,-3.30/1/2¼4¶5g6g7g&(½*+,-3.30/1/234¶5g6g7g&¾(¼*¿+,-3.30/1/234¶5g6g7g&'()*+,-.0123435363738999::3;<=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3?@A@B999:3CÀ999999E>>>3B999Á¶CÂ999999E>>>3B999:3ÃC¿999999E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3CÄ999999E>>>3B999:3E>>>3LMNTUVUWUXUYUZU[U\U]U^U_U`UabcbÅÆ          !"!"!"!"!"!"!"!"!"!"#"#"#"#"#"#"#"#"#"#"$"$"$"$"$"$"$"$"$"$"%"%"%"%"%"%"%"%"%"%"&(Ç*È+3,-3.30É1/23435g6g7g899:::3;<=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3?@A@B9999E>>>3B9999E>>>3B9999E>>>3B9999E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3LMNRÊRËRÌTÍVÎWÏXĞYÑZÒ[Ó\Ô]U^U_U`UabcbÕÖ          !"!"!"!"!"!"!"!"!"!"#"#"#"#"#"#"#"#"#"#"$"$"$"$"$"$"$"$"$"$"%"%"%"%"%"%"%"%"%"%"&(×*Ø+l,Ù-3.3031/23435g6g7g899:::3;<=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3=>>>3?@A@B9999E>>>3B9999E>>>3B9999E>>>3B9999E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3B999:3E>>>3LMNLP3RÉRSRÊRËTUVUWUXUYUZU[U\U]U^U_U`UabcbÚÛ          !"!"!Ü!"!Û!"!"!"!"!"#"#"#Û#"#Û#"#"#"#"#"$Û$"$"$"$"$"$"$"$"$"%Û%"%"%"%"%"%"%"%"%"&(İ*Ş+@,-3.30/1/23435g6g7g&(Ü*ß+@,-3.30/1/23435g6g7g&(Ü*à+@,-3.30/1/23435g6g7g&(Ü*á+@,-3.30/1/23435g6g7g&(Ü*@+@,-3.30/1/23435g6g7g&(Ü*â+@,-3.30/1/23435g6g7g&(Ü*ã+@,-3.30/1/23435g6g7g&(Ü*ä+@,-3.30/1/2å435g6g7g&(Ü*İ+@,æ-3.30/1/234ç5g6g7g&(Ü*Ş+@,å-3.30/1/234æ5g6g7g&(Ü*ß+@,å-3.30/1/234æ5g6g7g&(Ü*à+@,å-3.30/1/234æ5g6g7g&(Ü*@+@,å-3.30/1/234æ5g6g7g&(Ü*á+@,å-3.30/1/234æ5g6g7g&(Ü*â+@,å-3.30/1/234æ5g6g7g&(Ü*ã+@,å-3.30/1/2ä4æ5g6g7g&(è*é+È,ê-3.30/1/23435g6g7g&(ç*ë+È,é-3.30/1/23435g6g7g&(ç*ì+È,é-3.30/1/23435g6g7g&(ç*í+È,é-3.30/1/23435g6g7g&(ç*î+È,é-3.30/1/23435g6g7g&(ç*ï+È,é-3.30/1/23435g6g7g&(ğ*İ+È,-3.30/1/234ñ5g6g7g&½(ï*ò+È,-3.30/1/234ğ5g6g7g&(ó*İ+È,ô-3.30/1/23435g6g7g&(ò*İ+õ,ó-3.30/1/23435g6g7g&(ò*İ+ö,ó-3.30/1/23435g6g7g&(ò*İ+÷,ó-3.30/1/23435g6g7g&(ò*İ+ø,ó-3.30/1/234ù5g6g7g&(ò*ú+È,ó-3.30/1/23435g6g7g&(ò*ù+ô,ó-3.30/1/23435g6g7g&(ò*ù+õ,ó-3.30/1/23435g6g7g&(ò*ù+ö,ó-3.30/1/23435g6g7g&(ò*ù+÷,ó-3.30/1/234ø5g6g7g&(ò*û+È,ó-3.30/1/23435g6g7g&(ò*ú+ô,ó-3.30/1/23435g6g7g&(ò*ú+õ,ó-3.30/1/23435g6g7g&(ò*ú+ö,ó-3.30/1/23435g6g7g&(ò*ú+÷,ó-3.30/1/234ø5g6g7g&(ò*ü+È,ó-3.30/1/23435g6g7g&(ò*û+ô,ó-3.30/1/23435g6g7g&(ò*û+õ,ó-3.30/1/23435g6g7g&(ò*û+ö,ó-3.30/1/23435g6g7g&(ò*û+÷,ó-3.30/1/234ø5g6g7g&(ò*ı+È,ó-3.30/1/23435g6g7g&(ò*ü+ô,ó-3.30/1/23435g6g7g&(ò*ü+õ,ó-3.30/1/23435g6g7g&(ò*ü+ö,ó-3.30/1/23435g6g7g&(ò*ü+÷,ó-3.30/1/234ø5g6g7g&(ò*ş+È,ó-3.30/1/23435g6g7g&(ò*ı+ô,ó-3.30/1/23435g6g7g&(ò*ı+õ,ó-3.30/1/23435g6g7g&(ò*ı+ö,ó-3.30/1/23435g6g7g&(ò*ı+÷,ó-3.30/1/234ø5g6g7g&(ò*ÿ+È,ó-3.30/1/2 ^begin_alphabet^
+texture_fragment_y	1.000000
+	sprite_color_red	0.500000
+	sprite_color_green	sprite_color_blue	ADD_NEW_SPRITE
+	add_new_texture	data/textures/roof_metal_body_v3.png
+	texture_offset_x	225.000000
+	texture_offset_y	60.000000
+	texture_offset_z	82.320076
+	texture_shadow_size_x	texture_shadow_size_y	texture_shadow_bottom_tall	100.000000
+	texture_shadow_upper_tall	texture_fragment_x	0.995997
+	122.000000
+	184.000000
+	246.000000
+	0.007000
+	data/textures/roof_metal_back_v1.png
+	-315.000000
+	246.433990
+	64.320076
+	-225.000000
+	-135.000000
+	-45.000000
+	45.000000
+	135.000000
+	data/textures/roof_metal_face_v1.png
+	-2.000000
+	*shadow
+	data/textures/white_pixel.png
+	312.000000
+	0.000000
+	233.000000
+	1024.000000
+	data/textures/wall_brick_002_v2.png
+	-307.000000
+	7.000000
+	83.000000
+	0.459343
+	0.498713
+	0.480146
+	-227.000000
+	0.588003
+	123.000000
+	0.455508
+	0.508191
+	0.483113
+	163.000000
+	0.452414
+	0.514403
+	0.491059
+	203.000000
+	0.450724
+	0.516978
+	0.501032
+	243.000000
+	0.451523
+	0.516390
+	0.509933
+	283.000000
+	0.456325
+	0.513589
+	0.515990
+	323.000000
+	0.466147
+	0.510087
+	0.519169
+	363.000000
+	0.480149
+	0.507908
+	0.520747
+	403.000000
+	0.495091
+	0.508801
+	0.522509
+	443.000000
+	0.506471
+	0.513127
+	0.525937
+	483.000000
+	0.510885
+	0.519463
+	0.531661
+	523.000000
+	0.075002
+	0.507914
+	0.525490
+	0.539353
+	data/textures/window_tiled_blue_gray_001_v1.png
+	108.902512
+	167.935013
+	226.967529
+	286.000031
+	345.032532
+	404.065033
+	463.097534
+	-189.000000
+	0.076612
+	data/textures/hrusch_wall_corner_001.png
+	0.537501
+	*texture_mirrored
+	-189.959747
+	data/textures/hrusch_roof_middle_body_001_v2.png
+	-294.000000
+	526.000061
+	256.000000
+	0.004500
+	-198.000000
+	0.052667
+	data/textures/violet_roof_corner_body_001.png
+	-192.944000
+	127.000000
+	274.500000
+	461.483307
+	461.482941
+	-180.000000
+	6.000000
+	84.000000
+	-179.959747
+	28.000000
+	-99.959747
+	0.474375
+	0.072773
+	data/textures/window_005_v4.png
+	-173.484741
+	96.955460
+	data/textures/window_005_v8.png
+	156.955460
+	data/textures/window_005_v2.png
+	216.955460
+	data/textures/window_005_v5.png
+	276.955444
+	336.955444
+	396.955444
+	data/textures/window_005_v1.png
+	456.955444
+	525.910889
+	0.998252
+	-83.959747
+	0.235500
+	-62.009766
+	17.990234
+	55.990234
+	55.030479
+	-49.009766
+	46.990234
+	52.046234
+	64.990234
+	65.030487
+	145.030487
+	71.505486
+	161.030487
+	182.980469
+	262.980469
+	300.980469
+	300.020721
+	195.980469
+	291.980469
+	297.036469
+	309.980469
+	add_new_autobuilding_floor	-307.000000	7.000000	83.000000	0.000000	1.000000	floor_name	main
+	wall_color	0.459343	0.498713	0.480146	0.455508	0.508191	0.483113	0.452414	0.514403	0.491059	0.450724	0.516978	0.501032	0.451523	0.516390	0.509933	0.456325	0.513589	0.515990	0.466147	0.510087	0.519169	0.480149	0.507908	0.520747	0.495091	0.508801	0.522509	0.506471	0.513127	0.525937	0.510885	0.519463	0.531661	0.507914	0.525490	0.539353	0.500111	0.529476	0.547940	0.491216	0.531146	0.555988	0.484095	0.531344	0.562234	0.479771	0.531070	0.566129	0.477778	0.530851	0.567997	0.477111	0.530768	0.568642	0.476966	0.530752	0.568785	0.476950	0.530750	0.568800	window_is_stretched
+	floor_additional_distance_between_window_x	floor_additional_distance_between_window_y	22.032505
+	add_new_wall_for_floor	add_new_texture_variant_for_wall	data/textures/hrusch_wall_corner_001.png	wall_element_color	0.500000	1.588003	11.075002
+	data/textures/wall_brick_002_v2.png	1.020000	1.110000
+	*wall_is_mirrored	data/textures/violet_roof_corner_body_001.png	1.323500	1.004500
+	^end_alphabet^
+	
+ 	
+ 	
+ 	
+ 	 	 	  	! 	" 	# 	
+ $	% #	$ #	$ #	 $ #	!$ #	"$ #	
+$ &'	($)(*+* ,	-./ 012+	3-.4 /01+	,-5 678+	2-43 567+	,-9 :;<+	2-83 9:;+	,-= >?@+	2-<3 =>?+	,-A BCD+	2-@3 ABC+	,-E FGH+	2-D3 EFG+	,-I JKL+	2-H3 IJK+	,-M NOP+	2-L3 MNO+	,-Q RST+	2-P3 QRS+	,-U VWX+	2-T3 UVW+	,-Y Z[\+	2-X3 YZ[+	,-] ^_`a+	2-\3 ]^_`b	,-c a	,-d a	,-e a	,-f a	,-g a	,-h a	,-i a	j-bk a	i-cj a	i-dj a	i-ej a	i-fj a	i-gj a	i-hj l	,-. k	,-8 k	,-@ k	,-H k	,-P k	,-X mnk	o-. mk	n-8 mk	n-@ mk	n-H mk	n-P mk	n-X lp	q-r o	psq to	u-qv o	trqu sw	,-q mv	x-qyz{| %&	}~xyz{ +	€. +	‚€.ƒ +	€4 +	€4‚ +	€8 +	€8‚ +	€< +	€<‚ +	€@ +	€@‚ +	€D +	€D‚ +	€H +	€H‚ +	€L +	€L‚ +	€P +	€P‚ +	€T +	€T‚ +	€X +	€X‚ +	€\ „+	€\‚ ƒ…	†€‡ ˆ	…€‰ Š	…€‹ Œ	…€ ‡	…€ ‰	…€ 	…€‘ o	€’ “o	”€‘• ’+	–-. /01+	—-.3 /01+	•-4 567+	–-43 567+	•-8 9:;+	–-83 9:;+	•-< =>?+	–-<3 =>?+	•-@ ABC+	–-@3 ABC+	•-D EFG+	–-D3 EFG+	•-H IJK+	–-H3 IJK+	•-L MNO+	–-L3 MNO+	•-P QRS+	–-P3 QRS+	•-T UVW+	–-T3 UVW+	•-X YZ[+	–-X3 YZ[+	•-\ ]^_`+	–-\3 ]^_`a	•-b a	•-c a	•-d a	•-e a	•-f a	•-g a	•-h a	˜-bj a	—-cj a	—-dj a	—-ej a	—-fj a	—-gj a	—-hj k	•-. k	•-8 k	•-@ k	•-H k	•-P k	•-X lmk	™-. mk	˜-8 mk	˜-@ mk	˜-H mk	˜-P mk	˜-X lo	š-q o	™rq so	›-qu o	šrqu sv	•-q mv	œ-qxyz{ %&	}~xyz{ +	€. +	Ÿ€.‚ +	€4 +	€4‚ +	€8 +	€8‚ +	€< +	€<‚ +	€@ +	€@‚ +	€D +	€D‚ +	€H +	€H‚ +	€L +	€L‚ +	€P +	€P‚ +	€T +	€T‚ +	€X +	€X‚ +	€\ ƒ+	€\‚ ƒ‰	 €† ‰	Ÿ€ˆ „	Ÿ€Š ‡	Ÿ€Œ ‰	Ÿ€ „	Ÿ€ 	Ÿ€ o	€‘ ’o	¡€‘” ’+	¢-. /01+	£-.3 /01+	¡-4 567+	¢-43 567+	¡-8 9:;+	¢-83 9:;+	¡-< =>?+	¢-<3 =>?+	¡-@ ABC+	¢-@3 ABC+	¡-D EFG+	¢-D3 EFG+	¡-H IJK+	¢-H3 IJK+	¡-L MNO+	¢-L3 MNO+	¡-P QRS+	¢-P3 QRS+	¡-T UVW+	¢-T3 UVW+	¡-X YZ[+	¢-X3 YZ[+	¡-\ ]^_`+	¢-\3 ]^_`a	¡-b a	¡-c a	¡-d a	¡-e a	¡-f a	¡-g a	¡-h a	¤-bj a	£-cj a	£-dj a	£-ej a	£-fj a	£-gj a	£-hj k	¡-. k	¡-8 k	¡-@ k	¡-H k	¡-P k	¡-X lmk	¥-. mk	¤-8 mk	¤-@ mk	¤-H mk	¤-P mk	¤-X lo	¦-q o	¥rq so	§-qu o	¦rqu sv	¡-q mv	¨-qxyz{ %&	©}~xyz{ ª«¬­®¯(°±²³´µ±¶·¸±¹º»±¼½¾±¿ÀÁ±ÂÃÄ±ÅÆÇ±ÈÉÊ±ËÌÍ±ÎÏĞ±ÑÒÓ±ÔÕÖ±×ØÙ±ÚÛÜ±İŞß±àáâ±ãäå±æçè±éêë±ìíîïğ(ñòó­­­®ôõ­­­­­­(ö÷ööò­­­øùóú­­­­­­(õöööò­­­ûüıóô­­­­­­(õöööò­­­®óş­­­­­­(õöööò­­­®õöööò­­­®üóı­­­­­­(õöööò­­­®õöööò­­­ÿ ^begin_alphabet^
+add_new_texture_variant_for_wall	data/textures/hrusch_roof_middle_body_001_v2.png	0.000000	0.000000
+	wall_element_color	0.500000	1.000000
+	add_new_wall_for_floor	1.000000	*wall_is_mirrored	-2.000000	data/textures/white_pixel.png	129.000000	-1.000000	127.000000	274.500000	461.483307	461.482941
+	0.300000	1.090000
+	data/textures/window_tiled_blue_gray_001_v1.png	add_new_autobuilding_floor	-307.000000	28.000000	83.000000	floor_name	mid
+	wall_color	floor_additional_distance_between_window_x	floor_additional_distance_between_window_y	5.000000
+	1.050001	data/textures/hrusch_wall_corner_001.png	1.474375	11.072773
+	data/textures/wall_brick_002_v2.png	data/textures/violet_roof_corner_body_001.png	1.235500	0.998252
+	3.000000	-40.000000	data/textures/window_005_v1.png	data/textures/window_005_v2.png	data/textures/window_005_v3.png	data/textures/window_005_v4.png	data/textures/window_005_v5.png	data/textures/window_005_v6.png	data/textures/window_005_v8.png	-315.000000	bottom
+	31.061337
+	-0.000000	7.000000	7.835503	1.608002
+	data/textures/wall_brick_001_v1.png	data/textures/roof_metal_face_v1.png	18.000000	6.995997	4.007000
+	data/textures/roof_metal_body_v3.png	data/textures/roof_metal_back_v1.png	627.000000	233.000000	1024.000000	1024.000000
+	12.000000	data/textures/window_001.png	entity base attribute	Life	1000.000000
+	entity bool attribute	Inmovable
+	collision_up	231.000000
+	collision_down	collision_right	307.000000
+	collision_left	313.000000
+	path_block_up	236.000000
+	path_block_down	-25.000000
+	path_block_right	290.000000
+	path_block_left	310.000000
+	shadow_block_up	20.000000
+	shadow_block_down	shadow_block_right	shadow_block_left	- PUT TO MAP -
+	
+	=====================================
+	ADD_NEW_ENTITY	4673.500000	4071.500000	floor_order	0
+	floor_left_border	true
+	floor_right_border	floor_generate_offset_x	floor_generate_offset_y	ADD_NEW_SPRITE
+	add_new_texture	data/textures/Lamp_supernove.png
+	texture_offset_x	-19.000000
+	texture_offset_y	-10.000000
+	texture_offset_z	texture_shadow_size_x	texture_shadow_size_y	texture_shadow_bottom_tall	-4.000000
+	texture_shadow_upper_tall	100.000000
+	texture_fragment_x	texture_fragment_y	sprite_color_red	0.500000
+	sprite_color_green	sprite_color_blue	Lightsoucre red	Lightsoucre green	Lightsoucre blue	Controlled by AI
+	Light Source
+	14.000000
+	10.000000
+	20.500000
+	19.500000
+	4969.000000	3843.000000	2
+	1
+	3
+	false
+	data/textures/violet_wall.png
+	-299.000000
+	-1.000000
+	0.947999
+	0.397440
+	0.473759
+	0.577500
+	-181.000000
+	-63.000000
+	55.000000
+	173.000000
+	291.000000
+	0.209994
+	data/textures/window_tiled_blue_gray_001_v1.png
+	19.893959
+	data/textures/wall2_corner_left.png
+	0.882620
+	*texture_mirrored
+	304.779297
+	data/textures/violet_roof_001_body_mid.png
+	-298.149994
+	76.787918
+	87.000000
+	175.000000
+	0.920991
+	-162.149994
+	-26.150000
+	109.849998
+	245.850006
+	0.671773
+	data/textures/violet_roof_back_mid_001.png
+	245.047211
+	0.678023
+	data/textures/violet_roof_back_corner_001.png
+	-303.149994
+	337.211090
+	data/textures/roof_violet_body_mid_v1.png
+	11.000000
+	107.000000
+	203.000000
+	0.437992
+	0.552575
+	data/textures/violet_roof_face_mid_001.png
+	-163.000000
+	-27.000000
+	109.000000
+	245.000000
+	0.684273
+	data/textures/hrusch_roof_face_corner001.png
+	*shadow
+	data/textures/white_pixel.png
+	314.000000
+	339.000000
+	221.000000
+	81.919884
+	88.746696
+	data/textures/brown_rama_beton_wall_002_v2.png
+	-305.000000
+	-2.000000
+	86.000000
+	0.401119
+	0.422280
+	0.372675
+	data/textures/brown_rama_beton_wall_002_v1.png
+	-241.000000
+	-177.000000
+	data/textures/brown_rama_beton_wall_002_v4.png
+	-113.000000
+	data/textures/brown_rama_beton_wall_002_v5.png
+	-49.000000
+	0.184027
+	150.000000
+	0.456062
+	0.454481
+	data/textures/brown_rama_beton_wall_001_v1.png
+	data/textures/brown_rama_beton_wall_002_v3.png
+	214.000000
+	0.354495
+	278.000000
+	0.447617
+	342.000000
+	0.336316
+	406.000000
+	0.464508
+	470.000000
+	0.363585
+	534.000000
+	0.472954
+	598.000000
+	662.000000
+	0.489845
+	726.000000
+	0.055381
+	data/textures/window_005_v8.png
+	-279.609802
+	91.914490
+	0.446000
+	0.425485
+	0.356800
+	data/textures/window_005_v1.png
+	155.993973
+	data/textures/window_005_v3.png
+	220.073456
+	284.152954
+	data/textures/window_005_v5.png
+	348.232422
+	412.311920
+	data/textures/window_005_v4.png
+	476.391418
+	540.470886
+	604.550415
+	668.629883
+	data/textures/window_005_v7.png
+	-167.612457
+	data/textures/window_005_v2.png
+	^end_alphabet^
+	
+    !"# $	   %	 $&' 	() * + , - . / 01
+23  4567 8	   9:;< = > ?@ABC DEFGHIJKLMNOPQRSTUVWXYZ[Y\Y]Y^_`^abcdecdcdcdcdcdcdcdcdcdfgefefefefefefefefefhfgfgfgfgfgfgfgfgfgfifhfhfhfhfhfhfhfhfhfjfifififififififififklmnopqrstuvwxyz{|}{~{DEFDD€DG‚GƒI„K…L†N‡PYRYTYVYXYZY[Y\Y]^_^`ˆ‰cŠc‹cŒcŠcdcdcdcdcdcdefefefefefefefefefefgfgfgfgfgfgfgfgfgfgfhhfhfhfhfhfhfhfhfhfiŒifififififififififjkmoqrstwvwxy‘z’|“}”jkm•oqrstwvwxyz‘|’}“jkm–oqrstwvwxyz‘|’}“jkm—oqrstwvwxyz‘|’}“jkm˜oqrstwvwxyz‘|’}“jkm™oqrstwvwxšyz‘|’}“jk›moqœrstwvwxyz{|{}{jkšm”oq›rstwvwxyz{|{}{jkšm•oq›rstwvwxyz{|{}{jkšm–oq›rstwvwxyz{|{}{jkšm—oq›rstwvwxyz{|{}{jkšm˜oq›rstwvwx™yz{|{}{jkmoqrstwvwxyz{|{}{jŸkœm oqrstwvwxyz{|{}{jk¡m¢oq£rstwvwxyz{|{}{jk m¡o¤q¢rstwvwxyz{|{}{jk m¡o¥q¢rstwvwxy¦z{|{}{jk m§oq¢rstwvwxyz{|{}{jk m¦o£q¢rstwvwxyz{|{}{jk m¦o¤q¢rstwvwxy¥z{|{}{jk m¨oq¢rstwvwxyz{|{}{jk m§o£q¢rstwvwxyz{|{}{jk m§o¤q¢rstwvwxy¥z{|{}{jk m©oq¢rstwvwxyz{|{}{jk m¨o£q¢rstwvwxyz{|{}{jk m¨o¤q¢rstwvwxy¥z{|{}{jk mªoq¢rstwvwx«yz{|{}{jk m©o£q¢rstwvwxªyz{|{}{jk m©o¤q¢rstwvwxªy¥z{|{}{jk¬m¡o­q¢rstwvwxyz{|{}{jk«m¦o¬q¢rstwvwxyz{|{}{jk«m§o¬q¢rstwvwxyz{|{}{jk«m¨o¬q¢rstwvwxyz{|{}{jk«m©o¬q¢rstwvwx®yz{|{}{jk¯m°o¬q¢rstwvwxyz{|{}{jk®m±o¬q¢rstwvwxyz{|{}{jk²m¯o³q¢rstwvwxyz{|{}{jk±m¯o´q¢rstwvwxyz{|{}{jk±m¯oµq¢rstwvwxy¶z{|{}{jk±m°o²q¢rstwvwxyz{|{}{jk±m°o³q¢rstwvwxyz{|{}{jk±m°o´q¢rstwvwxy·z{|{}{jk¸moq¢rstwvwxyz{|{}{jk·m¹oq¢rstwvwxyz{|{}{jk·mºoq¢rstwvwxyz{|{}{jk·m»oq¢rstwvwxyz{|{}{jk·m¼oq¢rstwvwx½yz{|{}{jk¾m¯oq¢rstwvwxyz{|{}{jk½m°oq¢rstwvwxyz{|{}{j¿kÀmÁoqrÂsÃtÄvÅxyz{|{}{jkÆmÇoÈqÉrstwvwxyzÊ|Ë}ÌjkÍmÎoÇqÈrstwvwxyzÉ|Ê}ËjkÌmÏoÇqÈrstwvwxyzÉ|Ê}ËjkĞmÑoÇqÈrstwvwxyzÉ|Ê}ËjkÒmÓoÇqÈrstwvwxÔyzÉ|Ê}ËjkÌmÆoÇqÕrstwvwxyzÉ|Ö}×jkØmÍoÇqÔrstwvwxyzÉ|Õ}ÖjkÙmÎoÇqÔrstwvwxyzÉ|Õ}ÖjkÏmĞoÇqÔrstwvwxyzÉ|Õ}ÖjkÌmÒoÇqÔrstwvwxÓyzÉ|Õ}ÖjkÌmÆoÇqÚrstwvwxyzÉ|Ê}ÛjkØmÍoÇqÙrstwvwxyzÉ|Ê}ÚjkÅmÎoÇqÙrstwvwxyzÉ|Ê}ÚjkÌmĞoÇqÙrstwvwxyzÉ|Ê}ÚjkÅmÒoÇqÙrstwvwxÓyzÉ|Ê}ÚjkÌmÆoÇqÜrstwvwxyzÉ|İ}ÖjkÑmÍoÇqÛrstwvwxyzÉ|Ü}ÖjkÅmÎoÇqÛrstwvwxyzÉ|Ü}ÖjkÏmĞoÇqÛrstwvwxyzÉ|Ü}ÖjkÑmÒoÇqÛrstwvwxÓyzÉ|Ü}ÖjkØmÆoÇqŞrstwvwxyzÉ|Ê}ßjkÌmÍoÇqİrstwvwxyzÉ|Ê}ŞjkÏmÎoÇqİrstwvwxyzÉ|Ê}ŞjkÅmĞoÇqİrstwvwxyzÉ|Ê}ŞjkØmÒoÇqİrstwvwxÓyzÉ|Ê}ŞjkÌmÆoÇqàrstwvwxyzÉ|á}ÖjkÑmÍoÇqßrstwvwxyzÉ|à}ÖjkÅmÎoÇqßrstwvwxyzÉ|à}ÖjkÌmĞoÇqßrstwvwxyzÉ|à}ÖjkØmÒoÇqßrstwvwxÓyzÉ|à}Öjk×mÆoÇqârstwvwxyzÉ|Ê}ãjkÑmÍoÇqárstwvwxyzÉ|Ê}âjkÅmÎoÇqárstwvwxyzÉ|Ê}âjkÌmĞoÇqárstwvwxyzÉ|Ê}âjkÑmÒoÇqárstwvwxÓyzÉ|Ê}âjkØmÆoÇqärstwvwxyzÉ|å}Öjk×mÍoÇqãrstwvwxyzÉ|ä}ÖjkÌmÎoÇqãrstwvwxyzÉ|ä}ÖjkØmĞoÇqãrstwvwxyzÉ|ä}Öjk×mÒoÇqãrstwvwxÓyzÉ|ä}ÖjkÑmÆoÇqærstwvwxyzÉ|Ê}ÚjkÑmÍoÇqårstwvwxyzÉ|Ê}ÚjkÅmÎoÇqårstwvwxyzÉ|Ê}ÚjkØmĞoÇqårstwvwxyzÉ|Ê}ÚjkÅmÒoÇqårstwvwxÓyzÉ|Ê}ÚjkÅmÆoÇqçrstwvwxyzÉ|è}ÖjkÌmÍoÇqærstwvwxyzÉ|ç}ÖjkÑmÎoÇqærstwvwxyzÉ|ç}ÖjkÅmĞoÇqærstwvwxyzÉ|ç}ÖjkØmÒoÇqærstwvwxÓyzÉ|ç}ÖjkÌmÆoÇqérstwvwxyêzÉ|Ê}ÖjkÅmÍoÇqèrstwvwxyézÉ|Ê}ÖjkÅmÎoÇqèrstwvwxyézÉ|Ê}ÖjkØmĞoÇqèrstwvwxyézÉ|Ê}ÖjkÏmÒoÇqèrstwvwxÓyézÉ|Ê}ÖjkëmìoÇqírstwvwxyzî|ï}ğjkñmëoÇqòrstwvwxyzí|î}ïjkómëoÇqôrstwvwxyzí|î}ïjkòmëoÇqõrstwvwxyzí|î}ïjkömëoÇq÷rstwvwxyzí|î}ïjkğmëoÇqørstwvwxyzí|î}ïjkùmëoÇqúrstwvwxyzí|î}ïjkòmëoÇqûrstwvwxyzí|î}ïjkğmëoÇqürstwvwxyzí|î}ïjkğmëoÇqırstwvwxyzí|î}ïjkşmÿoÇqìrstwvwxyzí|î}ïjk ^begin_alphabet^
+texture_offset_x	-167.612457
+	texture_offset_y	-2.000000
+	texture_offset_z	155.993973
+	texture_shadow_size_x	1.000000
+	texture_shadow_size_y	texture_shadow_bottom_tall	100.000000
+	texture_shadow_upper_tall	texture_fragment_x	texture_fragment_y	sprite_color_red	0.446000
+	sprite_color_green	0.425485
+	sprite_color_blue	0.356800
+	ADD_NEW_SPRITE
+	add_new_texture	data/textures/window_005_v6.png
+	220.073456
+	data/textures/window_005_v2.png
+	284.152954
+	348.232422
+	data/textures/window_005_v4.png
+	412.311920
+	data/textures/window_005_v8.png
+	476.391418
+	540.470886
+	604.550415
+	data/textures/window_005_v7.png
+	668.629883
+	data/textures/brown_rama_beton_wall_corner_v2.png
+	-305.000000
+	86.000000
+	0.500000
+	147.000000
+	208.000000
+	269.000000
+	330.000000
+	391.000000
+	452.000000
+	513.000000
+	574.000000
+	635.000000
+	696.000000
+	0.549907
+	*texture_mirrored
+	-46.222260
+	data/textures/violet_roof_001_body_mid.png
+	729.544373
+	174.000000
+	262.000000
+	0.481498
+	-169.000000
+	0.948503
+	data/textures/violet_roof_back_mid_001.png
+	293.371826
+	data/textures/violet_roof_back_corner_001.png
+	-310.000000
+	-40.003601
+	data/textures/roof_violet_body_mid_v1.png
+	10.000000
+	106.000000
+	202.000000
+	0.951790
+	298.000000
+	0.066373
+	data/textures/violet_roof_face_mid_001.png
+	data/textures/hrusch_roof_face_corner001.png
+	*shadow
+	data/textures/white_pixel.png
+	-53.000000
+	0.000000
+	94.000000
+	268.000000
+	295.000000
+	735.233582
+	735.233032
+	data/textures/brown_rama_beton_wall_001_v1.png
+	-37.222260
+	-1.000000
+	0.390000
+	0.366600
+	0.374400
+	26.777740
+	0.580999
+	150.000000
+	214.000000
+	278.000000
+	342.000000
+	406.000000
+	470.000000
+	534.000000
+	598.000000
+	662.000000
+	0.981562
+	data/textures/window_tall_v3.png
+	-27.630283
+	88.827118
+	0.624000
+	0.576000
+	0.528000
+	data/textures/window_tall_v1.png
+	152.289978
+	215.752838
+	279.215698
+	342.678558
+	data/textures/window_tall_v2.png
+	406.141418
+	469.604248
+	533.067139
+	596.529968
+	659.992859
+	-32.222260
+	736.819946
+	0.827471
+	87.000000
+	175.000000
+	263.000000
+	0.408998
+	95.000000
+	191.000000
+	287.000000
+	0.124915
+	80.313744
+	-13.000000
+	0.901000
+	data/textures/roof_002_face_right.png
+	63.961700
+	0.401119
+	0.422280
+	0.372675
+	data/textures/brown_rama_beton_wall_002_v1.png
+	127.961700
+	data/textures/brown_rama_beton_wall_002_v4.png
+	191.961700
+	data/textures/brown_rama_beton_wall_002_v2.png
+	255.961700
+	319.961700
+	0.184027
+	data/textures/brown_rama_beton_wall_002_v3.png
+	0.456062
+	0.454481
+	0.354495
+	0.447617
+	data/textures/brown_rama_beton_wall_002_v5.png
+	0.336316
+	0.464508
+	0.363585
+	0.472954
+	0.489845
+	726.000000
+	0.055381
+	89.351898
+	91.914490
+	data/textures/window_005_v5.png
+	data/textures/window_005_v3.png
+	data/textures/window_005_v1.png
+	201.349243
+	322.739441
+	199.961700
+	58.961700
+	328.958099
+	315.961700
+	add_new_autobuilding_floor	-305.000000	-2.000000	86.000000	0.000000	floor_name	main
+	wall_color	0.500000	0.410000	0.540000	0.390000	0.530000	0.370000	0.550000	0.400000	0.560000	0.580000	1.000000	0.039550	0.384601	0.669801	0.384600	0.669800	floor_additional_distance_between_window_x	6.997338
+	floor_additional_distance_between_window_y	9.079487
+	add_new_wall_for_floor	1.058001	add_new_texture_variant_for_wall	data/textures/brown_rama_beton_wall_corner_v2.png	wall_element_color	1.040000
+	4.184027	10.055381
+	data/textures/brown_rama_beton_wall_002_v1.png	data/textures/brown_rama_beton_wall_002_v2.png	data/textures/brown_rama_beton_wall_002_v3.png	data/textures/brown_rama_beton_wall_002_v5.png	data/textures/brown_rama_beton_wall_001_v1.png	data/textures/brown_rama_beton_wall_002_v4.png	0.435999	0.459000	0.494001	0.920000
+	*wall_is_mirrored	data/textures/hrusch_roof_face_corner001.png	data/textures/violet_roof_face_mid_001.png	data/textures/roof_violet_body_mid_v1.png	1.948503	3.481498
+	data/textures/violet_roof_001_body_mid.png	data/textures/violet_roof_back_corner_001.png	data/textures/violet_roof_back_mid_001.png	252.000000	2.000000	8.000000	data/textures/white_pixel.png	268.000000	295.000000	735.233582	data/textures/window_005_v1.png	data/textures/window_005_v2.png	data/textures/window_005_v3.png	data/textures/window_005_v4.png	data/textures/window_005_v5.png	data/textures/window_005_v6.png	data/textures/window_005_v7.png	data/textures/window_005_v8.png	0.477001	0.892000
+	-299.000000	-1.000000	0.830000
+	bottom
+	0.552000	0.563999	0.525000	window_is_stretched
+	20.821335
+	data/textures/wall2_corner_left.png	5.209994	0.947999
+	data/textures/violet_wall.png	0.360000	0.420000	4.684273	^end_alphabet^
+	
+
+ 	
+
+ 	
+
+ 	
+
+ 	
+
+ 	
+
+  	
+
+ !	
+
+" #	
+
+$ %&	
+
+'&&# $(	
+
+&&&# $)	
+
+&&&# $*	
+
+&&&# $+	
+
+&&&# $,	
+
+&&&# $-	
+
+&&&# $.	
+
+&&&# $/	
+
+&&&# $0	
+
+&&&# $1	
+
+2&&&3# 4%	
+
+&&&2# 3'	
+
+&&&2# 3(	
+
+&&&2# 3)	
+
+&&&2# 3*	
+
+&&&2# 3+	
+
+&&&2# 3,	
+
+&&&2# 3-	
+
+&&&2# 3.	
+
+&&&2# 3/	
+
+&&&2# 30	
+
+1&&&5 $6	
+
+&&&4 $%5	
+
+&&&4 $75	
+
+&&&4 $85	
+
+9&&&4 :5	
+
+;&&&4 9%5	
+
+:&&&4 965	
+
+:&&&4 975	
+
+:8&&&< $=5	
+
+&&&; 9<5	
+
+:&&&> ?<5	
+
+&&&2= @<5	
+
+&&&A >B5	
+
+&&&@ >C5	
+
+&&&@ >D5	
+
+E&&&2@ ?A5	
+
+&&&2@ ?B5	
+
+&&&2@ ?C5	
+
+&&&2@ ?F5	
+
+G&&&H $5	
+
+&&&G 95	
+
+:&&&I >5	
+
+&&&2H ?5	
+
+&&&JK LMNOP	QR&&&S TU%	
+
+VWXR YT%	
+
+ZUVWR ST[	
+
+UVWR XTZ	
+
+YUVWR ST\	
+
+UVWR XT[	
+
+YUVWR ST]	
+
+UVWR XT\	
+
+YUVWR ST^	
+
+UVWR XT]	
+
+YUVWR ST_	
+
+UVWR XT^	
+
+YUVWR ST`	
+
+UVWR XT_	
+
+YUVWR STa	
+
+UVWR XT`	
+
+YUVWR STb	
+
+UVWR XTa	
+
+YUVWR STc	
+
+dUVWR XTb	
+
+YcUVWe fTg	
+
+hijk eTl	
+
+ghid eTm	
+
+ghij eTn	
+
+ghid eTo	
+
+ghip eTq	
+
+ghio eTr	
+
+ghio eTs	
+
+ghid eTt	
+
+ghio eTu	
+
+ghi4 vTw	
+
+x&&&4 uyv	
+
+w&&&4 uzv	
+
+w&&&4 u{v	
+
+w|&&&@ STv	
+
+&&&@ S}v	
+
+&&&@ S~v	
+
+&&&@ Sv	
+
+€&&&2@ Tv	
+
+&&&2@ €|v	
+
+&&&2@ €}v	
+
+&&&2@ €~v	
+
+&&&G S‚v	
+
+ƒ&&&H Sv	
+
+&&&„ €v	
+
+&&&R …%	
+
+†‡ˆ‰ Š%	
+
+…†‡‹ Œ%	
+
+…†‡ %	
+
+…†‡ˆ %	
+
+…†‡‘ „Z	
+
+…’“ ‰Z	
+
+…‘’Œ ‹Z	
+
+…‘’ Z	
+
+…‘’Œ Z	
+
+…‘’ „[	
+
+…†” ‰[	
+
+…†“Š ‹[	
+
+…†“Š [	
+
+…†“R [	
+
+…†“Œ „\	
+
+…•’ˆ ‰\	
+
+…”’Œ ‹\	
+
+…”’– \	
+
+…”’ \	
+
+…”’ˆ „]	
+
+…†—• ‰]	
+
+…†–Œ ‹]	
+
+…†– ]	
+
+…†–Š ]	
+
+…†– „^	
+
+…˜’• ‰^	
+
+…—’Œ ‹^	
+
+…—’• ^	
+
+…—’ ^	
+
+…—’• „_	
+
+…†™• ‰_	
+
+…†˜ ‹_	
+
+…†˜• _	
+
+…†˜• _	
+
+…†˜ „`	
+
+…š’• ‰`	
+
+…™’• ‹`	
+
+…™’Š `	
+
+…™’R `	
+
+…™’R „a	
+
+…†“Œ ‰a	
+
+…†“ˆ ‹a	
+
+…†“ˆ a	
+
+…†“Š a	
+
+…†“Š „b	
+
+…›’Š ‰b	
+
+…š’Š ‹b	
+
+…š’ b	
+
+…š’ˆ b	
+
+…š’Š „œ	
+
+…†’• ‰›	
+
+œ…†’• ‹›	
+
+œ…†’Œ ›	
+
+œ…†’• ›	
+
+œ…†’! Ÿ	
+
+! 	
+
+ 	
+
+ 	
+
+  	
+
+¡ 	
+
+Ÿ 	
+
+ 	
+
+  	
+
+¢ "	
+
+ £	
+
+! ¢	
+
+ ¢	
+
+! ¢	
+
+Ÿ ¢	
+
+Ÿ ¢	
+
+  ¢	
+
+¡ ¢	
+
+ ¢ 	
+
+ ¢"	
+
+# „%	
+
+&&&# „'	
+
+&&&# „(	
+
+&&&# „)	
+
+&&&# „*	
+
+&&&# „+	
+
+&&&# „,	
+
+&&&# „-	
+
+&&&# „.	
+
+&&&# „/	
+
+&&&# „0	
+
+1&&&2# ¤%	
+
+&&&2# £'	
+
+&&&2# £(	
+
+&&&2# £)	
+
+&&&2# £*	
+
+&&&2# £+	
+
+&&&2# £,	
+
+&&&2# £-	
+
+&&&2# £.	
+
+&&&2# £/	
+
+&&&2# £0	
+
+1&&&4 „5	
+
+&&&4 „%5	
+
+&&&4 „65	
+
+&&&4 „75	
+
+8&&&4 ¥5	
+
+:&&&4 ¤%5	
+
+:&&&4 ¤65	
+
+:&&&4 ¤75	
+
+:8&&&; „<5	
+
+&&&; ¤<5	
+
+:&&&= ¦<5	
+
+&&&2= §<5	
+
+&&&@ ¥A5	
+
+&&&@ ¥B5	
+
+&&&@ ¥C5	
+
+D&&&2@ ¦A5	
+
+&&&2@ ¦B5	
+
+&&&2@ ¦C5	
+
+&&&2@ ¦E5	
+
+F&&&G „5	
+
+&&&G ¤5	
+
+:&&&H ¥5	
+
+&&&2H ¦5	
+
+&&&IJ ¨LMNO	PQ&&&©ª«¬­¬®¯°±°²¯°³°¯°°´¯°µ°¯°°¶¯°·°¯°°¸¯°¹°¯°°³¯°º°¯°°°¯°°°¯°°°¯¬»¬¯¼½¾¯»¼½¯»¿½¯»¾½¯»¾À¯»¾¿ÁÂÃÄÅ¬¬¬ÆÇÈ¬¬¬¬¬¬LÉ°°°ÊÄ¬¬¬ËÌÆÍ¬¬¬¬¬¬LÆÎ¬¬¬¬¬¬LÆÏ¬¬¬¬¬¬LÆĞ¬¬¬¬¬¬LÆÑ¬¬¬¬¬¬LÆÌ¬¬¬¬¬¬LÆÍ¬¬¬¬¬¬LÆÎ¬¬¬¬¬¬LÆÏ¬¬¬¬¬¬LÆÒ¬¬¬¬¬¬LÈÓÔÕÖÄ¬¬¬º×ÆÇ¬¬¬¬¬¬LÈ°°°Ä¬¬¬ºÆØ¬¬¬¬¬¬LÈ°°°Ä¬¬¬ºÆÙ¬¬¬¬¬¬LÈ°°°Ä¬¬¬ºÖÆ×¬¬¬¬¬¬LÈ°°°Ä¬¬¬ºÆÚ¬¬¬¬¬¬LÈ°°°Ä¬¬¬ÛÜÆİ¬¬¬¬¬¬LÈ°°°Ä¬¬¬ºÖÆÙ¬¬¬¬¬¬LÈ°°°Ä¬¬¬ºÆŞ¬¬¬¬¬¬LÈ°°°Ä¬¬¬ºÆß¬¬¬¬¬¬LÈ°°°Ä¬¬¬ºÖÆİ¬¬¬¬¬¬LÈ°°°ÄàáâºÆã¬¬¬äåæQÈ°°°Ä¬¬¬ºÆç¬¬¬¬¬¬LÆè¬¬¬¬¬¬LÆé¬¬¬¬¬¬LÆê¬¬¬¬¬¬LÆë¬¬¬¬¬¬LÆì¬¬¬¬¬¬LÆí¬¬¬¬¬¬LÆî¬¬¬¬¬¬LÈ°ï·ğ¨ñò¬¬¬ó­ô¯õö÷¯°°°¯°°°¯°°°¯°°°¯°°°¯°°°¯°°°¯°°°¯°°°¯°°°¯°°°¯°°°¯°°°¯°°°¯°°°¯°°°¯°°°¯°°°¯°°°øÀLÂùÄ¬¬¬ºÆú¬¬¬¬¬¬LÈ°°°Ä¬¬¬ûüÆı¬¬¬¬¬¬LÈşÿ¶Ä¬¬¬ºÖÆù¬¬¬¬¬¬LÈ°°°Ä¬¬¬ºÆ×¬¬¬¬¬¬LÈ°°°Ä¬¬¬ºÆØ¬¬¬¬¬¬LÈ°°°Ä¬¬¬ºÖÆ×¬¬¬¬¬¬LÈ°°°Ä¬¬¬ºÆÙ¬¬¬¬¬¬LÈ°°°Ä¬¬¬ ^begin_alphabet^
+2.920991
+	add_new_texture_variant_for_wall	data/textures/violet_roof_001_body_mid.png	0.000000	0.000000
+	wall_element_color	0.500000	1.000000
+	add_new_wall_for_floor	1.000000	data/textures/roof_violet_body_mid_v1.png	data/textures/violet_roof_back_corner_001.png	data/textures/violet_roof_back_mid_001.png	*wall_is_mirrored	614.000000	data/textures/white_pixel.png	-1.000000	339.000000	221.000000	81.919884	88.746696
+	0.700000	0.980000
+	data/textures/window_tiled_blue_gray_001_v1.png	add_new_autobuilding_floor	-305.000000	86.000000	floor_name	floor
+	wall_color	floor_additional_distance_between_window_x	5.000000
+	floor_additional_distance_between_window_y	1.462857
+	1.580999	9.981562
+	data/textures/brown_rama_beton_wall_001_v1.png	0.470000	0.480000	0.780000
+	data/textures/hrusch_roof_face_corner001.png	data/textures/violet_roof_face_mid_001.png	data/textures/roof_002_face_right.png	0.901000	3.408998
+	data/textures/window_tall_v1.png	data/textures/window_tall_v2.png	data/textures/window_tall_v3.png	0.520000	0.440000	1.200000
+	entity base attribute	Life	1000.000000
+	Lightsoucre green	0.765000
+	entity bool attribute	Inmovable
+	collision_up	218.500000
+	collision_down	collision_right	338.000000
+	collision_left	298.000000
+	path_block_up	213.000000
+	path_block_down	-19.000000
+	path_block_right	300.500000
+	path_block_left	284.500000
+	shadow_block_up	20.000000
+	shadow_block_down	shadow_block_right	shadow_block_left	- PUT TO MAP -
+	
+	=====================================
+	ADD_NEW_ENTITY	5075.000000	5136.000000	floor_order	0
+	floor_left_border	true
+	floor_right_border	floor_generate_offset_x	floor_generate_offset_y	ADD_NEW_SPRITE
+	add_new_texture	data/textures/wall_lamp.png
+	texture_offset_x	texture_offset_y	-3.000000
+	texture_offset_z	117.000000
+	texture_shadow_size_x	texture_shadow_size_y	texture_shadow_bottom_tall	texture_shadow_upper_tall	100.000000
+	texture_fragment_x	texture_fragment_y	sprite_color_red	0.500000
+	sprite_color_green	sprite_color_blue	main
+	Lightsoucre red	Light Source
+	Ghost
+	No path block
+	5292.731934	4047.734375	data/textures/test_cube.png
+	-24.000000
+	-2.000000
+	*shadow
+	data/textures/white_pixel.png
+	23.000000
+	-1.000000
+	2.000000
+	48.000000
+	41.000000
+	1219.000000
+	1192.000000
+	Mass	36.250000
+	2.500000
+	23.500000
+	5210.000000	5236.000000	Lightsoucre blue	5560.000000	3859.000000	1
+	data/textures/violet_wall.png
+	-287.000000
+	0.700000
+	0.494000
+	0.509000
+	0.503000
+	-169.000000
+	-51.000000
+	67.000000
+	185.000000
+	0.809999
+	data/textures/wall2_corner_left.png
+	-288.000000
+	0.651724
+	*texture_mirrored
+	268.579895
+	data/textures/violet_roof_back_mid_001.png
+	68.699997
+	-152.000000
+	-16.000000
+	120.000000
+	256.000000
+	0.176013
+	data/textures/violet_roof_back_corner_001.png
+	274.937744
+	data/textures/violet_roof_face_mid_001.png
+	-15.000000
+	data/textures/hrusch_roof_face_corner001.png
+	-288.000000	-3.000000	data/textures/wall2_corner_left.png	5.000000	4.809999	data/textures/violet_wall.png	0.494000	0.509000	0.503000	1.315000	1.005000
+	1.495000	1.015000
+	4.176013	0.936500
+	9.000000
+	4.000000
+	276.000000
+	290.000000
+	25.500000
+	-2.500000
+	272.000000
+	284.000000
+	5664.000000	4391.000000	data/textures/wall_blocked_001_v1.png
+	-175.000000
+	10.000000
+	-95.000000
+	65.000000
+	145.000000
+	225.000000
+	0.125008
+	80.000000
+	160.000000
+	0.007999
+	-175.000000	10.000000	5.125008	2.007999
+	data/textures/wall_blocked_001_v1.png	5940.720703	3731.423340	*rotate_by_move
+	data/textures/letoon3.png
+	6.000000
+	data/textures/letoon2.png
+	3.000000
+	data/textures/letoon1.png
+	data/textures/letoon4.png
+	*target_gun
+	data/textures/head_gun_mech_violet_1.png
+	-4.000000
+	49.000000
+	data/textures/head_gun_mech_violet_2.png
+	-4.875000
+	1.875000
+	45.250000
+	data/textures/head_gun_mech_violet_3.png
+	-4.375000
+	1.125000
+	data/textures/head_gun_mech_violet_4.png
+	-6.250000
+	0.625000
+	36.500000
+	data/textures/head_gun_mech_violet_5.png
+	-8.125000
+	-17.375000
+	51.875000
+	data/textures/head_gun_mech_violet_6.png
+	-15.375000
+	data/textures/head_gun_mech_violet_7.png
+	-27.500000
+	0.875000
+	49.250000
+	data/textures/head_gun_mech_violet_8.png
+	41.750000
+	5.375000
+	15.000000
+	25.000000
+	113.000000
+	118.000000
+	29.549992
+	-8.249985
+	29.350006
+	-6.999996
+	28.324989
+	-8.450001
+	*camera_target
+	^end_alphabet^
+	
+							 !"	#$%&'(		)	*	+	
+,-	
+					./01&234563789:;<=>?@ABCDEFGHIJKLJMJNJOPQORSTUVTUTUTUTUTUTUTUTUTUWXVWVWVWVWVWVWVWVWVWYWXWXWXWXWXWXWXWXWXWZWYWYWYWYWYWYWYWYWYW[WZWZWZWZWZWZWZWZWZW\]^_D`abcdefghijklmknk			o 										3453p898q8r8s:J<J=J?JAJCJEJGJIJKJLJMJNOPOQtuTUTUTUTUTUTUTUTUTUTUVWVWVWVWVWVWVWVWVWVWXWXWXWXWXWXWXWXWXWXWYWYWYWYWYWYWYWYWYWYWZWZWZWZWZWZWZWZWZWZW[\v^w_xacdefghijklkmk[y\z^{_|a}c~de€fhijlm			n 										3453‚5:ƒ<„=…?„AJCJEJGJIJKJLJMJNOPOQ†‡TUTUTUTUTUTUTUTUTUTUVWVWVWVWVWVWVWVWVWVWXWXWXWXWXWXWXWXWXWXWYWYWYWYWYWYWYWYWYWYWZWZWZWZWZWZWZWZWZWZW[\]^D_`abcdefghijklkmk			n 										3453ˆ898p8q8r:J<J=J?JAJCJEJGJIJKJLJMJNOPOQ‰ŠT‹TUTUTUTUTUTUTUTUTUVWVWVWVWVWVWVWVWVWVWXWXWXWXWXWXWXWXWXWXWYWYWYWYWYWYWYWYWYWYWZWZWZWZWZWZWZWZWZWZW[\Œ^_|acdegfghijlm‘[\‹^’_|acdegfghijlm[\‹^“_|acdegfghijlm[\‹^”_|acdegfghijlm[\‹^•_|acdegfgh–ijlm[\—^˜_`acdegfghi™jklkmk[š\–^›_`acdegfghi˜jklkmk[\œ^—_`acdegfghijklkmk[\›^_`aœcdegfghijklkmk[\›^Ÿ_`aœcdegfghijklkmk[\›^ _`aœcdegfghijklkmk[\›^¡_`aœcdegfgh¢ijklkmk[\£^—_`aœcdegfghijklkmk[™\¢^¤_`aœcdegfghijklkmk[\¥^—_¦aœcdegfghijklkmk[\¤^_¥aœcdegfghijklkmk[\¤^_¥aœcdegfghijklkmk[\¤^Ÿ_¥aœcdegfghijklkmk[\¤^ _¥aœcdegfgh¡ijklkmk[\§^—_¥aœcdegfghijklkmk[™\¦^£_¥aœcdegfghijklkmk¨©		 	ª	«¬­®¯°	©	(±²)³´(	µ¶						34589:·<¸=¹?ºA»C¼E½G¾IJKJLJMJNOPOQ¿ÀTŠTUTUTUTUTUTUTUTUTUVWVWVWVWVWVWVWVWVWVWXWXWXWXWXWXWXWXWXWXWYWYWYWYWYWYWYWYWYWYWZWZWZWZWZWZWZWZWZWZW[\Á^Â_Ãacdegfghijklkmk[\À^Ä_Âacdegfghijklkmk[\À^¥_Âacdegfghijklkmk[\À^Å_Âacdegfghijklkmk[\À^Æ_Âacdegfghijklkmk[\À^Ç_ÂacdegfghÈijklkmk[\À^Á_ÂaÉcdegfghijklkmk[\À^Ã_ÂaÈcdegfghijklkmk[\À^¥_ÂaÈcdegfghijklkmk[\À^Ä_ÂaÈcdegfghijklkmk[\À^Å_ÂaÈcdegfghijklkmk[\À^Æ_ÂaÈcdegfghÇijklkmk[\À^Á_ÂaÊcdegfghiËjklkmk[\À^Ã_ÂaÉcdegfghiÊjklkmk[\À^¥_ÂaÉcdegfghiÊjklkmk[\À^Ä_ÂaÉcdegfghiÊjklkmk[\À^Å_ÂaÉcdegfghiÊjklkmk[\À^Æ_ÂaÉcdegfghÇiÊjklkmkÌÍ		n 	ÎÏĞ												345:J<J=J?JAJCJEJGJIJKJLJMJNOPOQÑÒTUTUTUTUTUTUTUTUTUTUVWVWVWVWVWVWVWVWVWVWXWXWXWXWXWXWXWXWXWXWYWYWYWYWYWYWYWYWYWYWZWZWZWZWZWZWZWZWZWZW[Ó\Ô^¥_aÕcdegfghijklkmk\Ö^¥_a×cdegfghijlm\Ø^¥_aÔcdegfghijklkmk\Ù^¥_acdegfghijlm[Ú\Û^Ü_aİcdegfghijklkmk\Ş^ß_àaácdegfghijlm\â^ã_äaÜcdegfghijlm\å^æ_çaècdegfghijklkmk\é^ê_ëaìcdegfghijklkmk\í^î_a‚cdegfghijklkmk\ï^ğ_ñaòcdegfghijklkmk\ó^¥_ôaõcdegfghijklkmk[x\y^ö_|aÖc÷dõeøfùhijlm\y^ú_ûacdegfghijlm\y^ü_ıacdegfghijlm\y^ş_ÿacdegfghijlm			n 										 ^begin_alphabet^
+entity base attribute	Life	1000.000000
+	Mass	100.000000
+	Shadow tall	72.000000
+	Lightsoucre red	1.000000
+	Lightsoucre green	Lightsoucre blue	entity bool attribute	Controlled by Player
+	Light Source
+	collision_up	21.000000
+	collision_down	15.500000
+	collision_right	13.250000
+	collision_left	14.750000
+	path_block_up	20.000000
+	path_block_down	path_block_right	path_block_left	shadow_block_up	shadow_block_down	shadow_block_right	shadow_block_left	- PUT TO MAP -
+	
+	=====================================
+	ADD_NEW_ENTITY	5988.000000	3838.000000	0.000000
+	floor_order	2
+	1
+	0
+	floor_left_border	true
+	floor_right_border	floor_generate_offset_x	false
+	floor_generate_offset_y	ADD_NEW_SPRITE
+	add_new_texture	data/textures/wall_brick_002_v2.png
+	texture_offset_x	-152.000000
+	texture_offset_y	10.000000
+	texture_offset_z	texture_shadow_size_x	texture_shadow_size_y	texture_shadow_bottom_tall	texture_shadow_upper_tall	texture_fragment_x	texture_fragment_y	sprite_color_red	0.340000
+	sprite_color_green	0.400000
+	sprite_color_blue	0.450000
+	-72.000000
+	8.000000
+	88.000000
+	168.000000
+	0.060002
+	40.000000
+	0.854998
+	0.410000
+	0.470000
+	data/textures/wall_yellow_sand_left.png
+	0.500000
+	51.000000
+	0.454900
+	*texture_mirrored
+	142.800140
+	data/textures/roof_metal_01.png
+	74.199921
+	64.000000
+	128.000000
+	192.000000
+	256.000000
+	0.478502
+	-52.000000
+	48.000000
+	148.000000
+	0.278497
+	data/textures/roof_metal_up_01.png
+	281.624115
+	data/textures/roof_metal_01_skew.png
+	*shadow
+	data/textures/white_pixel.png
+	175.000000
+	193.000000
+	257.000000
+	622.592224
+	622.591614
+	data/textures/wall_brick_001_v1.png
+	-147.000000
+	2.000000
+	114.000000
+	0.535397
+	0.498377
+	0.488038
+	-67.000000
+	13.000000
+	93.000000
+	173.000000
+	0.012996
+	154.000000
+	0.526027
+	0.514420
+	0.477220
+	194.000000
+	0.526429
+	0.527864
+	0.453658
+	234.000000
+	0.521040
+	0.510248
+	0.494425
+	274.000000
+	0.539178
+	0.493332
+	0.478076
+	314.000000
+	0.535022
+	0.492860
+	0.463547
+	354.000000
+	0.537363
+	0.511003
+	0.491707
+	394.000000
+	0.551052
+	0.522994
+	0.506506
+	434.000000
+	0.526499
+	0.486176
+	0.493901
+	474.000000
+	0.498569
+	0.492554
+	0.510691
+	514.000000
+	0.540071
+	0.498840
+	0.504419
+	554.000000
+	0.524813
+	0.486866
+	0.514973
+	594.000000
+	0.529742
+	0.493292
+	0.487761
+	634.000000
+	0.529711
+	0.518606
+	0.517767
+	674.000000
+	0.511038
+	0.480922
+	0.523480
+	714.000000
+	0.510743
+	0.487006
+	0.532862
+	754.000000
+	0.482910
+	0.476852
+	0.496666
+	794.000000
+	0.428022
+	0.485726
+	0.481913
+	0.533409
+	data/textures/window_tiled_blue_gray_001_v1.png
+	128.437592
+	0.394800
+	0.432400
+	0.385400
+	181.041412
+	233.645218
+	286.249023
+	338.852844
+	391.456665
+	444.060455
+	496.664276
+	549.268066
+	601.871887
+	654.475708
+	707.079529
+	759.683350
+	-29.000000
+	89.000000
+	0.720675
+	data/textures/hrusch_wall_corner_001.png
+	0.714011
+	164.039703
+	data/textures/roof_metal_body_v3.png
+	829.120911
+	126.000000
+	188.000000
+	250.000000
+	312.000000
+	0.037005
+	-57.000000
+	33.000000
+	123.000000
+	0.679997
+	data/textures/roof_metal_back_v1.png
+	314.294312
+	data/textures/roof_metal_face_v2.png
+	-16.000000
+	add_new_autobuilding_floor	-147.000000	2.000000	114.000000	1.000000	floor_name	Main
+	wall_color	0.514805	0.488988	0.488820	0.505795	0.504730	0.477984	0.506182	0.517920	0.454385	0.501000	0.500636	0.495217	0.518440	0.484039	0.478842	0.514444	0.483576	0.464290	0.516695	0.501377	0.492495	0.529857	0.513142	0.507318	0.506249	^end_alphabet^
+   	 
+  !" #$%&'(&)&*&)&)&)&)&)&)&)+,*+*+*+*+*+*+*+*+*+-+,+,+,+,+,+,+,+,+,+./-+-+-+-+-+-+-+-+-+0./+/+/+/+/+/+/+/+/+12345678%9:;<=>?@ABCD0123E567%89:;<=>?@ABC0123F567%89:;<=>?@ABC0123G567%89:;<=>?@ABC0123H567%89:;<I=>?@ABC01234567J89:;<=K>?@LBM0123D567I89:;<=J>?@KBL0123E567I89:;<=J>?@KBL0123F567I89:;<=J>?@KBL0123G567I89:;<H=J>?@KBL01N345%7%89:;<=>O@NBN01M345%7P89:;<=Q>N@NBN0R1M3S5%7%89:;<=>N@NBN0Q1M3R5%7O89:;<=P>N@NBN01T345%7U89:;<=>N@NBN01S345V7T89:;<=>N@NBN01S345W7T89:;<=>N@NBN01S345X7T89:;<=>N@NBN01S345Y7T89:;<=Z>N@NBN01S3[5%7T89:;<=>N@NBN01S3Z5U7T89:;<=>N@NBN01S3Z5V7T89:;<=>N@NBN01S3Z5W7T89:;<=>N@NBN01S3Z5X7T89:;<=Y>N@NBN01S3\5%7T89:;<=>N@NBN01S3[5U7T89:;<=>N@NBN01S3[5V7T89:;<=>N@NBN01S3[5W7T89:;<=>N@NBN01S3[5X7T89:;<=Y>N@NBN01S3]5%7T89:;<^=>N@NBN01S3\5U7T89:;<]=>N@NBN01S3\5V7T89:;<]=>N@NBN01S3\5W7T89:;<]=>N@NBN01S3\5X7T89:;<]=Y>N@NBN01_345`7T89:;<=>N@NBN01^3Z5_7T89:;<=>N@NBN01^3[5_7T89:;<=>N@NBN01^3\5_7T89:;<]=>N@NBN01a345%7T89:;<=>N@NBN01`3Z5%7T89:;<=>N@NBN01`3[5%7T89:;<=>N@NBN01`3\5%7T89:;<]=>N@NBN0b1c3d5%7%8e9f:g;h<=>N@NBN01i3j5k7l89:;<=>m@nBo01h3p5j7k89:;<=>l@mBn01h3q5j7k89:;<=>l@mBn01h3r5j7k89:;<=>l@mBn01h3s5j7k89:;<t=>l@mBn01h3i5j7u89:;<=>v@wBx01h3o5j7t89:;<=>u@vBw01h3p5j7t89:;<=>u@vBw01h3q5j7t89:;<=>u@vBw01h3r5j7t89:;<s=>u@vBw01h3i5j7y89:;<=>z@{B|01h3o5j7x89:;<=>y@zB{01h3p5j7x89:;<=>y@zB{01h3q5j7x89:;<=>y@zB{01h3r5j7x89:;<s=>y@zB{01h3i5j7}89:;<=>~@B€01h3o5j7|89:;<=>}@~B01h3p5j7|89:;<=>}@~B01h3q5j7|89:;<=>}@~B01h3r5j7|89:;<s=>}@~B01h3i5j789:;<=>‚@ƒB„01h3o5j7€89:;<=>@‚Bƒ01h3p5j7€89:;<=>@‚Bƒ01h3q5j7€89:;<=>@‚Bƒ01h3r5j7€89:;<s=>@‚Bƒ01h3i5j7…89:;<=>†@‡Bˆ01h3o5j7„89:;<=>…@†B‡01h3p5j7„89:;<=>…@†B‡01h3q5j7„89:;<=>…@†B‡01h3r5j7„89:;<s=>…@†B‡01h3i5j7‰89:;<=>Š@‹BŒ01h3o5j7ˆ89:;<=>‰@ŠB‹01h3p5j7ˆ89:;<=>‰@ŠB‹01h3q5j7ˆ89:;<=>‰@ŠB‹01h3r5j7ˆ89:;<s=>‰@ŠB‹01h3i5j789:;<=>@B01h3o5j7Œ89:;<=>@B01h3p5j7Œ89:;<=>@B01h3q5j7Œ89:;<=>@B01h3r5j7Œ89:;<s=>@B01h3i5j7‘89:;<=>’@“B”01h3o5j789:;<=>‘@’B“01h3p5j789:;<=>‘@’B“01h3q5j789:;<=>‘@’B“01h3r5j789:;<s=>‘@’B“01h3i5j7•89:;<=>–@—B˜01h3o5j7”89:;<=>•@–B—01h3p5j7”89:;<=>•@–B—01h3q5j7”89:;<=>•@–B—01h3r5j7”89:;<s=>•@–B—01h3i5j7™89:;<=>š@›Bœ01h3o5j7˜89:;<=>™@šB›01h3p5j7˜89:;<=>™@šB›01h3q5j7˜89:;<=>™@šB›01h3r5j7˜89:;<s=>™@šB›01h3i5j789:;<=>@ŸB 01h3o5j7œ89:;<=>@BŸ01h3p5j7œ89:;<=>@BŸ01h3q5j7œ89:;<=>@BŸ01h3r5j7œ89:;<s=>@BŸ01h3i5j7¡89:;<=>¢@£B¤01h3o5j7 89:;<=>¡@¢B£01h3p5j7 89:;<=>¡@¢B£01h3q5j7 89:;<=>¡@¢B£01h3r5j7 89:;<s=>¡@¢B£01h3i5j7¥89:;<=>¦@§B¨01h3o5j7¤89:;<=>¥@¦B§01h3p5j7¤89:;<=>¥@¦B§01h3q5j7¤89:;<=>¥@¦B§01h3r5j7¤89:;<s=>¥@¦B§01h3i5j7©89:;<=>ª@«B¬01h3o5j7¨89:;<=>©@ªB«01h3p5j7¨89:;<=>©@ªB«01h3q5j7¨89:;<=>©@ªB«01h3r5j7¨89:;<s=>©@ªB«01h3i5j7­89:;<=>®@¯B°01h3o5j7¬89:;<=>­@®B¯01h3p5j7¬89:;<=>­@®B¯01h3q5j7¬89:;<=>­@®B¯01h3r5j7¬89:;<s=>­@®B¯01h3i5j7±89:;<=>²@³B´01h3o5j7°89:;<=>±@²B³01h3p5j7°89:;<=>±@²B³01h3q5j7°89:;<=>±@²B³01h3r5j7°89:;<s=>±@²B³01h3i5j7µ89:;<=¶>·@¸B¹01h3o5j7´89:;<=µ>¶@·B¸01h3p5j7´89:;<=µ>¶@·B¸01h3q5j7´89:;<=µ>¶@·B¸01h3r5j7´89:;<s=µ>¶@·B¸01º3i5j7»89:;<=>¼@½B¾01¹3i5j7¿89:;<=>»@¼B½01¹3i5j7À89:;<=>»@¼B½01¹3i5j7Á89:;<=>»@¼B½01¹3i5j7Â89:;<=>»@¼B½01¹3i5j7Ã89:;<=>»@¼B½01¹3i5j7Ä89:;<=>»@¼B½01¹3i5j7Å89:;<=>»@¼B½01¹3i5j7Æ89:;<=>»@¼B½01¹3i5j7Ç89:;<=>»@¼B½01¹3i5j7È89:;<=>»@¼B½01¹3i5j7É89:;<=>»@¼B½01¹3i5j7Ê89:;<=>»@¼B½01¹3Ë5j7º89:;<=>»@¼B½01¹3Ê5j7¾89:;<=>»@¼B½01¹3Ê5j7¿89:;<=>»@¼B½01¹3Ê5j7À89:;<=>»@¼B½01¹3Ê5j7Á89:;<=>»@¼B½01¹3Ê5j7Â89:;<=>»@¼B½01¹3Ê5j7Ã89:;<=>»@¼B½01¹3Ê5j7Ä89:;<=>»@¼B½01¹3Ê5j7Å89:;<=>»@¼B½01¹3Ê5j7Æ89:;<=>»@¼B½01¹3Ê5j7Ç89:;<=>»@¼B½01¹3Ê5j7È89:;<=>»@¼B½01¹3Ê5j7É89:;<=>»@¼B½01¹3Ì5j7º89:;<Í=>»@¼B½01¹3Ë5j7¾89:;<Ì=>»@¼B½01¹3Ë5j7¿89:;<Ì=>»@¼B½01¹3Ë5j7À89:;<Ì=>»@¼B½01¹3Ë5j7Á89:;<Ì=>»@¼B½01¹3Ë5j7Â89:;<Ì=>»@¼B½01¹3Ë5j7Ã89:;<Ì=>»@¼B½01¹3Ë5j7Ä89:;<Ì=>»@¼B½01¹3Ë5j7Å89:;<Ì=>»@¼B½01¹3Ë5j7Æ89:;<Ì=>»@¼B½01¹3Ë5j7Ç89:;<Ì=>»@¼B½01¹3Ë5j7È89:;<Ì=>»@¼B½01¹3Ë5j7É89:;<Ì=>»@¼B½01Î3i5j7k89:;<=>N@NBN01Í3i5j7x89:;<=>N@NBN01Í3i5j7€89:;<=>N@NBN01Í3i5j7ˆ89:;<=>N@NBN01Í3i5j789:;<=>N@NBN01Í3i5j7˜89:;<=>N@NBN01Í3i5j7 89:;<=>N@NBN01Í3i5j7¨89:;<=>N@NBN01Í3i5j7°89:;<=Ï>N@NBN0Q1Í3Ğ5j7k89:;<=>N@NBN0Q1Í3Ï5j7x89:;<=>N@NBN0Q1Í3Ï5j7€89:;<=>N@NBN0Q1Í3Ï5j7ˆ89:;<=>N@NBN0Q1Í3Ï5j789:;<=>N@NBN0Q1Í3Ï5j7˜89:;<=>N@NBN0Q1Í3Ï5j7 89:;<=>N@NBN0Q1Í3Ï5j7¨89:;<=>N@NBN0Q1Í3Ï5j7°89:;<=Î>N@NBN01Ñ3i5j7Ò89:;<=>N@NBN01Ğ3i5U7Ñ89:;<=>N@NBN01Ğ3i5Ó7Ñ89:;<=>N@NBN01Ğ3i5Ô7Ñ89:;<=>N@NBN01Ğ3i5Õ7Ñ89:;<=>N@NBN01Ğ3i5Ö7Ñ89:;<=×>N@NBN01Ğ3Ø5j7Ñ89:;<=>N@NBN01Ğ3×5U7Ñ89:;<=>N@NBN01Ğ3×5Ò7Ñ89:;<=>N@NBN01Ğ3×5Ó7Ñ89:;<=>N@NBN01Ğ3×5Ô7Ñ89:;<=>N@NBN01Ğ3×5Õ7Ñ89:;<=Ö>N@NBN01Ğ3Ù5j7Ñ89:;<=>N@NBN01Ğ3Ø5U7Ñ89:;<=>N@NBN01Ğ3Ø5Ò7Ñ89:;<=>N@NBN01Ğ3Ø5Ó7Ñ89:;<=>N@NBN01Ğ3Ø5Ô7Ñ89:;<=>N@NBN01Ğ3Ø5Õ7Ñ89:;<=Ö>N@NBN01Ğ3Ú5j7Ñ89:;<Û=>N@NBN01Ğ3Ù5U7Ñ89:;<Ú=>N@NBN01Ğ3Ù5Ò7Ñ89:;<Ú=>N@NBN01Ğ3Ù5Ó7Ñ89:;<Ú=>N@NBN01Ğ3Ù5Ô7Ñ89:;<Ú=>N@NBN01Ğ3Ù5Õ7Ñ89:;<Ú=Ö>N@NBN01Ü3i5İ7Ñ89:;<=>N@NBN01Û3×5Ü7Ñ89:;<=>N@NBN01Û3Ø5Ü7Ñ89:;<=>N@NBN01Û3Ù5Ü7Ñ89:;<Ú=>N@NBN01Ş3i5ß7Ñ89:;<=>N@NBN01İ3×5Ş7Ñ89:;<=>N@NBN01İ3Ø5Ş7Ñ89:;<=>N@NBN01İ3Ù5Ş7Ñ89:;<Ú=>N@NBNàáâãäãåæçèéêæëìíæîïğæñòóæôõöæ÷øùæúûüæışÿæ ^begin_alphabet^
+0.477018	0.494693	1.000000
+	wall_color	0.479394	0.483275	0.511509	0.519299	0.489443	0.505227	0.504628	0.477694	0.515798	0.509367	0.483999	0.488543	0.509338	0.508837	0.518596	0.491382	0.471862	0.524319	0.491099	0.477831	0.533716	0.464336	0.467869	0.497462	0.467045	0.472835	0.534264	0.491591	0.406912	0.470742	0.381850	0.491000	0.610650	window_is_stretched
+	floor_additional_distance_between_window_x	0.000000
+	floor_additional_distance_between_window_y	15.603811
+	add_new_wall_for_floor	0.000000	1.000000	add_new_texture_variant_for_wall	data/textures/hrusch_wall_corner_001.png	wall_element_color	0.500000	0.480000	4.012996	17.428022
+	data/textures/wall_brick_001_v1.png	0.490000	1.040000
+	*wall_is_mirrored	data/textures/roof_metal_face_v2.png	3.679997	5.037005
+	data/textures/roof_metal_body_v3.png	data/textures/roof_metal_back_v1.png	data/textures/window_tiled_blue_gray_001_v1.png	0.420000	0.460000	0.410000	0.940000
+	add_new_autobuilding_floor	-152.000000	floor_name	bottom
+	0.340000	0.400000	0.450000	0.470000	5.000000
+	data/textures/wall_yellow_sand_left.png	10.000000	4.060002	1.854998
+	data/textures/wall_brick_002_v2.png	0.997812	0.993750
+	data/textures/roof_metal_01_skew.png	3.278497	4.478502
+	data/textures/roof_metal_01.png	data/textures/roof_metal_up_01.png	data/textures/white_pixel.png	327.000000	-0.000000	193.000000	257.000000	622.592224	622.591614
+	entity base attribute	Life	1000.000000
+	entity bool attribute	Inmovable
+	collision_up	286.000000
+	collision_down	collision_right	181.000000
+	collision_left	149.000000
+	path_block_up	301.000000
+	path_block_down	-29.000000
+	path_block_right	166.000000
+	path_block_left	145.000000
+	shadow_block_up	20.000000
+	shadow_block_down	shadow_block_right	shadow_block_left	- PUT TO MAP -
+	
+	=====================================
+	ADD_NEW_ENTITY	6356.000000	3863.000000	floor_order	1
+	0
+	floor_left_border	true
+	floor_right_border	floor_generate_offset_x	floor_generate_offset_y	ADD_NEW_SPRITE
+	add_new_texture	data/textures/beton_fence_horizontal.png
+	texture_offset_x	-214.000000
+	texture_offset_y	-2.000000
+	texture_offset_z	texture_shadow_size_x	texture_shadow_size_y	texture_shadow_bottom_tall	100.000000
+	texture_shadow_upper_tall	texture_fragment_x	texture_fragment_y	0.930000
+	sprite_color_red	0.515000
+	sprite_color_green	0.535000
+	sprite_color_blue	0.519000
+	-99.000000
+	16.000000
+	131.000000
+	0.759998
+	main
+	-67.000000	2.000000	3.759998	data/textures/beton_fence_horizontal.png	-147.000000	-4.000000	0.515000	0.535000	0.519000	24.000000
+	214.000000
+	220.000000
+	3.000000
+	209.000000
+	6345.000000	6258.000000	data/textures/white_pixel.png
+	0.500000
+	Lightsoucre red	Lightsoucre green	Lightsoucre blue	Light Source
+	Ghost
+	No path block
+	6972.053711	3441.000000	36.250000
+	2.500000
+	23.500000
+	7023.000000	2298.000000	data/textures/wall_lamp.png
+	-16.000000
+	7056.000000	3025.000000	-15.000000
+	-10.000000
+	-15.000000	-10.000000	floor
+	data/textures/wall_lamp.png	7013.000000	3860.000000	2
+	3
+	false
+	data/textures/hrusch_bottom_main_001.png
+	-455.000000
+	0.427000
+	0.447000
+	0.475000
+	-359.000000
+	-263.000000
+	-167.000000
+	-71.000000
+	25.000000
+	121.000000
+	217.000000
+	313.000000
+	409.000000
+	0.509136
+	50.000000
+	0.469009
+	data/textures/hrusch_bottom_corner_001.png
+	-6.000000
+	*texture_mirrored
+	446.877075
+	*shadow
+	-446.000000
+	-7.000000
+	2.000000
+	44.250000
+	146.773254
+	146.773102
+	455.000000
+	-5.000000
+	904.000000
+	393.000000
+	498.346802
+	499.029572
+	data/textures/hrusch_wall_main_002_v2.png
+	-9.000000
+	64.000000
+	-379.000000
+	-303.000000
+	data/textures/hrusch_wall_main_002_v1.png
+	-227.000000
+	0.015483
+	data/textures/hrusch_wall_main_002_v3.png
+	140.000000
+	216.000000
+	292.000000
+	368.000000
+	0.994519
+	data/textures/window_004_v1.png
+	-443.194397
+	^end_alphabet^
+	
+ !"#$%&'()*+,++-./++++++'0102*+++34-5++++++'/0617*+++,8-.++++++'/000*+++,/000*+++,-9++++++'/000*+++,/000*+++,/000*+++:;-<++++++'/000*+++,/000*+++,/000*+++,-=++++++'/000*+++,/000*+++,/000*+++,->++++++'/?@ABCD++++EFGHIF@J000000000000000000000000000000000000000000000000000000&K(J*+++,-L++++++'/000*+M+NO-P++++++'/000*+++,7-K++++++'/000*+++,/000*+++QR-S++++++'/000*+++,/000*+++,/000*+++TU-V++++++'/000*+++,/000*+++,/000*+++,-W++++++'/000*+++,/000*+++,-XYZ+[\]^/000*+++,/000_`abcdef'ghijklmnopqrstusvswsxyzx{|}'~}€}}}}}}}}‚€€€€€€€€€ƒ‚‚‚‚‚‚‚‚‚„ƒƒƒƒƒƒƒƒƒ…„„„„„„„„„†‡ˆ‰Š‹Œ'‘’“”•–—˜™š›…†‡ˆœŠ‹Œ'‘’“”•–—˜™š…†‡ˆŠ‹Œ'‘’“”•–—˜™š…†‡ˆŠ‹Œ'‘’Ÿ“”•–—˜™šB+++,,D 000000000000000000000000000000000000000000000000000000000000&J(J*+++,/000*¡¢+£”-¤¥¦++++'/§¨©*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000^_`abcªe'f«h¬jsl­n®pªrstsusvswxyxz¯°'}}}}}}}}}}€€€€€€€€€€‚‚‚‚‚‚‚‚‚‚ƒƒƒƒƒƒƒƒƒƒ„„„„„„„„„„…†±ˆ'Š'Œ'‘’“•²—±™±B++,,,DŸ000000000000000000000000000000000000000000000000000000000000&J(J*++++'/000*++++'/000*++++'/000*++++'/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000^_`^³^´^µaba¶a·a¸csesfshsjslsnspsrstsusvswxyxz¹º'}}}}}}}}}}€€€€€€€€€€‚‚‚‚‚‚‚‚‚‚ƒƒƒƒƒƒƒƒƒƒ„„„„„„„„„„B++,,,DŸ000000000000000000000000000000000000000000000000000000000000&J(J*++++'/000*++++'/000*++++'/000*++++'/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000^_`c»e¼f½h¼jslsnspsrstsusvswxyxz¾¿'}}}}}}}}}}€€€€€€€€€€‚‚‚‚‚‚‚‚‚‚ƒƒƒƒƒƒƒƒƒƒ„„„„„„„„„„…†ÀˆÁŠÀŒ'‘’“•±—±™±^_`^²abaµa¶a·csesfshsjslsnspsrstsusvswxyxzÂÃ'}~}}}}}}}}}€€€€€€€€€€‚‚‚‚‚‚‚‚‚‚ƒƒƒƒƒƒƒƒƒƒ„„„„„„„„„„…†¿ˆÄŠÅŒ'‘’“•±—±™±BÆÇ+,,DÈ000000000000000000000000000000000000000000000000000000000000&J(J*+++,/000*+++,-É++++++'/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000*+++,/000^_`^³abaµa¶a·csesfshsjslsnspsrstsusvswxyxzÊË'}~}Ì}Í}Ë}Ì}Ë}}}}€€€€Î€€Í€€€€‚‚Í‚‚Í‚‚‚‚‚‚ƒÍƒƒƒƒƒƒƒƒƒ„„„„„„„„„„…†ÏˆĞŠJŒ'‘’“•Ñ—Ò™Ó…†ÎˆÔŠJŒ'‘’“•Ğ—Ñ™Ò…†ÎˆÕŠJŒ'‘’“•Ğ—Ñ™Ò…†ÎˆÖŠJŒ'‘’“•Ğ—Ñ™Ò…†Îˆ×ŠJŒ'‘’“•Ğ—Ñ™Ò…†ÎˆØŠJŒ'‘’“•Ğ—Ñ™Ò…†ÎˆÙŠJŒ'‘’“•Ğ—Ñ™Ò…†ÎˆÚŠJŒ'‘’“•Ğ—Ñ™Ò…†ÎˆÛŠJŒ'‘’“•Ğ—Ñ™Ò…†ÎˆÜŠJŒ'‘’İ“•Ğ—Ñ™Ò…†ÎˆÏŠJŒ×‘’“•Ğ—Ñ™Ò…†ÎˆÓŠJŒ×‘’“•Ğ—Ñ™Ò…†ÎˆÔŠJŒ×‘’“•Ğ—Ñ™Ò…†ÎˆÕŠJŒ×‘’“•Ğ—Ñ™Ò…†ÎˆÖŠJŒ×‘’“•Ğ—Ñ™Ò…†Îˆ×ŠJŒ×‘’“•Ğ—Ñ™Ò…†ÎˆØŠJŒ×‘’“•Ğ—Ñ™Ò…†ÎˆÙŠJŒ×‘’“•Ğ—Ñ™Ò…†ÎˆÚŠJŒ×‘’“•Ğ—Ñ™Ò…†ÎˆÛŠJŒ×‘’Ü“•Ğ—Ñ™Ò…†ÎˆÏŠJŒŞ‘’“ß•Ğ—Ñ™Ò…†ÎˆÓŠJŒİ‘’“Ş•Ğ—Ñ™Ò…†ÎˆÔŠJŒİ‘’“Ş•Ğ—Ñ™Ò…†ÎˆÕŠJŒİ‘’“Ş•Ğ—Ñ™Ò…†ÎˆÖŠJŒİ‘’“Ş•Ğ—Ñ™Ò…†Îˆ×ŠJŒİ‘’“Ş•Ğ—Ñ™Ò…†ÎˆØŠJŒİ‘’“Ş•Ğ—Ñ™Ò…†ÎˆÙŠJŒİ‘’“Ş•Ğ—Ñ™Ò…†ÎˆÚŠJŒİ‘’“Ş•Ğ—Ñ™Ò…†ÎˆÛŠJŒİ‘’Ü“Ş•Ğ—Ñ™Ò…†àˆÏŠáŒ'‘’“•±—±™±…†ßˆÏŠàŒ×‘’“•±—±™±…†ßˆÏŠàŒİ‘’“Ş•±—±™±…â†ßˆãŠàŒ'‘’“•±—±™±…á†ßˆâŠàŒ×‘’“•±—±™±…á†ßˆâŠàŒİ‘’“Ş•±—±™±…ä†°ˆåŠæŒ'çèé‘ê’“•±—±™±…ã†°ˆëŠìŒ'íîï‘ğ’“•±—±™±…†ñˆÏŠòŒó‘’“•±—±™±…†ğˆôŠñŒò‘’“•±—±™±…†ğˆõŠñŒò‘’“•±—±™±…†öˆ÷ŠñŒò‘’ø“•±—±™±…†ùˆÏŠñŒú‘’“•±—±™±…†õˆóŠñŒù‘’“•±—±™±…†ğˆôŠñŒù‘’“•±—±™±…†õˆöŠñŒù‘’÷“•±—±™±…†õˆÏŠñŒû‘’“•±—±™±…†õˆóŠñŒú‘’“•±—±™±…†ğˆôŠñŒú‘’“•±—±™±…†øˆöŠñŒú‘’÷“•±—±™±…†ğˆÏŠñŒü‘’“•±—±™±…†ğˆóŠñŒû‘’“•±—±™±…†øˆôŠñŒû‘’“•±—±™±…†õˆöŠñŒû‘’÷“•±—±™±…†õˆÏŠñŒı‘’“ş•±—±™±…†øˆóŠñŒü‘’“ı•±—±™±…†ğˆôŠñŒü‘’“ı•±—±™±…†øˆöŠñŒü‘’÷“ı•±—±™±…†ÿˆ ^begin_alphabet^
+texture_offset_y	-9.000000
+	texture_offset_z	78.283737
+	texture_shadow_size_x	1.000000
+	texture_shadow_size_y	texture_shadow_bottom_tall	100.000000
+	texture_shadow_upper_tall	texture_fragment_x	texture_fragment_y	sprite_color_red	0.557460
+	sprite_color_green	0.535800
+	sprite_color_blue	0.507301
+	ADD_NEW_SPRITE
+	add_new_texture	data/textures/window_004_v1.png
+	texture_offset_x	-443.194397
+	152.787735
+	data/textures/window_004_v3.png
+	227.291748
+	301.795746
+	376.299744
+	-365.911652
+	data/textures/window_004_v4.png
+	-288.628906
+	data/textures/hrusch_wall_corner_001.png
+	-455.000000
+	64.000000
+	0.500000
+	144.000000
+	224.000000
+	304.000000
+	384.000000
+	0.744793
+	data/textures/hrusch_roof_middle_body_001_v2.png
+	-442.000000
+	443.583466
+	240.000000
+	0.000250
+	-346.000000
+	-250.000000
+	0.257332
+	data/textures/violet_roof_corner_body_001.png
+	data/textures/hrusch_wall_main_001_v1.png
+	-225.823303
+	-7.000000
+	62.000000
+	-113.823303
+	0.006751
+	138.000000
+	214.000000
+	290.000000
+	366.000000
+	442.000000
+	0.012033
+	data/textures/window_tall_v1.png
+	-210.445251
+	70.833160
+	146.145203
+	221.457260
+	296.769287
+	372.081360
+	142.000000
+	222.000000
+	302.000000
+	382.000000
+	0.761431
+	*texture_mirrored
+	-123.067200
+	-212.823303
+	442.914520
+	0.906169
+	0.999498
+	-125.831116
+	data/textures/hrusch_wall_main_002_v3.png
+	-113.067200
+	data/textures/hrusch_wall_main_002_v2.png
+	-37.067200
+	data/textures/hrusch_wall_main_002_v1.png
+	38.932800
+	114.932800
+	0.015483
+	140.000000
+	216.000000
+	292.000000
+	368.000000
+	0.994519
+	-101.261597
+	-23.978851
+	53.303894
+	-17.067200
+	78.932800
+	0.392749
+	116.109497
+	228.109497
+	131.487549
+	218.865601
+	129.109497
+	216.101685
+	228.865601
+	304.865601
+	380.865601
+	456.865601
+	240.671204
+	317.953949
+	395.236694
+	448.042297
+	324.865601
+	420.865601
+	445.569519
+	add_new_autobuilding_floor	-455.000000	-6.000000	0.000000	1.000000	floor_name	Basement
+	wall_color	0.500000	0.490299	0.478119	0.524465	0.514898	0.440104	0.532515	0.524620	0.441897	0.529239	0.532343	0.463372	0.510908	0.555338	0.449387	0.486513	0.575961	0.445928	0.486968	0.564277	0.470506	0.510303	0.552452	0.481765	0.516817	0.467800	0.416662	0.478606	0.468518	0.452144	0.474372	0.515044	0.483954	0.500324	0.445250	0.516102	0.504296	0.449486	0.556410	0.463508	0.505486	0.511322	0.475444	0.502350	0.516250	0.461300	floor_additional_distance_between_window_x	277.845245
+	floor_additional_distance_between_window_y	64.853264
+	add_new_wall_for_floor	add_new_texture_variant_for_wall	data/textures/hrusch_bottom_corner_001.png	0.000000
+	wall_element_color	0.460000	0.940000
+	11.000000	9.509136	2.469009
+	data/textures/hrusch_bottom_main_001.png	0.427000	0.447000	0.475000	2.130000	2.219999
+	*wall_is_mirrored	108.000000	88.000000	data/textures/white_pixel.png	-99.000000	-89.000000	2.000000	44.250000	146.773254	146.773102
+	802.000000	-87.000000	904.000000	393.000000	498.346802	499.029572
+	1.050000	0.735000
+	0.490000	-9.000000	64.000000	Main
+	0.384799	0.565564	0.409629	0.633552	0.643071	0.799444	0.526532	0.474552	0.377956	0.537538	0.588692	0.165713	0.399667	0.456237	0.472608	0.279405	0.544318	0.525962	0.334126	0.314158	0.241119	0.713651	0.044857	0.430366	0.216348	0.613171	0.625555	0.602313	0.624398	0.516941	0.398837	0.711532	0.210089	0.277133	0.579859	0.341310	0.596597	0.540892	0.603923	0.316258	0.363899	0.428401	0.682300	0.742950	^end_alphabet^
+	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ ! "	
+#""  $	
+"""  %	
+"""  &	
+"""  '	
+(""")* +	
+"""() ,*	
+-"""(. *	
+"""(- +*	
+,"""(/ *	
+0"""(. +*	
+/,"""1  *	
+"""23 45	
+"""16 34	
+7"""12 38	
+"""15 37	
+6"""12 39	
+"""15 38	
+6"""12 3:	
+"""15 39	
+6"""12 3;	
+"""15 3:	
+6"""12 3<	
+="""15 3;	
+6<""">? 3@	
+"""=> 3A	
+"""=> 3B	
+"""=> 3C	
+"""=> 3D	
+"""2 34	
+"""2 3E	
+"""2 3F	
+"""2 3G	
+"""2 3H	
+I"""JK 34	
+"""IJ 3D	
+"""IJ 3E	
+"""IJ 3F	
+"""IJ 3G	
+H"""(L 3M	
+NO"""02 3L	
+"""I0P 3L	
+"""QR !	
+"""ST !	
+"""UV !	
+"""TW !	
+X"""PQ Y	
+"""PS X	
+"""TU X	
+"""TV X	
+W"""TQ Z	
+"""PS Y	
+"""RU Y	
+"""TV Y	
+W"""TQ [	
+"""PS Z	
+"""PU Z	
+"""PV Z	
+W"""PQ \	
+]"""TS [	
+\"""TU [	
+\"""RV [	
+W\"""^ 	
+] 	
+] 	
+] 	
+] 	
+_ 	
+^ 	
+^ 	
+^ 	
+^ 	
+` 	
+_ 	
+_ 	
+_ 	
+_ 	
+(Q *	
+"""(Q +*	
+,"""(a *	
+"""(` +*	
+,"""(b *	
+c"""(a +*	
+b,"""1d 34	
+"""1e 34	
+6"""1c 37	
+"""1d 37	
+6"""1c 38	
+"""1d 38	
+6"""1c 39	
+"""1d 39	
+6"""1c 3:	
+"""1d 3:	
+6"""1c 3;	
+<"""1d 3;	
+6<"""=f 3?	
+"""=e 3@	
+"""=e 3A	
+"""=e 3B	
+"""=e 3C	
+"""c 34	
+"""c 3D	
+"""c 3E	
+"""c 3F	
+"""c 3G	
+H"""Ig 34	
+"""If 3D	
+"""If 3E	
+"""If 3F	
+"""If 3G	
+H"""(h 3L	
+MN"""0c 3L	
+"""I0i 3L	
+"""Pj !	
+"""Tk !	
+"""Rl !	
+"""Rm !	
+W"""Ti X	
+"""Rj X	
+"""Pk X	
+"""Pl X	
+W"""Ti Y	
+"""Tj Y	
+"""Tk Y	
+"""Rl Y	
+W"""Ti Z	
+"""Pj Z	
+"""Tk Z	
+"""Tl Z	
+W"""Ti [	
+\"""Tj [	
+\"""Pk [	
+\"""Rl [	
+W\"""n 	
+m 	
+m 	
+m 	
+m 	
+o 	
+n 	
+n 	
+n 	
+n 	
+p 	
+o 	
+o 	
+o 	
+o 	
+Iq !	
+"""Ip #	
+"""Ip $	
+"""Ip %	
+"""Ip &	
+'"""(i *	
+"""(i +*	
+,"""(r *	
+"""(q +*	
+,"""(s *	
+/"""(r +*	
+/,"""I0t *	
+"""uvwxyxz{|}||{|||{|||{|||{|||{~€{‚ƒ{„…†{‡ˆ‰{Š‹Œ{{‘’{“”•{–—˜{™š›{œ{Ÿ ¡{¢£¤{¥¦§{¨©ª«¬­®¯wwwx°±wwwwww²³´||µ®w¶w·¸¯¹wwwwww±²º»¼®www½¾¿¯°wwwwww±²|||®wwwx²|||®wwwx²|||®wwwx²|||®wwwx²|||®wwwx²|||®wwwx²|||®wwwx²|||®wwwx²|||®wwwx²|||®ÀÁwx¯ÂÃÄwÅÆÇÈ¯ÁÉÊwËÌÍÎ²|||®xµwÏĞ²Ñ||tuÒÓwx±yÔ{|||{|||{|||{|||{|||{ÕÖ×{ØÙÚ{ÛÜİ{Şßà{áâã{äåæ{çèé{êëì{íîï{ğñò{óôõ{ö÷ø{ùúû{üış{ÿ ^begin_alphabet^
+0.790650	1.000000
+	floor_additional_distance_between_window_x	26.282743
+	floor_additional_distance_between_window_y	21.504002
+	add_new_wall_for_floor	0.000000	0.980000	add_new_texture_variant_for_wall	data/textures/hrusch_wall_corner_001.png	0.000000
+	wall_element_color	0.500000	3.015483	4.994519
+	data/textures/hrusch_wall_main_002_v1.png	data/textures/hrusch_wall_main_002_v2.png	data/textures/hrusch_wall_main_002_v3.png	1.000000	*wall_is_mirrored	0.900000	0.530000
+	data/textures/violet_roof_corner_body_001.png	0.350500	1.032500
+	2.392749	1.000250
+	data/textures/hrusch_roof_middle_body_001_v2.png	0.969000	1.095500
+	0.740000	0.940000
+	data/textures/window_004_v1.png	data/textures/window_004_v3.png	data/textures/window_004_v4.png	0.489000	0.470000	0.445001	1.140000
+	add_new_autobuilding_floor	-455.000000	-7.000000	62.000000	floor_name	subwall
+	wall_color	8.874667
+	13.312048
+	1.006751	5.012033
+	data/textures/hrusch_wall_main_001_v1.png	1.057501	0.130000
+	1.010000	1.110000
+	1.040000	1.073000
+	1.177002	0.999498
+	0.975000	data/textures/window_tall_v1.png	-58.000000	floor #3
+	5.000000
+	-56.000000	9.000000	482.000000	data/textures/test_cube.png	-20.000000	-51.000000	-46.000000	1060.000000	data/textures/white_pixel.png	23.000000	37.000000	48.000000	1024.000000	1024.000000
+	entity base attribute	Life	1000.000000
+	entity bool attribute	Inmovable
+	collision_up	280.000000
+	collision_down	6.000000
+	collision_right	454.000000
+	collision_left	453.000000
+	path_block_up	233.500000
+	path_block_down	path_block_right	414.000000
+	path_block_left	456.000000
+	shadow_block_up	20.000000
+	shadow_block_down	shadow_block_right	shadow_block_left	- PUT TO MAP -
+	
+	=====================================
+	ADD_NEW_ENTITY	7355.123535	4056.000000	floor_order	0
+	floor_left_border	true
+	floor_right_border	floor_generate_offset_x	floor_generate_offset_y	ADD_NEW_SPRITE
+	add_new_texture	data/textures/truck_back02(cystern).png
+	texture_offset_x	-74.000000
+	texture_offset_y	-22.000000
+	texture_offset_z	texture_shadow_size_x	texture_shadow_size_y	texture_shadow_bottom_tall	100.000000
+	texture_shadow_upper_tall	texture_fragment_x	texture_fragment_y	sprite_color_red	0.500000
+	sprite_color_green	sprite_color_blue	data/textures/truck_head02.png
+	-107.000000
+	-11.000000
+	*shadow
+	data/textures/white_pixel.png
+	65.000000
+	-2.000000
+	main
+	Mass	Shadow tall	72.000000
+	13.250000
+	65.750000
+	105.000000
+	7446.000000	3189.000000	1
+	data/textures/wall_lamp.png
+	-16.000000
+	-16.000000	data/textures/wall_lamp.png	Lightsoucre red	Light Source
+	Ghost
+	No path block
+	7409.000000	3016.000000	Lightsoucre blue	7412.000000	4146.000000	data/textures/beton_fence_horizontal.png
+	-288.000000
+	-173.000000
+	-58.000000
+	57.000000
+	172.000000
+	287.000000
+	399.000000
+	2.000000
+	692.000000
+	14.000000
+	139.263916
+	139.263947
+	22.000000
+	400.000000
+	286.000000
+	16.000000
+	389.000000
+	310.000000
+	7742.000000	4160.000000	0.973997
+	0.980010
+	-288.000000	5.980010	data/textures/beton_fence_horizontal.png	687.000000	692.000000	14.000000	139.263916	10.500000
+	311.000000
+	8399.000000	4132.000000	2
+	3
+	false
+	data/textures/hrusch_bottom_main_001.png
+	-292.000000
+	-196.000000
+	-100.000000
+	-4.000000
+	92.000000
+	188.000000
+	284.000000
+	380.000000
+	0.319272
+	25.000000
+	50.000000
+	75.000000
+	0.675746
+	data/textures/wall_yellow_sand_left.png
+	51.000000
+	0.801836
+	*texture_mirrored
+	380.650146
+	data/textures/hrusch_wall_main_v2_001.png
+	-3.000000
+	-152.000000
+	-12.000000
+	0.007992
+	252.000000
+	332.000000
+	412.000000
+	0.974942
+	143.000000
+	194.000000
+	245.000000
+	296.000000
+	347.000000
+	398.000000
+	449.000000
+	0.803831
+	-40.881104
+	data/textures/violet_roof_001_body_mid.png
+	501.995361
+	85.000000
+	173.000000
+	261.000000
+	0.218495
+	-156.000000
+	-20.000000
+	0.058496
+	data/textures/violet_roof_back_mid_001.png
+	269.227539
+	data/textures/violet_roof_back_corner_001.png
+	-297.000000
+	-12.044556
+	data/textures/roof_violet_body_mid_v1.png
+	93.000000
+	^end_alphabet^
+	
+				
+			 !	"	#	$%&'()*+,-./...................01	
+23	456	
+78		9:;<	=	>()?,@....................A@BCD	EFGHI	JK+LMNOPQRSTUVWXYZ[\]^_`abcdefdgdhdijkilmnopnononononononononoqrpqpqpqpqpqpqpqpqpqsqrqrqrqrqrqrqrqrqrqtqsqsqsqsqsqsqsqsqsquqtqtqtqtqtqtqtqtqtqvwxyz{|}~€‚€ƒ„…†‡…ˆ…uv‰xŠz‹|}~€€‚ƒ„…†…‡…uŒvxz|}~€€‚ƒ„†‡(,....................@@OPQO‘QO’“TdV”X•Z–\d^d_dadcdedfdgdhijik—˜n™nononononononononopqpqpqpqpqpqpqpqpqpqrqrqrqrqrqrqrqrqrqrqsqsqsqsqsqsqsqsqsqsqtqtqtqtqtqtqtqtqtqtquvšx›zš|}~€€‚ƒ„…†…‡…(,....................@@œ›	OPQORSRŸR R¡TdVdXdZd\d^d_dadcdedfdgdhijik¢£nonononononononononopqpqpqpqpqpqpqpqpqpqrqrqrqrqrqrqrqrqrqrqsqsqsqsqsqsqsqsqsqsqtqtqtqtqtqtqtqtqtqtquv™xšzš|}~€€‚ƒ„…†…‡…OPQO¤RSRRŸR TdVdXdZd\d^d_dadcdedfdgdhijik¥¦nonononononononononopqpqpqpqpqpqpqpqpqpqrqrqrqrqrqrqrqrqrqrqsqsqsqsqsqsqsqsqsqsqtqtqtqtqtqtqtqtqtqtquv§x¨z|}~€€‚ƒ„…†…‡…uv¦x©z|}~€€‚ƒ„…†…‡…uv¦xªz|}~€€‚ƒ„…†…‡…uv¦x«z|}~€€‚ƒ„…†…‡…uv¦x¬z|}~€€‚ƒ„…†…‡…uv¦x­z|}~€€‚ƒ„…†…‡…u‹vŒx®z¯|}°~±²³‚ƒ„†‡OPQRST´VXµZ¶\·^_¸a¹cdedfdgdhijikº»n˜nononononononononopqpqpqpqpqpqpqpqpqpqrqrqrqrqrqrqrqrqrqrqsqsqsqsqsqsqsqsqsqsqtqtqtqtqtqtqtqtqtqtquv¦x§z|}~€€‚ƒ¼„…†…‡…uv¦x¨z|}~€€‚ƒ»„…†…‡…uv¦x©z|}~€€‚ƒ»„…†…‡…uv¦xªz|}~€€‚ƒ»„…†…‡…uv¦x«z|}~€€‚ƒ»„…†…‡…uv¦x¬z|}~€€‚½ƒ»„…†…‡…u‹vŒx­z®|}¯~°±²‚ƒ„†‡(¾,....................@@¿»	À	IÁÂÃÄ²OPQRST³VX´Zµ\^Å_·aÆcdedfdgdhijikÇÈn˜nÉnÊnÈnonononononopqpqpqpqpqpqpqpqpqpqrqrqrqrqrqrqrqrqrqrqsËsqsqsqsqsqsqsqsqsqtÊtqtqtqtqtqtqtqtqtquvÌxÍz|}~€€‚ƒ„…†…‡…uvËxÎz|}~€€‚ƒ„…†…‡…uvËxÏz|}~€€‚ƒ„…†…‡…uvËxĞz|}~€€‚ƒ„…†…‡…uvËxÑz|}~€€‚ƒ„…†…‡…uvËxÒz|}~€€‚ƒ„…†…‡…uvËxÓz|}~€€‚ƒ„…†…‡…uvËxÔz|}~€€‚Õƒ„…†…‡…uvËxÌz|Ö}~€€‚ƒ„…†…‡…uvËxÍz|Õ}~€€‚ƒ„…†…‡…uvËxÎz|Õ}~€€‚ƒ„…†…‡…uvËxÏz|Õ}~€€‚ƒ„…†…‡…uvËxĞz|Õ}~€€‚ƒ„…†…‡…uvËxÑz|Õ}~€€‚ƒ„…†…‡…uvËxÒz|Õ}~€€‚ƒ„…†…‡…uvËxÓz|Õ}~€€‚Ôƒ„…†…‡…uvËxÌz|×}~€€‚ƒ„…†…‡…uvËxÍz|Ö}~€€‚ƒ„…†…‡…uvËxÎz|Ö}~€€‚ƒ„…†…‡…uvËxÏz|Ö}~€€‚ƒ„…†…‡…uvËxĞz|Ö}~€€‚ƒ„…†…‡…uvËxÑz|Ö}~€€‚ƒ„…†…‡…uvËxÒz|Ö}~€€‚ƒ„…†…‡…uvËxÓz|Ö}~€€‚Ôƒ„…†…‡…uvËxÌz|Ø}~€€‚ƒÙ„…†…‡…uvËxÍz|×}~€€‚ƒØ„…†…‡…uvËxÎz|×}~€€‚ƒØ„…†…‡…uvËxÏz|×}~€€‚ƒØ„…†…‡…uvËxĞz|×}~€€‚ƒØ„…†…‡…uvËxÑz|×}~€€‚ƒØ„…†…‡…uvËxÒz|×}~€€‚ƒØ„…†…‡…uvËxÓz|×}~€€‚ÔƒØ„…†…‡…uvÚxÌz|}~€€‚ƒ„…†…‡…uvÙxÌz|Û}~€€‚ƒÜ„…†…‡…uİvÙxŞz|}~€€‚ƒ„…†…‡…uÜvÙxİz|Ú}~€€‚ƒÛ„…†…‡…uvßxÌzà|Ğ}~€€‚ƒ„…†…‡…uvŞxázß|Ğ}~€€‚ƒ„…†…‡…uvŞxâzß|Ğ}~€€‚ãƒ„…†…‡…uvŞxÌzß|«}~€€‚ƒ„…†…‡…uvŞxàzß|«}~€€‚ƒ„…†…‡…uvŞxázß|«}~€€‚âƒ„…†…‡…uvŞxÌzß|ä}~€€‚ƒ„…†…‡…uvŞxàzß|ã}~€€‚ƒ„…†…‡…uvŞxázß|ã}~€€‚âƒ„…†…‡…uvŞxÌzß|å}~€€‚ƒ„…†…‡…uvŞxàzß|ä}~€€‚ƒ„…†…‡…uvŞxázß|ä}~€€‚âƒ„…†…‡…uvŞxÌzß|æ}~€€‚ƒç„…†…‡…uvŞxàzß|å}~€€‚ƒæ„…†…‡…uvŞxázß|å}~€€‚âƒæ„…†…‡…uvÙxÌzß|Ğ}~€€‚ƒ„…†…‡…uvÙxÌzß|è}~€€‚ƒ„…†…‡…uvÙxÌzß|é}~€€‚ƒ„…†…‡…uvÙxÌzß|ê}~€€‚ƒ„…†…‡…uvÙxÌzß|ë}~€€‚ƒ„…†…‡…uvÙxÌzß|ì}~€€‚ƒ„…†…‡…uvÙxÌzß|í}~€€‚ƒ„…†…‡…uvÙxÌzß|î}~€€‚ƒï„…†…‡…uÜvÙxğzß|Ğ}~€€‚ƒ„…†…‡…uÜvÙxïzß|ç}~€€‚ƒ„…†…‡…uÜvÙxïzß|è}~€€‚ƒ„…†…‡…uÜvÙxïzß|é}~€€‚ƒ„…†…‡…uÜvÙxïzß|ê}~€€‚ƒ„…†…‡…uÜvÙxïzß|ë}~€€‚ƒ„…†…‡…uÜvÙxïzß|ì}~€€‚ƒ„…†…‡…uÜvÙxïzß|í}~€€‚ƒî„…†…‡…uvñxÌzß|ò}~€€‚ƒ„…†…‡…uvğxÌzó|ñ}~€€‚ƒ„…†…‡…uvğxÌzô|ñ}~€€‚ƒ„…†…‡…uvğxÌzõ|ñ}~€€‚ƒö„…†…‡…uvğx÷zß|ñ}~€€‚ƒ„…†…‡…uvğxözò|ñ}~€€‚ƒ„…†…‡…uvğxözó|ñ}~€€‚ƒ„…†…‡…uvğxözô|ñ}~€€‚ƒõ„…†…‡…uvğxøzß|ñ}~€€‚ùƒ„…†…‡…uvğx÷zò|ñ}~€€‚øƒ„…†…‡…uvğx÷zó|ñ}~€€‚øƒ„…†…‡…uvğx÷zô|ñ}~€€‚øƒõ„…†…‡…uvúxÌzû|ñ}~€€‚ƒ„…†…‡…uvùxözú|ñ}~€€‚ƒ„…†…‡…uvùx÷zú|ñ}~€€‚øƒ„…†…‡…uvüxızú|ñ}~€€‚ƒ„…†…‡…uÜvûxşzú|ñ}~€€‚ƒ„…†…‡…uvÿxüzß|ñ}~€€‚ƒ„…†…‡…uvşxüz @begin_alphabet@
+[0]texture_offset_z
+[1]501.995361
+
+[2]texture_shadow_size_x
+[3]1.000000
+
+[4]texture_shadow_size_y
+[5]texture_shadow_bottom_tall
+[6]100.000000
+
+[7]texture_shadow_upper_tall
+[8]texture_fragment_x
+[9]texture_fragment_y
+[10]sprite_color_red
+[11]0.500000
+
+[12]sprite_color_green
+[13]sprite_color_blue
+[14]ADD_NEW_SPRITE
+
+[15]add_new_texture
+[16]data/textures/roof_violet_body_mid_v1.png
+
+[17]texture_offset_x
+[18]-297.000000
+
+[19]texture_offset_y
+[20]189.000000
+
+[21]0.835704
+
+[22]*texture_mirrored
+
+[23]-12.044556
+
+[24]-3.000000
+
+[25]93.000000
+
+[26]0.950287
+
+[27]data/textures/violet_roof_face_mid_001.png
+
+[28]-292.000000
+
+[29]-15.000000
+
+[30]-156.000000
+
+[31]-20.000000
+
+[32]0.058496
+
+[33]data/textures/hrusch_roof_face_corner001.png
+
+[34]data/textures/window_tall_v2.png
+
+[35]-249.459198
+
+[36]101.412354
+
+[37]data/textures/window_tall_v1.png
+
+[38]180.455017
+
+[39]259.497681
+
+[40]data/textures/window_tall_v3.png
+
+[41]341.540344
+
+[42]417.583008
+
+[43]-135.421906
+
+[44]181.455017
+
+[45]261.497681
+
+[46]-136.421906
+
+[47]data/textures/hrusch_wall_main_v2_003.png
+
+[48]-10.881104
+
+[49]-4.000000
+
+[50]92.000000
+
+[51]129.118896
+
+[52]0.004000
+
+[53]172.000000
+
+[54]252.000000
+
+[55]332.000000
+
+[56]412.000000
+
+[57]492.000000
+
+[58]0.017507
+
+[59]data/textures/violet_roof_001_body_mid.png
+
+[60]-11.881104
+
+[61]493.400574
+
+[62]84.000000
+
+[63]260.000000
+
+[64]0.209996
+
+[65]124.118896
+
+[66]0.042000
+
+[67]data/textures/window_002_v1.png
+
+[68]-3.601105
+
+[69]113.760178
+
+[70]data/textures/window_002_v3.png
+
+[71]192.480225
+
+[72]data/textures/window_002.png
+
+[73]271.200287
+
+[74]349.920349
+
+[75]428.640381
+
+[76]data/textures/hrusch_wall_main_v2_001.png
+
+[77]129.678894
+
+[78]269.678894
+
+[79]409.678894
+
+[80]0.007992
+
+[81]0.974942
+
+[82]data/textures/wall_yellow_sand_left.png
+
+[83]143.000000
+
+[84]194.000000
+
+[85]245.000000
+
+[86]296.000000
+
+[87]347.000000
+
+[88]398.000000
+
+[89]449.000000
+
+[90]0.803831
+
+[91]380.797791
+
+[92]85.000000
+
+[93]173.000000
+
+[94]261.000000
+
+[95]0.218495
+
+[96]265.678894
+
+[97]401.678894
+
+[98]data/textures/violet_roof_back_mid_001.png
+
+[99]269.227539
+
+[100]data/textures/violet_roof_back_corner_001.png
+
+[101]124.678894
+
+[102]409.634338
+
+[103]172.219696
+
+[104]421.583008
+
+[105]286.256989
+
+[106]285.256989
+
+[107]add_new_autobuilding_floor
+[108]-292.000000
+[109]-2.000000
+[110]0.000000
+[111]1.000000
+[112]floor_name
+[113]main
+
+[114]wall_color
+[115]0.500000
+[116]floor_additional_distance_between_window_x
+[117]5.000000
+
+[118]floor_additional_distance_between_window_y
+[119]add_new_wall_for_floor
+[120]add_new_texture_variant_for_wall
+[121]data/textures/wall_yellow_sand_left.png
+[122]0.000000
+
+[123]wall_element_color
+[124]7.319272
+[125]3.675746
+
+[126]data/textures/hrusch_bottom_main_001.png
+[127]*wall_is_mirrored
+[128]1.780000
+[129]1.030000
+
+[130]7.009009
+[131]0.017000
+
+[132]data/textures/roof_metal_up_01.png
+[133]-3.000000
+[134]92.000000
+[135]bottom
+
+[136]30.037298
+
+[137]16.042665
+
+[138]2.007992
+[139]4.974942
+
+[140]data/textures/hrusch_wall_main_v2_001.png
+[141]data/textures/hrusch_roof_face_corner001.png
+[142]1.165000
+[143]0.905000
+
+[144]data/textures/violet_roof_face_mid_001.png
+[145]data/textures/roof_violet_body_mid_v1.png
+[146]2.058496
+[147]3.218495
+
+[148]data/textures/violet_roof_001_body_mid.png
+[149]data/textures/violet_roof_back_corner_001.png
+[150]data/textures/violet_roof_back_mid_001.png
+[151]data/textures/window_tall_v1.png
+[152]data/textures/window_tall_v2.png
+[153]data/textures/window_tall_v3.png
+[154]-293.000000
+[155]-4.000000
+[156]subwall
+
+[157]5.461334
+
+[158]35.720055
+
+[159]1.004000
+[160]5.017507
+
+[161]data/textures/hrusch_wall_main_v2_003.png
+[162]1.042000
+[163]3.209996
+
+[164]data/textures/window_002.png
+[165]data/textures/window_002_v1.png
+[166]data/textures/window_002_v2.png
+[167]data/textures/window_002_v3.png
+[168]entity base attribute
+[169]Life
+[170]1000.000000
+
+[171]entity bool attribute
+[172]Inmovable
+
+[173]collision_up
+[174]157.000000
+
+[175]collision_down
+[176]2.000000
+
+[177]collision_right
+[178]409.000000
+
+[179]collision_left
+[180]294.000000
+
+[181]path_block_up
+[182]204.000000
+
+[183]path_block_down
+[184]-17.000000
+
+[185]path_block_right
+[186]396.000000
+
+[187]path_block_left
+[188]298.000000
+
+[189]shadow_block_up
+[190]20.000000
+
+[191]shadow_block_down
+[192]shadow_block_right
+[193]shadow_block_left
+[194]- PUT TO MAP -
+
+[195]
+
+[196]=====================================
+
+[197]ADD_NEW_ENTITY
+[198]8507.000000
+[199]4002.000000
+[200]floor_order
+[201]0
+
+[202]floor_left_border
+[203]true
+
+[204]floor_right_border
+[205]floor_generate_offset_x
+[206]floor_generate_offset_y
+[207]data/textures/wall_lamp.png
+
+[208]-10.000000
+
+[209]Lightsoucre green
+[210]Light Source
+
+[211]Ghost
+
+[212]No path block
+
+[213]8669.000000
+[214]4281.000000
+[215]Lightsoucre blue
+[216]14.000000
+
+[217]10.000000
+
+[218]20.500000
+
+[219]19.500000
+
+[220]9265.000000
+[221]4483.000000
+[222]data/textures/white_pixel.png
+
+[223]10576.000000
+[224]5196.000000
+@end_alphabet@
+	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+  !	
+" 	
+! 	
+#$ %	
+&# '	
+%# (	
+)# *	
+%# +	
+", $	
+(+ -	
+(+ .	
+"+ )	
+%/ *	
+012 3	
+/41 25	
+/01 6	
+/31 54	
+/01 7	
+/31 64	
+/01 8	
+/31 74	
+/01 9	
+/31 84	
+/01 :	;
+/31 94	:
+<=1 >	
+;<? =	
+;<5 =	
+;<@ =	A
+;B1 =C	
+;A> =B	
+;A5 =B	
+;A? =B	@
+DE1 F	
+GD1 H	
+ID1 J	
+FD1 K	
+FD1 L	
+MN 2	
+LO 2	
+LP 2Q	
+LM 5	
+LN 5	
+LO 5P	
+LM 6	
+LN 6	
+LO 6P	
+LM 7	
+LN 7	
+LO 7P	
+LM 8	R
+LN 8	Q
+LO 8P	Q
+SM 2	
+RM T	
+RM U	
+RM V	
+RM W	
+RM X	
+RM Y	
+RM Z	[
+R\ 2	
+R[ S	
+R[ T	
+R[ U	
+R[ V	
+R[ W	
+R[ X	
+R[ Y	Z
+;M 	
+;M] 	
+;M^ 	
+;M_ 	`
+;a 	
+;`\ 	
+;`] 	
+;`^ 	_
+;b  	
+;a\  	
+;a]  	
+;a^  	_
+cMd 	
+b`c 	
+bac  	
+efc 	
+dgc 	
+e 	
+e 	
+e 	
+f 	
+f 	
+f 	
+M 	
+` 	
+a  	
+!e 	
+!f 	
+(h $	
+%g &	
+(g -	
+"g )	
+"g i	
+(j $	
+%k &	
+%j '	
+(i )	
+"i h	
+lmnopoqrstssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssuvwuxnnnoyznnnnnn{|ssswnnn}~xnnnnnnz{ssswnnno€xynnnnnnz{ssswnnno{ssswnnn‚{ssswnnno{ssswnnno{ssswnnnƒ„{ssswnnno{ssswnnno{ssswnnnox…nnnnnnz{ssswnnno{ssswnnno{ssswnnno{ssskl†‡onpˆrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrssst‰vŠwnnnoxynnnnnnz{ssswnnn‹Œxnnnnnnz{ssswnnnoxynnnnnnz{ssswnnnoxnnnnnnz{ssswnnnx‘nnnnnnz{ssswnnnoxnnnnnnz{ssswnnnox’nnnnnnz{ssswnnn“”x•nnnnnnzx”nnnnnnz{ssswnnnox‘nnnnnnz{ssswnnnox–nnnnnnz{ssswnnnox—nnnnnnz{ssswnnnox•nnnnnnz{ssswnnno{ssswnnnox˜nnnnnnzx™nnnnnnzxšnnnnnnz{sssk›œ†ooprsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrssstvŸwnnno{ssswonn ¡x¢nnnnnnz{ssswnnno{ssswnnno{ssswnnno{ssswnnno{ssswnnno{ssswnnn£¤x”nnnnnnz{ssswnnno{ssswnnno{ssswnnno{ssswnnno{ssswnnno{ssswnnnox¥nnnnnnzx¦nnnnnnzx§nnnnnnzx¨nnnnnnz{sss©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿À¾Á¾Â¾ÃÄÅÃÆÇÈzÉÊÈÉÈÉÈÉÈÉÈÉÈÉÈÉÈÉÈÉËÌÊËÊËÊËÊËÊËÊËÊËÊËÊËÍËÌËÌËÌËÌËÌËÌËÌËÌËÌËÎËÍËÍËÍËÍËÍËÍËÍËÍËÍËÏËÎËÎËÎËÎËÎËÎËÎËÎËÎËĞÑ z	
+¨©ª¨Ò«¬«Ó«Ô«Õ­¾¯¾±¾³¾µ¾·¾¹¾»¾½¾¿¾À¾Á¾ÂÃÄÃÅÖ×zÈÉÈÉÈÉÈÉÈÉÈÉÈÉÈÉÈÉÈÉÊËÊËÊËÊËÊËÊËÊËÊËÊËÊËÌËÌËÌËÌËÌËÌËÌËÌËÌËÌËÍËÍËÍËÍËÍËÍËÍËÍËÍËÍËÎËÎËÎËÎËÎËÎËÎËÎËÎËÎËknnnoopqrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrsssrssstuvuwnnno{ssswnnno{ssswnnno{ssswnnno{ssswnnno{ssswnnno{ssswnnno{ssswnnno{ssswnnno{ssswnnno{ssswnnno{ssswnnno{ssswnnno{ssswnnno{sss¨©ª¨Ñ¨Ø«¬«Ò«Ô­Ù¯Ú±Û³Üµ¾·¾¹¾»¾½¾¿¾À¾Á¾ÂÃÄÃÅİŞzÈÉÈÉÈÉÈÉÈÉÈÉÈÉÈÉÈÉÈÉÊËÊËÊËÊËÊËÊËÊËÊËÊËÊËÌËÌËÌËÌËÌËÌËÌËÌËÌËÌËÍËÍËÍËÍËÍËÍËÍËÍËÍËÍËÎËÎËÎËÎËÎËÎËÎËÎËÎËÎËßzz z	
+¨©ª¨×«¬«Ò«Ó«Ô­¾¯¾±¾³¾µ¾·¾¹¾»¾½¾¿¾À¾Á¾ÂÃÄÃÅàázÈÉÈÉÈÉÈÉÈÉÈÉÈÉÈÉÈÉÈÉÊËÊËÊËÊËÊËÊËÊËÊËÊËÊËÌËÌËÌËÌËÌËÌËÌËÌËÌËÌËÍËÍËÍËÍËÍËÍËÍËÍËÍËÍËÎËÎËÎËÎËÎËÎËÎËÎËÎËÎËŞzz z	
+¨©ª¨Ñ«¬«Ò«Ó«Ô­¾¯¾±¾³¾µ¾·¾¹¾»¾½¾¿¾À¾Á¾ÂÃÄÃ

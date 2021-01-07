@@ -543,13 +543,9 @@ void EBA::action_save_map(EButton* _b, float _d)
 			w_string += "#terrain_element_texture\t";
 
 			if (tes->terrain_variant.at(i) != NULL)
-			{
-				w_string += tes->terrain_variant.at(i)->name;
-			}
+			{w_string += tes->terrain_variant.at(i)->name;}
 			else
-			{
-				w_string += "NULL";
-			}
+			{w_string += "NULL";}
 
 			w_string += "\t";
 
@@ -561,19 +557,193 @@ void EBA::action_save_map(EButton* _b, float _d)
 		for (int j=0; j<ECluster::CLUSTER_DIM; j++)
 		for (int i = 0; i < ECluster::CLUSTER_DIM; i++)
 		for (Entity* e : ECluster::clusters[j][i]->entity_list)
-		if(!*e->is_bullet)
-		{
-			EBA::save_to_file(w_string, e, order, false);
-		}
+		if(!*e->is_bullet) {EBA::save_to_file(w_string, e, order, false);}
 
 	writer << w_string;
 	writer.close();
 
+	std::string w_result = "";
+	std::string w_alphabet = "";
+	std::string final_string = "";
+	std::vector <std::string> alphabet;
+	int alphabet_id = 0;
+	std::string subs = "";
+
+	alphabet.clear();
+	for (int i = 0; i < w_string.length(); i ++)
+	{
+		if (i % 10000 == 0)
+		{
+			logger_param("i ", i);
+		}
+
+		
+		if ((w_string.at(i) == '\t')||(w_string.at(i) == '\n'))
+		{
+			if (w_string.at(i) == '\n') { subs += '\n'; }
+
+			alphabet_id = -1;
+			for (int j = 0; j < alphabet.size(); j++)
+			{
+				if (alphabet.at(j) == subs)
+				{
+					alphabet_id = j;
+					break;
+				}
+			}
+
+			if (alphabet_id == -1)
+			{
+				alphabet.push_back(subs);
+
+				w_result += (char)alphabet.size();
+
+				if (alphabet.size() > 255)
+				{
+					final_string += "^begin_alphabet^\n";
+					alphabet_id = 0;
+					for (std::string s : alphabet)
+					{
+						
+						//final_string += '[' + std::to_string(alphabet_id) + ']' + s + '\n';
+						final_string += s + '\t';
+						
+
+						alphabet_id++;
+					}
+					final_string += "^end_alphabet^\n";
+					final_string += w_result;
+
+					w_result = "";
+					alphabet.clear();
+				}
+			}
+			else
+			{
+				w_result += (char)alphabet_id;
+			}
+
+			subs = "";
+		}
+		else
+		{subs += w_string.at(i);}
+
+		
+
+		//if (w_string.at(i) == '\n')
+		//{w_result += '\n';}
+	}
+
+	if (alphabet.size() > 0)
+	{
+		final_string += "@begin_alphabet@\n";
+
+		alphabet_id = 0;
+		for (std::string s : alphabet)
+		{
+			final_string += '[' + std::to_string(alphabet_id) + ']' + s + '\n';
+			alphabet_id++;
+		}
+
+		final_string += "@end_alphabet@\n";
+	}
+	final_string += w_result;
+
+	for (int z = 0; z < 0; z++)
+	{
+		alphabet.clear();
+
+		w_result = "";
+		w_alphabet = "";
+		final_string = "";
+
+		//read each symbol and set pair
+		for (int i = 0; i < w_string.length(); i += 2)
+		{
+			//pair of symbols
+			std::string portion = w_string.substr(i, 2);
+
+			alphabet_id = -1;
+
+			//search pair in alphabet
+			for (int i = 0; i < alphabet.size(); i++)
+			{
+				if (alphabet.at(i) == portion)
+				{
+					alphabet_id = i;
+					break;
+				}
+			}
+
+			//new pair
+			if (alphabet_id == -1)
+			{
+				alphabet.push_back(portion);
+
+				w_result += (char)alphabet.size();
+				w_alphabet += portion;
+
+				if (alphabet.size() > 255)
+				{
+					alphabet_id = 0;
+
+					std::string nu = "";
+
+					if (w_result.length() < 10000)		{ nu += "0"; }
+					if (w_result.length() < 1000)		{ nu += "0"; }
+					if (w_result.length() < 100)		{ nu += "0"; }
+					if (w_result.length() < 10)			{ nu += "0"; }
+					nu += std::to_string(w_result.length());
+					nu += "";
+
+					final_string += "256" + w_alphabet + nu + w_result;
+
+					w_result = "";
+					w_alphabet = "";
+					alphabet.clear();
+				}
+			}
+			else
+			//exist pair
+			{
+				w_result += (char)alphabet_id;
+			}
+		}
+
+		//w_alphabet = "# alphabet_begin #\n";
+
+		final_string += w_alphabet + w_result;
+
+		//w_alphabet += "# alphabet_end #\n";
+
+		//working string is compression result
+		w_string = final_string;
+	}
 
 	//writer;
-	writer.open("test/map_terrain.txt");
+	writer.open("test/map_compressor.txt");
 		w_string = "";
-	writer << w_string;
+	writer << final_string;
+	writer.close();
+
+	writer.open("test/map_t.txt");
+		w_string = "";
+
+		for (int i = 0; i < EPath::PATH_DIM; i++)
+		for (int j = 0; j < EPath::PATH_DIM; j++)
+		{
+			w_string += (char)EWindow::window_test->terrain[j][i];
+		}
+
+		w_string += "ß";
+
+		for (int i = 0; i < EPath::PATH_DIM; i++)
+		for (int j = 0; j < EPath::PATH_DIM; j++)
+		{
+			w_string += (char)EWindow::window_test->terrain_layer[j][i];
+		}
+
+		writer << w_string;
 	writer.close();
 }
 
@@ -615,6 +785,12 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 		Entity::wall_element* just_created_wall = NULL;
 		Entity::wall_texture_variant* just_created_texture_variant = NULL;
 
+		EWindowEditor::terrain_element_struct* just_created_terrain_element = NULL;
+		EGabarite* just_created_terrain_variant;
+
+		int terrain_element_list_id = 0;
+		int terrain_variant_list_id = 0;
+
 		int wall_id = 0;
 		int wall_color_id = 0;
 
@@ -645,6 +821,36 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 
 				if (EFile::data_array[i] == "#blur_decay")
 				{i++; EWindowTest::blur_decay_flat_factor = std::stof(EFile::data_array[i]);}
+				
+				if (EFile::data_array[i] == "#terrain_element")
+				{
+					just_created_terrain_element = EWindowEditor::terrain_element_list.at(terrain_element_list_id);
+					
+					terrain_element_list_id++;
+					terrain_variant_list_id = 0;
+				}
+
+				if (EFile::data_array[i] == "#terrain_element_texture")
+				{
+					if (just_created_terrain_element != NULL)
+					{
+						i++;
+
+						if (EFile::data_array[i] != "NULL")
+						{just_created_terrain_variant = ETextureAtlas::put_texture_to_atlas(EFile::data_array[i], EWindow::default_texture_atlas);}
+						else
+						{just_created_terrain_variant = NULL;}
+
+						just_created_terrain_element->terrain_variant.at(terrain_variant_list_id) = just_created_terrain_variant;
+
+						i++;
+
+						just_created_terrain_element->id.at(terrain_variant_list_id) = std::stoi(EFile::data_array[i]);
+
+					}
+
+					terrain_variant_list_id++;
+				}
 
 				if (EFile::data_array[i] == "ADD_NEW_ENTITY")
 				{
@@ -958,10 +1164,13 @@ void EBA::read_data_for_entity(std::ifstream& myfile)
 
 void EBA::action_load_map(EButton* _b, float _d)
 {
+
+	//EWindowEditor::terrain_element_list.clear();
+
 	ifstream myfile;
 
 	if (_b != NULL)
-	{myfile.open(_b->data_string);}
+	{myfile.open(_b->data_string + ".txt");}
 	else
 	{myfile.open("test/map.txt");}
 
@@ -982,6 +1191,47 @@ void EBA::action_load_map(EButton* _b, float _d)
 	}
 
 	EWindow::window_editor->update_sprite_buttons();
+
+	EWindowEditor::select_new_terrain();
+	EWindowEditor::select_new_terrain_variant();
+	EWindowEditor::reinit_terrain_matrix();
+
+	std::string t_s_data = "";
+	char* tsdata = new char[EPath::PATH_DIM * EPath::PATH_DIM];
+
+	if (_b != NULL)
+	{myfile.open(_b->data_string + "_t.txt");}
+	else
+	{myfile.open("test/map_t.txt");}
+
+		/*while (getline(myfile, line))
+		{
+
+		}*/
+		myfile.get(tsdata, EPath::PATH_DIM * EPath::PATH_DIM);
+		
+		
+		for (int i = 0; i < EPath::PATH_DIM; i++)
+		for (int j = 0; j < EPath::PATH_DIM; j++)
+		{
+			EWindow::window_test->terrain[j][i] = (short)(tsdata[j + i * EPath::PATH_DIM]);
+		}
+
+		remove(tsdata);
+		tsdata = new char[EPath::PATH_DIM * EPath::PATH_DIM + 1];
+
+		myfile.get(tsdata, EPath::PATH_DIM * EPath::PATH_DIM);
+		for (int i = 0; i < EPath::PATH_DIM; i++)
+		for (int j = 0; j < EPath::PATH_DIM; j++)
+		{
+			//EWindow::window_test->terrain_layer[j][i] = -1;
+			EWindow::window_test->terrain_layer[j][i] = (short)(tsdata[j + i * EPath::PATH_DIM + 2]);
+		}
+
+	myfile.close();
+
+	EWindow::window_test->generate_terrain();
+
 }
 
 void EBA::action_load_entity_collection(EButton* _b, float _d)

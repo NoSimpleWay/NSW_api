@@ -110,5 +110,5 @@ public:
 	float day_time = 0.7f;
 
 
-
+	static bool show_terrain_grid;
 };

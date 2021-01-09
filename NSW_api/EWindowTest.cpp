@@ -1341,7 +1341,7 @@ void EWindowTest::draw_terrain()
 
 
 	if (true)
-		for (int k=0; k<3; k++)
+		for (int k=0; k<5; k++)
 		for (int i = up_terrain_draw; i >= down_terrain_draw; i--)
 			for (int j = left_terrain_draw; j <= right_terrain_draw; j++)
 			if

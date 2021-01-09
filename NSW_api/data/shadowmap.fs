@@ -202,7 +202,7 @@ void main()
 	recolor = ourColor.rgb * vec3(2.0f, 2.0f, 2.0f);
 	lightmap_pixel = texture(texture3, light_coord).rgb / (1.0f + halt * halt * 32.0f);
 	
-	result_pixel = texture_pixel * ((shadow_pixel + ambient_pixel) * recolor + lightmap_pixel);
+	result_pixel = texture_pixel * ((shadow_pixel + ambient_pixel + lightmap_pixel) * recolor );
 	
 	gamma_R = sin((pow(result_pixel.r, gamma_offset) * gamma_border - gamma_border / 2.0f) * 1.5705f) * gamma_factor + 1.0f;
 	gamma_G = sin((pow(result_pixel.g, gamma_offset) * gamma_border - gamma_border / 2.0f) * 1.5705f) * gamma_factor + 1.0f;

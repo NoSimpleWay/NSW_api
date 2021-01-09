@@ -1498,7 +1498,7 @@ EWindowEditor::EWindowEditor()
 /// TERRAIN MASSIVE
 /// </summary>
 	a_massive = new button_array_collection_massive(this);
-	*a_massive->is_active = true;
+	*a_massive->is_active = false;
 	button_array_collection_massive_list.push_back(a_massive);
 	terrain_editor_massive_link = a_massive;
 	*a_massive->size_x = 600.0f;
@@ -1792,6 +1792,8 @@ void EWindowEditor::update(float _d)
 		update_sprite_buttons();
 		if (editor_mode == EditMode::EditSprites) { update_sprite_buttons(); }
 		if (editor_mode == EditMode::EditAutobuilding) { *autobuilding_massive_link->is_active = false; Entity::delete_unused_sprites(selected_entity);  }
+
+		*terrain_editor_massive_link->is_active = false;
 
 		editor_mode = EditMode::SelectEntities;
 		EWindow::button_main_group_pressed = true;

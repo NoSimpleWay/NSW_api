@@ -1498,45 +1498,65 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 		}
 		random_select = 0;
 
+		float wall_corner_subcopies = 1;
+		int wall_repeats = 0;
 		//left wall
 		if ((AB_MACRO_is_valid(WEI_LEFT_WALL, random_select)) & (*_e->autobuilding_left_border.at(z)))
 		{
+			//wall_corner_subcopies = 
 			if (AB_MACRO_is_valid(WEI_MID_WALL, random_select))
 			{scale_factor_y = AB_MACRO_get_scale_y(WEI_LEFT_WALL, random_select, WEI_MID_WALL, random_select);}
 			else { scale_factor_y = 1.0f; }
 
-			for (int yy = 0; yy < ceil(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y * scale_factor_y); yy++)
+			
+			wall_repeats = ceil(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y);
+
+			for (int yy = 0; yy < wall_repeats; yy++)
 			{
-
-				//logger("sprite_id:" + std::to_string(sprite_order));
-				spr = _e->sprite_list.at(sprite_order);
-				
-
-				ox = AB_MACRO_get_texture_offset(WEI_LEFT_WALL, random_select, offset_x) + stage_offset_x;
-				//ox -= AB_MACRO_get_texture_variant_size_x(WEI_LEFT_WALL, random_select);
-
-				oy = AB_MACRO_get_texture_offset(WEI_LEFT_WALL, random_select, offset_y);
-
-				
+				if (AB_MACRO_is_valid(WEI_MID_WALL, random_select))
+				{wall_corner_subcopies = ceil(scale_factor_y) * min(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y - yy, 1.0f);}
 
 
+				for (int sc = 0; sc < ceil(wall_corner_subcopies); sc++)
+				{
+
+					//logger("sprite_id:" + std::to_string(sprite_order));
+					spr = _e->sprite_list.at(sprite_order);
 
 
-				oz =
-					*AB_floor->offset_z
-					+
-					*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->offset_z
-					+
-					*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->texture_variant_list.at(random_select)->offset_z;
+					ox = AB_MACRO_get_texture_offset(WEI_LEFT_WALL, random_select, offset_x) + stage_offset_x;
+					//ox -= AB_MACRO_get_texture_variant_size_x(WEI_LEFT_WALL, random_select);
 
-				oz += AB_MACRO_get_texture_variant_size_y(WEI_LEFT_WALL, random_select) * yy;
+					oy = AB_MACRO_get_texture_offset(WEI_LEFT_WALL, random_select, offset_y);
 
-				AB_MACRO_append_sprite_data(WEI_LEFT_WALL, random_select, 0);
 
-				*spr->sprite_struct_list.at(0)->fragment_y = min(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y * scale_factor_y - yy, 1.0f);
 
-				left_corner_offset_y = oz - *AB_floor->offset_y * 0.0f + AB_MACRO_get_texture_variant_size_y(WEI_LEFT_WALL, random_select) * *spr->sprite_struct_list.at(0)->fragment_y;
-				
+
+
+
+					oz =
+						*AB_floor->offset_z
+						+
+						*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->offset_z
+						+
+						*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_LEFT_WALL)->texture_variant_list.at(random_select)->offset_z;
+
+					if (AB_MACRO_is_valid(WEI_MID_WALL, random_select))
+					{
+						oz += (AB_MACRO_get_texture_variant_size_y(WEI_MID_WALL, random_select) + 00.0f) * yy;
+					}
+					oz += (AB_MACRO_get_texture_variant_size_y(WEI_LEFT_WALL, random_select) + 00.0f) * sc;
+
+					AB_MACRO_append_sprite_data(WEI_LEFT_WALL, random_select, 0);
+					if (yy < AB_floor->color_matrix.size()) { spr->sprite_struct_list.at(0)->sprite_color->set_color(AB_floor->color_matrix.at(yy)); }
+
+					//*spr->sprite_struct_list.at(0)->fragment_y = min(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y * scale_factor_y - yy, 1.0f);
+					//if (sc + 1 >= wall_corner_subcopies)
+					{*spr->sprite_struct_list.at(0)->fragment_y = min(wall_corner_subcopies - sc, 1.0f); }
+
+					left_corner_offset_y = oz - *AB_floor->offset_y * 0.0f + AB_MACRO_get_texture_variant_size_y(WEI_LEFT_WALL, random_select) * *spr->sprite_struct_list.at(0)->fragment_y;
+
+				}
 			}
 		}
 		
@@ -1550,30 +1570,44 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 			}
 			else { scale_factor_x = 1.0f; scale_factor_y = 1.0f; }
 
-			for (int yy = 0; yy < ceil(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y * scale_factor_y); yy++)
+			//wall_corner_subcopies = ceil(scale_factor_y);
+
+			wall_repeats = ceil(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y * scale_factor_y);
+			for (int yy = 0; yy < wall_repeats; yy++)
 			{
-				spr = _e->sprite_list.at(sprite_order);
-				
-
-				selected_wall = AB_floor->wall_list.at(Entity::WallElementIndex::WEI_RIGHT_WALL);
-				selected_variant = selected_wall->texture_variant_list.at(random_select);
-				selected_texture = selected_variant->texture;
-
-				ox = AB_MACRO_get_texture_offset(WEI_RIGHT_WALL, random_select, offset_x) + stage_offset_x;
-				oy = AB_MACRO_get_texture_offset(WEI_RIGHT_WALL, random_select, offset_y);
-				oz = AB_MACRO_get_texture_offset(WEI_RIGHT_WALL, random_select, offset_z);
-				
 				if (AB_MACRO_is_valid(WEI_MID_WALL, random_select))
+				{wall_corner_subcopies = ceil(scale_factor_y) * min(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y - yy, 1.0f);}
+				
+				for (int sc = 0; sc < ceil(wall_corner_subcopies); sc++)
 				{
-					ox += AB_MACRO_get_texture_variant_size_x (WEI_MID_WALL, random_select) * *AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_x;
-					ox -= AB_MACRO_get_texture_variant_size_x(WEI_RIGHT_WALL, random_select);
+					spr = _e->sprite_list.at(sprite_order);
+
+
+					selected_wall = AB_floor->wall_list.at(Entity::WallElementIndex::WEI_RIGHT_WALL);
+					selected_variant = selected_wall->texture_variant_list.at(random_select);
+					selected_texture = selected_variant->texture;
+
+					ox = AB_MACRO_get_texture_offset(WEI_RIGHT_WALL, random_select, offset_x) + stage_offset_x;
+					oy = AB_MACRO_get_texture_offset(WEI_RIGHT_WALL, random_select, offset_y);
+					oz = AB_MACRO_get_texture_offset(WEI_RIGHT_WALL, random_select, offset_z);
+
+					if (AB_MACRO_is_valid(WEI_MID_WALL, random_select))
+					{
+						ox += AB_MACRO_get_texture_variant_size_x(WEI_MID_WALL, random_select) * *AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_x;
+						ox -= AB_MACRO_get_texture_variant_size_x(WEI_RIGHT_WALL, random_select);
+					}
+
+					if (AB_MACRO_is_valid(WEI_RIGHT_WALL, random_select))
+					{
+						oz += (AB_MACRO_get_texture_variant_size_y(WEI_MID_WALL, random_select) + 00.0f) * yy;
+					}
+					oz += (AB_MACRO_get_texture_variant_size_y(WEI_RIGHT_WALL, random_select) + 00.0f) * sc;
+
+					AB_MACRO_append_sprite_data(WEI_RIGHT_WALL, random_select, 0);
+					if (yy < AB_floor->color_matrix.size()) { spr->sprite_struct_list.at(0)->sprite_color->set_color(AB_floor->color_matrix.at(yy)); }
+					//*spr->sprite_struct_list.at(0)->fragment_y = min(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y * scale_factor_y - yy, 1.0f);
+					*spr->sprite_struct_list.at(0)->fragment_y = min(wall_corner_subcopies - sc, 1.0f);
 				}
-
-				oz += *AB_floor->wall_list.at(Entity::WallElementIndex::WEI_RIGHT_WALL)->texture_variant_list.at(random_select)->texture->size_y * yy;
-
-				AB_MACRO_append_sprite_data(WEI_RIGHT_WALL, random_select, 0);
-
-				*spr->sprite_struct_list.at(0)->fragment_y = min(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y * scale_factor_y - yy, 1.0f);
 			}
 		}
 		

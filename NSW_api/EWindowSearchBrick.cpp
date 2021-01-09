@@ -16,6 +16,8 @@ EWindowSearchBrick::EWindowSearchBrick()
 	window_size_x = 700.0f;
 	window_size_y = 800.0f;
 
+	align_x = Enums::PositionMode::LEFT;
+
 	EButton* but = new EButton(15.0f, -15.0f, 300.0f, 30.0f);
 	but->master_window = this;
 	but->input_auto_clear_text = true;

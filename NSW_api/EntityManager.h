@@ -434,7 +434,9 @@ public:
 
 		WEI_SHADOW,
 
-		WEI_WINDOW
+		WEI_WINDOW,
+
+		WEI_DECOR
 	};
 
 	struct building_autogen_floor
@@ -468,7 +470,8 @@ public:
 			new wall_element(),//11	back mid
 			new wall_element(),//12	back right
 			new wall_element(),//13	shadow
-			new wall_element()//14	window
+			new wall_element(),//14	window
+			new wall_element()//15	decor
 		};
 
 		std::vector<EColor*> color_matrix

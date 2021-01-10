@@ -1184,6 +1184,14 @@ EWindowEditor::EWindowEditor()
 
 	a_array->button_list.push_back(but);
 
+	but = new EButton(200.0f, 145.0f, 50.0f, 50.0f);
+		building_autogenerator_wall_button_link.push_back(but);
+		but->master_window = this;
+		but->have_icon = true;
+		but->have_rama = true;
+		but->data_id = Entity::WallElementIndex::WEI_DECOR;
+		but->action_on_left_click = &EBA::action_select_building_autogenerator_wall_element;
+	a_array->button_list.push_back(but);
 
 	//****************************************
 	//"add new floor" button
@@ -2698,12 +2706,71 @@ void EWindowEditor::update(float _d)
 					catched_collision_down = true;
 				}
 			}
+			
+			if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabariteShadowBlock)
+			{
+				if
+					(
+						(xx >= *selected_entity->position_x - *selected_entity->shadow_block_gabarite_left - 10.0f)
+						&
+						(xx <= *selected_entity->position_x - *selected_entity->shadow_block_gabarite_left + 10.0f)
+						&
+						(yy <= *selected_entity->position_y + *selected_entity->shadow_block_gabarite_up + 10.0f)
+						&
+						(yy >= *selected_entity->position_y - *selected_entity->shadow_block_gabarite_up - 10.0f)
+						)
+				{
+					catched_collision_left = true;
+				}
+
+				if
+					(
+					(xx >= *selected_entity->position_x - *selected_entity->shadow_block_gabarite_left - 10.0f)
+						&
+						(xx <= *selected_entity->position_x + *selected_entity->shadow_block_gabarite_right + 10.0f)
+						&
+						(yy <= *selected_entity->position_y + *selected_entity->shadow_block_gabarite_up + 10.0f)
+						&
+						(yy >= *selected_entity->position_y + *selected_entity->shadow_block_gabarite_up - 10.0f)
+						)
+				{
+					catched_collision_up = true;
+				}
+
+				if
+					(
+					(xx <= *selected_entity->position_x + *selected_entity->shadow_block_gabarite_right + 10.0f)
+						&
+						(xx >= *selected_entity->position_x + *selected_entity->shadow_block_gabarite_right - 10.0f)
+						&
+						(yy <= *selected_entity->position_y + *selected_entity->shadow_block_gabarite_up + 10.0f)
+						&
+						(yy >= *selected_entity->position_y - *selected_entity->shadow_block_gabarite_down - 10.0f)
+						)
+				{
+					catched_collision_right = true;
+				}
+
+				if
+					(
+					(xx >= *selected_entity->position_x - *selected_entity->shadow_block_gabarite_left - 10.0f)
+						&
+						(xx <= *selected_entity->position_x + *selected_entity->shadow_block_gabarite_right + 10.0f)
+						&
+						(yy >= *selected_entity->position_y - *selected_entity->shadow_block_gabarite_down - 10.0f)
+						&
+						(yy <= *selected_entity->position_y - *selected_entity->shadow_block_gabarite_down + 10.0f)
+						)
+				{
+					catched_collision_down = true;
+				}
+			}
 		}
 	
 
 		if ((glfwGetKey(EWindow::main_window, GLFW_KEY_X) == GLFW_PRESS) & (!EButton::any_input))
 		{
-			Entity::update_path_block(selected_entity);
+			
 
 			if (!started_collision_move)
 			{
@@ -2728,6 +2795,12 @@ void EWindowEditor::update(float _d)
 					*selected_entity->path_block_gabarite_down -= EWindow::mouse_speed_y * mul;
 					*selected_entity->path_block_gabarite_down = EMath::clamp_value_float(*selected_entity->path_block_gabarite_down, -512.0f, 512.0f);
 				}
+
+				if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabariteShadowBlock)
+				{
+					*selected_entity->shadow_block_gabarite_down -= EWindow::mouse_speed_y * mul;
+					*selected_entity->shadow_block_gabarite_down = EMath::clamp_value_float(*selected_entity->shadow_block_gabarite_down, -512.0f, 512.0f);
+				}
 			}
 
 			if (catched_collision_up)
@@ -2742,6 +2815,12 @@ void EWindowEditor::update(float _d)
 				{
 					*selected_entity->path_block_gabarite_up += EWindow::mouse_speed_y * mul;
 					*selected_entity->path_block_gabarite_up = EMath::clamp_value_float(*selected_entity->path_block_gabarite_up, -512.0f, 512.0f);
+				}
+
+				if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabariteShadowBlock)
+				{
+					*selected_entity->shadow_block_gabarite_up += EWindow::mouse_speed_y * mul;
+					*selected_entity->shadow_block_gabarite_up = EMath::clamp_value_float(*selected_entity->shadow_block_gabarite_up, -512.0f, 512.0f);
 				}
 			}
 
@@ -2758,6 +2837,12 @@ void EWindowEditor::update(float _d)
 					*selected_entity->path_block_gabarite_left -= EWindow::mouse_speed_x * mul;
 					*selected_entity->path_block_gabarite_left = EMath::clamp_value_float(*selected_entity->path_block_gabarite_left, 0.0f, 512.0f);
 				}
+
+				if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabariteShadowBlock)
+				{
+					*selected_entity->shadow_block_gabarite_left -= EWindow::mouse_speed_x * mul;
+					*selected_entity->shadow_block_gabarite_left = EMath::clamp_value_float(*selected_entity->shadow_block_gabarite_left, 0.0f, 512.0f);
+				}
 			}
 
 			if (catched_collision_right)
@@ -2773,11 +2858,19 @@ void EWindowEditor::update(float _d)
 					*selected_entity->path_block_gabarite_right += EWindow::mouse_speed_x * mul;
 					*selected_entity->path_block_gabarite_right = EMath::clamp_value_float(*selected_entity->path_block_gabarite_right, 0.0f, 512.0f);
 				}
+
+				if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabariteShadowBlock)
+				{
+					*selected_entity->shadow_block_gabarite_right += EWindow::mouse_speed_x * mul;
+					*selected_entity->shadow_block_gabarite_right = EMath::clamp_value_float(*selected_entity->shadow_block_gabarite_right, 0.0f, 512.0f);
+				}
 			}
 
 			SetCursorPos(saved_pos_x, saved_pos_y);
 			prev_mouse_x = saved_pos_x;
 			prev_mouse_y = saved_pos_y;
+
+			Entity::update_path_block(selected_entity);
 		}
 		else
 		{
@@ -3009,6 +3102,121 @@ void EWindowEditor::clone_entity(Entity* _e)
 	*clone->collision_right		=	*_e->collision_right;
 	*clone->collision_up		=	*_e->collision_up;
 
+	*clone->path_block_gabarite_down		=	*_e->path_block_gabarite_down;
+	*clone->path_block_gabarite_left		=	*_e->path_block_gabarite_left;
+	*clone->path_block_gabarite_right		=	*_e->path_block_gabarite_right;
+	*clone->path_block_gabarite_up			=	*_e->path_block_gabarite_up;
+
+	clone->autobuilding_floor_list.clear();
+
+	Entity::building_autogen_floor* just_created_floor = NULL;
+	Entity::wall_element* just_created_wall = NULL;
+	Entity::wall_texture_variant* just_created_variant = NULL;
+
+	int id = 0;
+	int wall_id = 0;
+
+	for (Entity::building_autogen_floor* fl : _e->autobuilding_floor_list)
+	{
+		just_created_floor = new Entity::building_autogen_floor;
+		*just_created_floor->name = *fl->name;
+		*just_created_floor->bottom_roof_offset_multiplier = *fl->bottom_roof_offset_multiplier;
+
+		id = 0;
+		for (EColor* cl : fl->color_matrix)
+		{
+			just_created_floor->color_matrix.at(id)->set_color(cl);
+			id++;
+		}
+
+		*just_created_floor->horizontal_roof_offset_multiplier = *fl->horizontal_roof_offset_multiplier;
+
+		*just_created_floor->offset_x = *fl->offset_x;
+		*just_created_floor->offset_y = *fl->offset_y;
+		*just_created_floor->offset_z = *fl->offset_z;
+
+		*just_created_floor->up_roof_offset_multiplier = *fl->up_roof_offset_multiplier;
+
+		id = 0;
+		wall_id = 0;
+		//just_created_floor->
+		for (Entity::wall_element* we : fl->wall_list)
+		{
+			just_created_wall = just_created_floor->wall_list.at(wall_id);
+
+			just_created_wall->element_color->set_color(we->element_color);
+			*just_created_wall->element_color_multiplier = *we->element_color_multiplier;
+			*just_created_wall->is_mirrored = *we->is_mirrored;
+
+			*just_created_wall->offset_x = *we->offset_x;
+			*just_created_wall->offset_y = *we->offset_y;
+			*just_created_wall->offset_z = *we->offset_z;
+
+			*just_created_wall->repeat_x = *we->repeat_x;
+			*just_created_wall->repeat_y = *we->repeat_y;
+
+			id = 0;
+			just_created_wall->texture_variant_list.clear();
+
+			for (Entity::wall_texture_variant* va : we->texture_variant_list)
+			{
+
+				just_created_variant = new Entity::wall_texture_variant;
+
+				*just_created_variant->offset_x = *va->offset_x;
+				*just_created_variant->offset_y = *va->offset_y;
+				*just_created_variant->offset_z = *va->offset_z;
+
+				*just_created_variant->shadow_size_x = *va->shadow_size_x;
+				*just_created_variant->shadow_size_y = *va->shadow_size_y;
+
+				just_created_variant->supermap = va->supermap;
+				just_created_variant->texture = va->texture;
+
+				*just_created_variant->tall_bottom = *va->tall_bottom;
+				*just_created_variant->tall_up = *va->tall_up;
+
+				just_created_wall->texture_variant_list.push_back(just_created_variant);
+
+				id++;
+			}
+
+
+			wall_id++;
+		}
+
+		*just_created_floor->wall_window_is_stretched = *fl->wall_window_is_stretched;
+
+		*just_created_floor->window_distance_x = *fl->window_distance_x;
+		*just_created_floor->window_distance_y = *fl->window_distance_y;
+
+		clone->autobuilding_floor_list.push_back(just_created_floor);
+	}
+
+	id = 0;
+	for (int ord : _e->autobuilding_floor_order)
+	{
+		clone->autobuilding_floor_order.at(id) = ord;
+
+		id++;
+	}
+
+	id = 0;
+	for (bool* alb:_e->autobuilding_left_border)
+	{clone->autobuilding_left_border.at(id) = alb; id++;}
+
+	id = 0;
+	for (bool* arb:_e->autobuilding_right_border)
+	{clone->autobuilding_right_border.at(id) = arb; id++;}
+
+	id = 0;
+	for (bool* gox : _e->autobuilding_generate_offset_x)
+	{clone->autobuilding_generate_offset_x.at(id) = gox; id++;}
+
+	id = 0;
+	for (bool* goy : _e->autobuilding_generate_offset_y)
+	{clone->autobuilding_generate_offset_y.at(id) = goy; id++;}
+
 	int did = 0;
 
 	for (float f :_e->eattr_BASE)
@@ -3068,6 +3276,14 @@ void EWindowEditor::clone_entity(Entity* _e)
 			*clone_struct->bottom_tall = *st->bottom_tall;
 
 			*clone_struct->copies = *st->copies;
+
+			*clone_struct->fragment_x = *st->fragment_x;
+			*clone_struct->fragment_y = *st->fragment_y;
+
+			*clone_struct->shadow_height = *st->shadow_height;
+
+			//for (EColor* cl:st->colo)
+			clone_struct->sprite_color->set_color(st->sprite_color);
 
 			id++;
 		}
@@ -3210,6 +3426,61 @@ void EWindowEditor::draw(float _d)
 					*selected_entity->position_x - *selected_entity->path_block_gabarite_left - 3.0f,
 					*selected_entity->position_y - *selected_entity->path_block_gabarite_down - 3.0f,
 					*selected_entity->path_block_gabarite_left + *selected_entity->path_block_gabarite_right + 3.0f,
+					6.0f,
+					1.0f,
+					EGraphicCore::gabarite_white_pixel
+				);
+			}
+		}
+		
+		if (*entity_gabarite_mode_active == EntityGabariteMode::EntityGabariteShadowBlock)
+		{
+			if (catched_collision_left)
+			{
+				EGraphicCore::batch->draw_rama
+				(
+					*selected_entity->position_x - *selected_entity->shadow_block_gabarite_left - 3.0f,
+					*selected_entity->position_y - *selected_entity->shadow_block_gabarite_down - 3.0f,
+					6.0f,
+					*selected_entity->shadow_block_gabarite_down + *selected_entity->shadow_block_gabarite_up + 3.0f,
+					1.0f,
+					EGraphicCore::gabarite_white_pixel
+				);
+			}
+
+			if (catched_collision_up)
+			{
+				EGraphicCore::batch->draw_rama
+				(
+					*selected_entity->position_x - *selected_entity->shadow_block_gabarite_left - 3.0f,
+					*selected_entity->position_y + *selected_entity->shadow_block_gabarite_up - 3.0f,
+					*selected_entity->shadow_block_gabarite_left + *selected_entity->shadow_block_gabarite_right + 3.0f,
+					6.0f,
+					1.0f,
+					EGraphicCore::gabarite_white_pixel
+				);
+			}
+
+			if (catched_collision_right)
+			{
+				EGraphicCore::batch->draw_rama
+				(
+					*selected_entity->position_x + *selected_entity->shadow_block_gabarite_right - 3.0f,
+					*selected_entity->position_y - *selected_entity->shadow_block_gabarite_down - 3.0f,
+					6.0f,
+					*selected_entity->shadow_block_gabarite_down + *selected_entity->shadow_block_gabarite_up + 3.0f,
+					1.0f,
+					EGraphicCore::gabarite_white_pixel
+				);
+			}
+
+			if (catched_collision_down)
+			{
+				EGraphicCore::batch->draw_rama
+				(
+					*selected_entity->position_x - *selected_entity->shadow_block_gabarite_left - 3.0f,
+					*selected_entity->position_y - *selected_entity->shadow_block_gabarite_down - 3.0f,
+					*selected_entity->shadow_block_gabarite_left + *selected_entity->shadow_block_gabarite_right + 3.0f,
 					6.0f,
 					1.0f,
 					EGraphicCore::gabarite_white_pixel

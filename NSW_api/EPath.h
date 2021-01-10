@@ -11,6 +11,7 @@ public:
 
 	static short path[PATH_DIM][PATH_DIM][2];
 	static bool block[PATH_DIM][PATH_DIM];
+	static bool shadow_block[PATH_DIM][PATH_DIM];
 	static bool entity_block[PATH_DIM][PATH_DIM];
 
 	static int phase;

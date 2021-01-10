@@ -933,6 +933,15 @@ void Entity::update_path_block(Entity* _e)
 			EPath::block[j][i] = false;
 		}
 
+		for (int j = path_pos_x - 20; j <= path_pos_x + 20; j++)
+		for (int i = path_pos_y - 20; i <= path_pos_y + 20; i++)
+		if ((j >= 0) & (j < EPath::PATH_DIM) & (i >= 0) & (i < EPath::PATH_DIM))
+		{
+			EPath::shadow_block[j][i] = false;
+		}
+
+
+
 		//set block
 	
 	
@@ -951,7 +960,7 @@ void Entity::spread_path_block(Entity* _e)
 			for (int ci = cluster_pos_y - 8; ci <= cluster_pos_y + 8; ci++)
 				if ((cj >= 0) & (cj < ECluster::CLUSTER_DIM) & (ci >= 0) & (ci < ECluster::CLUSTER_DIM))
 					for (Entity* e : ECluster::clusters[cj][ci]->entity_list)
-						if ((*e->inmovable) & (!*e->no_path_block) & (!*e->is_ghost))
+						if ((*e->inmovable) & (!*e->is_ghost))
 						{
 							int block_start_x = (EMath::clamp_value_int((round)((*e->position_x - *e->path_block_gabarite_left + 15.0f * 0.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
 							int block_end_x = (EMath::clamp_value_int((int)((*e->position_x + *e->path_block_gabarite_right - 30.0f * 0.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
@@ -959,11 +968,24 @@ void Entity::spread_path_block(Entity* _e)
 							int block_start_y = (EMath::clamp_value_int((round)((*e->position_y - *e->path_block_gabarite_down + 15.0f * 0.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
 							int block_end_y = (EMath::clamp_value_int((int)((*e->position_y + *e->path_block_gabarite_up - 30.0f * 0.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
 
+							if (!*e->no_path_block)
 							for (int j = block_start_x; j <= block_end_x; j++)
-								for (int i = block_start_y; i <= block_end_y; i++)
-								{
-									EPath::block[j][i] = true;
-								}
+							for (int i = block_start_y; i <= block_end_y; i++)
+							{
+								EPath::block[j][i] = true;
+							}
+
+							block_start_x = (EMath::clamp_value_int((round)((*e->position_x - *e->shadow_block_gabarite_left + 15.0f * 0.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+							block_end_x = (EMath::clamp_value_int((int)((*e->position_x + *e->shadow_block_gabarite_right - 30.0f * 0.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+
+							block_start_y = (EMath::clamp_value_int((round)((*e->position_y - *e->shadow_block_gabarite_down + 15.0f * 0.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+							block_end_y = (EMath::clamp_value_int((int)((*e->position_y + *e->shadow_block_gabarite_up - 30.0f * 0.0f) / EPath::PATH_SIZE), 0, EPath::PATH_DIM));
+
+							for (int j = block_start_x; j <= block_end_x; j++)
+							for (int i = block_start_y; i <= block_end_y; i++)
+							{
+								EPath::shadow_block[j][i] = true;
+							}
 						}
 
 }
@@ -1572,7 +1594,7 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 
 			//wall_corner_subcopies = ceil(scale_factor_y);
 
-			wall_repeats = ceil(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y * scale_factor_y);
+			wall_repeats = ceil(*AB_floor->wall_list.at(Entity::WallElementIndex::WEI_MID_WALL)->repeat_y);
 			for (int yy = 0; yy < wall_repeats; yy++)
 			{
 				if (AB_MACRO_is_valid(WEI_MID_WALL, random_select))
@@ -2040,7 +2062,30 @@ void Entity::assembly_autobuilding_sprites(Entity* _e)
 
 		}
 
+		if (AB_MACRO_is_valid(WEI_DECOR, random_select))
+			for (int dec = 0; dec < AB_floor->wall_list.at(Entity::WallElementIndex::WEI_DECOR)->texture_variant_list.size(); dec++)
+			{
 
+				//logger("create shade sprite");
+				spr = _e->sprite_list.at(sprite_order);
+
+				ox = AB_MACRO_get_texture_offset(WEI_DECOR, dec, offset_x) + stage_offset_x;
+				oy = AB_MACRO_get_texture_offset(WEI_DECOR, dec, offset_y);
+				oz = AB_MACRO_get_texture_offset(WEI_DECOR, dec, offset_z);
+
+				/*if (i >= spr->sprite_struct_list.size())
+				{
+					ESprite::sprite_struct* s_struct = new ESprite::sprite_struct;
+					spr->sprite_struct_list.push_back(s_struct);
+				}*/
+
+				AB_MACRO_append_sprite_data(WEI_DECOR, dec, 0);
+
+
+
+				//*spr->is_shadow = true;
+
+			}
 
 		stage_offset_x += floor_order_offset_x;
 		floor_order_offset_x = 0.0f;

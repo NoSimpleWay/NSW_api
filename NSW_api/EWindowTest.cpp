@@ -1172,13 +1172,13 @@ void EWindowTest::draw_debug_collision()
 
 				for (Entity* e : ECluster::clusters[j][i]->entity_list)
 				{
-					if (*EWindow::window_editor->entity_gabarite_mode_active == EWindowEditor::EntityGabariteMode::EntityGabariteCollision)
+					
 					{
 						
-						if (*e->is_ghost)
-						{EGraphicCore::batch->setcolor_alpha(EColor::COLOR_BLUE, 0.35f);}
-						else
+						if (*EWindow::window_editor->entity_gabarite_mode_active == EWindowEditor::EntityGabariteMode::EntityGabariteCollision)
 						{EGraphicCore::batch->setcolor(EColor::COLOR_BLUE);}
+						else
+						{EGraphicCore::batch->setcolor_alpha(EColor::COLOR_BLUE, 0.35f);}
 
 						if (EWindow::window_editor->selected_entity == e)
 						{EGraphicCore::batch->draw_rama(*e->position_x - *e->collision_left, *e->position_y - *e->collision_down, *e->collision_left + *e->collision_right, *e->collision_down + *e->collision_up, 3.0f / game_camera->zoom, EGraphicCore::gabarite_white_pixel);}
@@ -1187,18 +1187,35 @@ void EWindowTest::draw_debug_collision()
 						//EGraphicCore::batch->draw_gabarite(*e->position_x + e->body_offset_x.at(sprite_id), *e->position_y + e->body_offset_y.at(sprite_id), e->body.at(sprite_id)->size_x, e->body.at(sprite_id)->size_y, e->body.at(sprite_id));
 					}
 
-					if (*EWindow::window_editor->entity_gabarite_mode_active == EWindowEditor::EntityGabariteMode::EntityGabaritePathBlock)
-					{
+
 						
-						if (*e->no_path_block)
-						{EGraphicCore::batch->setcolor_alpha(EColor::COLOR_ORANGE, 0.35f);}
-						else
+						if (*EWindow::window_editor->entity_gabarite_mode_active == EWindowEditor::EntityGabariteMode::EntityGabaritePathBlock)
 						{EGraphicCore::batch->setcolor(EColor::COLOR_ORANGE);}
+						else
+						{EGraphicCore::batch->setcolor_alpha(EColor::COLOR_ORANGE, 0.35f);}
 
 						if (EWindow::window_editor->selected_entity == e)
 						{EGraphicCore::batch->draw_rama(*e->position_x - *e->path_block_gabarite_left, *e->position_y - *e->path_block_gabarite_down, *e->path_block_gabarite_left + *e->path_block_gabarite_right, *e->path_block_gabarite_down + *e->path_block_gabarite_up, 3.0f / game_camera->zoom, EGraphicCore::gabarite_white_pixel);}
 						else
 						{EGraphicCore::batch->draw_rama(*e->position_x - *e->path_block_gabarite_left, *e->position_y - *e->path_block_gabarite_down, *e->path_block_gabarite_left + *e->path_block_gabarite_right, *e->path_block_gabarite_down + *e->path_block_gabarite_up, 1.0f / game_camera->zoom, EGraphicCore::gabarite_white_pixel);}
+						//EGraphicCore::batch->draw_gabarite(*e->position_x + e->body_offset_x.at(sprite_id), *e->position_y + e->body_offset_y.at(sprite_id), e->body.at(sprite_id)->size_x, e->body.at(sprite_id)->size_y, e->body.at(sprite_id));
+
+					
+					
+					{
+						
+						//if (*e->no_path_block)
+						if (*EWindow::window_editor->entity_gabarite_mode_active == EWindowEditor::EntityGabariteMode::EntityGabariteShadowBlock)
+						{EGraphicCore::batch->setcolor(EColor::COLOR_GREEN);}
+						else
+						{EGraphicCore::batch->setcolor_alpha(EColor::COLOR_GREEN, 0.35f);}
+						//else
+						//{EGraphicCore::batch->setcolor(EColor::COLOR_ORANGE);}
+
+						if (EWindow::window_editor->selected_entity == e)
+						{EGraphicCore::batch->draw_rama(*e->position_x - *e->shadow_block_gabarite_left, *e->position_y - *e->shadow_block_gabarite_down, *e->shadow_block_gabarite_left + *e->shadow_block_gabarite_right, *e->shadow_block_gabarite_down + *e->shadow_block_gabarite_up, 3.0f / game_camera->zoom, EGraphicCore::gabarite_white_pixel);}
+						else
+						{EGraphicCore::batch->draw_rama(*e->position_x - *e->shadow_block_gabarite_left, *e->position_y - *e->shadow_block_gabarite_down, *e->shadow_block_gabarite_left + *e->shadow_block_gabarite_right, *e->shadow_block_gabarite_down + *e->shadow_block_gabarite_up, 1.0f / game_camera->zoom, EGraphicCore::gabarite_white_pixel);}
 						//EGraphicCore::batch->draw_gabarite(*e->position_x + e->body_offset_x.at(sprite_id), *e->position_y + e->body_offset_y.at(sprite_id), e->body.at(sprite_id)->size_x, e->body.at(sprite_id)->size_y, e->body.at(sprite_id));
 					}
 				}
@@ -1423,7 +1440,7 @@ void EWindowTest::draw_lightmap()
 	EGraphicCore::batch->setcolor_lum(EColor::COLOR_BLACK, 1.0f);
 	for (int i = down_terrain_draw; i <= up_terrain_draw; i++)
 	for (int j = left_terrain_draw; j <= right_terrain_draw; j++)
-	if (EPath::block[j][i])
+	if (EPath::shadow_block[j][i])
 	{
 		EGraphicCore::batch->draw_gabarite(j, i, 1.0f, 1.0f, EGraphicCore::gabarite_white_pixel);
 	}
